@@ -1,0 +1,12 @@
+{
+  "semi": false,
+  "singleQuote": true,
+  "useTabs": false,
+  "trailingComma": "none",
+  "htmlWhitespaceSensitivity": "ignore",
+  "printWidth": 160,
+  "bracketSameLine": true,
+  "vueIndentScriptAndStyle": true,
+  "tabWidth": 2,
+  "ignorePatterns": ["*.md"]
+}
