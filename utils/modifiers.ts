@@ -451,3 +451,37 @@ export const tr = (items: string[]) => {
 export const abbr = (text: string, title: string) => {
   return `<abbr title="${title}">${text}</abbr>`
 }
+
+/**
+ * Returns unique array values with an optional property to pluck.
+ * @param items - The array of items.
+ * @param property - The property to pluck (optional).
+ */
+export const unique = (items: string[], property: any) => {
+  if (property) {
+    return [...new Set(items.map((item) => item[property]))]
+  }
+
+  return [...new Set(items)]
+}
+
+/**
+ * Returns the first item in an array.
+ */
+export const first = (items: string[]) => {
+  return items[0]
+}
+
+/**
+ * Returns the last item in an array.
+ */
+export const last = (items: string[]) => {
+  return items[items.length - 1]
+}
+
+/**
+ * Returns the nth item in an array.
+ */
+export const nth = (items: string[], nth: number) => {
+  return items[nth]
+}
