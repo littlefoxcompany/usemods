@@ -1,15 +1,15 @@
 /**
  * Check if the input is a valid email address.
  */
-export const isEmail = (email: string) => {
-  const regex = /\S+@\S+\.\S+/
+export function isEmail(email: string): boolean {
+  const regex: RegExp = /\S+@\S+\.\S+/
   return regex.test(email)
 }
 
 /**
  * Check if the input is a valid number.
  */
-export const isNumber = (number: string) => {
+export function isNumber(number: string): boolean {
   const regex = /^\d+$/
   return regex.test(number)
 }
@@ -17,7 +17,7 @@ export const isNumber = (number: string) => {
 /**
  * Check if the input is a valid phone number.
  */
-export const isPhoneNumber = (number: string) => {
+export function isPhoneNumber(number: string): boolean {
   const regex = /^\d{10}$/
   return regex.test(number)
 }

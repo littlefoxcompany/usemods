@@ -17,5 +17,8 @@
     "@types/node": "^20.4.0",
     "eslint": "^8.44.0",
     "nuxt": "^3.6.2"
+  },
+  "dependencies": {
+    "ts-morph": "^19.0.0"
   }
 }

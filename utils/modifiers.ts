@@ -1,7 +1,7 @@
 /**
  * Adds a space between the last two words in a string.
  */
-export const widont = (text: string) => {
+export function widont(text: string): string {
   const space = text.lastIndexOf(' ')
 
   return text.substring(0, space) + '&nbsp;' + text.substring(space + 1)
@@ -10,35 +10,35 @@ export const widont = (text: string) => {
 /**
  * Strip HTML tags from a string.
  */
-export const stripHtml = (text: string) => {
+export function stripHtml(text: string): string {
   return text.replace(/<[^>]*>?/gm, '')
 }
 
 /**
  * Escape HTML entities in a string.
  */
-export const escapeHtml = (text: string) => {
+export function escapeHtml(text: string): string {
   return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 }
 
 /**
  * Unescape HTML entities in a string.
  */
-export const showHtml = (text: string) => {
+export function showHtml(text: string): string {
   return text.replace(/</g, '&lt;').replace(/>/g, '&gt;')
 }
 
 /**
  * Strip HTML tags from a string.
  */
-export const stripTags = (text: string) => {
+export function stripTags(text: string): string {
   return text.replace(/<\/?[^>]+(>|$)/g, '')
 }
 
 /**
  * Converts a string to-a-slug.
  */
-export const slugify = (text: string) => {
+export function slugify(text: string): string {
   return text
     .toLowerCase()
     .replace(/[^\w ]+/g, '')
@@ -47,15 +47,16 @@ export const slugify = (text: string) => {
 
 /**
  * Converts a slug to a string.
+ * @example deslugify('hello-world') => 'hello world'
  */
-export const deslugify = (text: string) => {
+export function deslugify(text: string): string {
   return text.toLowerCase().replace(/-/g, ' ')
 }
 
 /**
  * Truncates a string to a specified length of words.
  */
-export const truncate = (text: string, length: number) => {
+export function truncate(text: string, length: number): string {
   const words = text.split(' ')
   if (words.length <= length) {
     return text
@@ -68,63 +69,63 @@ export const truncate = (text: string, length: number) => {
 /**
  * Counts the number of words in a string.
  */
-export const wordCount = (text: string) => {
+export function wordCount(text: string): number {
   return text.split(' ').length
 }
 
 /**
  * Counts the number of characters in a string.
  */
-export const characterCount = (text: string) => {
+export function characterCount(text: string): number {
   return text.length
 }
 
 /**
  * Counts the number of lines in a string.
  */
-export const lineCount = (text: string) => {
+export function lineCount(text: string): number {
   return text.split('\n').length
 }
 
 /**
  * Strips whitespace from a string.
  */
-export const stripWhitespace = (text: string) => {
+export function stripWhitespace(text: string): string {
   return text.replace(/\s+/g, '')
 }
 
 /**
  * Strips numbers from a string.
  */
-export const stripNumbers = (text: string) => {
+export function stripNumbers(text: string): string {
   return text.replace(/[0-9]/g, '')
 }
 
 /**
  * Strips punctuation from a string.
  */
-export const stripPunctuation = (text: string) => {
+export function stripPunctuation(text: string): string {
   return text.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '')
 }
 
 /**
  * Strips symbols from a string.
  */
-export const stripSymbols = (text: string) => {
+export function stripSymbols(text: string): string {
   return text.replace(/[^\w\s]|_/g, '')
 }
 
 /**
  * Strips emojis from a string (requires ES6 Unicode support) 🦊.
  */
-export const stripEmojis = (text: string) => {
+export function stripEmojis(text: string): string {
   return text.replace(/[\u{1F600}-\u{1F6FF}]/gu, '')
 }
 
 /**
  * Returns the reading time of a string in Hours, Minutes, and Seconds.
  */
-export const readingTime = (text: string, wordsPerMinute = 200) => {
+export function readingTime(text: string, wordsPerMinute = 200): string {
   const words = text.split(' ').length
   const minutes = words / wordsPerMinute
   const readTime = Math.ceil(minutes)
@@ -135,7 +136,7 @@ export const readingTime = (text: string, wordsPerMinute = 200) => {
 /**
  * Adds plurals to a string.
  */
-export const pluralize = (text: string, count: number) => {
+export function pluralize(text: string, count: number): string {
   if (count === 1) {
     return text
   }
@@ -146,7 +147,7 @@ export const pluralize = (text: string, count: number) => {
 /**
  * Removes plurals from a string.
  */
-export const singularize = (text: string, count: number) => {
+export function singularize(text: string, count: number): string {
   if (count === 1) {
     return text
   }
@@ -157,7 +158,7 @@ export const singularize = (text: string, count: number) => {
 /**
  * Converts a number to a string with ordinal suffix.
  */
-export const ordinalize = (number: number) => {
+export function ordinalize(number: number): string {
   const suffixes = ['th', 'st', 'nd', 'rd']
   const remainder = number % 100
 
@@ -167,7 +168,7 @@ export const ordinalize = (number: number) => {
 /**
  * Replaces underscores with spaces and capitalizes the first letter of each word.
  */
-export const humanize = (text: string) => {
+export function humanize(text: string): string {
   return text
     .replace(/_/g, ' ')
     .replace(/([A-Z])/g, ' $1')
@@ -177,7 +178,7 @@ export const humanize = (text: string) => {
 /**
  * Removes spaces and capitalizes the first letter of each word except for the first word.
  */
-export const camelCase = (text: string) => {
+export function camelCase(text: string): string {
   return text
     .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => {
       return index === 0 ? word.toLowerCase() : word.toUpperCase()
@@ -188,7 +189,7 @@ export const camelCase = (text: string) => {
 /**
  * Removes spaces and capitalizes the first letter of each word.
  */
-export const pascalCase = (text: string) => {
+export function pascalCase(text: string): string {
   return text
     .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => {
       return word.toUpperCase()
@@ -199,7 +200,7 @@ export const pascalCase = (text: string) => {
 /**
  * Replaces spaces with underscores and converts to lowercase.
  */
-export const snakeCase = (text: string) => {
+export function snakeCase(text: string): string {
   return text
     .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => {
       return index === 0 ? word.toLowerCase() : '_' + word.toLowerCase()
@@ -210,7 +211,7 @@ export const snakeCase = (text: string) => {
 /**
  * Replaces spaces with hyphens and converts to lowercase.
  */
-export const kebabCase = (text: string) => {
+export function kebabCase(text: string): string {
   return text
     .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => {
       return index === 0 ? word.toLowerCase() : '-' + word.toLowerCase()
@@ -221,7 +222,7 @@ export const kebabCase = (text: string) => {
 /**
  * Converts to title case by capitalizing the first letter of each word.
  */
-export const titleCase = (text: string) => {
+export function titleCase(text: string): string {
   return text
     .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => {
       return word.toUpperCase()
@@ -232,7 +233,7 @@ export const titleCase = (text: string) => {
 /**
  * Converts to sentence case by capitalizing the first letter of the first word.
  */
-export const sentenceCase = (text: string) => {
+export function sentenceCase(text: string): string {
   return text
     .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => {
       return index === 0 ? word.toUpperCase() : word.toLowerCase()
@@ -243,7 +244,7 @@ export const sentenceCase = (text: string) => {
 /**
  * Adds a prefix to a string if it doesn't already start with the prefix.
  */
-export const startsWith = (text: string, startsWith: string) => {
+export function startsWith(text: string, startsWith: string): string {
   if (text.startsWith(startsWith)) {
     return text
   } else {
@@ -254,7 +255,7 @@ export const startsWith = (text: string, startsWith: string) => {
 /**
  * Adds a suffix to a string if it doesn't already end with the suffix.
  */
-export const endsWith = (text: string, endsWith: string) => {
+export function endsWith(text: string, endsWith: string): string {
   if (text.endsWith(endsWith)) {
     return text
   } else {
@@ -268,7 +269,7 @@ export const endsWith = (text: string, endsWith: string) => {
  * @param prefix - The prefix to add.
  * @param suffix - The suffix to add.
  */
-export const surround = (text: string, startsWith: string, endsWith: string) => {
+export function surround(text: string, startsWith: string, endsWith: string): string {
   if (text.startsWith(startsWith) && text.endsWith(endsWith)) {
     return text
   }
@@ -288,13 +289,13 @@ export const surround = (text: string, startsWith: string, endsWith: string) => 
  * Converts a string to title case following the Chicago Manual of Style rules.
  * @reference https://www.chicagomanualofstyle.org/book/ed17/frontmatter/toc.html
  */
-export const title = (text: string) => {
+export function title(text: string): string {
   const articles = ['a', 'an', 'the']
   const coordinatingConjunctions = ['for', 'and', 'nor', 'but', 'or', 'yet', 'so']
   const prepositions = ['in', 'on', 'at', 'with', 'under', 'above', 'from', 'to', 'of']
   const subordinateConjunctions = ['although', 'because', 'since', 'unless']
 
-  const capitalize = (word: string) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+  const capitalize: (word: string) => string = (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
 
   const words = text.split(' ')
 
@@ -323,7 +324,7 @@ export const title = (text: string) => {
 /**
  * Wraps each word in a string with a span tag.
  */
-export const splitByWords = (text: string) => {
+export function splitByWords(text: string): string[] {
   return text.split(' ').map((word) => {
     return `<span>${word}</span>`
   })
@@ -332,7 +333,7 @@ export const splitByWords = (text: string) => {
 /**
  * Wraps each character in a string with a span tag.
  */
-export const splitByCharacters = (text: string) => {
+export function splitByCharacters(text: string): string[] {
   return text.split('').map((character) => {
     return `<span>${character}</span>`
   })
@@ -341,7 +342,7 @@ export const splitByCharacters = (text: string) => {
 /**
  * Wraps each line in a string with a span tag.
  */
-export const splitByLines = (text: string) => {
+export function splitByLines(text: string): string[] {
   return text.split('\n').map((line) => {
     return `<span>${line}</span>`
   })
@@ -350,7 +351,7 @@ export const splitByLines = (text: string) => {
 /**
  * Wraps each sentence in a string with a span tag.
  */
-export const splitBySentences = (text: string) => {
+export function splitBySentences(text: string): string[] {
   return text.split('.').map((sentence) => {
     return `<span>${sentence}</span>`
   })
@@ -359,7 +360,7 @@ export const splitBySentences = (text: string) => {
 /**
  * Wraps each paragraph in a string with a span tag.
  */
-export const splitByParagraphs = (text: string) => {
+export function splitByParagraphs(text: string): string[] {
   return text.split('\n\n').map((paragraph) => {
     return `<p>${paragraph}</p>`
   })
@@ -368,7 +369,7 @@ export const splitByParagraphs = (text: string) => {
 /**
  * Creates an array of list items (<li>) from an array of strings.
  */
-export const li = (items: string[]) => {
+export function li(items: string[]): string[] {
   return items.map((item) => {
     return `<li>${item}</li>`
   })
@@ -377,21 +378,21 @@ export const li = (items: string[]) => {
 /**
  * Create an ordered list (<ol>) from an array of strings.
  */
-export const ol = (items: string[]) => {
+export function ol(items: string[]): string {
   return `<ol>${li(items).join('')}</ol>`
 }
 
 /**
  * Create an unordered list (<ul>) from an array of strings.
  */
-export const ul = (items: string[]) => {
+export function ul(items: string[]): string {
   return `<ul>${li(items).join('')}</ul>`
 }
 
 /**
  * Create a description list (<dl>) from an array of strings.
  */
-export const dl = (items: string[]) => {
+export function dl(items: string[]): string {
   return `<dl>${li(items).join('')}</dl>`
 }
 
@@ -400,7 +401,7 @@ export const dl = (items: string[]) => {
  * @param items - The array of strings.
  * @param conjunction - The conjunction before the last item e.g. "and" or "or".
  */
-export const commaList = (items: string[], conjunction: string = 'and') => {
+export function commaList(items: string[], conjunction: string = 'and'): string {
   return items.slice(0, -1).join(', ') + ' ' + conjunction + ' ' + items.slice(-1)
 }
 
@@ -409,10 +410,7 @@ export const commaList = (items: string[], conjunction: string = 'and') => {
  * @param items - The array of strings.
  * @param limit - The number of items to show before truncating.
  */
-export const truncateList = (items: string[], limit: number) => {
-  if (items.length === 0) {
-    return ''
-  }
+export function truncateList(items: string[], limit: number): string {
   if (items.length === 1) {
     return items[0]
   }
@@ -425,30 +423,38 @@ export const truncateList = (items: string[], limit: number) => {
   if (items.length > 3) {
     return items.slice(0, limit).join(', ') + ', and ' + (items.length - limit) + ' more'
   }
+  return ''
+}
+
+/**
+ * Shuffles an array.
+ */
+export function shuffle(items: string[]): string[] {
+  return items.sort(() => Math.random() - 0.5)
 }
 
 // Table
-export const table = (rows: string[][]) => {
+export function table(rows: string[][]): string {
   return `<table>${rows.map((row) => `<tr>${td(row).join('')}</tr>`).join('')}</table>`
 }
 
 // Table Data
-export const td = (items: string[]) => {
+export function td(items: string[]): string[] {
   return items.map((item) => `<td>${item}</td>`)
 }
 
 // Table Header
-export const th = (items: string[]) => {
+export function th(items: string[]): string[] {
   return items.map((item) => `<th>${item}</th>`)
 }
 
 // Table Row
-export const tr = (items: string[]) => {
+export function tr(items: string[]): string[] {
   return items.map((item) => `<tr>${item}</tr>`)
 }
 
 // Abbreviation
-export const abbr = (text: string, title: string) => {
+export function abbr(text: string, title: string): string {
   return `<abbr title="${title}">${text}</abbr>`
 }
 
@@ -457,7 +463,7 @@ export const abbr = (text: string, title: string) => {
  * @param items - The array of items.
  * @param property - The property to pluck (optional).
  */
-export const unique = (items: string[], property: any) => {
+export function unique(items: string[], property: any): string[] {
   if (property) {
     return [...new Set(items.map((item) => item[property]))]
   }
@@ -468,20 +474,20 @@ export const unique = (items: string[], property: any) => {
 /**
  * Returns the first item in an array.
  */
-export const first = (items: string[]) => {
+export function first(items: string[]): string {
   return items[0]
 }
 
 /**
  * Returns the last item in an array.
  */
-export const last = (items: string[]) => {
+export function last(items: string[]): string {
   return items[items.length - 1]
 }
 
 /**
  * Returns the nth item in an array.
  */
-export const nth = (items: string[], nth: number) => {
+export function nth(items: string[], nth: number): string {
   return items[nth]
 }

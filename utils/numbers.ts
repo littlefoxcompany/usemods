@@ -96,10 +96,6 @@ export const clamp = (number: number, min: number, max: number) => {
 
 /**
  * Checks if a number is within the specified range.
- * @param number - The number to check.
- * @param min - The minimum value of the range.
- * @param max - The maximum value of the range.
- * @returns True if the number is within the range, false otherwise.
  */
 export const inRange = (number: number, min: number, max: number) => {
   return number >= Math.min(min, max) && number < Math.max(min, max)
