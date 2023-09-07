@@ -1,21 +1,21 @@
 /**
  * Rounds a number to the nearest integer.
  */
-export const round = (number: number) => {
+export function round(number: number): number {
   return Math.round(number)
 }
 
 /**
  * Rounds a number down to the nearest integer.
  */
-export const floor = (number: number) => {
+export function floor(number: number): number {
   return Math.floor(number)
 }
 
 /**
  * Rounds a number up to the nearest integer.
  */
-export const ceil = (number: number) => {
+export function ceil(number: number): number {
   return Math.ceil(number)
 }
 
@@ -24,7 +24,7 @@ export const ceil = (number: number) => {
  * @param number - The number to format.
  * @param decimals - The number of decimal places to keep.
  */
-export const fixed = (number: number, decimals: number) => {
+export function fixed(number: number, decimals: number): string {
   return number.toFixed(decimals)
 }
 
@@ -33,7 +33,7 @@ export const fixed = (number: number, decimals: number) => {
  * @param min - The minimum value.
  * @param max - The maximum value.
  */
-export const random = (min: number, max: number) => {
+export function random(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
@@ -41,7 +41,7 @@ export const random = (min: number, max: number) => {
  * Calculates the sum of an array of numbers.
  * @param numbers - The array of numbers.
  */
-export const sum = (numbers: number[]) => {
+export function sum(numbers: number[]): number {
   return numbers.reduce((a, b) => a + b, 0)
 }
 
@@ -49,7 +49,7 @@ export const sum = (numbers: number[]) => {
  * Calculates the average of an array of numbers.
  * @param numbers - The array of numbers.
  */
-export const average = (numbers: number[]) => {
+export function average(numbers: number[]): number {
   return sum(numbers) / numbers.length
 }
 
@@ -57,7 +57,7 @@ export const average = (numbers: number[]) => {
  * Calculates the median of an array of numbers.
  * @param numbers - The array of numbers.
  */
-export const median = (numbers: number[]) => {
+export function median(numbers: number[]): number {
   const sorted = numbers.sort()
   const middle = Math.floor(sorted.length / 2)
 
@@ -72,7 +72,7 @@ export const median = (numbers: number[]) => {
  * Finds the minimum value in an array of numbers.
  * @param numbers - The array of numbers.
  */
-export const min = (numbers: number[]) => {
+export function min(numbers: number[]): number {
   return Math.min(...numbers)
 }
 
@@ -80,7 +80,7 @@ export const min = (numbers: number[]) => {
  * Finds the maximum value in an array of numbers.
  * @param numbers - The array of numbers.
  */
-export const max = (numbers: number[]) => {
+export function max(numbers: number[]): number {
   return Math.max(...numbers)
 }
 
@@ -90,13 +90,6 @@ export const max = (numbers: number[]) => {
  * @param min - The minimum value.
  * @param max - The maximum value.
  */
-export const clamp = (number: number, min: number, max: number) => {
+export function clamp(number: number, min: number, max: number): number {
   return Math.min(Math.max(number, min), max)
-}
-
-/**
- * Checks if a number is within the specified range.
- */
-export const inRange = (number: number, min: number, max: number) => {
-  return number >= Math.min(min, max) && number < Math.max(min, max)
 }

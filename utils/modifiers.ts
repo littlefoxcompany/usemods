@@ -326,6 +326,9 @@ export function title(text: string): string {
  */
 export function splitByWords(text: string): string[] {
   return text.split(' ').map((word) => {
+    if (word === '') {
+      return '<span>&nbsp;</span>'
+    }
     return `<span>${word}</span>`
   })
 }
@@ -335,6 +338,9 @@ export function splitByWords(text: string): string[] {
  */
 export function splitByCharacters(text: string): string[] {
   return text.split('').map((character) => {
+    if (character === ' ') {
+      return '<span>&nbsp;</span>'
+    }
     return `<span>${character}</span>`
   })
 }
@@ -344,6 +350,9 @@ export function splitByCharacters(text: string): string[] {
  */
 export function splitByLines(text: string): string[] {
   return text.split('\n').map((line) => {
+    if (line.trim() === '') {
+      return '<span>&nbsp;</span>'
+    }
     return `<span>${line}</span>`
   })
 }

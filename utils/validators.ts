@@ -25,7 +25,7 @@ export function isPhoneNumber(number: string): boolean {
 /**
  * Check if the input is a valid URL.
  */
-export const isURL = (url: string) => {
+export function isURL(url: string): boolean {
   const regex = /^(?:\w+:)?\/\/([^\s\.]+\.\S{2}|localhost[\:?\d]*)\S*$/
   return regex.test(url)
 }
@@ -33,7 +33,7 @@ export const isURL = (url: string) => {
 /**
  * Check if the input is a valid UUID.
  */
-export const isUUID = (uuid: string) => {
+export function isUUID(uuid: string): boolean {
   const regex = /^[a-f\d]{8}(-[a-f\d]{4}){4}[a-f\d]{8}$/i
   return regex.test(uuid)
 }
@@ -41,7 +41,7 @@ export const isUUID = (uuid: string) => {
 /**
  * Check if the input is a valid JSON string.
  */
-export const isJSON = (json: string) => {
+export function isJSON(json: string): boolean {
   try {
     JSON.parse(json)
     return true
@@ -53,7 +53,7 @@ export const isJSON = (json: string) => {
 /**
  * Check if the input is a valid Base64 string.
  */
-export const isBase64 = (base64: string) => {
+export function isBase64(base64: string): boolean {
   const regex = /[^a-zA-Z0-9\/\+=]/i
   return !regex.test(base64)
 }
@@ -61,7 +61,7 @@ export const isBase64 = (base64: string) => {
 /**
  * Check if the input is a valid hexadecimal color code.
  */
-export const isHex = (hex: string) => {
+export function isHex(hex: string): boolean {
   const regex = /[0-9A-Fa-f]{6}/g
   return regex.test(hex)
 }
@@ -69,14 +69,14 @@ export const isHex = (hex: string) => {
 /**
  * Check if the input is an empty string.
  */
-export const isEmpty = (text: string) => {
+export function isEmpty(text: string): boolean {
   return text === ''
 }
 
 /**
  * Check if the input contains only alphabetic characters.
  */
-export const isAlpha = (text: string) => {
+export function isAlpha(text: string): boolean {
   const regex = /^[a-zA-Z]+$/
   return regex.test(text)
 }
@@ -84,7 +84,7 @@ export const isAlpha = (text: string) => {
 /**
  * Check if the input contains only alphanumeric characters.
  */
-export const isAlphaNumeric = (text: string) => {
+export function isAlphaNumeric(text: string): boolean {
   const regex = /^[a-zA-Z0-9]+$/
   return regex.test(text)
 }
@@ -92,70 +92,70 @@ export const isAlphaNumeric = (text: string) => {
 /**
  * Check if the input is an array.
  */
-export const isArray = (array: any) => {
+export function isArray(array: any): boolean {
   return Array.isArray(array)
 }
 
 /**
  * Check if the input is an object.
  */
-export const isObject = (object: any) => {
+export function isObject(object: any): boolean {
   return object === Object(object)
 }
 
 /**
  * Check if the input is a boolean value.
  */
-export const isBoolean = (boolean: any) => {
+export function isBoolean(boolean: any): boolean {
   return typeof boolean === 'boolean'
 }
 
 /**
  * Check if the input is a function.
  */
-export const isFunction = (functionToCheck: any) => {
+export function isFunction(functionToCheck: any): boolean {
   return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]'
 }
 
 /**
  * Check if the input is undefined.
  */
-export const isUndefined = (value: any) => {
+export function isUndefined(value: any): boolean {
   return value === undefined
 }
 
 /**
  * Check if the input is null.
  */
-export const isNull = (value: any) => {
+export function isNull(value: any): boolean {
   return value === null
 }
 
 /**
  * Check if the input is NaN (Not a Number).
  */
-export const isNaN = (value: any) => {
+export function isNaN(value: any): boolean {
   return value !== value
 }
 
 /**
  * Check if the input is a valid Date object.
  */
-export const isDate = (date: any) => {
+export function isDate(date: any): boolean {
   return date instanceof Date
 }
 
 /**
  * Check if the input is an Error object with a defined message.
  */
-export const isError = (error: any) => {
+export function isError(error: any): boolean {
   return error instanceof Error && typeof error.message !== 'undefined'
 }
 
 /**
  * Check if the input is a valid time in HH:mm format.
  */
-export const isTime = (time: any) => {
+export function isTime(time: any): boolean {
   const regex = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/
   return regex.test(time)
 }
@@ -163,77 +163,77 @@ export const isTime = (time: any) => {
 /**
  * Check if the input year is a leap year.
  */
-export const isLeapYear = (year: any) => {
+export function isLeapYear(year: any): boolean {
   return new Date(year, 1, 29).getMonth() === 1
 }
 
 /**
  * Check if the input is a symbol.
  */
-export const isSymbol = (symbol: any) => {
+export function isSymbol(symbol: any): boolean {
   return typeof symbol === 'symbol'
 }
 
 /**
  * Check if the input is a Promise object.
  */
-export const isPromise = (promise: any) => {
+export function isPromise(promise: any): boolean {
   return promise instanceof Promise
 }
 
 /**
  * Check if the input is a Set object.
  */
-export const isSet = (set: any) => {
+export function isSet(set: any): boolean {
   return set instanceof Set
 }
 
 /**
  * Check if the input is a Map object.
  */
-export const isMap = (map: any) => {
+export function isMap(map: any): boolean {
   return map instanceof Map
 }
 
 /**
  * Check if the input is a WeakSet object.
  */
-export const isWeakSet = (weakSet: any) => {
+export function isWeakSet(weakSet: any): boolean {
   return weakSet instanceof WeakSet
 }
 
 /**
  * Check if the input number is even.
  */
-export const isEven = (number: any) => {
+export function isEven(number: any): boolean {
   return number % 2 === 0
 }
 
 /**
  * Check if the input number is odd.
  */
-export const isOdd = (number: any) => {
+export function isOdd(number: any): boolean {
   return Math.abs(number % 2) === 1
 }
 
 /**
  * Check if the input number is positive.
  */
-export const isPositive = (number: any) => {
+export function isPositive(number: any): boolean {
   return Math.sign(number) === 1
 }
 
 /**
  * Check if the input number is negative.
  */
-export const isNegative = (number: any) => {
+export function isNegative(number: any): boolean {
   return Math.sign(number) === -1
 }
 
 /**
  * Check if the input number is a prime number.
  */
-export const isPrime = (number: any) => {
+export function isPrime(number: any): boolean {
   const boundary = Math.floor(Math.sqrt(number))
   for (let i = 2; i <= boundary; i++) {
     if (number % i === 0) return false
@@ -244,14 +244,14 @@ export const isPrime = (number: any) => {
 /**
  * Check if the input text is equal to "Optimus Prime".
  */
-export const isOptimusPrime = (text: string) => {
+export function isOptimusPrime(text: string): boolean {
   return text === 'Optimus Prime'
 }
 
 /**
  * Check if the input text is a palindrome.
  */
-export const isPalindrome = (text: any) => {
+export function isPalindrome(text: any): boolean {
   const regex = /[\W_]/g
   const lowerText = text.toLowerCase().replace(regex, '')
   const reverseText = lowerText.split('').reverse().join('')
@@ -261,20 +261,20 @@ export const isPalindrome = (text: any) => {
 /**
  * Check if the input number is an integer.
  */
-export const isInteger = (number: number) => {
+export function isInteger(number: number): boolean {
   return number % 1 === 0
 }
 
 /**
  * Check if the input number is a float.
  */
-export const isFloat = (number: number) => {
+export function isFloat(number: number): boolean {
   return !isInteger(number)
 }
 
 /**
  * Check if the input number is between the specified range.
  */
-export const isBetween = (number: number, min: number, max: number) => {
+export function isBetween(number: number, min: number, max: number): boolean {
   return number >= min && number <= max
 }
