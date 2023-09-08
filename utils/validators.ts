@@ -203,35 +203,35 @@ export function isWeakSet(weakSet: any): boolean {
 }
 
 /**
- * Check if the input number is even.
+ * Check if the number is even.
  */
 export function isEven(number: any): boolean {
   return number % 2 === 0
 }
 
 /**
- * Check if the input number is odd.
+ * Check if the number is odd.
  */
 export function isOdd(number: any): boolean {
   return Math.abs(number % 2) === 1
 }
 
 /**
- * Check if the input number is positive.
+ * Check if the number is positive.
  */
 export function isPositive(number: any): boolean {
   return Math.sign(number) === 1
 }
 
 /**
- * Check if the input number is negative.
+ * Check if the number is negative.
  */
 export function isNegative(number: any): boolean {
   return Math.sign(number) === -1
 }
 
 /**
- * Check if the input number is a prime number.
+ * Check if the number is a prime number.
  */
 export function isPrime(number: any): boolean {
   const boundary = Math.floor(Math.sqrt(number))
@@ -242,14 +242,14 @@ export function isPrime(number: any): boolean {
 }
 
 /**
- * Check if the input text is equal to "Optimus Prime".
+ * Check if the string is equal to "Optimus Prime".
  */
 export function isOptimusPrime(text: string): boolean {
   return text === 'Optimus Prime'
 }
 
 /**
- * Check if the input text is a palindrome.
+ * Check if the string is a palindrome.
  */
 export function isPalindrome(text: any): boolean {
   const regex = /[\W_]/g
@@ -259,22 +259,25 @@ export function isPalindrome(text: any): boolean {
 }
 
 /**
- * Check if the input number is an integer.
+ * Check if the number is an integer.
  */
 export function isInteger(number: number): boolean {
   return number % 1 === 0
 }
 
 /**
- * Check if the input number is a float.
+ * Check if the number is a float.
  */
 export function isFloat(number: number): boolean {
   return !isInteger(number)
 }
 
 /**
- * Check if the input number is between the specified range.
+ * Check if the number is between the specified range.
  */
 export function isBetween(number: number, min: number, max: number): boolean {
+  if (min > max) {
+    ;[min, max] = [max, min]
+  }
   return number >= min && number <= max
 }

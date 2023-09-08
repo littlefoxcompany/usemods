@@ -8,7 +8,12 @@ export function formatCurrency(cents: number, currency = 'USD'): string {
     style: 'currency',
     currency
   })
-  return formatter.format(cents / 100)
+  try {
+    return formatter.format(cents / 100)
+  } catch (error) {
+    console.error(error)
+    return ''
+  }
 }
 
 /**
@@ -17,7 +22,7 @@ export function formatCurrency(cents: number, currency = 'USD'): string {
 export function formatTime(time: number): string {
   const hours = Math.floor(time / 3600)
   const minutes = Math.floor((time % 3600) / 60)
-  const seconds = time % 60
+  const seconds = Math.floor(time % 60)
   let formattedTime = ''
   if (hours > 0) {
     formattedTime += `${hours}hr `
@@ -32,11 +37,11 @@ export function formatTime(time: number): string {
 /**
  * Format Phone Number
  */
-export function formatPhoneNumber(number: number): string | null {
+export function formatPhoneNumber(number: number): string {
   const cleaned = ('' + number).replace(/\D/g, '')
   const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/)
   if (match) {
     return '(' + match[1] + ') ' + match[2] + '-' + match[3]
   }
-  return null
+  throw new Error('invalid phone number')
 }
