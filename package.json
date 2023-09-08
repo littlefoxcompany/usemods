@@ -1,5 +1,5 @@
 {
-  "name": "docus-starter",
+  "name": "use-mods",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -19,5 +19,8 @@
     "@types/node": "^20.4.0",
     "eslint": "^8.44.0",
     "nuxt": "^3.7.1"
+  },
+  "dependencies": {
+    "ts-morph": "^19.0.0"
   }
 }
