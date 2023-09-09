@@ -17,10 +17,11 @@ export function isNumber(number: string): boolean {
 /**
  * Check if the input is a valid phone number.
  */
-export function isPhoneNumber(number: string): boolean {
-  const regex = /^\d{10}$/
-  return regex.test(number)
-}
+// TODO: Make more robust for international numbers or regex property
+// export function isPhoneNumber(number: string): boolean {
+//   const regex = /^\d{10}$/
+//   return regex.test(number)
+// }
 
 /**
  * Check if the input is a valid URL.
@@ -51,14 +52,6 @@ export function isJSON(json: string): boolean {
 }
 
 /**
- * Check if the input is a valid Base64 string.
- */
-export function isBase64(base64: string): boolean {
-  const regex = /[^a-zA-Z0-9\/\+=]/i
-  return !regex.test(base64)
-}
-
-/**
  * Check if the input is a valid hexadecimal color code.
  */
 export function isHex(hex: string): boolean {
@@ -84,7 +77,7 @@ export function isAlpha(text: string): boolean {
 /**
  * Check if the input contains only alphanumeric characters.
  */
-export function isAlphaNumeric(text: string): boolean {
+export function isAlphanumeric(text: string): boolean {
   const regex = /^[a-zA-Z0-9]+$/
   return regex.test(text)
 }
@@ -280,4 +273,20 @@ export function isBetween(number: number, min: number, max: number): boolean {
     ;[min, max] = [max, min]
   }
   return number >= min && number <= max
+}
+
+/**
+ * Check if the number is divisible by the specified number.
+ */
+export function isDivisibleBy(number: number, divisor: number): boolean {
+  return number % divisor === 0
+}
+
+/**
+ * Check if the input is a valid credit card number.
+ */
+export function isCreditCardNumber(number: string): boolean {
+  const regex =
+    /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/
+  return regex.test(number)
 }

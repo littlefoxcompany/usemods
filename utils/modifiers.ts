@@ -1,5 +1,6 @@
 /**
  * Adds a space between the last two words in a string.
+ * @example widont('Hello World')
  */
 export function widont(text: string): string {
   const space = text.lastIndexOf(' ')
@@ -9,6 +10,7 @@ export function widont(text: string): string {
 
 /**
  * Strip HTML tags from a string.
+ * @example stripHtml('<p>Hello World</p>')
  */
 export function stripHtml(text: string): string {
   return text.replace(/<[^>]*>?/gm, '')
@@ -16,6 +18,7 @@ export function stripHtml(text: string): string {
 
 /**
  * Escape HTML entities in a string.
+ * @example escapeHtml('<p>Hello World</p>') => '&lt;p&gt;Hello World&lt;/p&gt;'
  */
 export function escapeHtml(text: string): string {
   return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -23,6 +26,7 @@ export function escapeHtml(text: string): string {
 
 /**
  * Unescape HTML entities in a string.
+ * @example showHtml('&lt;p&gt;Hello World&lt;/p&gt;') => '<p>Hello World</p>'
  */
 export function showHtml(text: string): string {
   return text.replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -30,6 +34,7 @@ export function showHtml(text: string): string {
 
 /**
  * Strip HTML tags from a string.
+ * @example stripTags('<p>Hello World</p>')
  */
 export function stripTags(text: string): string {
   return text.replace(/<\/?[^>]+(>|$)/g, '')
@@ -54,9 +59,19 @@ export function deslugify(text: string): string {
 }
 
 /**
- * Truncates a string to a specified length of words.
+ * Truncates a string to a specified length of characters.
  */
 export function truncate(text: string, length: number): string {
+  if (text.length <= length) {
+    return text
+  }
+  return text.substring(0, length) + '...'
+}
+
+/**
+ * Truncates a string by a number of words
+ */
+export function truncateWords(text: string, length: number): string {
   const words = text.split(' ')
   if (words.length <= length) {
     return text
@@ -69,21 +84,21 @@ export function truncate(text: string, length: number): string {
 /**
  * Counts the number of words in a string.
  */
-export function wordCount(text: string): number {
+export function countWords(text: string): number {
   return text.split(' ').length
 }
 
 /**
  * Counts the number of characters in a string.
  */
-export function characterCount(text: string): number {
+export function countCharacters(text: string): number {
   return text.length
 }
 
 /**
  * Counts the number of lines in a string.
  */
-export function lineCount(text: string): number {
+export function countLines(text: string): number {
   return text.split('\n').length
 }
 
@@ -290,93 +305,85 @@ export function surround(text: string, startsWith: string, endsWith: string): st
  * @reference https://www.chicagomanualofstyle.org/book/ed17/frontmatter/toc.html
  */
 export function title(text: string): string {
-  const articles = ['a', 'an', 'the']
-  const coordinatingConjunctions = ['for', 'and', 'nor', 'but', 'or', 'yet', 'so']
-  const prepositions = ['in', 'on', 'at', 'with', 'under', 'above', 'from', 'to', 'of']
-  const subordinateConjunctions = ['although', 'because', 'since', 'unless']
+  const exceptions = [
+    'a',
+    'an',
+    'the',
+    'for',
+    'and',
+    'nor',
+    'but',
+    'or',
+    'yet',
+    'so',
+    'in',
+    'on',
+    'at',
+    'with',
+    'under',
+    'above',
+    'from',
+    'of',
+    'although',
+    'because',
+    'since',
+    'unless'
+  ]
 
-  const capitalize: (word: string) => string = (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+  const capitalize = (word: string) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
 
-  const words = text.split(' ')
-
-  const transformedWords = words.map((word, i) => {
-    const lowerCaseWord = word.toLowerCase()
-
-    if (word.includes('-') && i > 0) {
-      const [firstPart, secondPart] = word.split('-')
-      return capitalize(firstPart) + '-' + secondPart.toLowerCase()
-    } else if (articles.includes(lowerCaseWord)) {
-      return lowerCaseWord
-    } else if (coordinatingConjunctions.includes(lowerCaseWord) || (prepositions.includes(lowerCaseWord) && lowerCaseWord !== 'to')) {
-      return lowerCaseWord
-    } else if (subordinateConjunctions.includes(lowerCaseWord) || i === 0 || i === words.length - 1) {
-      return capitalize(lowerCaseWord)
-    } else if (i > 0 && words[i - 1].toLowerCase() === 'to') {
-      return lowerCaseWord
-    } else {
-      return capitalize(lowerCaseWord)
-    }
-  })
-
-  return transformedWords.join(' ')
+  return text
+    .split(' ')
+    .map((word, index, wordsArray) => {
+      const lowercaseWord = word.toLowerCase()
+      if (index > 0 && word.includes('-')) {
+        const [firstPart, secondPart] = word.split('-')
+        return capitalize(firstPart) + '-' + secondPart.toLowerCase()
+      }
+      if (index === 0 || index === wordsArray.length - 1 || !exceptions.includes(lowercaseWord)) {
+        return capitalize(lowercaseWord)
+      }
+      if (lowercaseWord === 'to' && index > 0 && wordsArray[index - 1].toLowerCase() !== 'to') {
+        return lowercaseWord
+      }
+      return exceptions.includes(lowercaseWord) ? lowercaseWord : capitalize(lowercaseWord)
+    })
+    .join(' ')
 }
 
 /**
  * Wraps each word in a string with a span tag.
  */
-export function splitByWords(text: string): string[] {
-  return text.split(' ').map((word) => {
-    if (word === '') {
-      return '<span>&nbsp;</span>'
+export function splitByWords(text: string): string {
+  const sentences = text.split(/([\.\?\!])\s*/)
+
+  let wordIndex = 0
+  let combinedSentences = []
+
+  for (let i = 0; i < sentences.length; i += 2) {
+    const sentence = sentences[i] + (sentences[i + 1] || '')
+
+    if (sentence.trim() === '') {
+      continue
     }
-    return `<span>${word}</span>`
-  })
-}
 
-/**
- * Wraps each character in a string with a span tag.
- */
-export function splitByCharacters(text: string): string[] {
-  return text.split('').map((character) => {
-    if (character === ' ') {
-      return '<span>&nbsp;</span>'
-    }
-    return `<span>${character}</span>`
-  })
-}
+    const words = sentence
+      .split(' ')
+      .map((word) => {
+        wordIndex++
+        return `<span class="word word-${wordIndex}">${word}</span>`
+      })
+      .join(' ')
 
-/**
- * Wraps each line in a string with a span tag.
- */
-export function splitByLines(text: string): string[] {
-  return text.split('\n').map((line) => {
-    if (line.trim() === '') {
-      return '<span>&nbsp;</span>'
-    }
-    return `<span>${line}</span>`
-  })
-}
+    combinedSentences.push(`<span class="sentence sentence-${combinedSentences.length + 1}">${words}</span>`)
+  }
 
-/**
- * Wraps each sentence in a string with a span tag.
- */
-export function splitBySentences(text: string): string[] {
-  return text.split('.').map((sentence) => {
-    return `<span>${sentence}</span>`
-  })
-}
-
-/**
- * Wraps each paragraph in a string with a span tag.
- */
-export function splitByParagraphs(text: string): string[] {
-  return text.split('\n\n').map((paragraph) => {
-    return `<p>${paragraph}</p>`
-  })
+  return combinedSentences.join(' ')
 }
 
 /**
  * Creates an array of list items (<li>) from an array of strings.
+ * @example li(['Hello', 'World']) => ['<li>Hello</li>', '<li>World</li>']
  */
 export function li(items: string[]): string[] {
   return items.map((item) => {
@@ -386,6 +393,7 @@ export function li(items: string[]): string[] {
 
 /**
  * Create an ordered list (<ol>) from an array of strings.
+ * @example ol(['Hello', 'World']) => '<ol><li>Hello</li><li>World</li></ol>'
  */
 export function ol(items: string[]): string {
   return `<ol>${li(items).join('')}</ol>`
@@ -396,13 +404,6 @@ export function ol(items: string[]): string {
  */
 export function ul(items: string[]): string {
   return `<ul>${li(items).join('')}</ul>`
-}
-
-/**
- * Create a description list (<dl>) from an array of strings.
- */
-export function dl(items: string[]): string {
-  return `<dl>${li(items).join('')}</dl>`
 }
 
 /**
@@ -419,18 +420,18 @@ export function commaList(items: string[], conjunction: string = 'and'): string 
  * @param items - The array of strings.
  * @param limit - The number of items to show before truncating.
  */
-export function truncateList(items: string[], limit: number): string {
+export function truncateList(items: string[], limit: number, conjunction: string = 'and'): string {
   if (items.length === 1) {
     return items[0]
   }
   if (items.length === 2) {
-    return items.join(' and ')
+    return items.join(' ' + conjunction + ' ')
   }
   if (items.length === 3) {
-    return items.slice(0, -1).join(', ') + ', and ' + items.slice(-1)
+    return items.slice(0, -1).join(', ') + ' ' + conjunction + ' ' + items.slice(-1)
   }
   if (items.length > 3) {
-    return items.slice(0, limit).join(', ') + ', and ' + (items.length - limit) + ' more'
+    return items.slice(0, limit).join(', ') + ' ' + conjunction + ' ' + (items.length - limit) + ' more'
   }
   return ''
 }
@@ -442,42 +443,27 @@ export function shuffle(items: string[]): string[] {
   return items.sort(() => Math.random() - 0.5)
 }
 
-// Table
-export function table(rows: string[][]): string {
-  return `<table>${rows.map((row) => `<tr>${td(row).join('')}</tr>`).join('')}</table>`
-}
-
-// Table Data
-export function td(items: string[]): string[] {
-  return items.map((item) => `<td>${item}</td>`)
-}
-
-// Table Header
-export function th(items: string[]): string[] {
-  return items.map((item) => `<th>${item}</th>`)
-}
-
-// Table Row
-export function tr(items: string[]): string[] {
-  return items.map((item) => `<tr>${item}</tr>`)
-}
-
-// Abbreviation
-export function abbr(text: string, title: string): string {
-  return `<abbr title="${title}">${text}</abbr>`
-}
-
 /**
  * Returns unique array values with an optional property to pluck.
  * @param items - The array of items.
  * @param property - The property to pluck (optional).
  */
-export function unique(items: string[], property: any): string[] {
-  if (property) {
-    return [...new Set(items.map((item) => item[property]))]
+export function unique(items: (string | { [key: string]: any })[], property: string | null = null): any[] {
+  if (!property) {
+    return [...new Set(items)]
   }
 
-  return [...new Set(items)]
+  const seenValues = new Set()
+  const result = []
+
+  for (const item of items) {
+    if (typeof item === 'object' && item[property] && !seenValues.has(item[property])) {
+      seenValues.add(item[property])
+      result.push(item)
+    }
+  }
+
+  return result
 }
 
 /**

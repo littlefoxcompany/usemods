@@ -56,6 +56,7 @@ export function average(numbers: number[]): number {
 /**
  * Calculates the median of an array of numbers.
  * @param numbers - The array of numbers.
+ * @example median([1, 2, 3])
  */
 export function median(numbers: number[]): number {
   const sorted = numbers.sort()
