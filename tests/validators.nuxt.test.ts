@@ -12,8 +12,8 @@ test('isNumber', () => {
 })
 
 test('isURL', () => {
-  expect(isURL('https://www.google.com')).toBe(true)
-  expect(isURL('google.com')).toBe(false)
+  expect(isURL('https://www.usemods.com')).toBe(true)
+  expect(isURL('usemods.com')).toBe(false)
 })
 
 test('isUUID', () => {

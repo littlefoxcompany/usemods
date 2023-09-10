@@ -1,15 +1,13 @@
 /**
  * Format numbers into local currency
- * @param cents The number to format in cents
- * @param currency Defaults to USD
  */
-export function formatCurrency(cents: number, currency = 'USD'): string {
+export function formatCurrency(number: number, currency = 'USD'): string {
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency
   })
   try {
-    return formatter.format(cents / 100)
+    return formatter.format(number)
   } catch (error) {
     console.error(error)
     return ''
@@ -37,11 +35,15 @@ export function formatTime(time: number): string {
 /**
  * Format Phone Number
  */
-export function formatPhoneNumber(number: number): string {
-  const cleaned = ('' + number).replace(/\D/g, '')
-  const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/)
-  if (match) {
-    return '(' + match[1] + ') ' + match[2] + '-' + match[3]
-  }
-  throw new Error('invalid phone number')
-}
+
+// TODO: Make more robust
+// export function formatPhoneNumber(number: number): string {
+//   const cleaned = ('' + number).replace(/\D/g, '')
+//   const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/)
+//   if (match) {
+//     return '(' + match[1] + ') ' + match[2] + '-' + match[3]
+//   }
+//   throw new Error('invalid phone number')
+// }
+
+

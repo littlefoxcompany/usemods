@@ -266,7 +266,6 @@ export function startsWith(text: string, startsWith: string): string {
     return startsWith + text
   }
 }
-
 /**
  * Adds a suffix to a string if it doesn't already end with the suffix.
  */
