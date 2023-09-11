@@ -165,3 +165,31 @@ test('isCreditCardNumber', () => {
   expect(isCreditCardNumber('4111111111111111')).toBe(true)
   expect(isCreditCardNumber('hello')).toBe(false)
 })
+
+test('isIPAddress', () => {
+  expect(isIPAddress('192.168.0.1')).toBe(true)
+  expect(isIPAddress('192.168.0.1:3000')).toBe(true)
+  expect(isIPAddress('hello')).toBe(false)
+})
+
+test('isMACAddress', () => {
+  expect(isMACAddress('00:00:00:00:00:00')).toBe(true)
+  expect(isMACAddress('hello')).toBe(false)
+})
+
+test('isLatLong', () => {
+  expect(isLatLong('12.345678,-98.765432')).toBe(true)
+  expect(isLatLong('12.345678, -98.765432')).toBe(true)
+  expect(isLatLong('98.765432,12.345678')).toBe(false)
+  expect(isLatLong('hello')).toBe(false)
+})
+
+test('isLatitude', () => {
+  expect(isLatitude('12.345678')).toBe(true)
+  expect(isLatitude('hello')).toBe(false)
+})
+
+test('isLongitude', () => {
+  expect(isLongitude('-98.765432')).toBe(true)
+  expect(isLongitude('hello')).toBe(false)
+})

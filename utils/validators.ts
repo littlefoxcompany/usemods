@@ -17,11 +17,38 @@ export function isNumber(number: string): boolean {
 /**
  * Check if the input is a valid phone number.
  */
-// TODO: Make more robust for international numbers or regex property
-// export function isPhoneNumber(number: string): boolean {
-//   const regex = /^\d{10}$/
-//   return regex.test(number)
-// }
+function isPhoneNumber(phoneNumber: string, country: string = 'US'): boolean {
+  const patterns: { [key: string]: RegExp } = {
+    US: /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
+    UK: /^(\(?(?:0(?:0|11)\)?[\s-]?\(?|\+)44\)?[\s-]?)?\(?0?(?:\)[\s-]?)?([1-9]\d{1,4}\)?[\d\s-]+)((?:x|ext\.?\s?|\#)\d{3,4})?$/,
+    CA: /^(\+?1[-.\s]?)?\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
+    BR: /^(\+?55[-.\s]?)?\(?([0-9]{2})\)?[-. ]?([0-9]{4,5})[-. ]?([0-9]{4})$/,
+    AU: /^(\+?61[-.\s]?)?\(?(0?[2-57-8])\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/,
+    DE: /^(\+?49[-.\s]?)?\(?([0-9]{2,3})\)?[-. ]?([0-9]{3,4})[-. ]?([0-9]{4})$/,
+    FR: /^(\+?33[-.\s]?)?\(?([0-9]{1,5})\)?[-. ]?([0-9]{2})[-. ]?([0-9]{2})[-. ]?([0-9]{2})$/,
+    IN: /^(\+?91|0)?[6789]\d{9}$/,
+    NZ: /^(\+?64|0)[28]\d{7,9}$/,
+    ZA: /^(\+?27|0)\d{9}$/,
+    ZM: /^(\+?26)?09[567]\d{7}$/,
+    ES: /^(\+?34)?(6\d{1}|7[1234])\d{7}$/,
+    SE: /^(\+?46|0)[\s-]?7[\s-]?[02369]([\s-]?\d){7}$/,
+    CH: /^(\+?41|0)(\d{2})?[\s-]?(\d{3})[\s-]?(\d{2})[\s-]?(\d{2})$/,
+    TW: /^(\+?886-?|0)?9\d{8}$/,
+    CZ: /^(\+?420)? ?[1-9][0-9]{2} ?[0-9]{3} ?[0-9]{3}$/,
+    BE: /^(\+?32|0)4?\d{8}$/,
+    PT: /^(\+351)?9[1236]\d{7}$/,
+    GR: /^(\+?30)?(69\d{8})$/,
+    HU: /^(\+?36)(20|30|70)\d{7}$/,
+    IL: /^(\+972|0)([23489]|5[0248]|77)[1-9]\d{6}$/,
+    IT: /^(\+?39)?\s?3\d{2} ?\d{6,7}$/,
+    AR: /^(\+?549|0)(11|[2368]\d)\d{8}$/,
+    MX: /^(\+?52)?(1|01)?\d{10,11}$/,
+    PK: /^(\+?92|0)?[3456789]?\d{9}$/,
+    JP: /^(\+?81|0)\d{1,4}[ -]?\d{1,4}[ -]?\d{4}$/
+  }
+
+  return patterns[country].test(phoneNumber)
+}
 
 /**
  * Check if the input is a valid URL.
@@ -295,7 +322,7 @@ export function isCreditCardNumber(number: string): boolean {
  * Check if the input is a valid IP address.
  */
 export function isIPAddress(ip: string): boolean {
-  const regex = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?:\.|$)){4}$/
+  const regex = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)((?::\d+)?|)$/
   return regex.test(ip)
 }
 
@@ -305,4 +332,27 @@ export function isIPAddress(ip: string): boolean {
 export function isMACAddress(mac: string): boolean {
   const regex = /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/
   return regex.test(mac)
+}
+
+/**
+ * Check if the input is a valid latitude-longitude coordinate in the format lat,long or lat, long.
+ */
+export function isLatLong(latLong: string): boolean {
+  const regex = /^-?([1-8]?\d(\.\d{1,6})?|90(\.0{1,6})?),\s?-?((1?[0-7]?\d(\.\d{1,6})?|180(\.0{1,6})?))$/
+  return regex.test(latLong)
+}
+/**
+ * Check if the input is a valid latitude coordinate.
+ */
+export function isLatitude(latitude: string): boolean {
+  const regex = /^-?([1-8]?[1-9]|[1-9]0)\.{1}\d{1,6}\s?$/
+  return regex.test(latitude)
+}
+
+/**
+ * Check if the input is a valid longitude coordinate.
+ */
+export function isLongitude(longitude: string): boolean {
+  const regex = /^-?((1?[0-7]\d|0?\d{0,2}|\d)\.\d{1,6}|180)$/
+  return regex.test(longitude)
 }

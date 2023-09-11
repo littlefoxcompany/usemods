@@ -168,3 +168,80 @@ test('surround', () => {
   expect(surround('www.helloworld', 'www.', '.com')).toBe('www.helloworld.com')
   expect(surround('www.helloworld.com', 'www.', '.com')).toBe('www.helloworld.com')
 })
+
+test('group', () => {
+  const items = [
+    { name: 'John', age: 25 },
+    { name: 'Jane', age: 30 },
+    { name: 'Jake', age: 25 }
+  ]
+
+  expect(group(items, 'age')).toStrictEqual({
+    25: [
+      { name: 'John', age: 25 },
+      { name: 'Jake', age: 25 }
+    ],
+    30: [{ name: 'Jane', age: 30 }]
+  })
+
+  expect(group(items, 'name')).toStrictEqual({
+    John: [{ name: 'John', age: 25 }],
+    Jane: [{ name: 'Jane', age: 30 }],
+    Jake: [{ name: 'Jake', age: 25 }]
+  })
+})
+
+test('groupBy', () => {
+  const chunk = ['a', 'b', 'c', 'd', 'e', 'f']
+  expect(groupBy(chunk, 2)).toStrictEqual([
+    ['a', 'b'],
+    ['c', 'd'],
+    ['e', 'f']
+  ])
+  expect(groupBy(chunk, 3)).toStrictEqual([
+    ['a', 'b', 'c'],
+    ['d', 'e', 'f']
+  ])
+  expect(groupBy(chunk, 4)).toStrictEqual([
+    ['a', 'b', 'c', 'd'],
+    ['e', 'f']
+  ])
+  expect(groupBy(chunk, 5)).toStrictEqual([['a', 'b', 'c', 'd', 'e'], ['f']])
+  expect(groupBy(chunk, 6)).toStrictEqual([chunk])
+})
+
+test('flatten', () => {
+  expect(flatten([1, [2, [3, [4]], 5]])).toStrictEqual([1, 2, 3, 4, 5])
+})
+
+test('without', () => {
+  expect(without([1, 2, 3, 4, 5], [2, 4])).toStrictEqual([1, 3, 5])
+})
+
+test('combine', () => {
+  expect(combine([1, 2, 3], [2, 3, 4])).toStrictEqual([1, 2, 3, 4])
+})
+
+test('reverse', () => {
+  expect(reverse([1, 2, 3])).toStrictEqual([3, 2, 1])
+})
+
+test('sortBy', () => {
+  const items = [
+    { name: 'John', age: 25 },
+    { name: 'Jane', age: 30 },
+    { name: 'Jake', age: 20 }
+  ]
+
+  expect(sortBy(items, 'age')).toStrictEqual([
+    { name: 'Jake', age: 20 },
+    { name: 'John', age: 25 },
+    { name: 'Jane', age: 30 }
+  ])
+
+  expect(sortBy(items, 'name')).toStrictEqual([
+    { name: 'Jake', age: 20 },
+    { name: 'Jane', age: 30 },
+    { name: 'John', age: 25 }
+  ])
+})

@@ -384,7 +384,7 @@ export function splitByWords(text: string): string {
  * Creates an array of list items (<li>) from an array of strings.
  * @example li(['Hello', 'World']) => ['<li>Hello</li>', '<li>World</li>']
  */
-export function li(items: string[]): string[] {
+export function li(items: any[]): any[] {
   return items.map((item) => {
     return `<li>${item}</li>`
   })
@@ -394,14 +394,14 @@ export function li(items: string[]): string[] {
  * Create an ordered list (<ol>) from an array of strings.
  * @example ol(['Hello', 'World']) => '<ol><li>Hello</li><li>World</li></ol>'
  */
-export function ol(items: string[]): string {
+export function ol(items: any[]): string {
   return `<ol>${li(items).join('')}</ol>`
 }
 
 /**
  * Create an unordered list (<ul>) from an array of strings.
  */
-export function ul(items: string[]): string {
+export function ul(items: any[]): string {
   return `<ul>${li(items).join('')}</ul>`
 }
 
@@ -410,7 +410,7 @@ export function ul(items: string[]): string {
  * @param items - The array of strings.
  * @param conjunction - The conjunction before the last item e.g. "and" or "or".
  */
-export function commaList(items: string[], conjunction: string = 'and'): string {
+export function commaList(items: any[], conjunction: string = 'and'): string {
   return items.slice(0, -1).join(', ') + ' ' + conjunction + ' ' + items.slice(-1)
 }
 
@@ -419,7 +419,7 @@ export function commaList(items: string[], conjunction: string = 'and'): string 
  * @param items - The array of strings.
  * @param limit - The number of items to show before truncating.
  */
-export function truncateList(items: string[], limit: number, conjunction: string = 'and'): string {
+export function truncateList(items: any[], limit: number, conjunction: string = 'and'): string {
   if (items.length === 1) {
     return items[0]
   }
@@ -438,7 +438,7 @@ export function truncateList(items: string[], limit: number, conjunction: string
 /**
  * Shuffles an array.
  */
-export function shuffle(items: string[]): string[] {
+export function shuffle(items: any[]): any[] {
   return items.sort(() => Math.random() - 0.5)
 }
 
@@ -468,20 +468,88 @@ export function unique(items: (string | { [key: string]: any })[], property: str
 /**
  * Returns the first item in an array.
  */
-export function first(items: string[]): string {
+export function first(items: any[]): string {
   return items[0]
 }
 
 /**
  * Returns the last item in an array.
  */
-export function last(items: string[]): string {
+export function last(items: any[]): string {
   return items[items.length - 1]
 }
 
 /**
  * Returns the nth item in an array.
  */
-export function nth(items: string[], nth: number): string {
+export function nth(items: any[], nth: number): string {
   return items[nth]
+}
+
+/**
+ * Groups an array of objects by a property.
+ */
+export function group(items: { [key: string]: any }[], property: string): { [key: string]: any } {
+  return items.reduce((accumulator, item) => {
+    const key = item[property]
+    if (!accumulator[key]) {
+      accumulator[key] = []
+    }
+    accumulator[key].push(item)
+    return accumulator
+  }, {})
+}
+
+/**
+ * Chunks an array into sections of a specified size.
+ */
+export function groupBy(items: any[], size: number): any[][] {
+  const result = []
+  for (let i = 0; i < items.length; i += size) {
+    result.push(items.slice(i, i + size))
+  }
+  return result
+}
+
+/**
+ * Flatten an array of arrays.
+ */
+export function flatten(items: any[][]): any[] {
+  return items.reduce((accumulator, item) => {
+    return accumulator.concat(item)
+  }, [])
+}
+
+/**
+ * Returns an array with a filtered out property.
+ */
+export function wtihout(items: { [key: string]: any }[], property: string): any[] {
+  return items.map((item) => {
+    delete item[property]
+    return item
+  })
+}
+
+/**
+ * Combine two arrays.
+ */
+export function combine(items1: any[], items2: any[]): any[] {
+  const combined = items1.concat(items2)
+  return Array.from(new Set(combined))
+}
+
+/**
+ * Reverse an array.
+ */
+export function reverse(items: any[]): any[] {
+  return items.reverse()
+}
+
+/**
+ * Sort an array by a property.
+ */
+export function sortBy(items: { [key: string]: any }[], property: string): { [key: string]: any }[] {
+  return items.sort((a, b) => {
+    return a[property] > b[property] ? 1 : -1
+  })
 }
