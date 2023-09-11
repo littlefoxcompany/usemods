@@ -25,6 +25,8 @@
     "vitest": "^0.33.0"
   },
   "dependencies": {
+    "bun": "^1.0.0",
+    "dayjs": "^1.11.9",
     "ts-morph": "^19.0.0"
   }
 }
