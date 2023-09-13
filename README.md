@@ -1,57 +1,94 @@
-# Docus Starter
+<!--
+Get your module up and running quickly.
 
-Starter template for [Docus](https://docus.dev).
+Find and replace all on all files (CMD+SHIFT+F):
+- Name: My Module
+- Package name: my-module
+- Description: My new Nuxt module
+-->
 
-## Clone
+# My Module
 
-Clone the repository (using `nuxi`):
+[![npm version][npm-version-src]][npm-version-href]
+[![npm downloads][npm-downloads-src]][npm-downloads-href]
+[![License][license-src]][license-href]
+[![Nuxt][nuxt-src]][nuxt-href]
+
+My new Nuxt module for doing amazing things.
+
+- [✨ &nbsp;Release Notes](/CHANGELOG.md)
+<!-- - [🏀 Online playground](https://stackblitz.com/github/your-org/my-module?file=playground%2Fapp.vue) -->
+<!-- - [📖 &nbsp;Documentation](https://example.com) -->
+
+## Features
+
+<!-- Highlight some of the features your module provide here -->
+- ⛰ &nbsp;Foo
+- 🚠 &nbsp;Bar
+- 🌲 &nbsp;Baz
+
+## Quick Setup
+
+1. Add `my-module` dependency to your project
 
 ```bash
-npx nuxi init -t themes/docus
+# Using pnpm
+pnpm add -D my-module
+
+# Using yarn
+yarn add --dev my-module
+
+# Using npm
+npm install --save-dev my-module
 ```
 
-## Setup
+2. Add `my-module` to the `modules` section of `nuxt.config.ts`
 
-Install dependencies:
-
-```bash
-yarn install
+```js
+export default defineNuxtConfig({
+  modules: [
+    'my-module'
+  ]
+})
 ```
+
+That's it! You can now use My Module in your Nuxt app ✨
 
 ## Development
 
 ```bash
-yarn dev
+# Install dependencies
+npm install
+
+# Generate type stubs
+npm run dev:prepare
+
+# Develop with the playground
+npm run dev
+
+# Build the playground
+npm run dev:build
+
+# Run ESLint
+npm run lint
+
+# Run Vitest
+npm run test
+npm run test:watch
+
+# Release new version
+npm run release
 ```
 
-## Edge Side Rendering
+<!-- Badges -->
+[npm-version-src]: https://img.shields.io/npm/v/my-module/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
+[npm-version-href]: https://npmjs.com/package/my-module
 
-Can be deployed to Vercel Functions, Netlify Functions, AWS, and most Node-compatible environments.
+[npm-downloads-src]: https://img.shields.io/npm/dm/my-module.svg?style=flat&colorA=18181B&colorB=28CF8D
+[npm-downloads-href]: https://npmjs.com/package/my-module
 
-Look at all the available presets [here](https://v3.nuxtjs.org/guide/deploy/presets).
+[license-src]: https://img.shields.io/npm/l/my-module.svg?style=flat&colorA=18181B&colorB=28CF8D
+[license-href]: https://npmjs.com/package/my-module
 
-```bash
-yarn build
-```
-
-## Static Generation
-
-Use the `generate` command to build your application.
-
-The HTML files will be generated in the .output/public directory and ready to be deployed to any static compatible hosting.
-
-```bash
-yarn generate
-```
-
-## Preview build
-
-You might want to preview the result of your build locally, to do so, run the following command:
-
-```bash
-yarn preview
-```
-
----
-
-For a detailed explanation of how things work, check out [Docus](https://docus.dev).
+[nuxt-src]: https://img.shields.io/badge/Nuxt-18181B?logo=nuxt.js
+[nuxt-href]: https://nuxt.com

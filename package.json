@@ -1,13 +1,19 @@
 {
   "name": "use-mods",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "Zippy little modifiers and utilities for your frontend.",
+  "repository": "jrmymbtlr/usemods",
+  "license": "MIT",
+  "type": "module",
   "scripts": {
     "dev": "nuxi dev",
     "build": "nuxi build",
     "generate": "nuxi generate",
     "preview": "nuxi preview",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
+    "test": "vitest run",
+    "test:watch": "vitest watch"
   },
   "devDependencies": {
     "@nuxt-themes/docus": "^1.13.1",

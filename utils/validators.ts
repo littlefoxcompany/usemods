@@ -356,3 +356,10 @@ export function isLongitude(longitude: string): boolean {
   const regex = /^-?((1?[0-7]\d|0?\d{0,2}|\d)\.\d{1,6}|180)$/
   return regex.test(longitude)
 }
+
+/**
+ * Checks if a property and value pair exists in an object.
+ */
+export function isPresent(object: any, property: string, value: any): boolean {
+  return object.hasOwnProperty(property) && object[property] === value
+}

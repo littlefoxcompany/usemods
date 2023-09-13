@@ -266,6 +266,19 @@ export function startsWith(text: string, startsWith: string): string {
     return startsWith + text
   }
 }
+
+/**
+ * Removes a prefix from a string if it starts with the prefix.
+ */
+
+export function startsWithout(text: string, prefix: string): string {
+  if (text.startsWith(prefix)) {
+    return text.substring(prefix.length)
+  } else {
+    return text
+  }
+}
+
 /**
  * Adds a suffix to a string if it doesn't already end with the suffix.
  */
@@ -274,6 +287,17 @@ export function endsWith(text: string, endsWith: string): string {
     return text
   } else {
     return text + endsWith
+  }
+}
+
+/**
+ * Removes a suffix from a string if it ends with the suffix.
+ */
+export function endsWithout(text: string, suffix: string): string {
+  if (text.endsWith(suffix)) {
+    return text.substring(0, text.length - suffix.length)
+  } else {
+    return text
   }
 }
 
@@ -487,6 +511,13 @@ export function nth(items: any[], nth: number): string {
 }
 
 /**
+ * Offset the first item in an array.
+ */
+export function offset(items: any[], offset: number): any[] {
+  return items.slice(offset)
+}
+
+/**
  * Groups an array of objects by a property.
  */
 export function group(items: { [key: string]: any }[], property: string): { [key: string]: any } {
@@ -523,7 +554,7 @@ export function flatten(items: any[][]): any[] {
 /**
  * Returns an array with a filtered out property.
  */
-export function wtihout(items: { [key: string]: any }[], property: string): any[] {
+export function without(items: { [key: string]: any }[], property: string): any[] {
   return items.map((item) => {
     delete item[property]
     return item
@@ -531,11 +562,29 @@ export function wtihout(items: { [key: string]: any }[], property: string): any[
 }
 
 /**
- * Combine two arrays.
+ * Combine two arrays
  */
 export function combine(items1: any[], items2: any[]): any[] {
+  return items1.concat(items2)
+}
+
+/**
+ * Combine two unique arrays
+ */
+export function combineUnique(items1: any[], items2: any[]): any[] {
   const combined = items1.concat(items2)
   return Array.from(new Set(combined))
+}
+
+/**
+ * Combine two arrays without a property.
+ */
+export function combineWithout(items1: { [key: string]: any }[], items2: { [key: string]: any }[], property: string): any[] {
+  const combined = items1.concat(items2)
+  const unique = Array.from(new Set(combined.map((item) => item[property])))
+  return unique.map((item) => {
+    return items1.find((i) => i[property] === item)
+  })
 }
 
 /**
