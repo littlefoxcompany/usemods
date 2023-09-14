@@ -1,5 +1,5 @@
 {
-  "name": "use-mods",
+  "name": "usemods",
   "version": "1.0.0",
   "description": "Zippy little modifiers and utilities for your frontend.",
   "repository": "jrmymbtlr/usemods",
@@ -27,7 +27,7 @@
     "eslint": "^8.44.0",
     "happy-dom": "^10.11.2",
     "nuxt": "^3.7.1",
-    "nuxt-vitest": "^0.10.4",
+    "nuxt-vitest": "^0.10.5",
     "vitest": "^0.33.0"
   },
   "dependencies": {

@@ -13,9 +13,9 @@ test('escapeHtml', () => {
   expect(escapeHtml('<p>Hello world</p>')).toBe('&lt;p&gt;Hello world&lt;/p&gt;')
 })
 
-// test('showHtml', () => {
-//   expect(showHtml('&lt;p&gt;Hello World&lt;/p&gt;').toBe('<p>Hello world</p>')
-// })
+test('showHtml', () => {
+  expect(showHtml('&lt;p&gt;Hello World&lt;/p&gt;')).toBe('<p>Hello World</p>')
+})
 
 test('stripTags', () => {
   expect(stripTags('<p><strong>Hello</strong></p>')).toBe('Hello')
@@ -219,7 +219,11 @@ test('without', () => {
 })
 
 test('combine', () => {
-  expect(combine([1, 2, 3], [2, 3, 4])).toStrictEqual([1, 2, 3, 4])
+  expect(combine([1, 2, 3], [2, 3, 4])).toStrictEqual([1, 2, 3, 2, 3, 4])
+})
+
+test('combineUnique', () => {
+  expect(combineUnique([1, 2, 3], [2, 3, 4])).toStrictEqual([1, 2, 3, 4])
 })
 
 test('reverse', () => {

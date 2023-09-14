@@ -6,4 +6,13 @@
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![License][license-src]][license-href]
-[![Nuxt][nuxt-src]][nuxt-href]
+
+<!-- Badges -->
+[npm-version-src]: https://img.shields.io/npm/v/usemods/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
+[npm-version-href]: https://npmjs.com/package/usemods
+
+[npm-downloads-src]: https://img.shields.io/npm/dm/usemods.svg?style=flat&colorA=18181B&colorB=28CF8D
+[npm-downloads-href]: https://npmjs.com/package/usemods
+
+[license-src]: https://img.shields.io/npm/l/usemods.svg?style=flat&colorA=18181B&colorB=28CF8D
+[license-href]: https://npmjs.com/package/usemods

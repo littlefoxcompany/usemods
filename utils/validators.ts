@@ -2,7 +2,7 @@
  * Check if the input is a valid email address.
  */
 export function isEmail(email: string): boolean {
-  const regex: RegExp = /\S+@\S+\.\S+/
+  const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
   return regex.test(email)
 }
 
@@ -82,7 +82,7 @@ export function isJSON(json: string): boolean {
  * Check if the input is a valid hexadecimal color code.
  */
 export function isHex(hex: string): boolean {
-  const regex = /[0-9A-Fa-f]{6}/g
+  const regex = /^#?([0-9A-Fa-f]{3,4}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})$/
   return regex.test(hex)
 }
 
@@ -119,8 +119,8 @@ export function isArray(array: any): boolean {
 /**
  * Check if the input is an object.
  */
-export function isObject(object: any): boolean {
-  return object === Object(object)
+export function isObject(value: any): boolean {
+  return value && typeof value === 'object' && value.constructor === Object
 }
 
 /**
@@ -183,8 +183,8 @@ export function isTime(time: any): boolean {
 /**
  * Check if the input year is a leap year.
  */
-export function isLeapYear(year: any): boolean {
-  return new Date(year, 1, 29).getMonth() === 1
+export function isLeapYear(year: number): boolean {
+  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0
 }
 
 /**
@@ -338,14 +338,14 @@ export function isMACAddress(mac: string): boolean {
  * Check if the input is a valid latitude-longitude coordinate in the format lat,long or lat, long.
  */
 export function isLatLong(latLong: string): boolean {
-  const regex = /^-?([1-8]?\d(\.\d{1,6})?|90(\.0{1,6})?),\s?-?((1?[0-7]?\d(\.\d{1,6})?|180(\.0{1,6})?))$/
+  const regex = /^([-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)),\s*([-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?))$/
   return regex.test(latLong)
 }
 /**
  * Check if the input is a valid latitude coordinate.
  */
 export function isLatitude(latitude: string): boolean {
-  const regex = /^-?([1-8]?[1-9]|[1-9]0)\.{1}\d{1,6}\s?$/
+  const regex = /^[-+]?([1-8]?\d(\.\d{1,6})?|90(\.0{1,6})?)$/
   return regex.test(latitude)
 }
 
@@ -353,7 +353,7 @@ export function isLatitude(latitude: string): boolean {
  * Check if the input is a valid longitude coordinate.
  */
 export function isLongitude(longitude: string): boolean {
-  const regex = /^-?((1?[0-7]\d|0?\d{0,2}|\d)\.\d{1,6}|180)$/
+  const regex = /^[-+]?(180(\.0{1,6})?|((1[0-7]\d)|([1-9]?\d))(\.\d{1,6})?)$/
   return regex.test(longitude)
 }
 

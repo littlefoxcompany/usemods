@@ -29,7 +29,7 @@ export function escapeHtml(text: string): string {
  * @example showHtml('&lt;p&gt;Hello World&lt;/p&gt;') => '<p>Hello World</p>'
  */
 export function showHtml(text: string): string {
-  return text.replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  return text.replace(/&lt;/g, '<').replace(/&gt;/g, '>')
 }
 
 /**
@@ -545,20 +545,35 @@ export function groupBy(items: any[], size: number): any[][] {
 /**
  * Flatten an array of arrays.
  */
-export function flatten(items: any[][]): any[] {
+export function flatten(items: any[]): any[] {
   return items.reduce((accumulator, item) => {
-    return accumulator.concat(item)
+    if (Array.isArray(item)) {
+      return accumulator.concat(flatten(item)) // recursive call if item is an array
+    } else {
+      return accumulator.concat(item)
+    }
   }, [])
 }
 
 /**
  * Returns an array with a filtered out property.
  */
-export function without(items: { [key: string]: any }[], property: string): any[] {
-  return items.map((item) => {
-    delete item[property]
-    return item
-  })
+export function without(items: any[], properties: any | any[]): any[] {
+  if (!Array.isArray(items)) {
+    return items
+  }
+
+  if (Array.isArray(properties)) {
+    return items.filter((item) => !properties.includes(item))
+  } else {
+    return items.map((item) => {
+      if (typeof item === 'object' && item !== null) {
+        item = { ...item }
+        delete item[properties]
+      }
+      return item
+    })
+  }
 }
 
 /**
@@ -572,8 +587,7 @@ export function combine(items1: any[], items2: any[]): any[] {
  * Combine two unique arrays
  */
 export function combineUnique(items1: any[], items2: any[]): any[] {
-  const combined = items1.concat(items2)
-  return Array.from(new Set(combined))
+  return Array.from(new Set(items1.concat(items2)))
 }
 
 /**
