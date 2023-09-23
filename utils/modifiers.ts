@@ -408,25 +408,20 @@ export function splitByWords(text: string): string {
  * Creates an array of list items (<li>) from an array of strings.
  * @example li(['Hello', 'World']) => ['<li>Hello</li>', '<li>World</li>']
  */
-export function li(items: any[]): any[] {
-  return items.map((item) => {
+export function list(items: any[], listType: string = 'ul'): string {
+  const listItem = (item: any) => {
     return `<li>${item}</li>`
-  })
-}
+  }
 
-/**
- * Create an ordered list (<ol>) from an array of strings.
- * @example ol(['Hello', 'World']) => '<ol><li>Hello</li><li>World</li></ol>'
- */
-export function ol(items: any[]): string {
-  return `<ol>${li(items).join('')}</ol>`
-}
+  const listItems = items.map(listItem).join('')
 
-/**
- * Create an unordered list (<ul>) from an array of strings.
- */
-export function ul(items: any[]): string {
-  return `<ul>${li(items).join('')}</ul>`
+  if (listType === 'ol') {
+    return `<ol>${listItems}</ol>`
+  } else if (listType === 'ul') {
+    return `<ul>${listItems}</ul>`
+  } else {
+    return listItems
+  }
 }
 
 /**
@@ -471,15 +466,17 @@ export function shuffle(items: any[]): any[] {
  * @param items - The array of items.
  * @param property - The property to pluck (optional).
  */
-export function unique(items: (string | { [key: string]: any })[], property: string | null = null): any[] {
+export function unique(property: string | null = null, ...arrays: (string | { [key: string]: any })[][]): any[] {
+  const combinedItems = arrays.flat()
+
   if (!property) {
-    return [...new Set(items)]
+    return [...new Set(combinedItems)]
   }
 
   const seenValues = new Set()
   const result = []
 
-  for (const item of items) {
+  for (const item of combinedItems) {
     if (typeof item === 'object' && item[property] && !seenValues.has(item[property])) {
       seenValues.add(item[property])
       result.push(item)
@@ -487,6 +484,14 @@ export function unique(items: (string | { [key: string]: any })[], property: str
   }
 
   return result
+}
+
+/**
+ * Returns the difference between two arrays.
+ */
+export function difference(...arrays: any[][]): any[] {
+  const mergedArray = arrays.flat()
+  return mergedArray.filter((item, index) => mergedArray.indexOf(item) === index)
 }
 
 /**
@@ -579,26 +584,46 @@ export function without(items: any[], properties: any | any[]): any[] {
 /**
  * Combine two arrays
  */
-export function combine(items1: any[], items2: any[]): any[] {
-  return items1.concat(items2)
+export function combine(...arrays: any[][]): any[] {
+  return ([] as any[]).concat(...arrays)
 }
 
 /**
  * Combine two unique arrays
  */
-export function combineUnique(items1: any[], items2: any[]): any[] {
-  return Array.from(new Set(items1.concat(items2)))
+export function combineUnique(...items: (any | any[])[]): any[] {
+  let combined: any[] = []
+
+  for (let item of items) {
+    if (Array.isArray(item)) {
+      combined = [...combined, ...item]
+    } else {
+      combined.push(item)
+    }
+  }
+
+  return Array.from(new Set(combined))
 }
 
 /**
- * Combine two arrays without a property.
+ * Combine two arrays or objects without a property.
  */
-export function combineWithout(items1: { [key: string]: any }[], items2: { [key: string]: any }[], property: string): any[] {
-  const combined = items1.concat(items2)
+export function combineWithout(
+  property: string | number,
+  ...items: (({ [key: string]: any } | { [key: number]: any }) | ({ [key: string]: any } | { [key: number]: any })[])[]
+): any[] {
+  let combined: any[] = []
+
+  for (let item of items) {
+    if (Array.isArray(item)) {
+      combined = [...combined, ...item]
+    } else {
+      combined.push(item)
+    }
+  }
+
   const unique = Array.from(new Set(combined.map((item) => item[property])))
-  return unique.map((item) => {
-    return items1.find((i) => i[property] === item)
-  })
+  return unique
 }
 
 /**

@@ -3,7 +3,7 @@ singleQuote: true
 useTabs: false
 trailingComma: none
 htmlWhitespaceSensitivity: ignore
-printWidth: 160
+printWidth: 180
 bracketSameLine: true
 vueIndentScriptAndStyle: true
 tabWidth: 2

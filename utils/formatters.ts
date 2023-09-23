@@ -17,19 +17,19 @@ export function formatCurrency(number: number, currency = 'USD'): string {
 /**
  * Format time into hours, minutes, and seconds
  */
-export function formatTime(time: number): string {
-  const hours = Math.floor(time / 3600)
-  const minutes = Math.floor((time % 3600) / 60)
-  const seconds = Math.floor(time % 60)
+export function formatTime(seconds: number): string {
+  const hrs = Math.floor(seconds / 3600)
+  const mins = Math.floor((seconds % 3600) / 60)
+  const s = Math.floor(seconds % 60)
   let formattedTime = ''
-  if (hours > 0) {
-    formattedTime += `${hours}hr `
+  if (hrs > 0) {
+    formattedTime += `${hrs}hr `
   }
-  if (minutes > 0) {
-    formattedTime += `${minutes}min `
+  if (mins > 0) {
+    formattedTime += `${mins}min `
   }
-  if (seconds > 0) {
-    formattedTime += `${seconds}s `
+  if (s > 0) {
+    formattedTime += `${s}s `
   }
   return formattedTime.trim()
 }

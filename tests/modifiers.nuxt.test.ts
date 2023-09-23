@@ -104,16 +104,8 @@ test('countLines', () => {
   expect(countLines('Hello world and moon\nHello world and moon')).toBe(2)
 })
 
-test('li', () => {
-  expect(li(['Hello', 'World'])).toStrictEqual(['<li>Hello</li>', '<li>World</li>'])
-})
-
-test('ol', () => {
-  expect(ol(['Hello', 'World'])).toBe('<ol><li>Hello</li><li>World</li></ol>')
-})
-
-test('ul', () => {
-  expect(ul(['Hello', 'World'])).toBe('<ul><li>Hello</li><li>World</li></ul>')
+test('list', () => {
+  expect(list(['Hello', 'World'], 'ol')).toStrictEqual(['<ol><li>Hello</li><li>World</li></ol>'])
 })
 
 test('commaList', () => {
@@ -220,10 +212,17 @@ test('without', () => {
 
 test('combine', () => {
   expect(combine([1, 2, 3], [2, 3, 4])).toStrictEqual([1, 2, 3, 2, 3, 4])
+  expect(combine([1, 2, 3], [2, 3, 4], [3, 4, 5])).toStrictEqual([1, 2, 3, 2, 3, 4, 3, 4, 5])
 })
 
 test('combineUnique', () => {
   expect(combineUnique([1, 2, 3], [2, 3, 4])).toStrictEqual([1, 2, 3, 4])
+  expect(combineUnique([1, 2, 3], [2, 3, 4], [3, 4, 5])).toStrictEqual([1, 2, 3, 4, 5])
+})
+
+test('combineWithout', () => {
+  expect(combineWithout({ id: 1, name: 'A' }, { id: 2, name: 'B' }, { id: 3, name: 'C' }, 'id')).toStrictEqual([1, 2, 3])
+  expect(combineWithout({ id: 1, name: 'A' }, { id: 2, name: 'B' }, { id: 3, name: 'C' }, 'name')).toStrictEqual(['A', 'B', 'C'])
 })
 
 test('reverse', () => {
@@ -248,4 +247,9 @@ test('sortBy', () => {
     { name: 'Jane', age: 30 },
     { name: 'John', age: 25 }
   ])
+})
+
+test('difference', () => {
+  expect(difference([1, 2, 3], [2, 3, 4])).toStrictEqual([1])
+  expect(difference([1, 2, 3], [2, 3, 4], [3, 4, 5])).toStrictEqual([1])
 })
