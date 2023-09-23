@@ -1,0 +1,7 @@
+{
+  "entryPoints": ["./utils/**/*.ts"],
+  "out": "./docs",
+  "excludeNotDocumented": true,
+  "exclude": ["**/node_modules/**/*", "**/*.test.ts"],
+  "plugin": ["typedoc-plugin-markdown"]
+}

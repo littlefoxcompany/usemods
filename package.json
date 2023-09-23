@@ -13,7 +13,8 @@
     "lint": "eslint .",
     "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
     "test": "vitest run",
-    "test:watch": "vitest watch"
+    "test:watch": "vitest watch",
+    "dist": "bun build ./build.ts"
   },
   "devDependencies": {
     "@nuxt-themes/docus": "^1.13.1",
@@ -28,11 +29,13 @@
     "happy-dom": "^10.11.2",
     "nuxt": "^3.7.1",
     "nuxt-vitest": "^0.10.5",
+    "typedoc": "^0.25.1",
     "vitest": "^0.33.0"
   },
   "dependencies": {
     "bun": "^1.0.0",
     "dayjs": "^1.11.9",
-    "ts-morph": "^19.0.0"
+    "ts-morph": "^19.0.0",
+    "typedoc-plugin-markdown": "^3.16.0"
   }
 }
