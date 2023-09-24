@@ -91,14 +91,60 @@ export function getScreenSize(): { width: number; height: number } {
   }
 }
 
-export function getContainerSize(id: string): { width: number; height: number } {
-  const element = document.getElementById(id)
-  if (!element) return { width: 0, height: 0 }
-  return {
-    width: element.clientWidth,
-    height: element.clientHeight
+export function getTailwindBreakpoint(): string {
+  const width = window.innerWidth
+  switch (true) {
+    case width < 640:
+      return 'xs'
+    case width < 768:
+      return 'sm'
+    case width < 1024:
+      return 'md'
+    case width < 1280:
+      return 'lg'
+    case width < 1536:
+      return 'xl'
+    default:
+      return '2xl'
   }
 }
+
+export function getTailwindContainerBreakpoint(id: string): string {
+  const width = getContainerSize(id).width
+  switch (true) {
+    case width < 320:
+      return '@xs'
+    case width < 384:
+      return '@sm'
+    case width < 448:
+      return '@md'
+    case width < 512:
+      return '@lg'
+    case width < 576:
+      return '@xl'
+    case width < 672:
+      return '@2xl'
+    case width < 768:
+      return '@3xl'
+    case width < 896:
+      return '@4xl'
+    case width < 1024:
+      return '@5xl'
+    case width < 1152:
+      return '@6xl'
+    case width < 1280:
+      return '@7xl'
+    default:
+      return '@7xl'
+  }
+}
+
+// get tailwind container breakpoint
+export function getContainerBreakpoint(id: string): string {
+  const width = getContainerSize(id).width
+  switch (true) {
+    case width < 640:
+
 
 export function getScrollPosition(): { x: number; y: number } {
   return {
@@ -172,4 +218,46 @@ export function getLocalStorage(name: string) {
 export function getSessionStorage(name: string) {
   const item = sessionStorage.getItem(name)
   if (item) return JSON.parse(item)
+}
+
+export function getURLParameters(url: string, param?: string) {
+  const params = (url.match(/([^?=&]+)(=([^&]*))/g) || []).reduce((a: any, v: any) => ((a[v.slice(0, v.indexOf('='))] = v.slice(v.indexOf('=') + 1)), a), {})
+
+  if (param) {
+    return params[param] || null
+  }
+
+  return params
+}
+
+export function getURLHashParameters() {
+  return getURLParameters(window.location.hash)
+}
+
+export function getURLSearchParameters() {
+  return getURLParameters(window.location.search)
+}
+
+export function getURL() {
+  return window.location.href
+}
+
+export function getDomain() {
+  return window.location.hostname
+}
+
+export function getIP() {
+  return window.location.host
+}
+
+export function getProtocol() {
+  return window.location.protocol
+}
+
+export function getPort() {
+  return window.location.port
+}
+
+export function getReferrer() {
+  return document.referrer
 }

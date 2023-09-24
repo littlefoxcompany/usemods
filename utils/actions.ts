@@ -1,4 +1,4 @@
-export function scrollToAnchor(id: string) {
+export function scrollToAnchor(id: string, callback?: () => void) {
   setTimeout(() => {
     const element = document.querySelector(id)
     if (!element) return
@@ -6,30 +6,46 @@ export function scrollToAnchor(id: string) {
       behavior: 'smooth'
     })
   }, 180)
+
+  if (callback) {
+    setTimeout(callback, 180)
+  }
 }
 
-export function scrollToTop() {
+export function scrollToTop(callback?: () => void) {
   window.scrollTo({
     top: 0,
     behavior: 'smooth'
   })
+
+  if (callback) {
+    setTimeout(callback, 180)
+  }
 }
 
-export function scrollToBottom() {
+export function scrollToBottom(callback?: () => void) {
   window.scrollTo({
     top: document.body.scrollHeight,
     behavior: 'smooth'
   })
+
+  if (callback) {
+    setTimeout(callback, 180)
+  }
 }
 
-export function copyToClipboard(text: string) {
+export function copyToClipboard(text: string, callback?: () => void) {
   navigator.clipboard
     .writeText(text)
     .then(() => {
-      console.log('Text copied to clipboard')
+      if (callback) {
+        callback()
+      }
     })
     .catch((error) => {
-      console.error('Failed to copy text to clipboard:', error)
+      if (callback) {
+        callback()
+      }
     })
 }
 
