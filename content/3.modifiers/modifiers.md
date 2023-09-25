@@ -16,22 +16,4 @@ widont('cool cool cool')
 cool cool&nbsp;cool
 ```
 
-## Widont
-Widont is a simple modifier that prevents widows in your text. It replaces the last space in a text with a non-breaking space.
-
-::code-group
-```js [Script]
-    widont('cool cool cool')
-```
-```js [Template]
-    {{ widont('cool cool cool') }}
-```
-```html [preview]
-    cool cool&nbsp;cool
-```
-::
-
-::test
-
-
 

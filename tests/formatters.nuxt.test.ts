@@ -3,12 +3,12 @@ import { expect, test } from 'vitest'
 // import * as mod from '@/utils/formatters'
 
 test('formatCurrency', () => {
-  expect(formatCurrency(1000.0)).toBe('$1,000.00')
-  expect(formatCurrency(1000.0, 'EUR')).toBe('€1,000.00')
-  expect(formatCurrency(1000.0, 'JPY')).toBe('¥1,000')
-  expect(formatCurrency(1000.0, 'GBP')).toBe('£1,000.00')
-  expect(formatCurrency(1000.0, 'CAD')).toBe('CA$1,000.00')
-  expect(formatCurrency(1000.0, 'AUD')).toBe('A$1,000.00')
+  expect(formatCurrency(1000.95)).toBe('$1,000.95')
+  expect(formatCurrency(1000.95, 'EUR')).toBe('€1,000.95')
+  expect(formatCurrency(1000, 'JPY')).toBe('¥1,000')
+  expect(formatCurrency(1000.95, 'GBP')).toBe('£1,000.95')
+  expect(formatCurrency(1000.95, 'CAD')).toBe('CA$1,000.95')
+  expect(formatCurrency(1000.95, 'AUD')).toBe('A$1,000.95')
 })
 
 test('formatTime', () => {

@@ -91,6 +91,15 @@ export function getScreenSize(): { width: number; height: number } {
   }
 }
 
+export function getContainerSize(id: string): { width: number; height: number } {
+  const element = document.getElementById(id)
+  if (!element) return { width: 0, height: 0 }
+  return {
+    width: element.offsetWidth,
+    height: element.offsetHeight
+  }
+}
+
 export function getTailwindBreakpoint(): string {
   const width = window.innerWidth
   switch (true) {
@@ -138,13 +147,6 @@ export function getTailwindContainerBreakpoint(id: string): string {
       return '@7xl'
   }
 }
-
-// get tailwind container breakpoint
-export function getContainerBreakpoint(id: string): string {
-  const width = getContainerSize(id).width
-  switch (true) {
-    case width < 640:
-
 
 export function getScrollPosition(): { x: number; y: number } {
   return {

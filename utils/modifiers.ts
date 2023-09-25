@@ -406,7 +406,7 @@ export function splitByWords(text: string): string {
 
 /**
  * Creates an array of list items (<li>) from an array of strings.
- * @example li(['Hello', 'World']) => ['<li>Hello</li>', '<li>World</li>']
+ * @example js asdfasdf
  */
 export function list(items: any[], listType: string = 'ul'): string {
   const listItem = (item: any) => {
