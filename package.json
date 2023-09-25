@@ -34,7 +34,6 @@
   },
   "dependencies": {
     "bun": "^1.0.0",
-    "dayjs": "^1.11.9",
     "ts-morph": "^19.0.0",
     "typedoc-plugin-markdown": "^3.16.0"
   }
