@@ -18,15 +18,11 @@ tsFiles.forEach((tsFile) => {
   // Read the content of the TypeScript file
   const tsContent = fs.readFileSync(tsFilePath, 'utf-8')
 
-  // console.log(tsContent)
-
   // Define a regex pattern to match JSDoc comments and function declarations
-  const functionPattern = /\/\*\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+\/\s*(export )?function\s+([a-zA-Z0_9_]+)\s*\([^)]*\)\s*:\s*[^{]*{[\s\S]*?}/g
+  const functionPattern = /\/\*\*[\s\S]*?\*\/\s*export function [a-zA-Z0-9_]+\s*\([^)]*\)\s*{[\s\S]*?}/gm
 
   // Find all functions with their JSDoc comments in the TypeScript file
   const functions = tsContent.match(functionPattern)
-
-  console.log(functions ? functions.length : 0)
 
   // Initialize the Markdown content for this file
   let markdownContent = ''
@@ -40,7 +36,7 @@ tsFiles.forEach((tsFile) => {
   }
 
   if (pageDescriptionMatch) {
-    markdownContent += `${pageDescriptionMatch[1]}\n\n`
+    markdownContent += `#### ${pageDescriptionMatch[1]}\n\n`
   }
 
   // Check if any functions were found
@@ -76,9 +72,12 @@ tsFiles.forEach((tsFile) => {
       // Add the extracted information to the Markdown content
       markdownContent += `## ${functionName}\n`
       markdownContent += `${description}\n\n`
-      markdownContent += '```js [js]\n' + example + '\n' + '```\n\n'
-      markdownContent += '```html [template]\n{{ ' + example + ' }}\n' + '```\n\n'
-      markdownContent += '```html [returns]\n' + returns + '\n' + '```\n\n'
+      if (example) {
+        markdownContent += '```js [js]\n' + example + '\n' + '```\n\n'
+      }
+      if (returns) {
+        markdownContent += '```html [returns]\n' + returns + '\n' + '```\n\n'
+      }
 
       // Add any additional content or formatting as needed
     })

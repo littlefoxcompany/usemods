@@ -1,6 +1,6 @@
 # Validators
 
-A collection of validators for common data types
+#### A collection of validators for common data types
 
 ## isEmail
 Check if the input is a valid email address.
