@@ -51,18 +51,18 @@ export function getDeviceMotion(): Promise<DeviceMotionEvent> {
   })
 }
 
-export function getDeviceLight(): Promise<number> {
-  return new Promise((resolve, reject) => {
-    window.addEventListener(
-      'devicelight',
-      (evt: Event) => {
-        resolve((evt as any).value)
-      },
-      { once: true }
-    )
-    setTimeout(reject, 5000)
-  })
-}
+// export function getDeviceLight(): Promise<number> {
+//   return new Promise((resolve, reject) => {
+//     window.addEventListener(
+//       'devicelight',
+//       (event: Event) => {
+//         resolve((event as any).value)
+//       },
+//       { once: true }
+//     )
+//     setTimeout(reject, 5000)
+//   })
+// }
 
 export function getDeviceProximity(): Promise<number> {
   return new Promise((resolve, reject) => {
@@ -155,10 +155,10 @@ export function getScrollPosition(): { x: number; y: number } {
   }
 }
 
-export function getMousePosition(e: MouseEvent) {
+export function getMousePosition(event: MouseEvent) {
   return {
-    x: e.pageX,
-    y: e.pageY
+    x: event.pageX,
+    y: event.pageY
   }
 }
 
@@ -262,4 +262,40 @@ export function getPort() {
 
 export function getReferrer() {
   return document.referrer
+}
+
+// Is it?
+
+export function isInViewport(element: HTMLElement) {
+  const rect = element.getBoundingClientRect()
+  return (
+    rect.top >= 0 &&
+    rect.left >= 0 &&
+    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+  )
+}
+
+export function isInContainer(element: HTMLElement, id: string) {
+  const rect = element.getBoundingClientRect()
+  const container = document.getElementById(id)
+  if (!container) return false
+  const containerRect = container.getBoundingClientRect()
+  return rect.top >= containerRect.top && rect.left >= containerRect.left && rect.bottom <= containerRect.bottom && rect.right <= containerRect.right
+}
+
+export function isOverflowingY(element: HTMLElement) {
+  return element.scrollWidth > element.clientWidth || element.scrollHeight > element.clientHeight
+}
+
+export function isOverflowingX(element: HTMLElement) {
+  return element.scrollWidth > element.clientWidth
+}
+
+export function isScrollable(element: HTMLElement) {
+  return isOverflowingY(element) || isOverflowingX(element)
+}
+
+export function isElement(element: HTMLElement) {
+  return element instanceof HTMLElement
 }
