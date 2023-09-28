@@ -493,40 +493,6 @@ export function list(items: any[], listType: string = 'ul'): string {
 }
 
 /**
- * Create a string of comma-separated values from an array of strings with an optional conjunction.
- * @param items - The array of strings.
- * @param conjunction - The conjunction before the last item e.g. "and" or "or".
- * @example commaList(['one', 'two', 'three'])
- * @returns one, two and three
- */
-export function commaList(items: any[], conjunction: string = 'and'): string {
-  return items.slice(0, -1).join(', ') + ' ' + conjunction + ' ' + items.slice(-1)
-}
-
-/**
- * Create a string of comma-separated values with a limit and an optional conjunction.
- * @param items - The array of strings.
- * @param limit - The number of items to show before truncating.
- * @example truncateList(['one', 'two', 'three', 'four', 'five'], 3)
- * @returns one, two, three and 2 more
- */
-export function truncateList(items: any[], limit: number, conjunction: string = 'and'): string {
-  if (items.length === 1) {
-    return items[0]
-  }
-  if (items.length === 2) {
-    return items.join(' ' + conjunction + ' ')
-  }
-  if (items.length === 3) {
-    return items.slice(0, -1).join(', ') + ' ' + conjunction + ' ' + items.slice(-1)
-  }
-  if (items.length > 3) {
-    return items.slice(0, limit).join(', ') + ' ' + conjunction + ' ' + (items.length - limit) + ' more'
-  }
-  return ''
-}
-
-/**
  * Shuffles an array.
  * @example shuffle(['one', 'two', 'three'])
  * @returns ['three', 'one', 'two']
