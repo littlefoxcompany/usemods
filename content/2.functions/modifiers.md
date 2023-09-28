@@ -546,224 +546,224 @@ list(['one', 'two', 'three'])
 Create a string of comma-separated values from an array of strings with an optional conjunction.
 
 ```js [js]
-
+commaList(['one', 'two', 'three'])
 ```
 
 ```js [template]
-
+{{ commaList(['one', 'two', 'three']) }}
 ```
 
 ```html [preview]
-
+one, two and three
 ```
 
 ## truncateList
 Create a string of comma-separated values with a limit and an optional conjunction.
 
 ```js [js]
-
+truncateList(['one', 'two', 'three', 'four', 'five'], 3)
 ```
 
 ```js [template]
-
+{{ truncateList(['one', 'two', 'three', 'four', 'five'], 3) }}
 ```
 
 ```html [preview]
-
+one, two, three and 2 more
 ```
 
 ## shuffle
 Shuffles an array.
 
 ```js [js]
-
+shuffle(['one', 'two', 'three'])
 ```
 
 ```js [template]
-
+{{ shuffle(['one', 'two', 'three']) }}
 ```
 
 ```html [preview]
-
+['three', 'one', 'two']
 ```
 
 ## difference
 Returns the difference between two arrays.
 
 ```js [js]
-
+difference(['one', 'two', 'three'], ['one', 'two'])
 ```
 
 ```js [template]
-
+{{ difference(['one', 'two', 'three'], ['one', 'two']) }}
 ```
 
 ```html [preview]
-
+['three']
 ```
 
 ## first
 Returns the first item in an array.
 
 ```js [js]
-
+first(['one', 'two', 'three'])
 ```
 
 ```js [template]
-
+{{ first(['one', 'two', 'three']) }}
 ```
 
 ```html [preview]
-
+one
 ```
 
 ## last
 Returns the last item in an array.
 
 ```js [js]
-
+last(['one', 'two', 'three'])
 ```
 
 ```js [template]
-
+{{ last(['one', 'two', 'three']) }}
 ```
 
 ```html [preview]
-
+three
 ```
 
 ## nth
 Returns the nth item in an array.
 
 ```js [js]
-
+nth(['one', 'two', 'three'], 1)
 ```
 
 ```js [template]
-
+{{ nth(['one', 'two', 'three'], 1) }}
 ```
 
 ```html [preview]
-
+two
 ```
 
 ## offset
 Offset the first item in an array.
 
 ```js [js]
-
+offset(['one', 'two', 'three'], 1)
 ```
 
 ```js [template]
-
+{{ offset(['one', 'two', 'three'], 1) }}
 ```
 
 ```html [preview]
-
+['two', 'three']
 ```
 
 ## group
 Groups an array of objects by a property.
 
 ```js [js]
-
+group([{ name: 'one' }, { name: 'two' }, { name: 'one' }], 'name')
 ```
 
 ```js [template]
-
+{{ group([{ name: 'one' }, { name: 'two' }, { name: 'one' }], 'name') }}
 ```
 
 ```html [preview]
-
+{ one: [{ name: 'one' }, { name: 'one' }], two: [{ name: 'two' }] }
 ```
 
 ## groupBy
 Chunks an array into sections of a specified size.
 
 ```js [js]
-
+chunk(['one', 'two', 'three', 'four', 'five'], 2)
 ```
 
 ```js [template]
-
+{{ chunk(['one', 'two', 'three', 'four', 'five'], 2) }}
 ```
 
 ```html [preview]
-
+[['one', 'two'], ['three', 'four'], ['five']]
 ```
 
 ## flatten
 Flatten an array of arrays.
 
 ```js [js]
-
+flatten([['one', 'two'], ['three', 'four'], ['five']])
 ```
 
 ```js [template]
-
+{{ flatten([['one', 'two'], ['three', 'four'], ['five']]) }}
 ```
 
 ```html [preview]
-
+['one', 'two', 'three', 'four', 'five']
 ```
 
 ## without
 Returns an array with a filtered out property.
 
 ```js [js]
-
+without([{ name: 'one', food: 'apple' }, { name: 'two', food: 'grape' }, { name: 'one', food: 'pear' }], 'name')
 ```
 
 ```js [template]
-
+{{ without([{ name: 'one', food: 'apple' }, { name: 'two', food: 'grape' }, { name: 'one', food: 'pear' }], 'name') }}
 ```
 
 ```html [preview]
-
+[{ food: 'apple' }, { food: 'grape' }, { food: 'pear' }]
 ```
 
 ## combine
-Combine two arrays
+Combine two or more arrays
 
 ```js [js]
-
+combine(['one', 'two'], ['three', 'four'], ['five'])
 ```
 
 ```js [template]
-
+{{ combine(['one', 'two'], ['three', 'four'], ['five']) }}
 ```
 
 ```html [preview]
-
+['one', 'two', 'three', 'four', 'five']
 ```
 
 ## reverse
 Reverse an array.
 
 ```js [js]
-
+reverse(['one', 'two', 'three'])
 ```
 
 ```js [template]
-
+{{ reverse(['one', 'two', 'three']) }}
 ```
 
 ```html [preview]
-
+['three', 'two', 'one']
 ```
 
 ## sortBy
 Sort an array by a property.
 
 ```js [js]
-
+sortBy([{ name: 'John', age: 25 },{ name: 'Jane', age: 30 },{ name: 'Jill', age: 20 }], 'age')
 ```
 
 ```js [template]
-
+{{ sortBy([{ name: 'John', age: 25 },{ name: 'Jane', age: 30 },{ name: 'Jill', age: 20 }], 'age') }}
 ```
 
 ```html [preview]
-
+[{ name: 'Jill', age: 20 },{ name: 'John', age: 25 },{ name: 'Jane', age: 30 }]
 ```
 
