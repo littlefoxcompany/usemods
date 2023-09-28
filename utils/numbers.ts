@@ -1,3 +1,6 @@
+// titile: Numbers
+// description: This file contains functions that are related to numbers.
+
 /**
  * Generates a random integer between the specified minimum and maximum values.
  * @example random(1, 10)

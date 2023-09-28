@@ -1,3 +1,7 @@
+# Formatters
+
+A collection of formatters for common data types
+
 ## formatCurrency
 Format numbers into local currency
 

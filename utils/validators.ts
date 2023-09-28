@@ -1,3 +1,6 @@
+// title: Validators
+// description: A collection of validators for common data types
+
 /**
  * Check if the input is a valid email address.
  * @example isEmail('hello@usemods.com')

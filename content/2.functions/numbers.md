@@ -1,3 +1,5 @@
+This file contains functions that are related to numbers.
+
 ## random
 Generates a random integer between the specified minimum and maximum values.
 

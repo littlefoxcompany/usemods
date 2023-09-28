@@ -1,3 +1,6 @@
+// title: Formatters
+// description: A collection of formatters for common data types
+
 /**
  * Format numbers into local currency
  * @example formatCurrency(1234.56)
