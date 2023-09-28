@@ -1,8 +1,7 @@
 /**
  * Generates a random integer between the specified minimum and maximum values.
- * @js random(1, 10)
- * @template {{ random(1, 10) }}
- * @preview 5
+ * @example random(1, 10)
+ * @returns 5
  */
 export function random(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min
@@ -10,9 +9,8 @@ export function random(min: number, max: number): number {
 
 /**
  * Calculates the sum of an array of numbers.
- * @js sum([1, 2, 3])
- * @template {{ sum([1, 2, 3]) }}
- * @preview 6
+ * @example sum([1, 2, 3])
+ * @returns 6
  */
 export function sum(numbers: number[]): number {
   return numbers.reduce((a, b) => a + b, 0)
@@ -20,6 +18,8 @@ export function sum(numbers: number[]): number {
 
 /**
  * Calculates the average of an array of numbers.
+ * @example average([1, 2, 3])
+ * @returns 2
  */
 export function average(numbers: number[]): number {
   return sum(numbers) / numbers.length
@@ -27,6 +27,8 @@ export function average(numbers: number[]): number {
 
 /**
  * Calculates the median of an array of numbers.
+ * @example median([1, 2, 3])
+ * @returns 2
  */
 export function median(numbers: number[]): number {
   const sorted = numbers.sort((a, b) => a - b) // Fixed sorting for numbers
@@ -41,6 +43,8 @@ export function median(numbers: number[]): number {
 
 /**
  * Finds the minimum value in an array of numbers.
+ * @example min([1, 2, 3])
+ * @returns 1
  */
 export function min(numbers: number[]): number {
   return Math.min(...numbers)
@@ -48,6 +52,8 @@ export function min(numbers: number[]): number {
 
 /**
  * Finds the maximum value in an array of numbers.
+ * @example max([1, 2, 3])
+ * @returns 3
  */
 export function max(numbers: number[]): number {
   return Math.max(...numbers)
@@ -55,37 +61,9 @@ export function max(numbers: number[]): number {
 
 /**
  * Clamps a number between the specified minimum and maximum values.
+ * @example clamp(1, 10, 20)
+ * @returns 10
  */
 export function clamp(number: number, min: number, max: number): number {
   return Math.min(Math.max(number, min), max)
 }
-
-// /**
-//  * Rounds a number to the nearest integer.
-//  */
-// export function round(number: number): number {
-//   return Math.round(number)
-// }
-
-// /**
-//  * Rounds a number down to the nearest integer.
-//  */
-// export function floor(number: number): number {
-//   return Math.floor(number)
-// }
-
-// /**
-//  * Rounds a number up to the nearest integer.
-//  */
-// export function ceil(number: number): number {
-//   return Math.ceil(number)
-// }
-
-// /**
-//  * Formats a number to a fixed number of decimal places.
-//  * @param number - The number to format.
-//  * @param decimals - The number of decimal places to keep.
-//  */
-// export function toFixed(number: number, decimals: number): string {
-//   return number.toFixed(decimals)
-// }

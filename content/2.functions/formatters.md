@@ -2,29 +2,29 @@
 Format numbers into local currency
 
 ```js [js]
-
+formatCurrency(1234.56)
 ```
 
-```js [template]
-
+```html [template]
+{{ formatCurrency(1234.56) }}
 ```
 
-```html [preview]
-
+```html [returns]
+$1,234.56
 ```
 
 ## formatTime
 Format time into hours, minutes, and seconds
 
 ```js [js]
-
+formatTime(3723)
 ```
 
-```js [template]
-
+```html [template]
+{{ formatTime(3723) }}
 ```
 
-```html [preview]
-
+```html [returns]
+1hr 2min 3s
 ```
 

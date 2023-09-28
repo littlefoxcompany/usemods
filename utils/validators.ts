@@ -1,5 +1,7 @@
 /**
  * Check if the input is a valid email address.
+ * @example isEmail('hello@usemods.com')
+ * @returns true
  */
 export function isEmail(email: string): boolean {
   const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
@@ -8,14 +10,18 @@ export function isEmail(email: string): boolean {
 
 /**
  * Check if the input is a valid number.
+ * @example isNumber('123')
+ * @returns true
  */
-export function isNumber(number: string): boolean {
+export function isNumber(value: string | number): boolean {
   const regex = /^\d+$/
-  return regex.test(number)
+  return regex.test(value.toString())
 }
 
 /**
  * Check if the input is a valid phone number.
+ * @example isPhoneNumber('123-456-7890')
+ * @returns true
  */
 function isPhoneNumber(phoneNumber: string, country: string = 'US'): boolean {
   const patterns: { [key: string]: RegExp } = {
@@ -52,6 +58,8 @@ function isPhoneNumber(phoneNumber: string, country: string = 'US'): boolean {
 
 /**
  * Check if the input is a valid URL.
+ * @example isURL('https://usemods.com')
+ * @returns true
  */
 export function isURL(url: string): boolean {
   const regex = /^(?:\w+:)?\/\/([^\s\.]+\.\S{2}|localhost[\:?\d]*)\S*$/
@@ -60,6 +68,8 @@ export function isURL(url: string): boolean {
 
 /**
  * Check if the input is a valid UUID.
+ * @example isUUID('c9bf9e57-1685-4c89-bafb-ff5af830be8a')
+ * @returns true
  */
 export function isUUID(uuid: string): boolean {
   const regex = /^[a-f\d]{8}(-[a-f\d]{4}){4}[a-f\d]{8}$/i
@@ -68,6 +78,8 @@ export function isUUID(uuid: string): boolean {
 
 /**
  * Check if the input is a valid JSON string.
+ * @example isJSON('{"hello": "world"}')
+ * @returns true
  */
 export function isJSON(json: string): boolean {
   try {
@@ -80,6 +92,8 @@ export function isJSON(json: string): boolean {
 
 /**
  * Check if the input is a valid hexadecimal color code.
+ * @example isHex('#fff')
+ * @returns true
  */
 export function isHex(hex: string): boolean {
   const regex = /^#?([0-9A-Fa-f]{3,4}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})$/
@@ -88,6 +102,8 @@ export function isHex(hex: string): boolean {
 
 /**
  * Check if the input is an empty string.
+ * @example isEmpty('')
+ * @returns true
  */
 export function isEmpty(text: string): boolean {
   return text === ''
@@ -95,6 +111,8 @@ export function isEmpty(text: string): boolean {
 
 /**
  * Check if the input contains only alphabetic characters.
+ * @example isAlpha('hello')
+ * @returns true
  */
 export function isAlpha(text: string): boolean {
   const regex = /^[a-zA-Z]+$/
@@ -103,6 +121,8 @@ export function isAlpha(text: string): boolean {
 
 /**
  * Check if the input contains only alphanumeric characters.
+ * @example isAlphanumeric('hello123')
+ * @returns true
  */
 export function isAlphanumeric(text: string): boolean {
   const regex = /^[a-zA-Z0-9]+$/
@@ -111,6 +131,8 @@ export function isAlphanumeric(text: string): boolean {
 
 /**
  * Check if the input is an array.
+ * @example isArray([1, 2, 3])
+ * @returns true
  */
 export function isArray(array: any): boolean {
   return Array.isArray(array)
@@ -118,6 +140,8 @@ export function isArray(array: any): boolean {
 
 /**
  * Check if the input is an object.
+ * @example isObject({ hello: 'world' })
+ * @returns true
  */
 export function isObject(value: any): boolean {
   return value && typeof value === 'object' && value.constructor === Object
@@ -125,6 +149,8 @@ export function isObject(value: any): boolean {
 
 /**
  * Check if the input is a boolean value.
+ * @example isBoolean(true)
+ * @returns true
  */
 export function isBoolean(boolean: any): boolean {
   return typeof boolean === 'boolean'
@@ -132,6 +158,8 @@ export function isBoolean(boolean: any): boolean {
 
 /**
  * Check if the input is a function.
+ * @example isFunction(() => {})
+ * @returns true
  */
 export function isFunction(functionToCheck: any): boolean {
   return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]'
@@ -139,6 +167,8 @@ export function isFunction(functionToCheck: any): boolean {
 
 /**
  * Check if the input is undefined.
+ * @example isUndefined(undefined)
+ * @returns true
  */
 export function isUndefined(value: any): boolean {
   return value === undefined
@@ -146,6 +176,8 @@ export function isUndefined(value: any): boolean {
 
 /**
  * Check if the input is null.
+ * @example isNull(null)
+ * @returns true
  */
 export function isNull(value: any): boolean {
   return value === null
@@ -153,6 +185,8 @@ export function isNull(value: any): boolean {
 
 /**
  * Check if the input is NaN (Not a Number).
+ * @example isNaN(NaN)
+ * @returns true
  */
 export function isNaN(value: any): boolean {
   return value !== value
@@ -160,6 +194,8 @@ export function isNaN(value: any): boolean {
 
 /**
  * Check if the input is a valid Date object.
+ * @example isDate(new Date())
+ * @returns true
  */
 export function isDate(date: any): boolean {
   return date instanceof Date
@@ -167,6 +203,8 @@ export function isDate(date: any): boolean {
 
 /**
  * Check if the input is an Error object with a defined message.
+ * @example isError(new Error('hello'))
+ * @returns true
  */
 export function isError(error: any): boolean {
   return error instanceof Error && typeof error.message !== 'undefined'
@@ -174,6 +212,8 @@ export function isError(error: any): boolean {
 
 /**
  * Check if the input is a valid time in HH:mm format.
+ * @example isTime('12:00')
+ * @returns true
  */
 export function isTime(time: any): boolean {
   const regex = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/
@@ -182,6 +222,8 @@ export function isTime(time: any): boolean {
 
 /**
  * Check if the input year is a leap year.
+ * @example isLeapYear(2020)
+ * @returns true
  */
 export function isLeapYear(year: number): boolean {
   return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0
@@ -189,6 +231,8 @@ export function isLeapYear(year: number): boolean {
 
 /**
  * Check if the input is a symbol.
+ * @example isSymbol(Symbol('hello'))
+ * @returns true
  */
 export function isSymbol(symbol: any): boolean {
   return typeof symbol === 'symbol'
@@ -196,6 +240,8 @@ export function isSymbol(symbol: any): boolean {
 
 /**
  * Check if the input is a Promise object.
+ * @example isPromise(new Promise(() => {}))
+ * @returns true
  */
 export function isPromise(promise: any): boolean {
   return promise instanceof Promise
@@ -203,6 +249,8 @@ export function isPromise(promise: any): boolean {
 
 /**
  * Check if the input is a Set object.
+ * @example isSet(new Set())
+ * @returns true
  */
 export function isSet(set: any): boolean {
   return set instanceof Set
@@ -210,6 +258,8 @@ export function isSet(set: any): boolean {
 
 /**
  * Check if the input is a Map object.
+ * @example isMap(new Map())
+ * @returns true
  */
 export function isMap(map: any): boolean {
   return map instanceof Map
@@ -217,6 +267,8 @@ export function isMap(map: any): boolean {
 
 /**
  * Check if the input is a WeakSet object.
+ * @example isWeakSet(new WeakSet())
+ * @returns true
  */
 export function isWeakSet(weakSet: any): boolean {
   return weakSet instanceof WeakSet
@@ -224,6 +276,8 @@ export function isWeakSet(weakSet: any): boolean {
 
 /**
  * Check if the number is even.
+ * @example isEven(2)
+ * @returns true
  */
 export function isEven(number: any): boolean {
   return number % 2 === 0
@@ -231,6 +285,8 @@ export function isEven(number: any): boolean {
 
 /**
  * Check if the number is odd.
+ * @example isOdd(3)
+ * @returns true
  */
 export function isOdd(number: any): boolean {
   return Math.abs(number % 2) === 1
@@ -238,6 +294,8 @@ export function isOdd(number: any): boolean {
 
 /**
  * Check if the number is positive.
+ * @example isPositive(1)
+ * @returns true
  */
 export function isPositive(number: any): boolean {
   return Math.sign(number) === 1
@@ -245,6 +303,8 @@ export function isPositive(number: any): boolean {
 
 /**
  * Check if the number is negative.
+ * @example isNegative(-1)
+ * @returns true
  */
 export function isNegative(number: any): boolean {
   return Math.sign(number) === -1
@@ -252,6 +312,8 @@ export function isNegative(number: any): boolean {
 
 /**
  * Check if the number is a prime number.
+ * @example isPrime(7)
+ * @returns true
  */
 export function isPrime(number: any): boolean {
   const boundary = Math.floor(Math.sqrt(number))
@@ -263,6 +325,8 @@ export function isPrime(number: any): boolean {
 
 /**
  * Check if the string is equal to "Optimus Prime".
+ * @example isOptimusPrime('Optimus Prime')
+ * @returns true
  */
 export function isOptimusPrime(text: string): boolean {
   return text === 'Optimus Prime'
@@ -270,6 +334,8 @@ export function isOptimusPrime(text: string): boolean {
 
 /**
  * Check if the string is a palindrome.
+ * @example isPalindrome('racecar')
+ * @returns true
  */
 export function isPalindrome(text: any): boolean {
   const regex = /[\W_]/g
@@ -280,6 +346,8 @@ export function isPalindrome(text: any): boolean {
 
 /**
  * Check if the number is an integer.
+ * @example isInteger(1)
+ * @returns true
  */
 export function isInteger(number: number): boolean {
   return number % 1 === 0
@@ -287,6 +355,8 @@ export function isInteger(number: number): boolean {
 
 /**
  * Check if the number is a float.
+ * @example isFloat(1.5)
+ * @returns true
  */
 export function isFloat(number: number): boolean {
   return !isInteger(number)
@@ -294,6 +364,8 @@ export function isFloat(number: number): boolean {
 
 /**
  * Check if the number is between the specified range.
+ * @example isBetween(5, 1, 10)
+ * @returns true
  */
 export function isBetween(number: number, min: number, max: number): boolean {
   if (min > max) {
@@ -304,6 +376,8 @@ export function isBetween(number: number, min: number, max: number): boolean {
 
 /**
  * Check if the number is divisible by the specified number.
+ * @example isDivisibleBy(10, 2)
+ * @returns true
  */
 export function isDivisibleBy(number: number, divisor: number): boolean {
   return number % divisor === 0
@@ -311,6 +385,8 @@ export function isDivisibleBy(number: number, divisor: number): boolean {
 
 /**
  * Check if the input is a valid credit card number.
+ * @example isCreditCardNumber('4242424242424242')
+ * @returns true
  */
 export function isCreditCardNumber(number: string): boolean {
   const regex = /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/
@@ -319,6 +395,8 @@ export function isCreditCardNumber(number: string): boolean {
 
 /**
  * Check if the input is a valid IP address.
+ * @example isIPAddress('127.0.0.0')
+ * @returns true
  */
 export function isIPAddress(ip: string): boolean {
   const regex = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)((?::\d+)?|)$/
@@ -327,6 +405,8 @@ export function isIPAddress(ip: string): boolean {
 
 /**
  * Check if the input is a valid MAC address.
+ * @example isMACAddress('00:00:00:00:00:00')
+ * @returns true
  */
 export function isMACAddress(mac: string): boolean {
   const regex = /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/
@@ -335,6 +415,8 @@ export function isMACAddress(mac: string): boolean {
 
 /**
  * Check if the input is a valid latitude-longitude coordinate in the format lat,long or lat, long.
+ * @example isLatLong('40.741895,-73.989308')
+ * @returns true
  */
 export function isLatLong(latLong: string): boolean {
   const regex = /^([-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)),\s*([-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?))$/
@@ -342,6 +424,8 @@ export function isLatLong(latLong: string): boolean {
 }
 /**
  * Check if the input is a valid latitude coordinate.
+ * @example isLatitude('40.741895')
+ * @returns true
  */
 export function isLatitude(latitude: string): boolean {
   const regex = /^[-+]?([1-8]?\d(\.\d{1,6})?|90(\.0{1,6})?)$/
@@ -350,6 +434,8 @@ export function isLatitude(latitude: string): boolean {
 
 /**
  * Check if the input is a valid longitude coordinate.
+ * @example isLongitude('-73.989308')
+ * @returns true
  */
 export function isLongitude(longitude: string): boolean {
   const regex = /^[-+]?(180(\.0{1,6})?|((1[0-7]\d)|([1-9]?\d))(\.\d{1,6})?)$/
@@ -358,7 +444,48 @@ export function isLongitude(longitude: string): boolean {
 
 /**
  * Checks if a property and value pair exists in an object.
+ * @example isPresent({ hello: 'world' }, 'hello', 'world')
+ * @returns true
  */
 export function isPresent(object: any, property: string, value: any): boolean {
   return object.hasOwnProperty(property) && object[property] === value
+}
+
+/**
+ * Check if the input is a valid IBAN.
+ * @example isIBAN('NL39RABO0300065264')
+ * @returns true
+ */
+export function isIBAN(iban: string): boolean {
+  const regex = /^[A-Z]{2}\d{2}[A-Z]{4}\d{10}$/
+  return regex.test(iban)
+}
+
+/**
+ * Check if the input is a valid BIC.
+ * @example isBIC('RABONL2U')
+ * @returns true
+ */
+export function isBIC(bic: string): boolean {
+  const regex = /^[A-Z]{6}[A-Z1-9]{5}$/
+  return regex.test(bic)
+}
+
+/**
+ * Check if the input is a valid port number.
+ * @example isPort(3000)
+ * @returns true
+ */
+export function isPort(port: number): boolean {
+  return port > 0 && port <= 65535
+}
+
+/**
+ * Check if the input is a valid IBAN.
+ * @example isIBAN('NL39RABO0300065264')
+ * @returns true
+ */
+export function isISBN(isbn: string): boolean {
+  const regex = /^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/
+  return regex.test(isbn)
 }

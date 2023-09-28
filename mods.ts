@@ -70,16 +70,15 @@ tsFiles.forEach((tsFile) => {
         .trim()
 
       // Extract the example usage from the JSDoc comment
-      const js = (jsDocComment.match(/@js\s+([^\r\n]*)/) || [])[1] || ''
-      const template = (jsDocComment.match(/@template\s+([^\r\n]*)/) || [])[1] || ''
-      const preview = (jsDocComment.match(/@preview\s+([^\r\n]*)/) || [])[1] || ''
+      const example = (jsDocComment.match(/@example\s+([^\r\n]*)/) || [])[1] || ''
+      const returns = (jsDocComment.match(/@returns\s+([^\r\n]*)/) || [])[1] || ''
 
       // Add the extracted information to the Markdown content
       markdownContent += `## ${functionName}\n`
       markdownContent += `${description}\n\n`
-      markdownContent += '```js [js]\n' + js + '\n' + '```\n\n'
-      markdownContent += '```js [template]\n' + template + '\n' + '```\n\n'
-      markdownContent += '```html [preview]\n' + preview + '\n' + '```\n\n'
+      markdownContent += '```js [js]\n' + example + '\n' + '```\n\n'
+      markdownContent += '```html [template]\n{{ ' + example + ' }}\n' + '```\n\n'
+      markdownContent += '```html [returns]\n' + returns + '\n' + '```\n\n'
 
       // Add any additional content or formatting as needed
     })

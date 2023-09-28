@@ -9,11 +9,11 @@ Adds a space between the last two words in a string.
 widont('Cool cool cool')
 ```
 
-```js [template]
+```html [template]
 {{ widont('Cool cool cool') }}
 ```
 
-```html [preview]
+```html [returns]
 cool cool&nbsp;cool
 ```
 
@@ -24,11 +24,11 @@ Strip HTML tags from a string.
 stripHtml('<p>Hello World</p>')
 ```
 
-```js [template]
+```html [template]
 {{ stripHtml('<p>Hello World</p>') }}
 ```
 
-```html [preview]
+```html [returns]
 Hello World
 ```
 
@@ -39,11 +39,11 @@ Escape HTML entities in a string.
 escapeHtml('<p>Hello World</p>')
 ```
 
-```js [template]
+```html [template]
 {{ escapeHtml('<p>Hello World</p>') }}
 ```
 
-```html [preview]
+```html [returns]
 &lt;p&gt;Hello World&lt;/p&gt;
 ```
 
@@ -54,11 +54,11 @@ Unescape HTML entities in a string.
 unescapeHtml('&lt;p&gt;Hello World&lt;/p&gt;')
 ```
 
-```js [template]
+```html [template]
 {{ unescapeHtml('&lt;p&gt;Hello World&lt;/p&gt;') }}
 ```
 
-```html [preview]
+```html [returns]
 <p>Hello World</p>
 ```
 
@@ -69,11 +69,11 @@ Strip HTML tags from a string.
 stripTags('<p>Hello World</p>')
 ```
 
-```js [template]
+```html [template]
 {{ stripTags('<p>Hello World</p>') }}
 ```
 
-```html [preview]
+```html [returns]
 Hello World
 ```
 
@@ -84,11 +84,11 @@ Converts a string to-a-slug.
 slugify('Hello World')
 ```
 
-```js [template]
+```html [template]
 {{ slugify('Hello World') }}
 ```
 
-```html [preview]
+```html [returns]
 hello-world
 ```
 
@@ -99,11 +99,11 @@ Converts a slug to a string.
 deslugify('hello-world')
 ```
 
-```js [template]
+```html [template]
 {{ deslugify('hello-world') }}
 ```
 
-```html [preview]
+```html [returns]
 hello world
 ```
 
@@ -114,11 +114,11 @@ Truncates a string to a specified length of characters.
 truncate('Hello World', 5)
 ```
 
-```js [template]
+```html [template]
 {{ truncate('Hello World', 5) }}
 ```
 
-```html [preview]
+```html [returns]
 Hello...
 ```
 
@@ -129,11 +129,11 @@ Truncates a string by a number of words
 truncateWords('Hello World', 1)
 ```
 
-```js [template]
+```html [template]
 {{ truncateWords('Hello World', 1) }}
 ```
 
-```html [preview]
+```html [returns]
 Hello...
 ```
 
@@ -144,11 +144,11 @@ Counts the number of words in a string.
 countWords('Hello World')
 ```
 
-```js [template]
+```html [template]
 {{ countWords('Hello World') }}
 ```
 
-```html [preview]
+```html [returns]
 2
 ```
 
@@ -159,11 +159,11 @@ Counts the number of characters in a string.
 countCharacters('Hello World')
 ```
 
-```js [template]
+```html [template]
 {{ countCharacters('Hello World') }}
 ```
 
-```html [preview]
+```html [returns]
 11
 ```
 
@@ -174,11 +174,11 @@ Counts the number of lines in a string.
 countLines('Hello World')
 ```
 
-```js [template]
+```html [template]
 {{ countLines('Hello World') }}
 ```
 
-```html [preview]
+```html [returns]
 1
 ```
 
@@ -189,11 +189,11 @@ Strips whitespace from a string.
 stripWhitespace('Hello World')
 ```
 
-```js [template]
+```html [template]
 {{ stripWhitespace('Hello World') }}
 ```
 
-```html [preview]
+```html [returns]
 HelloWorld
 ```
 
@@ -204,11 +204,11 @@ Strips numbers from a string.
 stripNumbers('Hello World 123')
 ```
 
-```js [template]
+```html [template]
 {{ stripNumbers('Hello World 123') }}
 ```
 
-```html [preview]
+```html [returns]
 Hello World
 ```
 
@@ -219,11 +219,11 @@ Strips punctuation from a string.
 stripPunctuation('Hello World!')
 ```
 
-```js [template]
+```html [template]
 {{ stripPunctuation('Hello World!') }}
 ```
 
-```html [preview]
+```html [returns]
 Hello World
 ```
 
@@ -234,11 +234,11 @@ Strips symbols from a string.
 stripSymbols('Hello World!')
 ```
 
-```js [template]
+```html [template]
 {{ stripSymbols('Hello World!') }}
 ```
 
-```html [preview]
+```html [returns]
 Hello World
 ```
 
@@ -249,11 +249,11 @@ Strips emojis from a string (requires ES6 Unicode support) 🦊.
 stripEmojis('Hello World! 🦊')
 ```
 
-```js [template]
+```html [template]
 {{ stripEmojis('Hello World! 🦊') }}
 ```
 
-```html [preview]
+```html [returns]
 Hello World!
 ```
 
@@ -264,11 +264,11 @@ Returns the reading time of a string in Hours, Minutes, and Seconds.
 readingTime('Once, in a vibrant online forum, lived Mod Max, guardian of digital harmony. Max cherished his old scooter, Swift, a symbol of freedom. Navigating both virtual and real worlds, they became legends. Trolls quivered, posts flourished, and lanes whizzed by. Swift’s wheels spun tales, and Max’s keys kept peace. Together, they discovered uncharted threads and hidden lanes. Their journey, an endless adventure, painted pixels and pavements with stories of unity and exhilaration, leaving a trail for all in the intertwined realms of screens and streets.')
 ```
 
-```js [template]
+```html [template]
 {{ readingTime('Once, in a vibrant online forum, lived Mod Max, guardian of digital harmony. Max cherished his old scooter, Swift, a symbol of freedom. Navigating both virtual and real worlds, they became legends. Trolls quivered, posts flourished, and lanes whizzed by. Swift’s wheels spun tales, and Max’s keys kept peace. Together, they discovered uncharted threads and hidden lanes. Their journey, an endless adventure, painted pixels and pavements with stories of unity and exhilaration, leaving a trail for all in the intertwined realms of screens and streets.') }}
 ```
 
-```html [preview]
+```html [returns]
 1 minute
 ```
 
@@ -279,11 +279,11 @@ Adds plurals to a string.
 pluralize('scooter', 10)
 ```
 
-```js [template]
+```html [template]
 {{ pluralize('scooter', 10) }}
 ```
 
-```html [preview]
+```html [returns]
 scooters
 ```
 
@@ -294,11 +294,11 @@ Removes plurals from a string.
 singularize('scooters')
 ```
 
-```js [template]
+```html [template]
 {{ singularize('scooters') }}
 ```
 
-```html [preview]
+```html [returns]
 scooter
 ```
 
@@ -309,11 +309,11 @@ Converts a number to a string with ordinal suffix.
 ordinalize(1)
 ```
 
-```js [template]
+```html [template]
 {{ ordinalize(1) }}
 ```
 
-```html [preview]
+```html [returns]
 1st
 ```
 
@@ -324,11 +324,11 @@ Replaces underscores with spaces and capitalizes the first letter of each word.
 humanize('hello_world')
 ```
 
-```js [template]
+```html [template]
 {{ humanize('hello_world') }}
 ```
 
-```html [preview]
+```html [returns]
 Hello World
 ```
 
@@ -339,11 +339,11 @@ Removes spaces and capitalizes the first letter of each word except for the firs
 camelCase('hello world')
 ```
 
-```js [template]
+```html [template]
 {{ camelCase('hello world') }}
 ```
 
-```html [preview]
+```html [returns]
 helloWorld
 ```
 
@@ -354,11 +354,11 @@ Removes spaces and capitalizes the first letter of each word.
 pascalCase('hello world')
 ```
 
-```js [template]
+```html [template]
 {{ pascalCase('hello world') }}
 ```
 
-```html [preview]
+```html [returns]
 HelloWorld
 ```
 
@@ -369,11 +369,11 @@ Replaces spaces with underscores and converts to lowercase.
 snakeCase('hello world')
 ```
 
-```js [template]
+```html [template]
 {{ snakeCase('hello world') }}
 ```
 
-```html [preview]
+```html [returns]
 hello_world
 ```
 
@@ -384,11 +384,11 @@ Replaces spaces with hyphens and converts to lowercase.
 titleize('Hello World')
 ```
 
-```js [template]
+```html [template]
 {{ titleize('Hello World') }}
 ```
 
-```html [preview]
+```html [returns]
 hello-world
 ```
 
@@ -399,11 +399,11 @@ Converts to title case by capitalizing the first letter of each word.
 titleCase('hello world')
 ```
 
-```js [template]
+```html [template]
 {{ titleCase('hello world') }}
 ```
 
-```html [preview]
+```html [returns]
 Hello World
 ```
 
@@ -414,11 +414,11 @@ Converts to sentence case by capitalizing the first letter of the first word.
 sentenceCase('hello world')
 ```
 
-```js [template]
+```html [template]
 {{ sentenceCase('hello world') }}
 ```
 
-```html [preview]
+```html [returns]
 Hello world
 ```
 
@@ -429,11 +429,11 @@ Adds a prefix to a string if it doesn't already start with the prefix.
 startsWith('usemods.com', 'https://')
 ```
 
-```js [template]
+```html [template]
 {{ startsWith('usemods.com', 'https://') }}
 ```
 
-```html [preview]
+```html [returns]
 https://usemods.com
 ```
 
@@ -444,11 +444,11 @@ Removes a prefix from a string if it starts with the prefix.
 startsWithout('https://usemods.com', 'https://')
 ```
 
-```js [template]
+```html [template]
 {{ startsWithout('https://usemods.com', 'https://') }}
 ```
 
-```html [preview]
+```html [returns]
 usemods.com
 ```
 
@@ -459,11 +459,11 @@ Adds a suffix to a string if it doesn't already end with the suffix.
 endsWith('https://usemods', '.com')
 ```
 
-```js [template]
+```html [template]
 {{ endsWith('https://usemods', '.com') }}
 ```
 
-```html [preview]
+```html [returns]
 https://usemods.com
 ```
 
@@ -474,11 +474,11 @@ Removes a suffix from a string if it ends with the suffix.
 endsWithout('https://usemods.com.au', '.au')
 ```
 
-```js [template]
+```html [template]
 {{ endsWithout('https://usemods.com.au', '.au') }}
 ```
 
-```html [preview]
+```html [returns]
 https://usemods.com
 ```
 
@@ -489,11 +489,11 @@ Adds a prefix and suffix to a string if it doesn't already start and end with th
 surround('https://', 'usemods', '.com')
 ```
 
-```js [template]
+```html [template]
 {{ surround('https://', 'usemods', '.com') }}
 ```
 
-```html [preview]
+```html [returns]
 https://usemods.com
 ```
 
@@ -504,11 +504,11 @@ Converts a string to title case following the Chicago Manual of Style rules.
 title('the quick brown fox jumps over the lazy dog')
 ```
 
-```js [template]
+```html [template]
 {{ title('the quick brown fox jumps over the lazy dog') }}
 ```
 
-```html [preview]
+```html [returns]
 The Quick Brown Fox Jumps over the Lazy Dog
 ```
 
@@ -519,11 +519,11 @@ Wraps each word in a string with a span tag.
 splitByWords('Hello World. How are you?')
 ```
 
-```js [template]
+```html [template]
 {{ splitByWords('Hello World. How are you?') }}
 ```
 
-```html [preview]
+```html [returns]
 <span class="sentence sentence-1"><span class="word word-1">Hello</span> <span class="word word-2">world.</span></span> <span class="sentence sentence-2"><span class="word word-3">How</span> <span class="word word-4">are</span> <span class="word word-5">you?</span></span>
 ```
 
@@ -534,11 +534,11 @@ Creates an array of list items (`<li>`) from an array of strings.
 list(['one', 'two', 'three'])
 ```
 
-```js [template]
+```html [template]
 {{ list(['one', 'two', 'three']) }}
 ```
 
-```html [preview]
+```html [returns]
 <ul><li>one</li><li>two</li><li>three</li></ul>
 ```
 
@@ -549,11 +549,11 @@ Create a string of comma-separated values from an array of strings with an optio
 commaList(['one', 'two', 'three'])
 ```
 
-```js [template]
+```html [template]
 {{ commaList(['one', 'two', 'three']) }}
 ```
 
-```html [preview]
+```html [returns]
 one, two and three
 ```
 
@@ -564,11 +564,11 @@ Create a string of comma-separated values with a limit and an optional conjuncti
 truncateList(['one', 'two', 'three', 'four', 'five'], 3)
 ```
 
-```js [template]
+```html [template]
 {{ truncateList(['one', 'two', 'three', 'four', 'five'], 3) }}
 ```
 
-```html [preview]
+```html [returns]
 one, two, three and 2 more
 ```
 
@@ -579,11 +579,11 @@ Shuffles an array.
 shuffle(['one', 'two', 'three'])
 ```
 
-```js [template]
+```html [template]
 {{ shuffle(['one', 'two', 'three']) }}
 ```
 
-```html [preview]
+```html [returns]
 ['three', 'one', 'two']
 ```
 
@@ -594,11 +594,11 @@ Returns the difference between two arrays.
 difference(['one', 'two', 'three'], ['one', 'two'])
 ```
 
-```js [template]
+```html [template]
 {{ difference(['one', 'two', 'three'], ['one', 'two']) }}
 ```
 
-```html [preview]
+```html [returns]
 ['three']
 ```
 
@@ -609,11 +609,11 @@ Returns the first item in an array.
 first(['one', 'two', 'three'])
 ```
 
-```js [template]
+```html [template]
 {{ first(['one', 'two', 'three']) }}
 ```
 
-```html [preview]
+```html [returns]
 one
 ```
 
@@ -624,11 +624,11 @@ Returns the last item in an array.
 last(['one', 'two', 'three'])
 ```
 
-```js [template]
+```html [template]
 {{ last(['one', 'two', 'three']) }}
 ```
 
-```html [preview]
+```html [returns]
 three
 ```
 
@@ -639,11 +639,11 @@ Returns the nth item in an array.
 nth(['one', 'two', 'three'], 1)
 ```
 
-```js [template]
+```html [template]
 {{ nth(['one', 'two', 'three'], 1) }}
 ```
 
-```html [preview]
+```html [returns]
 two
 ```
 
@@ -654,11 +654,11 @@ Offset the first item in an array.
 offset(['one', 'two', 'three'], 1)
 ```
 
-```js [template]
+```html [template]
 {{ offset(['one', 'two', 'three'], 1) }}
 ```
 
-```html [preview]
+```html [returns]
 ['two', 'three']
 ```
 
@@ -669,11 +669,11 @@ Groups an array of objects by a property.
 group([{ name: 'one' }, { name: 'two' }, { name: 'one' }], 'name')
 ```
 
-```js [template]
+```html [template]
 {{ group([{ name: 'one' }, { name: 'two' }, { name: 'one' }], 'name') }}
 ```
 
-```html [preview]
+```html [returns]
 { one: [{ name: 'one' }, { name: 'one' }], two: [{ name: 'two' }] }
 ```
 
@@ -684,11 +684,11 @@ Chunks an array into sections of a specified size.
 chunk(['one', 'two', 'three', 'four', 'five'], 2)
 ```
 
-```js [template]
+```html [template]
 {{ chunk(['one', 'two', 'three', 'four', 'five'], 2) }}
 ```
 
-```html [preview]
+```html [returns]
 [['one', 'two'], ['three', 'four'], ['five']]
 ```
 
@@ -699,11 +699,11 @@ Flatten an array of arrays.
 flatten([['one', 'two'], ['three', 'four'], ['five']])
 ```
 
-```js [template]
+```html [template]
 {{ flatten([['one', 'two'], ['three', 'four'], ['five']]) }}
 ```
 
-```html [preview]
+```html [returns]
 ['one', 'two', 'three', 'four', 'five']
 ```
 
@@ -714,11 +714,11 @@ Returns an array with a filtered out property.
 without([{ name: 'one', food: 'apple' }, { name: 'two', food: 'grape' }, { name: 'one', food: 'pear' }], 'name')
 ```
 
-```js [template]
+```html [template]
 {{ without([{ name: 'one', food: 'apple' }, { name: 'two', food: 'grape' }, { name: 'one', food: 'pear' }], 'name') }}
 ```
 
-```html [preview]
+```html [returns]
 [{ food: 'apple' }, { food: 'grape' }, { food: 'pear' }]
 ```
 
@@ -729,11 +729,11 @@ Combine two or more arrays
 combine(['one', 'two'], ['three', 'four'], ['five'])
 ```
 
-```js [template]
+```html [template]
 {{ combine(['one', 'two'], ['three', 'four'], ['five']) }}
 ```
 
-```html [preview]
+```html [returns]
 ['one', 'two', 'three', 'four', 'five']
 ```
 
@@ -744,11 +744,11 @@ Reverse an array.
 reverse(['one', 'two', 'three'])
 ```
 
-```js [template]
+```html [template]
 {{ reverse(['one', 'two', 'three']) }}
 ```
 
-```html [preview]
+```html [returns]
 ['three', 'two', 'one']
 ```
 
@@ -759,11 +759,11 @@ Sort an array by a property.
 sortBy([{ name: 'John', age: 25 },{ name: 'Jane', age: 30 },{ name: 'Jill', age: 20 }], 'age')
 ```
 
-```js [template]
+```html [template]
 {{ sortBy([{ name: 'John', age: 25 },{ name: 'Jane', age: 30 },{ name: 'Jill', age: 20 }], 'age') }}
 ```
 
-```html [preview]
+```html [returns]
 [{ name: 'Jill', age: 20 },{ name: 'John', age: 25 },{ name: 'Jane', age: 30 }]
 ```
 

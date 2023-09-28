@@ -264,6 +264,16 @@ export function getReferrer() {
   return document.referrer
 }
 
+export function getCachedData(key?: string): PerformanceEntry[] {
+  const cachedData = window.performance.getEntriesByType('resource')
+
+  if (key) {
+    return cachedData.filter((data) => data.name.includes(key))
+  }
+
+  return cachedData
+}
+
 // Is it?
 
 export function isInViewport(element: HTMLElement) {

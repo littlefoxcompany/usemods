@@ -5,11 +5,11 @@ Generates a random integer between the specified minimum and maximum values.
 random(1, 10)
 ```
 
-```js [template]
+```html [template]
 {{ random(1, 10) }}
 ```
 
-```html [preview]
+```html [returns]
 5
 ```
 
@@ -20,11 +20,11 @@ Calculates the sum of an array of numbers.
 sum([1, 2, 3])
 ```
 
-```js [template]
+```html [template]
 {{ sum([1, 2, 3]) }}
 ```
 
-```html [preview]
+```html [returns]
 6
 ```
 
@@ -32,74 +32,74 @@ sum([1, 2, 3])
 Calculates the average of an array of numbers.
 
 ```js [js]
-
+average([1, 2, 3])
 ```
 
-```js [template]
-
+```html [template]
+{{ average([1, 2, 3]) }}
 ```
 
-```html [preview]
-
+```html [returns]
+2
 ```
 
 ## median
 Calculates the median of an array of numbers.
 
 ```js [js]
-
+median([1, 2, 3])
 ```
 
-```js [template]
-
+```html [template]
+{{ median([1, 2, 3]) }}
 ```
 
-```html [preview]
-
+```html [returns]
+2
 ```
 
 ## min
 Finds the minimum value in an array of numbers.
 
 ```js [js]
-
+min([1, 2, 3])
 ```
 
-```js [template]
-
+```html [template]
+{{ min([1, 2, 3]) }}
 ```
 
-```html [preview]
-
+```html [returns]
+1
 ```
 
 ## max
 Finds the maximum value in an array of numbers.
 
 ```js [js]
-
+max([1, 2, 3])
 ```
 
-```js [template]
-
+```html [template]
+{{ max([1, 2, 3]) }}
 ```
 
-```html [preview]
-
+```html [returns]
+3
 ```
 
 ## clamp
 Clamps a number between the specified minimum and maximum values.
 
 ```js [js]
-
+clamp(1, 10, 20)
 ```
 
-```js [template]
-
+```html [template]
+{{ clamp(1, 10, 20) }}
 ```
 
-```html [preview]
-
+```html [returns]
+10
 ```
 

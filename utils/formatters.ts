@@ -1,5 +1,7 @@
 /**
  * Format numbers into local currency
+ * @example formatCurrency(1234.56)
+ * @returns $1,234.56
  */
 export function formatCurrency(number: number, currency = 'USD'): string {
   const formatter = new Intl.NumberFormat('en-US', {
@@ -16,6 +18,8 @@ export function formatCurrency(number: number, currency = 'USD'): string {
 
 /**
  * Format time into hours, minutes, and seconds
+ * @example formatTime(3723)
+ * @returns 1hr 2min 3s
  */
 export function formatTime(seconds: number): string {
   const hrs = Math.floor(seconds / 3600)
