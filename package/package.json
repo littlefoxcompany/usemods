@@ -1,0 +1,31 @@
+{
+  "name": "mods",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "description": "",
+  "scripts": {
+    "build": "bun run build.mjs",
+    "prepublishOnly": "bun run build"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "bun"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/jrmymbtlr/mods#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jrmymbtlr/mods.git"
+  },
+  "bugs": "https://github.com/jrmymbtlr/mods/issues",
+  "author": "Jeremy Butler <jeremy@littlefox.studio>",
+  "devDependencies": {
+    "@types/web": "^0.0.119",
+    "bun-plugin-dts": "^0.2.1",
+    "bun-types": "^1.0.7",
+    "typescript": "^5.2.2"
+  }
+}

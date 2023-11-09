@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
+    "target": "ESNext",
+    "module": "esnext",
+    "strict": true,
+    "esModuleInterop": true,
+    "moduleResolution": "Node",
+    "skipLibCheck": true,
+    "noUnusedLocals": true,
+    "useDefineForClassFields": true,
+    "noImplicitAny": true,
+    "allowJs": true,
+    "noEmit": true,
+    "outDir": "dist",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "types": ["bun-types", "web"]
+  }
+}
