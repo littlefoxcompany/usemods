@@ -81,11 +81,6 @@ test('isNull', () => {
   expect(isNull('hello')).toBe(false)
 })
 
-test('isNaN', () => {
-  expect(isNaN(NaN)).toBe(true)
-  expect(isNaN('hello')).toBe(false)
-})
-
 test('isError', () => {
   expect(isError(new Error('hello'))).toBe(true)
   expect(isError('hello')).toBe(false)

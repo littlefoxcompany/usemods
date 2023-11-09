@@ -1,5 +1,10 @@
 // title: Actions
-// description: A collection of useful actionss
+// description: A collection of useful actions
+
+// <subtitle>
+// subtitle: Page Actions
+// description: A collection of useful actions
+// </subtitle>
 
 /**
  * Smoothly scroll to an anchor on the page
@@ -54,6 +59,25 @@ export function scrollToBottom(callback?: () => void) {
 }
 
 /**
+ * Toggles the body scroll
+ * @example toggleBodyScroll()
+ */
+export function toggleBodyScroll() {
+  document.body.classList.toggle('overflow-hidden')
+}
+
+/**
+ * Toggles the element scroll
+ * @example toggleElementScroll(document.querySelector('#my-element'))
+ */
+export function toggleElementScroll(element: HTMLElement) {
+  element.classList.toggle('overflow-hidden')
+}
+
+// subtitle: Page Functions
+// subtitledescription: A collection of useful actions
+
+/**
  * Copies a text to the clipboard
  * @example copyToClipboard()
  */
@@ -101,28 +125,17 @@ export function redirect(url: string) {
   window.location.href = url
 }
 
+// <subtitle>
+// subtitle: Form Actions
+// description: A collection of useful actions
+// </subtitle>
+
 /**
  * Resets a form
  * @example resetForm(document.querySelector('form'))
  */
 export function resetForm(form: HTMLFormElement) {
   form.reset()
-}
-
-/**
- * Toggles the body scroll
- * @example toggleBodyScroll()
- */
-export function toggleBodyScroll() {
-  document.body.classList.toggle('overflow-hidden')
-}
-
-/**
- * Toggles the element scroll
- * @example toggleElementScroll(document.querySelector('#my-element'))
- */
-export function toggleElementScroll(element: HTMLElement) {
-  element.classList.toggle('overflow-hidden')
 }
 
 /**
@@ -157,7 +170,7 @@ export function focusOnLast(element: HTMLElement) {
 }
 
 /**
- *  sets up a keyboard trap within an HTML element, allowing the focus to cycle between the first and last focusable elements when the Tab key is pressed.
+ *  Sets up a keyboard trap within an HTML element, allowing the focus to cycle between the first and last focusable elements when the Tab key is pressed.
  * @example focusTrap(document.querySelector('#my-element'))
  */
 export function focusTrap(element: HTMLElement) {
