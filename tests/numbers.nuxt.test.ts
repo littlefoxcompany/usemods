@@ -1,5 +1,4 @@
 // @vitest-environment nuxt
-import { addSyntheticLeadingComment } from '@ts-morph/common/lib/typescript'
 import { expect, test } from 'vitest'
 
 // import * as mod from '../utils/numbers'

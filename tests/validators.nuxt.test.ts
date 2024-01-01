@@ -172,11 +172,11 @@ test('isMACAddress', () => {
   expect(isMACAddress('hello')).toBe(false)
 })
 
-test('isLatLong', () => {
-  expect(isLatLong('12.345678,-98.765432')).toBe(true)
-  expect(isLatLong('12.345678, -98.765432')).toBe(true)
-  expect(isLatLong('98.765432,12.345678')).toBe(false)
-  expect(isLatLong('hello')).toBe(false)
+test('isLatLng', () => {
+  expect(isLatLng('12.345678,-98.765432')).toBe(true)
+  expect(isLatLng('12.345678, -98.765432')).toBe(true)
+  expect(isLatLng('98.765432,12.345678')).toBe(false)
+  expect(isLatLng('hello')).toBe(false)
 })
 
 test('isLatitude', () => {

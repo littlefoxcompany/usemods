@@ -18,9 +18,8 @@
     "dist": "bun build ./build.ts"
   },
   "devDependencies": {
-    "@nuxt-themes/docus": "^1.13.1",
+    "@nuxt-themes/docus": "^1.15.0",
     "@nuxt/content": "^2.8.2",
-    "@nuxt/devtools": "^0.6.7",
     "@nuxt/eslint-config": "^0.1.1",
     "@nuxthq/studio": "^0.14.0",
     "@nuxtjs/plausible": "^0.2.1",
@@ -28,7 +27,7 @@
     "@vitest/ui": "^0.34.3",
     "eslint": "^8.44.0",
     "happy-dom": "^10.11.2",
-    "nuxt": "^3.7.1",
+    "nuxt": "^3.9.0",
     "nuxt-vitest": "^0.10.5",
     "typedoc": "^0.25.1",
     "vitest": "^0.33.0"

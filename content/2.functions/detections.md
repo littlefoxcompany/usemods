@@ -2,143 +2,99 @@
 
 #### A collection of detections for common data types
 
-### getDeviceType
-Detect if the current device is a mobile device
+### detectDevice
+Detect the current device type (Mobile or Desktop)
 
-```js [js]
-getDeviceType()
+```js
+detectDevice()
 ```
 
-### getRelativeMousePosition
-Detect the current mouse position within a container via ID
-
-```js [js]
-getRelativeMousePosition('container', event)
+```html
+`Mobile` or `Desktop`
 ```
 
-### getNetworkStatus
-Detect the current network status of the user (Online or Offline)
+### detectDeviceType
+Detect the device OS (iOS, Android, Windows, etc.)
 
-```js [js]
-getNetworkStatus()
+```js
+detectDeviceType()
 ```
 
-### getLocalStorage
-Returns a local storage value by name and parses it into JSON
-
-```js [js]
-getLocalStorage('name')
+```html
+`iOS`, `Android`, `Windows`, `Mac`, `Linux`, `UNIX`, or `Unknown`
 ```
 
-### getSessionStorage
-Returns a session storage value by name and parses it into JSON
+### detectBrowser
+Detects the user's browser based on the user agent string.
 
-```js [js]
-getSessionStorage('name')
+```js
+detectBrowser()
 ```
 
-### getURLParameters
-Returns a value from the URL by name
-
-```js [js]
-getURLParameters('http://url.com/page?name=Adam&surname=Smith')
+```html
+A string representing the detected browser.
 ```
 
-### getURLHashParameters
-Returns a value from the URL hash by name
+### detectActiveBrowser
+Detect if the browser window is currently active or hidden.
 
-```js [js]
-getURLHashParameters()
+```js
+detectActiveBrowser()
 ```
 
-### getURLSearchParameters
-Retrieves and returns the parameters from the URL search query string
+### detectColorScheme
+Detect the current color scheme
 
-```js [js]
-getURLSearchParameters()
+```js
+detectColorScheme()
 ```
 
-### getURL
-Returns the current URL
+### detectOS
+Detect the current operating system
 
-```js [js]
-getURL()
+```js
+`getOS()`
 ```
 
-### getDomain
-Returns the current domain
+### detectBrowserLanguage
+Detect the current browser language
 
-```js [js]
-getDomain()
+```js
+detectBrowserLanguage()
 ```
 
-### getIP
-Returns the current IP address
+### detectGeolocation
+Detect the current user's location
 
-```js [js]
-getIP()
+```js
+detectUserLocation()
 ```
 
-### getPort
-Returns the current port
+### detectDeviceOrientation
+Detect the currect device orientation
 
-```js [js]
-getPort()
+```js
+detectDeviceOrientation()
 ```
 
-### getProtocol
-Returns the current protocol (HTTP or HTTPS)
+### detectDeviceMotion
+Detect the current device motion
 
-```js [js]
-getProtocol()
+```js
+detectDeviceMotion()
 ```
 
-### getReferrer
-Returns the URL of the referring page (the page that linked to the current page)
+### detectTailwindContainerBreakpoint
+Detect the current container breakpoint based on Tailwind CSS breakpoints
 
-```js [js]
-getReferrer()
+```js
+detectTailwindContainerBreakpoint('container')
 ```
 
-### getCachedData
-Retrieves cached entries and optionally filters the entries based on a provided key
+### detectScrollPosition
+Detect the current scroll position of the window
 
-```js [js]
-getCachedData('abc')
-```
-
-### isInContainer
-Detects if the element is currently in the container via ID
-
-```js [js]
-isInContainer(element, 'container')
-```
-
-### isOverflowingY
-Detects if the element is overflowing vertically
-
-```js [js]
-isOverflowingY(element)
-```
-
-### isOverflowingX
-Detects if the element is overflowing horizontally
-
-```js [js]
-isOverflowingX(element)
-```
-
-### isScrollable
-Detects if the element is scrollable (overflowing vertically or horizontally)
-
-```js [js]
-isScrollable(element)
-```
-
-### isElement
-Detects if the elements is an HTML element
-
-```js [js]
-isElement(element)
+```js
+detectScrollPosition()
 ```
 

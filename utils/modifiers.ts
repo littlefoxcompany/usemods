@@ -35,7 +35,7 @@ export function escapeHtml(text: string): string {
  * @example unescapeHtml('&lt;p&gt;Hello World&lt;/p&gt;')
  * @returns <p>Hello World</p>
  */
-export function showHtml(text: string): string {
+export function unescapeHtml(text: string): string {
   return text.replace(/&lt;/g, '<').replace(/&gt;/g, '>')
 }
 

@@ -38,10 +38,10 @@ export function formatCurrencyUnits(value: number): string {
 
 /**
  * Format time into hours, minutes, and seconds
- * @example formatTimeUnits(3723)
+ * @example formatTime(3723)
  * @returns 1hr 2min 3s
  */
-export function formatTimeUnits(seconds: number): string {
+export function formatTime(seconds: number): string {
   const hrs = Math.floor(seconds / 3600)
   const mins = Math.floor((seconds % 3600) / 60)
   const s = Math.floor(seconds % 60)
