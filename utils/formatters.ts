@@ -20,19 +20,24 @@ export function formatCurrency(number: number, currency = 'USD'): string {
 }
 
 /**
- * Format a number as a currency in thousands, millions, or billions
- * @example formatCurrencyUnits(1234567890)
+ * Format numbers into valuations displayed in thounsands, millions or billions
+ * @example formatValuation(1234567890)
  * @returns $1.23B
  */
-export function formatCurrencyUnits(value: number): string {
-  if (value >= 1000000000) {
-    return `$${Math.round(value / 1000000000)}B`
-  } else if (value >= 1000000) {
-    return `$${Math.round(value / 1000000)}M`
-  } else if (value >= 1000) {
-    return `$${Math.round(value / 1000)}K`
-  } else {
-    return `$${value}`
+export function formatValuation(value: number, currency = 'USD', decimals = 1): string {
+  const formatter = new Intl.NumberFormat('en-US', {
+    notation: 'compact',
+    compactDisplay: 'short',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: decimals,
+    style: 'currency',
+    currency
+  })
+
+  try {
+    return formatter.format(value)
+  } catch (error) {
+    return ''
   }
 }
 

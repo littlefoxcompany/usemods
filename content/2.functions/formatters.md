@@ -5,66 +5,60 @@
 ### formatCurrency
 Format numbers into local currency
 
-```js
+```js [js]
 formatCurrency(1234.56)
 ```
 
-```html
-$1,234.56
+::example{:code=formatCurrency(1234.56)}
+::
+
+### formatValuation
+Format numbers into valuations displayed in thounsands, millions or billions
+
+```js [js]
+formatValuation(1234567890)
 ```
 
-### formatCurrencyUnits
-Format a number as a currency in thousands, millions, or billions
-
-```js
-formatCurrencyUnits(1234567890)
-```
-
-```html
-$1.23B
-```
+::example{:code=formatValuation(1234567890)}
+::
 
 ### formatTime
 Format time into hours, minutes, and seconds
 
-```js
+```js [js]
 formatTime(3723)
 ```
 
-```html
-1hr 2min 3s
-```
+::example{:code=formatTime(3723)}
+::
 
 ### formatDatetime
 Format Unix timestamp into a datetime string
 
-```js
+```js [js]
 formatDatetime(1619097600)
 ```
 
-```html
-2021-04-22 00:00:00
-```
+::example{:code=formatDatetime(1619097600)}
+::
 
 ### formatPercentage
 Format a number into a percentage
 
-```js
+```js [js]
 formatPercentage(0.1234)
 ```
 
-```html
-12.34%
-```
+::example{:code=formatPercentage(0.1234)}
+::
 
 ### formatList
 Create a string of comma-separated values from an array of strings with an optional conjunction.
 
-```js
+```js [js]
 commaList(['one', 'two', 'three'])
 ```
 
-```html
-one, two and three
-```
+::example{:code=commaList(['one', 'two', 'three'])}
+::
 

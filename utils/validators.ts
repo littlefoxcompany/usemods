@@ -3,7 +3,7 @@
 
 /**
  * Check if the input is a valid email address.
- * @example isEmail('hello@usemods.com')
+ * @function isEmail('hello@usemods.com')
  * @returns true
  */
 export function isEmail(email: string): boolean {
@@ -13,7 +13,7 @@ export function isEmail(email: string): boolean {
 
 /**
  * Check if the input is a valid number.
- * @example isNumber('123')
+ * @function isNumber('123')
  * @returns true
  */
 export function isNumber(value: string | number): boolean {
@@ -23,7 +23,7 @@ export function isNumber(value: string | number): boolean {
 
 /**
  * Check if the input is a valid URL.
- * @example isURL('https://usemods.com')
+ * @function isURL('https://usemods.com')
  * @returns true
  */
 export function isURL(url: string): boolean {
@@ -33,7 +33,7 @@ export function isURL(url: string): boolean {
 
 /**
  * Check if the input is a valid UUID.
- * @example isUUID('c9bf9e57-1685-4c89-bafb-ff5af830be8a')
+ * @function isUUID('c9bf9e57-1685-4c89-bafb-ff5af830be8a')
  * @returns true
  */
 export function isUUID(uuid: string): boolean {
@@ -43,7 +43,7 @@ export function isUUID(uuid: string): boolean {
 
 /**
  * Check if the input is a valid JSON string.
- * @example isJSON('{"hello": "world"}')
+ * @function isJSON('{"hello": "world"}')
  * @returns true
  */
 export function isJSON(json: string): boolean {
@@ -57,7 +57,7 @@ export function isJSON(json: string): boolean {
 
 /**
  * Check if the input is a valid hexadecimal color code.
- * @example isHex('#fff')
+ * @function isHex('#fff')
  * @returns true
  */
 export function isHex(hex: string): boolean {
@@ -67,7 +67,7 @@ export function isHex(hex: string): boolean {
 
 /**
  * Check if the input is an empty string.
- * @example isEmpty('')
+ * @function isEmpty('')
  * @returns true
  */
 export function isEmpty(text: string): boolean {
@@ -76,7 +76,7 @@ export function isEmpty(text: string): boolean {
 
 /**
  * Check if the input contains only alphabetic characters.
- * @example isAlpha('hello')
+ * @function isAlpha('hello')
  * @returns true
  */
 export function isAlpha(text: string): boolean {
@@ -86,7 +86,7 @@ export function isAlpha(text: string): boolean {
 
 /**
  * Check if the input contains only alphanumeric characters.
- * @example isAlphanumeric('hello123')
+ * @function isAlphanumeric('hello123')
  * @returns true
  */
 export function isAlphanumeric(text: string): boolean {
@@ -96,7 +96,7 @@ export function isAlphanumeric(text: string): boolean {
 
 /**
  * Check if the input is an array.
- * @example isArray([1, 2, 3])
+ * @function isArray([1, 2, 3])
  * @returns true
  */
 export function isArray(array: any): boolean {
@@ -105,7 +105,7 @@ export function isArray(array: any): boolean {
 
 /**
  * Check if the input is an object.
- * @example isObject({ hello: 'world' })
+ * @function isObject({ hello: 'world' })
  * @returns true
  */
 export function isObject(value: any): boolean {
@@ -114,7 +114,7 @@ export function isObject(value: any): boolean {
 
 /**
  * Check if the input is a boolean value.
- * @example isBoolean(true)
+ * @function isBoolean(true)
  * @returns true
  */
 export function isBoolean(boolean: any): boolean {
@@ -123,7 +123,7 @@ export function isBoolean(boolean: any): boolean {
 
 /**
  * Check if the input is a function.
- * @example isFunction(() => {})
+ * @function isFunction(() => {})
  * @returns true
  */
 export function isFunction(functionToCheck: any): boolean {
@@ -132,7 +132,7 @@ export function isFunction(functionToCheck: any): boolean {
 
 /**
  * Check if the input is undefined.
- * @example isUndefined(undefined)
+ * @function isUndefined(undefined)
  * @returns true
  */
 export function isUndefined(value: any): boolean {
@@ -141,7 +141,7 @@ export function isUndefined(value: any): boolean {
 
 /**
  * Check if the input is null.
- * @example isNull(null)
+ * @function isNull(null)
  * @returns true
  */
 export function isNull(value: any): boolean {
@@ -150,7 +150,7 @@ export function isNull(value: any): boolean {
 
 /**
  * Check if the input is a valid Date object.
- * @example isDate(new Date())
+ * @function isDate(new Date())
  * @returns true
  */
 export function isDate(date: any): boolean {
@@ -159,7 +159,7 @@ export function isDate(date: any): boolean {
 
 /**
  * Check if the input is an Error object with a defined message.
- * @example isError(new Error('hello'))
+ * @function isError(new Error('hello'))
  * @returns true
  */
 export function isError(error: any): boolean {
@@ -168,7 +168,7 @@ export function isError(error: any): boolean {
 
 /**
  * Check if the input is a valid time in HH:mm format.
- * @example isTime('12:00')
+ * @function isTime('12:00')
  * @returns true
  */
 export function isTime(time: any): boolean {
@@ -178,7 +178,7 @@ export function isTime(time: any): boolean {
 
 /**
  * Check if the input year is a leap year.
- * @example isLeapYear(2020)
+ * @function isLeapYear(2020)
  * @returns true
  */
 export function isLeapYear(year: number): boolean {
@@ -187,7 +187,7 @@ export function isLeapYear(year: number): boolean {
 
 /**
  * Check if the input is a Promise object.
- * @example isPromise(new Promise(() => {}))
+ * @function isPromise(new Promise(() => {}))
  * @returns true
  */
 export function isPromise(promise: any): boolean {
@@ -196,7 +196,7 @@ export function isPromise(promise: any): boolean {
 
 /**
  * Check if the input is a Set object.
- * @example isSet(new Set())
+ * @function isSet(new Set())
  * @returns true
  */
 export function isSet(set: any): boolean {
@@ -205,7 +205,7 @@ export function isSet(set: any): boolean {
 
 /**
  * Check if the input is a Map object.
- * @example isMap(new Map())
+ * @function isMap(new Map())
  * @returns true
  */
 export function isMap(map: any): boolean {
@@ -214,7 +214,7 @@ export function isMap(map: any): boolean {
 
 /**
  * Check if the number is even.
- * @example isEven(2)
+ * @function isEven(2)
  * @returns true
  */
 export function isEven(number: any): boolean {
@@ -223,7 +223,7 @@ export function isEven(number: any): boolean {
 
 /**
  * Check if the number is odd.
- * @example isOdd(3)
+ * @function isOdd(3)
  * @returns true
  */
 export function isOdd(number: any): boolean {
@@ -232,7 +232,7 @@ export function isOdd(number: any): boolean {
 
 /**
  * Check if the number is positive.
- * @example isPositive(1)
+ * @function isPositive(1)
  * @returns true
  */
 export function isPositive(number: any): boolean {
@@ -241,7 +241,7 @@ export function isPositive(number: any): boolean {
 
 /**
  * Check if the number is negative.
- * @example isNegative(-1)
+ * @function isNegative(-1)
  * @returns true
  */
 export function isNegative(number: any): boolean {
@@ -250,7 +250,7 @@ export function isNegative(number: any): boolean {
 
 /**
  * Check if the number is zero.
- * @example isZero(0)
+ * @function isZero(0)
  * @returns true
  */
 export function isZero(number: any): boolean {
@@ -259,7 +259,7 @@ export function isZero(number: any): boolean {
 
 /**
  * Check if the number is a prime number.
- * @example isPrime(7)
+ * @function isPrime(7)
  * @returns true
  */
 export function isPrime(number: any): boolean {
@@ -272,7 +272,7 @@ export function isPrime(number: any): boolean {
 
 /**
  * Check if the string is equal to "Optimus Prime".
- * @example isOptimusPrime('Optimus Prime')
+ * @function isOptimusPrime('Optimus Prime')
  * @returns true
  */
 export function isOptimusPrime(text: string): boolean {
@@ -281,7 +281,7 @@ export function isOptimusPrime(text: string): boolean {
 
 /**
  * Check if the string is a palindrome.
- * @example isPalindrome('racecar')
+ * @function isPalindrome('racecar')
  * @returns true
  */
 export function isPalindrome(text: any): boolean {
@@ -293,7 +293,7 @@ export function isPalindrome(text: any): boolean {
 
 /**
  * Check if the number is an integer.
- * @example isInteger(1)
+ * @function isInteger(1)
  * @returns true
  */
 export function isInteger(number: number): boolean {
@@ -302,7 +302,7 @@ export function isInteger(number: number): boolean {
 
 /**
  * Check if the number is a float.
- * @example isFloat(1.5)
+ * @function isFloat(1.5)
  * @returns true
  */
 export function isFloat(number: number): boolean {
@@ -311,7 +311,7 @@ export function isFloat(number: number): boolean {
 
 /**
  * Check if the number is between the specified range.
- * @example isBetween(5, 1, 10)
+ * @function isBetween(5, 1, 10)
  * @returns true
  */
 export function isBetween(number: number, min: number, max: number): boolean {
@@ -323,7 +323,7 @@ export function isBetween(number: number, min: number, max: number): boolean {
 
 /**
  * Check if the number is divisible by the specified number.
- * @example isDivisibleBy(10, 2)
+ * @function isDivisibleBy(10, 2)
  * @returns true
  */
 export function isDivisibleBy(number: number, divisor: number): boolean {
@@ -332,7 +332,7 @@ export function isDivisibleBy(number: number, divisor: number): boolean {
 
 /**
  * Check if the input is a valid credit card number.
- * @example isCreditCardNumber('4242424242424242')
+ * @function isCreditCardNumber('4242424242424242')
  * @returns true
  */
 export function isCreditCardNumber(number: string): boolean {
@@ -342,7 +342,7 @@ export function isCreditCardNumber(number: string): boolean {
 
 /**
  * Check if the input is a valid IP address.
- * @example isIPAddress('127.0.0.0')
+ * @function isIPAddress('127.0.0.0')
  * @returns true
  */
 export function isIPAddress(ip: string): boolean {
@@ -352,7 +352,7 @@ export function isIPAddress(ip: string): boolean {
 
 /**
  * Check if the input is a valid MAC address.
- * @example isMACAddress('00:00:00:00:00:00')
+ * @function isMACAddress('00:00:00:00:00:00')
  * @returns true
  */
 export function isMACAddress(mac: string): boolean {
@@ -362,7 +362,7 @@ export function isMACAddress(mac: string): boolean {
 
 /**
  * Check if the input is a valid latitude-longitude coordinate in the format lat,lng or lat,lng.
- * @example isLatLng('40.741895,-73.989308')
+ * @function isLatLng('40.741895,-73.989308')
  * @returns true
  */
 export function isLatLng(latLng: string): boolean {
@@ -371,7 +371,7 @@ export function isLatLng(latLng: string): boolean {
 }
 /**
  * Check if the input is a valid latitude coordinate.
- * @example isLatitude('40.741895')
+ * @function isLatitude('40.741895')
  * @returns true
  */
 export function isLatitude(latitude: string): boolean {
@@ -381,7 +381,7 @@ export function isLatitude(latitude: string): boolean {
 
 /**
  * Check if the input is a valid longitude coordinate.
- * @example isLongitude('-73.989308')
+ * @function isLongitude('-73.989308')
  * @returns true
  */
 export function isLongitude(longitude: string): boolean {
@@ -391,7 +391,7 @@ export function isLongitude(longitude: string): boolean {
 
 /**
  * Check if the input is a valid port number.
- * @example isPort(3000)
+ * @function isPort(3000)
  * @returns true
  */
 export function isPort(port: number): boolean {
@@ -400,7 +400,7 @@ export function isPort(port: number): boolean {
 
 /**
  * Checks if a property and value pair exists in an object.
- * @example hasPropertyValue({ hello: 'world' }, 'hello', 'world')
+ * @function hasPropertyValue({ hello: 'world' }, 'hello', 'world')
  * @returns true
  */
 export function isPresent(object: any, property: string, value: any): boolean {
@@ -409,7 +409,7 @@ export function isPresent(object: any, property: string, value: any): boolean {
 
 /**
  * Check if a property exists in an object without checking its value.
- * @example hasProperties({ hello: 'world' }, ['hello', 'world'])
+ * @function hasProperties({ hello: 'world' }, ['hello', 'world'])
  * @returns true
  */
 export function hasProperties(object: any, properties: string[], strict: boolean = true): boolean {
@@ -424,7 +424,7 @@ export function hasProperties(object: any, properties: string[], strict: boolean
 
 /**
  * Check if an array of key exists in an object
- * @example hasKeys({ hello: 'world' }, ['hello', 'world',])
+ * @function hasKeys({ hello: 'world' }, ['hello', 'world',])
  * @returns true
  */
 export function hasKeys(object: any, keys: string[], strict: boolean = true): boolean {

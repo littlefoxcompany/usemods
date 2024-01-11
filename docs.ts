@@ -10,6 +10,16 @@ const files = fs.readdirSync(directoryPath)
 // Filter the list to only include .ts files
 const tsFiles = files.filter((file) => path.extname(file) === '.ts')
 
+// Combine tsFiles into a single .ts file in /dist
+let combinedTsFile = ''
+tsFiles.forEach((tsFile) => {
+  const tsFilePath = path.resolve(directoryPath, tsFile)
+  const tsContent = fs.readFileSync(tsFilePath, 'utf-8')
+  combinedTsFile += tsContent + '\n'
+})
+fs.writeFileSync(path.resolve('./dist/mods.ts'), combinedTsFile)
+
+// Generate markdown documentation for each function
 tsFiles.forEach((tsFile) => {
   const tsFilePath = path.resolve(directoryPath, tsFile)
   const tsContent = fs.readFileSync(tsFilePath, 'utf-8')
@@ -59,8 +69,9 @@ tsFiles.forEach((tsFile) => {
 
       markdownContent += `### ${functionName}\n`
       markdownContent += `${description}\n\n`
-      if (example) markdownContent += '```js\n' + example + '\n```\n\n'
-      if (returns) markdownContent += '```html\n' + returns + '\n```\n\n'
+      if (example) markdownContent += '```js [js]\n' + example + '\n```\n\n'
+      if (example) markdownContent += '::example{:code=' + example + '}\n::\n\n'
+      // if (returns) markdownContent += '```html [example]\n' + returns + '\n```\n\n'
     }
   })
 

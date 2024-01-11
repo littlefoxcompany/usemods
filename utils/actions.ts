@@ -8,7 +8,7 @@
 
 /**
  * Smoothly scroll to an anchor on the page
- * @example scrollToAnchor('#my-anchor')
+ * @function scrollToAnchor('#my-anchor')
  */
 export function scrollToAnchor(id: string, callback?: () => void) {
   setTimeout(() => {
@@ -26,7 +26,7 @@ export function scrollToAnchor(id: string, callback?: () => void) {
 
 /**
  * Smoothly scroll to the top of the page
- * @example scrollToTop()
+ * @function scrollToTop()
  */
 export function scrollToTop(callback?: () => void) {
   setTimeout(() => {
@@ -43,7 +43,7 @@ export function scrollToTop(callback?: () => void) {
 
 /**
  * Smoothly scroll to the bottom of the page
- * @example scrollToBottom()
+ * @function scrollToBottom()
  */
 export function scrollToBottom(callback?: () => void) {
   setTimeout(() => {
@@ -60,7 +60,7 @@ export function scrollToBottom(callback?: () => void) {
 
 /**
  * Toggles the body scroll
- * @example toggleBodyScroll()
+ * @function toggleBodyScroll()
  */
 export function toggleBodyScroll() {
   document.body.classList.toggle('overflow-hidden')
@@ -68,7 +68,7 @@ export function toggleBodyScroll() {
 
 /**
  * Toggles the element scroll
- * @example toggleElementScroll(document.querySelector('#my-element'))
+ * @function toggleElementScroll(document.querySelector('#my-element'))
  */
 export function toggleElementScroll(element: HTMLElement) {
   element.classList.toggle('overflow-hidden')
@@ -79,7 +79,7 @@ export function toggleElementScroll(element: HTMLElement) {
 
 /**
  * Copies a text to the clipboard
- * @example copyToClipboard()
+ * @function copyToClipboard()
  */
 export function copyToClipboard(text: string, callback?: () => void) {
   navigator.clipboard
@@ -98,7 +98,7 @@ export function copyToClipboard(text: string, callback?: () => void) {
 
 /**
  * Toggles the fullscreen mode
- * @example toggleFullScreen()
+ * @function toggleFullScreen()
  */
 export function toggleFullScreen() {
   if (document.fullscreenElement) {
@@ -110,7 +110,7 @@ export function toggleFullScreen() {
 
 /**
  * Toggles the dark mode
- * @example toggleDarkMode()
+ * @function toggleDarkMode()
  */
 export function toggleDarkMode() {
   const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -119,7 +119,7 @@ export function toggleDarkMode() {
 
 /**
  * Redirects to a new URL
- * @example redirect('https://example.com')
+ * @function redirect('https://example.com')
  */
 export function redirect(url: string) {
   window.location.href = url
@@ -132,7 +132,7 @@ export function redirect(url: string) {
 
 /**
  * Resets a form
- * @example resetForm(document.querySelector('form'))
+ * @function resetForm(document.querySelector('form'))
  */
 export function resetForm(form: HTMLFormElement) {
   form.reset()
@@ -140,7 +140,7 @@ export function resetForm(form: HTMLFormElement) {
 
 /**
  * Focuses on an element
- * @example focusOn(document.querySelector('#my-element'))
+ * @function focusOn(document.querySelector('#my-element'))
  */
 export function focusOn(element: HTMLElement) {
   element.focus()
@@ -148,7 +148,7 @@ export function focusOn(element: HTMLElement) {
 
 /**
  * Focuses on the first element
- * @example focusOnFirst(document.querySelector('#my-element'))
+ * @function focusOnFirst(document.querySelector('#my-element'))
  */
 export function focusOnFirst(element: HTMLElement) {
   const input = element.querySelector('input')
@@ -159,7 +159,7 @@ export function focusOnFirst(element: HTMLElement) {
 
 /**
  * Focuses on the last element
- * @example focusOnLast(document.querySelector('#my-element'))
+ * @function focusOnLast(document.querySelector('#my-element'))
  */
 export function focusOnLast(element: HTMLElement) {
   const inputs = element.querySelectorAll('input')
@@ -171,7 +171,7 @@ export function focusOnLast(element: HTMLElement) {
 
 /**
  *  Sets up a keyboard trap within an HTML element, allowing the focus to cycle between the first and last focusable elements when the Tab key is pressed.
- * @example focusTrap(document.querySelector('#my-element'))
+ * @function focusTrap(document.querySelector('#my-element'))
  */
 export function focusTrap(element: HTMLElement) {
   const focusableElements = element.querySelectorAll('a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select')

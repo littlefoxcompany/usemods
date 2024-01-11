@@ -3,7 +3,7 @@
 
 /**
  * Detect the current device type (Mobile or Desktop)
- * @example detectDevice()
+ * @function detectDevice()
  * @returns `Mobile` or `Desktop`
  */
 export function detectDevice(): string {
@@ -11,18 +11,23 @@ export function detectDevice(): string {
 }
 
 /**
- * Detect the device OS (iOS, Android, Windows, etc.)
- * @example detectDeviceType()
- * @returns `iOS`, `Android`, `Windows`, `Mac`, `Linux`, `UNIX`, or `Unknown`
+ * Detect the current operating system
+ * @function detectOS()
+ * @returns `Windows`, `Mac`, `Linux`, `UNIX`, or `Unknown`
  */
-export function detectDeviceType(): string {
-  return navigator.userAgent
+export function detectOS(): string {
+  const userAgent = navigator.userAgent.toLowerCase()
+  if (userAgent.includes('win')) return 'Windows'
+  if (userAgent.includes('mac')) return 'Mac'
+  if (userAgent.includes('linux')) return 'Linux'
+  if (userAgent.includes('x11')) return 'UNIX'
+  return 'Unknown'
 }
 
 /**
  * Detects the user's browser based on the user agent string.
- * @example detectBrowser()
- * @returns A string representing the detected browser.
+ * @function detectBrowser()
+ * @returns `Chrome`, `Firefox`, `Safari`, `Opera`, `Edge`, `IE`, or `Unknown`
  */
 export function detectBrowser(): string {
   return navigator.userAgent.toLowerCase()
@@ -30,43 +35,24 @@ export function detectBrowser(): string {
 
 /**
  * Detect if the browser window is currently active or hidden.
- * @example detectActiveBrowser()
+ * @function detectActiveBrowser()
  */
 export function detectActiveBrowser(): boolean {
   return !document.hidden
 }
 
 /**
- * Detect the current color scheme
- * @example detectColorScheme()
+ * Detect the current color scheme (Light or Dark)
+ * @function detectColorScheme()
+ * @returns `Light` or `Dark`
  */
 export function detectColorScheme(): string {
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
 }
 
 /**
- * Detect the current operating system
- * @example `getOS()`
- */
-export function detectOS(): string {
-  const userAgent = navigator.userAgent.toLowerCase()
-  switch (true) {
-    case userAgent.indexOf('win') !== -1:
-      return 'Windows'
-    case userAgent.indexOf('mac') !== -1:
-      return 'Mac'
-    case userAgent.indexOf('linux') !== -1:
-      return 'Linux'
-    case userAgent.indexOf('x11') !== -1:
-      return 'UNIX'
-    default:
-      return 'Unknown'
-  }
-}
-
-/**
  * Detect the current browser language
- * @example detectBrowserLanguage()
+ * @function detectBrowserLanguage()
  */
 export function detectBrowserLanguage(): string {
   return navigator.language
@@ -74,7 +60,8 @@ export function detectBrowserLanguage(): string {
 
 /**
  * Detect the current user's location
- * @example detectUserLocation()
+ * @function detectUserLocation()
+ * @returns `US`, `UK`, `CA`, `AU`, `NZ`, `EU`, `Unknown`
  */
 export function detectGeolocation(): Promise<GeolocationPosition> {
   return new Promise((resolve, reject) => {
@@ -84,7 +71,7 @@ export function detectGeolocation(): Promise<GeolocationPosition> {
 
 /**
  * Detect the current user's Timezone
- * @example detectUserTimezone()
+ * @function detectUserTimezone()
  */
 export function detectUserTimezone(): string {
   return Intl.DateTimeFormat().resolvedOptions().timeZone
@@ -92,7 +79,7 @@ export function detectUserTimezone(): string {
 
 /**
  * Detect the currect device orientation
- * @example detectDeviceOrientation()
+ * @function detectDeviceOrientation()
  */
 export function detectDeviceOrientation(): string {
   return window.screen.orientation.type
@@ -100,7 +87,7 @@ export function detectDeviceOrientation(): string {
 
 /**
  * Detect the current device motion
- * @example detectDeviceMotion()
+ * @function detectDeviceMotion()
  */
 export function detectDeviceMotion(): Promise<DeviceMotionEvent> {
   return new Promise((resolve, reject) => {
@@ -111,7 +98,7 @@ export function detectDeviceMotion(): Promise<DeviceMotionEvent> {
 
 /**
  * Detect the browser's window size
- * @example detectWindowSize()
+ * @function detectWindowSize()
  */
 export function detectWindowSize(): { width: number; height: number } {
   return {
@@ -122,7 +109,7 @@ export function detectWindowSize(): { width: number; height: number } {
 
 /**
  * Detect the screen or monitor size
- * @example detectScreenSize()
+ * @function detectScreenSize()
  */
 export function detectScreenSize(): { width: number; height: number } {
   return {
@@ -133,7 +120,7 @@ export function detectScreenSize(): { width: number; height: number } {
 
 /**
  * Detect the container size via ID
- * @example detectContainerSize('container')
+ * @function detectContainerSize('container')
  */
 export function detectContainerSize(id: string): { width: number; height: number } {
   const element = document.getElementById(id)
@@ -146,7 +133,7 @@ export function detectContainerSize(id: string): { width: number; height: number
 
 /**
  * Detect the current breakpoint based on Tailwind CSS breakpoints
- * @example detectTailwindBreakpoint()
+ * @function detectTailwindBreakpoint()
  */
 export function detectTailwindBreakpoint(): string {
   const width = window.innerWidth
@@ -168,10 +155,10 @@ export function detectTailwindBreakpoint(): string {
 
 /**
  * Detect the current container breakpoint based on Tailwind CSS breakpoints
- * @example detectTailwindContainerBreakpoint('container')
+ * @function detectTailwindContainerBreakpoint('container')
  */
 export function detectTailwindContainerBreakpoint(id: string): string {
-  const width = getContainerSize(id).width
+  const width = detectContainerSize(id).width
   switch (true) {
     case width < 320:
       return '@xs'
@@ -202,7 +189,7 @@ export function detectTailwindContainerBreakpoint(id: string): string {
 
 /**
  * Detect the current scroll position of the window
- * @example detectScrollPosition()
+ * @function detectScrollPosition()
  */
 export function detectScrollPosition(): { x: number; y: number } {
   return {
@@ -213,7 +200,7 @@ export function detectScrollPosition(): { x: number; y: number } {
 
 /**
  * Detect the current mouse position within the window
- * @example detectMousePosition(event)
+ * @function detectMousePosition(event)
  */
 export function detectMousePosition(event: MouseEvent) {
   return {
@@ -224,7 +211,7 @@ export function detectMousePosition(event: MouseEvent) {
 
 /**
  * Detect the current mouse position within a container via ID
- * @example detectRelativeMousePosition('container', event)
+ * @function detectRelativeMousePosition('container', event)
  */
 export function detectRelativeMousePosition(id: string, e: MouseEvent) {
   const element = document.getElementById(id)
@@ -238,7 +225,7 @@ export function detectRelativeMousePosition(id: string, e: MouseEvent) {
 
 /**
  * Detect the current network status of the user (Online or Offline)
- * @example detectNetworkStatus()
+ * @function detectNetworkStatus()
  */
 export function detectNetworkStatus(): string {
   return navigator.onLine ? 'Online' : 'Offline'
@@ -246,7 +233,7 @@ export function detectNetworkStatus(): string {
 
 /**
  * Detect the current memory status of the user (RAM)
- * @example detectMemoryStatus()
+ * @function detectMemoryStatus()
  */
 export function detectMemoryStatus(): { totalJSHeapSize: number; usedJSHeapSize: number; jsHeapSizeLimit: number } {
   return {
@@ -258,7 +245,7 @@ export function detectMemoryStatus(): { totalJSHeapSize: number; usedJSHeapSize:
 
 /**
  * Detect the current performance status of the user (CPU, RAM, etc.)
- * @example detectPerformance()
+ * @function detectPerformance()
  */
 export function detectPerformance(): Promise<PerformanceNavigationTiming> {
   return new Promise((resolve, reject) => {
@@ -271,7 +258,7 @@ export function detectPerformance(): Promise<PerformanceNavigationTiming> {
 
 /**
  * Detect the current storage status of the user (Local Storage, Session Storage)
- * @example detectStorage()
+ * @function detectStorage()
  */
 export function detectStorage(): { localStorage: number; sessionStorage: number } {
   return {
@@ -282,7 +269,7 @@ export function detectStorage(): { localStorage: number; sessionStorage: number 
 
 /**
  * Returns a cookie value by name
- * @example detectCookie('name')
+ * @function detectCookie('name')
  */
 export function detectCookie(name: string) {
   const value = '; ' + document.cookie
@@ -292,7 +279,7 @@ export function detectCookie(name: string) {
 
 /**
  * Returns a local storage value by name and parses it into JSON
- * @example detectLocalStorage('name')
+ * @function detectLocalStorage('name')
  */
 export function detectLocalStorage(name: string) {
   const item = localStorage.getItem(name)
@@ -301,7 +288,7 @@ export function detectLocalStorage(name: string) {
 
 /**
  * Returns a session storage value by name and parses it into JSON
- * @example detectSessionStorage('name')
+ * @function detectSessionStorage('name')
  */
 export function detectSessionStorage(name: string) {
   const item = sessionStorage.getItem(name)
@@ -310,7 +297,7 @@ export function detectSessionStorage(name: string) {
 
 /**
  * Returns a value from the URL by name
- * @example detectURLParameters('http://url.com/page?name=Adam&surname=Smith')
+ * @function detectURLParameters('http://url.com/page?name=Adam&surname=Smith')
  */
 export function detectURLParameters(url: string, param?: string) {
   const params = (url.match(/([^?=&]+)(=([^&]*))/g) || []).reduce((a: any, v: any) => ((a[v.slice(0, v.indexOf('='))] = v.slice(v.indexOf('=') + 1)), a), {})
@@ -324,23 +311,23 @@ export function detectURLParameters(url: string, param?: string) {
 
 /**
  * Returns a value from the URL hash by name
- * @example detectURLHashParameters()
+ * @function detectURLHashParameters()
  */
 export function detectURLHashParameters() {
-  return getURLParameters(window.location.hash)
+  return detectURLParameters(window.location.hash)
 }
 
 /**
  * Retrieves and returns the parameters from the URL search query string
- * @example detectURLSearchParameters()
+ * @function detectURLSearchParameters()
  */
 export function detectURLSearchParameters() {
-  return getURLParameters(window.location.search)
+  return detectURLParameters(window.location.search)
 }
 
 /**
  * Returns the current URL
- * @example detectURL()
+ * @function detectURL()
  */
 export function detectURL() {
   return window.location.href
@@ -348,7 +335,7 @@ export function detectURL() {
 
 /**
  * Returns the current domain
- * @example detectDomain()
+ * @function detectDomain()
  */
 export function detectDomain() {
   return window.location.hostname
@@ -356,7 +343,7 @@ export function detectDomain() {
 
 /**
  * Returns the current IP address
- * @example detectIP()
+ * @function detectIP()
  */
 export function detectIP() {
   return window.location.host
@@ -364,7 +351,7 @@ export function detectIP() {
 
 /**
  * Returns the current port
- * @example detectPort()
+ * @function detectPort()
  */
 export function detectPort() {
   return window.location.port
@@ -372,7 +359,7 @@ export function detectPort() {
 
 /**
  * Returns the current protocol (HTTP or HTTPS)
- * @example detectProtocol()
+ * @function detectProtocol()
  */
 export function detectProtocol() {
   return window.location.protocol
@@ -380,7 +367,7 @@ export function detectProtocol() {
 
 /**
  * Returns the URL of the referring page (the page that linked to the current page)
- * @example detectReferrer()
+ * @function detectReferrer()
  */
 export function detectReferrer() {
   return document.referrer
@@ -388,7 +375,7 @@ export function detectReferrer() {
 
 /**
  *  Retrieves cached entries and optionally filters the entries based on a provided key
- * @example detectCachedData('abc')
+ * @function detectCachedData('abc')
  */
 export function detectCachedData(key?: string): PerformanceEntry[] {
   const cachedData = window.performance.getEntriesByType('resource')
@@ -404,7 +391,7 @@ export function detectCachedData(key?: string): PerformanceEntry[] {
 
 /**
  * Detects if the element is currently in the viewport
- * @example isInViewport(element)
+ * @function isInViewport(element)
  */
 export function isInViewport(element: HTMLElement) {
   const rect = element.getBoundingClientRect()
@@ -418,7 +405,7 @@ export function isInViewport(element: HTMLElement) {
 
 /**
  * Detects if the element is currently in the container via ID
- * @example isInContainer(element, 'container')
+ * @function isInContainer(element, 'container')
  */
 export function isInContainer(element: HTMLElement, id: string) {
   const rect = element.getBoundingClientRect()
@@ -430,7 +417,7 @@ export function isInContainer(element: HTMLElement, id: string) {
 
 /**
  * Detects if the element is overflowing vertically
- * @example isOverflowingY(element)
+ * @function isOverflowingY(element)
  */
 export function isOverflowingY(element: HTMLElement) {
   return element.scrollWidth > element.clientWidth || element.scrollHeight > element.clientHeight
@@ -438,7 +425,7 @@ export function isOverflowingY(element: HTMLElement) {
 
 /**
  * Detects if the element is overflowing horizontally
- * @example isOverflowingX(element)
+ * @function isOverflowingX(element)
  */
 export function isOverflowingX(element: HTMLElement) {
   return element.scrollWidth > element.clientWidth
@@ -446,7 +433,7 @@ export function isOverflowingX(element: HTMLElement) {
 
 /**
  * Detects if the element is scrollable (overflowing vertically or horizontally)
- * @example isScrollable(element)
+ * @function isScrollable(element)
  */
 export function isScrollable(element: HTMLElement) {
   return isOverflowingY(element) || isOverflowingX(element)
@@ -454,7 +441,7 @@ export function isScrollable(element: HTMLElement) {
 
 /**
  * Detects if the elements is an HTML element
- * @example isElement(element)
+ * @function isElement(element)
  */
 export function isElement(element: HTMLElement) {
   return element instanceof HTMLElement
