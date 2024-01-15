@@ -56,6 +56,7 @@ function generateMarkdown(tsContent: string): string {
     if (name) markdownContent += `### ${name}\n\n`
     if (description) markdownContent += `${description}\n\n`
     if (example) markdownContent += '```js [js]\n' + example + '\n```\n\n'
+    if (example) markdownContent += `::example{code=${example}}\n::\n\n`
     if (returns) markdownContent += `**Returns:** ${returns}\n\n`
   }
 
