@@ -9,7 +9,6 @@
 </template>
 
 <script setup>
-  import * as mods from '@/dist/mods.ts'
   import { defineProps } from 'vue'
 
   const props = defineProps({
