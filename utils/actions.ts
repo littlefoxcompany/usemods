@@ -5,7 +5,7 @@
  * Scrolls to the element with the specified ID.
  * @example scrollToAnchor('#my-anchor')
  */
-export function scrollToAnchor(id: string, callback?: () => void) {
+export function scrollToAnchor(id: string, callback?: () => void): void {
   setTimeout(() => {
     const element = document.querySelector(id)
     if (!element) return
