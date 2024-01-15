@@ -7,6 +7,7 @@
   "type": "module",
   "scripts": {
     "dev": "nuxi dev",
+    "docs": "bun run --watch docs.ts",
     "build": "nuxi build",
     "generate": "nuxi generate",
     "preview": "nuxi preview",

@@ -1,8 +1,8 @@
 // title: Actions
-// description: A collection of useful actionss
+// description: A collection of useful actions
 
 /**
- * Smoothly scroll to an anchor on the page
+ * Scrolls to the element with the specified ID.
  * @example scrollToAnchor('#my-anchor')
  */
 export function scrollToAnchor(id: string, callback?: () => void) {
@@ -10,7 +10,7 @@ export function scrollToAnchor(id: string, callback?: () => void) {
     const element = document.querySelector(id)
     if (!element) return
     element.scrollIntoView({
-      behavior: "smooth",
+      behavior: 'smooth'
     })
   }, 180)
 
@@ -27,7 +27,7 @@ export function scrollToTop(callback?: () => void) {
   setTimeout(() => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: 'smooth'
     })
   }, 180)
 
@@ -44,13 +44,29 @@ export function scrollToBottom(callback?: () => void) {
   setTimeout(() => {
     window.scrollTo({
       top: document.body.scrollHeight,
-      behavior: "smooth",
+      behavior: 'smooth'
     })
   }, 180)
 
   if (callback) {
     setTimeout(callback, 180)
   }
+}
+
+/**
+ * Toggles the body scroll with the specified class name
+ * @example toggleBodyScroll('overflow-hidden')
+ */
+export function toggleBodyScroll(className: string) {
+  document.body.classList.toggle(className)
+}
+
+/**
+ * Toggles the element scroll
+ * @example toggleElementScroll(document.querySelector('#my-element'))
+ */
+export function toggleElementScroll(element: HTMLElement, className: string) {
+  element.classList.toggle(className)
 }
 
 /**
@@ -61,14 +77,10 @@ export function copyToClipboard(text: string, callback?: () => void) {
   navigator.clipboard
     .writeText(text)
     .then(() => {
-      if (callback) {
-        callback()
-      }
+      if (callback) callback()
     })
     .catch((error) => {
-      if (callback) {
-        callback()
-      }
+      if (callback) callback()
     })
 }
 
@@ -77,11 +89,8 @@ export function copyToClipboard(text: string, callback?: () => void) {
  * @example toggleFullScreen()
  */
 export function toggleFullScreen() {
-  if (document.fullscreenElement) {
-    document.exitFullscreen()
-  } else {
-    document.documentElement.requestFullscreen()
-  }
+  if (document.fullscreenElement) document.exitFullscreen()
+  else document.documentElement.requestFullscreen()
 }
 
 /**
@@ -89,10 +98,8 @@ export function toggleFullScreen() {
  * @example toggleDarkMode()
  */
 export function toggleDarkMode() {
-  const prefersDarkMode = window.matchMedia(
-    "(prefers-color-scheme: dark)"
-  ).matches
-  document.documentElement.classList.toggle("dark", !prefersDarkMode)
+  const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  document.documentElement.classList.toggle('dark', !prefersDarkMode)
 }
 
 /**
@@ -112,22 +119,6 @@ export function resetForm(form: HTMLFormElement) {
 }
 
 /**
- * Toggles the body scroll
- * @example toggleBodyScroll()
- */
-export function toggleBodyScroll() {
-  document.body.classList.toggle("overflow-hidden")
-}
-
-/**
- * Toggles the element scroll
- * @example toggleElementScroll(document.querySelector('#my-element'))
- */
-export function toggleElementScroll(element: HTMLElement) {
-  element.classList.toggle("overflow-hidden")
-}
-
-/**
  * Focuses on an element
  * @example focusOn(document.querySelector('#my-element'))
  */
@@ -140,7 +131,7 @@ export function focusOn(element: HTMLElement) {
  * @example focusOnFirst(document.querySelector('#my-element'))
  */
 export function focusOnFirst(element: HTMLElement) {
-  const input = element.querySelector("input")
+  const input = element.querySelector('input')
   if (input) {
     input.focus()
   }
@@ -151,7 +142,7 @@ export function focusOnFirst(element: HTMLElement) {
  * @example focusOnLast(document.querySelector('#my-element'))
  */
 export function focusOnLast(element: HTMLElement) {
-  const inputs = element.querySelectorAll("input")
+  const inputs = element.querySelectorAll('input')
   const input = inputs[inputs.length - 1]
   if (input) {
     input.focus()
@@ -159,23 +150,19 @@ export function focusOnLast(element: HTMLElement) {
 }
 
 /**
- *  sets up a keyboard trap within an HTML element, allowing the focus to cycle between the first and last focusable elements when the Tab key is pressed.
+ *  Sets up a keyboard trap within an HTML element, allowing the focus to cycle between the first and last focusable elements when the Tab key is pressed.
  * @example focusTrap(document.querySelector('#my-element'))
  */
 export function focusTrap(element: HTMLElement) {
-  const focusableElements = element.querySelectorAll(
-    'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
-  )
+  const focusableElements = element.querySelectorAll('a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select')
 
   const firstFocusableElement = focusableElements[0] as HTMLElement
-  const lastFocusableElement = focusableElements[
-    focusableElements.length - 1
-  ] as HTMLElement
+  const lastFocusableElement = focusableElements[focusableElements.length - 1] as HTMLElement
 
   const KEYCODE_TAB = 9
 
-  element.addEventListener("keydown", (event) => {
-    const isTabPressed = event.key === "Tab" || event.keyCode === KEYCODE_TAB
+  element.addEventListener('keydown', (event) => {
+    const isTabPressed = event.key === 'Tab' || event.keyCode === KEYCODE_TAB
 
     if (!isTabPressed) {
       return

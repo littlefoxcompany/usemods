@@ -1,5 +1,3 @@
-import { formatTime } from "./formatters"
-
 // title: Modifiers
 // description: Modifiers are a key feature of Mods that allow you to easily modify and enhance your content. They are small pieces of code that can be applied to your JS to add functionality, validation or style.
 
@@ -9,9 +7,9 @@ import { formatTime } from "./formatters"
  * @returns cool cool&nbsp;cool
  */
 export function widont(text: string): string {
-  const space = text.lastIndexOf(" ")
+  const space = text.lastIndexOf(' ')
 
-  return text.substring(0, space) + "&nbsp;" + text.substring(space + 1)
+  return text.substring(0, space) + '&nbsp;' + text.substring(space + 1)
 }
 
 /**
@@ -20,7 +18,7 @@ export function widont(text: string): string {
  * @returns Hello World
  */
 export function stripHtml(text: string): string {
-  return text.replace(/<[^>]*>?/gm, "")
+  return text.replace(/<[^>]*>?/gm, '')
 }
 
 /**
@@ -29,7 +27,7 @@ export function stripHtml(text: string): string {
  * @returns &lt;p&gt;Hello World&lt;/p&gt;
  */
 export function escapeHtml(text: string): string {
-  return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+  return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 }
 
 /**
@@ -37,8 +35,8 @@ export function escapeHtml(text: string): string {
  * @example unescapeHtml('&lt;p&gt;Hello World&lt;/p&gt;')
  * @returns <p>Hello World</p>
  */
-export function showHtml(text: string): string {
-  return text.replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+export function unescapeHtml(text: string): string {
+  return text.replace(/&lt;/g, '<').replace(/&gt;/g, '>')
 }
 
 /**
@@ -47,7 +45,7 @@ export function showHtml(text: string): string {
  * @returns Hello World
  */
 export function stripTags(text: string): string {
-  return text.replace(/<\/?[^>]+(>|$)/g, "")
+  return text.replace(/<\/?[^>]+(>|$)/g, '')
 }
 
 /**
@@ -58,8 +56,8 @@ export function stripTags(text: string): string {
 export function slugify(text: string): string {
   return text
     .toLowerCase()
-    .replace(/[^\w ]+/g, "")
-    .replace(/ +/g, "-")
+    .replace(/[^\w ]+/g, '')
+    .replace(/ +/g, '-')
 }
 
 /**
@@ -68,7 +66,7 @@ export function slugify(text: string): string {
  * @returns hello world
  */
 export function deslugify(text: string): string {
-  return text.toLowerCase().replace(/-/g, " ")
+  return text.toLowerCase().replace(/-/g, ' ')
 }
 
 /**
@@ -80,7 +78,7 @@ export function truncate(text: string, length: number): string {
   if (text.length <= length) {
     return text
   }
-  return text.substring(0, length) + "..."
+  return text.substring(0, length) + '...'
 }
 
 /**
@@ -89,13 +87,13 @@ export function truncate(text: string, length: number): string {
  * @returns Hello...
  */
 export function truncateWords(text: string, length: number): string {
-  const words = text.split(" ")
+  const words = text.split(' ')
   if (words.length <= length) {
     return text
   }
   const truncatedWords = words.slice(0, length)
 
-  return truncatedWords.join(" ") + "..."
+  return truncatedWords.join(' ') + '...'
 }
 
 /**
@@ -104,7 +102,7 @@ export function truncateWords(text: string, length: number): string {
  * @returns 2
  */
 export function countWords(text: string): number {
-  return text.split(" ").length
+  return text.split(' ').length
 }
 
 /**
@@ -122,7 +120,7 @@ export function countCharacters(text: string): number {
  * @returns 1
  */
 export function countLines(text: string): number {
-  return text.split("\n").length
+  return text.split('\n').length
 }
 
 /**
@@ -131,7 +129,7 @@ export function countLines(text: string): number {
  * @returns HelloWorld
  */
 export function stripWhitespace(text: string): string {
-  return text.replace(/\s+/g, "")
+  return text.replace(/\s+/g, '')
 }
 
 /**
@@ -140,7 +138,7 @@ export function stripWhitespace(text: string): string {
  * @returns Hello World
  */
 export function stripNumbers(text: string): string {
-  return text.replace(/[0-9]/g, "")
+  return text.replace(/[0-9]/g, '')
 }
 
 /**
@@ -149,7 +147,7 @@ export function stripNumbers(text: string): string {
  * @returns Hello World
  */
 export function stripPunctuation(text: string): string {
-  return text.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "")
+  return text.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '')
 }
 
 /**
@@ -158,7 +156,7 @@ export function stripPunctuation(text: string): string {
  * @returns Hello World
  */
 export function stripSymbols(text: string): string {
-  return text.replace(/[^\w\s]|_/g, "")
+  return text.replace(/[^\w\s]|_/g, '')
 }
 
 /**
@@ -167,7 +165,7 @@ export function stripSymbols(text: string): string {
  * @returns Hello World!
  */
 export function stripEmojis(text: string): string {
-  return text.replace(/[\u{1F600}-\u{1F6FF}]/gu, "")
+  return text.replace(/[\u{1F600}-\u{1F6FF}]/gu, '')
 }
 
 /**
@@ -176,7 +174,7 @@ export function stripEmojis(text: string): string {
  * @returns 1 minute
  */
 export function readingTime(text: string, wordsPerMinute = 200): string {
-  const words = text.split(" ").length
+  const words = text.split(' ').length
   const minutes = words / wordsPerMinute
   const readTime = Math.ceil(minutes)
 
@@ -193,7 +191,7 @@ export function pluralize(text: string, count: number): string {
     return text
   }
 
-  return text + "s"
+  return text + 's'
 }
 
 /**
@@ -202,7 +200,7 @@ export function pluralize(text: string, count: number): string {
  * @returns scooter
  */
 export function singularize(text: string): string {
-  if (text.endsWith("s")) {
+  if (text.endsWith('s')) {
     return text.substring(0, text.length - 1)
   }
 
@@ -215,13 +213,10 @@ export function singularize(text: string): string {
  * @returns 1st
  */
 export function ordinalize(number: number): string {
-  const suffixes = ["th", "st", "nd", "rd"]
+  const suffixes = ['th', 'st', 'nd', 'rd']
   const remainder = number % 100
 
-  return (
-    number +
-    (suffixes[(remainder - 20) % 10] || suffixes[remainder] || suffixes[0])
-  )
+  return number + (suffixes[(remainder - 20) % 10] || suffixes[remainder] || suffixes[0])
 }
 
 /**
@@ -231,8 +226,8 @@ export function ordinalize(number: number): string {
  */
 export function humanize(text: string): string {
   return text
-    .replace(/_/g, " ")
-    .replace(/([A-Z])/g, " $1")
+    .replace(/_/g, ' ')
+    .replace(/([A-Z])/g, ' $1')
     .replace(/^./, (str) => str.toUpperCase())
 }
 
@@ -246,7 +241,7 @@ export function camelCase(text: string): string {
     .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => {
       return index === 0 ? word.toLowerCase() : word.toUpperCase()
     })
-    .replace(/\s+/g, "")
+    .replace(/\s+/g, '')
 }
 
 /**
@@ -259,7 +254,7 @@ export function pascalCase(text: string): string {
     .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => {
       return word.toUpperCase()
     })
-    .replace(/\s+/g, "")
+    .replace(/\s+/g, '')
 }
 
 /**
@@ -270,9 +265,9 @@ export function pascalCase(text: string): string {
 export function snakeCase(text: string): string {
   return text
     .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => {
-      return index === 0 ? word.toLowerCase() : "_" + word.toLowerCase()
+      return index === 0 ? word.toLowerCase() : '_' + word.toLowerCase()
     })
-    .replace(/\s+/g, "")
+    .replace(/\s+/g, '')
 }
 
 /**
@@ -283,9 +278,9 @@ export function snakeCase(text: string): string {
 export function kebabCase(text: string): string {
   return text
     .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => {
-      return index === 0 ? word.toLowerCase() : "-" + word.toLowerCase()
+      return index === 0 ? word.toLowerCase() : '-' + word.toLowerCase()
     })
-    .replace(/\s+/g, "")
+    .replace(/\s+/g, '')
 }
 
 /**
@@ -298,7 +293,7 @@ export function titleCase(text: string): string {
     .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => {
       return word.toUpperCase()
     })
-    .replace(/\s+/g, " ")
+    .replace(/\s+/g, ' ')
 }
 
 /**
@@ -311,31 +306,31 @@ export function sentenceCase(text: string): string {
     .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => {
       return index === 0 ? word.toUpperCase() : word.toLowerCase()
     })
-    .replace(/\s+/g, " ")
+    .replace(/\s+/g, ' ')
 }
 
 /**
  * Adds a prefix to a string if it doesn't already start with the prefix.
- * @example startsWith('usemods.com', 'https://')
+ * @example startWith('usemods.com', 'https://')
  * @returns https://usemods.com
  */
-export function startsWith(text: string, startsWith: string): string {
-  if (text.startsWith(startsWith)) {
+export function startWith(text: string, start: string): string {
+  if (text.startsWith(start)) {
     return text
   } else {
-    return startsWith + text
+    return start + text
   }
 }
 
 /**
  * Removes a prefix from a string if it starts with the prefix.
- * @example startsWithout('https://usemods.com', 'https://')
+ * @example startWithout('https://usemods.com', 'https://')
  * @returns usemods.com
  */
 
-export function startsWithout(text: string, prefix: string): string {
-  if (text.startsWith(prefix)) {
-    return text.substring(prefix.length)
+export function startWithout(start: string, text: string): string {
+  if (text.startsWith(start)) {
+    return text.substring(start.length)
   } else {
     return text
   }
@@ -343,25 +338,25 @@ export function startsWithout(text: string, prefix: string): string {
 
 /**
  * Adds a suffix to a string if it doesn't already end with the suffix.
- * @example endsWith('https://usemods', '.com')
+ * @example endWith('https://usemods', '.com')
  * @returns https://usemods.com
  */
-export function endsWith(text: string, endsWith: string): string {
-  if (text.endsWith(endsWith)) {
+export function endWith(text: string, end: string): string {
+  if (text.endsWith(end)) {
     return text
   } else {
-    return text + endsWith
+    return text + end
   }
 }
 
 /**
  * Removes a suffix from a string if it ends with the suffix.
- * @example endsWithout('https://usemods.com.au', '.au')
+ * @example endWithout('https://usemods.com.au', '.au')
  * @returns https://usemods.com
  */
-export function endsWithout(text: string, suffix: string): string {
-  if (text.endsWith(suffix)) {
-    return text.substring(0, text.length - suffix.length)
+export function endWithout(text: string, end: string): string {
+  if (text.endsWith(end)) {
+    return text.substring(0, text.length - end.length)
   } else {
     return text
   }
@@ -375,21 +370,17 @@ export function endsWithout(text: string, suffix: string): string {
  * @example surround('https://', 'usemods', '.com')
  * @returns https://usemods.com
  */
-export function surround(
-  startsWith: string,
-  text: string,
-  endsWith: string
-): string {
-  if (text.startsWith(startsWith) && text.endsWith(endsWith)) {
+export function surround(start: string, text: string, end: string): string {
+  if (text.startsWith(start) && text.endsWith(end)) {
     return text
   }
 
-  if (text.startsWith(startsWith)) {
-    return text + endsWith
+  if (text.startsWith(start)) {
+    return text + end
   }
 
-  if (text.endsWith(endsWith)) {
-    return startsWith + text
+  if (text.endsWith(end)) {
+    return start + text
   }
 
   return startsWith + text + endsWith
@@ -403,60 +394,49 @@ export function surround(
  */
 export function title(text: string): string {
   const exceptions = [
-    "a",
-    "an",
-    "the",
-    "for",
-    "and",
-    "nor",
-    "but",
-    "or",
-    "yet",
-    "so",
-    "in",
-    "on",
-    "at",
-    "with",
-    "under",
-    "above",
-    "from",
-    "of",
-    "although",
-    "because",
-    "since",
-    "unless",
+    'a',
+    'an',
+    'the',
+    'for',
+    'and',
+    'nor',
+    'but',
+    'or',
+    'yet',
+    'so',
+    'in',
+    'on',
+    'at',
+    'with',
+    'under',
+    'above',
+    'from',
+    'of',
+    'although',
+    'because',
+    'since',
+    'unless'
   ]
 
-  const capitalize = (word: string) =>
-    word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+  const capitalize = (word: string) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
 
   return text
-    .split(" ")
+    .split(' ')
     .map((word, index, wordsArray) => {
       const lowercaseWord = word.toLowerCase()
-      if (index > 0 && word.includes("-")) {
-        const [firstPart, secondPart] = word.split("-")
-        return capitalize(firstPart) + "-" + secondPart.toLowerCase()
+      if (index > 0 && word.includes('-')) {
+        const [firstPart, secondPart] = word.split('-')
+        return capitalize(firstPart) + '-' + secondPart.toLowerCase()
       }
-      if (
-        index === 0 ||
-        index === wordsArray.length - 1 ||
-        !exceptions.includes(lowercaseWord)
-      ) {
+      if (index === 0 || index === wordsArray.length - 1 || !exceptions.includes(lowercaseWord)) {
         return capitalize(lowercaseWord)
       }
-      if (
-        lowercaseWord === "to" &&
-        index > 0 &&
-        wordsArray[index - 1].toLowerCase() !== "to"
-      ) {
+      if (lowercaseWord === 'to' && index > 0 && wordsArray[index - 1].toLowerCase() !== 'to') {
         return lowercaseWord
       }
-      return exceptions.includes(lowercaseWord)
-        ? lowercaseWord
-        : capitalize(lowercaseWord)
+      return exceptions.includes(lowercaseWord) ? lowercaseWord : capitalize(lowercaseWord)
     })
-    .join(" ")
+    .join(' ')
 }
 
 /**
@@ -471,28 +451,24 @@ export function splitByWords(text: string): string {
   let combinedSentences = []
 
   for (let i = 0; i < sentences.length; i += 2) {
-    const sentence = sentences[i] + (sentences[i + 1] || "")
+    const sentence = sentences[i] + (sentences[i + 1] || '')
 
-    if (sentence.trim() === "") {
+    if (sentence.trim() === '') {
       continue
     }
 
     const words = sentence
-      .split(" ")
+      .split(' ')
       .map((word) => {
         wordIndex++
         return `<span class="word word-${wordIndex}">${word}</span>`
       })
-      .join(" ")
+      .join(' ')
 
-    combinedSentences.push(
-      `<span class="sentence sentence-${
-        combinedSentences.length + 1
-      }">${words}</span>`
-    )
+    combinedSentences.push(`<span class="sentence sentence-${combinedSentences.length + 1}">${words}</span>`)
   }
 
-  return combinedSentences.join(" ")
+  return combinedSentences.join(' ')
 }
 
 /**
@@ -500,16 +476,16 @@ export function splitByWords(text: string): string {
  * @example list(['one', 'two', 'three'])
  * @returns <ul><li>one</li><li>two</li><li>three</li></ul>
  */
-export function list(items: any[], listType: string = "ul"): string {
+export function list(items: any[], listType: string = 'ul'): string {
   const listItem = (item: any) => {
     return `<li>${item}</li>`
   }
 
-  const listItems = items.map(listItem).join("")
+  const listItems = items.map(listItem).join('')
 
-  if (listType === "ol") {
+  if (listType === 'ol') {
     return `<ol>${listItems}</ol>`
-  } else if (listType === "ul") {
+  } else if (listType === 'ul') {
     return `<ul>${listItems}</ul>`
   } else {
     return listItems
@@ -532,10 +508,7 @@ export function shuffle(items: any[]): any[] {
  * @example unique(['one', 'two', 'three', 'one'])
  * @returns ['one', 'two', 'three']
  */
-export function unique(
-  property: string | null = null,
-  ...arrays: (string | { [key: string]: any })[][]
-): any[] {
+export function unique(property: string | null = null, ...arrays: (string | { [key: string]: any })[][]): any[] {
   const combinedItems = arrays.flat()
 
   if (!property) {
@@ -546,11 +519,7 @@ export function unique(
   const result = []
 
   for (const item of combinedItems) {
-    if (
-      typeof item === "object" &&
-      item[property] &&
-      !seenValues.has(item[property])
-    ) {
+    if (typeof item === 'object' && item[property] && !seenValues.has(item[property])) {
       seenValues.add(item[property])
       result.push(item)
     }
@@ -566,9 +535,7 @@ export function unique(
  */
 export function difference(...arrays: any[][]): any[] {
   const mergedArray = arrays.flat()
-  return mergedArray.filter(
-    (item, index) => mergedArray.indexOf(item) === index
-  )
+  return mergedArray.filter((item, index) => mergedArray.indexOf(item) === index)
 }
 
 /**
@@ -612,10 +579,7 @@ export function offset(items: any[], offset: number): any[] {
  * @example group([{ name: 'one' }, { name: 'two' }, { name: 'one' }], 'name')
  * @returns { one: [{ name: 'one' }, { name: 'one' }], two: [{ name: 'two' }] }
  */
-export function group(
-  items: { [key: string]: any }[],
-  property: string
-): { [key: string]: any } {
+export function group(items: { [key: string]: any }[], property: string): { [key: string]: any } {
   return items.reduce((accumulator, item) => {
     const key = item[property]
     if (!accumulator[key]) {
@@ -655,11 +619,11 @@ export function flatten(items: any[]): any[] {
 }
 
 /**
-   * Returns an array with a filtered out property.
-   * @example without([{ name: 'one', food: 'apple' }, { name: 'two', food: 'grape' }, { name: 'one', food: 'pear' }], 'name')
-   * @returns [{ food: 'apple' }, { food: 'grape' }, { food: 'pear' }]
-  
-   */
+ * Returns an array with a filtered out property.
+ * @example without([{ name: 'one', food: 'apple' }, { name: 'two', food: 'grape' }, { name: 'one', food: 'pear' }], 'name')
+ * @returns [{ food: 'apple' }, { food: 'grape' }, { food: 'pear' }]
+
+ */
 export function without(items: any[], properties: any | any[]): any[] {
   if (!Array.isArray(items)) {
     return items
@@ -669,7 +633,7 @@ export function without(items: any[], properties: any | any[]): any[] {
     return items.filter((item) => !properties.includes(item))
   } else {
     return items.map((item) => {
-      if (typeof item === "object" && item !== null) {
+      if (typeof item === 'object' && item !== null) {
         item = { ...item }
         delete item[properties]
       }
@@ -713,10 +677,7 @@ export function combineUnique(...items: (any | any[])[]): any[] {
  */
 export function combineWithout(
   property: string | number,
-  ...items: (
-    | ({ [key: string]: any } | { [key: number]: any })
-    | ({ [key: string]: any } | { [key: number]: any })[]
-  )[]
+  ...items: (({ [key: string]: any } | { [key: number]: any }) | ({ [key: string]: any } | { [key: number]: any })[])[]
 ): any[] {
   let combined: any[] = []
 
@@ -746,10 +707,7 @@ export function reverse(items: any[]): any[] {
  * @example sortBy([{ name: 'John', age: 25 },{ name: 'Jane', age: 30 },{ name: 'Jill', age: 20 }], 'age')
  * @returns [{ name: 'Jill', age: 20 },{ name: 'John', age: 25 },{ name: 'Jane', age: 30 }]
  */
-export function sortBy(
-  items: { [key: string]: any }[],
-  property: string
-): { [key: string]: any }[] {
+export function sortBy(items: { [key: string]: any }[], property: string): { [key: string]: any }[] {
   return items.sort((a, b) => {
     return a[property] > b[property] ? 1 : -1
   })

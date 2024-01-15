@@ -2,143 +2,113 @@
 
 #### A collection of detections for common data types
 
-## getDeviceType
-Detect if the current device is a mobile device
+### detectDevice
+Detect the current device type (Mobile or Desktop)
 
 ```js [js]
-getDeviceType()
+detectDevice()
 ```
 
-## getRelativeMousePosition
-Detect the current mouse position within a container via ID
+::example{:code=detectDevice()}
+::
+
+### detectOS
+Detect the current operating system
 
 ```js [js]
-getRelativeMousePosition('container', event)
+detectOS()
 ```
 
-## getNetworkStatus
-Detect the current network status of the user (Online or Offline)
+::example{:code=detectOS()}
+::
+
+### detectBrowser
+Detects the user's browser based on the user agent string.
 
 ```js [js]
-getNetworkStatus()
+detectBrowser()
 ```
 
-## getLocalStorage
-Returns a local storage value by name and parses it into JSON
+::example{:code=detectBrowser()}
+::
+
+### detectActiveBrowser
+Detect if the browser window is currently active or hidden.
 
 ```js [js]
-getLocalStorage('name')
+detectActiveBrowser()
 ```
 
-## getSessionStorage
-Returns a session storage value by name and parses it into JSON
+::example{:code=detectActiveBrowser()}
+::
+
+### detectColorScheme
+Detect the current color scheme (Light or Dark)
 
 ```js [js]
-getSessionStorage('name')
+detectColorScheme()
 ```
 
-## getURLParameters
-Returns a value from the URL by name
+::example{:code=detectColorScheme()}
+::
+
+### detectBrowserLanguage
+Detect the current browser language
 
 ```js [js]
-getURLParameters('http://url.com/page?name=Adam&surname=Smith')
+detectBrowserLanguage()
 ```
 
-## getURLHashParameters
-Returns a value from the URL hash by name
+::example{:code=detectBrowserLanguage()}
+::
+
+### detectGeolocation
+Detect the current user's location
 
 ```js [js]
-getURLHashParameters()
+detectUserLocation()
 ```
 
-## getURLSearchParameters
-Retrieves and returns the parameters from the URL search query string
+::example{:code=detectUserLocation()}
+::
+
+### detectDeviceOrientation
+Detect the currect device orientation
 
 ```js [js]
-getURLSearchParameters()
+detectDeviceOrientation()
 ```
 
-## getURL
-Returns the current URL
+::example{:code=detectDeviceOrientation()}
+::
+
+### detectDeviceMotion
+Detect the current device motion
 
 ```js [js]
-getURL()
+detectDeviceMotion()
 ```
 
-## getDomain
-Returns the current domain
+::example{:code=detectDeviceMotion()}
+::
+
+### detectTailwindContainerBreakpoint
+Detect the current container breakpoint based on Tailwind CSS breakpoints
 
 ```js [js]
-getDomain()
+detectTailwindContainerBreakpoint('container')
 ```
 
-## getIP
-Returns the current IP address
+::example{:code=detectTailwindContainerBreakpoint('container')}
+::
+
+### detectScrollPosition
+Detect the current scroll position of the window
 
 ```js [js]
-getIP()
+detectScrollPosition()
 ```
 
-## getPort
-Returns the current port
-
-```js [js]
-getPort()
-```
-
-## getProtocol
-Returns the current protocol (HTTP or HTTPS)
-
-```js [js]
-getProtocol()
-```
-
-## getReferrer
-Returns the URL of the referring page (the page that linked to the current page)
-
-```js [js]
-getReferrer()
-```
-
-## getCachedData
-Retrieves cached entries and optionally filters the entries based on a provided key
-
-```js [js]
-getCachedData('abc')
-```
-
-## isInContainer
-Detects if the element is currently in the container via ID
-
-```js [js]
-isInContainer(element, 'container')
-```
-
-## isOverflowingY
-Detects if the element is overflowing vertically
-
-```js [js]
-isOverflowingY(element)
-```
-
-## isOverflowingX
-Detects if the element is overflowing horizontally
-
-```js [js]
-isOverflowingX(element)
-```
-
-## isScrollable
-Detects if the element is scrollable (overflowing vertically or horizontally)
-
-```js [js]
-isScrollable(element)
-```
-
-## isElement
-Detects if the elements is an HTML element
-
-```js [js]
-isElement(element)
-```
+::example{:code=detectScrollPosition()}
+::
 
