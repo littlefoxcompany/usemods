@@ -1,291 +1,300 @@
 # Detections
 
-#### A collection of detections for common data types
+A collection of detections for common data types
 
-### export function detectDevice
-Detect the current device type (Mobile or Desktop)  @example detectDevice()  @returns `Mobile` or `Desktop`
+### detectDevice
+
+Detect the current device type (Mobile or Desktop)
 
 ```js [js]
 detectDevice()
 ```
 
-### export function detectOS
-Detect the current operating system  @example detectOS()  @returns `Windows`, `Mac`, `Linux`, `UNIX`, or `Unknown`
+**Returns:** `Mobile` or `Desktop`
+
+### detectOS
+
+Detect the current operating system
 
 ```js [js]
 detectOS()
 ```
 
-### export function detectBrowser
-Detects the user's browser based on the user agent string.  @example detectBrowser()  @returns `Chrome`, `Firefox`, `Safari`, `Opera`, `Edge`, `IE`, or `Unknown`
+**Returns:** `Windows`, `Mac`, `Linux`, `UNIX`, or `Unknown`
+
+### detectBrowser
+
+Detects the user's browser based on the user agent string.
 
 ```js [js]
 detectBrowser()
 ```
 
-### export function detectActiveBrowser
-Detect if the browser window is currently active or hidden.  @example detectActiveBrowser()
+**Returns:** `Chrome`, `Firefox`, `Safari`, `Opera`, `Edge`, `IE`, or `Unknown`
+
+### detectActiveBrowser
+
+Detect if the browser window is currently active or hidden.
 
 ```js [js]
 detectActiveBrowser()
 ```
 
-### export function detectColorScheme
-Detect the current color scheme (Light or Dark)  @example detectColorScheme()  @returns `Light` or `Dark`
+### detectColorScheme
+
+Detect the current color scheme (Light or Dark)
 
 ```js [js]
 detectColorScheme()
 ```
 
-### export function detectBrowserLanguage
-Detect the current browser language  @example detectBrowserLanguage()
+**Returns:** `Light` or `Dark`
+
+### detectBrowserLanguage
+
+Detect the current browser language
 
 ```js [js]
 detectBrowserLanguage()
 ```
 
-### export function detectGeolocation
-Detect the current user's location  @example detectUserLocation()  @returns `US`, `UK`, `CA`, `AU`, `NZ`, `EU`, `Unknown`
+### detectGeolocation
+
+Detect the current user's location
 
 ```js [js]
 detectUserLocation()
 ```
 
-### export function detectUserTimezone
-Detect the current user's Timezone  @example detectUserTimezone()
+**Returns:** `US`, `UK`, `CA`, `AU`, `NZ`, `EU`, `Unknown`
+
+### detectUserTimezone
+
+Detect the current user's Timezone
 
 ```js [js]
 detectUserTimezone()
 ```
 
-### export function detectDeviceOrientation
-Detect the currect device orientation  @example detectDeviceOrientation()
+### detectDeviceOrientation
+
+Detect the currect device orientation
 
 ```js [js]
 detectDeviceOrientation()
 ```
 
-### export function detectDeviceMotion
-Detect the current device motion  @example detectDeviceMotion()
+### detectDeviceMotion
+
+Detect the current device motion
 
 ```js [js]
 detectDeviceMotion()
 ```
 
-### 
-Detect the browser's window size  @example detectWindowSize()
+Detect the browser's window size
 
 ```js [js]
 detectWindowSize()
 ```
 
-### 
-Detect the screen or monitor size  @example detectScreenSize()
+Detect the screen or monitor size
 
 ```js [js]
 detectScreenSize()
 ```
 
-### 
-Detect the container size via ID  @example detectContainerSize('container')
+Detect the container size via ID
 
 ```js [js]
 detectContainerSize('container')
 ```
 
-### export function detectTailwindBreakpoint
-Detect the current breakpoint based on Tailwind CSS breakpoints  @example detectTailwindBreakpoint()
+### detectTailwindBreakpoint
+
+Detect the current breakpoint based on Tailwind CSS breakpoints
 
 ```js [js]
 detectTailwindBreakpoint()
 ```
 
-### export function detectTailwindContainerBreakpoint
-Detect the current container breakpoint based on Tailwind CSS breakpoints  @example detectTailwindContainerBreakpoint('container')
+### detectTailwindContainerBreakpoint
+
+Detect the current container breakpoint based on Tailwind CSS breakpoints
 
 ```js [js]
 detectTailwindContainerBreakpoint('container')
 ```
 
-### 
-Detect the current scroll position of the window  @example detectScrollPosition()
+Detect the current scroll position of the window
 
 ```js [js]
 detectScrollPosition()
 ```
 
-### 
-Detect the current mouse position within the window  @example detectMousePosition(event)
+Detect the current mouse position within the window
 
 ```js [js]
 detectMousePosition(event)
 ```
 
-### 
-Detect the current mouse position within a container via ID  @example detectRelativeMousePosition('container', event)
+Detect the current mouse position within a container via ID
 
 ```js [js]
 detectRelativeMousePosition('container', event)
 ```
 
-### export function detectNetworkStatus
-Detect the current network status of the user (Online or Offline)  @example detectNetworkStatus()
+### detectNetworkStatus
+
+Detect the current network status of the user (Online or Offline)
 
 ```js [js]
 detectNetworkStatus()
 ```
 
-### 
-Detect the current memory status of the user (RAM)  @example detectMemoryStatus()
+Detect the current memory status of the user (RAM)
 
 ```js [js]
 detectMemoryStatus()
 ```
 
-### export function detectPerformance
-Detect the current performance status of the user (CPU, RAM, etc.)  @example detectPerformance()
+### detectPerformance
+
+Detect the current performance status of the user (CPU, RAM, etc.)
 
 ```js [js]
 detectPerformance()
 ```
 
-### 
-Detect the current storage status of the user (Local Storage, Session Storage)  @example detectStorage()
+//   Detect the current storage status of the user (Local Storage, Session Storage)
 
 ```js [js]
 detectStorage()
 ```
 
-### 
-Returns a cookie value by name  @example detectCookie('name')
+Returns a cookie value by name
 
 ```js [js]
 detectCookie('name')
 ```
 
-### 
-Returns a local storage value by name and parses it into JSON  @example detectLocalStorage('name')
+### detectLocalStorage
+
+Returns a local storage value by name and parses it into JSON
 
 ```js [js]
 detectLocalStorage('name')
 ```
 
-### 
-Returns a session storage value by name and parses it into JSON  @example detectSessionStorage('name')
+Returns a session storage value by name and parses it into JSON
 
 ```js [js]
 detectSessionStorage('name')
 ```
 
-### 
-Returns a value from the URL by name  @example detectURLParameters('http://url.com/page?name=Adam&surname=Smith')
+Returns a value from the URL by name
 
 ```js [js]
 detectURLParameters('http://url.com/page?name=Adam&surname=Smith')
 ```
 
-### 
-Returns a value from the URL hash by name  @example detectURLHashParameters()
+Returns a value from the URL hash by name
 
 ```js [js]
 detectURLHashParameters()
 ```
 
-### 
-Retrieves and returns the parameters from the URL search query string  @example detectURLSearchParameters()
+Retrieves and returns the parameters from the URL search query string
 
 ```js [js]
 detectURLSearchParameters()
 ```
 
-### 
-Returns the current URL  @example detectURL()
+### detectURL
+
+Returns the current URL
 
 ```js [js]
 detectURL()
 ```
 
-### 
-Returns the current domain  @example detectDomain()
+### detectDomain
+
+Returns the current domain
 
 ```js [js]
 detectDomain()
 ```
 
-### 
-Returns the current IP address  @example detectIP()
+### detectIP
+
+Returns the current IP address
 
 ```js [js]
 detectIP()
 ```
 
-### 
-Returns the current port  @example detectPort()
+### detectPort
+
+Returns the current port
 
 ```js [js]
 detectPort()
 ```
 
-### 
-Returns the current protocol (HTTP or HTTPS)  @example detectProtocol()
+Returns the current protocol (HTTP or HTTPS)
 
 ```js [js]
 detectProtocol()
 ```
 
-### 
-Returns the URL of the referring page (the page that linked to the current page)  @example detectReferrer()
+Returns the URL of the referring page (the page that linked to the current page)
 
 ```js [js]
 detectReferrer()
 ```
 
-### export function detectCachedData
-Retrieves cached entries and optionally filters the entries based on a provided key  @example detectCachedData('abc')
+### detectCachedData
+
+Retrieves cached entries and optionally filters the entries based on a provided key
 
 ```js [js]
 detectCachedData('abc')
 ```
 
-### 
-Detects if the element is currently in the viewport  @example isInViewport(element)
+Detects if the element is currently in the viewport
 
 ```js [js]
-isInViewport(element)
+detectInViewport(element)
 ```
 
-### 
-Detects if the element is currently in the container via ID  @example isInContainer(element, 'container')
+Detects if the element is currently in the container via ID
 
 ```js [js]
-isInContainer(element, 'container')
+detectInContainer(element, 'container')
 ```
 
-### 
-Detects if the element is overflowing vertically  @example isOverflowingY(element)
+Detects if the element is overflowing vertically
 
 ```js [js]
-isOverflowingY(element)
+detectOverflowingY(element)
 ```
 
-### 
-Detects if the element is overflowing horizontally  @example isOverflowingX(element)
+Detects if the element is overflowing horizontally
 
 ```js [js]
-isOverflowingX(element)
+detectOverflowingX(element)
 ```
 
-### 
-Detects if the element is scrollable (overflowing vertically or horizontally)  @example isScrollable(element)
+Detects if the element is scrollable (overflowing vertically or horizontally)
 
 ```js [js]
-isScrollable(element)
+detectScrollable(element)
 ```
 
-### 
-Detects if the elements is an HTML element  @example isElement(element)
+Detects if the elements is an HTML element
 
 ```js [js]
-isElement(element)
+detectElement()
 ```
 

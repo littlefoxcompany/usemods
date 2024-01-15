@@ -1,368 +1,514 @@
 # Modifiers
 
-#### Modifiers are a key feature of Mods that allow you to easily modify and enhance your content. They are small pieces of code that can be applied to your JS to add functionality, validation or style.
+Modifiers are a key feature of Mods that allow you to easily modify and enhance your content. They are small pieces of code that can be applied to your JS to add functionality, validation or style.
 
-### export function widont
-Adds a space between the last two words in a string.  @example widont('Cool cool cool')  @returns cool cool&nbsp;cool
+### widont
+
+Adds a space between the last two words in a string.
 
 ```js [js]
 widont('Cool cool cool')
 ```
 
-### export function stripHtml
-Strip HTML tags from a string.  @example stripHtml('<p>Hello World</p>')  @returns Hello World
+**Returns:** cool cool&nbsp;cool
+
+### stripHtml
+
+Strip HTML tags from a string.
 
 ```js [js]
 stripHtml('<p>Hello World</p>')
 ```
 
-### export function escapeHtml
-Escape HTML entities in a string.  @example escapeHtml('<p>Hello World</p>')  @returns &lt;p&gt;Hello World&lt;/p&gt;
+**Returns:** Hello World
+
+### escapeHtml
+
+Escape HTML entities in a string.
 
 ```js [js]
 escapeHtml('<p>Hello World</p>')
 ```
 
-### export function unescapeHtml
-Unescape HTML entities in a string.  @example unescapeHtml('&lt;p&gt;Hello World&lt;/p&gt;')  @returns <p>Hello World</p>
+**Returns:** &lt;p&gt;Hello World&lt;/p&gt;
+
+### unescapeHtml
+
+Unescape HTML entities in a string.
 
 ```js [js]
 unescapeHtml('&lt;p&gt;Hello World&lt;/p&gt;')
 ```
 
-### export function stripTags
-Strip HTML tags from a string.  @example stripTags('<p>Hello World</p>')  @returns Hello World
+**Returns:** <p>Hello World</p>
+
+### stripTags
+
+Strip HTML tags from a string.
 
 ```js [js]
 stripTags('<p>Hello World</p>')
 ```
 
-### export function slugify
-Converts a string to-a-slug.  @example slugify('Hello World')  @returns hello-world
+**Returns:** Hello World
+
+### slugify
+
+Converts a string to-a-slug.
 
 ```js [js]
 slugify('Hello World')
 ```
 
-### export function deslugify
-Converts a slug to a string.  @example deslugify('hello-world')  @returns hello world
+**Returns:** hello-world
+
+### deslugify
+
+Converts a slug to a string.
 
 ```js [js]
 deslugify('hello-world')
 ```
 
-### export function truncate
-Truncates a string to a specified length of characters.  @example truncate('Hello World', 5)  @returns Hello...
+**Returns:** hello world
+
+### truncate
+
+Truncates a string to a specified length of characters.
 
 ```js [js]
 truncate('Hello World', 5)
 ```
 
-### export function truncateWords
-Truncates a string by a number of words  @example truncateWords('Hello World', 1)  @returns Hello...
+**Returns:** Hello...
+
+### truncateWords
+
+Truncates a string by a number of words
 
 ```js [js]
 truncateWords('Hello World', 1)
 ```
 
-### export function countWords
-Counts the number of words in a string.  @example countWords('Hello World')  @returns 2
+**Returns:** Hello...
+
+### countWords
+
+Counts the number of words in a string.
 
 ```js [js]
 countWords('Hello World')
 ```
 
-### export function countCharacters
-Counts the number of characters in a string.  @example countCharacters('Hello World')  @returns 11
+**Returns:** 2
+
+### countCharacters
+
+Counts the number of characters in a string.
 
 ```js [js]
 countCharacters('Hello World')
 ```
 
-### export function countLines
-Counts the number of lines in a string.  @example countLines('Hello World')  @returns 1
+**Returns:** 11
+
+### countLines
+
+Counts the number of lines in a string.
 
 ```js [js]
 countLines('Hello World')
 ```
 
-### export function stripWhitespace
-Strips whitespace from a string.  @example stripWhitespace('Hello World')  @returns HelloWorld
+**Returns:** 1
+
+### stripWhitespace
+
+Strips whitespace from a string.
 
 ```js [js]
 stripWhitespace('Hello World')
 ```
 
-### export function stripNumbers
-Strips numbers from a string.  @example stripNumbers('Hello World 123')  @returns Hello World
+**Returns:** HelloWorld
+
+### stripNumbers
+
+Strips numbers from a string.
 
 ```js [js]
 stripNumbers('Hello World 123')
 ```
 
-### export function stripPunctuation
-Strips punctuation from a string.  @example stripPunctuation('Hello World!')  @returns Hello World
+**Returns:** Hello World
+
+### stripPunctuation
+
+Strips punctuation from a string.
 
 ```js [js]
 stripPunctuation('Hello World!')
 ```
 
-### export function stripSymbols
-Strips symbols from a string.  @example stripSymbols('Hello World!')  @returns Hello World
+**Returns:** Hello World
+
+### stripSymbols
+
+Strips symbols from a string.
 
 ```js [js]
 stripSymbols('Hello World!')
 ```
 
-### export function stripEmojis
-Strips emojis from a string (requires ES6 Unicode support) 🦊.  @example stripEmojis('Hello World! 🦊')  @returns Hello World!
+**Returns:** Hello World
+
+### stripEmojis
+
+Strips emojis from a string (requires ES6 Unicode support) 🦊.
 
 ```js [js]
 stripEmojis('Hello World! 🦊')
 ```
 
-### export function readingTime
-Returns the reading time of a string in Hours, Minutes, and Seconds.  @example readingTime('Once, in a vibrant online forum, lived Mod Max, guardian of digital harmony. Max cherished his old scooter, Swift, a symbol of freedom. Navigating both virtual and real worlds, they became legends. Trolls quivered, posts flourished, and lanes whizzed by. Swift’s wheels spun tales, and Max’s keys kept peace. Together, they discovered uncharted threads and hidden lanes. Their journey, an endless adventure, painted pixels and pavements with stories of unity and exhilaration, leaving a trail for all in the intertwined realms of screens and streets.')  @returns 1 minute
+**Returns:** Hello World!
+
+### readingTime
+
+Returns the reading time of a string in Hours, Minutes, and Seconds.
 
 ```js [js]
 readingTime('Once, in a vibrant online forum, lived Mod Max, guardian of digital harmony. Max cherished his old scooter, Swift, a symbol of freedom. Navigating both virtual and real worlds, they became legends. Trolls quivered, posts flourished, and lanes whizzed by. Swift’s wheels spun tales, and Max’s keys kept peace. Together, they discovered uncharted threads and hidden lanes. Their journey, an endless adventure, painted pixels and pavements with stories of unity and exhilaration, leaving a trail for all in the intertwined realms of screens and streets.')
 ```
 
-### export function pluralize
-Adds plurals to a string.  @example pluralize('scooter', 10)  @returns scooters
+**Returns:** 1 minute
+
+### pluralize
+
+Adds plurals to a string.
 
 ```js [js]
 pluralize('scooter', 10)
 ```
 
-### export function singularize
-Removes plurals from a string.  @example singularize('scooters')  @returns scooter
+**Returns:** scooters
+
+### singularize
+
+Removes plurals from a string.
 
 ```js [js]
 singularize('scooters')
 ```
 
-### export function ordinalize
-Converts a number to a string with ordinal suffix.  @example ordinalize(1)  @returns 1st
+**Returns:** scooter
+
+### ordinalize
+
+Converts a number to a string with ordinal suffix.
 
 ```js [js]
 ordinalize(1)
 ```
 
-### export function humanize
-Replaces underscores with spaces and capitalizes the first letter of each word.  @example humanize('hello_world')  @returns Hello World
+**Returns:** 1st
+
+### humanize
+
+Replaces underscores with spaces and capitalizes the first letter of each word.
 
 ```js [js]
 humanize('hello_world')
 ```
 
-### export function camelCase
-Removes spaces and capitalizes the first letter of each word except for the first word.  @example camelCase('hello world')  @returns helloWorld
+**Returns:** Hello World
+
+### camelCase
+
+Removes spaces and capitalizes the first letter of each word except for the first word.
 
 ```js [js]
 camelCase('hello world')
 ```
 
-### export function pascalCase
-Removes spaces and capitalizes the first letter of each word.  @example pascalCase('hello world')  @returns HelloWorld
+**Returns:** helloWorld
+
+### pascalCase
+
+Removes spaces and capitalizes the first letter of each word.
 
 ```js [js]
 pascalCase('hello world')
 ```
 
-### export function snakeCase
-Replaces spaces with underscores and converts to lowercase.  @example snakeCase('hello world')  @returns hello_world
+**Returns:** HelloWorld
+
+### snakeCase
+
+Replaces spaces with underscores and converts to lowercase.
 
 ```js [js]
 snakeCase('hello world')
 ```
 
-### export function kebabCase
-Replaces spaces with hyphens and converts to lowercase.  @example titleize('Hello World')  @returns hello-world
+**Returns:** hello_world
+
+### kebabCase
+
+Replaces spaces with hyphens and converts to lowercase.
 
 ```js [js]
 titleize('Hello World')
 ```
 
-### export function titleCase
-Converts to title case by capitalizing the first letter of each word.  @example titleCase('hello world')  @returns Hello World
+**Returns:** hello-world
+
+### titleCase
+
+Converts to title case by capitalizing the first letter of each word.
 
 ```js [js]
 titleCase('hello world')
 ```
 
-### export function sentenceCase
-Converts to sentence case by capitalizing the first letter of the first word.  @example sentenceCase('hello world')  @returns Hello world
+**Returns:** Hello World
+
+### sentenceCase
+
+Converts to sentence case by capitalizing the first letter of the first word.
 
 ```js [js]
 sentenceCase('hello world')
 ```
 
-### export function startWith
-Adds a prefix to a string if it doesn't already start with the prefix.  @example startWith('usemods.com', 'https://')  @returns https://usemods.com
+**Returns:** Hello world
+
+### startWith
+
+Adds a prefix to a string if it doesn't already start with the prefix.
 
 ```js [js]
 startWith('usemods.com', 'https://')
 ```
 
-### export function startWithout
-Removes a prefix from a string if it starts with the prefix.  @example startWithout('https://usemods.com', 'https://')  @returns usemods.com
+**Returns:** https://usemods.com
+
+### startWithout
+
+Removes a prefix from a string if it starts with the prefix.
 
 ```js [js]
 startWithout('https://usemods.com', 'https://')
 ```
 
-### export function endWith
-Adds a suffix to a string if it doesn't already end with the suffix.  @example endWith('https://usemods', '.com')  @returns https://usemods.com
+**Returns:** usemods.com
+
+### endWith
+
+Adds a suffix to a string if it doesn't already end with the suffix.
 
 ```js [js]
 endWith('https://usemods', '.com')
 ```
 
-### export function endWithout
-Removes a suffix from a string if it ends with the suffix.  @example endWithout('https://usemods.com.au', '.au')  @returns https://usemods.com
+**Returns:** https://usemods.com
+
+### endWithout
+
+Removes a suffix from a string if it ends with the suffix.
 
 ```js [js]
 endWithout('https://usemods.com.au', '.au')
 ```
 
-### export function surround
-Adds a prefix and suffix to a string if it doesn't already start and end with them.  @param text - The string to surround.  @param prefix - The prefix to add.  @param suffix - The suffix to add.  @example surround('https://', 'usemods', '.com')  @returns https://usemods.com
+**Returns:** https://usemods.com
+
+### surround
+
+Adds a prefix and suffix to a string if it doesn't already start and end with them.
 
 ```js [js]
 surround('https://', 'usemods', '.com')
 ```
 
-### export function title
-Converts a string to title case following the Chicago Manual of Style rules.  @reference https://www.chicagomanualofstyle.org/book/ed17/frontmatter/toc.html  @example title('the quick brown fox jumps over the lazy dog')  @returns The Quick Brown Fox Jumps over the Lazy Dog
+**Returns:** https://usemods.com
+
+### title
+
+Converts a string to title case following the Chicago Manual of Style rules.
 
 ```js [js]
 title('the quick brown fox jumps over the lazy dog')
 ```
 
-### export function splitByWords
-Wraps each word in a string with a span tag.  @example splitByWords('Hello World. How are you?')  @returns <span class="sentence sentence-1"><span class="word word-1">Hello</span> <span class="word word-2">world.</span></span> <span class="sentence sentence-2"><span class="word word-3">How</span> <span class="word word-4">are</span> <span class="word word-5">you?</span></span>
+**Returns:** The Quick Brown Fox Jumps over the Lazy Dog
+
+### splitByWords
+
+Wraps each word in a string with a span tag.
 
 ```js [js]
 splitByWords('Hello World. How are you?')
 ```
 
-### export function list
-Creates an array of list items (`<li>`) from an array of strings.  @example list(['one', 'two', 'three'])  @returns <ul><li>one</li><li>two</li><li>three</li></ul>
+**Returns:** <span class="sentence sentence-1"><span class="word word-1">Hello</span> <span class="word word-2">world.</span></span> <span class="sentence sentence-2"><span class="word word-3">How</span> <span class="word word-4">are</span> <span class="word word-5">you?</span></span>
+
+### list
+
+Creates an array of list items (`<li>`) from an array of strings.
 
 ```js [js]
 list(['one', 'two', 'three'])
 ```
 
-### export function shuffle
-Shuffles an array.  @example shuffle(['one', 'two', 'three'])  @returns ['three', 'one', 'two']
+**Returns:** <ul><li>one</li><li>two</li><li>three</li></ul>
+
+### shuffle
+
+Shuffles an array.
 
 ```js [js]
 shuffle(['one', 'two', 'three'])
 ```
 
-### 
-Returns unique array values with an optional property to pluck.  @param items - The array of items.  @param property - The property to pluck (optional).  @example unique(['one', 'two', 'three', 'one'])  @returns ['one', 'two', 'three']
+**Returns:** ['three', 'one', 'two']
+
+Returns unique array values with an optional property to pluck.
 
 ```js [js]
 unique(['one', 'two', 'three', 'one'])
 ```
 
-### export function difference
-Returns the difference between two arrays.  @example difference(['one', 'two', 'three'], ['one', 'two'])  @returns ['three']
+**Returns:** ['one', 'two', 'three']
+
+### difference
+
+Returns the difference between two arrays.
 
 ```js [js]
 difference(['one', 'two', 'three'], ['one', 'two'])
 ```
 
-### export function first
-Returns the first item in an array.  @example first(['one', 'two', 'three'])  @returns one
+**Returns:** ['three']
+
+### first
+
+Returns the first item in an array.
 
 ```js [js]
 first(['one', 'two', 'three'])
 ```
 
-### export function last
-Returns the last item in an array.  @example last(['one', 'two', 'three'])  @returns three
+**Returns:** one
+
+### last
+
+Returns the last item in an array.
 
 ```js [js]
 last(['one', 'two', 'three'])
 ```
 
-### export function nth
-Returns the nth item in an array.  @example nth(['one', 'two', 'three'], 1)  @returns two
+**Returns:** three
+
+### nth
+
+Returns the nth item in an array.
 
 ```js [js]
 nth(['one', 'two', 'three'], 1)
 ```
 
-### export function offset
-Offset the first item in an array.  @example offset(['one', 'two', 'three'], 1)  @returns ['two', 'three']
+**Returns:** two
+
+### offset
+
+Offset the first item in an array.
 
 ```js [js]
 offset(['one', 'two', 'three'], 1)
 ```
 
-### 
-Groups an array of objects by a property.  @example group([{ name: 'one' }, { name: 'two' }, { name: 'one' }], 'name')  @returns { one: [{ name: 'one' }, { name: 'one' }], two: [{ name: 'two' }] }
+**Returns:** ['two', 'three']
+
+Groups an array of objects by a property.
 
 ```js [js]
 group([{ name: 'one' }, { name: 'two' }, { name: 'one' }], 'name')
 ```
 
-### export function groupBy
-Chunks an array into sections of a specified size.  @example chunk(['one', 'two', 'three', 'four', 'five'], 2)  @returns [['one', 'two'], ['three', 'four'], ['five']]
+**Returns:** { one: [{ name: 'one' }, { name: 'one' }], two: [{ name: 'two' }] }
+
+### groupBy
+
+Chunks an array into sections of a specified size.
 
 ```js [js]
 chunk(['one', 'two', 'three', 'four', 'five'], 2)
 ```
 
-### export function flatten
-Flatten an array of arrays.  @example flatten([['one', 'two'], ['three', 'four'], ['five']])  @returns ['one', 'two', 'three', 'four', 'five']
+**Returns:** [['one', 'two'], ['three', 'four'], ['five']]
+
+### flatten
+
+Flatten an array of arrays.
 
 ```js [js]
 flatten([['one', 'two'], ['three', 'four'], ['five']])
 ```
 
-### export function without
-Returns an array with a filtered out property.  @example without([{ name: 'one', food: 'apple' }, { name: 'two', food: 'grape' }, { name: 'one', food: 'pear' }], 'name')  @returns [{ food: 'apple' }, { food: 'grape' }, { food: 'pear' }]
+**Returns:** ['one', 'two', 'three', 'four', 'five']
+
+### without
+
+Returns an array with a filtered out property.
 
 ```js [js]
 without([{ name: 'one', food: 'apple' }, { name: 'two', food: 'grape' }, { name: 'one', food: 'pear' }], 'name')
 ```
 
-### export function combine
-Combine two or more arrays  @example combine(['one', 'two'], ['three', 'four'], ['five'])  @returns ['one', 'two', 'three', 'four', 'five']
+**Returns:** [{ food: 'apple' }, { food: 'grape' }, { food: 'pear' }]
+
+### combine
+
+Combine two or more arrays
 
 ```js [js]
 combine(['one', 'two'], ['three', 'four'], ['five'])
 ```
 
-### 
-Combine two or more unique arrays  @example combineUnique(['one', 'two'], ['three', 'four', 'two'], ['five', 'one'])  @returns ['one', 'two', 'three', 'four', 'five']
+**Returns:** ['one', 'two', 'three', 'four', 'five']
+
+Combine two or more unique arrays
 
 ```js [js]
 combineUnique(['one', 'two'], ['three', 'four', 'two'], ['five', 'one'])
 ```
 
-### 
-Combine two or more arrays or objects without a property.  @example combineWithout({ id: 1, name: 'A' }, { id: 2, name: 'B' }, { id: 3, name: 'C' }, 'id')  @returns [1, 2, 3]
+**Returns:** ['one', 'two', 'three', 'four', 'five']
+
+Combine two or more arrays or objects without a property.
 
 ```js [js]
 combineWithout({ id: 1, name: 'A' }, { id: 2, name: 'B' }, { id: 3, name: 'C' }, 'id')
 ```
 
-### export function reverse
-Reverse an array.  @example reverse(['one', 'two', 'three'])  @returns ['three', 'two', 'one']
+**Returns:** [1, 2, 3]
+
+### reverse
+
+Reverse an array.
 
 ```js [js]
 reverse(['one', 'two', 'three'])
 ```
 
-### 
-Sort an array by a property.  @example sortBy([{ name: 'John', age: 25 },{ name: 'Jane', age: 30 },{ name: 'Jill', age: 20 }], 'age')  @returns [{ name: 'Jill', age: 20 },{ name: 'John', age: 25 },{ name: 'Jane', age: 30 }]
+**Returns:** ['three', 'two', 'one']
+
+Sort an array by a property.
 
 ```js [js]
 sortBy([{ name: 'John', age: 25 },{ name: 'Jane', age: 30 },{ name: 'Jill', age: 20 }], 'age')
 ```
+
+**Returns:** [{ name: 'Jill', age: 20 },{ name: 'John', age: 25 },{ name: 'Jane', age: 30 }]
 

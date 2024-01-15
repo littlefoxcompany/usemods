@@ -12,17 +12,18 @@ const subtitlePattern = /\/\/ <subtitle>(.+?)\/\/ <\/subtitle>/gs
 async function processFiles() {
   try {
     const tsFiles = (await readdir(directoryPath)).filter((file) => extname(file) === '.ts')
+
     let combinedTsFile = ''
 
+    // Generate markdown files
     for (const tsFile of tsFiles) {
       const tsContent = await readFile(resolve(directoryPath, tsFile), 'utf-8')
       combinedTsFile += tsContent + '\n'
-
-      const markdownContent = generateMarkdown(tsContent)
-      await writeFile(join(contentDirectory, `${basename(tsFile, '.ts')}.md`), markdownContent)
+      await writeFile(join(contentDirectory, `${basename(tsFile, '.ts')}.md`), generateMarkdown(tsContent))
       console.log('Markdown documentation generated for:', tsFile)
     }
 
+    // Write combined file
     await writeFile(join(outputDirectory, 'mods.ts'), combinedTsFile)
   } catch (error) {
     console.error('Error processing files:', error)
@@ -31,27 +32,33 @@ async function processFiles() {
 
 function generateMarkdown(tsContent: string): string {
   const metadata = Object.fromEntries([...tsContent.matchAll(metadataPattern)].map((m) => [m[1], m[2]]))
-  let markdownContent = `# ${metadata.title || ''}\n\n#### ${metadata.description || ''}\n\n`
+  let markdownContent = ''
+
+  if (metadata.title) markdownContent += `# ${metadata.title}\n\n`
+  if (metadata.description) markdownContent += `${metadata.description}\n\n`
 
   const matches = [...tsContent.matchAll(functionPattern), ...tsContent.matchAll(subtitlePattern)]
-  matches.sort((a, b) => a.index! - b.index!)
 
   for (const match of matches) {
     if (match[0].startsWith('// <subtitle>')) {
       markdownContent += `## ${match[1].trim()}\n\n`
     } else {
-      const [functionName] = /export function\s+([a-zA-Z0-9_]+)/.exec(match[0]) || ['']
+      const name = (match[0].match(/export\s+function\s+([a-zA-Z0-9_]+)\s*\(/) || [])[1] || ''
+
       const jsDoc = /\/\*\*([\s\S]*?)\*\//.exec(match[0])?.[1].trim() || ''
       const description = jsDoc
         .split('\n')
         .map((line) => line.trim().replace(/\/?\*+/g, ''))
-        .filter((line) => !line.startsWith('@'))
+        .slice(0, 1)
         .join(' ')
         .trim()
       const example = (jsDoc.match(/@example\s+([^\r\n]*)/) || [])[1] || ''
+      const returns = (jsDoc.match(/@returns?\s+([^\r\n]*)/) || [])[1] || ''
 
-      markdownContent += `### ${functionName}\n${description}\n\n`
+      if (name) markdownContent += `### ${name}\n\n`
+      if (description) markdownContent += `${description}\n\n`
       if (example) markdownContent += '```js [js]\n' + example + '\n```\n\n'
+      if (returns) markdownContent += `**Returns:** ${returns}\n\n`
     }
   }
 

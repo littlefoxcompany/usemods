@@ -1,312 +1,444 @@
 # Validators
 
-#### A collection of validators for common data types
+A collection of validators for common data types
 
-### export function isEmail
-Check if the input is a valid email address.  @example isEmail('hello@usemods.com')  @returns true
+### isEmail
+
+Check if the input is a valid email address.
 
 ```js [js]
 isEmail('hello@usemods.com')
 ```
 
-### export function isNumber
-Check if the input is a valid number.  @example isNumber('123')  @returns true
+**Returns:** true
+
+### isNumber
+
+Check if the input is a valid number.
 
 ```js [js]
 isNumber('123')
 ```
 
-### export function isURL
-Check if the input is a valid URL.  @example isURL('https://usemods.com')  @returns true
+**Returns:** true
+
+### isURL
+
+Check if the input is a valid URL.
 
 ```js [js]
 isURL('https://usemods.com')
 ```
 
-### export function isUUID
-Check if the input is a valid UUID.  @example isUUID('c9bf9e57-1685-4c89-bafb-ff5af830be8a')  @returns true
+**Returns:** true
+
+### isUUID
+
+Check if the input is a valid UUID.
 
 ```js [js]
 isUUID('c9bf9e57-1685-4c89-bafb-ff5af830be8a')
 ```
 
-### export function isJSON
-Check if the input is a valid JSON string.  @example isJSON('{"hello": "world"}')  @returns true
+**Returns:** true
+
+### isJSON
+
+Check if the input is a valid JSON string.
 
 ```js [js]
 isJSON('{"hello": "world"}')
 ```
 
-### export function isHex
-Check if the input is a valid hexadecimal color code.  @example isHex('#fff')  @returns true
+**Returns:** true
+
+### isHex
+
+Check if the input is a valid hexadecimal color code.
 
 ```js [js]
 isHex('#fff')
 ```
 
-### export function isEmpty
-Check if the input is an empty string.  @example isEmpty('')  @returns true
+**Returns:** true
+
+### isEmpty
+
+Check if the input is an empty string.
 
 ```js [js]
 isEmpty('')
 ```
 
-### export function isAlpha
-Check if the input contains only alphabetic characters.  @example isAlpha('hello')  @returns true
+**Returns:** true
+
+### isAlpha
+
+Check if the input contains only alphabetic characters.
 
 ```js [js]
 isAlpha('hello')
 ```
 
-### export function isAlphanumeric
-Check if the input contains only alphanumeric characters.  @example isAlphanumeric('hello123')  @returns true
+**Returns:** true
+
+### isAlphanumeric
+
+Check if the input contains only alphanumeric characters.
 
 ```js [js]
 isAlphanumeric('hello123')
 ```
 
-### export function isArray
-Check if the input is an array.  @example isArray([1, 2, 3])  @returns true
+**Returns:** true
+
+### isArray
+
+Check if the input is an array.
 
 ```js [js]
 isArray([1, 2, 3])
 ```
 
-### export function isObject
-Check if the input is an object.  @example isObject({ hello: 'world' })  @returns true
+**Returns:** true
+
+### isObject
+
+Check if the input is an object.
 
 ```js [js]
 isObject({ hello: 'world' })
 ```
 
-### export function isBoolean
-Check if the input is a boolean value.  @example isBoolean(true)  @returns true
+**Returns:** true
+
+### isBoolean
+
+Check if the input is a boolean value.
 
 ```js [js]
 isBoolean(true)
 ```
 
-### export function isFunction
-Check if the input is a function.  @example isFunction(() => {})  @returns true
+**Returns:** true
+
+### isFunction
+
+Check if the input is a function.
 
 ```js [js]
 isFunction(() => {})
 ```
 
-### export function isUndefined
-Check if the input is undefined.  @example isUndefined(undefined)  @returns true
+**Returns:** true
+
+### isUndefined
+
+Check if the input is undefined.
 
 ```js [js]
 isUndefined(undefined)
 ```
 
-### export function isNull
-Check if the input is null.  @example isNull(null)  @returns true
+**Returns:** true
+
+### isNull
+
+Check if the input is null.
 
 ```js [js]
 isNull(null)
 ```
 
-### export function isDate
-Check if the input is a valid Date object.  @example isDate(new Date())  @returns true
+**Returns:** true
+
+### isDate
+
+Check if the input is a valid Date object.
 
 ```js [js]
 isDate(new Date())
 ```
 
-### export function isError
-Check if the input is an Error object with a defined message.  @example isError(new Error('hello'))  @returns true
+**Returns:** true
+
+### isError
+
+Check if the input is an Error object with a defined message.
 
 ```js [js]
 isError(new Error('hello'))
 ```
 
-### export function isTime
-Check if the input is a valid time in HH:mm format.  @example isTime('12:00')  @returns true
+**Returns:** true
+
+### isTime
+
+Check if the input is a valid time in HH:mm format.
 
 ```js [js]
 isTime('12:00')
 ```
 
-### export function isLeapYear
-Check if the input year is a leap year.  @example isLeapYear(2020)  @returns true
+**Returns:** true
+
+### isLeapYear
+
+Check if the input year is a leap year.
 
 ```js [js]
 isLeapYear(2020)
 ```
 
-### export function isPromise
-Check if the input is a Promise object.  @example isPromise(new Promise(() => {}))  @returns true
+**Returns:** true
+
+### isPromise
+
+Check if the input is a Promise object.
 
 ```js [js]
 isPromise(new Promise(() => {}))
 ```
 
-### export function isSet
-Check if the input is a Set object.  @example isSet(new Set())  @returns true
+**Returns:** true
+
+### isSet
+
+Check if the input is a Set object.
 
 ```js [js]
 isSet(new Set())
 ```
 
-### export function isMap
-Check if the input is a Map object.  @example isMap(new Map())  @returns true
+**Returns:** true
+
+### isMap
+
+Check if the input is a Map object.
 
 ```js [js]
 isMap(new Map())
 ```
 
-### export function isEven
-Check if the number is even.  @example isEven(2)  @returns true
+**Returns:** true
+
+### isEven
+
+Check if the number is even.
 
 ```js [js]
 isEven(2)
 ```
 
-### export function isOdd
-Check if the number is odd.  @example isOdd(3)  @returns true
+**Returns:** true
+
+### isOdd
+
+Check if the number is odd.
 
 ```js [js]
 isOdd(3)
 ```
 
-### export function isPositive
-Check if the number is positive.  @example isPositive(1)  @returns true
+**Returns:** true
+
+### isPositive
+
+Check if the number is positive.
 
 ```js [js]
 isPositive(1)
 ```
 
-### export function isNegative
-Check if the number is negative.  @example isNegative(-1)  @returns true
+**Returns:** true
+
+### isNegative
+
+Check if the number is negative.
 
 ```js [js]
 isNegative(-1)
 ```
 
-### export function isZero
-Check if the number is zero.  @example isZero(0)  @returns true
+**Returns:** true
+
+### isZero
+
+Check if the number is zero.
 
 ```js [js]
 isZero(0)
 ```
 
-### export function isPrime
-Check if the number is a prime number.  @example isPrime(7)  @returns true
+**Returns:** true
+
+### isPrime
+
+Check if the number is a prime number.
 
 ```js [js]
 isPrime(7)
 ```
 
-### export function isOptimusPrime
-Check if the string is equal to "Optimus Prime".  @example isOptimusPrime('Optimus Prime')  @returns true
+**Returns:** true
+
+### isOptimusPrime
+
+Check if the string is equal to "Optimus Prime".
 
 ```js [js]
 isOptimusPrime('Optimus Prime')
 ```
 
-### export function isPalindrome
-Check if the string is a palindrome.  @example isPalindrome('racecar')  @returns true
+**Returns:** true
+
+### isPalindrome
+
+Check if the string is a palindrome.
 
 ```js [js]
 isPalindrome('racecar')
 ```
 
-### export function isInteger
-Check if the number is an integer.  @example isInteger(1)  @returns true
+**Returns:** true
+
+### isInteger
+
+Check if the number is an integer.
 
 ```js [js]
 isInteger(1)
 ```
 
-### export function isFloat
-Check if the number is a float.  @example isFloat(1.5)  @returns true
+**Returns:** true
+
+### isFloat
+
+Check if the number is a float.
 
 ```js [js]
 isFloat(1.5)
 ```
 
-### export function isBetween
-Check if the number is between the specified range.  @example isBetween(5, 1, 10)  @returns true
+**Returns:** true
+
+### isBetween
+
+Check if the number is between the specified range.
 
 ```js [js]
 isBetween(5, 1, 10)
 ```
 
-### export function isDivisibleBy
-Check if the number is divisible by the specified number.  @example isDivisibleBy(10, 2)  @returns true
+**Returns:** true
+
+### isDivisibleBy
+
+Check if the number is divisible by the specified number.
 
 ```js [js]
 isDivisibleBy(10, 2)
 ```
 
-### export function isCreditCardNumber
-Check if the input is a valid credit card number.  @example isCreditCardNumber('4242424242424242')  @returns true
+**Returns:** true
+
+### isCreditCardNumber
+
+Check if the input is a valid credit card number.
 
 ```js [js]
 isCreditCardNumber('4242424242424242')
 ```
 
-### export function isIPAddress
-Check if the input is a valid IP address.  @example isIPAddress('127.0.0.0')  @returns true
+**Returns:** true
+
+### isIPAddress
+
+Check if the input is a valid IP address.
 
 ```js [js]
 isIPAddress('127.0.0.0')
 ```
 
-### export function isMACAddress
-Check if the input is a valid MAC address.  @example isMACAddress('00:00:00:00:00:00')  @returns true
+**Returns:** true
+
+### isMACAddress
+
+Check if the input is a valid MAC address.
 
 ```js [js]
 isMACAddress('00:00:00:00:00:00')
 ```
 
-### export function isLatLng
-Check if the input is a valid latitude-longitude coordinate in the format lat,lng or lat,lng.  @example isLatLng('40.741895,-73.989308')  @returns true
+**Returns:** true
+
+### isLatLng
+
+Check if the input is a valid latitude-longitude coordinate in the format lat,lng or lat,lng.
 
 ```js [js]
 isLatLng('40.741895,-73.989308')
 ```
 
-### export function isLatitude
-Check if the input is a valid latitude coordinate.  @example isLatitude('40.741895')  @returns true
+**Returns:** true
+
+### isLatitude
+
+Check if the input is a valid latitude coordinate.
 
 ```js [js]
 isLatitude('40.741895')
 ```
 
-### export function isLongitude
-Check if the input is a valid longitude coordinate.  @example isLongitude('-73.989308')  @returns true
+**Returns:** true
+
+### isLongitude
+
+Check if the input is a valid longitude coordinate.
 
 ```js [js]
 isLongitude('-73.989308')
 ```
 
-### export function isPort
-Check if the input is a valid port number.  @example isPort(3000)  @returns true
+**Returns:** true
+
+### isPort
+
+Check if the input is a valid port number.
 
 ```js [js]
 isPort(3000)
 ```
 
-### export function isPresent
-Checks if a property and value pair exists in an object.  @example hasPropertyValue({ hello: 'world' }, 'hello', 'world')  @returns true
+**Returns:** true
+
+### isPresent
+
+Checks if a property and value pair exists in an object.
 
 ```js [js]
 hasPropertyValue({ hello: 'world' }, 'hello', 'world')
 ```
 
-### export function hasProperties
-Check if a property exists in an object without checking its value.  @example hasProperties({ hello: 'world' }, ['hello', 'world'])  @returns true
+**Returns:** true
+
+### hasProperties
+
+Check if a property exists in an object without checking its value.
 
 ```js [js]
 hasProperties({ hello: 'world' }, ['hello', 'world'])
 ```
 
-### export function hasKeys
-Check if an array of key exists in an object  @example hasKeys({ hello: 'world' }, ['hello', 'world',])  @returns true
+**Returns:** true
+
+### hasKeys
+
+Check if an array of key exists in an object
 
 ```js [js]
 hasKeys({ hello: 'world' }, ['hello', 'world',])
 ```
+
+**Returns:** true
 

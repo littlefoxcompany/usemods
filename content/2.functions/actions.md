@@ -1,100 +1,86 @@
 # Actions
 
-#### A collection of useful actions
+A collection of useful actions
 
-### 
-Scrolls to the element with the specified ID.  @example scrollToAnchor('#my-anchor')
+Scrolls to the element with the specified ID.
 
 ```js [js]
 scrollToAnchor('#my-anchor')
 ```
 
-### 
-Smoothly scroll to the top of the page  @example scrollToTop()
+Smoothly scroll to the top of the page
 
 ```js [js]
 scrollToTop()
 ```
 
-### 
-Smoothly scroll to the bottom of the page  @example scrollToBottom()
+Smoothly scroll to the bottom of the page
 
 ```js [js]
 scrollToBottom()
 ```
 
-### 
-Toggles the body scroll with the specified class name  @example toggleBodyScroll('overflow-hidden')
+Toggles the body scroll with the specified class name
 
 ```js [js]
 toggleBodyScroll('overflow-hidden')
 ```
 
-### 
-Toggles the element scroll  @example toggleElementScroll(document.querySelector('#my-element'))
+Toggles the element scroll
 
 ```js [js]
 toggleElementScroll(document.querySelector('#my-element'))
 ```
 
-### 
-Copies a text to the clipboard  @example copyToClipboard()
+Copies a text to the clipboard
 
 ```js [js]
 copyToClipboard()
 ```
 
-### 
-Toggles the fullscreen mode  @example toggleFullScreen()
+Toggles the fullscreen mode
 
 ```js [js]
 toggleFullScreen()
 ```
 
-### 
-Toggles the dark mode  @example toggleDarkMode()
+Toggles the dark mode
 
 ```js [js]
 toggleDarkMode()
 ```
 
-### 
-Redirects to a new URL  @example redirect('https://example.com')
+Redirects to a new URL
 
 ```js [js]
 redirect('https://example.com')
 ```
 
-### 
-Resets a form  @example resetForm(document.querySelector('form'))
+Resets a form
 
 ```js [js]
 resetForm(document.querySelector('form'))
 ```
 
-### 
-Focuses on an element  @example focusOn(document.querySelector('#my-element'))
+Focuses on an element
 
 ```js [js]
 focusOn(document.querySelector('#my-element'))
 ```
 
-### 
-Focuses on the first element  @example focusOnFirst(document.querySelector('#my-element'))
+Focuses on the first element
 
 ```js [js]
 focusOnFirst(document.querySelector('#my-element'))
 ```
 
-### 
-Focuses on the last element  @example focusOnLast(document.querySelector('#my-element'))
+Focuses on the last element
 
 ```js [js]
 focusOnLast(document.querySelector('#my-element'))
 ```
 
-### 
-Sets up a keyboard trap within an HTML element, allowing the focus to cycle between the first and last focusable elements when the Tab key is pressed.  @example focusTrap(document.querySelector('#my-element'))
+Sets up a keyboard trap within an HTML element, allowing the focus to cycle between the first and last focusable elements when the Tab key is pressed.
 
 ```js [js]
 focusTrap(document.querySelector('#my-element'))
