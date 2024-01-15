@@ -86,21 +86,25 @@ export function formatPercentage(number: number): string {
  * @param items - The array of strings.
  * @param limit - The maximum number of items to include before truncating.
  * @param conjunction - The conjunction before the last item e.g. "and" or "or".
- * @example commaList(['one', 'two', 'three'])
+ * @example formatList(['one', 'two', 'three'])
  * @returns one, two and three
  */
 export function formatList(items: any[], limit: number, conjunction: string = 'and'): string {
   if (items.length === 1) {
     return items[0]
   }
+
   if (items.length === 2) {
     return items.join(' ' + conjunction + ' ')
   }
+
   if (items.length === 3) {
     return items.slice(0, -1).join(', ') + ' ' + conjunction + ' ' + items.slice(-1)
   }
+
   if (items.length > 3) {
     return items.slice(0, limit).join(', ') + ' ' + conjunction + ' ' + (items.length - limit) + ' more'
   }
+
   return ''
 }
