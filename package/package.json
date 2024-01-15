@@ -1,9 +1,9 @@
 {
-  "name": "mods",
+  "name": "usemods",
   "version": "0.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "description": "",
+  "description": "Zippy little modifiers and utilities for your frontend.",
   "scripts": {
     "build": "bun run build.mjs",
     "prepublishOnly": "bun run build"
@@ -15,12 +15,12 @@
     "bun"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/jrmymbtlr/mods#readme",
+  "homepage": "https://github.com/LittleFoxCompany/usemods#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jrmymbtlr/mods.git"
+    "url": "git+https://github.com/LittleFoxCompany/usemods.git"
   },
-  "bugs": "https://github.com/jrmymbtlr/mods/issues",
+  "bugs": "https://github.com/LittleFoxCompany/usemods/issues",
   "author": "Jeremy Butler <jeremy@littlefox.studio>",
   "devDependencies": {
     "@types/web": "^0.0.119",

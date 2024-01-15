@@ -1,8 +1,11 @@
 {
-  "name": "nuxt-mods-module",
+  "name": "usemods-nuxt",
   "version": "1.0.0",
-  "description": "Mods for Nuxt.js",
-  "repository": "your-org/mods-module",
+  "description": "Zippy little modifiers and utilities for your Nuxt app.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LittleFoxCompany/usemods.git"
+  },
   "license": "MIT",
   "type": "module",
   "exports": {

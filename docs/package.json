@@ -1,8 +1,11 @@
 {
-  "name": "usemods",
+  "name": "usemods-docs",
   "version": "1.0.0",
-  "description": "Zippy little modifiers and utilities for your frontend.",
-  "repository": "jrmymbtlr/usemods",
+  "description": "Documenting the Zippy little modifiers and utilities for your frontend.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LittleFoxCompany/usemods.git"
+  },
   "license": "MIT",
   "type": "module",
   "scripts": {
