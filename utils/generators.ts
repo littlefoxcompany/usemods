@@ -3,7 +3,7 @@
 
 /**
  * Generate a unique short ID based on the current timestamp
- * @function generateShortId(36)
+ * @example generateShortId(36)
  * @returns 1HR2MIN3S
  */
 export function generateShortId(length: number = 36): string {
@@ -12,7 +12,7 @@ export function generateShortId(length: number = 36): string {
 
 /**
  * Generate initials from any string
- * @function generateInitials('John Doe')
+ * @example generateInitials('John Doe')
  * @returns JD
  */
 export function generateInitials(text: string, count: number = 2): string {

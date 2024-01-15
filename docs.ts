@@ -1,84 +1,61 @@
-import * as fs from 'fs'
-import * as path from 'path'
+import { readFile, writeFile, readdir } from 'fs/promises'
+import { resolve, extname, basename, join } from 'path'
 
-// Define the directory path
-const directoryPath = path.resolve('./utils/')
+const directoryPath = resolve('./utils/')
+const outputDirectory = resolve('./dist/')
+const contentDirectory = resolve('./content/2.functions')
 
-// Get a list of all files in the directory
-const files = fs.readdirSync(directoryPath)
+const functionPattern = /\/\*\*[\s\S]*?\*\/\s*(export\s+function\s+[a-zA-Z0-9_]+\([^)]*\)\s*:\s*[a-zA-Z]+\s*(?:{[\s\S]*?})?)?/gms
+const metadataPattern = /\/\/\s+(title|description):\s+([^\r\n]*)/g
+const subtitlePattern = /\/\/ <subtitle>(.+?)\/\/ <\/subtitle>/gs
 
-// Filter the list to only include .ts files
-const tsFiles = files.filter((file) => path.extname(file) === '.ts')
+async function processFiles() {
+  try {
+    const tsFiles = (await readdir(directoryPath)).filter((file) => extname(file) === '.ts')
+    let combinedTsFile = ''
 
-// Combine tsFiles into a single .ts file in /dist
-let combinedTsFile = ''
-tsFiles.forEach((tsFile) => {
-  const tsFilePath = path.resolve(directoryPath, tsFile)
-  const tsContent = fs.readFileSync(tsFilePath, 'utf-8')
-  combinedTsFile += tsContent + '\n'
-})
-fs.writeFileSync(path.resolve('./dist/mods.ts'), combinedTsFile)
+    for (const tsFile of tsFiles) {
+      const tsContent = await readFile(resolve(directoryPath, tsFile), 'utf-8')
+      combinedTsFile += tsContent + '\n'
 
-// Generate markdown documentation for each function
-tsFiles.forEach((tsFile) => {
-  const tsFilePath = path.resolve(directoryPath, tsFile)
-  const tsContent = fs.readFileSync(tsFilePath, 'utf-8')
+      const markdownContent = generateMarkdown(tsContent)
+      await writeFile(join(contentDirectory, `${basename(tsFile, '.ts')}.md`), markdownContent)
+      console.log('Markdown documentation generated for:', tsFile)
+    }
 
-  // Improved pattern to match function declarations with JSDoc comments
-  const functionPattern = /\/\*\*[\s\S]*?\*\/\s*(export\s+function\s+[a-zA-Z0-9_]+\([^)]*\)\s*:\s*[a-zA-Z]+\s*{[\s\S]*?})/gm
-  const subtitlePattern = /\/\/ <subtitle>[\s\S]*?\/\/ <\/subtitle>/gm
+    await writeFile(join(outputDirectory, 'mods.ts'), combinedTsFile)
+  } catch (error) {
+    console.error('Error processing files:', error)
+  }
+}
 
-  const functions = (tsContent.match(functionPattern) || []).map((match) => ({ match, type: 'function' }))
-  const subtitles = (tsContent.match(subtitlePattern) || []).map((match) => ({ match, type: 'subtitle' }))
-  const allMatches = [...functions, ...subtitles]
+function generateMarkdown(tsContent: string): string {
+  const metadata = Object.fromEntries([...tsContent.matchAll(metadataPattern)].map((m) => [m[1], m[2]]))
+  let markdownContent = `# ${metadata.title || ''}\n\n#### ${metadata.description || ''}\n\n`
 
-  let markdownContent = ''
+  const matches = [...tsContent.matchAll(functionPattern), ...tsContent.matchAll(subtitlePattern)]
+  matches.sort((a, b) => a.index! - b.index!)
 
-  const pageTitleMatch = tsContent.match(/\/\/\s+title:\s+([^\r\n]*)/)
-  const pageDescriptionMatch = tsContent.match(/\/\/\s+description:\s+([^\r\n]*)/)
-
-  if (pageTitleMatch) markdownContent += `# ${pageTitleMatch[1]}\n\n`
-  if (pageDescriptionMatch) markdownContent += `#### ${pageDescriptionMatch[1]}\n\n`
-
-  allMatches.forEach((item) => {
-    if (item.type === 'subtitle') {
-      const subtitleMatch = /\/\/ <subtitle>(.+?)\/\/ <\/subtitle>/s.exec(item.match)
-      if (subtitleMatch) markdownContent += `## ${subtitleMatch[1].trim()}\n\n`
+  for (const match of matches) {
+    if (match[0].startsWith('// <subtitle>')) {
+      markdownContent += `## ${match[1].trim()}\n\n`
     } else {
-      const functionNameMatch = /export function\s+([a-zA-Z0-9_]+)/.exec(item.match)
-      const functionName = functionNameMatch ? functionNameMatch[1] : ''
-
-      const jsDocCommentMatch = /\/\*\*([\s\S]*?)\*\//.exec(item.match)
-      const jsDocComment = jsDocCommentMatch ? jsDocCommentMatch[1] : ''
-
-      const description = jsDocComment
+      const [functionName] = /export function\s+([a-zA-Z0-9_]+)/.exec(match[0]) || ['']
+      const jsDoc = /\/\*\*([\s\S]*?)\*\//.exec(match[0])?.[1].trim() || ''
+      const description = jsDoc
         .split('\n')
-        .map((line) =>
-          line
-            .trim()
-            .replace(/\/?\*+/g, '')
-            .trim()
-        )
+        .map((line) => line.trim().replace(/\/?\*+/g, ''))
         .filter((line) => !line.startsWith('@'))
         .join(' ')
-        .replace(/\/$/, '')
         .trim()
+      const example = (jsDoc.match(/@example\s+([^\r\n]*)/) || [])[1] || ''
 
-      const example = (jsDocComment.match(/@example\s+([^\r\n]*)/) || [])[1] || ''
-      const returns = (jsDocComment.match(/@returns\s+([^\r\n]*)/) || [])[1] || ''
-
-      markdownContent += `### ${functionName}\n`
-      markdownContent += `${description}\n\n`
+      markdownContent += `### ${functionName}\n${description}\n\n`
       if (example) markdownContent += '```js [js]\n' + example + '\n```\n\n'
-      if (example) markdownContent += '::example{:code=' + example + '}\n::\n\n'
-      // if (returns) markdownContent += '```html [example]\n' + returns + '\n```\n\n'
     }
-  })
+  }
 
-  markdownContent = markdownContent.replace(/\n\n\n/g, '\n\n')
+  return markdownContent.replace(/\n\n\n/g, '\n\n')
+}
 
-  const outputFilePath = path.resolve('./content/2.functions', `${path.basename(tsFile, '.ts')}.md`)
-  fs.writeFileSync(outputFilePath, markdownContent)
-
-  console.log('Markdown documentation generated for:', tsFile, 'at:', outputFilePath)
-})
+processFiles()

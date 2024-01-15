@@ -3,7 +3,7 @@
 
 /**
  * Detect the current device type (Mobile or Desktop)
- * @function detectDevice()
+ * @example detectDevice()
  * @returns `Mobile` or `Desktop`
  */
 export function detectDevice(): string {
@@ -12,7 +12,7 @@ export function detectDevice(): string {
 
 /**
  * Detect the current operating system
- * @function detectOS()
+ * @example detectOS()
  * @returns `Windows`, `Mac`, `Linux`, `UNIX`, or `Unknown`
  */
 export function detectOS(): string {
@@ -26,7 +26,7 @@ export function detectOS(): string {
 
 /**
  * Detects the user's browser based on the user agent string.
- * @function detectBrowser()
+ * @example detectBrowser()
  * @returns `Chrome`, `Firefox`, `Safari`, `Opera`, `Edge`, `IE`, or `Unknown`
  */
 export function detectBrowser(): string {
@@ -35,7 +35,7 @@ export function detectBrowser(): string {
 
 /**
  * Detect if the browser window is currently active or hidden.
- * @function detectActiveBrowser()
+ * @example detectActiveBrowser()
  */
 export function detectActiveBrowser(): boolean {
   return !document.hidden
@@ -43,7 +43,7 @@ export function detectActiveBrowser(): boolean {
 
 /**
  * Detect the current color scheme (Light or Dark)
- * @function detectColorScheme()
+ * @example detectColorScheme()
  * @returns `Light` or `Dark`
  */
 export function detectColorScheme(): string {
@@ -52,7 +52,7 @@ export function detectColorScheme(): string {
 
 /**
  * Detect the current browser language
- * @function detectBrowserLanguage()
+ * @example detectBrowserLanguage()
  */
 export function detectBrowserLanguage(): string {
   return navigator.language
@@ -60,7 +60,7 @@ export function detectBrowserLanguage(): string {
 
 /**
  * Detect the current user's location
- * @function detectUserLocation()
+ * @example detectUserLocation()
  * @returns `US`, `UK`, `CA`, `AU`, `NZ`, `EU`, `Unknown`
  */
 export function detectGeolocation(): Promise<GeolocationPosition> {
@@ -71,7 +71,7 @@ export function detectGeolocation(): Promise<GeolocationPosition> {
 
 /**
  * Detect the current user's Timezone
- * @function detectUserTimezone()
+ * @example detectUserTimezone()
  */
 export function detectUserTimezone(): string {
   return Intl.DateTimeFormat().resolvedOptions().timeZone
@@ -79,7 +79,7 @@ export function detectUserTimezone(): string {
 
 /**
  * Detect the currect device orientation
- * @function detectDeviceOrientation()
+ * @example detectDeviceOrientation()
  */
 export function detectDeviceOrientation(): string {
   return window.screen.orientation.type
@@ -87,7 +87,7 @@ export function detectDeviceOrientation(): string {
 
 /**
  * Detect the current device motion
- * @function detectDeviceMotion()
+ * @example detectDeviceMotion()
  */
 export function detectDeviceMotion(): Promise<DeviceMotionEvent> {
   return new Promise((resolve, reject) => {
@@ -98,7 +98,7 @@ export function detectDeviceMotion(): Promise<DeviceMotionEvent> {
 
 /**
  * Detect the browser's window size
- * @function detectWindowSize()
+ * @example detectWindowSize()
  */
 export function detectWindowSize(): { width: number; height: number } {
   return {
@@ -109,7 +109,7 @@ export function detectWindowSize(): { width: number; height: number } {
 
 /**
  * Detect the screen or monitor size
- * @function detectScreenSize()
+ * @example detectScreenSize()
  */
 export function detectScreenSize(): { width: number; height: number } {
   return {
@@ -120,7 +120,7 @@ export function detectScreenSize(): { width: number; height: number } {
 
 /**
  * Detect the container size via ID
- * @function detectContainerSize('container')
+ * @example detectContainerSize('container')
  */
 export function detectContainerSize(id: string): { width: number; height: number } {
   const element = document.getElementById(id)
@@ -133,7 +133,7 @@ export function detectContainerSize(id: string): { width: number; height: number
 
 /**
  * Detect the current breakpoint based on Tailwind CSS breakpoints
- * @function detectTailwindBreakpoint()
+ * @example detectTailwindBreakpoint()
  */
 export function detectTailwindBreakpoint(): string {
   const width = window.innerWidth
@@ -155,7 +155,7 @@ export function detectTailwindBreakpoint(): string {
 
 /**
  * Detect the current container breakpoint based on Tailwind CSS breakpoints
- * @function detectTailwindContainerBreakpoint('container')
+ * @example detectTailwindContainerBreakpoint('container')
  */
 export function detectTailwindContainerBreakpoint(id: string): string {
   const width = detectContainerSize(id).width
@@ -189,7 +189,7 @@ export function detectTailwindContainerBreakpoint(id: string): string {
 
 /**
  * Detect the current scroll position of the window
- * @function detectScrollPosition()
+ * @example detectScrollPosition()
  */
 export function detectScrollPosition(): { x: number; y: number } {
   return {
@@ -200,7 +200,7 @@ export function detectScrollPosition(): { x: number; y: number } {
 
 /**
  * Detect the current mouse position within the window
- * @function detectMousePosition(event)
+ * @example detectMousePosition(event)
  */
 export function detectMousePosition(event: MouseEvent) {
   return {
@@ -211,7 +211,7 @@ export function detectMousePosition(event: MouseEvent) {
 
 /**
  * Detect the current mouse position within a container via ID
- * @function detectRelativeMousePosition('container', event)
+ * @example detectRelativeMousePosition('container', event)
  */
 export function detectRelativeMousePosition(id: string, e: MouseEvent) {
   const element = document.getElementById(id)
@@ -225,7 +225,7 @@ export function detectRelativeMousePosition(id: string, e: MouseEvent) {
 
 /**
  * Detect the current network status of the user (Online or Offline)
- * @function detectNetworkStatus()
+ * @example detectNetworkStatus()
  */
 export function detectNetworkStatus(): string {
   return navigator.onLine ? 'Online' : 'Offline'
@@ -233,7 +233,7 @@ export function detectNetworkStatus(): string {
 
 /**
  * Detect the current memory status of the user (RAM)
- * @function detectMemoryStatus()
+ * @example detectMemoryStatus()
  */
 export function detectMemoryStatus(): { totalJSHeapSize: number; usedJSHeapSize: number; jsHeapSizeLimit: number } {
   return {
@@ -245,7 +245,7 @@ export function detectMemoryStatus(): { totalJSHeapSize: number; usedJSHeapSize:
 
 /**
  * Detect the current performance status of the user (CPU, RAM, etc.)
- * @function detectPerformance()
+ * @example detectPerformance()
  */
 export function detectPerformance(): Promise<PerformanceNavigationTiming> {
   return new Promise((resolve, reject) => {
@@ -258,7 +258,7 @@ export function detectPerformance(): Promise<PerformanceNavigationTiming> {
 
 /**
  * Detect the current storage status of the user (Local Storage, Session Storage)
- * @function detectStorage()
+ * @example detectStorage()
  */
 export function detectStorage(): { localStorage: number; sessionStorage: number } {
   return {
@@ -269,7 +269,7 @@ export function detectStorage(): { localStorage: number; sessionStorage: number 
 
 /**
  * Returns a cookie value by name
- * @function detectCookie('name')
+ * @example detectCookie('name')
  */
 export function detectCookie(name: string) {
   const value = '; ' + document.cookie
@@ -279,7 +279,7 @@ export function detectCookie(name: string) {
 
 /**
  * Returns a local storage value by name and parses it into JSON
- * @function detectLocalStorage('name')
+ * @example detectLocalStorage('name')
  */
 export function detectLocalStorage(name: string) {
   const item = localStorage.getItem(name)
@@ -288,7 +288,7 @@ export function detectLocalStorage(name: string) {
 
 /**
  * Returns a session storage value by name and parses it into JSON
- * @function detectSessionStorage('name')
+ * @example detectSessionStorage('name')
  */
 export function detectSessionStorage(name: string) {
   const item = sessionStorage.getItem(name)
@@ -297,7 +297,7 @@ export function detectSessionStorage(name: string) {
 
 /**
  * Returns a value from the URL by name
- * @function detectURLParameters('http://url.com/page?name=Adam&surname=Smith')
+ * @example detectURLParameters('http://url.com/page?name=Adam&surname=Smith')
  */
 export function detectURLParameters(url: string, param?: string) {
   const params = (url.match(/([^?=&]+)(=([^&]*))/g) || []).reduce((a: any, v: any) => ((a[v.slice(0, v.indexOf('='))] = v.slice(v.indexOf('=') + 1)), a), {})
@@ -311,7 +311,7 @@ export function detectURLParameters(url: string, param?: string) {
 
 /**
  * Returns a value from the URL hash by name
- * @function detectURLHashParameters()
+ * @example detectURLHashParameters()
  */
 export function detectURLHashParameters() {
   return detectURLParameters(window.location.hash)
@@ -319,7 +319,7 @@ export function detectURLHashParameters() {
 
 /**
  * Retrieves and returns the parameters from the URL search query string
- * @function detectURLSearchParameters()
+ * @example detectURLSearchParameters()
  */
 export function detectURLSearchParameters() {
   return detectURLParameters(window.location.search)
@@ -327,7 +327,7 @@ export function detectURLSearchParameters() {
 
 /**
  * Returns the current URL
- * @function detectURL()
+ * @example detectURL()
  */
 export function detectURL() {
   return window.location.href
@@ -335,7 +335,7 @@ export function detectURL() {
 
 /**
  * Returns the current domain
- * @function detectDomain()
+ * @example detectDomain()
  */
 export function detectDomain() {
   return window.location.hostname
@@ -343,7 +343,7 @@ export function detectDomain() {
 
 /**
  * Returns the current IP address
- * @function detectIP()
+ * @example detectIP()
  */
 export function detectIP() {
   return window.location.host
@@ -351,7 +351,7 @@ export function detectIP() {
 
 /**
  * Returns the current port
- * @function detectPort()
+ * @example detectPort()
  */
 export function detectPort() {
   return window.location.port
@@ -359,7 +359,7 @@ export function detectPort() {
 
 /**
  * Returns the current protocol (HTTP or HTTPS)
- * @function detectProtocol()
+ * @example detectProtocol()
  */
 export function detectProtocol() {
   return window.location.protocol
@@ -367,7 +367,7 @@ export function detectProtocol() {
 
 /**
  * Returns the URL of the referring page (the page that linked to the current page)
- * @function detectReferrer()
+ * @example detectReferrer()
  */
 export function detectReferrer() {
   return document.referrer
@@ -375,7 +375,7 @@ export function detectReferrer() {
 
 /**
  *  Retrieves cached entries and optionally filters the entries based on a provided key
- * @function detectCachedData('abc')
+ * @example detectCachedData('abc')
  */
 export function detectCachedData(key?: string): PerformanceEntry[] {
   const cachedData = window.performance.getEntriesByType('resource')
@@ -391,7 +391,7 @@ export function detectCachedData(key?: string): PerformanceEntry[] {
 
 /**
  * Detects if the element is currently in the viewport
- * @function isInViewport(element)
+ * @example isInViewport(element)
  */
 export function isInViewport(element: HTMLElement) {
   const rect = element.getBoundingClientRect()
@@ -405,7 +405,7 @@ export function isInViewport(element: HTMLElement) {
 
 /**
  * Detects if the element is currently in the container via ID
- * @function isInContainer(element, 'container')
+ * @example isInContainer(element, 'container')
  */
 export function isInContainer(element: HTMLElement, id: string) {
   const rect = element.getBoundingClientRect()
@@ -417,7 +417,7 @@ export function isInContainer(element: HTMLElement, id: string) {
 
 /**
  * Detects if the element is overflowing vertically
- * @function isOverflowingY(element)
+ * @example isOverflowingY(element)
  */
 export function isOverflowingY(element: HTMLElement) {
   return element.scrollWidth > element.clientWidth || element.scrollHeight > element.clientHeight
@@ -425,7 +425,7 @@ export function isOverflowingY(element: HTMLElement) {
 
 /**
  * Detects if the element is overflowing horizontally
- * @function isOverflowingX(element)
+ * @example isOverflowingX(element)
  */
 export function isOverflowingX(element: HTMLElement) {
   return element.scrollWidth > element.clientWidth
@@ -433,7 +433,7 @@ export function isOverflowingX(element: HTMLElement) {
 
 /**
  * Detects if the element is scrollable (overflowing vertically or horizontally)
- * @function isScrollable(element)
+ * @example isScrollable(element)
  */
 export function isScrollable(element: HTMLElement) {
   return isOverflowingY(element) || isOverflowingX(element)
@@ -441,7 +441,7 @@ export function isScrollable(element: HTMLElement) {
 
 /**
  * Detects if the elements is an HTML element
- * @function isElement(element)
+ * @example isElement(element)
  */
 export function isElement(element: HTMLElement) {
   return element instanceof HTMLElement

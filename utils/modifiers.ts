@@ -3,7 +3,7 @@
 
 /**
  * Adds a space between the last two words in a string.
- * @function widont('Cool cool cool')
+ * @example widont('Cool cool cool')
  * @returns cool cool&nbsp;cool
  */
 export function widont(text: string): string {
@@ -14,7 +14,7 @@ export function widont(text: string): string {
 
 /**
  * Strip HTML tags from a string.
- * @function stripHtml('<p>Hello World</p>')
+ * @example stripHtml('<p>Hello World</p>')
  * @returns Hello World
  */
 export function stripHtml(text: string): string {
@@ -23,7 +23,7 @@ export function stripHtml(text: string): string {
 
 /**
  * Escape HTML entities in a string.
- * @function escapeHtml('<p>Hello World</p>')
+ * @example escapeHtml('<p>Hello World</p>')
  * @returns &lt;p&gt;Hello World&lt;/p&gt;
  */
 export function escapeHtml(text: string): string {
@@ -32,7 +32,7 @@ export function escapeHtml(text: string): string {
 
 /**
  * Unescape HTML entities in a string.
- * @function unescapeHtml('&lt;p&gt;Hello World&lt;/p&gt;')
+ * @example unescapeHtml('&lt;p&gt;Hello World&lt;/p&gt;')
  * @returns <p>Hello World</p>
  */
 export function unescapeHtml(text: string): string {
@@ -41,7 +41,7 @@ export function unescapeHtml(text: string): string {
 
 /**
  * Strip HTML tags from a string.
- * @function stripTags('<p>Hello World</p>')
+ * @example stripTags('<p>Hello World</p>')
  * @returns Hello World
  */
 export function stripTags(text: string): string {
@@ -50,7 +50,7 @@ export function stripTags(text: string): string {
 
 /**
  * Converts a string to-a-slug.
- * @function slugify('Hello World')
+ * @example slugify('Hello World')
  * @returns hello-world
  */
 export function slugify(text: string): string {
@@ -62,7 +62,7 @@ export function slugify(text: string): string {
 
 /**
  * Converts a slug to a string.
- * @function deslugify('hello-world')
+ * @example deslugify('hello-world')
  * @returns hello world
  */
 export function deslugify(text: string): string {
@@ -71,7 +71,7 @@ export function deslugify(text: string): string {
 
 /**
  * Truncates a string to a specified length of characters.
- * @function truncate('Hello World', 5)
+ * @example truncate('Hello World', 5)
  * @returns Hello...
  */
 export function truncate(text: string, length: number): string {
@@ -83,7 +83,7 @@ export function truncate(text: string, length: number): string {
 
 /**
  * Truncates a string by a number of words
- * @function truncateWords('Hello World', 1)
+ * @example truncateWords('Hello World', 1)
  * @returns Hello...
  */
 export function truncateWords(text: string, length: number): string {
@@ -98,7 +98,7 @@ export function truncateWords(text: string, length: number): string {
 
 /**
  * Counts the number of words in a string.
- * @function countWords('Hello World')
+ * @example countWords('Hello World')
  * @returns 2
  */
 export function countWords(text: string): number {
@@ -107,7 +107,7 @@ export function countWords(text: string): number {
 
 /**
  * Counts the number of characters in a string.
- * @function countCharacters('Hello World')
+ * @example countCharacters('Hello World')
  * @returns 11
  */
 export function countCharacters(text: string): number {
@@ -116,7 +116,7 @@ export function countCharacters(text: string): number {
 
 /**
  * Counts the number of lines in a string.
- * @function countLines('Hello World')
+ * @example countLines('Hello World')
  * @returns 1
  */
 export function countLines(text: string): number {
@@ -125,7 +125,7 @@ export function countLines(text: string): number {
 
 /**
  * Strips whitespace from a string.
- * @function stripWhitespace('Hello World')
+ * @example stripWhitespace('Hello World')
  * @returns HelloWorld
  */
 export function stripWhitespace(text: string): string {
@@ -134,7 +134,7 @@ export function stripWhitespace(text: string): string {
 
 /**
  * Strips numbers from a string.
- * @function stripNumbers('Hello World 123')
+ * @example stripNumbers('Hello World 123')
  * @returns Hello World
  */
 export function stripNumbers(text: string): string {
@@ -143,7 +143,7 @@ export function stripNumbers(text: string): string {
 
 /**
  * Strips punctuation from a string.
- * @function stripPunctuation('Hello World!')
+ * @example stripPunctuation('Hello World!')
  * @returns Hello World
  */
 export function stripPunctuation(text: string): string {
@@ -152,7 +152,7 @@ export function stripPunctuation(text: string): string {
 
 /**
  * Strips symbols from a string.
- * @function stripSymbols('Hello World!')
+ * @example stripSymbols('Hello World!')
  * @returns Hello World
  */
 export function stripSymbols(text: string): string {
@@ -161,7 +161,7 @@ export function stripSymbols(text: string): string {
 
 /**
  * Strips emojis from a string (requires ES6 Unicode support) 🦊.
- * @function stripEmojis('Hello World! 🦊')
+ * @example stripEmojis('Hello World! 🦊')
  * @returns Hello World!
  */
 export function stripEmojis(text: string): string {
@@ -170,7 +170,7 @@ export function stripEmojis(text: string): string {
 
 /**
  * Returns the reading time of a string in Hours, Minutes, and Seconds.
- * @function readingTime('Once, in a vibrant online forum, lived Mod Max, guardian of digital harmony. Max cherished his old scooter, Swift, a symbol of freedom. Navigating both virtual and real worlds, they became legends. Trolls quivered, posts flourished, and lanes whizzed by. Swift’s wheels spun tales, and Max’s keys kept peace. Together, they discovered uncharted threads and hidden lanes. Their journey, an endless adventure, painted pixels and pavements with stories of unity and exhilaration, leaving a trail for all in the intertwined realms of screens and streets.')
+ * @example readingTime('Once, in a vibrant online forum, lived Mod Max, guardian of digital harmony. Max cherished his old scooter, Swift, a symbol of freedom. Navigating both virtual and real worlds, they became legends. Trolls quivered, posts flourished, and lanes whizzed by. Swift’s wheels spun tales, and Max’s keys kept peace. Together, they discovered uncharted threads and hidden lanes. Their journey, an endless adventure, painted pixels and pavements with stories of unity and exhilaration, leaving a trail for all in the intertwined realms of screens and streets.')
  * @returns 1 minute
  */
 export function readingTime(text: string, wordsPerMinute = 200): string {
@@ -183,7 +183,7 @@ export function readingTime(text: string, wordsPerMinute = 200): string {
 
 /**
  * Adds plurals to a string.
- * @function pluralize('scooter', 10)
+ * @example pluralize('scooter', 10)
  * @returns scooters
  */
 export function pluralize(text: string, count: number): string {
@@ -196,7 +196,7 @@ export function pluralize(text: string, count: number): string {
 
 /**
  * Removes plurals from a string.
- * @function singularize('scooters')
+ * @example singularize('scooters')
  * @returns scooter
  */
 export function singularize(text: string): string {
@@ -209,7 +209,7 @@ export function singularize(text: string): string {
 
 /**
  * Converts a number to a string with ordinal suffix.
- * @function ordinalize(1)
+ * @example ordinalize(1)
  * @returns 1st
  */
 export function ordinalize(number: number): string {
@@ -221,7 +221,7 @@ export function ordinalize(number: number): string {
 
 /**
  * Replaces underscores with spaces and capitalizes the first letter of each word.
- * @function humanize('hello_world')
+ * @example humanize('hello_world')
  * @returns Hello World
  */
 export function humanize(text: string): string {
@@ -233,7 +233,7 @@ export function humanize(text: string): string {
 
 /**
  * Removes spaces and capitalizes the first letter of each word except for the first word.
- * @function camelCase('hello world')
+ * @example camelCase('hello world')
  * @returns helloWorld
  */
 export function camelCase(text: string): string {
@@ -246,7 +246,7 @@ export function camelCase(text: string): string {
 
 /**
  * Removes spaces and capitalizes the first letter of each word.
- * @function pascalCase('hello world')
+ * @example pascalCase('hello world')
  * @returns HelloWorld
  */
 export function pascalCase(text: string): string {
@@ -259,7 +259,7 @@ export function pascalCase(text: string): string {
 
 /**
  * Replaces spaces with underscores and converts to lowercase.
- * @function snakeCase('hello world')
+ * @example snakeCase('hello world')
  * @returns hello_world
  */
 export function snakeCase(text: string): string {
@@ -272,7 +272,7 @@ export function snakeCase(text: string): string {
 
 /**
  * Replaces spaces with hyphens and converts to lowercase.
- * @function titleize('Hello World')
+ * @example titleize('Hello World')
  * @returns hello-world
  */
 export function kebabCase(text: string): string {
@@ -285,7 +285,7 @@ export function kebabCase(text: string): string {
 
 /**
  * Converts to title case by capitalizing the first letter of each word.
- * @function titleCase('hello world')
+ * @example titleCase('hello world')
  * @returns Hello World
  */
 export function titleCase(text: string): string {
@@ -298,7 +298,7 @@ export function titleCase(text: string): string {
 
 /**
  * Converts to sentence case by capitalizing the first letter of the first word.
- * @function sentenceCase('hello world')
+ * @example sentenceCase('hello world')
  * @returns Hello world
  */
 export function sentenceCase(text: string): string {
@@ -311,7 +311,7 @@ export function sentenceCase(text: string): string {
 
 /**
  * Adds a prefix to a string if it doesn't already start with the prefix.
- * @function startWith('usemods.com', 'https://')
+ * @example startWith('usemods.com', 'https://')
  * @returns https://usemods.com
  */
 export function startWith(text: string, start: string): string {
@@ -324,7 +324,7 @@ export function startWith(text: string, start: string): string {
 
 /**
  * Removes a prefix from a string if it starts with the prefix.
- * @function startWithout('https://usemods.com', 'https://')
+ * @example startWithout('https://usemods.com', 'https://')
  * @returns usemods.com
  */
 
@@ -338,7 +338,7 @@ export function startWithout(start: string, text: string): string {
 
 /**
  * Adds a suffix to a string if it doesn't already end with the suffix.
- * @function endWith('https://usemods', '.com')
+ * @example endWith('https://usemods', '.com')
  * @returns https://usemods.com
  */
 export function endWith(text: string, end: string): string {
@@ -351,7 +351,7 @@ export function endWith(text: string, end: string): string {
 
 /**
  * Removes a suffix from a string if it ends with the suffix.
- * @function endWithout('https://usemods.com.au', '.au')
+ * @example endWithout('https://usemods.com.au', '.au')
  * @returns https://usemods.com
  */
 export function endWithout(text: string, end: string): string {
@@ -367,7 +367,7 @@ export function endWithout(text: string, end: string): string {
  * @param text - The string to surround.
  * @param prefix - The prefix to add.
  * @param suffix - The suffix to add.
- * @function surround('https://', 'usemods', '.com')
+ * @example surround('https://', 'usemods', '.com')
  * @returns https://usemods.com
  */
 export function surround(start: string, text: string, end: string): string {
@@ -389,7 +389,7 @@ export function surround(start: string, text: string, end: string): string {
 /**
  * Converts a string to title case following the Chicago Manual of Style rules.
  * @reference https://www.chicagomanualofstyle.org/book/ed17/frontmatter/toc.html
- * @function title('the quick brown fox jumps over the lazy dog')
+ * @example title('the quick brown fox jumps over the lazy dog')
  * @returns The Quick Brown Fox Jumps over the Lazy Dog
  */
 export function title(text: string): string {
@@ -441,7 +441,7 @@ export function title(text: string): string {
 
 /**
  * Wraps each word in a string with a span tag.
- * @function splitByWords('Hello World. How are you?')
+ * @example splitByWords('Hello World. How are you?')
  * @returns <span class="sentence sentence-1"><span class="word word-1">Hello</span> <span class="word word-2">world.</span></span> <span class="sentence sentence-2"><span class="word word-3">How</span> <span class="word word-4">are</span> <span class="word word-5">you?</span></span>
  */
 export function splitByWords(text: string): string {
@@ -473,7 +473,7 @@ export function splitByWords(text: string): string {
 
 /**
  * Creates an array of list items (`<li>`) from an array of strings.
- * @function list(['one', 'two', 'three'])
+ * @example list(['one', 'two', 'three'])
  * @returns <ul><li>one</li><li>two</li><li>three</li></ul>
  */
 export function list(items: any[], listType: string = 'ul'): string {
@@ -494,7 +494,7 @@ export function list(items: any[], listType: string = 'ul'): string {
 
 /**
  * Shuffles an array.
- * @function shuffle(['one', 'two', 'three'])
+ * @example shuffle(['one', 'two', 'three'])
  * @returns ['three', 'one', 'two']
  */
 export function shuffle(items: any[]): any[] {
@@ -505,7 +505,7 @@ export function shuffle(items: any[]): any[] {
  * Returns unique array values with an optional property to pluck.
  * @param items - The array of items.
  * @param property - The property to pluck (optional).
- * @function unique(['one', 'two', 'three', 'one'])
+ * @example unique(['one', 'two', 'three', 'one'])
  * @returns ['one', 'two', 'three']
  */
 export function unique(property: string | null = null, ...arrays: (string | { [key: string]: any })[][]): any[] {
@@ -530,7 +530,7 @@ export function unique(property: string | null = null, ...arrays: (string | { [k
 
 /**
  * Returns the difference between two arrays.
- * @function difference(['one', 'two', 'three'], ['one', 'two'])
+ * @example difference(['one', 'two', 'three'], ['one', 'two'])
  * @returns ['three']
  */
 export function difference(...arrays: any[][]): any[] {
@@ -540,7 +540,7 @@ export function difference(...arrays: any[][]): any[] {
 
 /**
  * Returns the first item in an array.
- * @function first(['one', 'two', 'three'])
+ * @example first(['one', 'two', 'three'])
  * @returns one
  */
 export function first(items: any[]): string {
@@ -549,7 +549,7 @@ export function first(items: any[]): string {
 
 /**
  * Returns the last item in an array.
- * @function last(['one', 'two', 'three'])
+ * @example last(['one', 'two', 'three'])
  * @returns three
  */
 export function last(items: any[]): string {
@@ -558,7 +558,7 @@ export function last(items: any[]): string {
 
 /**
  * Returns the nth item in an array.
- * @function nth(['one', 'two', 'three'], 1)
+ * @example nth(['one', 'two', 'three'], 1)
  * @returns two
  */
 export function nth(items: any[], nth: number): string {
@@ -567,7 +567,7 @@ export function nth(items: any[], nth: number): string {
 
 /**
  * Offset the first item in an array.
- * @function offset(['one', 'two', 'three'], 1)
+ * @example offset(['one', 'two', 'three'], 1)
  * @returns ['two', 'three']
  */
 export function offset(items: any[], offset: number): any[] {
@@ -576,7 +576,7 @@ export function offset(items: any[], offset: number): any[] {
 
 /**
  * Groups an array of objects by a property.
- * @function group([{ name: 'one' }, { name: 'two' }, { name: 'one' }], 'name')
+ * @example group([{ name: 'one' }, { name: 'two' }, { name: 'one' }], 'name')
  * @returns { one: [{ name: 'one' }, { name: 'one' }], two: [{ name: 'two' }] }
  */
 export function group(items: { [key: string]: any }[], property: string): { [key: string]: any } {
@@ -592,7 +592,7 @@ export function group(items: { [key: string]: any }[], property: string): { [key
 
 /**
  * Chunks an array into sections of a specified size.
- * @function chunk(['one', 'two', 'three', 'four', 'five'], 2)
+ * @example chunk(['one', 'two', 'three', 'four', 'five'], 2)
  * @returns [['one', 'two'], ['three', 'four'], ['five']]
  */
 export function groupBy(items: any[], size: number): any[][] {
@@ -605,7 +605,7 @@ export function groupBy(items: any[], size: number): any[][] {
 
 /**
  * Flatten an array of arrays.
- * @function flatten([['one', 'two'], ['three', 'four'], ['five']])
+ * @example flatten([['one', 'two'], ['three', 'four'], ['five']])
  * @returns ['one', 'two', 'three', 'four', 'five']
  */
 export function flatten(items: any[]): any[] {
@@ -620,7 +620,7 @@ export function flatten(items: any[]): any[] {
 
 /**
  * Returns an array with a filtered out property.
- * @function without([{ name: 'one', food: 'apple' }, { name: 'two', food: 'grape' }, { name: 'one', food: 'pear' }], 'name')
+ * @example without([{ name: 'one', food: 'apple' }, { name: 'two', food: 'grape' }, { name: 'one', food: 'pear' }], 'name')
  * @returns [{ food: 'apple' }, { food: 'grape' }, { food: 'pear' }]
 
  */
@@ -644,7 +644,7 @@ export function without(items: any[], properties: any | any[]): any[] {
 
 /**
  * Combine two or more arrays
- * @function combine(['one', 'two'], ['three', 'four'], ['five'])
+ * @example combine(['one', 'two'], ['three', 'four'], ['five'])
  * @returns ['one', 'two', 'three', 'four', 'five']
  */
 export function combine(...arrays: any[][]): any[] {
@@ -653,7 +653,7 @@ export function combine(...arrays: any[][]): any[] {
 
 /**
  * Combine two or more unique arrays
- * @function combineUnique(['one', 'two'], ['three', 'four', 'two'], ['five', 'one'])
+ * @example combineUnique(['one', 'two'], ['three', 'four', 'two'], ['five', 'one'])
  * @returns ['one', 'two', 'three', 'four', 'five']
  */
 export function combineUnique(...items: (any | any[])[]): any[] {
@@ -672,7 +672,7 @@ export function combineUnique(...items: (any | any[])[]): any[] {
 
 /**
  * Combine two or more arrays or objects without a property.
- * @function combineWithout({ id: 1, name: 'A' }, { id: 2, name: 'B' }, { id: 3, name: 'C' }, 'id')
+ * @example combineWithout({ id: 1, name: 'A' }, { id: 2, name: 'B' }, { id: 3, name: 'C' }, 'id')
  * @returns [1, 2, 3]
  */
 export function combineWithout(
@@ -695,7 +695,7 @@ export function combineWithout(
 
 /**
  * Reverse an array.
- * @function reverse(['one', 'two', 'three'])
+ * @example reverse(['one', 'two', 'three'])
  * @returns ['three', 'two', 'one']
  */
 export function reverse(items: any[]): any[] {
@@ -704,7 +704,7 @@ export function reverse(items: any[]): any[] {
 
 /**
  * Sort an array by a property.
- * @function sortBy([{ name: 'John', age: 25 },{ name: 'Jane', age: 30 },{ name: 'Jill', age: 20 }], 'age')
+ * @example sortBy([{ name: 'John', age: 25 },{ name: 'Jane', age: 30 },{ name: 'Jill', age: 20 }], 'age')
  * @returns [{ name: 'Jill', age: 20 },{ name: 'John', age: 25 },{ name: 'Jane', age: 30 }]
  */
 export function sortBy(items: { [key: string]: any }[], property: string): { [key: string]: any }[] {
