@@ -3,7 +3,7 @@ import { resolve, extname, basename, join } from 'path'
 
 // Define the directory path
 const directoryPath = resolve('../package/src/')
-const outputDirectory = resolve('./dist/')
+// const outputDirectory = resolve('./dist/')
 const contentDirectory = resolve('./content/2.functions')
 
 const functionPattern = /\/\*\*[\s\S]*?\*\/\s*(export\s+function\s+[a-zA-Z0-9_]+\([^)]*\)\s*:\s*[a-zA-Z]+\s*(?:{[\s\S]*?})?)?/gms
@@ -25,7 +25,7 @@ async function processFiles() {
     }
 
     // Write combined file
-    await writeFile(join(outputDirectory, 'mods.ts'), combinedTsFile)
+    // await writeFile(join(outputDirectory, 'mods.ts'), combinedTsFile)
   } catch (error) {
     console.error('Error processing files:', error)
   }

@@ -244,30 +244,6 @@ export function detectMemoryStatus(): { totalJSHeapSize: number; usedJSHeapSize:
 }
 
 /**
- * Detect the current performance status of the user (CPU, RAM, etc.)
- * @example detectPerformance()
- */
-export function detectPerformance(): Promise<PerformanceNavigationTiming> {
-  return new Promise((resolve, reject) => {
-    window.addEventListener('load', () => {
-      resolve(performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming)
-    })
-    setTimeout(reject, 5000)
-  })
-}
-
-// /**
-//  * Detect the current storage status of the user (Local Storage, Session Storage)
-//  * @example detectStorage()
-//  */
-// export function detectStorage(): { localStorage: number; sessionStorage: number } {
-//   return {
-//     localStorage: JSON.stringify(localStorage).length,
-//     sessionStorage: JSON.stringify(sessionStorage).length
-//   }
-// }
-
-/**
  * Returns a cookie value by name
  * @example detectCookie('name')
  */
