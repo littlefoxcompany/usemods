@@ -1,7 +1,7 @@
 {
-  "name": "mods-module",
+  "name": "nuxt-mods-module",
   "version": "1.0.0",
-  "description": "My new Nuxt module",
+  "description": "Mods for Nuxt.js",
   "repository": "your-org/mods-module",
   "license": "MIT",
   "type": "module",
