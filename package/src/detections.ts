@@ -256,16 +256,16 @@ export function detectPerformance(): Promise<PerformanceNavigationTiming> {
   })
 }
 
-/**
- * Detect the current storage status of the user (Local Storage, Session Storage)
- * @example detectStorage()
- */
-export function detectStorage(): { localStorage: number; sessionStorage: number } {
-  return {
-    localStorage: JSON.stringify(localStorage).length,
-    sessionStorage: JSON.stringify(sessionStorage).length
-  }
-}
+// /**
+//  * Detect the current storage status of the user (Local Storage, Session Storage)
+//  * @example detectStorage()
+//  */
+// export function detectStorage(): { localStorage: number; sessionStorage: number } {
+//   return {
+//     localStorage: JSON.stringify(localStorage).length,
+//     sessionStorage: JSON.stringify(sessionStorage).length
+//   }
+// }
 
 /**
  * Returns a cookie value by name
@@ -281,7 +281,7 @@ export function detectCookie(name: string) {
  * Returns a local storage value by name and parses it into JSON
  * @example detectLocalStorage('name')
  */
-export function detectLocalStorage(name: string) {
+export function detectLocalStorage(name: string): any {
   const item = localStorage.getItem(name)
   if (item) return JSON.parse(item)
 }
@@ -329,7 +329,7 @@ export function detectURLSearchParameters() {
  * Returns the current URL
  * @example detectURL()
  */
-export function detectURL() {
+export function detectURL(): string {
   return window.location.href
 }
 
@@ -337,7 +337,7 @@ export function detectURL() {
  * Returns the current domain
  * @example detectDomain()
  */
-export function detectDomain() {
+export function detectDomain(): string {
   return window.location.hostname
 }
 
@@ -345,7 +345,7 @@ export function detectDomain() {
  * Returns the current IP address
  * @example detectIP()
  */
-export function detectIP() {
+export function detectIP(): string {
   return window.location.host
 }
 
@@ -353,7 +353,7 @@ export function detectIP() {
  * Returns the current port
  * @example detectPort()
  */
-export function detectPort() {
+export function detectPort(): string {
   return window.location.port
 }
 
@@ -379,11 +379,7 @@ export function detectReferrer() {
  */
 export function detectCachedData(key?: string): PerformanceEntry[] {
   const cachedData = window.performance.getEntriesByType('resource')
-
-  if (key) {
-    return cachedData.filter((data) => data.name.includes(key))
-  }
-
+  if (key) return cachedData.filter((data) => data.name.includes(key))
   return cachedData
 }
 
@@ -391,9 +387,9 @@ export function detectCachedData(key?: string): PerformanceEntry[] {
 
 /**
  * Detects if the element is currently in the viewport
- * @example isInViewport(element)
+ * @example detectInViewport(element)
  */
-export function isInViewport(element: HTMLElement) {
+export function detectInViewport(element: HTMLElement) {
   const rect = element.getBoundingClientRect()
   return (
     rect.top >= 0 &&
@@ -405,9 +401,9 @@ export function isInViewport(element: HTMLElement) {
 
 /**
  * Detects if the element is currently in the container via ID
- * @example isInContainer(element, 'container')
+ * @example detectInContainer(element, 'container')
  */
-export function isInContainer(element: HTMLElement, id: string) {
+export function detectInContainer(element: HTMLElement, id: string) {
   const rect = element.getBoundingClientRect()
   const container = document.getElementById(id)
   if (!container) return false
@@ -417,32 +413,32 @@ export function isInContainer(element: HTMLElement, id: string) {
 
 /**
  * Detects if the element is overflowing vertically
- * @example isOverflowingY(element)
+ * @example detectOverflowingY(element)
  */
-export function isOverflowingY(element: HTMLElement) {
+export function detectOverflowingY(element: HTMLElement) {
   return element.scrollWidth > element.clientWidth || element.scrollHeight > element.clientHeight
 }
 
 /**
  * Detects if the element is overflowing horizontally
- * @example isOverflowingX(element)
+ * @example detectOverflowingX(element)
  */
-export function isOverflowingX(element: HTMLElement) {
+export function detectOverflowingX(element: HTMLElement) {
   return element.scrollWidth > element.clientWidth
 }
 
 /**
  * Detects if the element is scrollable (overflowing vertically or horizontally)
- * @example isScrollable(element)
+ * @example detectScrollable()
  */
-export function isScrollable(element: HTMLElement) {
-  return isOverflowingY(element) || isOverflowingX(element)
+export function detectScrollable(element: HTMLElement) {
+  return detectOverflowingY(element) || detectOverflowingX(element)
 }
 
 /**
  * Detects if the elements is an HTML element
- * @example isElement(element)
+ * @example detectElement()
  */
-export function isElement(element: HTMLElement) {
+export function detectElement(element: HTMLElement) {
   return element instanceof HTMLElement
 }

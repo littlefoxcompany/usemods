@@ -1,8 +1,7 @@
 import { readFile, writeFile, readdir } from 'fs/promises'
 import { resolve, extname, basename, join } from 'path'
 
-// Define the directory path
-const directoryPath = resolve('../package/src/')
+const directoryPath = resolve('./utils/')
 const outputDirectory = resolve('./dist/')
 const contentDirectory = resolve('./content/2.functions')
 
