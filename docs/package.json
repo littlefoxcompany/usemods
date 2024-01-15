@@ -15,8 +15,13 @@
     "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "dist": "bun build ./build.ts"
+    "dist": "bun build ./build.ts",
+    "build:package": "bun run build.mjs",
+    "prepublishOnly": "bun run build"
   },
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
     "@nuxt-themes/docus": "^1.15.0",
     "@nuxt/content": "^2.10.0",
@@ -34,6 +39,10 @@
     "vitest": "^0.33.0"
   },
   "dependencies": {
+    "@types/web": "^0.0.119",
+    "bun-plugin-dts": "^0.2.1",
+    "bun-types": "^1.0.7",
+    "typescript": "^5.2.2",
     "bun": "^1.0.0",
     "ts-morph": "^19.0.0",
     "typedoc-plugin-markdown": "^3.16.0"

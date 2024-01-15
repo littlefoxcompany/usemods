@@ -1,6 +1,8 @@
 // title: Modifiers
 // description: Modifiers are a key feature of Mods that allow you to easily modify and enhance your content. They are small pieces of code that can be applied to your JS to add functionality, validation or style.
 
+import { formatTime } from './formatters'
+
 /**
  * Adds a space between the last two words in a string.
  * @example widont('Cool cool cool')
@@ -370,7 +372,7 @@ export function endWithout(text: string, end: string): string {
  * @example surround('https://', 'usemods', '.com')
  * @returns https://usemods.com
  */
-export function surround(start: string, text: string, end: string): string {
+export function surround(text: string, start: string, end: string): string {
   if (text.startsWith(start) && text.endsWith(end)) {
     return text
   }
@@ -383,7 +385,7 @@ export function surround(start: string, text: string, end: string): string {
     return start + text
   }
 
-  return startsWith + text + endsWith
+  return start + text + end
 }
 
 /**

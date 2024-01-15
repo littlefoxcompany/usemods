@@ -1,5 +1,43 @@
-// @vitest-environment nuxt
-import { expect, test } from 'vitest'
+import { expect, test } from 'bun:test'
+import {
+  isEmail,
+  isNumber,
+  isURL,
+  isUUID,
+  isJSON,
+  isHex,
+  isEmpty,
+  isAlpha,
+  isAlphanumeric,
+  isArray,
+  isObject,
+  isBoolean,
+  isDate,
+  isFunction,
+  isUndefined,
+  isNull,
+  isError,
+  isTime,
+  isLeapYear,
+  isMap,
+  isEven,
+  isOdd,
+  isPositive,
+  isNegative,
+  isPrime,
+  isOptimusPrime,
+  isPalindrome,
+  isInteger,
+  isFloat,
+  isBetween,
+  isDivisibleBy,
+  isCreditCardNumber,
+  isIPAddress,
+  isMACAddress,
+  isLatLng,
+  isLatitude,
+  isLongitude
+} from '../src/validators'
 
 test('isEmail', () => {
   expect(isEmail('hello@email.com')).toBe(true)

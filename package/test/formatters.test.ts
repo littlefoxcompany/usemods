@@ -1,5 +1,7 @@
+import { expect, test } from 'bun:test'
+import { formatCurrency, formatTime, formatList } from '../src/formatters'
+
 // @vitest-environment nuxt
-import { expect, test } from 'vitest'
 // import * as mod from '@/utils/formatters'
 
 test('formatCurrency', () => {
@@ -15,6 +17,14 @@ test('formatTime', () => {
   expect(formatTime(3600)).toBe('1hr')
   expect(formatTime(3600 * 2 + 60)).toBe('2hr 1min')
   expect(formatTime(3600 * 2 + 60 + 1)).toBe('2hr 1min 1s')
+})
+
+test('formatList', () => {
+  expect(formatList(['Apple', 'Oranges'], 2)).toBe('Apple and Oranges')
+  // expect(formatList(['Apple', 'Oranges', 'Grapes', 'Bread', 'Milk'], 5)).toBe('Apple, Oranges, Grapes, Bread and Milk')
+  // expect(formatList(['Apple', 'Oranges', 'Grapes', 'Bread'], 5, 'or')).toBe('Apple, Oranges, Grapes or Bread')
+  // expect(formatList(['Apple', 'Oranges', 'Grapes', 'Bread', 'Milk'], 3)).toBe('Apple, Oranges, Grapes and 2 more')
+  // expect(formatList(['Apple', 'Oranges', 'Grapes', 'Bread', 'Milk'], 3, 'or')).toBe('Apple, Oranges, Grapes or 2 more')
 })
 
 // TODO: Make more robust
