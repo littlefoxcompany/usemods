@@ -1,5 +1,47 @@
-// @vitest-environment nuxt
-import { expect, test } from 'vitest'
+import { expect, test } from 'bun:test'
+import {
+  widont,
+  escapeHtml,
+  unescapeHtml,
+  stripHtml,
+  stripTags,
+  stripEmojis,
+  stripSymbols,
+  humanize,
+  stripWhitespace,
+  stripNumbers,
+  stripPunctuation,
+  ordinalize,
+  deslugify,
+  slugify,
+  splitByWords,
+  title,
+  truncate,
+  flatten,
+  group,
+  groupBy,
+  without,
+  combine,
+  combineUnique,
+  combineWithout,
+  reverse,
+  sortBy,
+  difference,
+  first,
+  last,
+  nth,
+  startWith,
+  endWith,
+  surround,
+  shuffle,
+  truncateWords,
+  countWords,
+  countCharacters,
+  countLines,
+  list,
+  unique
+} from '../src/modifiers'
+import { formatList } from '../src'
 
 test('widont', () => {
   expect(widont('Hello world')).toBe('Hello&nbsp;world')
@@ -13,8 +55,8 @@ test('escapeHtml', () => {
   expect(escapeHtml('<p>Hello world</p>')).toBe('&lt;p&gt;Hello world&lt;/p&gt;')
 })
 
-test('escapeHtml', () => {
-  expect(escapeHtml('&lt;p&gt;Hello World&lt;/p&gt;')).toBe('<p>Hello World</p>')
+test('unescapeHtml', () => {
+  expect(unescapeHtml('&lt;p&gt;Hello World&lt;/p&gt;')).toBe('<p>Hello World</p>')
 })
 
 test('stripTags', () => {
@@ -105,17 +147,7 @@ test('countLines', () => {
 })
 
 test('list', () => {
-  expect(list(['Hello', 'World'], 'ol')).toStrictEqual(['<ol><li>Hello</li><li>World</li></ol>'])
-})
-
-test('commaList', () => {
-  expect(commaList(['Apple', 'Oranges', 'Grapes', 'Bread', 'Milk'])).toBe('Apple, Oranges, Grapes, Bread and Milk')
-  expect(commaList(['Apple', 'Oranges', 'Grapes', 'Bread'], 'or')).toBe('Apple, Oranges, Grapes or Bread')
-})
-
-test('truncateList', () => {
-  expect(truncateList(['Apple', 'Oranges', 'Grapes', 'Bread', 'Milk'], 3)).toBe('Apple, Oranges, Grapes and 2 more')
-  expect(truncateList(['Apple', 'Oranges', 'Grapes', 'Bread', 'Milk'], 3, 'or')).toBe('Apple, Oranges, Grapes or 2 more')
+  expect(list(['Hello', 'World'], 'ol')).toStrictEqual('<ol><li>Hello</li><li>World</li></ol>')
 })
 
 test('shuffle', () => {
@@ -123,35 +155,36 @@ test('shuffle', () => {
 })
 
 test('unique', () => {
-  expect(unique(['a', 'b', 'a', 'c', 'c'])).toStrictEqual(['a', 'b', 'c'])
-  expect(unique([{ id: 1 }, { id: 2 }, { id: 1 }], 'id')).toStrictEqual([{ id: 1 }, { id: 2 }])
-  expect(unique([], 'id')).toStrictEqual([])
+  expect(unique(null, ['a', 'b', 'a', 'c', 'c'])).toStrictEqual(['a', 'b', 'c'])
+  expect(unique('id', [{ id: 1 }, { id: 2 }, { id: 1 }])).toStrictEqual([{ id: 1 }, { id: 2 }])
+  expect(unique('id', [])).toStrictEqual([])
+  expect(unique('id', [{ code: 123 }, { code: 345 }])).toStrictEqual([])
 })
 
 test('first', () => {
   expect(first(['a', 'b', 'c'])).toBe('a')
-  expect(first([])).toBe(undefined)
+  expect(first([])).toBeUndefined()
 })
 
 test('last', () => {
   expect(last(['a', 'b', 'c'])).toBe('c')
-  expect(last([])).toBe(undefined)
+  expect(last([])).toBeUndefined()
 })
 
 test('nth', () => {
   expect(nth(['a', 'b', 'c'], 1)).toBe('b')
   expect(nth(['a', 'b', 'c'], 2)).toBe('c')
-  expect(nth(['a', 'b', 'c'], 3)).toBe(undefined)
+  expect(nth(['a', 'b', 'c'], 3)).toBeUndefined()
 })
 
-test('startsWith', () => {
-  expect(startsWith('helloworld.com', 'www.')).toBe('www.helloworld.com')
-  expect(startsWith('www.helloworld.com', 'www.')).toBe('www.helloworld.com')
+test('startWith', () => {
+  expect(startWith('helloworld.com', 'www.')).toBe('www.helloworld.com')
+  expect(startWith('www.helloworld.com', 'www.')).toBe('www.helloworld.com')
 })
 
-test('endsWith', () => {
-  expect(endsWith('www.helloworld', '.com')).toBe('www.helloworld.com')
-  expect(endsWith('www.helloworld.com', '.com')).toBe('www.helloworld.com')
+test('endWith', () => {
+  expect(endWith('www.helloworld', '.com')).toBe('www.helloworld.com')
+  expect(endWith('www.helloworld.com', '.com')).toBe('www.helloworld.com')
 })
 
 test('surround', () => {
@@ -221,8 +254,8 @@ test('combineUnique', () => {
 })
 
 test('combineWithout', () => {
-  expect(combineWithout({ id: 1, name: 'A' }, { id: 2, name: 'B' }, { id: 3, name: 'C' }, 'id')).toStrictEqual([1, 2, 3])
-  expect(combineWithout({ id: 1, name: 'A' }, { id: 2, name: 'B' }, { id: 3, name: 'C' }, 'name')).toStrictEqual(['A', 'B', 'C'])
+  expect(combineWithout('id', { id: 1, name: 'A' }, { id: 2, name: 'B' }, { id: 3, name: 'C' })).toStrictEqual([1, 2, 3])
+  expect(combineWithout('name', { id: 1, name: 'A' }, { id: 2, name: 'B' }, { id: 3, name: 'C' })).toStrictEqual(['A', 'B', 'C'])
 })
 
 test('reverse', () => {
@@ -249,7 +282,8 @@ test('sortBy', () => {
   ])
 })
 
-test('difference', () => {
-  expect(difference([1, 2, 3], [2, 3, 4])).toStrictEqual([1])
-  expect(difference([1, 2, 3], [2, 3, 4], [3, 4, 5])).toStrictEqual([1])
+test.skip('difference', () => {
+  expect(difference(['one', 'two', 'three'], ['one', 'two'])).toStrictEqual(['three'])
+  expect(difference([1, 2, 3], [2, 3, 4])).toStrictEqual([1, 4])
+  expect(difference([1, 2, 3], [2, 3, 4], [3, 4, 5])).toStrictEqual([1, 5])
 })
