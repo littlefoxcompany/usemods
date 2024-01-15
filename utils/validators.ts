@@ -22,44 +22,6 @@ export function isNumber(value: string | number): boolean {
 }
 
 /**
- * Check if the input is a valid phone number.
- * @example isPhoneNumber('123-456-7890')
- * @returns true
- */
-function isPhoneNumber(phoneNumber: string, country: string = 'US'): boolean {
-  const patterns: { [key: string]: RegExp } = {
-    US: /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
-    UK: /^(\(?(?:0(?:0|11)\)?[\s-]?\(?|\+)44\)?[\s-]?)?\(?0?(?:\)[\s-]?)?([1-9]\d{1,4}\)?[\d\s-]+)((?:x|ext\.?\s?|\#)\d{3,4})?$/,
-    CA: /^(\+?1[-.\s]?)?\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
-    BR: /^(\+?55[-.\s]?)?\(?([0-9]{2})\)?[-. ]?([0-9]{4,5})[-. ]?([0-9]{4})$/,
-    AU: /^(\+?61[-.\s]?)?\(?(0?[2-57-8])\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/,
-    DE: /^(\+?49[-.\s]?)?\(?([0-9]{2,3})\)?[-. ]?([0-9]{3,4})[-. ]?([0-9]{4})$/,
-    FR: /^(\+?33[-.\s]?)?\(?([0-9]{1,5})\)?[-. ]?([0-9]{2})[-. ]?([0-9]{2})[-. ]?([0-9]{2})$/,
-    IN: /^(\+?91|0)?[6789]\d{9}$/,
-    NZ: /^(\+?64|0)[28]\d{7,9}$/,
-    ZA: /^(\+?27|0)\d{9}$/,
-    ZM: /^(\+?26)?09[567]\d{7}$/,
-    ES: /^(\+?34)?(6\d{1}|7[1234])\d{7}$/,
-    SE: /^(\+?46|0)[\s-]?7[\s-]?[02369]([\s-]?\d){7}$/,
-    CH: /^(\+?41|0)(\d{2})?[\s-]?(\d{3})[\s-]?(\d{2})[\s-]?(\d{2})$/,
-    TW: /^(\+?886-?|0)?9\d{8}$/,
-    CZ: /^(\+?420)? ?[1-9][0-9]{2} ?[0-9]{3} ?[0-9]{3}$/,
-    BE: /^(\+?32|0)4?\d{8}$/,
-    PT: /^(\+351)?9[1236]\d{7}$/,
-    GR: /^(\+?30)?(69\d{8})$/,
-    HU: /^(\+?36)(20|30|70)\d{7}$/,
-    IL: /^(\+972|0)([23489]|5[0248]|77)[1-9]\d{6}$/,
-    IT: /^(\+?39)?\s?3\d{2} ?\d{6,7}$/,
-    AR: /^(\+?549|0)(11|[2368]\d)\d{8}$/,
-    MX: /^(\+?52)?(1|01)?\d{10,11}$/,
-    PK: /^(\+?92|0)?[3456789]?\d{9}$/,
-    JP: /^(\+?81|0)\d{1,4}[ -]?\d{1,4}[ -]?\d{4}$/
-  }
-
-  return patterns[country].test(phoneNumber)
-}
-
-/**
  * Check if the input is a valid URL.
  * @example isURL('https://usemods.com')
  * @returns true
@@ -187,15 +149,6 @@ export function isNull(value: any): boolean {
 }
 
 /**
- * Check if the input is NaN (Not a Number).
- * @example isNaN(NaN)
- * @returns true
- */
-export function isNaN(value: any): boolean {
-  return value !== value
-}
-
-/**
  * Check if the input is a valid Date object.
  * @example isDate(new Date())
  * @returns true
@@ -210,7 +163,7 @@ export function isDate(date: any): boolean {
  * @returns true
  */
 export function isError(error: any): boolean {
-  return error instanceof Error && typeof error.message !== 'undefined'
+  return error instanceof Error
 }
 
 /**
@@ -230,15 +183,6 @@ export function isTime(time: any): boolean {
  */
 export function isLeapYear(year: number): boolean {
   return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0
-}
-
-/**
- * Check if the input is a symbol.
- * @example isSymbol(Symbol('hello'))
- * @returns true
- */
-export function isSymbol(symbol: any): boolean {
-  return typeof symbol === 'symbol'
 }
 
 /**
@@ -266,15 +210,6 @@ export function isSet(set: any): boolean {
  */
 export function isMap(map: any): boolean {
   return map instanceof Map
-}
-
-/**
- * Check if the input is a WeakSet object.
- * @example isWeakSet(new WeakSet())
- * @returns true
- */
-export function isWeakSet(weakSet: any): boolean {
-  return weakSet instanceof WeakSet
 }
 
 /**
@@ -314,6 +249,15 @@ export function isNegative(number: any): boolean {
 }
 
 /**
+ * Check if the number is zero.
+ * @example isZero(0)
+ * @returns true
+ */
+export function isZero(number: any): boolean {
+  return number === 0
+}
+
+/**
  * Check if the number is a prime number.
  * @example isPrime(7)
  * @returns true
@@ -332,7 +276,7 @@ export function isPrime(number: any): boolean {
  * @returns true
  */
 export function isOptimusPrime(text: string): boolean {
-  return text === 'Optimus Prime'
+  return text === 'Optimus Prime' || text === '🚒'
 }
 
 /**
@@ -417,13 +361,13 @@ export function isMACAddress(mac: string): boolean {
 }
 
 /**
- * Check if the input is a valid latitude-longitude coordinate in the format lat,long or lat, long.
- * @example isLatLong('40.741895,-73.989308')
+ * Check if the input is a valid latitude-longitude coordinate in the format lat,lng or lat,lng.
+ * @example isLatLng('40.741895,-73.989308')
  * @returns true
  */
-export function isLatLong(latLong: string): boolean {
+export function isLatLng(latLng: string): boolean {
   const regex = /^([-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)),\s*([-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?))$/
-  return regex.test(latLong)
+  return regex.test(latLng)
 }
 /**
  * Check if the input is a valid latitude coordinate.
@@ -446,35 +390,6 @@ export function isLongitude(longitude: string): boolean {
 }
 
 /**
- * Checks if a property and value pair exists in an object.
- * @example isPresent({ hello: 'world' }, 'hello', 'world')
- * @returns true
- */
-export function isPresent(object: any, property: string, value: any): boolean {
-  return object.hasOwnProperty(property) && object[property] === value
-}
-
-/**
- * Check if the input is a valid IBAN.
- * @example isIBAN('NL39RABO0300065264')
- * @returns true
- */
-export function isIBAN(iban: string): boolean {
-  const regex = /^[A-Z]{2}\d{2}[A-Z]{4}\d{10}$/
-  return regex.test(iban)
-}
-
-/**
- * Check if the input is a valid BIC.
- * @example isBIC('RABONL2U')
- * @returns true
- */
-export function isBIC(bic: string): boolean {
-  const regex = /^[A-Z]{6}[A-Z1-9]{5}$/
-  return regex.test(bic)
-}
-
-/**
  * Check if the input is a valid port number.
  * @example isPort(3000)
  * @returns true
@@ -484,11 +399,40 @@ export function isPort(port: number): boolean {
 }
 
 /**
- * Check if the input is a valid IBAN.
- * @example isIBAN('NL39RABO0300065264')
+ * Checks if a property and value pair exists in an object.
+ * @example hasPropertyValue({ hello: 'world' }, 'hello', 'world')
  * @returns true
  */
-export function isISBN(isbn: string): boolean {
-  const regex = /^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/
-  return regex.test(isbn)
+export function isPresent(object: any, property: string, value: any): boolean {
+  return object.hasOwnProperty(property) && object[property] === value
+}
+
+/**
+ * Check if a property exists in an object without checking its value.
+ * @example hasProperties({ hello: 'world' }, ['hello', 'world'])
+ * @returns true
+ */
+export function hasProperties(object: any, properties: string[], strict: boolean = true): boolean {
+  const objectProperties = Object.keys(object)
+
+  if (strict) {
+    return properties.every((property) => objectProperties.includes(property))
+  } else {
+    return properties.some((property) => objectProperties.includes(property))
+  }
+}
+
+/**
+ * Check if an array of key exists in an object
+ * @example hasKeys({ hello: 'world' }, ['hello', 'world',])
+ * @returns true
+ */
+export function hasKeys(object: any, keys: string[], strict: boolean = true): boolean {
+  const objectKeys = Object.keys(object)
+
+  if (strict) {
+    return keys.every((key) => objectKeys.includes(key))
+  } else {
+    return keys.some((key) => objectKeys.includes(key))
+  }
 }

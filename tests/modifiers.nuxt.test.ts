@@ -13,8 +13,8 @@ test('escapeHtml', () => {
   expect(escapeHtml('<p>Hello world</p>')).toBe('&lt;p&gt;Hello world&lt;/p&gt;')
 })
 
-test('showHtml', () => {
-  expect(showHtml('&lt;p&gt;Hello World&lt;/p&gt;')).toBe('<p>Hello World</p>')
+test('escapeHtml', () => {
+  expect(escapeHtml('&lt;p&gt;Hello World&lt;/p&gt;')).toBe('<p>Hello World</p>')
 })
 
 test('stripTags', () => {

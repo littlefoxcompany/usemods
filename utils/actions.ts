@@ -1,8 +1,8 @@
 // title: Actions
-// description: A collection of useful actionss
+// description: A collection of useful actions
 
 /**
- * Smoothly scroll to an anchor on the page
+ * Scrolls to the element with the specified ID.
  * @example scrollToAnchor('#my-anchor')
  */
 export function scrollToAnchor(id: string, callback?: () => void) {
@@ -54,6 +54,22 @@ export function scrollToBottom(callback?: () => void) {
 }
 
 /**
+ * Toggles the body scroll with the specified class name
+ * @example toggleBodyScroll('overflow-hidden')
+ */
+export function toggleBodyScroll(className: string) {
+  document.body.classList.toggle(className)
+}
+
+/**
+ * Toggles the element scroll
+ * @example toggleElementScroll(document.querySelector('#my-element'))
+ */
+export function toggleElementScroll(element: HTMLElement, className: string) {
+  element.classList.toggle(className)
+}
+
+/**
  * Copies a text to the clipboard
  * @example copyToClipboard()
  */
@@ -61,14 +77,10 @@ export function copyToClipboard(text: string, callback?: () => void) {
   navigator.clipboard
     .writeText(text)
     .then(() => {
-      if (callback) {
-        callback()
-      }
+      if (callback) callback()
     })
     .catch((error) => {
-      if (callback) {
-        callback()
-      }
+      if (callback) callback()
     })
 }
 
@@ -77,11 +89,8 @@ export function copyToClipboard(text: string, callback?: () => void) {
  * @example toggleFullScreen()
  */
 export function toggleFullScreen() {
-  if (document.fullscreenElement) {
-    document.exitFullscreen()
-  } else {
-    document.documentElement.requestFullscreen()
-  }
+  if (document.fullscreenElement) document.exitFullscreen()
+  else document.documentElement.requestFullscreen()
 }
 
 /**
@@ -107,22 +116,6 @@ export function redirect(url: string) {
  */
 export function resetForm(form: HTMLFormElement) {
   form.reset()
-}
-
-/**
- * Toggles the body scroll
- * @example toggleBodyScroll()
- */
-export function toggleBodyScroll() {
-  document.body.classList.toggle('overflow-hidden')
-}
-
-/**
- * Toggles the element scroll
- * @example toggleElementScroll(document.querySelector('#my-element'))
- */
-export function toggleElementScroll(element: HTMLElement) {
-  element.classList.toggle('overflow-hidden')
 }
 
 /**
@@ -157,7 +150,7 @@ export function focusOnLast(element: HTMLElement) {
 }
 
 /**
- *  sets up a keyboard trap within an HTML element, allowing the focus to cycle between the first and last focusable elements when the Tab key is pressed.
+ *  Sets up a keyboard trap within an HTML element, allowing the focus to cycle between the first and last focusable elements when the Tab key is pressed.
  * @example focusTrap(document.querySelector('#my-element'))
  */
 export function focusTrap(element: HTMLElement) {

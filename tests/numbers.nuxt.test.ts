@@ -1,5 +1,4 @@
 // @vitest-environment nuxt
-import { addSyntheticLeadingComment } from '@ts-morph/common/lib/typescript'
 import { expect, test } from 'vitest'
 
 // import * as mod from '../utils/numbers'
@@ -29,7 +28,26 @@ test('median', () => {
   expect(median([])).toBeNaN()
 })
 
+test('mode', () => {
+  expect(mode([1, 2, 3])).toBeNull()
+  expect(mode([1, 2, 2, 3, 4])).toBe(2)
+  expect(mode([-5, -3, -1, -1, 0, 2])).toBe(-1)
+  expect(mode([42])).toBe(42)
+  expect(mode([])).toBeNull()
+})
+
 test('clamp', () => {
   expect(clamp(1, 10, 20)).toBe(10)
   expect(clamp(15, 10, 20)).toBe(15)
+})
+
+test('differenceAsPercentage', () => {
+  expect(differenceAsPercentage(1, 1)).toBe(0)
+  expect(differenceAsPercentage(2, 1)).toBe(-50)
+  expect(differenceAsPercentage(1, 2)).toBe(100)
+  expect(differenceAsPercentage(3, 1, 0)).toBe(-67)
+  expect(differenceAsPercentage(3, 1, 1)).toBe(-66.7)
+  expect(differenceAsPercentage(3, 1, 2)).toBe(-66.67)
+  expect(differenceAsPercentage(1.123456789, 2.123456789)).toBe(89.0109891)
+  expect(differenceAsPercentage(1.123456789, 2.123456789, 2)).toBe(89.01)
 })

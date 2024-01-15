@@ -35,7 +35,7 @@ export function escapeHtml(text: string): string {
  * @example unescapeHtml('&lt;p&gt;Hello World&lt;/p&gt;')
  * @returns <p>Hello World</p>
  */
-export function showHtml(text: string): string {
+export function unescapeHtml(text: string): string {
   return text.replace(/&lt;/g, '<').replace(/&gt;/g, '>')
 }
 
@@ -311,26 +311,26 @@ export function sentenceCase(text: string): string {
 
 /**
  * Adds a prefix to a string if it doesn't already start with the prefix.
- * @example startsWith('usemods.com', 'https://')
+ * @example startWith('usemods.com', 'https://')
  * @returns https://usemods.com
  */
-export function startsWith(text: string, startsWith: string): string {
-  if (text.startsWith(startsWith)) {
+export function startWith(text: string, start: string): string {
+  if (text.startsWith(start)) {
     return text
   } else {
-    return startsWith + text
+    return start + text
   }
 }
 
 /**
  * Removes a prefix from a string if it starts with the prefix.
- * @example startsWithout('https://usemods.com', 'https://')
+ * @example startWithout('https://usemods.com', 'https://')
  * @returns usemods.com
  */
 
-export function startsWithout(text: string, prefix: string): string {
-  if (text.startsWith(prefix)) {
-    return text.substring(prefix.length)
+export function startWithout(start: string, text: string): string {
+  if (text.startsWith(start)) {
+    return text.substring(start.length)
   } else {
     return text
   }
@@ -338,25 +338,25 @@ export function startsWithout(text: string, prefix: string): string {
 
 /**
  * Adds a suffix to a string if it doesn't already end with the suffix.
- * @example endsWith('https://usemods', '.com')
+ * @example endWith('https://usemods', '.com')
  * @returns https://usemods.com
  */
-export function endsWith(text: string, endsWith: string): string {
-  if (text.endsWith(endsWith)) {
+export function endWith(text: string, end: string): string {
+  if (text.endsWith(end)) {
     return text
   } else {
-    return text + endsWith
+    return text + end
   }
 }
 
 /**
  * Removes a suffix from a string if it ends with the suffix.
- * @example endsWithout('https://usemods.com.au', '.au')
+ * @example endWithout('https://usemods.com.au', '.au')
  * @returns https://usemods.com
  */
-export function endsWithout(text: string, suffix: string): string {
-  if (text.endsWith(suffix)) {
-    return text.substring(0, text.length - suffix.length)
+export function endWithout(text: string, end: string): string {
+  if (text.endsWith(end)) {
+    return text.substring(0, text.length - end.length)
   } else {
     return text
   }
@@ -370,17 +370,17 @@ export function endsWithout(text: string, suffix: string): string {
  * @example surround('https://', 'usemods', '.com')
  * @returns https://usemods.com
  */
-export function surround(startsWith: string, text: string, endsWith: string): string {
-  if (text.startsWith(startsWith) && text.endsWith(endsWith)) {
+export function surround(start: string, text: string, end: string): string {
+  if (text.startsWith(start) && text.endsWith(end)) {
     return text
   }
 
-  if (text.startsWith(startsWith)) {
-    return text + endsWith
+  if (text.startsWith(start)) {
+    return text + end
   }
 
-  if (text.endsWith(endsWith)) {
-    return startsWith + text
+  if (text.endsWith(end)) {
+    return start + text
   }
 
   return startsWith + text + endsWith
