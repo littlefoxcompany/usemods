@@ -93,7 +93,7 @@ export function formatPercentage(number: number): string {
 
 /**
  * Create a string of comma-separated values from an array of strings with an optional conjunction.
- * @param items - The array of strings.
+ * @param items - The array of strings. strings.
  * @param limit - The maximum number of items to include before truncating.
  * @param conjunction - The conjunction before the last item e.g. "and" or "or".
  * @example formatList(['one', 'two', 'three'])
