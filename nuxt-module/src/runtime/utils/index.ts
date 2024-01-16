@@ -1,1 +1,1 @@
-export * from "../../../../package/dist/index"
+export * from '../../../../package/dist/index'
