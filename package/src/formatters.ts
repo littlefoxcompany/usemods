@@ -22,7 +22,7 @@ export function formatCurrency(number: number, decimals = 1, currency = 'USD'): 
 }
 
 /**
- * Format numbers into valuations displayed in thounsands, millions or billions
+ * Format numbers into valuations displayed in thousands, millions or billions
  * @example formatValuation(1234567890)
  * @returns $1.23B
  */
@@ -34,6 +34,25 @@ export function formatValuation(value: number, decimals = 1, currency = 'USD'): 
     maximumFractionDigits: decimals,
     style: 'currency',
     currency
+  })
+
+  try {
+    return formatter.format(value)
+  } catch (error) {
+    return ''
+  }
+}
+
+/**
+ * Format numbers into thousands, millions or billions
+ * @example formatNumber(1234567890)
+ */
+export function formatNumber(value: number, decimals = 1): string {
+  const formatter = new Intl.NumberFormat('en-US', {
+    notation: 'compact',
+    compactDisplay: 'short',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: decimals
   })
 
   try {

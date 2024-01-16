@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "mods-module-playground",
+  "name": "mods-module-docs",
   "type": "module",
   "scripts": {
     "dev": "nuxi dev",
@@ -8,6 +8,8 @@
     "generate": "nuxi generate"
   },
   "devDependencies": {
-    "nuxt": "latest"
+    "@nuxtjs/tailwindcss": "^6.10.4",
+    "nuxt": "latest",
+    "nuxt-icon": "^0.6.8"
   }
 }

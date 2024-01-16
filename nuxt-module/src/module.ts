@@ -1,23 +1,18 @@
-import {
-  defineNuxtModule,
-  addPlugin,
-  createResolver,
-  addImports,
-} from "@nuxt/kit"
+import { defineNuxtModule, addPlugin, createResolver, addImports } from '@nuxt/kit'
 
-import * as utils from "./runtime/utils/index"
+import * as utils from './runtime/utils/index'
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {}
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: "mods-module",
-    configKey: "modsModule",
+    name: 'mods-module',
+    configKey: 'modsModule'
   },
   // Default configuration options of the Nuxt module
   defaults: {
-    alias: [],
+    alias: []
   },
   setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
@@ -29,10 +24,10 @@ export default defineNuxtModule<ModuleOptions>({
       addImports({
         name: name,
         as: alias,
-        from: resolve("./runtime/utils/index.ts"),
+        from: resolve('./runtime/utils/index.ts')
       })
     }
 
-    addPlugin(resolve("./runtime/plugin"))
-  },
+    addPlugin(resolve('./runtime/plugin'))
+  }
 })
