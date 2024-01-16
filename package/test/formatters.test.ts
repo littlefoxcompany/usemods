@@ -1,5 +1,5 @@
 import { expect, test } from 'bun:test'
-import { formatCurrency, formatTime, formatList } from '../src/formatters'
+import { formatCurrency, formatDuration, formatList } from '../src/formatters'
 
 // @vitest-environment nuxt
 // import * as mod from '@/utils/formatters'
@@ -13,10 +13,10 @@ test('formatCurrency', () => {
   expect(formatCurrency(1000.95, 'AUD')).toBe('A$1,000.95')
 })
 
-test('formatTime', () => {
-  expect(formatTime(3600)).toBe('1hr')
-  expect(formatTime(3600 * 2 + 60)).toBe('2hr 1min')
-  expect(formatTime(3600 * 2 + 60 + 1)).toBe('2hr 1min 1s')
+test('formatDuration', () => {
+  expect(formatDuration(3600)).toBe('1hr')
+  expect(formatDuration(3600 * 2 + 60)).toBe('2hr 1min')
+  expect(formatDuration(3600 * 2 + 60 + 1)).toBe('2hr 1min 1s')
 })
 
 test('formatList', () => {

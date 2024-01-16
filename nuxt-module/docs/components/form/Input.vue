@@ -1,0 +1,29 @@
+<template>
+  <div>
+    <label v-if="label" class="text-zinc-600 pb-3 flex">{{ label }}</label>
+    <input
+      class="border border-white/5 flex px-4 py-3 font-mono text-sm bg-white/[2%] rounded-lg"
+      :type="type"
+      :placeholder="placeholder"
+      :value="modelValue"
+      @input="$emit('update:modelValue', $event.target.value)" />
+  </div>
+</template>
+
+<script setup lang="ts">
+  const props = defineProps({
+    modelValue: {
+      type: [String, Number]
+    },
+    placeholder: {
+      type: String
+    },
+    label: {
+      type: String
+    },
+    type: {
+      type: String,
+      default: 'text'
+    }
+  })
+</script>
