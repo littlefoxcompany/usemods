@@ -6,9 +6,11 @@
  * @example formatCurrency(1234.56)
  * @returns $1,234.56
  */
-export function formatCurrency(number: number, currency = 'USD'): string {
+export function formatCurrency(number: number, decimals = 1, currency = 'USD'): string {
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: decimals,
     currency
   })
   try {
@@ -24,7 +26,7 @@ export function formatCurrency(number: number, currency = 'USD'): string {
  * @example formatValuation(1234567890)
  * @returns $1.23B
  */
-export function formatValuation(value: number, currency = 'USD', decimals = 1): string {
+export function formatValuation(value: number, decimals = 1, currency = 'USD'): string {
   const formatter = new Intl.NumberFormat('en-US', {
     notation: 'compact',
     compactDisplay: 'short',
@@ -43,23 +45,31 @@ export function formatValuation(value: number, currency = 'USD', decimals = 1): 
 
 /**
  * Format time into hours, minutes, and seconds
- * @example formatTime(3723)
+ * @example formatDuration(3723)
  * @returns 1hr 2min 3s
  */
-export function formatTime(seconds: number): string {
-  const hrs = Math.floor(seconds / 3600)
-  const mins = Math.floor((seconds % 3600) / 60)
-  const s = Math.floor(seconds % 60)
+export function formatDuration(seconds: number): string {
+  const timeUnits = [
+    { unit: 'yr', secondsInUnit: 31536000 },
+    { unit: 'mo', secondsInUnit: 2628000 },
+    { unit: 'wk', secondsInUnit: 604800 },
+    { unit: 'd', secondsInUnit: 86400 },
+    { unit: 'hr', secondsInUnit: 3600 },
+    { unit: 'min', secondsInUnit: 60 },
+    { unit: 's', secondsInUnit: 1 }
+  ]
+
+  let remainingSeconds = seconds
   let formattedTime = ''
-  if (hrs > 0) {
-    formattedTime += `${hrs}hr `
+
+  for (const { unit, secondsInUnit } of timeUnits) {
+    const count = Math.floor(remainingSeconds / secondsInUnit)
+    if (count > 0) {
+      formattedTime += `${count}${unit} `
+      remainingSeconds -= count * secondsInUnit
+    }
   }
-  if (mins > 0) {
-    formattedTime += `${mins}min `
-  }
-  if (s > 0) {
-    formattedTime += `${s}s `
-  }
+
   return formattedTime.trim()
 }
 

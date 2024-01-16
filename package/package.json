@@ -5,6 +5,8 @@
   "types": "dist/index.d.ts",
   "description": "",
   "scripts": {
+    "test": "bun --watch test",
+    "watch": "bun run --watch build.mjs --watch src/formatters",
     "build": "bun run build.mjs",
     "prepublishOnly": "bun run build"
   },

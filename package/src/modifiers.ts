@@ -1,16 +1,15 @@
 // title: Modifiers
 // description: Modifiers are a key feature of Mods that allow you to easily modify and enhance your content. They are small pieces of code that can be applied to your JS to add functionality, validation or style.
 
-import { formatTime } from './formatters'
+import { formatDuration } from './formatters'
 
 /**
  * Adds a space between the last two words in a string.
- * @example widont('Cool cool cool')
+ * @example widont()
  * @returns cool cool&nbsp;cool
  */
 export function widont(text: string): string {
   const space = text.lastIndexOf(' ')
-
   return text.substring(0, space) + '&nbsp;' + text.substring(space + 1)
 }
 
@@ -180,7 +179,7 @@ export function readingTime(text: string, wordsPerMinute = 200): string {
   const minutes = words / wordsPerMinute
   const readTime = Math.ceil(minutes)
 
-  return formatTime(readTime)
+  return formatDuration(readTime)
 }
 
 /**
