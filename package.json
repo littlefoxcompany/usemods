@@ -8,7 +8,9 @@
     "test": "bun --watch test",
     "dev": "bun run builder.mjs",
     "build": "bun run build.mjs",
-    "prepublishOnly": "bun run build"
+    "prepublishOnly": "bun run build",
+    "module:dev": "npm i && npm run dev --prefix ./nuxt-module",
+    "module:release:": "npm i && npm run release --prefix ./nuxt-module"
   },
   "files": [
     "dist"
