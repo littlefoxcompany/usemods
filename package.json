@@ -19,11 +19,13 @@
   "contributors": [
     {
       "name": "Jeremy Butler",
-      "email": "jeremy@littlefox.studio"
+      "email": "jeremy@littlefox.studio",
+      "url": "https://github.com/jrmymbtlr"
     },
     {
       "name": "Phillip Hartin",
-      "email": "phillip@littlefox.studio"
+      "email": "phillip@littlefox.studio",
+      "url": "https://github.com/pjhartin"
     }
   ],
   "files": [
