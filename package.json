@@ -1,6 +1,6 @@
 {
-  "name": "usemods",
-  "version": "0.0.0",
+  "name": "@littlefoxstudio/usemods",
+  "version": "0.0.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "description": "Zippy little modifiers and utilities for your frontend.",
@@ -16,7 +16,14 @@
     "dist"
   ],
   "keywords": [
-    "bun"
+    "usemods",
+    "utils",
+    "helpers",
+    "js",
+    "vue",
+    "nuxt",
+    "react",
+    "next"
   ],
   "license": "MIT",
   "homepage": "https://github.com/LittleFoxCompany/usemods#readme",
