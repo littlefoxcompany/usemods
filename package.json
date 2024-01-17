@@ -38,9 +38,9 @@
     "url": "git+https://github.com/LittleFoxCompany/usemods.git"
   },
   "scripts": {
-    "test": "bun --watch test",
     "dev": "bun run builder.mjs",
     "build": "bun run build.mjs",
+    "test": "bun --watch test test/*",
     "prepublishOnly": "bun run build",
     "module:dev": "npm i && npm run dev --prefix ./nuxt-module",
     "module:release:": "npm i && npm run release --prefix ./nuxt-module"
