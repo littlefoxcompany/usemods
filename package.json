@@ -1,20 +1,7 @@
 {
   "name": "@littlefoxstudio/usemods",
   "version": "0.0.1",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "description": "Zippy little modifiers and utilities for your frontend.",
-  "scripts": {
-    "test": "bun --watch test",
-    "dev": "bun run builder.mjs",
-    "build": "bun run build.mjs",
-    "prepublishOnly": "bun run build",
-    "module:dev": "npm i && npm run dev --prefix ./nuxt-module",
-    "module:release:": "npm i && npm run release --prefix ./nuxt-module"
-  },
-  "files": [
-    "dist"
-  ],
   "keywords": [
     "usemods",
     "utils",
@@ -25,14 +12,37 @@
     "react",
     "next"
   ],
-  "license": "MIT",
   "homepage": "https://github.com/LittleFoxCompany/usemods#readme",
+  "bugs": "https://github.com/LittleFoxCompany/usemods/issues",
+  "license": "MIT",
+  "author": "Jeremy Butler <jeremy@littlefox.studio>",
+  "contributors": [
+    {
+      "name": "Jeremy Butler",
+      "email": "jeremy@littlefox.studio"
+    },
+    {
+      "name": "Phillip Hartin",
+      "email": "phillip@littlefox.studio"
+    }
+  ],
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/LittleFoxCompany/usemods.git"
   },
-  "bugs": "https://github.com/LittleFoxCompany/usemods/issues",
-  "author": "Jeremy Butler <jeremy@littlefox.studio>",
+  "scripts": {
+    "test": "bun --watch test",
+    "dev": "bun run builder.mjs",
+    "build": "bun run build.mjs",
+    "prepublishOnly": "bun run build",
+    "module:dev": "npm i && npm run dev --prefix ./nuxt-module",
+    "module:release:": "npm i && npm run release --prefix ./nuxt-module"
+  },
   "devDependencies": {
     "@types/web": "^0.0.119",
     "bun-plugin-dts": "^0.2.1",
