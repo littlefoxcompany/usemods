@@ -2,13 +2,11 @@ import { readFile, writeFile, readdir } from 'fs/promises'
 import { resolve, extname, basename, join } from 'path'
 
 // Define the directory path
-const directoryPath = resolve('../package/src/')
-// const outputDirectory = resolve('./dist/')
-const contentDirectory = resolve('./content/2.functions')
+const directoryPath = resolve('./src/')
+const contentDirectory = resolve('./nuxt-module/docs/content/1.docs')
 
 const functionPattern = /\/\*\*[\s\S]*?\*\/\s*(export\s+function\s+[a-zA-Z0-9_]+\([^)]*\)\s*:\s*[a-zA-Z]+\s*(?:{[\s\S]*?})?)?/gms
 const metadataPattern = /\/\/\s+(title|description):\s+([^\r\n]*)/g
-// const subtitlePattern = /\/\/ <subtitle>(.+?)\/\/ <\/subtitle>/gs
 
 async function processFiles() {
   try {
@@ -23,9 +21,6 @@ async function processFiles() {
       await writeFile(join(contentDirectory, `${basename(tsFile, '.ts')}.md`), generateMarkdown(tsContent))
       console.log('Markdown documentation generated for:', tsFile)
     }
-
-    // Write combined file
-    // await writeFile(join(outputDirectory, 'mods.ts'), combinedTsFile)
   } catch (error) {
     console.error('Error processing files:', error)
   }
@@ -54,9 +49,9 @@ function generateMarkdown(tsContent: string): string {
     const returns = (jsDoc.match(/@returns?\s+([^\r\n]*)/) || [])[1] || ''
 
     if (name) markdownContent += `### ${name}\n\n`
+    if (name) markdownContent += `::${name}\n::\n\n`
     if (description) markdownContent += `${description}\n\n`
     if (example) markdownContent += '```js [js]\n' + example + '\n```\n\n'
-    if (example) markdownContent += `::example{code=${example}}\n::\n\n`
     if (returns) markdownContent += `**Returns:** ${returns}\n\n`
   }
 

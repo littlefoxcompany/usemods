@@ -1,5 +1,5 @@
 <template>
-  <main class="bg-zinc-950 text-white min-h-screen h-full">
+  <main>
     <NavMain />
     <div class="container mx-auto flex min-h-screen">
       <nav class="w-full max-w-[200px] p-4">
@@ -11,5 +11,3 @@
     </div>
   </main>
 </template>
-
-<script setup lang="ts"></script>

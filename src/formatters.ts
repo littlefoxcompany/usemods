@@ -45,7 +45,7 @@ export function formatValuation(value: number, decimals = 1, currency = 'USD'): 
 
 /**
  * Format numbers into thousands, millions or billions
- * @example formatNumber(1234567890)
+ * @param decimals - The number of decimal places to display
  */
 export function formatNumber(value: number, decimals = 1): string {
   const formatter = new Intl.NumberFormat('en-US', {

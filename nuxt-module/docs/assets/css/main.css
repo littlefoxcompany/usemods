@@ -1,0 +1,52 @@
+@import '_scrollbar.css';
+body {
+  @apply w-screen select-text overflow-x-clip bg-zinc-900 text-white antialiased
+  selection:bg-blue-800 selection:text-white;
+}
+
+/* A better container */
+.container {
+  width: 100%;
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: calc(env(safe-area-inset-left, 0rem) + 1.1rem);
+  padding-right: calc(env(safe-area-inset-right, 0rem) + 1.1rem);
+
+  @media screen(md) {
+    padding-left: calc(env(safe-area-inset-left, 0rem) + 2rem);
+    padding-right: calc(env(safe-area-inset-right, 0rem) + 2rem);
+  }
+
+  @media screen(xl) {
+    padding-left: calc(env(safe-area-inset-left, 0rem) + 3rem);
+    padding-right: calc(env(safe-area-inset-right, 0rem) + 3rem);
+  }
+}
+
+.link {
+  @apply relative inline-flex text-white/75 hover:text-white;
+
+  &:before {
+    @apply absolute bottom-0 block h-px w-full translate-y-2 bg-white/50 opacity-0 transition-all;
+    content: '';
+  }
+
+  &:hover {
+    &:before {
+      @apply translate-y-1 opacity-100;
+    }
+  }
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}

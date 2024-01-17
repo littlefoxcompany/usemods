@@ -9,7 +9,8 @@
     "dev": "bun run builder.mjs",
     "build": "bun run build.mjs",
     "prepublishOnly": "bun run build",
-    "module:dev": "npm i && npm run dev --prefix ./nuxt-module",
+    "docs": "npm i && npm run dev --prefix ./nuxt-module",
+    "docs:generate": "bun run docs.ts",
     "module:release:": "npm i && npm run release --prefix ./nuxt-module"
   },
   "files": [
