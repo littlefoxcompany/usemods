@@ -2,21 +2,16 @@ This file contains functions that are related to numbers.
 
 ### random
 
-::random
-::
-
 Generates a random integer between the specified minimum and maximum values.
 
 ```js [js]
 random(1, 10)
 ```
 
-**Returns:** 5
+::random
+::
 
 ### sum
-
-::sum
-::
 
 Calculates the sum of an array of numbers.
 
@@ -24,12 +19,10 @@ Calculates the sum of an array of numbers.
 sum([1, 2, 3])
 ```
 
-**Returns:** 6
+::sum
+::
 
 ### average
-
-::average
-::
 
 Calculates the mean of an array of numbers.
 
@@ -37,12 +30,10 @@ Calculates the mean of an array of numbers.
 average([1, 2, 3])
 ```
 
-**Returns:** 2
-
-### average
-
 ::average
 ::
+
+### average
 
 Calculates the mean of an array of numbers.
 
@@ -50,12 +41,10 @@ Calculates the mean of an array of numbers.
 average([1, 2, 3])
 ```
 
-**Returns:** 2
+::average
+::
 
 ### median
-
-::median
-::
 
 Calculates the median of an array of numbers.
 
@@ -63,12 +52,10 @@ Calculates the median of an array of numbers.
 median([1, 2, 3])
 ```
 
-**Returns:** 2
+::median
+::
 
 ### mode
-
-::mode
-::
 
 Calculates the mode of an array of numbers.
 
@@ -76,12 +63,10 @@ Calculates the mode of an array of numbers.
 mode([1, 2, 2, 3])
 ```
 
-**Returns:** 2
+::mode
+::
 
 ### min
-
-::min
-::
 
 Finds the minimum value in an array of numbers.
 
@@ -89,12 +74,10 @@ Finds the minimum value in an array of numbers.
 min([1, 2, 3])
 ```
 
-**Returns:** 1
+::min
+::
 
 ### max
-
-::max
-::
 
 Finds the maximum value in an array of numbers.
 
@@ -102,12 +85,10 @@ Finds the maximum value in an array of numbers.
 max([1, 2, 3])
 ```
 
-**Returns:** 3
+::max
+::
 
 ### clamp
-
-::clamp
-::
 
 Clamps a number between the specified minimum and maximum values.
 
@@ -115,12 +96,10 @@ Clamps a number between the specified minimum and maximum values.
 clamp(1, 10, 20)
 ```
 
-**Returns:** 10
+::clamp
+::
 
 ### minMax
-
-::minMax
-::
 
 Returns the minimum and maximum values in an array of numbers.
 
@@ -128,12 +107,10 @@ Returns the minimum and maximum values in an array of numbers.
 minMax([1, 2, 3, 4, 5])
 ```
 
-**Returns:** [1, 5]
+::minMax
+::
 
 ### range
-
-::range
-::
 
 Returns the difference between two values, expressed as a positive number.
 
@@ -141,12 +118,10 @@ Returns the difference between two values, expressed as a positive number.
 range(-10, -20)
 ```
 
-**Returns:** 10
+::range
+::
 
 ### differenceAsPercentage
-
-::differenceAsPercentage
-::
 
 Returns the difference between two values, as a percentage.
 
@@ -154,12 +129,10 @@ Returns the difference between two values, as a percentage.
 differenceAsPercentage(10, 20)
 ```
 
-**Returns:** 100
+::differenceAsPercentage
+::
 
 ### percentage
-
-::percentage
-::
 
 Returns the percentage of a value, relative to another value.
 
@@ -167,12 +140,10 @@ Returns the percentage of a value, relative to another value.
 percentage(10, 100)
 ```
 
-**Returns:** 10
+::percentage
+::
 
 ### standardDeviation
-
-::standardDeviation
-::
 
 Returns the standard deviation of an array of numbers.
 
@@ -180,12 +151,10 @@ Returns the standard deviation of an array of numbers.
 standardDeviation([1, 2, 3, 20, 120, 2000])
 ```
 
-**Returns:** 0.5
+::standardDeviation
+::
 
 ### skewness
-
-::skewness
-::
 
 Returns the measure of asymmetry of the probability distribution of an array of numbers.
 
@@ -193,12 +162,10 @@ Returns the measure of asymmetry of the probability distribution of an array of 
 skewness([1, 2, 3, 20, 120, 2000])
 ```
 
-**Returns:** 2.5
+::skewness
+::
 
 ### frequency
-
-::frequency
-::
 
 Return the frequency of all values (numbers, string or boolean) in an array as an object
 
@@ -206,12 +173,10 @@ Return the frequency of all values (numbers, string or boolean) in an array as a
 frequency([1, 3, 2, 3, 3, 3, 'a', 'b', 'c', 'c'])
 ```
 
-**Returns:** { '1': 1, '2': 1, '3': 4, a: 1, b: 1, c: 2 }
+::frequency
+::
 
 ### frequencyOfPropert
-
-::frequencyOfPropert
-::
 
 Returns the fequency of a property value in an array
 
@@ -219,5 +184,6 @@ Returns the fequency of a property value in an array
 frequencyOfPropert([1, 3, 2, 3, 3, 3, 'a', 'b', 'c', 'c'], 3)
 ```
 
-**Returns:** 4
+::frequencyOfPropert
+::
 

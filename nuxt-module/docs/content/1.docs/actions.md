@@ -4,19 +4,16 @@ A collection of useful actions
 
 ### scrollToAnchor
 
-::scrollToAnchor
-::
-
 Scrolls to the element with the specified ID.
 
 ```js [js]
 scrollToAnchor('#my-anchor')
 ```
 
-### scrollToTop
-
-::scrollToTop
+::scrollToAnchor
 ::
+
+### scrollToTop
 
 Smoothly scroll to the top of the page
 
@@ -24,10 +21,10 @@ Smoothly scroll to the top of the page
 scrollToTop()
 ```
 
-### scrollToBottom
-
-::scrollToBottom
+::scrollToTop
 ::
+
+### scrollToBottom
 
 Smoothly scroll to the bottom of the page
 
@@ -35,10 +32,10 @@ Smoothly scroll to the bottom of the page
 scrollToBottom()
 ```
 
-### toggleBodyScroll
-
-::toggleBodyScroll
+::scrollToBottom
 ::
+
+### toggleBodyScroll
 
 Toggles the body scroll with the specified class name
 
@@ -46,10 +43,10 @@ Toggles the body scroll with the specified class name
 toggleBodyScroll('overflow-hidden')
 ```
 
-### toggleElementScroll
-
-::toggleElementScroll
+::toggleBodyScroll
 ::
+
+### toggleElementScroll
 
 Toggles the element scroll
 
@@ -57,10 +54,10 @@ Toggles the element scroll
 toggleElementScroll(document.querySelector('#my-element'))
 ```
 
-### copyToClipboard
-
-::copyToClipboard
+::toggleElementScroll
 ::
+
+### copyToClipboard
 
 Copies a text to the clipboard
 
@@ -68,10 +65,10 @@ Copies a text to the clipboard
 copyToClipboard()
 ```
 
-### toggleFullScreen
-
-::toggleFullScreen
+::copyToClipboard
 ::
+
+### toggleFullScreen
 
 Toggles the fullscreen mode
 
@@ -79,10 +76,10 @@ Toggles the fullscreen mode
 toggleFullScreen()
 ```
 
-### toggleDarkMode
-
-::toggleDarkMode
+::toggleFullScreen
 ::
+
+### toggleDarkMode
 
 Toggles the dark mode
 
@@ -90,10 +87,10 @@ Toggles the dark mode
 toggleDarkMode()
 ```
 
-### redirect
-
-::redirect
+::toggleDarkMode
 ::
+
+### redirect
 
 Redirects to a new URL
 
@@ -101,10 +98,10 @@ Redirects to a new URL
 redirect('https://example.com')
 ```
 
-### resetForm
-
-::resetForm
+::redirect
 ::
+
+### resetForm
 
 Resets a form
 
@@ -112,10 +109,10 @@ Resets a form
 resetForm(document.querySelector('form'))
 ```
 
-### focusOn
-
-::focusOn
+::resetForm
 ::
+
+### focusOn
 
 Focuses on an element
 
@@ -123,10 +120,10 @@ Focuses on an element
 focusOn(document.querySelector('#my-element'))
 ```
 
-### focusOnFirst
-
-::focusOnFirst
+::focusOn
 ::
+
+### focusOnFirst
 
 Focuses on the first element
 
@@ -134,10 +131,10 @@ Focuses on the first element
 focusOnFirst(document.querySelector('#my-element'))
 ```
 
-### focusOnLast
-
-::focusOnLast
+::focusOnFirst
 ::
+
+### focusOnLast
 
 Focuses on the last element
 
@@ -145,14 +142,17 @@ Focuses on the last element
 focusOnLast(document.querySelector('#my-element'))
 ```
 
-### focusTrap
-
-::focusTrap
+::focusOnLast
 ::
+
+### focusTrap
 
 Sets up a keyboard trap within an HTML element, allowing the focus to cycle between the first and last focusable elements when the Tab key is pressed.
 
 ```js [js]
 focusTrap(document.querySelector('#my-element'))
 ```
+
+::focusTrap
+::
 

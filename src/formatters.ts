@@ -4,9 +4,8 @@
 /**
  * Format numbers into local currency
  * @example formatCurrency(1234.56)
- * @returns $1,234.56
  */
-export function formatCurrency(number: number, decimals = 1, currency = 'USD'): string {
+export function formatCurrency(number: number, decimals = 2, currency = 'USD'): string {
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     minimumFractionDigits: 0,
@@ -24,7 +23,6 @@ export function formatCurrency(number: number, decimals = 1, currency = 'USD'): 
 /**
  * Format numbers into valuations displayed in thousands, millions or billions
  * @example formatValuation(1234567890)
- * @returns $1.23B
  */
 export function formatValuation(value: number, decimals = 1, currency = 'USD'): string {
   const formatter = new Intl.NumberFormat('en-US', {
@@ -65,7 +63,6 @@ export function formatNumber(value: number, decimals = 1): string {
 /**
  * Format time into hours, minutes, and seconds
  * @example formatDuration(3723)
- * @returns 1hr 2min 3s
  */
 export function formatDuration(seconds: number): string {
   const timeUnits = [
@@ -94,20 +91,22 @@ export function formatDuration(seconds: number): string {
 
 /**
  * Format Unix timestamp into a datetime string
- * @example formatDatetime(1619097600)
- * @returns 2021-04-22 00:00:00
+ * @example formatUnixTime(1620000000)
  */
-export function formatDatetime(timestamp: number): string {
+export function formatUnixTime(timestamp: number): string {
   return new Date(timestamp * 1000).toISOString().replace('T', ' ').replace('Z', '')
 }
 
 /**
  * Format a number into a percentage
  * @example formatPercentage(0.1234)
- * @returns 12.34%
  */
-export function formatPercentage(number: number): string {
-  return `${(number * 100).toFixed(2)}%`
+export function formatPercentage(number: number, decimals = 1): string {
+  return new Intl.NumberFormat('en-US', {
+    style: 'percent',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: decimals
+  }).format(number)
 }
 
 /**
@@ -116,7 +115,6 @@ export function formatPercentage(number: number): string {
  * @param limit - The maximum number of items to include before truncating.
  * @param conjunction - The conjunction before the last item e.g. "and" or "or".
  * @example formatList(['one', 'two', 'three'])
- * @returns one, two and three
  */
 export function formatList(items: any[], limit: number, conjunction: string = 'and'): string {
   if (items.length === 1) {
@@ -136,4 +134,56 @@ export function formatList(items: any[], limit: number, conjunction: string = 'a
   }
 
   return ''
+}
+
+/**
+ * Converts a string to title case following the Chicago Manual of Style rules.
+ * @reference https://www.chicagomanualofstyle.org/book/ed17/frontmatter/toc.html
+ * @example title('the quick brown fox jumps over the lazy dog')
+ */
+export function formatTitle(text: string): string {
+  const exceptions = [
+    'a',
+    'an',
+    'the',
+    'for',
+    'and',
+    'nor',
+    'but',
+    'or',
+    'yet',
+    'so',
+    'in',
+    'on',
+    'at',
+    'with',
+    'under',
+    'above',
+    'from',
+    'of',
+    'although',
+    'because',
+    'since',
+    'unless'
+  ]
+
+  const capitalize = (word: string) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+
+  return text
+    .split(' ')
+    .map((word, index, wordsArray) => {
+      const lowercaseWord = word.toLowerCase()
+      if (index > 0 && word.includes('-')) {
+        const [firstPart, secondPart] = word.split('-')
+        return capitalize(firstPart) + '-' + secondPart.toLowerCase()
+      }
+      if (index === 0 || index === wordsArray.length - 1 || !exceptions.includes(lowercaseWord)) {
+        return capitalize(lowercaseWord)
+      }
+      if (lowercaseWord === 'to' && index > 0 && wordsArray[index - 1].toLowerCase() !== 'to') {
+        return lowercaseWord
+      }
+      return exceptions.includes(lowercaseWord) ? lowercaseWord : capitalize(lowercaseWord)
+    })
+    .join(' ')
 }

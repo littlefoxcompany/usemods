@@ -4,21 +4,16 @@ Modifiers are a key feature of Mods that allow you to easily modify and enhance 
 
 ### widont
 
-::widont
-::
-
 Adds a space between the last two words in a string.
 
 ```js [js]
 widont()
 ```
 
-**Returns:** cool cool&nbsp;cool
+::widont
+::
 
 ### stripHtml
-
-::stripHtml
-::
 
 Strip HTML tags from a string.
 
@@ -26,12 +21,10 @@ Strip HTML tags from a string.
 stripHtml('<p>Hello World</p>')
 ```
 
-**Returns:** Hello World
+::stripHtml
+::
 
 ### escapeHtml
-
-::escapeHtml
-::
 
 Escape HTML entities in a string.
 
@@ -39,12 +32,10 @@ Escape HTML entities in a string.
 escapeHtml('<p>Hello World</p>')
 ```
 
-**Returns:** &lt;p&gt;Hello World&lt;/p&gt;
+::escapeHtml
+::
 
 ### unescapeHtml
-
-::unescapeHtml
-::
 
 Unescape HTML entities in a string.
 
@@ -52,12 +43,10 @@ Unescape HTML entities in a string.
 unescapeHtml('&lt;p&gt;Hello World&lt;/p&gt;')
 ```
 
-**Returns:** <p>Hello World</p>
+::unescapeHtml
+::
 
 ### stripTags
-
-::stripTags
-::
 
 Strip HTML tags from a string.
 
@@ -65,12 +54,10 @@ Strip HTML tags from a string.
 stripTags('<p>Hello World</p>')
 ```
 
-**Returns:** Hello World
+::stripTags
+::
 
 ### slugify
-
-::slugify
-::
 
 Converts a string to-a-slug.
 
@@ -78,12 +65,10 @@ Converts a string to-a-slug.
 slugify('Hello World')
 ```
 
-**Returns:** hello-world
+::slugify
+::
 
 ### deslugify
-
-::deslugify
-::
 
 Converts a slug to a string.
 
@@ -91,12 +76,10 @@ Converts a slug to a string.
 deslugify('hello-world')
 ```
 
-**Returns:** hello world
+::deslugify
+::
 
 ### truncate
-
-::truncate
-::
 
 Truncates a string to a specified length of characters.
 
@@ -104,12 +87,10 @@ Truncates a string to a specified length of characters.
 truncate('Hello World', 5)
 ```
 
-**Returns:** Hello...
+::truncate
+::
 
 ### truncateWords
-
-::truncateWords
-::
 
 Truncates a string by a number of words
 
@@ -117,12 +98,10 @@ Truncates a string by a number of words
 truncateWords('Hello World', 1)
 ```
 
-**Returns:** Hello...
+::truncateWords
+::
 
 ### countWords
-
-::countWords
-::
 
 Counts the number of words in a string.
 
@@ -130,12 +109,10 @@ Counts the number of words in a string.
 countWords('Hello World')
 ```
 
-**Returns:** 2
+::countWords
+::
 
 ### countCharacters
-
-::countCharacters
-::
 
 Counts the number of characters in a string.
 
@@ -143,12 +120,10 @@ Counts the number of characters in a string.
 countCharacters('Hello World')
 ```
 
-**Returns:** 11
+::countCharacters
+::
 
 ### countLines
-
-::countLines
-::
 
 Counts the number of lines in a string.
 
@@ -156,12 +131,10 @@ Counts the number of lines in a string.
 countLines('Hello World')
 ```
 
-**Returns:** 1
+::countLines
+::
 
 ### stripWhitespace
-
-::stripWhitespace
-::
 
 Strips whitespace from a string.
 
@@ -169,12 +142,10 @@ Strips whitespace from a string.
 stripWhitespace('Hello World')
 ```
 
-**Returns:** HelloWorld
+::stripWhitespace
+::
 
 ### stripNumbers
-
-::stripNumbers
-::
 
 Strips numbers from a string.
 
@@ -182,12 +153,10 @@ Strips numbers from a string.
 stripNumbers('Hello World 123')
 ```
 
-**Returns:** Hello World
+::stripNumbers
+::
 
 ### stripPunctuation
-
-::stripPunctuation
-::
 
 Strips punctuation from a string.
 
@@ -195,12 +164,10 @@ Strips punctuation from a string.
 stripPunctuation('Hello World!')
 ```
 
-**Returns:** Hello World
+::stripPunctuation
+::
 
 ### stripSymbols
-
-::stripSymbols
-::
 
 Strips symbols from a string.
 
@@ -208,12 +175,10 @@ Strips symbols from a string.
 stripSymbols('Hello World!')
 ```
 
-**Returns:** Hello World
+::stripSymbols
+::
 
 ### stripEmojis
-
-::stripEmojis
-::
 
 Strips emojis from a string (requires ES6 Unicode support) 🦊.
 
@@ -221,12 +186,10 @@ Strips emojis from a string (requires ES6 Unicode support) 🦊.
 stripEmojis('Hello World! 🦊')
 ```
 
-**Returns:** Hello World!
+::stripEmojis
+::
 
 ### readingTime
-
-::readingTime
-::
 
 Returns the reading time of a string in Hours, Minutes, and Seconds.
 
@@ -234,12 +197,10 @@ Returns the reading time of a string in Hours, Minutes, and Seconds.
 readingTime('Once, in a vibrant online forum, lived Mod Max, guardian of digital harmony. Max cherished his old scooter, Swift, a symbol of freedom. Navigating both virtual and real worlds, they became legends. Trolls quivered, posts flourished, and lanes whizzed by. Swift’s wheels spun tales, and Max’s keys kept peace. Together, they discovered uncharted threads and hidden lanes. Their journey, an endless adventure, painted pixels and pavements with stories of unity and exhilaration, leaving a trail for all in the intertwined realms of screens and streets.')
 ```
 
-**Returns:** 1 minute
+::readingTime
+::
 
 ### pluralize
-
-::pluralize
-::
 
 Adds plurals to a string.
 
@@ -247,12 +208,10 @@ Adds plurals to a string.
 pluralize('scooter', 10)
 ```
 
-**Returns:** scooters
+::pluralize
+::
 
 ### singularize
-
-::singularize
-::
 
 Removes plurals from a string.
 
@@ -260,12 +219,10 @@ Removes plurals from a string.
 singularize('scooters')
 ```
 
-**Returns:** scooter
+::singularize
+::
 
 ### ordinalize
-
-::ordinalize
-::
 
 Converts a number to a string with ordinal suffix.
 
@@ -273,12 +230,10 @@ Converts a number to a string with ordinal suffix.
 ordinalize(1)
 ```
 
-**Returns:** 1st
+::ordinalize
+::
 
 ### humanize
-
-::humanize
-::
 
 Replaces underscores with spaces and capitalizes the first letter of each word.
 
@@ -286,12 +241,10 @@ Replaces underscores with spaces and capitalizes the first letter of each word.
 humanize('hello_world')
 ```
 
-**Returns:** Hello World
+::humanize
+::
 
 ### camelCase
-
-::camelCase
-::
 
 Removes spaces and capitalizes the first letter of each word except for the first word.
 
@@ -299,12 +252,10 @@ Removes spaces and capitalizes the first letter of each word except for the firs
 camelCase('hello world')
 ```
 
-**Returns:** helloWorld
+::camelCase
+::
 
 ### pascalCase
-
-::pascalCase
-::
 
 Removes spaces and capitalizes the first letter of each word.
 
@@ -312,12 +263,10 @@ Removes spaces and capitalizes the first letter of each word.
 pascalCase('hello world')
 ```
 
-**Returns:** HelloWorld
+::pascalCase
+::
 
 ### snakeCase
-
-::snakeCase
-::
 
 Replaces spaces with underscores and converts to lowercase.
 
@@ -325,12 +274,10 @@ Replaces spaces with underscores and converts to lowercase.
 snakeCase('hello world')
 ```
 
-**Returns:** hello_world
+::snakeCase
+::
 
 ### titleize
-
-::titleize
-::
 
 Replaces spaces with hyphens and converts to lowercase.
 
@@ -338,12 +285,10 @@ Replaces spaces with hyphens and converts to lowercase.
 titleize('Hello World')
 ```
 
-**Returns:** hello-world
+::titleize
+::
 
 ### titleCase
-
-::titleCase
-::
 
 Converts to title case by capitalizing the first letter of each word.
 
@@ -351,12 +296,10 @@ Converts to title case by capitalizing the first letter of each word.
 titleCase('hello world')
 ```
 
-**Returns:** Hello World
+::titleCase
+::
 
 ### sentenceCase
-
-::sentenceCase
-::
 
 Converts to sentence case by capitalizing the first letter of the first word.
 
@@ -364,12 +307,10 @@ Converts to sentence case by capitalizing the first letter of the first word.
 sentenceCase('hello world')
 ```
 
-**Returns:** Hello world
+::sentenceCase
+::
 
 ### startWith
-
-::startWith
-::
 
 Adds a prefix to a string if it doesn't already start with the prefix.
 
@@ -377,12 +318,10 @@ Adds a prefix to a string if it doesn't already start with the prefix.
 startWith('usemods.com', 'https://')
 ```
 
-**Returns:** https://usemods.com
+::startWith
+::
 
 ### startWithout
-
-::startWithout
-::
 
 Removes a prefix from a string if it starts with the prefix.
 
@@ -390,12 +329,10 @@ Removes a prefix from a string if it starts with the prefix.
 startWithout('https://usemods.com', 'https://')
 ```
 
-**Returns:** usemods.com
+::startWithout
+::
 
 ### endWith
-
-::endWith
-::
 
 Adds a suffix to a string if it doesn't already end with the suffix.
 
@@ -403,12 +340,10 @@ Adds a suffix to a string if it doesn't already end with the suffix.
 endWith('https://usemods', '.com')
 ```
 
-**Returns:** https://usemods.com
+::endWith
+::
 
 ### endWithout
-
-::endWithout
-::
 
 Removes a suffix from a string if it ends with the suffix.
 
@@ -416,12 +351,10 @@ Removes a suffix from a string if it ends with the suffix.
 endWithout('https://usemods.com.au', '.au')
 ```
 
-**Returns:** https://usemods.com
+::endWithout
+::
 
 ### surround
-
-::surround
-::
 
 Adds a prefix and suffix to a string if it doesn't already start and end with them.
 
@@ -429,12 +362,10 @@ Adds a prefix and suffix to a string if it doesn't already start and end with th
 surround('https://', 'usemods', '.com')
 ```
 
-**Returns:** https://usemods.com
+::surround
+::
 
 ### title
-
-::title
-::
 
 Converts a string to title case following the Chicago Manual of Style rules.
 
@@ -442,12 +373,10 @@ Converts a string to title case following the Chicago Manual of Style rules.
 title('the quick brown fox jumps over the lazy dog')
 ```
 
-**Returns:** The Quick Brown Fox Jumps over the Lazy Dog
+::title
+::
 
 ### splitByWords
-
-::splitByWords
-::
 
 Wraps each word in a string with a span tag.
 
@@ -455,12 +384,10 @@ Wraps each word in a string with a span tag.
 splitByWords('Hello World. How are you?')
 ```
 
-**Returns:** <span class="sentence sentence-1"><span class="word word-1">Hello</span> <span class="word word-2">world.</span></span> <span class="sentence sentence-2"><span class="word word-3">How</span> <span class="word word-4">are</span> <span class="word word-5">you?</span></span>
+::splitByWords
+::
 
 ### list
-
-::list
-::
 
 Creates an array of list items (`<li>`) from an array of strings.
 
@@ -468,12 +395,10 @@ Creates an array of list items (`<li>`) from an array of strings.
 list(['one', 'two', 'three'])
 ```
 
-**Returns:** <ul><li>one</li><li>two</li><li>three</li></ul>
+::list
+::
 
 ### shuffle
-
-::shuffle
-::
 
 Shuffles an array.
 
@@ -481,12 +406,10 @@ Shuffles an array.
 shuffle(['one', 'two', 'three'])
 ```
 
-**Returns:** ['three', 'one', 'two']
+::shuffle
+::
 
 ### unique
-
-::unique
-::
 
 Returns unique array values with an optional property to pluck.
 
@@ -494,12 +417,10 @@ Returns unique array values with an optional property to pluck.
 unique(['one', 'two', 'three', 'one'])
 ```
 
-**Returns:** ['one', 'two', 'three']
+::unique
+::
 
 ### difference
-
-::difference
-::
 
 Returns the difference between two arrays.
 
@@ -507,12 +428,10 @@ Returns the difference between two arrays.
 difference(['one', 'two', 'three'], ['one', 'two'])
 ```
 
-**Returns:** ['three']
+::difference
+::
 
 ### first
-
-::first
-::
 
 Returns the first item in an array.
 
@@ -520,12 +439,10 @@ Returns the first item in an array.
 first(['one', 'two', 'three'])
 ```
 
-**Returns:** one
+::first
+::
 
 ### last
-
-::last
-::
 
 Returns the last item in an array.
 
@@ -533,12 +450,10 @@ Returns the last item in an array.
 last(['one', 'two', 'three'])
 ```
 
-**Returns:** three
+::last
+::
 
 ### nth
-
-::nth
-::
 
 Returns the nth item in an array.
 
@@ -546,12 +461,10 @@ Returns the nth item in an array.
 nth(['one', 'two', 'three'], 1)
 ```
 
-**Returns:** two
+::nth
+::
 
 ### offset
-
-::offset
-::
 
 Offset the first item in an array.
 
@@ -559,12 +472,10 @@ Offset the first item in an array.
 offset(['one', 'two', 'three'], 1)
 ```
 
-**Returns:** ['two', 'three']
+::offset
+::
 
 ### group
-
-::group
-::
 
 Groups an array of objects by a property.
 
@@ -572,12 +483,10 @@ Groups an array of objects by a property.
 group([{ name: 'one' }, { name: 'two' }, { name: 'one' }], 'name')
 ```
 
-**Returns:** { one: [{ name: 'one' }, { name: 'one' }], two: [{ name: 'two' }] }
+::group
+::
 
 ### chunk
-
-::chunk
-::
 
 Chunks an array into sections of a specified size.
 
@@ -585,12 +494,10 @@ Chunks an array into sections of a specified size.
 chunk(['one', 'two', 'three', 'four', 'five'], 2)
 ```
 
-**Returns:** [['one', 'two'], ['three', 'four'], ['five']]
+::chunk
+::
 
 ### flatten
-
-::flatten
-::
 
 Flatten an array of arrays.
 
@@ -598,12 +505,10 @@ Flatten an array of arrays.
 flatten([['one', 'two'], ['three', 'four'], ['five']])
 ```
 
-**Returns:** ['one', 'two', 'three', 'four', 'five']
+::flatten
+::
 
 ### without
-
-::without
-::
 
 Returns an array with a filtered out property.
 
@@ -611,12 +516,10 @@ Returns an array with a filtered out property.
 without([{ name: 'one', food: 'apple' }, { name: 'two', food: 'grape' }, { name: 'one', food: 'pear' }], 'name')
 ```
 
-**Returns:** [{ food: 'apple' }, { food: 'grape' }, { food: 'pear' }]
+::without
+::
 
 ### combine
-
-::combine
-::
 
 Combine two or more arrays
 
@@ -624,12 +527,10 @@ Combine two or more arrays
 combine(['one', 'two'], ['three', 'four'], ['five'])
 ```
 
-**Returns:** ['one', 'two', 'three', 'four', 'five']
+::combine
+::
 
 ### combineUnique
-
-::combineUnique
-::
 
 Combine two or more unique arrays
 
@@ -637,12 +538,10 @@ Combine two or more unique arrays
 combineUnique(['one', 'two'], ['three', 'four', 'two'], ['five', 'one'])
 ```
 
-**Returns:** ['one', 'two', 'three', 'four', 'five']
+::combineUnique
+::
 
 ### combineWithout
-
-::combineWithout
-::
 
 Combine two or more arrays or objects without a property.
 
@@ -650,12 +549,10 @@ Combine two or more arrays or objects without a property.
 combineWithout({ id: 1, name: 'A' }, { id: 2, name: 'B' }, { id: 3, name: 'C' }, 'id')
 ```
 
-**Returns:** [1, 2, 3]
+::combineWithout
+::
 
 ### reverse
-
-::reverse
-::
 
 Reverse an array.
 
@@ -663,12 +560,10 @@ Reverse an array.
 reverse(['one', 'two', 'three'])
 ```
 
-**Returns:** ['three', 'two', 'one']
+::reverse
+::
 
 ### sortBy
-
-::sortBy
-::
 
 Sort an array by a property.
 
@@ -676,5 +571,6 @@ Sort an array by a property.
 sortBy([{ name: 'John', age: 25 },{ name: 'Jane', age: 30 },{ name: 'Jill', age: 20 }], 'age')
 ```
 
-**Returns:** [{ name: 'Jill', age: 20 },{ name: 'John', age: 25 },{ name: 'Jane', age: 30 }]
+::sortBy
+::
 

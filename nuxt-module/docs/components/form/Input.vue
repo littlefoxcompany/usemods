@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <label v-if="label" class="text-zinc-600 pb-3 flex">{{ label }}</label>
+  <div class="w-full">
+    <label v-if="label" class="text-zinc-500 pb-3 leading-none flex">{{ label }}</label>
     <input
-      class="border border-white/5 flex px-4 py-3 font-mono text-sm bg-white/[2%] rounded-lg"
+      class="border w-full border-white/5 flex px-4 py-3 font-mono text-sm bg-white/[2%] rounded-lg focus:border-indigo-400 focus:ring-white focus:outline-0"
       :type="type"
       :placeholder="placeholder"
       :value="modelValue"

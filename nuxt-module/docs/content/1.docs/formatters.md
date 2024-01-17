@@ -4,21 +4,16 @@ A collection of formatters for common data types
 
 ### formatCurrency
 
-::formatCurrency
-::
-
 Format numbers into local currency
 
 ```js [js]
 formatCurrency(1234.56)
 ```
 
-**Returns:** $1,234.56
+::formatCurrency
+::
 
 ### formatValuation
-
-::formatValuation
-::
 
 Format numbers into valuations displayed in thousands, millions or billions
 
@@ -26,14 +21,12 @@ Format numbers into valuations displayed in thousands, millions or billions
 formatValuation(1234567890)
 ```
 
-**Returns:** $1.23B
+::formatValuation
+::
 
 Format numbers into thousands, millions or billions
 
 ### formatDuration
-
-::formatDuration
-::
 
 Format time into hours, minutes, and seconds
 
@@ -41,25 +34,21 @@ Format time into hours, minutes, and seconds
 formatDuration(3723)
 ```
 
-**Returns:** 1hr 2min 3s
-
-### formatDatetime
-
-::formatDatetime
+::formatDuration
 ::
+
+### formatUnixTime
 
 Format Unix timestamp into a datetime string
 
 ```js [js]
-formatDatetime(1619097600)
+formatUnixTime(1620000000)
 ```
 
-**Returns:** 2021-04-22 00:00:00
+::formatUnixTime
+::
 
 ### formatPercentage
-
-::formatPercentage
-::
 
 Format a number into a percentage
 
@@ -67,12 +56,10 @@ Format a number into a percentage
 formatPercentage(0.1234)
 ```
 
-**Returns:** 12.34%
+::formatPercentage
+::
 
 ### formatList
-
-::formatList
-::
 
 Create a string of comma-separated values from an array of strings with an optional conjunction.
 
@@ -80,5 +67,6 @@ Create a string of comma-separated values from an array of strings with an optio
 formatList(['one', 'two', 'three'])
 ```
 
-**Returns:** one, two and three
+::formatList
+::
 

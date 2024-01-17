@@ -4,21 +4,16 @@ A collection of detections for common data types
 
 ### detectDevice
 
-::detectDevice
-::
-
 Detect the current device type (Mobile or Desktop)
 
 ```js [js]
 detectDevice()
 ```
 
-**Returns:** `Mobile` or `Desktop`
+::detectDevice
+::
 
 ### detectOS
-
-::detectOS
-::
 
 Detect the current operating system
 
@@ -26,12 +21,10 @@ Detect the current operating system
 detectOS()
 ```
 
-**Returns:** `Windows`, `Mac`, `Linux`, `UNIX`, or `Unknown`
+::detectOS
+::
 
 ### detectBrowser
-
-::detectBrowser
-::
 
 Detects the user's browser based on the user agent string.
 
@@ -39,12 +32,10 @@ Detects the user's browser based on the user agent string.
 detectBrowser()
 ```
 
-**Returns:** `Chrome`, `Firefox`, `Safari`, `Opera`, `Edge`, `IE`, or `Unknown`
+::detectBrowser
+::
 
 ### detectActiveBrowser
-
-::detectActiveBrowser
-::
 
 Detect if the browser window is currently active or hidden.
 
@@ -52,10 +43,10 @@ Detect if the browser window is currently active or hidden.
 detectActiveBrowser()
 ```
 
-### detectColorScheme
-
-::detectColorScheme
+::detectActiveBrowser
 ::
+
+### detectColorScheme
 
 Detect the current color scheme (Light or Dark)
 
@@ -63,12 +54,10 @@ Detect the current color scheme (Light or Dark)
 detectColorScheme()
 ```
 
-**Returns:** `Light` or `Dark`
+::detectColorScheme
+::
 
 ### detectBrowserLanguage
-
-::detectBrowserLanguage
-::
 
 Detect the current browser language
 
@@ -76,10 +65,10 @@ Detect the current browser language
 detectBrowserLanguage()
 ```
 
-### detectUserLocation
-
-::detectUserLocation
+::detectBrowserLanguage
 ::
+
+### detectUserLocation
 
 Detect the current user's location
 
@@ -87,12 +76,10 @@ Detect the current user's location
 detectUserLocation()
 ```
 
-**Returns:** `US`, `UK`, `CA`, `AU`, `NZ`, `EU`, `Unknown`
+::detectUserLocation
+::
 
 ### detectUserTimezone
-
-::detectUserTimezone
-::
 
 Detect the current user's Timezone
 
@@ -100,10 +87,10 @@ Detect the current user's Timezone
 detectUserTimezone()
 ```
 
-### detectDeviceOrientation
-
-::detectDeviceOrientation
+::detectUserTimezone
 ::
+
+### detectDeviceOrientation
 
 Detect the currect device orientation
 
@@ -111,10 +98,10 @@ Detect the currect device orientation
 detectDeviceOrientation()
 ```
 
-### detectDeviceMotion
-
-::detectDeviceMotion
+::detectDeviceOrientation
 ::
+
+### detectDeviceMotion
 
 Detect the current device motion
 
@@ -122,10 +109,10 @@ Detect the current device motion
 detectDeviceMotion()
 ```
 
-### detectWindowSize
-
-::detectWindowSize
+::detectDeviceMotion
 ::
+
+### detectWindowSize
 
 Detect the browser's window size
 
@@ -133,10 +120,10 @@ Detect the browser's window size
 detectWindowSize()
 ```
 
-### detectScreenSize
-
-::detectScreenSize
+::detectWindowSize
 ::
+
+### detectScreenSize
 
 Detect the screen or monitor size
 
@@ -144,10 +131,10 @@ Detect the screen or monitor size
 detectScreenSize()
 ```
 
-### detectContainerSize
-
-::detectContainerSize
+::detectScreenSize
 ::
+
+### detectContainerSize
 
 Detect the container size via ID
 
@@ -155,10 +142,10 @@ Detect the container size via ID
 detectContainerSize('container')
 ```
 
-### detectTailwindBreakpoint
-
-::detectTailwindBreakpoint
+::detectContainerSize
 ::
+
+### detectTailwindBreakpoint
 
 Detect the current breakpoint based on Tailwind CSS breakpoints
 
@@ -166,10 +153,10 @@ Detect the current breakpoint based on Tailwind CSS breakpoints
 detectTailwindBreakpoint()
 ```
 
-### detectTailwindContainerBreakpoint
-
-::detectTailwindContainerBreakpoint
+::detectTailwindBreakpoint
 ::
+
+### detectTailwindContainerBreakpoint
 
 Detect the current container breakpoint based on Tailwind CSS breakpoints
 
@@ -177,10 +164,10 @@ Detect the current container breakpoint based on Tailwind CSS breakpoints
 detectTailwindContainerBreakpoint('container')
 ```
 
-### detectScrollPosition
-
-::detectScrollPosition
+::detectTailwindContainerBreakpoint
 ::
+
+### detectScrollPosition
 
 Detect the current scroll position of the window
 
@@ -188,10 +175,10 @@ Detect the current scroll position of the window
 detectScrollPosition()
 ```
 
-### detectMousePosition
-
-::detectMousePosition
+::detectScrollPosition
 ::
+
+### detectMousePosition
 
 Detect the current mouse position within the window
 
@@ -199,10 +186,10 @@ Detect the current mouse position within the window
 detectMousePosition(event)
 ```
 
-### detectRelativeMousePosition
-
-::detectRelativeMousePosition
+::detectMousePosition
 ::
+
+### detectRelativeMousePosition
 
 Detect the current mouse position within a container via ID
 
@@ -210,10 +197,10 @@ Detect the current mouse position within a container via ID
 detectRelativeMousePosition('container', event)
 ```
 
-### detectNetworkStatus
-
-::detectNetworkStatus
+::detectRelativeMousePosition
 ::
+
+### detectNetworkStatus
 
 Detect the current network status of the user (Online or Offline)
 
@@ -221,10 +208,10 @@ Detect the current network status of the user (Online or Offline)
 detectNetworkStatus()
 ```
 
-### detectMemoryStatus
-
-::detectMemoryStatus
+::detectNetworkStatus
 ::
+
+### detectMemoryStatus
 
 Detect the current memory status of the user (RAM)
 
@@ -232,10 +219,10 @@ Detect the current memory status of the user (RAM)
 detectMemoryStatus()
 ```
 
-### detectCookie
-
-::detectCookie
+::detectMemoryStatus
 ::
+
+### detectCookie
 
 Returns a cookie value by name
 
@@ -243,10 +230,10 @@ Returns a cookie value by name
 detectCookie('name')
 ```
 
-### detectLocalStorage
-
-::detectLocalStorage
+::detectCookie
 ::
+
+### detectLocalStorage
 
 Returns a local storage value by name and parses it into JSON
 
@@ -254,10 +241,10 @@ Returns a local storage value by name and parses it into JSON
 detectLocalStorage('name')
 ```
 
-### detectSessionStorage
-
-::detectSessionStorage
+::detectLocalStorage
 ::
+
+### detectSessionStorage
 
 Returns a session storage value by name and parses it into JSON
 
@@ -265,10 +252,10 @@ Returns a session storage value by name and parses it into JSON
 detectSessionStorage('name')
 ```
 
-### detectURLParameters
-
-::detectURLParameters
+::detectSessionStorage
 ::
+
+### detectURLParameters
 
 Returns a value from the URL by name
 
@@ -276,10 +263,10 @@ Returns a value from the URL by name
 detectURLParameters('http://url.com/page?name=Adam&surname=Smith')
 ```
 
-### detectURLHashParameters
-
-::detectURLHashParameters
+::detectURLParameters
 ::
+
+### detectURLHashParameters
 
 Returns a value from the URL hash by name
 
@@ -287,21 +274,21 @@ Returns a value from the URL hash by name
 detectURLHashParameters()
 ```
 
-### detectURLSearchParameters
-
-::detectURLSearchParameters
+::detectURLHashParameters
 ::
 
-Retrieves and returns the parameters from the URL search query string
+### detectURLSearchParameters
+
+@example detectURLSearchParameters()
 
 ```js [js]
 detectURLSearchParameters()
 ```
 
-### detectURL
-
-::detectURL
+::detectURLSearchParameters
 ::
+
+### detectURL
 
 Returns the current URL
 
@@ -309,10 +296,10 @@ Returns the current URL
 detectURL()
 ```
 
-### detectDomain
-
-::detectDomain
+::detectURL
 ::
+
+### detectDomain
 
 Returns the current domain
 
@@ -320,10 +307,10 @@ Returns the current domain
 detectDomain()
 ```
 
-### detectIP
-
-::detectIP
+::detectDomain
 ::
+
+### detectIP
 
 Returns the current IP address
 
@@ -331,10 +318,10 @@ Returns the current IP address
 detectIP()
 ```
 
-### detectPort
-
-::detectPort
+::detectIP
 ::
+
+### detectPort
 
 Returns the current port
 
@@ -342,10 +329,10 @@ Returns the current port
 detectPort()
 ```
 
-### detectProtocol
-
-::detectProtocol
+::detectPort
 ::
+
+### detectProtocol
 
 Returns the current protocol (HTTP or HTTPS)
 
@@ -353,10 +340,10 @@ Returns the current protocol (HTTP or HTTPS)
 detectProtocol()
 ```
 
-### detectReferrer
-
-::detectReferrer
+::detectProtocol
 ::
+
+### detectReferrer
 
 Returns the URL of the referring page (the page that linked to the current page)
 
@@ -364,10 +351,10 @@ Returns the URL of the referring page (the page that linked to the current page)
 detectReferrer()
 ```
 
-### detectCachedData
-
-::detectCachedData
+::detectReferrer
 ::
+
+### detectCachedData
 
 Retrieves cached entries and optionally filters the entries based on a provided key
 
@@ -375,10 +362,10 @@ Retrieves cached entries and optionally filters the entries based on a provided 
 detectCachedData('abc')
 ```
 
-### detectInViewport
-
-::detectInViewport
+::detectCachedData
 ::
+
+### detectInViewport
 
 Detects if the element is currently in the viewport
 
@@ -386,10 +373,10 @@ Detects if the element is currently in the viewport
 detectInViewport(element)
 ```
 
-### detectInContainer
-
-::detectInContainer
+::detectInViewport
 ::
+
+### detectInContainer
 
 Detects if the element is currently in the container via ID
 
@@ -397,10 +384,10 @@ Detects if the element is currently in the container via ID
 detectInContainer(element, 'container')
 ```
 
-### detectOverflowingY
-
-::detectOverflowingY
+::detectInContainer
 ::
+
+### detectOverflowingY
 
 Detects if the element is overflowing vertically
 
@@ -408,10 +395,10 @@ Detects if the element is overflowing vertically
 detectOverflowingY(element)
 ```
 
-### detectOverflowingX
-
-::detectOverflowingX
+::detectOverflowingY
 ::
+
+### detectOverflowingX
 
 Detects if the element is overflowing horizontally
 
@@ -419,10 +406,10 @@ Detects if the element is overflowing horizontally
 detectOverflowingX(element)
 ```
 
-### detectScrollable
-
-::detectScrollable
+::detectOverflowingX
 ::
+
+### detectScrollable
 
 Detects if the element is scrollable (overflowing vertically or horizontally)
 
@@ -430,14 +417,17 @@ Detects if the element is scrollable (overflowing vertically or horizontally)
 detectScrollable()
 ```
 
-### detectElement
-
-::detectElement
+::detectScrollable
 ::
+
+### detectElement
 
 Detects if the elements is an HTML element
 
 ```js [js]
 detectElement()
 ```
+
+::detectElement
+::
 

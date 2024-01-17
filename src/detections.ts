@@ -4,7 +4,6 @@
 /**
  * Detect the current device type (Mobile or Desktop)
  * @example detectDevice()
- * @returns `Mobile` or `Desktop`
  */
 export function detectDevice(): string {
   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop'
@@ -13,7 +12,6 @@ export function detectDevice(): string {
 /**
  * Detect the current operating system
  * @example detectOS()
- * @returns `Windows`, `Mac`, `Linux`, `UNIX`, or `Unknown`
  */
 export function detectOS(): string {
   const userAgent = navigator.userAgent.toLowerCase()
@@ -27,7 +25,6 @@ export function detectOS(): string {
 /**
  * Detects the user's browser based on the user agent string.
  * @example detectBrowser()
- * @returns `Chrome`, `Firefox`, `Safari`, `Opera`, `Edge`, `IE`, or `Unknown`
  */
 export function detectBrowser(): string {
   return navigator.userAgent.toLowerCase()
@@ -44,7 +41,6 @@ export function detectActiveBrowser(): boolean {
 /**
  * Detect the current color scheme (Light or Dark)
  * @example detectColorScheme()
- * @returns `Light` or `Dark`
  */
 export function detectColorScheme(): string {
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
@@ -61,7 +57,6 @@ export function detectBrowserLanguage(): string {
 /**
  * Detect the current user's location
  * @example detectUserLocation()
- * @returns `US`, `UK`, `CA`, `AU`, `NZ`, `EU`, `Unknown`
  */
 export function detectGeolocation(): Promise<GeolocationPosition> {
   return new Promise((resolve, reject) => {
@@ -294,7 +289,6 @@ export function detectURLHashParameters() {
 }
 
 /**
- * Retrieves and returns the parameters from the URL search query string
  * @example detectURLSearchParameters()
  */
 export function detectURLSearchParameters() {

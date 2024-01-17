@@ -4,21 +4,16 @@ A collection of validators for common data types
 
 ### isEmail
 
-::isEmail
-::
-
 Check if the input is a valid email address.
 
 ```js [js]
 isEmail('hello@usemods.com')
 ```
 
-**Returns:** true
+::isEmail
+::
 
 ### isNumber
-
-::isNumber
-::
 
 Check if the input is a valid number.
 
@@ -26,12 +21,10 @@ Check if the input is a valid number.
 isNumber('123')
 ```
 
-**Returns:** true
+::isNumber
+::
 
 ### isURL
-
-::isURL
-::
 
 Check if the input is a valid URL.
 
@@ -39,12 +32,10 @@ Check if the input is a valid URL.
 isURL('https://usemods.com')
 ```
 
-**Returns:** true
+::isURL
+::
 
 ### isUUID
-
-::isUUID
-::
 
 Check if the input is a valid UUID.
 
@@ -52,12 +43,10 @@ Check if the input is a valid UUID.
 isUUID('c9bf9e57-1685-4c89-bafb-ff5af830be8a')
 ```
 
-**Returns:** true
+::isUUID
+::
 
 ### isJSON
-
-::isJSON
-::
 
 Check if the input is a valid JSON string.
 
@@ -65,12 +54,10 @@ Check if the input is a valid JSON string.
 isJSON('{"hello": "world"}')
 ```
 
-**Returns:** true
+::isJSON
+::
 
 ### isHex
-
-::isHex
-::
 
 Check if the input is a valid hexadecimal color code.
 
@@ -78,12 +65,10 @@ Check if the input is a valid hexadecimal color code.
 isHex('#fff')
 ```
 
-**Returns:** true
+::isHex
+::
 
 ### isEmpty
-
-::isEmpty
-::
 
 Check if the input is an empty string.
 
@@ -91,12 +76,10 @@ Check if the input is an empty string.
 isEmpty('')
 ```
 
-**Returns:** true
+::isEmpty
+::
 
 ### isAlpha
-
-::isAlpha
-::
 
 Check if the input contains only alphabetic characters.
 
@@ -104,12 +87,10 @@ Check if the input contains only alphabetic characters.
 isAlpha('hello')
 ```
 
-**Returns:** true
+::isAlpha
+::
 
 ### isAlphanumeric
-
-::isAlphanumeric
-::
 
 Check if the input contains only alphanumeric characters.
 
@@ -117,12 +98,10 @@ Check if the input contains only alphanumeric characters.
 isAlphanumeric('hello123')
 ```
 
-**Returns:** true
+::isAlphanumeric
+::
 
 ### isArray
-
-::isArray
-::
 
 Check if the input is an array.
 
@@ -130,12 +109,10 @@ Check if the input is an array.
 isArray([1, 2, 3])
 ```
 
-**Returns:** true
+::isArray
+::
 
 ### isObject
-
-::isObject
-::
 
 Check if the input is an object.
 
@@ -143,12 +120,10 @@ Check if the input is an object.
 isObject({ hello: 'world' })
 ```
 
-**Returns:** true
+::isObject
+::
 
 ### isBoolean
-
-::isBoolean
-::
 
 Check if the input is a boolean value.
 
@@ -156,12 +131,10 @@ Check if the input is a boolean value.
 isBoolean(true)
 ```
 
-**Returns:** true
+::isBoolean
+::
 
 ### isFunction
-
-::isFunction
-::
 
 Check if the input is a function.
 
@@ -169,12 +142,10 @@ Check if the input is a function.
 isFunction(() => {})
 ```
 
-**Returns:** true
+::isFunction
+::
 
 ### isUndefined
-
-::isUndefined
-::
 
 Check if the input is undefined.
 
@@ -182,12 +153,10 @@ Check if the input is undefined.
 isUndefined(undefined)
 ```
 
-**Returns:** true
+::isUndefined
+::
 
 ### isNull
-
-::isNull
-::
 
 Check if the input is null.
 
@@ -195,12 +164,10 @@ Check if the input is null.
 isNull(null)
 ```
 
-**Returns:** true
+::isNull
+::
 
 ### isDate
-
-::isDate
-::
 
 Check if the input is a valid Date object.
 
@@ -208,12 +175,10 @@ Check if the input is a valid Date object.
 isDate(new Date())
 ```
 
-**Returns:** true
+::isDate
+::
 
 ### isError
-
-::isError
-::
 
 Check if the input is an Error object with a defined message.
 
@@ -221,12 +186,10 @@ Check if the input is an Error object with a defined message.
 isError(new Error('hello'))
 ```
 
-**Returns:** true
+::isError
+::
 
 ### isTime
-
-::isTime
-::
 
 Check if the input is a valid time in HH:mm format.
 
@@ -234,12 +197,10 @@ Check if the input is a valid time in HH:mm format.
 isTime('12:00')
 ```
 
-**Returns:** true
+::isTime
+::
 
 ### isLeapYear
-
-::isLeapYear
-::
 
 Check if the input year is a leap year.
 
@@ -247,12 +208,10 @@ Check if the input year is a leap year.
 isLeapYear(2020)
 ```
 
-**Returns:** true
+::isLeapYear
+::
 
 ### isPromise
-
-::isPromise
-::
 
 Check if the input is a Promise object.
 
@@ -260,12 +219,10 @@ Check if the input is a Promise object.
 isPromise(new Promise(() => {}))
 ```
 
-**Returns:** true
+::isPromise
+::
 
 ### isSet
-
-::isSet
-::
 
 Check if the input is a Set object.
 
@@ -273,12 +230,10 @@ Check if the input is a Set object.
 isSet(new Set())
 ```
 
-**Returns:** true
+::isSet
+::
 
 ### isMap
-
-::isMap
-::
 
 Check if the input is a Map object.
 
@@ -286,12 +241,10 @@ Check if the input is a Map object.
 isMap(new Map())
 ```
 
-**Returns:** true
+::isMap
+::
 
 ### isEven
-
-::isEven
-::
 
 Check if the number is even.
 
@@ -299,12 +252,10 @@ Check if the number is even.
 isEven(2)
 ```
 
-**Returns:** true
+::isEven
+::
 
 ### isOdd
-
-::isOdd
-::
 
 Check if the number is odd.
 
@@ -312,12 +263,10 @@ Check if the number is odd.
 isOdd(3)
 ```
 
-**Returns:** true
+::isOdd
+::
 
 ### isPositive
-
-::isPositive
-::
 
 Check if the number is positive.
 
@@ -325,12 +274,10 @@ Check if the number is positive.
 isPositive(1)
 ```
 
-**Returns:** true
+::isPositive
+::
 
 ### isNegative
-
-::isNegative
-::
 
 Check if the number is negative.
 
@@ -338,12 +285,10 @@ Check if the number is negative.
 isNegative(-1)
 ```
 
-**Returns:** true
+::isNegative
+::
 
 ### isZero
-
-::isZero
-::
 
 Check if the number is zero.
 
@@ -351,12 +296,10 @@ Check if the number is zero.
 isZero(0)
 ```
 
-**Returns:** true
+::isZero
+::
 
 ### isPrime
-
-::isPrime
-::
 
 Check if the number is a prime number.
 
@@ -364,12 +307,10 @@ Check if the number is a prime number.
 isPrime(7)
 ```
 
-**Returns:** true
+::isPrime
+::
 
 ### isOptimusPrime
-
-::isOptimusPrime
-::
 
 Check if the string is equal to "Optimus Prime".
 
@@ -377,12 +318,10 @@ Check if the string is equal to "Optimus Prime".
 isOptimusPrime('Optimus Prime')
 ```
 
-**Returns:** true
+::isOptimusPrime
+::
 
 ### isPalindrome
-
-::isPalindrome
-::
 
 Check if the string is a palindrome.
 
@@ -390,12 +329,10 @@ Check if the string is a palindrome.
 isPalindrome('racecar')
 ```
 
-**Returns:** true
+::isPalindrome
+::
 
 ### isInteger
-
-::isInteger
-::
 
 Check if the number is an integer.
 
@@ -403,12 +340,10 @@ Check if the number is an integer.
 isInteger(1)
 ```
 
-**Returns:** true
+::isInteger
+::
 
 ### isFloat
-
-::isFloat
-::
 
 Check if the number is a float.
 
@@ -416,12 +351,10 @@ Check if the number is a float.
 isFloat(1.5)
 ```
 
-**Returns:** true
+::isFloat
+::
 
 ### isBetween
-
-::isBetween
-::
 
 Check if the number is between the specified range.
 
@@ -429,12 +362,10 @@ Check if the number is between the specified range.
 isBetween(5, 1, 10)
 ```
 
-**Returns:** true
+::isBetween
+::
 
 ### isDivisibleBy
-
-::isDivisibleBy
-::
 
 Check if the number is divisible by the specified number.
 
@@ -442,12 +373,10 @@ Check if the number is divisible by the specified number.
 isDivisibleBy(10, 2)
 ```
 
-**Returns:** true
+::isDivisibleBy
+::
 
 ### isCreditCardNumber
-
-::isCreditCardNumber
-::
 
 Check if the input is a valid credit card number.
 
@@ -455,12 +384,10 @@ Check if the input is a valid credit card number.
 isCreditCardNumber('4242424242424242')
 ```
 
-**Returns:** true
+::isCreditCardNumber
+::
 
 ### isIPAddress
-
-::isIPAddress
-::
 
 Check if the input is a valid IP address.
 
@@ -468,12 +395,10 @@ Check if the input is a valid IP address.
 isIPAddress('127.0.0.0')
 ```
 
-**Returns:** true
+::isIPAddress
+::
 
 ### isMACAddress
-
-::isMACAddress
-::
 
 Check if the input is a valid MAC address.
 
@@ -481,12 +406,10 @@ Check if the input is a valid MAC address.
 isMACAddress('00:00:00:00:00:00')
 ```
 
-**Returns:** true
+::isMACAddress
+::
 
 ### isLatLng
-
-::isLatLng
-::
 
 Check if the input is a valid latitude-longitude coordinate in the format lat,lng or lat,lng.
 
@@ -494,12 +417,10 @@ Check if the input is a valid latitude-longitude coordinate in the format lat,ln
 isLatLng('40.741895,-73.989308')
 ```
 
-**Returns:** true
+::isLatLng
+::
 
 ### isLatitude
-
-::isLatitude
-::
 
 Check if the input is a valid latitude coordinate.
 
@@ -507,12 +428,10 @@ Check if the input is a valid latitude coordinate.
 isLatitude('40.741895')
 ```
 
-**Returns:** true
+::isLatitude
+::
 
 ### isLongitude
-
-::isLongitude
-::
 
 Check if the input is a valid longitude coordinate.
 
@@ -520,12 +439,10 @@ Check if the input is a valid longitude coordinate.
 isLongitude('-73.989308')
 ```
 
-**Returns:** true
+::isLongitude
+::
 
 ### isPort
-
-::isPort
-::
 
 Check if the input is a valid port number.
 
@@ -533,12 +450,10 @@ Check if the input is a valid port number.
 isPort(3000)
 ```
 
-**Returns:** true
+::isPort
+::
 
 ### hasPropertyValue
-
-::hasPropertyValue
-::
 
 Checks if a property and value pair exists in an object.
 
@@ -546,12 +461,10 @@ Checks if a property and value pair exists in an object.
 hasPropertyValue({ hello: 'world' }, 'hello', 'world')
 ```
 
-**Returns:** true
+::hasPropertyValue
+::
 
 ### hasProperties
-
-::hasProperties
-::
 
 Check if a property exists in an object without checking its value.
 
@@ -559,12 +472,10 @@ Check if a property exists in an object without checking its value.
 hasProperties({ hello: 'world' }, ['hello', 'world'])
 ```
 
-**Returns:** true
+::hasProperties
+::
 
 ### hasKeys
-
-::hasKeys
-::
 
 Check if an array of key exists in an object
 
@@ -572,5 +483,6 @@ Check if an array of key exists in an object
 hasKeys({ hello: 'world' }, ['hello', 'world',])
 ```
 
-**Returns:** true
+::hasKeys
+::
 

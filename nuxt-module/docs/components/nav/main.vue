@@ -5,7 +5,7 @@
         <LogoFull class="h-6" />
       </NuxtLink>
 
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-6">
         <NavDropdown label="Docs">
           <NavDropdownItem to="/docs/introduction">Introduction</NavDropdownItem>
           <NavDropdownItem to="/docs/installation">Installation</NavDropdownItem>

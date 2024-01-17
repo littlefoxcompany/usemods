@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Zippy little modifiers and utilities for your frontend.",
   "keywords": [
-    "bun"
+    "bun",
     "usemods",
     "utils",
     "helpers",
@@ -16,7 +16,6 @@
   "license": "MIT",
   "homepage": "https://github.com/LittleFoxCompany/usemods#readme",
   "bugs": "https://github.com/LittleFoxCompany/usemods/issues",
-  "license": "MIT",
   "author": "Jeremy Butler <jeremy@littlefox.studio>",
   "contributors": [
     {
@@ -41,6 +40,7 @@
   },
   "scripts": {
     "dev": "bun run builder.mjs",
+    "docs": "npm i && npm run dev --prefix ./nuxt-module",
     "build": "bun run build.mjs",
     "test": "bun --watch test test/*",
     "prepublishOnly": "bun run build",
@@ -48,6 +48,7 @@
     "module:release:": "npm i && npm run release --prefix ./nuxt-module"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.10",
     "@types/web": "^0.0.119",
     "bun-plugin-dts": "^0.2.1",
     "bun-types": "^1.0.7",
