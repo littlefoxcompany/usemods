@@ -6,11 +6,11 @@ import { formatCurrency, formatDuration, formatList } from '../src/formatters'
 
 test('formatCurrency', () => {
   expect(formatCurrency(1000.95)).toBe('$1,000.95')
-  expect(formatCurrency(1000.95, 'EUR')).toBe('€1,000.95')
-  expect(formatCurrency(1000, 'JPY')).toBe('¥1,000')
-  expect(formatCurrency(1000.95, 'GBP')).toBe('£1,000.95')
-  expect(formatCurrency(1000.95, 'CAD')).toBe('CA$1,000.95')
-  expect(formatCurrency(1000.95, 'AUD')).toBe('A$1,000.95')
+  expect(formatCurrency(1000.95, 2, 'EUR')).toBe('€1,000.95')
+  expect(formatCurrency(1000, 0, 'JPY')).toBe('¥1,000')
+  expect(formatCurrency(1000.95, 2, 'GBP')).toBe('£1,000.95')
+  expect(formatCurrency(1000.95, 2, 'CAD')).toBe('CA$1,000.95')
+  expect(formatCurrency(1000.95, 2, 'AUD')).toBe('A$1,000.95')
 })
 
 test('formatDuration', () => {

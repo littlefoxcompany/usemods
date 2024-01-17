@@ -4,7 +4,7 @@ export async function build() {
   return await Bun.build({
     entrypoints: ['./src/index.ts'],
     outdir: './dist',
-    minify: true,
+    minify: false,
     plugins: [dts()]
   })
 }
