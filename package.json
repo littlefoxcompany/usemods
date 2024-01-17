@@ -40,15 +40,16 @@
   },
   "scripts": {
     "dev": "bun run builder.mjs",
-    "docs": "npm i && npm run dev --prefix ./nuxt-module",
     "build": "bun run build.mjs",
     "test": "bun --watch test test/*",
     "prepublishOnly": "bun run build",
-    "module:dev": "npm i && npm run dev --prefix ./nuxt-module",
-    "module:release:": "npm i && npm run release --prefix ./nuxt-module"
+    "docs": "npm run docs:install && npm run module:dev",
+    "docs:install": "npm run module:install && npm i --prefix ./nuxt-module/docs",
+    "module:install": "npm i --prefix ./nuxt-module",
+    "module:dev": "npm run build && npm run dev --prefix ./nuxt-module",
+    "module:release:": "npm run release --prefix ./nuxt-module"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.10",
     "@types/web": "^0.0.119",
     "bun-plugin-dts": "^0.2.1",
     "bun-types": "^1.0.7",
