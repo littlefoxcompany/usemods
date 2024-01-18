@@ -2,13 +2,31 @@
 // description: Formatter functions are essential tools in web development, designed to enhance the presentation and organisation of data in web applications. These functions allow developers to easily manipulate and display various data types, such as dates, numbers, and strings, in a more readable and user-friendly format.
 
 /**
- * Format numbers into local currency
- * @example formatCurrency(1234.56)
+ * Format numbers into thousands, millions or billions
  */
-export function formatCurrency(number: number, decimals = 2, currency = 'USD'): string {
+export function formatNumber(value: number, decimals = 1): string {
+  const formatter = new Intl.NumberFormat('en-US', {
+    notation: 'compact',
+    compactDisplay: 'short',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: decimals
+  })
+
+  try {
+    return formatter.format(value)
+  } catch (error) {
+    return ''
+  }
+}
+
+/**
+ * Format numbers into local currency
+ * @example formatCurrency()
+ */
+export function formatCurrency(number: number, decimals = 0, currency = 'USD'): string {
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
-    minimumFractionDigits: decimals,
+    minimumFractionDigits: Math.max(0, decimals),
     maximumFractionDigits: decimals,
     currency
   })
@@ -22,7 +40,7 @@ export function formatCurrency(number: number, decimals = 2, currency = 'USD'): 
 
 /**
  * Format numbers into valuations displayed in thousands, millions or billions
- * @example formatValuation(1234567890)
+ * @example formatValuation()
  */
 export function formatValuation(value: number, decimals = 1, currency = 'USD'): string {
   const formatter = new Intl.NumberFormat('en-US', {
@@ -42,42 +60,24 @@ export function formatValuation(value: number, decimals = 1, currency = 'USD'): 
 }
 
 /**
- * Format numbers into thousands, millions or billions
- */
-export function formatNumber(value: number, decimals = 1): string {
-  const formatter = new Intl.NumberFormat('en-US', {
-    notation: 'compact',
-    compactDisplay: 'short',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: decimals
-  })
-
-  try {
-    return formatter.format(value)
-  } catch (error) {
-    return ''
-  }
-}
-
-/**
  * Format time into hours, minutes, and seconds
- * @example formatDuration(3723)
+ * @example formatDuration()
  */
-export function formatDuration(seconds: number): string {
-  const timeUnits = [
-    { unit: 'yr', secondsInUnit: 31536000 },
-    { unit: 'mo', secondsInUnit: 2628000 },
-    { unit: 'wk', secondsInUnit: 604800 },
-    { unit: 'd', secondsInUnit: 86400 },
-    { unit: 'hr', secondsInUnit: 3600 },
-    { unit: 'min', secondsInUnit: 60 },
-    { unit: 's', secondsInUnit: 1 }
+export function formatDuration(seconds: number, labels = 'short'): string {
+  const time = [
+    { unit: labels === 'short' ? 'yr' : 'year', secondsInUnit: 31536000 },
+    { unit: labels === 'short' ? 'mo' : 'month', secondsInUnit: 2628000 },
+    { unit: labels === 'short' ? 'wk' : 'week', secondsInUnit: 604800 },
+    { unit: labels === 'short' ? 'd' : 'day', secondsInUnit: 86400 },
+    { unit: labels === 'short' ? 'hr' : 'hour', secondsInUnit: 3600 },
+    { unit: labels === 'short' ? 'min' : 'minute', secondsInUnit: 60 },
+    { unit: labels === 'short' ? 's' : 'second', secondsInUnit: 1 }
   ]
 
   let remainingSeconds = seconds
   let formattedTime = ''
 
-  for (const { unit, secondsInUnit } of timeUnits) {
+  for (const { unit, secondsInUnit } of time) {
     const count = Math.floor(remainingSeconds / secondsInUnit)
     if (count > 0) {
       formattedTime += `${count}${unit} `

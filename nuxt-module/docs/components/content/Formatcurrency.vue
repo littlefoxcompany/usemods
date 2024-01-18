@@ -1,8 +1,8 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Dollar Value" type="number" v-model="currency" />
-      <FormInput label="Decimal places" type="number" v-model="currencyDecimals" />
+      <FormInput label="Value" type="number" v-model="currency" />
+      <FormNumber label="Decimals" v-model="currencyDecimals" min="0" />
       <FormInput label="Currency" type="text" v-model="currencySymbol" />
     </ExampleInputs>
     <ExampleResult :result="formatCurrency(currency, currencyDecimals, currencySymbol)" />
