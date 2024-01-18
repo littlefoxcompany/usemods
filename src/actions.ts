@@ -1,5 +1,6 @@
 // title: Actions
 // description: A collection of useful actions
+// icon: lightning-bolt
 
 /**
  * Scrolls to the element with the specified ID.
@@ -73,15 +74,12 @@ export function toggleElementScroll(element: HTMLElement, className: string) {
  * Copies a text to the clipboard
  * @example copyToClipboard()
  */
-export function copyToClipboard(text: string | number, callback?: () => void) {
-  navigator.clipboard
-    .writeText(String(text))
-    .then(() => {
-      if (callback) callback()
-    })
-    .catch((error) => {
-      if (callback) callback()
-    })
+export async function copyToClipboard(text: string): Promise<void> {
+  try {
+    await navigator.clipboard.writeText(String(text))
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 /**

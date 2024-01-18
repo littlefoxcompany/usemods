@@ -1,3 +1,9 @@
+---
+title: Validators
+description: A collection of validators for common data types
+icon: undefined
+---
+
 ::pagetitle
 # Validators
 A collection of validators for common data types

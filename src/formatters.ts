@@ -8,7 +8,7 @@
 export function formatCurrency(number: number, decimals = 2, currency = 'USD'): string {
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
-    minimumFractionDigits: 0,
+    minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,
     currency
   })

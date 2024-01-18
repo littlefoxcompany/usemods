@@ -1,3 +1,9 @@
+---
+title: Detections
+description: A collection of detections for common data types
+icon: undefined
+---
+
 ::pagetitle
 # Detections
 A collection of detections for common data types

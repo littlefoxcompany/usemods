@@ -3,14 +3,14 @@ import { resolve, extname, basename, join } from 'path'
 
 // Define the directory path
 const directoryPath = resolve('./src/')
-const contentDirectory = resolve('./nuxt-module/docs/content/1.docs')
+const contentDirectory = resolve('./nuxt-module/docs/content/2.docs')
 
 const functionPattern = /\/\*\*[\s\S]*?\*\/\s*(export\s+function\s+[a-zA-Z0-9_]+\([^)]*\)\s*:\s*[a-zA-Z]+\s*(?:{[\s\S]*?})?)?/gms
 const metadataPattern = /\/\/\s+(title|description):\s+([^\r\n]*)/g
 
 async function processFiles() {
   try {
-    const tsFiles = (await readdir(directoryPath)).filter((file) => extname(file) === '.ts')
+    const tsFiles = (await readdir(directoryPath)).filter((file) => extname(file) === '.ts' && file !== 'index.ts')
 
     let combinedTsFile = ''
 
@@ -30,6 +30,13 @@ function generateMarkdown(tsContent: string): string {
   const metadata = Object.fromEntries([...tsContent.matchAll(metadataPattern)].map((m) => [m[1], m[2]]))
 
   let markdownContent = ''
+
+  // Create Frontmatter
+  markdownContent += `---\n`
+  markdownContent += `title: ${metadata.title}\n`
+  markdownContent += `description: ${metadata.description}\n`
+  markdownContent += `icon: ${metadata.icon}\n`
+  markdownContent += `---\n\n`
 
   if (metadata.title) markdownContent += `::pagetitle\n`
   if (metadata.title) markdownContent += `# ${metadata.title}\n`

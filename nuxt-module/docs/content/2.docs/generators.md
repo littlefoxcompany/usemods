@@ -1,3 +1,9 @@
+---
+title: Generators
+description: A collection of generators
+icon: undefined
+---
+
 ::pagetitle
 # Generators
 A collection of generators

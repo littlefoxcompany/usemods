@@ -1,3 +1,9 @@
+---
+title: Actions
+description: A collection of useful actions
+icon: undefined
+---
+
 ::pagetitle
 # Actions
 A collection of useful actions

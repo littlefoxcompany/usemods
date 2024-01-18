@@ -1,4 +1,4 @@
-// titile: Numbers
+// title: Numbers
 // description: This file contains functions that are related to numbers.
 
 /**

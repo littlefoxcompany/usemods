@@ -1,4 +1,14 @@
+---
+title: Numbers
+description: This file contains functions that are related to numbers.
+icon: undefined
+---
+
+::pagetitle
+# Numbers
 This file contains functions that are related to numbers.
+::
+
 ::pagefunction
 ### random
 Generates a random integer between the specified minimum and maximum values.
