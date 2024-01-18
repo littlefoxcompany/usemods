@@ -1,5 +1,5 @@
 import { expect, test } from 'bun:test'
-import { formatCurrency, formatDuration, formatList } from '../src/formatters'
+import { formatCurrency, formatDuration, formatList } from '../src/1.formatters'
 
 // @vitest-environment nuxt
 // import * as mod from '@/utils/formatters'

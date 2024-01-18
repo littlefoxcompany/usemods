@@ -1,5 +1,5 @@
 // title: Formatters
-// description: A collection of formatters for common data types
+// description: Formatter functions are essential tools in web development, designed to enhance the presentation and organisation of data in web applications. These functions allow developers to easily manipulate and display various data types, such as dates, numbers, and strings, in a more readable and user-friendly format.
 
 /**
  * Format numbers into local currency
@@ -43,7 +43,6 @@ export function formatValuation(value: number, decimals = 1, currency = 'USD'): 
 
 /**
  * Format numbers into thousands, millions or billions
- * @param decimals - The number of decimal places to display
  */
 export function formatNumber(value: number, decimals = 1): string {
   const formatter = new Intl.NumberFormat('en-US', {

@@ -1,7 +1,7 @@
 // title: Modifiers
 // description: Modifiers are a key feature of Mods that allow you to easily modify and enhance your content. They are small pieces of code that can be applied to your JS to add functionality, validation or style.
 
-import { formatDuration } from './formatters'
+import { formatDuration } from './1.formatters'
 
 /**
  * Adds a space between the last two words in a string.

@@ -9,6 +9,6 @@
     @apply text-4xl font-bold;
   }
   :deep(p) {
-    @apply text-2xl pt-4 font-light;
+    @apply text-xl/[1.6em] text-white/75 pt-4 font-light;
   }
 </style>

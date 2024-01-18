@@ -38,6 +38,7 @@ function generateMarkdown(tsContent: string): string {
   markdownContent += `icon: ${metadata.icon}\n`
   markdownContent += `---\n\n`
 
+  // Page Title Component
   if (metadata.title) markdownContent += `::pagetitle\n`
   if (metadata.title) markdownContent += `# ${metadata.title}\n`
   if (metadata.description) markdownContent += `${metadata.description}\n`

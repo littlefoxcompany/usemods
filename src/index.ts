@@ -1,6 +1,6 @@
 export * from './actions'
 export * from './detections'
-export * from './formatters'
+export * from './1.formatters'
 export * from './generators'
 export * from './modifiers'
 export * from './numbers'

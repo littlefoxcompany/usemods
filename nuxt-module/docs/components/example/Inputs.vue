@@ -1,5 +1,5 @@
 <template>
-  <div class="flex gap-4 items-stretch p-6 pb-7">
+  <div class="flex gap-4 items-stretch p-5 pb-6">
     <slot />
   </div>
 </template>
