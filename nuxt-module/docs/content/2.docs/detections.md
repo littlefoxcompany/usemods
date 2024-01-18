@@ -29,16 +29,7 @@ detectOS()
 :::
 ::
 
-::pagefunction
-### detectBrowser
 Detects the user's browser based on the user agent string.
-```js [js]
-detectBrowser()
-```
-:::detectBrowser
-:::
-::
-
 ::pagefunction
 ### detectActiveBrowser
 Detect if the browser window is currently active or hidden.

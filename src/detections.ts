@@ -24,7 +24,6 @@ export function detectOS(): string {
 
 /**
  * Detects the user's browser based on the user agent string.
- * @example detectBrowser()
  */
 export function detectBrowser(): string {
   return navigator.userAgent.toLowerCase()
