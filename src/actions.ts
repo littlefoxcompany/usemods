@@ -73,9 +73,9 @@ export function toggleElementScroll(element: HTMLElement, className: string) {
  * Copies a text to the clipboard
  * @example copyToClipboard()
  */
-export function copyToClipboard(text: string, callback?: () => void) {
+export function copyToClipboard(text: string | number, callback?: () => void) {
   navigator.clipboard
-    .writeText(text)
+    .writeText(String(text))
     .then(() => {
       if (callback) callback()
     })

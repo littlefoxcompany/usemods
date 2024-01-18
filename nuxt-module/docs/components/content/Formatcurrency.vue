@@ -5,9 +5,7 @@
       <FormInput label="Decimal places" type="number" v-model="currencyDecimals" />
       <FormInput label="Currency" type="text" v-model="currencySymbol" />
     </ExampleInputs>
-    <ExampleResult>
-      {{ formatCurrency(currency, currencyDecimals, currencySymbol) }}
-    </ExampleResult>
+    <ExampleResult :result="formatCurrency(currency, currencyDecimals, currencySymbol)" />
   </Example>
 </template>
 

@@ -104,10 +104,7 @@ export function readingTime(text: string, wordsPerMinute = 200): string {
  * Adds plurals to a string.
  */
 export function pluralize(text: string, count: number): string {
-  if (count === 1) {
-    return text
-  }
-
+  if (count === 1) return text
   return text + 's'
 }
 
@@ -115,10 +112,7 @@ export function pluralize(text: string, count: number): string {
  * Removes plurals from a string.
  */
 export function singularize(text: string): string {
-  if (text.endsWith('s')) {
-    return text.substring(0, text.length - 1)
-  }
-
+  if (text.endsWith('s')) return text.substring(0, text.length - 1)
   return text
 }
 
@@ -128,7 +122,6 @@ export function singularize(text: string): string {
 export function ordinalize(number: number): string {
   const suffixes = ['th', 'st', 'nd', 'rd']
   const remainder = number % 100
-
   return number + (suffixes[(remainder - 20) % 10] || suffixes[remainder] || suffixes[0])
 }
 
@@ -212,11 +205,8 @@ export function sentenceCase(text: string): string {
  * Adds a prefix to a string if it doesn't already start with the prefix.
  */
 export function startWith(text: string, start: string): string {
-  if (text.startsWith(start)) {
-    return text
-  } else {
-    return start + text
-  }
+  if (text.startsWith(start)) return text
+  return start + text
 }
 
 /**
@@ -224,33 +214,24 @@ export function startWith(text: string, start: string): string {
  */
 
 export function startWithout(start: string, text: string): string {
-  if (text.startsWith(start)) {
-    return text.substring(start.length)
-  } else {
-    return text
-  }
+  if (text.startsWith(start)) return text.substring(start.length)
+  return text
 }
 
 /**
  * Adds a suffix to a string if it doesn't already end with the suffix.
  */
 export function endWith(text: string, end: string): string {
-  if (text.endsWith(end)) {
-    return text
-  } else {
-    return text + end
-  }
+  if (text.endsWith(end)) return text
+  return text + end
 }
 
 /**
  * Removes a suffix from a string if it ends with the suffix.
  */
 export function endWithout(text: string, end: string): string {
-  if (text.endsWith(end)) {
-    return text.substring(0, text.length - end.length)
-  } else {
-    return text
-  }
+  if (text.endsWith(end)) return text.substring(0, text.length - end.length)
+  return text
 }
 
 /**
@@ -259,19 +240,10 @@ export function endWithout(text: string, end: string): string {
  * @param prefix - The prefix to add.
  * @param suffix - The suffix to add.
  */
-export function surround(text: string, start: string, end: string): string {
-  if (text.startsWith(start) && text.endsWith(end)) {
-    return text
-  }
-
-  if (text.startsWith(start)) {
-    return text + end
-  }
-
-  if (text.endsWith(end)) {
-    return start + text
-  }
-
+export function surroundWith(text: string, start: string, end: string): string {
+  if (text.startsWith(start) && text.endsWith(end)) return text
+  if (text.startsWith(start)) return text + end
+  if (text.endsWith(end)) return start + text
   return start + text + end
 }
 
@@ -287,9 +259,7 @@ export function splitByWords(text: string): string {
   for (let i = 0; i < sentences.length; i += 2) {
     const sentence = sentences[i] + (sentences[i + 1] || '')
 
-    if (sentence.trim() === '') {
-      continue
-    }
+    if (sentence.trim() === '') continue
 
     const words = sentence
       .split(' ')

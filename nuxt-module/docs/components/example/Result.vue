@@ -5,9 +5,21 @@
         <Icon name="ph:equals-bold" class="text-white w-3" />
       </div>
       <div class="text-lg font-semibold">
-        <slot />
+        {{ result }}
       </div>
     </div>
-    <div class="text-white/25 font-mono text-sm">Result</div>
+    <div class="flex gap-2 items-center">
+      <div class="text-white/25 font-mono text-sm/none">Result</div>
+      <CopyToClipboard :copy="result" />
+    </div>
   </div>
 </template>
+
+<script setup lang="ts">
+  const props = defineProps({
+    result: {
+      type: [String, Number],
+      default: ''
+    }
+  })
+</script>

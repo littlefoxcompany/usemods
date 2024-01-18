@@ -31,8 +31,10 @@ function generateMarkdown(tsContent: string): string {
 
   let markdownContent = ''
 
-  if (metadata.title) markdownContent += `# ${metadata.title}\n\n`
-  if (metadata.description) markdownContent += `${metadata.description}\n\n`
+  if (metadata.title) markdownContent += `::pagetitle\n`
+  if (metadata.title) markdownContent += `# ${metadata.title}\n`
+  if (metadata.description) markdownContent += `${metadata.description}\n`
+  if (metadata.title) markdownContent += `::\n\n`
 
   const functions = tsContent.matchAll(functionPattern)
 
@@ -47,10 +49,12 @@ function generateMarkdown(tsContent: string): string {
       .trim()
     const example = (jsDoc.match(/@example\s+([^\r\n]*)/) || [])[1] || ''
 
-    if (name) markdownContent += `### ${name}\n\n`
-    if (description) markdownContent += `${description}\n\n`
-    if (example) markdownContent += '```js [js]\n' + example + '\n```\n\n'
-    if (name) markdownContent += `::${name}\n::\n\n`
+    if (name) markdownContent += `::pagefunction\n`
+    if (name) markdownContent += `### ${name}\n`
+    if (description) markdownContent += `${description}\n`
+    if (example) markdownContent += '```js [js]\n' + example + '\n```\n'
+    if (name) markdownContent += `:::${name}\n:::\n`
+    if (name) markdownContent += `::\n\n`
   }
 
   return markdownContent

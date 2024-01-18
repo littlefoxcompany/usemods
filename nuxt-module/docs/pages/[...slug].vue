@@ -1,14 +1,9 @@
 <template>
-  <div class="docs">
-    <ContentDoc />
-  </div>
+  <ContentDoc class="flex flex-col grow divide-y divide-dashed divide-white/5" />
 </template>
 
 <style>
   .docs {
-    h1 {
-      @apply font-bold text-4xl;
-    }
     h3 {
       @apply font-semibold text-2xl mt-16;
     }

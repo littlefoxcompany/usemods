@@ -1,433 +1,395 @@
+::pagetitle
 # Detections
-
 A collection of detections for common data types
+::
 
+::pagefunction
 ### detectDevice
-
 Detect the current device type (Mobile or Desktop)
-
 ```js [js]
 detectDevice()
 ```
-
-::detectDevice
+:::detectDevice
+:::
 ::
 
+::pagefunction
 ### detectOS
-
 Detect the current operating system
-
 ```js [js]
 detectOS()
 ```
-
-::detectOS
+:::detectOS
+:::
 ::
 
+::pagefunction
 ### detectBrowser
-
 Detects the user's browser based on the user agent string.
-
 ```js [js]
 detectBrowser()
 ```
-
-::detectBrowser
+:::detectBrowser
+:::
 ::
 
+::pagefunction
 ### detectActiveBrowser
-
 Detect if the browser window is currently active or hidden.
-
 ```js [js]
 detectActiveBrowser()
 ```
-
-::detectActiveBrowser
+:::detectActiveBrowser
+:::
 ::
 
+::pagefunction
 ### detectColorScheme
-
 Detect the current color scheme (Light or Dark)
-
 ```js [js]
 detectColorScheme()
 ```
-
-::detectColorScheme
+:::detectColorScheme
+:::
 ::
 
+::pagefunction
 ### detectBrowserLanguage
-
 Detect the current browser language
-
 ```js [js]
 detectBrowserLanguage()
 ```
-
-::detectBrowserLanguage
+:::detectBrowserLanguage
+:::
 ::
 
+::pagefunction
 ### detectUserLocation
-
 Detect the current user's location
-
 ```js [js]
 detectUserLocation()
 ```
-
-::detectUserLocation
+:::detectUserLocation
+:::
 ::
 
+::pagefunction
 ### detectUserTimezone
-
 Detect the current user's Timezone
-
 ```js [js]
 detectUserTimezone()
 ```
-
-::detectUserTimezone
+:::detectUserTimezone
+:::
 ::
 
+::pagefunction
 ### detectDeviceOrientation
-
 Detect the currect device orientation
-
 ```js [js]
 detectDeviceOrientation()
 ```
-
-::detectDeviceOrientation
+:::detectDeviceOrientation
+:::
 ::
 
+::pagefunction
 ### detectDeviceMotion
-
 Detect the current device motion
-
 ```js [js]
 detectDeviceMotion()
 ```
-
-::detectDeviceMotion
+:::detectDeviceMotion
+:::
 ::
 
+::pagefunction
 ### detectWindowSize
-
 Detect the browser's window size
-
 ```js [js]
 detectWindowSize()
 ```
-
-::detectWindowSize
+:::detectWindowSize
+:::
 ::
 
+::pagefunction
 ### detectScreenSize
-
 Detect the screen or monitor size
-
 ```js [js]
 detectScreenSize()
 ```
-
-::detectScreenSize
+:::detectScreenSize
+:::
 ::
 
+::pagefunction
 ### detectContainerSize
-
 Detect the container size via ID
-
 ```js [js]
 detectContainerSize('container')
 ```
-
-::detectContainerSize
+:::detectContainerSize
+:::
 ::
 
+::pagefunction
 ### detectTailwindBreakpoint
-
 Detect the current breakpoint based on Tailwind CSS breakpoints
-
 ```js [js]
 detectTailwindBreakpoint()
 ```
-
-::detectTailwindBreakpoint
+:::detectTailwindBreakpoint
+:::
 ::
 
+::pagefunction
 ### detectTailwindContainerBreakpoint
-
 Detect the current container breakpoint based on Tailwind CSS breakpoints
-
 ```js [js]
 detectTailwindContainerBreakpoint('container')
 ```
-
-::detectTailwindContainerBreakpoint
+:::detectTailwindContainerBreakpoint
+:::
 ::
 
+::pagefunction
 ### detectScrollPosition
-
 Detect the current scroll position of the window
-
 ```js [js]
 detectScrollPosition()
 ```
-
-::detectScrollPosition
+:::detectScrollPosition
+:::
 ::
 
+::pagefunction
 ### detectMousePosition
-
 Detect the current mouse position within the window
-
 ```js [js]
 detectMousePosition(event)
 ```
-
-::detectMousePosition
+:::detectMousePosition
+:::
 ::
 
+::pagefunction
 ### detectRelativeMousePosition
-
 Detect the current mouse position within a container via ID
-
 ```js [js]
 detectRelativeMousePosition('container', event)
 ```
-
-::detectRelativeMousePosition
+:::detectRelativeMousePosition
+:::
 ::
 
+::pagefunction
 ### detectNetworkStatus
-
 Detect the current network status of the user (Online or Offline)
-
 ```js [js]
 detectNetworkStatus()
 ```
-
-::detectNetworkStatus
+:::detectNetworkStatus
+:::
 ::
 
+::pagefunction
 ### detectMemoryStatus
-
 Detect the current memory status of the user (RAM)
-
 ```js [js]
 detectMemoryStatus()
 ```
-
-::detectMemoryStatus
+:::detectMemoryStatus
+:::
 ::
 
+::pagefunction
 ### detectCookie
-
 Returns a cookie value by name
-
 ```js [js]
 detectCookie('name')
 ```
-
-::detectCookie
+:::detectCookie
+:::
 ::
 
+::pagefunction
 ### detectLocalStorage
-
 Returns a local storage value by name and parses it into JSON
-
 ```js [js]
 detectLocalStorage('name')
 ```
-
-::detectLocalStorage
+:::detectLocalStorage
+:::
 ::
 
+::pagefunction
 ### detectSessionStorage
-
 Returns a session storage value by name and parses it into JSON
-
 ```js [js]
 detectSessionStorage('name')
 ```
-
-::detectSessionStorage
+:::detectSessionStorage
+:::
 ::
 
+::pagefunction
 ### detectURLParameters
-
 Returns a value from the URL by name
-
 ```js [js]
 detectURLParameters('http://url.com/page?name=Adam&surname=Smith')
 ```
-
-::detectURLParameters
+:::detectURLParameters
+:::
 ::
 
+::pagefunction
 ### detectURLHashParameters
-
 Returns a value from the URL hash by name
-
 ```js [js]
 detectURLHashParameters()
 ```
-
-::detectURLHashParameters
+:::detectURLHashParameters
+:::
 ::
 
+::pagefunction
 ### detectURLSearchParameters
-
 @example detectURLSearchParameters()
-
 ```js [js]
 detectURLSearchParameters()
 ```
-
-::detectURLSearchParameters
+:::detectURLSearchParameters
+:::
 ::
 
+::pagefunction
 ### detectURL
-
 Returns the current URL
-
 ```js [js]
 detectURL()
 ```
-
-::detectURL
+:::detectURL
+:::
 ::
 
+::pagefunction
 ### detectDomain
-
 Returns the current domain
-
 ```js [js]
 detectDomain()
 ```
-
-::detectDomain
+:::detectDomain
+:::
 ::
 
+::pagefunction
 ### detectIP
-
 Returns the current IP address
-
 ```js [js]
 detectIP()
 ```
-
-::detectIP
+:::detectIP
+:::
 ::
 
+::pagefunction
 ### detectPort
-
 Returns the current port
-
 ```js [js]
 detectPort()
 ```
-
-::detectPort
+:::detectPort
+:::
 ::
 
+::pagefunction
 ### detectProtocol
-
 Returns the current protocol (HTTP or HTTPS)
-
 ```js [js]
 detectProtocol()
 ```
-
-::detectProtocol
+:::detectProtocol
+:::
 ::
 
+::pagefunction
 ### detectReferrer
-
 Returns the URL of the referring page (the page that linked to the current page)
-
 ```js [js]
 detectReferrer()
 ```
-
-::detectReferrer
+:::detectReferrer
+:::
 ::
 
+::pagefunction
 ### detectCachedData
-
 Retrieves cached entries and optionally filters the entries based on a provided key
-
 ```js [js]
 detectCachedData('abc')
 ```
-
-::detectCachedData
+:::detectCachedData
+:::
 ::
 
+::pagefunction
 ### detectInViewport
-
 Detects if the element is currently in the viewport
-
 ```js [js]
 detectInViewport(element)
 ```
-
-::detectInViewport
+:::detectInViewport
+:::
 ::
 
+::pagefunction
 ### detectInContainer
-
 Detects if the element is currently in the container via ID
-
 ```js [js]
 detectInContainer(element, 'container')
 ```
-
-::detectInContainer
+:::detectInContainer
+:::
 ::
 
+::pagefunction
 ### detectOverflowingY
-
 Detects if the element is overflowing vertically
-
 ```js [js]
 detectOverflowingY(element)
 ```
-
-::detectOverflowingY
+:::detectOverflowingY
+:::
 ::
 
+::pagefunction
 ### detectOverflowingX
-
 Detects if the element is overflowing horizontally
-
 ```js [js]
 detectOverflowingX(element)
 ```
-
-::detectOverflowingX
+:::detectOverflowingX
+:::
 ::
 
+::pagefunction
 ### detectScrollable
-
 Detects if the element is scrollable (overflowing vertically or horizontally)
-
 ```js [js]
 detectScrollable()
 ```
-
-::detectScrollable
+:::detectScrollable
+:::
 ::
 
+::pagefunction
 ### detectElement
-
 Detects if the elements is an HTML element
-
 ```js [js]
 detectElement()
 ```
-
-::detectElement
+:::detectElement
+:::
 ::
 
