@@ -4,6 +4,7 @@ export async function build() {
   return await Bun.build({
     entrypoints: ['./src/index.ts'],
     outdir: './dist',
+    target: 'browser',
     minify: {
       whitespace: true,
       identifiers: false,
