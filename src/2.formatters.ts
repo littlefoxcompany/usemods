@@ -110,34 +110,23 @@ export function formatUnixTime(timestamp: number): string {
  * @example formatList(['one', 'two', 'three'])
  */
 export function formatList(items: any[], limit: number, conjunction: string = 'and'): string {
-  if (items.length === 1) {
-    return items[0]
-  }
-
-  if (items.length === 2) {
-    return items.join(' ' + conjunction + ' ')
-  }
-
-  if (items.length === 3) {
-    return items.slice(0, -1).join(', ') + ' ' + conjunction + ' ' + items.slice(-1)
-  }
-
-  if (items.length > 3) {
-    return items.slice(0, limit).join(', ') + ' ' + conjunction + ' ' + (items.length - limit) + ' more'
-  }
-
+  if (items.length === 1) return items[0]
+  if (items.length === 2) return items.join(' ' + conjunction + ' ')
+  if (items.length === 3) return items.slice(0, -1).join(', ') + ' ' + conjunction + ' ' + items.slice(-1)
+  if (items.length > 3) return items.slice(0, limit).join(', ') + ' ' + conjunction + ' ' + (items.length - limit) + ' more'
   return ''
 }
 
 /**
  * Converts a string to title case following the Chicago Manual of Style rules.
  * @reference https://www.chicagomanualofstyle.org/book/ed17/frontmatter/toc.html
- * @example title('the quick brown fox jumps over the lazy dog')
+
  */
 export function formatTitle(text: string): string {
-  const exceptions = [
+  const exceptions = new Set([
     'a',
     'an',
+    'to',
     'the',
     'for',
     'and',
@@ -147,6 +136,8 @@ export function formatTitle(text: string): string {
     'yet',
     'so',
     'in',
+    'is',
+    'than',
     'on',
     'at',
     'with',
@@ -158,25 +149,16 @@ export function formatTitle(text: string): string {
     'because',
     'since',
     'unless'
-  ]
-
-  const capitalize = (word: string) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+  ])
 
   return text
     .split(' ')
     .map((word, index, wordsArray) => {
-      const lowercaseWord = word.toLowerCase()
-      if (index > 0 && word.includes('-')) {
-        const [firstPart, secondPart] = word.split('-')
-        return capitalize(firstPart) + '-' + secondPart.toLowerCase()
+      const lowerWord = word.toLowerCase()
+      if (index === 0 || index === wordsArray.length - 1 || !exceptions.has(lowerWord)) {
+        return word.charAt(0).toUpperCase() + word.slice(1)
       }
-      if (index === 0 || index === wordsArray.length - 1 || !exceptions.includes(lowercaseWord)) {
-        return capitalize(lowercaseWord)
-      }
-      if (lowercaseWord === 'to' && index > 0 && wordsArray[index - 1].toLowerCase() !== 'to') {
-        return lowercaseWord
-      }
-      return exceptions.includes(lowercaseWord) ? lowercaseWord : capitalize(lowercaseWord)
+      return lowerWord
     })
     .join(' ')
 }
