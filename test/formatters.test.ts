@@ -30,13 +30,16 @@ test('formatUnixTime', () => {
 
 test('formatList', () => {
   expect(formatList(['Apple', 'Oranges'], 2)).toBe('Apple and Oranges')
-  expect(formatList(['Apple', 'Oranges', 'Bananas'], 2)).toBe('Apple, Oranges, and 1 more')
-  expect(formatList(['Apple', 'Oranges', 'Bananas', 'Pears'], 2)).toBe('Apple, Oranges, and 2 more')
+  expect(formatList(['Apple', 'Oranges', 'Bananas'], 2)).toBe('Apple, Oranges and Bananas')
+  expect(formatList(['Apple', 'Oranges', 'Bananas'], 0, 'or')).toBe('Apple, Oranges or Bananas')
+  expect(formatList(['Apple', 'Oranges', 'Bananas', 'Pears'], 2)).toBe('Apple, Oranges and 2 more')
+  expect(formatList(['Apple', 'Oranges', 'Bananas', 'Pears', 'Grapes'], 2)).toBe('Apple, Oranges and 3 more')
+  expect(formatList(['Apple', 'Oranges', 'Bananas', 'Pears', 'Grapes'], 2, 'or')).toBe('Apple, Oranges or 3 more')
 })
 
 test('formatTitle', () => {
   expect(formatTitle('hello world')).toBe('Hello World')
   expect(formatTitle('welcome to the jungle')).toBe('Welcome to the Jungle')
   expect(formatTitle('the quick brown fox jumps over the lazy dog')).toBe('The Quick Brown Fox Jumps Over the Lazy Dog')
-  // expect(formatTitle('UseMods is cooler than a vegan leather jacket, it's offical')).toBe('UseMods Is Cooler than a Vegan Leather Jacket, it's Offical')
+  expect(formatTitle('UseMods is cooler than a vegan leather jacket')).toBe('UseMods is Cooler than a Vegan Leather Jacket')
 })
