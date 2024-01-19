@@ -7,7 +7,7 @@
       :type="type"
       :placeholder="placeholder"
       :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)" />
+      @input="$event.target && $emit('update:modelValue', ($event.target as HTMLInputElement).value)" />
   </div>
 </template>
 
@@ -25,6 +25,9 @@
     type: {
       type: String,
       default: 'text'
+    },
+    info: {
+      type: String
     }
   })
 </script>

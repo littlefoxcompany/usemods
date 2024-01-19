@@ -2,10 +2,12 @@
   <Example>
     <ExampleInputs>
       <FormInput label="Value" type="number" v-model="currency" />
-      <FormNumber label="Decimals" v-model="currencyDecimals" min="0" />
+      <FormNumber label="Decimals" v-model="currencyDecimals" :min="0" />
       <FormInput label="Currency" type="text" v-model="currencySymbol" />
     </ExampleInputs>
-    <ExampleResult :result="formatCurrency(currency, currencyDecimals, currencySymbol)" />
+    <ExampleResult>
+      {{ formatCurrency(currency, currencyDecimals, currencySymbol) }}
+    </ExampleResult>
   </Example>
 </template>
 

@@ -23,40 +23,30 @@ export function formatNumber(value: number, decimals = 1): string {
  * Format numbers into local currency
  * @example formatCurrency()
  */
-export function formatCurrency(number: number, decimals = 0, currency = 'USD'): string {
-  const formatter = new Intl.NumberFormat('en-US', {
+export function formatCurrency(number: number, decimals: boolean | number = false, currency = 'USD'): string {
+  const fractionDigits = typeof decimals === 'number' ? decimals : decimals === true ? Number.POSITIVE_INFINITY : 0
+
+  return new Intl.NumberFormat(currency, {
     style: 'currency',
-    minimumFractionDigits: Math.max(0, decimals),
-    maximumFractionDigits: decimals,
-    currency
-  })
-  try {
-    return formatter.format(number)
-  } catch (error) {
-    console.error(error)
-    return ''
-  }
+    currency,
+    minimumFractionDigits: fractionDigits,
+    maximumFractionDigits: fractionDigits
+  }).format(number)
 }
 
 /**
  * Format numbers into valuations displayed in thousands, millions or billions
  * @example formatValuation()
  */
-export function formatValuation(value: number, decimals = 1, currency = 'USD'): string {
-  const formatter = new Intl.NumberFormat('en-US', {
+export function formatValuation(value: number, decimals: boolean | number = false, currency = 'USD'): string {
+  const fractionDigits = typeof decimals === 'number' ? decimals : decimals === true ? Number.POSITIVE_INFINITY : 0
+
+  return new Intl.NumberFormat(currency, {
     notation: 'compact',
     compactDisplay: 'short',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: decimals,
-    style: 'currency',
-    currency
-  })
-
-  try {
-    return formatter.format(value)
-  } catch (error) {
-    return ''
-  }
+    minimumFractionDigits: fractionDigits,
+    maximumFractionDigits: fractionDigits
+  }).format(value)
 }
 
 /**
@@ -65,14 +55,16 @@ export function formatValuation(value: number, decimals = 1, currency = 'USD'): 
  */
 export function formatDuration(seconds: number, labels = 'short'): string {
   const time = [
-    { unit: labels === 'short' ? 'yr' : 'year', secondsInUnit: 31536000 },
-    { unit: labels === 'short' ? 'mo' : 'month', secondsInUnit: 2628000 },
-    { unit: labels === 'short' ? 'wk' : 'week', secondsInUnit: 604800 },
-    { unit: labels === 'short' ? 'd' : 'day', secondsInUnit: 86400 },
-    { unit: labels === 'short' ? 'hr' : 'hour', secondsInUnit: 3600 },
-    { unit: labels === 'short' ? 'min' : 'minute', secondsInUnit: 60 },
-    { unit: labels === 'short' ? 's' : 'second', secondsInUnit: 1 }
+    { unit: labels === 'short' ? 'yr' : ' year', secondsInUnit: 31536000 },
+    { unit: labels === 'short' ? 'mo' : ' month', secondsInUnit: 2628000 },
+    { unit: labels === 'short' ? 'wk' : ' week', secondsInUnit: 604800 },
+    { unit: labels === 'short' ? 'd' : ' day', secondsInUnit: 86400 },
+    { unit: labels === 'short' ? 'hr' : ' hour', secondsInUnit: 3600 },
+    { unit: labels === 'short' ? 'min' : ' minute', secondsInUnit: 60 },
+    { unit: labels === 'short' ? 's' : ' second', secondsInUnit: 1 }
   ]
+
+  if (seconds === 0) return '0s'
 
   let remainingSeconds = seconds
   let formattedTime = ''
@@ -80,7 +72,7 @@ export function formatDuration(seconds: number, labels = 'short'): string {
   for (const { unit, secondsInUnit } of time) {
     const count = Math.floor(remainingSeconds / secondsInUnit)
     if (count > 0) {
-      formattedTime += `${count}${unit} `
+      formattedTime += `${count}${count === 1 ? unit : unit + 's'}`
       remainingSeconds -= count * secondsInUnit
     }
   }
@@ -89,23 +81,25 @@ export function formatDuration(seconds: number, labels = 'short'): string {
 }
 
 /**
- * Format Unix timestamp into a datetime string
- * @example formatUnixTime(1620000000)
- */
-export function formatUnixTime(timestamp: number): string {
-  return new Date(timestamp * 1000).toISOString().replace('T', ' ').replace('Z', '')
-}
-
-/**
  * Format a number into a percentage
  * @example formatPercentage(0.1234)
  */
-export function formatPercentage(number: number, decimals = 1): string {
+export function formatPercentage(number: number, decimals: boolean | number = false): string {
+  const fractionDigits = typeof decimals === 'number' ? decimals : decimals === true ? Number.POSITIVE_INFINITY : 0
+
   return new Intl.NumberFormat('en-US', {
     style: 'percent',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: decimals
+    minimumFractionDigits: fractionDigits,
+    maximumFractionDigits: fractionDigits
   }).format(number)
+}
+
+/**
+ * Format Unix timestamp into a datetime string
+ * @example formatUnixTime()
+ */
+export function formatUnixTime(timestamp: number): string {
+  return new Date(timestamp * 1000).toISOString().replace('T', ' ').replace('Z', '')
 }
 
 /**

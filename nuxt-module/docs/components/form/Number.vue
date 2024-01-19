@@ -9,7 +9,7 @@
         <button
           class="text-zinc-500 hover:text-white"
           @click="$emit('update:modelValue', Number(modelValue) - 1)"
-          :class="modelValue <= min ? 'opacity-30 hover:opacity-30 pointer-events-none cursor-not-allowed' : ''">
+          :class="String(modelValue) <= String(min) ? 'opacity-30 hover:opacity-30 pointer-events-none cursor-not-allowed' : ''">
           <Icon name="heroicons:minus-circle-20-solid" class="h-5 w-5" />
         </button>
         <button class="text-zinc-500 hover:text-white" @click="$emit('update:modelValue', Number(modelValue) + 1)">

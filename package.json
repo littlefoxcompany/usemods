@@ -2,6 +2,17 @@
   "name": "usemods",
   "version": "0.0.0",
   "description": "Zippy little modifiers and utilities for your frontend.",
+  "scripts": {
+    "dev": "bun run builder.mjs",
+    "build": "bun run build.mjs",
+    "test": "bun --watch test test/*",
+    "prepublishOnly": "bun run build",
+    "docs": "npm run docs:install && npm run module:dev",
+    "docs:install": "npm run module:install && npm i --prefix ./nuxt-module/docs",
+    "module:install": "npm i --prefix ./nuxt-module",
+    "module:dev": "npm run build && npm run dev --prefix ./nuxt-module",
+    "module:release:": "npm run release --prefix ./nuxt-module"
+  },
   "keywords": [
     "bun",
     "usemods",
@@ -37,17 +48,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/LittleFoxCompany/usemods.git"
-  },
-  "scripts": {
-    "dev": "bun run builder.mjs",
-    "build": "bun run build.mjs",
-    "test": "bun --watch test test/*",
-    "prepublishOnly": "bun run build",
-    "docs": "npm run docs:install && npm run module:dev",
-    "docs:install": "npm run module:install && npm i --prefix ./nuxt-module/docs",
-    "module:install": "npm i --prefix ./nuxt-module",
-    "module:dev": "npm run build && npm run dev --prefix ./nuxt-module",
-    "module:release:": "npm run release --prefix ./nuxt-module"
   },
   "devDependencies": {
     "@types/web": "^0.0.119",
