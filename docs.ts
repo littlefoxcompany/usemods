@@ -58,13 +58,15 @@ function generateMarkdown(tsContent: string): string {
       .slice(0, 1)
       .join(' ')
       .trim()
+
     const example = (jsDoc.match(/@example\s+([^\r\n]*)/) || [])[1] || ''
+    const componentName = name.replace(/(?:^|\.?)([A-Z])/g, (x, y) => '-' + y.toLowerCase()).replace(/^-/, '')
 
     if (name) markdownContent += `::pagefunction\n`
     if (name) markdownContent += `### ${name}\n`
     if (description) markdownContent += `${description}\n`
     if (example) markdownContent += '```js [js]\n' + example + '\n```\n'
-    if (name) markdownContent += `:::${name}\n:::\n`
+    if (name) markdownContent += `:::${componentName}\n:::\n`
     if (name) markdownContent += `::\n\n`
   }
 
