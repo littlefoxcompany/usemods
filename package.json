@@ -7,7 +7,7 @@
     "build": "bun run build.mjs",
     "test": "bun --watch test test/*",
     "prepublishOnly": "bun run build",
-    "docs": "npm run docs:install && npm run module:dev",
+    "docs": "bun run docs.ts && npm run docs:install && npm run module:dev",
     "docs:install": "npm run module:install && npm i --prefix ./nuxt-module/docs",
     "module:install": "npm i --prefix ./nuxt-module",
     "module:dev": "npm run build && npm run dev --prefix ./nuxt-module",
