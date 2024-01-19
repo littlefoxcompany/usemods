@@ -7,7 +7,7 @@
     "build": "bun run build.mjs",
     "test": "bun --watch test test/*",
     "prepublishOnly": "bun run build",
-    "docs": "bun run docs.ts && npm run docs:install && npm run module:dev",
+    "docs": "concurrently \"bun run docs.ts && npm run docs:install && npm run module:dev\" \"npm run dev\"",
     "docs:install": "npm run module:install && npm i --prefix ./nuxt-module/docs",
     "module:install": "npm i --prefix ./nuxt-module",
     "module:dev": "npm run build && npm run dev --prefix ./nuxt-module",
@@ -53,6 +53,7 @@
     "@types/web": "^0.0.119",
     "bun-plugin-dts": "^0.2.1",
     "bun-types": "^1.0.7",
+    "concurrently": "^8.2.2",
     "shikiji": "^0.10.0-beta.6",
     "typescript": "^5.2.2"
   }
