@@ -1,4 +1,4 @@
-import { readFile, writeFile, readdir } from 'fs/promises'
+import { readFile, writeFile, readdir, mkdir } from 'fs/promises'
 import { resolve, extname, basename, join } from 'path'
 
 // Define the directory path
@@ -18,7 +18,10 @@ async function processFiles() {
     for (const tsFile of tsFiles) {
       const tsContent = await readFile(resolve(directoryPath, tsFile), 'utf-8')
       combinedTsFile += tsContent + '\n'
+
+      await mkdir(contentDirectory, { recursive: true })
       await writeFile(join(contentDirectory, `${basename(tsFile, '.ts')}.md`), generateMarkdown(tsContent))
+
       console.log('Markdown documentation generated for:', tsFile)
     }
   } catch (error) {
