@@ -19,7 +19,7 @@
       </div>
 
       <!-- Table of Contents -->
-      <nav class="shrink w-2/12 max-w-[150px] h-fit top-4 sticky">
+      <nav class="shrink max-lg:hidden w-2/12 max-w-[150px] h-fit top-4 sticky">
         {{ toc }}
       </nav>
     </div>

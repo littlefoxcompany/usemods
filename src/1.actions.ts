@@ -4,7 +4,6 @@
 
 /**
  * Scrolls to the element with the specified ID.
- * @example scrollToAnchor('#my-anchor')
  */
 export function scrollToAnchor(id: string, callback?: () => void): void {
   setTimeout(() => {
@@ -22,7 +21,6 @@ export function scrollToAnchor(id: string, callback?: () => void): void {
 
 /**
  * Smoothly scroll to the top of the page
- * @example scrollToTop()
  */
 export function scrollToTop(callback?: () => void) {
   setTimeout(() => {
@@ -39,7 +37,6 @@ export function scrollToTop(callback?: () => void) {
 
 /**
  * Smoothly scroll to the bottom of the page
- * @example scrollToBottom()
  */
 export function scrollToBottom(callback?: () => void) {
   setTimeout(() => {
@@ -56,7 +53,6 @@ export function scrollToBottom(callback?: () => void) {
 
 /**
  * Toggles the body scroll with the specified class name
- * @example toggleBodyScroll('overflow-hidden')
  */
 export function toggleBodyScroll(className: string) {
   document.body.classList.toggle(className)
@@ -64,7 +60,6 @@ export function toggleBodyScroll(className: string) {
 
 /**
  * Toggles the element scroll
- * @example toggleElementScroll(document.querySelector('#my-element'))
  */
 export function toggleElementScroll(element: HTMLElement, className: string) {
   element.classList.toggle(className)
@@ -72,7 +67,6 @@ export function toggleElementScroll(element: HTMLElement, className: string) {
 
 /**
  * Copies a text to the clipboard
- * @example copyToClipboard()
  */
 export async function copyToClipboard(text: string): Promise<void> {
   try {
@@ -84,7 +78,6 @@ export async function copyToClipboard(text: string): Promise<void> {
 
 /**
  * Toggles the fullscreen mode
- * @example toggleFullScreen()
  */
 export function toggleFullScreen() {
   if (document.fullscreenElement) document.exitFullscreen()
@@ -93,7 +86,6 @@ export function toggleFullScreen() {
 
 /**
  * Toggles the dark mode
- * @example toggleDarkMode()
  */
 export function toggleDarkMode() {
   const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -102,7 +94,6 @@ export function toggleDarkMode() {
 
 /**
  * Redirects to a new URL
- * @example redirect('https://example.com')
  */
 export function redirect(url: string) {
   window.location.href = url
@@ -110,7 +101,6 @@ export function redirect(url: string) {
 
 /**
  * Resets a form
- * @example resetForm(document.querySelector('form'))
  */
 export function resetForm(form: HTMLFormElement) {
   form.reset()
@@ -118,7 +108,6 @@ export function resetForm(form: HTMLFormElement) {
 
 /**
  * Focuses on an element
- * @example focusOn(document.querySelector('#my-element'))
  */
 export function focusOn(element: HTMLElement) {
   element.focus()
@@ -126,7 +115,6 @@ export function focusOn(element: HTMLElement) {
 
 /**
  * Focuses on the first element
- * @example focusOnFirst(document.querySelector('#my-element'))
  */
 export function focusOnFirst(element: HTMLElement) {
   const input = element.querySelector('input')
@@ -137,7 +125,6 @@ export function focusOnFirst(element: HTMLElement) {
 
 /**
  * Focuses on the last element
- * @example focusOnLast(document.querySelector('#my-element'))
  */
 export function focusOnLast(element: HTMLElement) {
   const inputs = element.querySelectorAll('input')
@@ -149,7 +136,6 @@ export function focusOnLast(element: HTMLElement) {
 
 /**
  *  Sets up a keyboard trap within an HTML element, allowing the focus to cycle between the first and last focusable elements when the Tab key is pressed.
- * @example focusTrap(document.querySelector('#my-element'))
  */
 export function focusTrap(element: HTMLElement) {
   const focusableElements = element.querySelectorAll('a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select')

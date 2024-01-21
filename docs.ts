@@ -42,10 +42,10 @@ function generateMarkdown(tsContent: string): string {
   markdownContent += `---\n\n`
 
   // Page Title Component
-  if (metadata.title) markdownContent += `::page-title\n`
-  if (metadata.title) markdownContent += `# ${metadata.title}\n`
-  if (metadata.description) markdownContent += `${metadata.description}\n`
-  if (metadata.title) markdownContent += `::\n\n`
+  markdownContent += `::page-title\n`
+  markdownContent += `# ${metadata.title}\n`
+  markdownContent += `${metadata.description}\n`
+  markdownContent += `::\n\n`
 
   const functions = tsContent.matchAll(functionPattern)
 
@@ -59,15 +59,13 @@ function generateMarkdown(tsContent: string): string {
       .join(' ')
       .trim()
 
-    const example = (jsDoc.match(/@example\s+([^\r\n]*)/) || [])[1] || ''
     const componentName = name.replace(/(?:^|\.?)([A-Z])/g, (x, y) => '-' + y.toLowerCase()).replace(/^-/, '')
 
-    if (name) markdownContent += `::page-function\n`
-    if (name) markdownContent += `### ${name}\n`
-    if (description) markdownContent += `${description}\n`
-    if (example) markdownContent += '```js [js]\n' + example + '\n```\n'
-    if (name) markdownContent += `:::${componentName}\n:::\n`
-    if (name) markdownContent += `::\n\n`
+    markdownContent += `::page-function\n`
+    markdownContent += `### ${name}\n`
+    markdownContent += `${description}\n`
+    markdownContent += `:::${componentName}\n:::\n`
+    markdownContent += `::\n\n`
   }
 
   return markdownContent

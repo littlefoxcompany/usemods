@@ -1,8 +1,17 @@
 <template>
   <section class="py-12">
+    {{ name }}
     <slot />
   </section>
 </template>
+
+<script setup lang="ts">
+  const props = defineProps({
+    name: {
+      type: String
+    }
+  })
+</script>
 
 <style scoped>
   :deep(h3) {

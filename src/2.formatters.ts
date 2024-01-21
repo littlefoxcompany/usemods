@@ -21,22 +21,29 @@ export function formatNumber(value: number, decimals = 1): string {
 
 /**
  * Format numbers into local currency
- * @example formatCurrency()
  */
 export function formatCurrency(number: number, decimals: boolean | number = false, currency = 'USD'): string {
-  const fractionDigits = typeof decimals === 'number' ? decimals : decimals === true ? Number.POSITIVE_INFINITY : 0
-
-  return new Intl.NumberFormat(currency, {
+  let config: any = {
     style: 'currency',
-    currency,
-    minimumFractionDigits: fractionDigits,
-    maximumFractionDigits: fractionDigits
-  }).format(number)
+    currency
+  }
+
+  if (decimals === false) {
+    config.minimumFractionDigits = 0
+    config.maximumFractionDigits = 0
+  } else if (typeof decimals === 'number') {
+    config.minimumFractionDigits = 2
+    config.maximumFractionDigits = decimals
+  } else if (decimals === true) {
+    config.minimumFractionDigits = 2
+    config.maximumFractionDigits = 99
+  }
+
+  return new Intl.NumberFormat(currency, config).format(number)
 }
 
 /**
  * Format numbers into valuations displayed in thousands, millions or billions
- * @example formatValuation()
  */
 export function formatValuation(value: number, decimals: boolean | number = false, currency = 'USD'): string {
   const fractionDigits = typeof decimals === 'number' ? decimals : decimals === true ? Number.POSITIVE_INFINITY : 0
@@ -51,7 +58,6 @@ export function formatValuation(value: number, decimals: boolean | number = fals
 
 /**
  * Format time into hours, minutes, and seconds
- * @example formatDuration()
  */
 export function formatDuration(seconds: number, labels = 'short'): string {
   const time = [
@@ -72,7 +78,7 @@ export function formatDuration(seconds: number, labels = 'short'): string {
   for (const { unit, secondsInUnit } of time) {
     const count = Math.floor(remainingSeconds / secondsInUnit)
     if (count > 0) {
-      formattedTime += `${count}${count === 1 ? unit : unit + 's'}`
+      formattedTime += `${count} ${count === 1 || labels === 'short' ? unit : unit + ''}`
       remainingSeconds -= count * secondsInUnit
     }
   }
@@ -82,7 +88,6 @@ export function formatDuration(seconds: number, labels = 'short'): string {
 
 /**
  * Format a number into a percentage
- * @example formatPercentage(0.1234)
  */
 export function formatPercentage(number: number, decimals: boolean | number = false): string {
   const fractionDigits = typeof decimals === 'number' ? decimals : decimals === true ? Number.POSITIVE_INFINITY : 0
@@ -96,7 +101,6 @@ export function formatPercentage(number: number, decimals: boolean | number = fa
 
 /**
  * Format Unix timestamp into a datetime string
- * @example formatUnixTime()
  */
 export function formatUnixTime(timestamp: number): string {
   return new Date(timestamp * 1000).toISOString().replace('T', ' ').replace('Z', '')
@@ -107,7 +111,6 @@ export function formatUnixTime(timestamp: number): string {
  * @param items - The array of strings. strings.
  * @param limit - The maximum number of items to include before truncating.
  * @param conjunction - The conjunction before the last item e.g. "and" or "or".
- * @example formatList(['one', 'two', 'three'])
  */
 export function formatList(items: any[], limit: number, conjunction: string = 'and'): string {
   if (items.length === 1) return items[0]
