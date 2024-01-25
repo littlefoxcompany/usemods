@@ -14,7 +14,7 @@
 <script setup lang="ts">
   const props = defineProps({
     modelValue: {
-      type: [String, Number]
+      type: [String, Number, Object]
     },
     placeholder: {
       type: String
