@@ -8,7 +8,7 @@ const contentDirectory = resolve('./nuxt-module/docs/content/2.docs')
 const functionPattern = /\/\*\*[\s\S]*?\*\/\s*(export\s+function\s+[a-zA-Z0-9_]+\([^)]*\)\s*:\s*[a-zA-Z]+\s*(?:{[\s\S]*?})?)?/gms
 const metadataPattern = /\/\/\s+(title|description):\s+([^\r\n]*)/g
 
-async function processFiles() {
+export async function processDocs() {
   try {
     const tsFiles = (await readdir(directoryPath)).filter((file) => extname(file) === '.ts' && file !== 'index.ts')
 
@@ -50,8 +50,10 @@ function generateMarkdown(tsContent: string): string {
   const functions = tsContent.matchAll(functionPattern)
 
   for (const match of functions) {
-    const name = (match[0].match(/(?<=example )\w+/) || [])[0] || ''
+    const name = /export\s+function\s+([a-zA-Z0-9_]+)\s*\(/.exec(match[0])?.[1] || ''
+    const params = /export\s+function\s+[a-zA-Z0-9_]+\s*\(([^)]*)\)/.exec(match[0])?.[1] || ''
     const jsDoc = /\/\*\*([\s\S]*?)\*\//.exec(match[0])?.[1].trim() || ''
+
     const description = jsDoc
       .split('\n')
       .map((line) => line.trim().replace(/\/?\*+/g, ''))
@@ -59,16 +61,15 @@ function generateMarkdown(tsContent: string): string {
       .join(' ')
       .trim()
 
-    const componentName = name.replace(/(?:^|\.?)([A-Z])/g, (x, y) => '-' + y.toLowerCase()).replace(/^-/, '')
+    const component = name.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
 
-    markdownContent += `::page-function\n`
-    markdownContent += `### ${name}\n`
-    markdownContent += `${description}\n`
-    markdownContent += `:::${componentName}\n:::\n`
+    markdownContent += `::page-function{name="${name}" description="${description}" params="${params}"}\n`
+    markdownContent += `:::${component}\n`
+    markdownContent += `:::\n`
     markdownContent += `::\n\n`
   }
 
   return markdownContent
 }
 
-processFiles()
+processDocs()

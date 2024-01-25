@@ -2,9 +2,9 @@ import { expect, test } from 'bun:test'
 import {
   isEmail,
   isNumber,
-  isURL,
-  isUUID,
-  isJSON,
+  isUrl,
+  isUuid,
+  isJson,
   isHex,
   isEmpty,
   isAlpha,
@@ -49,19 +49,19 @@ test('isNumber', () => {
   expect(isNumber('abc')).toBe(false)
 })
 
-test('isURL', () => {
-  expect(isURL('https://www.usemods.com')).toBe(true)
-  expect(isURL('usemods.com')).toBe(false)
+test('isUrl', () => {
+  expect(isUrl('https://www.usemods.com')).toBe(true)
+  expect(isUrl('usemods.com')).toBe(false)
 })
 
-test('isUUID', () => {
-  expect(isUUID('a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11')).toBe(true)
-  expect(isUUID('hello')).toBe(false)
+test('isUuid', () => {
+  expect(isUuid('a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11')).toBe(true)
+  expect(isUuid('hello')).toBe(false)
 })
 
-test('isJSON', () => {
-  expect(isJSON('{"hello": "world"}')).toBe(true)
-  expect(isJSON('hello')).toBe(false)
+test('isJson', () => {
+  expect(isJson('{"hello": "world"}')).toBe(true)
+  expect(isJson('hello')).toBe(false)
 })
 
 test('isHex', () => {

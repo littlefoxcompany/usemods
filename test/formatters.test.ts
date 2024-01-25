@@ -1,5 +1,5 @@
 import { expect, test } from 'bun:test'
-import { formatCurrency, formatDuration, formatPercentage, formatUnixTime, formatList, formatTitle } from '../src/2.formatters'
+import { formatCurrency, formatDurationLabelsLabels, formatPercentage, formatUnixTime, formatList, formatTitle } from '../src/2.formatters'
 
 test('formatCurrency', () => {
   expect(formatCurrency(1000.95)).toBe('$1,001')
@@ -11,12 +11,12 @@ test('formatCurrency', () => {
   expect(formatCurrency(1000.95, 2, 'AUD')).toBe('A$1,000.95')
 })
 
-test('formatDuration', () => {
-  expect(formatDuration(0)).toBe('0s')
-  expect(formatDuration(3600)).toBe('1hr')
-  expect(formatDuration(3600 * 2, 'long')).toBe('2 hours')
-  expect(formatDuration(3600 * 2 + 60)).toBe('2hrs 1min')
-  expect(formatDuration(3600 * 2 + 60 + 1)).toBe('2hrs 1min 1s')
+test('formatDurationLabels', () => {
+  expect(formatDurationLabels(0)).toBe('0s')
+  expect(formatDurationLabels(3600)).toBe('1hr')
+  expect(formatDurationLabels(3600 * 2, 'long')).toBe('2 hours')
+  expect(formatDurationLabels(3600 * 2 + 60)).toBe('2hrs 1min')
+  expect(formatDurationLabels(3600 * 2 + 60 + 1)).toBe('2hrs 1min 1s')
 })
 
 test('formatPercentage', () => {

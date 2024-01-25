@@ -1,14 +1,14 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Value" type="number" v-model="seconds" />
+      <FormInput label="Value" type="text" v-model="value" />
     </ExampleInputs>
     <ExampleResult>
-      {{ formatDuration(seconds) }}
+      {{ isEmail(value) }}
     </ExampleResult>
   </Example>
 </template>
 
 <script setup lang="ts">
-  const seconds = ref(987654321)
+  const value = ref('dr.turk@sacredheart.com')
 </script>

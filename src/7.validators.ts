@@ -20,15 +20,30 @@ export function isNumber(value: string | number): boolean {
 /**
  * Check if the input is a valid URL.
  */
-export function isURL(url: string): boolean {
-  const regex = /^(?:\w+:)?\/\/([^\s\.]+\.\S{2}|localhost[\:?\d]*)\S*$/
+export function isUrl(url: string): boolean {
+  const regex = new RegExp(
+    '^(https?:\\/\\/)?' + // protocol
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+      '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+      '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+      '(\\#[-a-z\\d_]*)?$',
+    'i'
+  )
   return regex.test(url)
+}
+
+/**
+ * Check if the input is an empty string.
+ */
+export function isEmpty(text: string): boolean {
+  return text === ''
 }
 
 /**
  * Check if the input is a valid UUID.
  */
-export function isUUID(uuid: string): boolean {
+export function isUuid(uuid: string): boolean {
   const regex = /^[a-f\d]{8}(-[a-f\d]{4}){4}[a-f\d]{8}$/i
   return regex.test(uuid)
 }
@@ -36,7 +51,7 @@ export function isUUID(uuid: string): boolean {
 /**
  * Check if the input is a valid JSON string.
  */
-export function isJSON(json: string): boolean {
+export function isJson(json: string): boolean {
   try {
     JSON.parse(json)
     return true
@@ -46,18 +61,25 @@ export function isJSON(json: string): boolean {
 }
 
 /**
+ * Check if the input is an object.
+ */
+export function isObject(value: any): boolean {
+  return value && typeof value === 'object' && value.constructor === Object
+}
+
+/**
+ * Check if the input is an array.
+ */
+export function isArray(array: any): boolean {
+  return Array.isArray(array)
+}
+
+/**
  * Check if the input is a valid hexadecimal color code.
  */
 export function isHex(hex: string): boolean {
   const regex = /^#?([0-9A-Fa-f]{3,4}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})$/
   return regex.test(hex)
-}
-
-/**
- * Check if the input is an empty string.
- */
-export function isEmpty(text: string): boolean {
-  return text === ''
 }
 
 /**
@@ -77,31 +99,17 @@ export function isAlphanumeric(text: string): boolean {
 }
 
 /**
- * Check if the input is an array.
- */
-export function isArray(array: any): boolean {
-  return Array.isArray(array)
-}
-
-/**
- * Check if the input is an object.
- */
-export function isObject(value: any): boolean {
-  return value && typeof value === 'object' && value.constructor === Object
-}
-
-/**
  * Check if the input is a boolean value.
  */
-export function isBoolean(boolean: any): boolean {
-  return typeof boolean === 'boolean'
+export function isBoolean(value: any): boolean {
+  return typeof value === 'boolean' || value === 'false' || value === 'true'
 }
 
 /**
  * Check if the input is a function.
  */
-export function isFunction(functionToCheck: any): boolean {
-  return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]'
+export function isFunction(value: any): boolean {
+  return value && {}.toString.call(value) === '[object Function]'
 }
 
 /**

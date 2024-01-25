@@ -1,12 +1,13 @@
 <template>
   <div class="w-full">
-    <FormLabel :label="label" :info="info" />
-
+    <div class="flex items-start justify-between">
+      <FormLabel :label="label" :info="info" />
+      <slot name="label" />
+    </div>
     <div
-      class="border w-full select-none justify-between items-center border-white/5 flex px-4 h-11 font-mono text-sm bg-white/[2%] rounded-lg focus:border-indigo-400 focus:ring-white focus:outline-0"
+      class="border w-full select-none justify-between items-center border-white/5 flex px-4 h-11 bg-white/[3%] rounded-lg focus:border-indigo-400 focus:ring-white focus:outline-0"
       :class="disabled ? 'opacity-30 pointer-events-none cursor-not-allowed' : ''">
       {{ mask ? mask : modelValue }}
-      {{ modelValue }}
 
       <div v-if="!disabled" class="flex items-center gap-1">
         <button

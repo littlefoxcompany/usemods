@@ -246,13 +246,9 @@ export function detectSessionStorage(name: string) {
 /**
  * Returns a value from the URL by name
  */
-export function detectURLParameters(url: string, param?: string) {
+export function detectUrlParameters(url: string, param?: string) {
   const params = (url.match(/([^?=&]+)(=([^&]*))/g) || []).reduce((a: any, v: any) => ((a[v.slice(0, v.indexOf('='))] = v.slice(v.indexOf('=') + 1)), a), {})
-
-  if (param) {
-    return params[param] || null
-  }
-
+  if (param) return params[param] || null
   return params
 }
 
@@ -260,13 +256,13 @@ export function detectURLParameters(url: string, param?: string) {
  * Returns a value from the URL hash by name
  */
 export function detectURLHashParameters() {
-  return detectURLParameters(window.location.hash)
+  return detectUrlParameters(window.location.hash)
 }
 
 /**
  */
 export function detectURLSearchParameters() {
-  return detectURLParameters(window.location.search)
+  return detectUrlParameters(window.location.search)
 }
 
 /**

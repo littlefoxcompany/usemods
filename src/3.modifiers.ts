@@ -1,7 +1,7 @@
 // title: Modifiers
 // description: Modifiers are a key feature of Mods that allow you to easily modify and enhance your content. They are small pieces of code that can be applied to your JS to add functionality, validation or style.
 
-import { formatDuration } from './2.formatters'
+import { formatDurationLabels } from './2.formatters'
 
 /**
  * Adds a space between the last two words in a string.
@@ -97,7 +97,7 @@ export function unescapeHtml(text: string): string {
 export function readingTime(text: string, wordsPerMinute = 200): string {
   const words = text.split(' ').length
   const minutes = words / wordsPerMinute
-  return formatDuration(Math.ceil(minutes))
+  return formatDurationLabels(Math.ceil(minutes))
 }
 
 /**
