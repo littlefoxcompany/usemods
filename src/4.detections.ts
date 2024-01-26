@@ -74,10 +74,10 @@ export function detectDeviceOrientation(): string {
 /**
  * Detect the current device motion
  */
-export function detectDeviceMotion(): Promise<DeviceMotionEvent> {
+export function detectDeviceMotion(timeout: number = Infinity): Promise<DeviceMotionEvent> {
   return new Promise((resolve, reject) => {
     window.addEventListener('devicemotion', resolve, { once: true })
-    setTimeout(reject, 5000)
+    if (timeout !== Infinity) setTimeout(reject, timeout)
   })
 }
 
