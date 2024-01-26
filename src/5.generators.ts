@@ -36,13 +36,6 @@ export function generateNumberBetween(min: number, max: number): number {
 }
 
 /**
- * Generate a random string of characters
- */
-export function generateString(length: number = 6): string {
-  return Math.random().toString(20).substring(2, length)
-}
-
-/**
  * Generate a random, secure password with a mix of character types.
  */
 export function generatePassword(length: number = 8): string {
@@ -81,19 +74,9 @@ export function generateRandomColor(): string {
 }
 
 /**
- * Generate a URL-friendly slug from a string.
- */
-export function generateSlug(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/\s+/g, '-')
-    .replace(/[^a-z0-9-]/g, '')
-}
-
-/**
  * Generate a universally unique identifier (UUID).
  */
-export function generateUUID(): string {
+export function generateUuid(): string {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
     const r = (Math.random() * 16) | 0,
       v = c === 'x' ? r : (r & 0x3) | 0x8
