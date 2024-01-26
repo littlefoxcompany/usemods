@@ -1,7 +1,7 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Value" type="number" v-model="percentage" />
+      <FormInput label="Value" type="number" v-model.number="percentage" step="0.01" />
     </ExampleInputs>
     <ExampleResult>
       {{ formatPercentage(percentage) }}
