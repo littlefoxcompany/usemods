@@ -10,7 +10,7 @@
       </div>
 
       <div
-        class="text-zinc-500 bg-white/[3%] right-0 translate-x-1/2 mt-1 -mr-3 absolute transition-all flex h-6 px-2 border border-white/5 items-center justify-center rounded-md"
+        class="text-zinc-500 bg-white/[3%] right-0 translate-x-1/2 mt-1 -mr-3 absolute transition-all flex h-6 px-1.5 border border-white/5 items-center justify-center rounded-md"
         :class="showCopied ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'">
         Copied!
       </div>

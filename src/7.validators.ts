@@ -2,7 +2,7 @@
 // description: A collection of validators for common data types
 
 /**
- * Check if the input is a valid email address.
+ * Check if any given value is a valid email address.
  */
 export function isEmail(value: any): boolean {
   const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
@@ -10,7 +10,7 @@ export function isEmail(value: any): boolean {
 }
 
 /**
- * Check if the input is a valid number.
+ * Check if any given value is a valid number.
  */
 export function isNumber(value: any): boolean {
   const regex = /^\d+$/
@@ -18,7 +18,7 @@ export function isNumber(value: any): boolean {
 }
 
 /**
- * Check if the input is a valid URL.
+ * Check if any given value is a valid URL.
  */
 export function isUrl(value: any): boolean {
   const regex = new RegExp(
@@ -34,14 +34,14 @@ export function isUrl(value: any): boolean {
 }
 
 /**
- * Check if the input is an empty string.
+ * Check if any given value is an empty string.
  */
 export function isEmpty(value: any): boolean {
   return value === ''
 }
 
 /**
- * Check if the input is a valid UUID.
+ * Check if any given value is a valid UUID.
  */
 export function isUuid(value: any): boolean {
   const regex = /^[a-f\d]{8}(-[a-f\d]{4}){4}[a-f\d]{8}$/i
@@ -49,7 +49,7 @@ export function isUuid(value: any): boolean {
 }
 
 /**
- * Check if the input is a valid JSON string.
+ * Check if any given value is a valid JSON string.
  */
 export function isJson(value: any): boolean {
   try {
@@ -61,21 +61,21 @@ export function isJson(value: any): boolean {
 }
 
 /**
- * Check if the input is an object.
+ * Check if any given value is an object.
  */
 export function isObject(value: any): boolean {
   return value && typeof value === 'object' && value.constructor === Object
 }
 
 /**
- * Check if the input is an array.
+ * Check if any given value is an array.
  */
 export function isArray(value: any): boolean {
   return Array.isArray(value)
 }
 
 /**
- * Check if the input is a valid hexadecimal color code.
+ * Check if any given value is a valid hexadecimal color code.
  */
 export function isHex(value: any): boolean {
   const regex = /^#?([0-9A-Fa-f]{3,4}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})$/
@@ -83,7 +83,7 @@ export function isHex(value: any): boolean {
 }
 
 /**
- * Check if the input contains only alphabetic characters.
+ * Check if any given value contains only alphabetic characters.
  */
 export function isAlpha(value: any): boolean {
   const regex = /^[a-zA-Z]+$/
@@ -91,57 +91,54 @@ export function isAlpha(value: any): boolean {
 }
 
 /**
- * Check if the input contains only alphanumeric characters.
+ * Check if any given value contains only alphanumeric characters.
  */
-export function isAlphanumeric(text: string): boolean {
+export function isAlphanumeric(value: string): boolean {
   const regex = /^[a-zA-Z0-9]+$/
   return regex.test(text)
 }
 
 /**
- * Check if the input is a boolean value.
+ * Check if any given value is a boolean value.
  */
 export function isBoolean(value: any): boolean {
   return typeof value === 'boolean' || value === 'false' || value === 'true'
 }
 
 /**
- * Check if the input is a function.
+ * Check if any given value is a function
  */
 export function isFunction(value: any): boolean {
-  return value && {}.toString.call(value) === '[object Function]'
+  try {
+    return typeof value === 'function'
+  } catch (error) {
+    return false
+  }
 }
 
 /**
- * Check if the input is undefined.
+ * Check if any given value is undefined.
  */
 export function isUndefined(value: any): boolean {
   return value === undefined
 }
 
 /**
- * Check if the input is null.
+ * Check if any given value is null.
  */
 export function isNull(value: any): boolean {
   return value === null
 }
 
 /**
- * Check if the input is a valid Date object.
+ * Check if any given value is a valid Date object.
  */
 export function isDate(value: any): boolean {
-  return value instanceof Date
+  return value instanceof Date || !isNaN(Date.parse(value))
 }
 
 /**
- * Check if the input is an Error object with a defined message.
- */
-export function isError(value: any): boolean {
-  return value instanceof Error
-}
-
-/**
- * Check if the input is a valid time in HH:mm format.
+ * Check if any given value is a valid time in HH:mm format.
  */
 export function isTime(value: any): boolean {
   const regex = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/
@@ -149,31 +146,10 @@ export function isTime(value: any): boolean {
 }
 
 /**
- * Check if the input year is a leap year.
+ * Check if any given value year is a leap year.
  */
 export function isLeapYear(value: number): boolean {
   return (value % 4 === 0 && value % 100 !== 0) || value % 400 === 0
-}
-
-/**
- * Check if the input is a Promise object.
- */
-export function isPromise(value: any): boolean {
-  return value instanceof Promise
-}
-
-/**
- * Check if the input is a Set object.
- */
-export function isSet(value: any): boolean {
-  return value instanceof Set
-}
-
-/**
- * Check if the input is a Map object.
- */
-export function isMap(value: any): boolean {
-  return value instanceof Map
 }
 
 /**
@@ -223,13 +199,6 @@ export function isPrime(value: number): boolean {
 }
 
 /**
- * Check if the string is equal to "Optimus Prime".
- */
-export function isOptimusPrime(text: string): boolean {
-  return text === 'Optimus Prime' || text === '🚒'
-}
-
-/**
  * Check if the number is an integer.
  */
 export function isInteger(value: number): boolean {
@@ -261,7 +230,7 @@ export function isDivisibleBy(value: number, divisor: number): boolean {
 }
 
 /**
- * Check if the input is a valid credit card number.
+ * Check if any given value is a valid credit card number.
  */
 export function isCreditCardNumber(value: any): boolean {
   const regex = /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/
@@ -269,7 +238,7 @@ export function isCreditCardNumber(value: any): boolean {
 }
 
 /**
- * Check if the input is a valid IP address.
+ * Check if any given value is a valid IP address.
  */
 export function isIPAddress(value: any): boolean {
   const regex = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)((?::\d+)?|)$/
@@ -277,7 +246,7 @@ export function isIPAddress(value: any): boolean {
 }
 
 /**
- * Check if the input is a valid MAC address.
+ * Check if any given value is a valid MAC address.
  */
 export function isMACAddress(value: any): boolean {
   const regex = /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/
@@ -285,14 +254,14 @@ export function isMACAddress(value: any): boolean {
 }
 
 /**
- * Check if the input is a valid latitude-longitude coordinate in the format lat,lng or lat,lng.
+ * Check if any given value is a valid latitude-longitude coordinate in the format lat,lng or lat,lng.
  */
 export function isLatLng(value: any): boolean {
   const regex = /^([-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)),\s*([-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?))$/
   return regex.test(value)
 }
 /**
- * Check if the input is a valid latitude coordinate.
+ * Check if any given value is a valid latitude coordinate.
  */
 export function isLatitude(value: any): boolean {
   const regex = /^[-+]?([1-8]?\d(\.\d{1,6})?|90(\.0{1,6})?)$/
@@ -300,7 +269,7 @@ export function isLatitude(value: any): boolean {
 }
 
 /**
- * Check if the input is a valid longitude coordinate.
+ * Check if any given value is a valid longitude coordinate.
  */
 export function isLongitude(value: any): boolean {
   const regex = /^[-+]?(180(\.0{1,6})?|((1[0-7]\d)|([1-9]?\d))(\.\d{1,6})?)$/
@@ -308,7 +277,7 @@ export function isLongitude(value: any): boolean {
 }
 
 /**
- * Check if the input is a valid port number.
+ * Check if any given value is a valid port number.
  */
 export function isPort(value: number): boolean {
   return value > 0 && value <= 65535
