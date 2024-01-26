@@ -189,6 +189,13 @@ export function isZero(value: number): boolean {
 }
 
 /**
+ * Check if the number is over 9000.
+ */
+export function isOver9000(value: number): boolean {
+  return value > 9000
+}
+
+/**
  * Check if the number is a prime number.
  */
 export function isPrime(value: number): boolean {
