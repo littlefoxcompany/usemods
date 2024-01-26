@@ -50,8 +50,10 @@ function generateMarkdown(tsContent: string): string {
   const functions = tsContent.matchAll(functionPattern)
 
   for (const match of functions) {
-    const name = /export\s+function\s+([a-zA-Z0-9_]+)\s*\(/.exec(match[0])?.[1] || ''
-    const params = /export\s+function\s+[a-zA-Z0-9_]+\s*\(([^)]*)\)/.exec(match[0])?.[1] || ''
+    const func = /export\s+function\s+([a-zA-Z0-9_]+)\s*\((.*?)\)\s*:\s*(.*?)\s*\{/.exec(match[0])
+    const name = func?.[1] || ''
+    const params = func?.[2] || ''
+    const returns = func?.[3] || ''
     const jsDoc = /\/\*\*([\s\S]*?)\*\//.exec(match[0])?.[1].trim() || ''
 
     const description = jsDoc
@@ -63,7 +65,7 @@ function generateMarkdown(tsContent: string): string {
 
     const component = name.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
 
-    markdownContent += `::page-function{name="${name}" description="${description}" params="${params}"}\n`
+    markdownContent += `::page-function{name="${name}" description="${description}" params="${params}" returns="${returns}"}\n`
     markdownContent += `:::${component}\n`
     markdownContent += `:::\n`
     markdownContent += `::\n\n`

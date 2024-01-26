@@ -7,7 +7,7 @@ import {
   isJson,
   isHex,
   isEmpty,
-  isAlpha,
+  isAlphabetic,
   isAlphanumeric,
   isArray,
   isObject,
@@ -74,9 +74,9 @@ test('isEmpty', () => {
   expect(isEmpty('hello')).toBe(false)
 })
 
-test('isAlpha', () => {
-  expect(isAlpha('hello')).toBe(true)
-  expect(isAlpha('hello123')).toBe(false)
+test('isAlphabetic', () => {
+  expect(isAlphabetic('hello')).toBe(true)
+  expect(isAlphabetic('hello123')).toBe(false)
 })
 
 test('isAlphanumeric', () => {

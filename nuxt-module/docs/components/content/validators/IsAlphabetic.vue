@@ -4,11 +4,11 @@
       <FormInput label="Value" type="text" v-model="value" />
     </ExampleInputs>
     <ExampleResult>
-      {{ isFunction(value) }}
+      {{ isAlphabetic(value) }}
     </ExampleResult>
   </Example>
 </template>
 
 <script setup lang="ts">
-  const value = ref(() => {})
+  const value = ref('abc')
 </script>

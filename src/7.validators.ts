@@ -86,7 +86,7 @@ export function isHex(value: any): boolean {
 /**
  * Check if any given value contains only alphabetic characters.
  */
-export function isAlpha(value: any): boolean {
+export function isAlphabetic(value: any): boolean {
   const regex = /^[a-zA-Z]+$/
   return regex.test(value)
 }
@@ -94,7 +94,7 @@ export function isAlpha(value: any): boolean {
 /**
  * Check if any given value contains only alphanumeric characters.
  */
-export function isAlphanumeric(value: string): boolean {
+export function isAlphanumeric(value: any): boolean {
   const regex = /^[a-zA-Z0-9]+$/
   return regex.test(value)
 }
@@ -104,17 +104,6 @@ export function isAlphanumeric(value: string): boolean {
  */
 export function isBoolean(value: any): boolean {
   return typeof value === 'boolean' || value === 'false' || value === 'true'
-}
-
-/**
- * Check if any given value is a function
- */
-export function isFunction(value: any): boolean {
-  try {
-    return typeof value === 'function'
-  } catch (error) {
-    return false
-  }
 }
 
 /**
@@ -135,7 +124,13 @@ export function isNull(value: any): boolean {
  * Check if any given value is a valid Date object.
  */
 export function isDate(value: any): boolean {
-  return value instanceof Date || !isNaN(Date.parse(value))
+  if (value instanceof Date) {
+    return !isNaN(value.getTime())
+  } else if (typeof value === 'string' || typeof value === 'number') {
+    const date = new Date(value)
+    return !isNaN(date.getTime())
+  }
+  return false
 }
 
 /**
