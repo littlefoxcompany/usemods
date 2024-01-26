@@ -96,7 +96,7 @@ export function isAlpha(value: any): boolean {
  */
 export function isAlphanumeric(value: string): boolean {
   const regex = /^[a-zA-Z0-9]+$/
-  return regex.test(text)
+  return regex.test(value)
 }
 
 /**
