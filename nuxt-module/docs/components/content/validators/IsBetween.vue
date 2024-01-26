@@ -1,9 +1,9 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Value" type="text" v-model="value" />
-      <FormInput label="Min" type="text" v-model="value2" />
-      <FormInput label="Max" type="text" v-model="value3" />
+      <FormInput label="Value" type="number" v-model.number="value" />
+      <FormInput label="Min" type="number" v-model.number="value2" />
+      <FormInput label="Max" type="number" v-model.number="value3" />
     </ExampleInputs>
     <ExampleResult>
       {{ isBetween(value, value2, value3) }}

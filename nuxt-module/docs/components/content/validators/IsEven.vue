@@ -1,7 +1,7 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Value" type="text" v-model="value" />
+      <FormInput label="Value" type="number" v-model.number="value" />
     </ExampleInputs>
     <ExampleResult>
       {{ isEven(value) }}
