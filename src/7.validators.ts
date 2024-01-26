@@ -13,8 +13,9 @@ export function isEmail(value: any): boolean {
  * Check if any given value is a valid number.
  */
 export function isNumber(value: any): boolean {
-  const regex = /^\d+$/
-  return regex.test(value.toString())
+  if (typeof value === 'number') return true
+  console.warn('Non-numeric value passed to isNumber validator.')
+  return false
 }
 
 /**
@@ -201,14 +202,16 @@ export function isPrime(value: number): boolean {
 /**
  * Check if the number is an integer.
  */
-export function isInteger(value: number): boolean {
+export function isInteger(value: any): boolean {
+  if (!isNumber(value)) return false
   return value % 1 === 0
 }
 
 /**
  * Check if the number is a float.
  */
-export function isFloat(value: number): boolean {
+export function isFloat(value: any): boolean {
+  if (!isNumber(value)) return false
   return !isInteger(value)
 }
 
