@@ -320,3 +320,32 @@ export function hasKeys(object: any, keys: string[], strict: boolean = true): bo
     return keys.some((key) => objectKeys.includes(key))
   }
 }
+
+/**
+ * Check the strength of a password against a given policy.
+ */
+export function checkPasswordStrength(value: string, length: number, uppercase: number, numbers: number, special: number): object {
+  let strength = 0
+
+  const counts = {
+    uppercase: (value.match(/[A-Z]/g) || []).length,
+    numbers: (value.match(/[0-9]/g) || []).length,
+    special: (value.match(/[^a-zA-Z0-9]/g) || []).length
+  }
+
+  if (value.length < length) return { score: 1, label: `Password must be at least ${length} characters long` }
+  if (counts.uppercase < uppercase) return { score: 1, label: `Password must contain ${uppercase} uppercase letter` }
+  if (counts.numbers < numbers) return { score: 1, label: `Password must contain ${numbers} number` }
+  if (counts.special < special) return { score: 1, label: `Password must contain ${special} special character` }
+
+  if (value.length >= length) strength++
+  if (counts.uppercase >= uppercase) strength++
+  if (counts.numbers >= numbers) strength++
+  if (counts.special >= special) strength++
+
+  if (strength === 4) return { score: 4, label: 'Very Strong' }
+  if (strength === 3) return { score: 3, label: 'Strong' }
+  if (strength === 2) return { score: 2, label: 'Medium' }
+  if (strength === 1) return { score: 1, label: 'Weak' }
+  return { score: 0, label: 'Very Weak' }
+}

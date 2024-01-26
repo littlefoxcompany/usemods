@@ -17,15 +17,15 @@
     </div>
     <p class="text-lg mt-2.5">{{ description }}</p>
 
-    <div class="bg-white/[1%] text-sm flex items-center mt-3 px-4 py-3 rounded-lg border border-white/5 font-mono">
+    <div class="bg-white/[1%] text-sm flex-wrap gap-px flex items-center mt-3 px-4 py-3 rounded-lg border border-white/5 font-mono">
       {{ name }}
       <span class="text-white/50 mr-0.5">(</span>
       <template v-for="(param, index) in paramsObject" :key="index">
-        <span class="bg-white/5 py-px rounded-md px-1.5 text-white flex gap-1">
+        <div class="bg-white/5 py-px rounded-md px-1.5 text-white flex gap-1">
           <span v-if="param.key">{{ param.key }}:</span>
           <span v-if="param.value">{{ param.value }}</span>
           <span v-if="param.defaultValue">={{ param.defaultValue }}</span>
-        </span>
+        </div>
 
         <span v-if="index < paramsObject.length - 1" class="mr-0.5 text-white">,</span>
       </template>

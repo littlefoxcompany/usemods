@@ -2,13 +2,6 @@
 // description: A collection of generators
 
 /**
- * Generate a unique short ID based on the current timestamp
- */
-export function generateShortId(length: number = 36): string {
-  return Math.floor(Date.now()).toString(length).toUpperCase()
-}
-
-/**
  * Generate initials from any string while ignoring common titles
  */
 export function generateInitials(text: string, length: number = 2): string {
@@ -32,7 +25,29 @@ export function generateNumber(length: number): number {
  * Generate a random number between two values
  */
 export function generateNumberBetween(min: number, max: number): number {
+  if (min > max) {
+    console.warn('Warning: min value is higher than max value')
+    return 0
+  }
   return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+/**
+ * Generate a universally unique identifier (UUID).
+ */
+export function generateUuid(): string {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+    const r = (Math.random() * 16) | 0,
+      v = c === 'x' ? r : (r & 0x3) | 0x8
+    return v.toString(16)
+  })
+}
+
+/**
+ * Generate a unique short ID based on the current timestamp
+ */
+export function generateShortId(length: number = 36): string {
+  return Math.floor(Date.now()).toString(length).toUpperCase()
 }
 
 /**
@@ -67,32 +82,6 @@ export function generatePassword(length: number = 8): string {
 }
 
 /**
- * Generate a random color
- */
-export function generateRandomColor(): string {
-  return '#' + Math.floor(Math.random() * 16777215).toString(16)
-}
-
-/**
- * Generate a universally unique identifier (UUID).
- */
-export function generateUuid(): string {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-    const r = (Math.random() * 16) | 0,
-      v = c === 'x' ? r : (r & 0x3) | 0x8
-    return v.toString(16)
-  })
-}
-
-/**
- * Generate a random bearer token.
- */
-export function generateBearerToken(length: number = 20): string {
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-  return 'Bearer ' + Array.from({ length }, () => chars[Math.floor(Math.random() * chars.length)]).join('')
-}
-
-/**
  * Generate Lorem Ipsum text in various formats.
  */
 export function generateLoremIpsum(count: number = 5, format: string = 'words'): string {
@@ -117,8 +106,9 @@ export function generateLoremIpsum(count: number = 5, format: string = 'words'):
 }
 
 /**
- * Generate a random date within a given range.
+ * Generate a random hash.
  */
-export function generateRandomDate(start: Date, end: Date): Date {
-  return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()))
+export function generateHash(length: number = 40): string {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  return Array.from({ length }, () => chars[Math.floor(Math.random() * chars.length)]).join('')
 }

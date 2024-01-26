@@ -1,5 +1,5 @@
 <template>
-  <button :type="type" class="px-4 transition-all rounded-md border h-11 font-medium select-none" :class="colorClasses">
+  <button :type="type" class="px-2.5 gap-2.5 transition-all rounded-md border h-8 font-medium select-none" :class="colorClasses">
     <slot />
   </button>
 </template>
