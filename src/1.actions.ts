@@ -4,13 +4,6 @@
 /**
  * Scrolls to the element with the specified ID.
  */
-export function formatNumber(value: number): string {
-  return 'up'
-}
-
-/**
- * Scrolls to the element with the specified ID.
- */
 export function scrollToAnchor(id: string): void {
   setTimeout(() => {
     const element = document.querySelector(id)
