@@ -147,6 +147,13 @@ export function formatList(items: any[], limit: number, conjunction: string = 'a
 }
 
 /**
+ * Format a sentence case string
+ */
+export function formatSentence(text: string): string {
+  return text.charAt(0).toUpperCase() + text.slice(1)
+}
+
+/**
  * Converts a string to title case following the Chicago Manual of Style rules.
  * @reference https://www.chicagomanualofstyle.org/book/ed17/frontmatter/toc.html
 
