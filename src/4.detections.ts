@@ -1,6 +1,8 @@
 // title: Detections
 // description: A collection of detections for common data types
 
+import { formatDurationLabels } from './2.formatters'
+
 /**
  * Detect the current device type (Mobile or Desktop)
  */
@@ -368,4 +370,13 @@ export function detectScrollable(element: HTMLElement) {
  */
 export function detectElement(element: HTMLElement) {
   return element instanceof HTMLElement
+}
+
+/**
+ * Returns the reading time of a string in Hours, Minutes, and Seconds.
+ */
+export function detectReadingTime(text: string, wordsPerMinute = 200): string {
+  const words = text.split(' ').length
+  const minutes = words / wordsPerMinute
+  return formatDurationLabels(Math.ceil(minutes))
 }
