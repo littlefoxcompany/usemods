@@ -12,5 +12,3 @@
     <div class="text-white/25 font-mono text-sm/none">Result</div>
   </div>
 </template>
-
-<script setup lang="ts"></script>

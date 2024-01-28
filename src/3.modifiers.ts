@@ -2,11 +2,148 @@
 // description: Modifiers are a key feature of Mods that allow you to easily modify and enhance your content. They are small pieces of code that can be applied to your JS to add functionality, validation or style.
 
 /**
- * Adds a space between the last two words in a string.
+ * Adds a space between the last two words in a string to prevent lonely words.
  */
-export function widont(text: string): string {
-  const space = text.lastIndexOf(' ')
-  return text.substring(0, space) + '&nbsp;' + text.substring(space + 1)
+export function widont(value: string): string {
+  const space = value.lastIndexOf(' ')
+  return value.substring(0, space) + '&nbsp;' + value.substring(space + 1)
+}
+
+/**
+ * Adds a prefix to a string if it doesn't already start with the prefix.
+ */
+export function startWith(value: string, start: string): string {
+  if (value.startsWith(start)) return value
+  return start + value
+}
+
+/**
+ * Removes a prefix from a string if it starts with the prefix.
+ */
+export function startWithout(value: string, start: string): string {
+  if (value.startsWith(start)) return value.substring(start.length)
+  return value
+}
+
+/**
+ * Adds a suffix to a string if it doesn't already end with the suffix.
+ */
+export function endWith(text: string, end: string): string {
+  if (text.endsWith(end)) return text
+  return text + end
+}
+
+/**
+ * Removes a suffix from a string if it ends with the suffix.
+ */
+export function endWithout(text: string, end: string): string {
+  if (text.endsWith(end)) return text.substring(0, text.length - end.length)
+  return text
+}
+
+/**
+ * Adds a prefix and suffix to a string if it doesn't already start and end with them.
+ */
+export function surroundWith(text: string, start: string, end: string): string {
+  if (text.startsWith(start) && text.endsWith(end)) return text
+  if (text.startsWith(start)) return text + end
+  if (text.endsWith(end)) return start + text
+  return start + text + end
+}
+
+/**
+ * Adds plurals to a string except for excluded words.
+ */
+export function pluralize(text: string, count: number): string {
+  text = text.trim().toLowerCase()
+
+  const excludedWords = new Set(['sheep', 'fish', 'deer', 'hay', 'moose', 'series', 'species', 'aircraft', 'bison', 'buffalo', 'cod', 'elk', 'halibut', 'hovercraft'])
+
+  const irregularPlurals = new Map([
+    ['child', 'children'],
+    ['person', 'people'],
+    ['man', 'men'],
+    ['woman', 'women'],
+    ['tooth', 'teeth'],
+    ['foot', 'feet'],
+    ['mouse', 'mice'],
+    ['goose', 'geese'],
+    ['ox', 'oxen'],
+    ['leaf', 'leaves'],
+    ['life', 'lives'],
+    ['knife', 'knives'],
+    ['wife', 'wives'],
+    ['half', 'halves'],
+    ['elf', 'elves'],
+    ['loaf', 'loaves'],
+    ['potato', 'potatoes'],
+    ['tomato', 'tomatoes'],
+    ['cactus', 'cacti'],
+    ['focus', 'foci'],
+    ['fungus', 'fungi'],
+    ['nucleus', 'nuclei'],
+    ['syllabus', 'syllabi']
+    // TODO: Add more irregular plurals
+  ])
+
+  if (count === 1) return text
+  if (excludedWords.has(text)) return text
+  if (irregularPlurals.has(text)) return irregularPlurals.get(text) || text
+
+  if (text.endsWith('f')) return text.slice(0, -1) + 'ves'
+  if (text.endsWith('fe')) return text.slice(0, -2) + 'ves'
+  if (text.endsWith('y')) return text.slice(0, -1) + 'ies'
+  if (text.endsWith('s')) return text
+  if (text.endsWith('x')) return text + 'es'
+  if (text.endsWith('ch')) return text + 'es'
+  if (text.endsWith('sh')) return text + 'es'
+
+  return text + 's'
+}
+
+/**
+ * Removes plurals from a string.
+ */
+export function singularize(value: string): string {
+  if (value.endsWith('s')) return value.substring(0, value.length - 1)
+  return value
+}
+
+/**
+ * Converts a number to a string with ordinal suffix.
+ */
+export function ordinalize(value: number): string {
+  const suffixes = ['th', 'st', 'nd', 'rd']
+  const remainder = value % 100
+  return value + (suffixes[(remainder - 20) % 10] || suffixes[remainder] || suffixes[0])
+}
+
+/**
+ * Wraps each word, sentence or paragraph in a string with a tag.
+ */
+export function splitByWords(text: string): string {
+  const sentences = text.split(/([\.\?\!])\s*/)
+
+  let wordIndex = 0
+  let combinedSentences = []
+
+  for (let i = 0; i < sentences.length; i += 2) {
+    const sentence = sentences[i] + (sentences[i + 1] || '')
+
+    if (sentence.trim() === '') continue
+
+    const words = sentence
+      .split(' ')
+      .map((word) => {
+        wordIndex++
+        return `<span class="word word-${wordIndex}">${word}</span>`
+      })
+      .join(' ')
+
+    combinedSentences.push(`<span class="sentence sentence-${combinedSentences.length + 1}">${words}</span>`)
+  }
+
+  return combinedSentences.join(' ')
 }
 
 /**
@@ -76,83 +213,6 @@ export function deslugify(text: string): string {
 }
 
 /**
- * Escape HTML entities in a string.
- */
-export function escapeHtml(text: string): string {
-  return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-}
-
-/**
- * Unescape HTML entities in a string.
- */
-export function unescapeHtml(text: string): string {
-  return text.replace(/&lt;/g, '<').replace(/&gt;/g, '>')
-}
-
-/**
- * Adds plurals to a string except for excluded words.
- */
-export function pluralize(text: string, count: number): string {
-  text = text.trim().toLowerCase()
-
-  const excludedWords = new Set(['sheep', 'fish', 'deer', 'hay', 'moose', 'series', 'species', 'aircraft', 'bison', 'buffalo', 'cod', 'elk', 'halibut', 'hovercraft'])
-
-  const irregularPlurals = new Map([
-    ['child', 'children'],
-    ['person', 'people'],
-    ['man', 'men'],
-    ['woman', 'women'],
-    ['tooth', 'teeth'],
-    ['foot', 'feet'],
-    ['mouse', 'mice'],
-    ['goose', 'geese'],
-    ['ox', 'oxen'],
-    ['leaf', 'leaves'],
-    ['life', 'lives'],
-    ['knife', 'knives'],
-    ['wife', 'wives'],
-    ['half', 'halves'],
-    ['elf', 'elves'],
-    ['loaf', 'loaves'],
-    ['potato', 'potatoes'],
-    ['tomato', 'tomatoes'],
-    ['cactus', 'cacti'],
-    ['focus', 'foci'],
-    ['fungus', 'fungi']
-    // TODO: Add more irregular plurals
-  ])
-
-  if (count === 1) return text
-  if (excludedWords.has(text)) return text
-  if (irregularPlurals.has(text)) return irregularPlurals.get(text) || text
-
-  if (text.endsWith('y')) return text.slice(0, -1) + 'ies'
-  if (text.endsWith('s')) return text
-  if (text.endsWith('x')) return text + 'es'
-  if (text.endsWith('ch')) return text + 'es'
-  if (text.endsWith('sh')) return text + 'es'
-
-  return text + 's'
-}
-
-/**
- * Removes plurals from a string.
- */
-export function singularize(value: string): string {
-  if (value.endsWith('s')) return value.substring(0, value.length - 1)
-  return value
-}
-
-/**
- * Converts a number to a string with ordinal suffix.
- */
-export function ordinalize(value: number): string {
-  const suffixes = ['th', 'st', 'nd', 'rd']
-  const remainder = value % 100
-  return value + (suffixes[(remainder - 20) % 10] || suffixes[remainder] || suffixes[0])
-}
-
-/**
  * Replaces underscores with spaces and capitalizes the first letter of each word.
  */
 export function humanize(text: string): string {
@@ -218,73 +278,17 @@ export function titleCase(text: string): string {
 }
 
 /**
- * Adds a prefix to a string if it doesn't already start with the prefix.
+ * Escape HTML entities in a string.
  */
-export function startWith(value: string, start: string): string {
-  if (value.startsWith(start)) return value
-  return start + value
+export function escapeHtml(text: string): string {
+  return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 }
 
 /**
- * Removes a prefix from a string if it starts with the prefix.
+ * Unescape HTML entities in a string.
  */
-export function startWithout(value: string, start: string): string {
-  if (value.startsWith(start)) return value.substring(start.length)
-  return value
-}
-
-/**
- * Adds a suffix to a string if it doesn't already end with the suffix.
- */
-export function endWith(text: string, end: string): string {
-  if (text.endsWith(end)) return text
-  return text + end
-}
-
-/**
- * Removes a suffix from a string if it ends with the suffix.
- */
-export function endWithout(text: string, end: string): string {
-  if (text.endsWith(end)) return text.substring(0, text.length - end.length)
-  return text
-}
-
-/**
- * Adds a prefix and suffix to a string if it doesn't already start and end with them.
- */
-export function surroundWith(text: string, start: string, end: string): string {
-  if (text.startsWith(start) && text.endsWith(end)) return text
-  if (text.startsWith(start)) return text + end
-  if (text.endsWith(end)) return start + text
-  return start + text + end
-}
-
-/**
- * Wraps each word, sentence or paragraph in a string with a tag.
- */
-export function splitByWords(text: string): string {
-  const sentences = text.split(/([\.\?\!])\s*/)
-
-  let wordIndex = 0
-  let combinedSentences = []
-
-  for (let i = 0; i < sentences.length; i += 2) {
-    const sentence = sentences[i] + (sentences[i + 1] || '')
-
-    if (sentence.trim() === '') continue
-
-    const words = sentence
-      .split(' ')
-      .map((word) => {
-        wordIndex++
-        return `<span class="word word-${wordIndex}">${word}</span>`
-      })
-      .join(' ')
-
-    combinedSentences.push(`<span class="sentence sentence-${combinedSentences.length + 1}">${words}</span>`)
-  }
-
-  return combinedSentences.join(' ')
+export function unescapeHtml(text: string): string {
+  return text.replace(/&lt;/g, '<').replace(/&gt;/g, '>')
 }
 
 /**

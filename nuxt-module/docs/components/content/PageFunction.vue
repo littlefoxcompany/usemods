@@ -79,7 +79,7 @@
 
   function copyToClipboard() {
     const url = window.location.href
-    const hash = `#${name.value}`
+    const hash = `#${props.name.toLowerCase()}`
     const text = `${url}${hash}`
     navigator.clipboard.writeText(text)
     copied()
