@@ -1,7 +1,7 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Value" type="text" v-model="value" />
+      <FormNumber label="Value" type="text" v-model="value" />
     </ExampleInputs>
     <ExampleResult>
       {{ isNegative(value) }}

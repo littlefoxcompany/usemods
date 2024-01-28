@@ -133,24 +133,31 @@ export function formatUnixTime(timestamp: number): string {
 }
 
 /**
- * Create a string of comma-separated values from an array of strings with an optional conjunction.
- * @param items - The array of strings. strings.
- * @param limit - The maximum number of items to include before truncating.
- * @param conjunction - The conjunction before the last item e.g. "and" or "or".
+ * Create a string of comma-separated values from an array, object or string with an optional limit and conjunction
  */
-export function formatList(items: any[], limit: number, conjunction: string = 'and'): string {
-  if (items.length === 1) return items[0]
-  if (items.length === 2) return items.join(' ' + conjunction + ' ')
-  if (items.length === 3) return items.slice(0, -1).join(', ') + ' ' + conjunction + ' ' + items.slice(-1)
-  if (items.length > 3) return items.slice(0, limit).join(', ') + ' ' + conjunction + ' ' + (items.length - limit) + ' more'
-  return ''
+export function formatList(items: any, limit: number, conjunction: string = 'and'): string {
+  if (typeof items === 'string') items = items.split(',').map((item) => item.trim())
+  if (typeof items === 'object' && !Array.isArray(items)) items = Object.values(items)
+  if (!Array.isArray(items) || items.length === 0) return ''
+  if (items.length <= 2) return items.join(items.length === 2 ? ` ${conjunction} ` : '')
+  const listedItems = items.slice(0, limit).join(', ')
+  const remaining = items.length - limit
+  return items.length <= limit ? `${listedItems} ${conjunction} ${items[items.length - 1]}` : `${listedItems}, ${conjunction} ${remaining} more`
 }
 
 /**
  * Format a sentence case string
  */
-export function formatSentence(text: string): string {
-  return text.charAt(0).toUpperCase() + text.slice(1)
+export function formatSentenceCase(text: string): string {
+  return text
+    .split('\n\n')
+    .map((paragraph) =>
+      paragraph
+        .split('. ')
+        .map((sentence) => sentence.charAt(0).toUpperCase() + sentence.slice(1))
+        .join('. ')
+    )
+    .join('\n\n')
 }
 
 /**
@@ -173,6 +180,7 @@ export function formatTitle(text: string): string {
     'so',
     'in',
     'is',
+    'it',
     'than',
     'on',
     'at',

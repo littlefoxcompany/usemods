@@ -1,5 +1,5 @@
 <template>
-  <ExampleClientOnly>
+  <ExampleResult>
     {{ detectBrowser() }}
-  </ExampleClientOnly>
+  </ExampleResult>
 </template>

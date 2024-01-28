@@ -5,7 +5,11 @@
 </template>
 
 <script setup lang="ts">
-  const result = computed(() => {
-    return detectActiveBrowser()
+  const result = ref('')
+
+  onMounted(() => {
+    setInterval(() => {
+      result.value = detectNetworkStatus()
+    }, 1000)
   })
 </script>

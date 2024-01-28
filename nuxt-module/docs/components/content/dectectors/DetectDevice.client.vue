@@ -1,5 +1,5 @@
 <template>
-  <ExampleClientOnly>
+  <ExampleResult>
     {{ detectDevice() }}
-  </ExampleClientOnly>
+  </ExampleResult>
 </template>
