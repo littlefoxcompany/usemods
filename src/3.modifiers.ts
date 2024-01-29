@@ -213,16 +213,6 @@ export function deslugify(text: string): string {
 }
 
 /**
- * Replaces underscores with spaces and capitalizes the first letter of each word.
- */
-export function humanize(text: string): string {
-  return text
-    .replace(/_/g, ' ')
-    .replace(/([A-Z])/g, ' $1')
-    .replace(/^./, (str) => str.toUpperCase())
-}
-
-/**
  * Removes spaces and capitalizes the first letter of each word except for the first word.
  */
 export function camelCase(text: string): string {
@@ -289,25 +279,6 @@ export function escapeHtml(text: string): string {
  */
 export function unescapeHtml(text: string): string {
   return text.replace(/&lt;/g, '<').replace(/&gt;/g, '>')
-}
-
-/**
- * Creates an array of list items (`<li>`) from an array of strings.
- */
-export function list(items: any[], listType: string = 'ul'): string {
-  const listItem = (item: any) => {
-    return `<li>${item}</li>`
-  }
-
-  const listItems = items.map(listItem).join('')
-
-  if (listType === 'ol') {
-    return `<ol>${listItems}</ol>`
-  } else if (listType === 'ul') {
-    return `<ul>${listItems}</ul>`
-  } else {
-    return listItems
-  }
 }
 
 /**
