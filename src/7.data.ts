@@ -1,8 +1,8 @@
 // title: Data
-// description: A collection of functions for generating, manipulating and formatting arrays and objects.
+// description: A collection of functions for formatting, filtering and arranging arrays and objects.
 
 /**
- * Shuffles an array.
+ * Shuffles a stack of items.
  */
 export function shuffle(items: any[]): any {
   return items.sort(() => Math.random() - 0.5)
@@ -15,10 +15,7 @@ export function shuffle(items: any[]): any {
  */
 export function unique(property: string | null = null, ...arrays: (string | { [key: string]: any })[][]): any[] {
   const combinedItems = arrays.flat()
-
-  if (!property) {
-    return [...new Set(combinedItems)]
-  }
+  if (!property) return [...new Set(combinedItems)]
 
   const seenValues = new Set()
   const result = []
@@ -193,7 +190,7 @@ export function sortBy(items: { [key: string]: any }[], property: string): { [ke
 /**
  * Return the frequency of all values (numbers, string or boolean) in an array as an object
  */
-export function frequency(array: (number | string)[]): Record<string, number> {
+export function frequencyOfProperties(array: (number | string)[]): Record<string, number> {
   return array.reduce((acc, curr) => {
     acc[curr] = (acc[curr] || 0) + 1
     return acc
