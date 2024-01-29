@@ -119,20 +119,3 @@ export function skewness(numbers: number[]): number {
 
   return (meanValue - medianValue) / standardDeviationValue
 }
-
-/**
- * Return the frequency of all values (numbers, string or boolean) in an array as an object
- */
-export function frequency(array: (number | string)[]): Record<string, number> {
-  return array.reduce((acc, curr) => {
-    acc[curr] = (acc[curr] || 0) + 1
-    return acc
-  }, {} as Record<string, number>)
-}
-
-/**
- * Returns the fequency of a property value in an array
- */
-export function frequencyOfProperty(array: (number | string)[], property: number | string): number {
-  return array.filter((item) => item === property).length
-}

@@ -189,3 +189,20 @@ export function sortBy(items: { [key: string]: any }[], property: string): { [ke
     return a[property] > b[property] ? 1 : -1
   })
 }
+
+/**
+ * Return the frequency of all values (numbers, string or boolean) in an array as an object
+ */
+export function frequency(array: (number | string)[]): Record<string, number> {
+  return array.reduce((acc, curr) => {
+    acc[curr] = (acc[curr] || 0) + 1
+    return acc
+  }, {} as Record<string, number>)
+}
+
+/**
+ * Returns the fequency of a property value in an array
+ */
+export function frequencyOfProperty(array: (number | string)[], property: number | string): number {
+  return array.filter((item) => item === property).length
+}
