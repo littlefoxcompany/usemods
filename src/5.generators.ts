@@ -1,18 +1,5 @@
 // title: Generators
-// description: A collection of generators
-
-/**
- * Generate initials from any string while ignoring common titles
- */
-export function generateInitials(text: string, length: number = 2): string {
-  text = text.replace(/(Mr|Mrs|Ms|Dr|Jr|Sr|Prof|Hon)\.?/g, '')
-  return text
-    .split(' ')
-    .filter((word) => !['the', 'third'].includes(word.toLowerCase()))
-    .map((word) => word.charAt(0).toUpperCase())
-    .join('')
-    .substring(0, length)
-}
+// description: A collection of magical functions that conjure data out of thin air.
 
 /**
  * Generate a random number

@@ -126,6 +126,19 @@ export function formatPercentage(number: number, decimals: boolean | number = fa
 }
 
 /**
+ * Generate initials from any string while ignoring common titles
+ */
+export function formatInitials(text: string, length: number = 2): string {
+  text = text.replace(/(Mr|Mrs|Ms|Dr|Jr|Sr|Prof|Hon)\.?/g, '')
+  return text
+    .split(' ')
+    .filter((word) => !['the', 'third'].includes(word.toLowerCase()))
+    .map((word) => word.charAt(0).toUpperCase())
+    .join('')
+    .substring(0, length)
+}
+
+/**
  * Format Unix timestamp into a datetime string
  */
 export function formatUnixTime(timestamp: number): string {

@@ -2,13 +2,6 @@
 // description: This file contains functions that are related to numbers.
 
 /**
- * Generates a random integer between the specified minimum and maximum values.
- */
-export function random(min: number, max: number): number {
-  return Math.floor(Math.random() * (max - min + 1)) + min
-}
-
-/**
  * Calculates the sum of an array of numbers.
  */
 export function sum(numbers: number[]): number {
@@ -49,16 +42,10 @@ export function median(numbers: number[]): number {
 export function mode(numbers: number[]): number | null {
   if (numbers.length === 0) return null
   if (numbers.length === 1) return numbers[0]
-
   const frequencyMap = new Map<number, number>()
   numbers.forEach((num) => frequencyMap.set(num, (frequencyMap.get(num) || 0) + 1))
-
   const maxEntry = [...frequencyMap.entries()].reduce((a, b) => (a[1] > b[1] ? a : b))
-
-  // Check if the highest frequency is greater than 1
-  if (maxEntry[1] > 1) {
-    return maxEntry[0]
-  }
+  if (maxEntry[1] > 1) return maxEntry[0]
   return null
 }
 
