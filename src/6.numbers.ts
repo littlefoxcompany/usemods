@@ -103,9 +103,7 @@ export function percentage(value: number, total: number): number {
  * Returns the standard deviation of an array of numbers.
  */
 export function standardDeviation(numbers: number[]): number {
-  const meanValue = mean(numbers)
-  const variance = mean(numbers.map((num) => Math.pow(num - meanValue, 2)))
-  return Math.sqrt(variance)
+  return Math.sqrt(mean(numbers.map((num) => Math.pow(num - mean(numbers), 2))))
 }
 
 /**
@@ -113,9 +111,5 @@ export function standardDeviation(numbers: number[]): number {
  * The skewness value can be positive, zero, negative, or undefined.
  */
 export function skewness(numbers: number[]): number {
-  const meanValue = mean(numbers)
-  const medianValue = median(numbers)
-  const standardDeviationValue = standardDeviation(numbers)
-
-  return (meanValue - medianValue) / standardDeviationValue
+  return (mean(numbers) - median(numbers)) / standardDeviation(numbers)
 }
