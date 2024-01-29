@@ -4,11 +4,11 @@
       <FormInput label="Value" type="text" v-model="value" />
     </ExampleInputs>
     <ExampleResult>
-      {{ stripEmojis(value) }}
+      {{ kebabCase(value) }}
     </ExampleResult>
   </Example>
 </template>
 
 <script setup lang="ts">
-  const value = ref('🛵S👨‍💻e🔭r📓i🌊o🍦u🚀s💫')
+  const value = ref('Scoots and Scooters')
 </script>

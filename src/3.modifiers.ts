@@ -192,7 +192,7 @@ export function stripSymbols(text: string): string {
  * Strips emojis from a string (requires ES6 Unicode support) 🦊.
  */
 export function stripEmojis(text: string): string {
-  return text.replace(/[\u{1F600}-\u{1F6FF}]/gu, '')
+  return text.replace(/[\p{Emoji_Presentation}\p{Emoji}\uFE0F\u200D\u20E3]/gu, '')
 }
 
 /**
@@ -217,10 +217,13 @@ export function deslugify(text: string): string {
  */
 export function camelCase(text: string): string {
   return text
-    .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => {
-      return index === 0 ? word.toLowerCase() : word.toUpperCase()
+    .trim()
+    .split(/[-\s]/)
+    .map((word, index) => {
+      if (index === 0) return word.toLowerCase()
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
     })
-    .replace(/\s+/g, '')
+    .join('')
 }
 
 /**
@@ -228,21 +231,17 @@ export function camelCase(text: string): string {
  */
 export function pascalCase(text: string): string {
   return text
-    .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => {
-      return word.toUpperCase()
-    })
-    .replace(/\s+/g, '')
+    .trim()
+    .split(/[-\s]/)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join('')
 }
 
 /**
  * Replaces spaces with underscores and converts to lowercase.
  */
 export function snakeCase(text: string): string {
-  return text
-    .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => {
-      return index === 0 ? word.toLowerCase() : '_' + word.toLowerCase()
-    })
-    .replace(/\s+/g, '')
+  return text.trim().replace(/\s+/g, '_').toLowerCase()
 }
 
 /**
