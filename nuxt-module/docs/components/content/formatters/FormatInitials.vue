@@ -5,7 +5,7 @@
       <FormNumber label="Length" v-model="length" :min="1" />
     </ExampleInputs>
     <ExampleResult>
-      {{ generateInitials(fullName, length) }}
+      {{ formatInitials(fullName, length) }}
     </ExampleResult>
   </Example>
 </template>
