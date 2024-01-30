@@ -10,8 +10,6 @@ export function shuffle(items: any[]): any {
 
 /**
  * Returns unique array values with an optional property to pluck.
- * @param items - The array of items.
- * @param property - The property to pluck (optional).
  */
 export function unique(property: string | null = null, ...arrays: (string | { [key: string]: any })[][]): any[] {
   const combinedItems = arrays.flat()

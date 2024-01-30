@@ -4,23 +4,11 @@
 /**
  * Scrolls to the element with the specified ID.
  */
-export function scrollToAnchor(id: string): void {
+export function scrollToAnchor({ id }: { id: string }): void {
   setTimeout(() => {
     const element = document.querySelector(id)
     if (!element) return
     element.scrollIntoView({
-      behavior: 'smooth'
-    })
-  }, 180)
-}
-
-/**
- * Smoothly scroll to the top or bottom of the page
- */
-export function scrollTo(position: string = 'top'): void {
-  setTimeout(() => {
-    window.scrollTo({
-      top: position === 'top' ? 0 : document.body.scrollHeight,
       behavior: 'smooth'
     })
   }, 180)
