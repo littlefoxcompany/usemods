@@ -6,22 +6,21 @@ import { isObject, isArray } from './8.validators'
 /**
  * Shuffles your data in a random order.
  */
-export function dataShuffle(items: any): any {
-  if (isObject(items)) {
-    const keys = Object.keys(items)
-    const shuffledKeys = shuffleArray(keys)
-    const shuffledObject: { [key: string]: any } = {}
-
-    for (const key of shuffledKeys) {
-      shuffledObject[key] = items[key]
-    }
-
-    return shuffledObject
-  } else if (isArray(items)) {
-    return shuffleArray(items)
-  } else {
+export function dataShuffle(items: object | any[]): any {
+  if (!items || !(isObject(items) || isArray(items))) {
+    console.warn('Warning: dataShuffle() expects an object or array as the first argument.')
     return items
   }
+
+  const shuffleArray = (array: any[]) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[array[i], array[j]] = [array[j], array[i]]
+    }
+    return array
+  }
+
+  return isObject(items) ? Object.fromEntries(shuffleArray(Object.entries(items))) : shuffleArray([...items])
 }
 
 /**

@@ -1,14 +1,24 @@
 <template>
   <Example>
-    <ExampleInputs>
+    <ExampleInputs class="flex flex-col">
       <FormCode label="Value" v-model="value" />
+      <Button @click="run" class="w-fit">Shuffle</Button>
     </ExampleInputs>
     <ExampleResult>
-      {{ dataShuffle(length) }}
+      {{ result }}
     </ExampleResult>
   </Example>
 </template>
 
 <script setup lang="ts">
-  const length = ref([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+  const result = ref()
+  const value = ref(['s', 'c', 'o', 'o', 't', 'e', 'r', 's'])
+
+  function run() {
+    result.value = dataShuffle(value.value)
+  }
+
+  onMounted(() => {
+    run()
+  })
 </script>
