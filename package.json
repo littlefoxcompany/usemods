@@ -1,11 +1,12 @@
 {
   "name": "usemods",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Zippy little modifiers and utilities for your frontend.",
   "scripts": {
     "dev": "bun run builder.mjs",
     "build": "bun run build.mjs",
     "test": "bun --watch test test/*",
+    "release": "npm run test && changelogen --release && npm publish && git push --follow-tags",
     "prepublishOnly": "bun run build",
     "docs": "concurrently \"npm run docs:install && npm run module:dev\" \"npm run dev\"",
     "docs:install": "npm run module:install && npm i --prefix ./nuxt-module/docs",
@@ -53,6 +54,7 @@
     "@types/web": "^0.0.119",
     "bun-plugin-dts": "^0.2.1",
     "bun-types": "^1.0.7",
+    "changelogen": "^0.5.5",
     "concurrently": "^8.2.2",
     "shikiji": "^0.10.0-beta.6",
     "typescript": "^5.2.2"

@@ -44,7 +44,7 @@ export function generatePassword(length: number = 8): string {
   if (length < 8) length = 8
 
   const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  const lowercase = 'abcdefghijklmnopqrstuvwxyz'
+  const lowercase = uppercase.toLowerCase()
   const numbers = '0123456789'
   const symbols = '!@#$%^&*'
   const allChars = uppercase + lowercase + numbers + symbols
