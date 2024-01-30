@@ -24,6 +24,7 @@
     <div class="bg-white/[1%] text-sm flex-wrap gap-px flex items-center mt-6 px-4 py-3 rounded-lg border border-white/5 font-mono">
       {{ name }}
       <span class="text-white/50 mr-0.5">(</span>
+
       <template v-for="(param, index) in paramsObject" :key="index">
         <div class="bg-white/5 py-px rounded-md px-1.5 text-white flex gap-1">
           <span v-if="param.key">{{ param.key }}:</span>
@@ -64,7 +65,7 @@
     }, 800)
   }
 
-  const paramPattern = /(\w+):\s*(\w+)(\s*=\s*([^,]+))?/g
+  const paramPattern = /(\w+):\s*([^=]+)(\s*=\s*([^,]+))?/g
   const matches = props.params?.matchAll(paramPattern) || []
 
   const paramsObject = computed(() => {
