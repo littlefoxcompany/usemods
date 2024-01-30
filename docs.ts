@@ -5,7 +5,7 @@ import { resolve, extname, basename, join } from 'path'
 const directoryPath = resolve('./src/')
 const contentDirectory = resolve('./nuxt-module/docs/content/2.docs')
 
-const functionPattern = /\/\*\*[\s\S]*?\*\/\s*(export\s+function\s+[a-zA-Z0-9_]+\([^)]*\)\s*:\s*[a-zA-Z]+\s*(?:{[\s\S]*?})?)?/gms
+const functionPattern = /\/\*\*[\s\S]*?\*\/\s*(export\s+function\s+([a-zA-Z0-9_]+)\s*\((.*?)\)\s*:\s*([\w<>,\[\]\s]+(?:\{[\s\S]*?})?)?)/gms
 const metadataPattern = /\/\/\s+(title|description):\s+([^\r\n]*)/g
 
 export async function processDocs() {
@@ -22,7 +22,7 @@ export async function processDocs() {
       await mkdir(contentDirectory, { recursive: true })
       await writeFile(join(contentDirectory, `${basename(tsFile, '.ts')}.md`), generateMarkdown(tsContent))
 
-      console.log('Markdown documentation generated for:', tsFile)
+      // console.log('Markdown documentation generated for:', tsFile)
     }
   } catch (error) {
     console.error('Error processing files:', error)
@@ -50,22 +50,21 @@ function generateMarkdown(tsContent: string): string {
   const functions = tsContent.matchAll(functionPattern)
 
   for (const match of functions) {
-    const func = /export\s+function\s+([a-zA-Z0-9_]+)\s*\((.*?)\)\s*:\s*(.*?)\s*\{/.exec(match[0])
-    const name = func?.[1] || ''
-    const params = func?.[2] || ''
-    const returns = func?.[3] || ''
-    const jsDoc = /\/\*\*([\s\S]*?)\*\//.exec(match[0])?.[1].trim() || ''
-
-    const description = jsDoc
-      .split('\n')
-      .map((line) => line.trim().replace(/\/?\*+/g, ''))
-      .slice(0, 1)
-      .join(' ')
-      .trim()
-
+    const [fullMatch, decloration, name, params, returns] = match
+    const jsDocPattern = /\/\*\*([\s\S]*?)\*\//
+    const jsDocMatch = jsDocPattern.exec(fullMatch)
+    const description = jsDocMatch
+      ? jsDocMatch[1]
+          .trim()
+          .split('\n')
+          .map((line) => line.trim().replace(/\/?\*+/g, ''))
+          .map((line) => line.trimStart())
+          .join(' ')
+      : 'No description available'
     const component = name.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
 
-    markdownContent += `::page-function{name="${name}" description="${description}" params="${params}" returns="${returns}"}\n`
+    // returns="${returns}"
+    markdownContent += `::page-function{name="${name}" description="${description}" params="${params}" }\n`
     markdownContent += `:::${component}\n`
     markdownContent += `:::\n`
     markdownContent += `::\n\n`
