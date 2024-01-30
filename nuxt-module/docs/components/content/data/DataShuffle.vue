@@ -1,14 +1,14 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormNumber label="Length" v-model="length" :min="1" />
+      <FormCode label="Value" v-model="value" />
     </ExampleInputs>
     <ExampleResult>
-      {{ generateNumber(length) }}
+      {{ dataShuffle(length) }}
     </ExampleResult>
   </Example>
 </template>
 
 <script setup lang="ts">
-  const length = ref(8)
+  const length = ref([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 </script>

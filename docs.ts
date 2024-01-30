@@ -10,20 +10,16 @@ const metadataPattern = /\/\/\s+(title|description):\s+([^\r\n]*)/g
 
 export async function processDocs() {
   try {
+    await mkdir(contentDirectory, { recursive: true }) // Create directory outside the loop
     const tsFiles = (await readdir(directoryPath)).filter((file) => extname(file) === '.ts' && file !== 'index.ts')
+    const readPromises = tsFiles.map((tsFile) => readFile(resolve(directoryPath, tsFile), 'utf-8'))
 
-    let combinedTsFile = ''
+    const filesContent = await Promise.all(readPromises) // Read files in parallel
 
-    // Generate markdown files
-    for (const tsFile of tsFiles) {
-      const tsContent = await readFile(resolve(directoryPath, tsFile), 'utf-8')
-      combinedTsFile += tsContent + '\n'
-
-      await mkdir(contentDirectory, { recursive: true })
-      await writeFile(join(contentDirectory, `${basename(tsFile, '.ts')}.md`), generateMarkdown(tsContent))
-
-      // console.log('Markdown documentation generated for:', tsFile)
-    }
+    filesContent.forEach((tsContent, index) => {
+      const markdownContent = generateMarkdown(tsContent)
+      writeFile(join(contentDirectory, basename(tsFiles[index], '.ts') + '.md'), markdownContent)
+    })
   } catch (error) {
     console.error('Error processing files:', error)
   }
@@ -63,7 +59,6 @@ function generateMarkdown(tsContent: string): string {
       : 'No description available'
     const component = name.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
 
-    // returns="${returns}"
     markdownContent += `::page-function{name="${name}" description="${description}" params="${params}" }\n`
     markdownContent += `:::${component}\n`
     markdownContent += `:::\n`

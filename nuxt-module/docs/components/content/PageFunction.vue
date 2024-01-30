@@ -1,5 +1,6 @@
 <template>
   <section class="py-12">
+    <!-- Title -->
     <div @click="copyToClipboard" class="flex w-fit relative items-center gap-3 cursor-pointer" @mouseover="showCopyToClipboard = true" @mouseout="showCopyToClipboard = false">
       <h3 class="text-3xl font-semibold">{{ name }}</h3>
 
@@ -15,9 +16,12 @@
         Link Copied!
       </div>
     </div>
+
+    <!-- Description -->
     <p class="text-lg mt-2.5">{{ description }}</p>
 
-    <div class="bg-white/[1%] text-sm flex-wrap gap-px flex items-center mt-3 px-4 py-3 rounded-lg border border-white/5 font-mono">
+    <!-- Function -->
+    <div class="bg-white/[1%] text-sm flex-wrap gap-px flex items-center mt-6 px-4 py-3 rounded-lg border border-white/5 font-mono">
       {{ name }}
       <span class="text-white/50 mr-0.5">(</span>
       <template v-for="(param, index) in paramsObject" :key="index">

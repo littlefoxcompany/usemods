@@ -1,11 +1,27 @@
 // title: Data
 // description: A collection of functions for formatting, filtering and arranging arrays and objects.
 
+import { isObject, isArray } from './8.validators'
+
 /**
- * Shuffles a stack of items.
+ * Shuffles your data in a random order.
  */
-export function shuffle(items: any[]): any {
-  return items.sort(() => Math.random() - 0.5)
+export function dataShuffle(items: any): any {
+  if (isObject(items)) {
+    const keys = Object.keys(items)
+    const shuffledKeys = shuffleArray(keys)
+    const shuffledObject: { [key: string]: any } = {}
+
+    for (const key of shuffledKeys) {
+      shuffledObject[key] = items[key]
+    }
+
+    return shuffledObject
+  } else if (isArray(items)) {
+    return shuffleArray(items)
+  } else {
+    return items
+  }
 }
 
 /**
