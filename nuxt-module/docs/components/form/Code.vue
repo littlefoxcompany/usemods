@@ -1,15 +1,7 @@
 <template>
   <div class="w-full">
     <FormLabel :label="label" :info="info" />
-    <pre
-      id="notes"
-      contenteditable="true"
-      class="border w-full h-fit border-white/5 flex px-4 bg-white/[3%] rounded-lg focus:border-indigo-400 focus:ring-white focus:outline-0"
-      :placeholder="placeholder"
-      :value="modelValue"
-      @input="$event.target && $emit('update:modelValue', ($event.target as HTMLInputElement).value)">
-      {{ modelValue }}
-    </pre>
+    <!-- <MonacoEditor lang="typescript" :options="{ theme: 'vs-dark' }" class="min-h-[100px]" :value="modelValue" @change="emit('update:modelValue', $event)" @input="" /> -->
   </div>
 </template>
 
@@ -32,4 +24,6 @@
       type: String
     }
   })
+
+  const emit = defineEmits(['update:modelValue'])
 </script>

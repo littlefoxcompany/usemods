@@ -1,7 +1,7 @@
 <template>
   <Example>
     <ExampleInputs class="flex flex-col">
-      <FormCode label="Value" v-model="value" />
+      <!-- <FormInput label="Value" v-model="value" /> -->
     </ExampleInputs>
     <ExampleResult>
       {{ dataReverse(value) }}

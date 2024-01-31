@@ -2,7 +2,7 @@
   <Example>
     <ExampleInputs class="flex flex-col">
       <FormInput label="Property" v-model="property" />
-      <FormCode label="Value" v-model="value" />
+      <!-- <FormCode label="Value" v-model="value" /> -->
     </ExampleInputs>
     <ExampleResult>
       {{ dataUnique(value, property) }}
