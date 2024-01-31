@@ -51,61 +51,96 @@ export function surroundWith(text: string, start: string, end: string): string {
   return start + text + end
 }
 
+export const unchangingPlurals = new Set([
+  'sheep',
+  'fish',
+  'deer',
+  'hay',
+  'moose',
+  'series',
+  'species',
+  'aircraft',
+  'bison',
+  'buffalo',
+  'cod',
+  'elk',
+  'halibut',
+  'hovercraft',
+  'lego',
+  'mackerel',
+  'salmon',
+  'spacecraft',
+  'swine',
+  'trout',
+  'tuna'
+])
+export const irregularPlurals = new Map([
+  ['child', 'children'],
+  ['person', 'people'],
+  ['man', 'men'],
+  ['woman', 'women'],
+  ['tooth', 'teeth'],
+  ['foot', 'feet'],
+  ['mouse', 'mice'],
+  ['goose', 'geese'],
+  ['ox', 'oxen'],
+  ['leaf', 'leaves'],
+  ['life', 'lives'],
+  ['knife', 'knives'],
+  ['wife', 'wives'],
+  ['half', 'halves'],
+  ['elf', 'elves'],
+  ['loaf', 'loaves'],
+  ['potato', 'potatoes'],
+  ['tomato', 'tomatoes'],
+  ['cactus', 'cacti'],
+  ['focus', 'foci'],
+  ['fungus', 'fungi'],
+  ['nucleus', 'nuclei'],
+  ['syllabus', 'syllabi']
+  // TODO: Add more irregular plurals
+])
+
 /**
  * Adds plurals to a string except for excluded words.
  */
-export function pluralize(text: string, count: number): string {
-  text = text.trim().toLowerCase()
+export function pluralize(value: string, count: number): string {
+  value = value.trim().toLowerCase()
 
-  const excludedWords = new Set(['sheep', 'fish', 'deer', 'hay', 'moose', 'series', 'species', 'aircraft', 'bison', 'buffalo', 'cod', 'elk', 'halibut', 'hovercraft'])
+  if (count === 1) return value
+  if (unchangingPlurals.has(value)) return value
+  if (irregularPlurals.has(value)) return irregularPlurals.get(value) || value
 
-  const irregularPlurals = new Map([
-    ['child', 'children'],
-    ['person', 'people'],
-    ['man', 'men'],
-    ['woman', 'women'],
-    ['tooth', 'teeth'],
-    ['foot', 'feet'],
-    ['mouse', 'mice'],
-    ['goose', 'geese'],
-    ['ox', 'oxen'],
-    ['leaf', 'leaves'],
-    ['life', 'lives'],
-    ['knife', 'knives'],
-    ['wife', 'wives'],
-    ['half', 'halves'],
-    ['elf', 'elves'],
-    ['loaf', 'loaves'],
-    ['potato', 'potatoes'],
-    ['tomato', 'tomatoes'],
-    ['cactus', 'cacti'],
-    ['focus', 'foci'],
-    ['fungus', 'fungi'],
-    ['nucleus', 'nuclei'],
-    ['syllabus', 'syllabi']
-    // TODO: Add more irregular plurals
-  ])
+  if (value.endsWith('f')) return value.slice(0, -1) + 'ves'
+  if (value.endsWith('fe')) return value.slice(0, -2) + 'ves'
+  if (value.endsWith('y')) return value.slice(0, -1) + 'ies'
+  if (value.endsWith('s')) return value
+  if (value.endsWith('x')) return value + 'es'
+  if (value.endsWith('ch')) return value + 'es'
+  if (value.endsWith('sh')) return value + 'es'
 
-  if (count === 1) return text
-  if (excludedWords.has(text)) return text
-  if (irregularPlurals.has(text)) return irregularPlurals.get(text) || text
-
-  if (text.endsWith('f')) return text.slice(0, -1) + 'ves'
-  if (text.endsWith('fe')) return text.slice(0, -2) + 'ves'
-  if (text.endsWith('y')) return text.slice(0, -1) + 'ies'
-  if (text.endsWith('s')) return text
-  if (text.endsWith('x')) return text + 'es'
-  if (text.endsWith('ch')) return text + 'es'
-  if (text.endsWith('sh')) return text + 'es'
-
-  return text + 's'
+  return value + 's'
 }
 
 /**
  * Removes plurals from a string.
  */
 export function singularize(value: string): string {
-  if (value.endsWith('s')) return value.substring(0, value.length - 1)
+  value = value.trim().toLowerCase()
+
+  if (unchangingPlurals.has(value)) return value
+  if (irregularPlurals.has(value)) return irregularPlurals.get(value) || value
+
+  if (value.endsWith('ives')) return value.slice(0, -4) + 'ife'
+  if (value.endsWith('ves')) return value.slice(0, -3) + 'f'
+  if (value.endsWith('ies')) return value.slice(0, -3) + 'y'
+  if (value.endsWith('ches') || value.endsWith('shes') || value.endsWith('xes')) return value.slice(0, -2)
+  if (value.endsWith('oes')) return value.slice(0, -2)
+  if (value.endsWith('us') || value.endsWith('ss')) return value
+  if (value.endsWith('i')) return value.slice(0, -1) + 'us'
+  if (value.endsWith('a')) return value.slice(0, -1) + 'on'
+  if (value.endsWith('s') && value.length > 1) return value.slice(0, -1)
+
   return value
 }
 
