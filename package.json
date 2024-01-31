@@ -56,6 +56,8 @@
     "bun-types": "^1.0.7",
     "changelogen": "^0.5.5",
     "concurrently": "^8.2.2",
+    "monaco-editor": "^0.45.0",
+    "nuxt-monaco-editor": "^1.2.7",
     "shikiji": "^0.10.0-beta.6",
     "typescript": "^5.2.2"
   }
