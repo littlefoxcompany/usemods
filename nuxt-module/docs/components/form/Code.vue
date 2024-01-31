@@ -14,8 +14,6 @@
 </template>
 
 <script setup lang="ts">
-  import { codeToHtml } from 'shikiji'
-
   const props = defineProps({
     modelValue: {
       type: [String, Number, Array, Object]
@@ -34,9 +32,4 @@
       type: String
     }
   })
-
-  // const code = await codeToHtml(props.modelValue, {
-  //   lang: 'javascript',
-  //   theme: 'dark-plus'
-  // })
 </script>

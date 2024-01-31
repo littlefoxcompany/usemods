@@ -20,7 +20,38 @@ export function dataShuffle(items: object | any[]): any {
     return array
   }
 
-  return isObject(items) ? Object.fromEntries(shuffleArray(Object.entries(items))) : shuffleArray([...items])
+  if (isObject(items)) {
+    const entries = Object.entries(items)
+    return Object.fromEntries(shuffleArray(entries) as [string, any][])
+  } else {
+    return shuffleArray([...(items as any[])])
+  }
+}
+
+/**
+ * Reverse an array.
+ */
+export function dataReverse(items: object | any[]): any {
+  if (!items || !(isObject(items) || isArray(items))) {
+    console.warn('Warning: dataReverse() expects an object or array as the first argument.')
+    return items
+  }
+
+  if (isObject(items)) {
+    const entries = Object.entries(items)
+    return Object.fromEntries(entries.reverse() as [string, any][])
+  } else {
+    return (items as any[]).reverse()
+  }
+}
+
+/**
+ * Sort an array by a property.
+ */
+export function dataSortBy(items: { [key: string]: any }[], property: string): { [key: string]: any }[] {
+  return items.sort((a, b) => {
+    return a[property] > b[property] ? 1 : -1
+  })
 }
 
 /**
@@ -44,7 +75,7 @@ export function dataUnique(items: object | any[], property: string | number | nu
 /**
  * Returns the difference between two arrays.
  */
-export function difference(...arrays: any[][]): any[] {
+export function dataDifference(...arrays: any[][]): any[] {
   const mergedArray = arrays.flat()
   return mergedArray.filter((item, index) => mergedArray.indexOf(item) === index)
 }
@@ -52,35 +83,35 @@ export function difference(...arrays: any[][]): any[] {
 /**
  * Returns the first item in an array.
  */
-export function first(items: any[]): string {
+export function dataFirst(items: any[]): string {
   return items[0]
 }
 
 /**
  * Returns the last item in an array.
  */
-export function last(items: any[]): string {
+export function dataLast(items: any[]): string {
   return items[items.length - 1]
 }
 
 /**
  * Returns the nth item in an array.
  */
-export function nth(items: any[], nth: number): string {
+export function dataNth(items: any[], nth: number): string {
   return items[nth]
 }
 
 /**
  * Offset the first item in an array.
  */
-export function offset(items: any[], offset: number): any[] {
+export function dataOffset(items: any[], offset: number): any[] {
   return items.slice(offset)
 }
 
 /**
  * Groups an array of objects by a property.
  */
-export function group(items: { [key: string]: any }[], property: string): { [key: string]: any } {
+export function dataGroup(items: { [key: string]: any }[], property: string): { [key: string]: any } {
   return items.reduce((accumulator, item) => {
     const key = item[property]
     if (!accumulator[key]) {
@@ -94,7 +125,7 @@ export function group(items: { [key: string]: any }[], property: string): { [key
 /**
  * Chunks an array into sections of a specified size.
  */
-export function groupBy(items: any[], size: number): any[][] {
+export function dataGroupBy(items: any[], size: number): any[][] {
   const result = []
   for (let i = 0; i < items.length; i += size) {
     result.push(items.slice(i, i + size))
@@ -105,10 +136,10 @@ export function groupBy(items: any[], size: number): any[][] {
 /**
  * Flatten an array of arrays.
  */
-export function flatten(items: any[]): any[] {
+export function dataFlatten(items: any[]): any[] {
   return items.reduce((accumulator, item) => {
     if (Array.isArray(item)) {
-      return accumulator.concat(flatten(item)) // recursive call if item is an array
+      return accumulator.concat(dataFlatten(item)) // recursive call if item is an array
     } else {
       return accumulator.concat(item)
     }
@@ -119,7 +150,7 @@ export function flatten(items: any[]): any[] {
  * Returns an array with a filtered out property.
 
  */
-export function without(items: any[], properties: any | any[]): any[] {
+export function dataWithout(items: any[], properties: any | any[]): any[] {
   if (!Array.isArray(items)) {
     return items
   }
@@ -140,14 +171,14 @@ export function without(items: any[], properties: any | any[]): any[] {
 /**
  * Combine two or more arrays
  */
-export function combineAll(...arrays: any[][]): any[] {
+export function dataCombineAll(...arrays: any[][]): any[] {
   return ([] as any[]).concat(...arrays)
 }
 
 /**
  * Combine two or more unique arrays
  */
-export function combineUnique(...items: (any | any[])[]): any[] {
+export function dataCombineUnique(...items: (any | any[])[]): any[] {
   let combined: any[] = []
 
   for (let item of items) {
@@ -164,7 +195,7 @@ export function combineUnique(...items: (any | any[])[]): any[] {
 /**
  * Combine two or more arrays or objects without a property.
  */
-export function combineWithout(
+export function dataCombineWithout(
   property: string | number,
   ...items: (({ [key: string]: any } | { [key: number]: any }) | ({ [key: string]: any } | { [key: number]: any })[])[]
 ): any[] {
@@ -183,25 +214,9 @@ export function combineWithout(
 }
 
 /**
- * Reverse an array.
- */
-export function reverse(items: any[]): any[] {
-  return items.reverse()
-}
-
-/**
- * Sort an array by a property.
- */
-export function sortBy(items: { [key: string]: any }[], property: string): { [key: string]: any }[] {
-  return items.sort((a, b) => {
-    return a[property] > b[property] ? 1 : -1
-  })
-}
-
-/**
  * Return the frequency of all values (numbers, string or boolean) in an array as an object
  */
-export function frequencyOfProperties(array: (number | string)[]): Record<string, number> {
+export function dataFrequency(array: (number | string)[]): Record<string, number> {
   return array.reduce((acc, curr) => {
     acc[curr] = (acc[curr] || 0) + 1
     return acc
@@ -211,6 +226,6 @@ export function frequencyOfProperties(array: (number | string)[]): Record<string
 /**
  * Returns the fequency of a property value in an array
  */
-export function frequencyOfProperty(array: (number | string)[], property: number | string): number {
+export function dataFrequencyOfProperty(array: (number | string)[], property: number | string): number {
   return array.filter((item) => item === property).length
 }
