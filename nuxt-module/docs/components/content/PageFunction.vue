@@ -27,7 +27,7 @@
 
       <template v-for="(param, index) in paramsObject" :key="index">
         <div class="bg-white/5 py-px rounded-md px-1.5 text-white flex gap-1">
-          <span v-if="param.key">{{ param.key }}:</span>
+          <span v-if="param.key">{{ param.key }}</span>
           <span v-if="param.value">{{ param.value }}</span>
           <span v-if="param.defaultValue">={{ param.defaultValue }}</span>
         </div>
@@ -65,7 +65,7 @@
     }, 800)
   }
 
-  const paramPattern = /(\w+):\s*([^=]+)(\s*=\s*([^,]+))?/g
+  const paramPattern = /\s*([^,]+?(?:\{[^}]*\}|'[^']*'|"[^"]*"|\[[^\]]*\]|[^,])*)\s*(?=,|$)?/g
   const matches = props.params?.matchAll(paramPattern) || []
 
   const paramsObject = computed(() => {

@@ -26,21 +26,19 @@ export function dataShuffle(items: object | any[]): any {
 /**
  * Returns unique array values with an optional property to pluck.
  */
-export function unique(property: string | null = null, ...arrays: (string | { [key: string]: any })[][]): any[] {
-  const combinedItems = arrays.flat()
-  if (!property) return [...new Set(combinedItems)]
-
-  const seenValues = new Set()
-  const result = []
-
-  for (const item of combinedItems) {
-    if (typeof item === 'object' && item[property] && !seenValues.has(item[property])) {
-      seenValues.add(item[property])
-      result.push(item)
-    }
+export function dataUnique(items: object | any[], property: string | number | null = null): any {
+  if (!items || !(isObject(items) || isArray(items))) {
+    console.warn('Warning: dataUnique() expects an object or array as the first argument.')
+    return items
   }
 
-  return result
+  const combinedItems = Array.isArray(items) ? items : Object.values(items)
+  const seenValues = new Set()
+
+  return combinedItems.filter((item) => {
+    const valueToCheck = property && typeof item === 'object' ? item[property] : item
+    return seenValues.has(valueToCheck) ? false : seenValues.add(valueToCheck)
+  })
 }
 
 /**

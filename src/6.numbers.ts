@@ -23,6 +23,34 @@ export function average(numbers: number[]): number {
 }
 
 /**
+ * Calculates the margin based on a percentage.
+ */
+export function subtractMargin(value: number, percentage: number): number {
+  return (value * percentage) / 100
+}
+
+/**
+ * Adds the margin to the value.
+ */
+export function addMargin(value: number, percentage: number): number {
+  return value + subtractMargin(value, percentage)
+}
+
+/**
+ * Calculates the markup based on a percentage.
+ */
+export function subtractMarkup(value: number, percentage: number): number {
+  return value / (1 + percentage / 100)
+}
+
+/**
+ * Adds the markup to the value.
+ */
+export function addMarkup(value: number, percentage: number): number {
+  return value + subtractMarkup(value, percentage)
+}
+
+/**
  * Calculates the median of an array of numbers.
  */
 export function median(numbers: number[]): number {
