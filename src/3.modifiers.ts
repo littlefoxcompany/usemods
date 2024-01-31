@@ -97,7 +97,12 @@ export const irregularPlurals = new Map([
   ['focus', 'foci'],
   ['fungus', 'fungi'],
   ['nucleus', 'nuclei'],
-  ['syllabus', 'syllabi']
+  ['syllabus', 'syllabi'],
+  ['analysis', 'analyses'],
+  ['diagnosis', 'diagnoses'],
+  ['oasis', 'oases'],
+  ['thesis', 'theses'],
+  ['crisis', 'crises']
   // TODO: Add more irregular plurals
 ])
 
@@ -105,6 +110,7 @@ export const irregularPlurals = new Map([
  * Adds plurals to a string except for excluded words.
  */
 export function pluralize(value: string, count: number): string {
+  if (!value) return ''
   value = value.trim().toLowerCase()
 
   if (count === 1) return value
