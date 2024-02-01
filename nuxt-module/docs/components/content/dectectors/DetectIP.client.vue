@@ -1,7 +1,9 @@
 <template>
   <Example>
     <ExampleResult>
-      {{ detectBrowser() }}
+      asdf
+      {{ detectIP() }}
+      {{ detectPort() }}
     </ExampleResult>
   </Example>
 </template>

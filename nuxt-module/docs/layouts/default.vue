@@ -7,7 +7,13 @@
     <div class="container relative mx-auto flex min-h-screen py-12 gap-20">
       <nav class="-mt-2 w-2/12 flex flex-col sticky h-fit top-6">
         <div v-for="section in sidebar" class="pb-12 flex flex-col first:text-xl">
-          <NuxtLink v-for="link in section.children" :key="link._path" :to="link._path" class="py-2 flex font-medium text-gray-500 hover:text-white/75 gap-3" activeClass="active">
+          <NuxtLink
+            v-for="link in section.children"
+            :key="link._path"
+            :to="link._path"
+            class="py-2 flex font-medium text-gray-500 items-center hover:text-white/75 gap-3"
+            activeClass="active">
+            <Icon :name="link.title" class="w-5 h-5" />
             {{ link.title }}
           </NuxtLink>
         </div>
@@ -15,7 +21,7 @@
 
       <!-- Content -->
       <div class="min-h-screen w-7/12">
-        <ContentDoc class="w-full" />
+        <NuxtPage class="w-full" />
       </div>
 
       <!-- Table of Contents -->

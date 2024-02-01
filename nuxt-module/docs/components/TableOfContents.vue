@@ -1,9 +1,11 @@
 <template>
   <nav>
     <p class="font-semibold">On this page</p>
-    <NuxtLink v-for="link in links" :key="link" :to="'#' + link" class="py-1 flex font-medium text-gray-500 hover:text-white/75 gap-3" activeClass="active">
-      {{ link }}
-    </NuxtLink>
+    <template v-for="link in links" :key="link">
+      <NuxtLink :to="'#' + link" class="py-0.5 flex font-medium text-gray-500 hover:text-white/75 gap-3" activeClass="active">
+        {{ link }}
+      </NuxtLink>
+    </template>
   </nav>
 </template>
 

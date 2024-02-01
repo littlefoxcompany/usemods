@@ -1,7 +1,9 @@
 <template>
   <Example>
     <ExampleResult>
-      {{ detectBrowser() }}
+      {{ detectUrl() }}
     </ExampleResult>
   </Example>
 </template>
+
+<script setup lang="ts"></script>

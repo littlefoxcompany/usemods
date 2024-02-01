@@ -10,6 +10,7 @@
       {{ mask }}
 
       <input
+        v-if="!mask"
         :value="modelValue"
         @input="$event.target && $emit('update:modelValue', ($event.target as HTMLInputElement).value)"
         :placeholder="placeholder"

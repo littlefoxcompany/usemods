@@ -1,7 +1,9 @@
 <template>
-  <ExampleResult>
-    {{ result }}
-  </ExampleResult>
+  <Example>
+    <ExampleResult>
+      {{ result }}
+    </ExampleResult>
+  </Example>
 </template>
 
 <script setup lang="ts">
