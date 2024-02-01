@@ -23,14 +23,14 @@ export function formatNumber(value: number, decimals: number = 1): string {
 /**
  * Format numbers into local currency
  */
-export function formatCurrency(value: number, decimals: boolean | number = false, currency: string = 'USD'): string {
+export function formatCurrency(value: number, decimals?: boolean | number, currency: string = 'USD'): string {
   let config: any = {
     style: 'currency',
     currencyDisplay: 'symbol',
     currency: currency
   }
 
-  if (decimals === false) {
+  if (decimals === undefined) {
     config.minimumFractionDigits = 0
     config.maximumFractionDigits = 0
   } else if (typeof decimals === 'number') {
@@ -84,7 +84,7 @@ export function formatDurationNumbers(seconds: number): string {
 /**
  * Format time into a human-readable string
  */
-export function formatDurationLabels(seconds: number, labels = 'short'): string {
+export function formatDurationLabels(seconds: number, labels?: string): string {
   const time = [
     { unit: labels === 'short' ? 'yr' : ' year', secondsInUnit: 31536000 },
     { unit: labels === 'short' ? 'mo' : ' month', secondsInUnit: 2628000 },

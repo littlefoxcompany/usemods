@@ -23,13 +23,6 @@ export function detectOS(): string {
 }
 
 /**
- * Detects the user's browser based on the user agent string.
- */
-export function detectBrowser(): string {
-  return navigator.userAgent.toLowerCase()
-}
-
-/**
  * Detect if the browser window is currently active or hidden.
  */
 export function detectActiveBrowser(): boolean {
@@ -44,22 +37,6 @@ export function detectColorScheme(): string {
 }
 
 /**
- * Detect the current browser language
- */
-export function detectBrowserLanguage(): string {
-  return navigator.language
-}
-
-/**
- * Detect the current user's location
- */
-export function detectGeolocation(): Promise<GeolocationPosition> {
-  return new Promise((resolve, reject) => {
-    navigator.geolocation.getCurrentPosition(resolve, reject)
-  })
-}
-
-/**
  * Detect the current user's Timezone
  */
 export function detectUserTimezone(): string {
@@ -71,16 +48,6 @@ export function detectUserTimezone(): string {
  */
 export function detectDeviceOrientation(): string {
   return window.screen.orientation.type
-}
-
-/**
- * Detect the current device motion
- */
-export function detectDeviceMotion(timeout: number = Infinity): Promise<DeviceMotionEvent> {
-  return new Promise((resolve, reject) => {
-    window.addEventListener('devicemotion', resolve, { once: true })
-    if (timeout !== Infinity) setTimeout(reject, timeout)
-  })
 }
 
 /**
@@ -120,20 +87,12 @@ export function detectContainerSize(id: string): { width: number; height: number
  */
 export function detectTailwindBreakpoint(): string {
   const width = window.innerWidth
-  switch (true) {
-    case width < 640:
-      return 'xs'
-    case width < 768:
-      return 'sm'
-    case width < 1024:
-      return 'md'
-    case width < 1280:
-      return 'lg'
-    case width < 1536:
-      return 'xl'
-    default:
-      return '2xl'
-  }
+  if (width < 640) return 'xs'
+  if (width < 768) return 'sm'
+  if (width < 1024) return 'md'
+  if (width < 1280) return 'lg'
+  if (width < 1536) return 'xl'
+  return '2xl'
 }
 
 /**
@@ -141,65 +100,18 @@ export function detectTailwindBreakpoint(): string {
  */
 export function detectTailwindContainerBreakpoint(id: string): string {
   const width = detectContainerSize(id).width
-  switch (true) {
-    case width < 320:
-      return '@xs'
-    case width < 384:
-      return '@sm'
-    case width < 448:
-      return '@md'
-    case width < 512:
-      return '@lg'
-    case width < 576:
-      return '@xl'
-    case width < 672:
-      return '@2xl'
-    case width < 768:
-      return '@3xl'
-    case width < 896:
-      return '@4xl'
-    case width < 1024:
-      return '@5xl'
-    case width < 1152:
-      return '@6xl'
-    case width < 1280:
-      return '@7xl'
-    default:
-      return '@7xl'
-  }
-}
-
-/**
- * Detect the current scroll position of the window
- */
-export function detectScrollPosition(): { x: number; y: number } {
-  return {
-    x: window.scrollX,
-    y: window.scrollY
-  }
-}
-
-/**
- * Detect the current mouse position within the window
- */
-export function detectMousePosition(event: MouseEvent) {
-  return {
-    x: event.pageX,
-    y: event.pageY
-  }
-}
-
-/**
- * Detect the current mouse position within a container via ID
- */
-export function detectRelativeMousePosition(id: string, e: MouseEvent) {
-  const element = document.getElementById(id)
-  if (!element) return { x: 0, y: 0 }
-  const rect = element.getBoundingClientRect()
-  return {
-    x: e.clientX - rect.left,
-    y: e.clientY - rect.top
-  }
+  if (width < 320) return '@xs'
+  if (width < 384) return '@sm'
+  if (width < 448) return '@md'
+  if (width < 512) return '@lg'
+  if (width < 576) return '@xl'
+  if (width < 672) return '@2xl'
+  if (width < 768) return '@3xl'
+  if (width < 896) return '@4xl'
+  if (width < 1024) return '@5xl'
+  if (width < 1152) return '@6xl'
+  if (width < 1280) return '@7xl'
+  return '@7xl'
 }
 
 /**
@@ -210,45 +122,9 @@ export function detectNetworkStatus(): string {
 }
 
 /**
- * Detect the current memory status of the user (RAM)
- */
-export function detectMemoryStatus(): { totalJSHeapSize: number; usedJSHeapSize: number; jsHeapSizeLimit: number } {
-  return {
-    totalJSHeapSize: (performance as any).memory.totalJSHeapSize,
-    usedJSHeapSize: (performance as any).memory.usedJSHeapSize,
-    jsHeapSizeLimit: (performance as any).memory.jsHeapSizeLimit
-  }
-}
-
-/**
- * Returns a cookie value by name
- */
-export function detectCookie(name: string) {
-  const value = '; ' + document.cookie
-  const parts = value.split('; ' + name + '=')
-  if (parts.length === 2) return parts.pop()?.split(';').shift()
-}
-
-/**
- * Returns a local storage value by name and parses it into JSON
- */
-export function detectLocalStorage(name: string): any {
-  const item = localStorage.getItem(name)
-  if (item) return JSON.parse(item)
-}
-
-/**
- * Returns a session storage value by name and parses it into JSON
- */
-export function detectSessionStorage(name: string) {
-  const item = sessionStorage.getItem(name)
-  if (item) return JSON.parse(item)
-}
-
-/**
  * Returns a value from the URL by name
  */
-export function detectUrlParameters(url: string, param?: string) {
+export function detectUrlParameters(url: string, param?: string): string | null {
   const params = (url.match(/([^?=&]+)(=([^&]*))/g) || []).reduce((a: any, v: any) => ((a[v.slice(0, v.indexOf('='))] = v.slice(v.indexOf('=') + 1)), a), {})
   if (param) return params[param] || null
   return params
@@ -257,14 +133,14 @@ export function detectUrlParameters(url: string, param?: string) {
 /**
  * Returns a value from the URL hash by name
  */
-export function detectURLHashParameters() {
+export function detectURLHashParameters(): string {
   return detectUrlParameters(window.location.hash)
 }
 
 /**
  */
-export function detectURLSearchParameters() {
-  return detectUrlParameters(window.location.search)
+export function detectURLSearchParameters(): string {
+  return detectUrlParameters(window.location.search) ?? ''
 }
 
 /**
@@ -298,14 +174,14 @@ export function detectPort(): string {
 /**
  * Returns the current protocol (HTTP or HTTPS)
  */
-export function detectProtocol() {
+export function detectProtocol(): string {
   return window.location.protocol
 }
 
 /**
  * Returns the URL of the referring page (the page that linked to the current page)
  */
-export function detectReferrer() {
+export function detectReferrer(): string {
   return document.referrer
 }
 
@@ -318,12 +194,10 @@ export function detectCachedData(key?: string): PerformanceEntry[] {
   return cachedData
 }
 
-// Is it?
-
 /**
  * Detects if the element is currently in the viewport
  */
-export function detectInViewport(element: HTMLElement) {
+export function detectInViewport(element: HTMLElement): boolean {
   const rect = element.getBoundingClientRect()
   return (
     rect.top >= 0 &&
@@ -336,7 +210,7 @@ export function detectInViewport(element: HTMLElement) {
 /**
  * Detects if the element is currently in the container via ID
  */
-export function detectInContainer(element: HTMLElement, id: string) {
+export function detectInContainer(element: HTMLElement, id: string): boolean {
   const rect = element.getBoundingClientRect()
   const container = document.getElementById(id)
   if (!container) return false
@@ -347,28 +221,28 @@ export function detectInContainer(element: HTMLElement, id: string) {
 /**
  * Detects if the element is overflowing vertically
  */
-export function detectOverflowingY(element: HTMLElement) {
+export function detectOverflowingY(element: HTMLElement): boolean {
   return element.scrollWidth > element.clientWidth || element.scrollHeight > element.clientHeight
 }
 
 /**
  * Detects if the element is overflowing horizontally
  */
-export function detectOverflowingX(element: HTMLElement) {
+export function detectOverflowingX(element: HTMLElement): boolean {
   return element.scrollWidth > element.clientWidth
 }
 
 /**
  * Detects if the element is scrollable (overflowing vertically or horizontally)
  */
-export function detectScrollable(element: HTMLElement) {
+export function detectScrollable(element: HTMLElement): boolean {
   return detectOverflowingY(element) || detectOverflowingX(element)
 }
 
 /**
  * Detects if the elements is an HTML element
  */
-export function detectElement(element: HTMLElement) {
+export function detectElement(element: HTMLElement): boolean {
   return element instanceof HTMLElement
 }
 
@@ -380,3 +254,72 @@ export function detectReadingTime(text: string, wordsPerMinute = 200): string {
   const minutes = words / wordsPerMinute
   return formatDurationLabels(Math.ceil(minutes))
 }
+
+// /**
+//  * Detect the current memory status of the user (RAM)
+//  */
+// export function detectMemoryStatus(): { totalJSHeapSize: number; usedJSHeapSize: number; jsHeapSizeLimit: number } {
+//   return {
+//     totalJSHeapSize: (performance as any).memory.totalJSHeapSize,
+//     usedJSHeapSize: (performance as any).memory.usedJSHeapSize,
+//     jsHeapSizeLimit: (performance as any).memory.jsHeapSizeLimit
+//   }
+// }
+
+// /**
+//  * Returns a cookie value by name
+//  */
+// export function detectCookie(name: string) {
+//   const value = '; ' + document.cookie
+//   const parts = value.split('; ' + name + '=')
+//   if (parts.length === 2) return parts.pop()?.split(';').shift()
+// }
+
+// /**
+//  * Returns a local storage value by name and parses it into JSON
+//  */
+// export function detectLocalStorage(name: string): any {
+//   const item = localStorage.getItem(name)
+//   if (item) return JSON.parse(item)
+// }
+
+// /**
+//  * Returns a session storage value by name and parses it into JSON
+//  */
+// export function detectSessionStorage(name: string) {
+//   const item = sessionStorage.getItem(name)
+//   if (item) return JSON.parse(item)
+// }
+
+// /**
+//  * Detect the current scroll position of the window
+//  */
+// export function detectScrollPosition(): { x: number; y: number } {
+//   return {
+//     x: window.scrollX,
+//     y: window.scrollY
+//   }
+// }
+
+// /**
+//  * Detect the current mouse position within the window
+//  */
+// export function detectMousePosition(event: MouseEvent): { x: number; y: number } {
+//   return {
+//     x: event.pageX,
+//     y: event.pageY
+//   }
+// }
+
+// /**
+//  * Detect the current mouse position within a container via ID
+//  */
+// export function detectRelativeMousePosition(id: string, event: MouseEvent): { x: number; y: number } {
+//   const element = document.getElementById(id)
+//   if (!element) return { x: 0, y: 0 }
+//   const rect = element.getBoundingClientRect()
+//   return {
+//     x: event.clientX - rect.left,
+//     y: event.clientY - rect.top
+//   }
+// }

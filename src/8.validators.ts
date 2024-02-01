@@ -289,39 +289,6 @@ export function isPort(value: number): boolean {
 }
 
 /**
- * Checks if a property and value pair exists in an object.
- */
-export function isPresent(object: any, property: string, value: any): boolean {
-  return object.hasOwnProperty(property) && object[property] === value
-}
-
-/**
- * Check if a property exists in an object without checking its value.
- */
-export function hasProperties(object: any, properties: string[], strict: boolean = true): boolean {
-  const objectProperties = Object.keys(object)
-
-  if (strict) {
-    return properties.every((property) => objectProperties.includes(property))
-  } else {
-    return properties.some((property) => objectProperties.includes(property))
-  }
-}
-
-/**
- * Check if an array of key exists in an object
- */
-export function hasKeys(object: any, keys: string[], strict: boolean = true): boolean {
-  const objectKeys = Object.keys(object)
-
-  if (strict) {
-    return keys.every((key) => objectKeys.includes(key))
-  } else {
-    return keys.some((key) => objectKeys.includes(key))
-  }
-}
-
-/**
  * Check the strength of a password against a given policy.
  */
 export function checkPasswordStrength(value: string, length: number, uppercase: number, numbers: number, special: number): object {
