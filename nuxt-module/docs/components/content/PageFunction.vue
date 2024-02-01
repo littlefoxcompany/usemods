@@ -1,5 +1,5 @@
 <template>
-  <section class="py-12">
+  <section class="py-12" :id="name">
     <!-- Title -->
     <div @click="copyToClipboard" class="flex w-fit relative items-center gap-3 cursor-pointer" @mouseover="showCopyToClipboard = true" @mouseout="showCopyToClipboard = false">
       <h3 class="text-3xl font-semibold">{{ name }}</h3>

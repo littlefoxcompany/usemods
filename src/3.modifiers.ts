@@ -51,7 +51,7 @@ export function surroundWith(text: string, start: string, end: string): string {
   return start + text + end
 }
 
-export const unchangingPlurals = new Set([
+const unchangingPlurals = new Set([
   'sheep',
   'fish',
   'deer',
@@ -74,7 +74,7 @@ export const unchangingPlurals = new Set([
   'trout',
   'tuna'
 ])
-export const irregularPlurals = new Map([
+const irregularPlurals = new Map([
   ['child', 'children'],
   ['person', 'people'],
   ['man', 'men'],
