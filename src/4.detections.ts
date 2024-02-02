@@ -19,6 +19,8 @@ export function detectOS(): string {
   if (userAgent.includes('mac')) return 'Mac'
   if (userAgent.includes('linux')) return 'Linux'
   if (userAgent.includes('x11')) return 'UNIX'
+  if (userAgent.includes('android')) return 'Android'
+  if (userAgent.includes('iphone')) return 'iOS'
   return 'Unknown'
 }
 
@@ -133,14 +135,14 @@ export function detectUrlParameters(url: string, param?: string): string | null 
 /**
  * Returns a value from the URL hash by name
  */
-export function detectURLHashParameters(): string {
+export function detectURLHashParameters(): string | null {
   return detectUrlParameters(window.location.hash)
 }
 
 /**
  */
-export function detectURLSearchParameters(): string {
-  return detectUrlParameters(window.location.search) ?? ''
+export function detectURLSearchParameters(): string | null {
+  return detectUrlParameters(window.location.search)
 }
 
 /**

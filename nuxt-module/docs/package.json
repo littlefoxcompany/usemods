@@ -16,6 +16,7 @@
     "shikiji": "^0.10.1"
   },
   "dependencies": {
-    "@nuxt/content": "^2.10.0"
+    "@nuxt/content": "^2.10.0",
+    "gsap": "npm:@gsap/shockingly@^3.12.5"
   }
 }

@@ -177,7 +177,7 @@ export function splitByWords(text: string): string {
       .split(' ')
       .map((word) => {
         wordIndex++
-        return `<span class="word word-${wordIndex}">${word}</span>`
+        return `<span class="word"><span class="word-${wordIndex}">${word}</span></span>`
       })
       .join(' ')
 
