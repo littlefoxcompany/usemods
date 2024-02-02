@@ -23,7 +23,7 @@
       @apply overflow-clip inline-flex relative;
 
       span {
-        @apply translate-y-full leading-[1.1em];
+        @apply -translate-y-full opacity-0 leading-[1.1em];
         animation: fadeUp 0.5s ease-in-out forwards;
 
         &.word-1 {
@@ -54,8 +54,6 @@
           animation-delay: 0.7s;
         }
       }
-
-      /* Add more classes and corresponding animation delays as needed */
     }
   }
 
@@ -66,7 +64,7 @@
     }
     100% {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0%);
     }
   }
 </style>
