@@ -135,20 +135,20 @@ export function detectUrlParameters(url: string, param?: string): string | null 
 /**
  * Returns a value from the URL hash by name
  */
-export function detectURLHashParameters(): string | null {
+export function detectUrlHashParameters(): string | null {
   return detectUrlParameters(window.location.hash)
 }
 
 /**
  */
-export function detectURLSearchParameters(): string | null {
+export function detectUrlSearchParameters(): string | null {
   return detectUrlParameters(window.location.search)
 }
 
 /**
  * Returns the current URL
  */
-export function detectURL(): string {
+export function detectUrl(): string {
   return window.location.href
 }
 

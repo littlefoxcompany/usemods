@@ -34,7 +34,9 @@ export function generateUuid(): string {
  * Generate a unique short ID based on the current timestamp
  */
 export function generateShortId(length: number = 36): string {
-  return Math.floor(Date.now()).toString(length).toUpperCase()
+  const timestampPart = Math.floor(Date.now()).toString(length).toUpperCase()
+  const randomPart = Math.random().toString(length).slice(2).toUpperCase()
+  return (timestampPart + randomPart).slice(0, length)
 }
 
 /**
