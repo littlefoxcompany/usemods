@@ -2,6 +2,35 @@
 // description: A collection of validators for common data types
 
 /**
+ * Check the strength of a password against a given policy.
+ */
+export function checkPasswordStrength(value: string, length: number, uppercase: number, numbers: number, special: number): object {
+  let strength = 0
+
+  const counts = {
+    uppercase: (value.match(/[A-Z]/g) || []).length,
+    numbers: (value.match(/[0-9]/g) || []).length,
+    special: (value.match(/[^a-zA-Z0-9]/g) || []).length
+  }
+
+  if (value.length < length) return { score: 1, label: `Password must be at least ${length} characters long` }
+  if (counts.uppercase < uppercase) return { score: 1, label: `Password must contain ${uppercase} uppercase letter` }
+  if (counts.numbers < numbers) return { score: 1, label: `Password must contain ${numbers} number` }
+  if (counts.special < special) return { score: 1, label: `Password must contain ${special} special character` }
+
+  if (value.length >= length) strength++
+  if (counts.uppercase >= uppercase) strength++
+  if (counts.numbers >= numbers) strength++
+  if (counts.special >= special) strength++
+
+  if (strength === 4) return { score: 4, label: 'Very Strong' }
+  if (strength === 3) return { score: 3, label: 'Strong' }
+  if (strength === 2) return { score: 2, label: 'Medium' }
+  if (strength === 1) return { score: 1, label: 'Weak' }
+  return { score: 0, label: 'Very Weak' }
+}
+
+/**
  * Check if any given value is a valid email address.
  */
 export function isEmail(value: any): boolean {
@@ -237,24 +266,8 @@ export function isDivisibleBy(value: number, divisor: number): boolean {
 /**
  * Check if any given value is a valid credit card number.
  */
-export function isCreditCardNumber(value: any): boolean {
+export function isCreditCard(value: any): boolean {
   const regex = /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/
-  return regex.test(value)
-}
-
-/**
- * Check if any given value is a valid IP address.
- */
-export function isIPAddress(value: any): boolean {
-  const regex = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)((?::\d+)?|)$/
-  return regex.test(value)
-}
-
-/**
- * Check if any given value is a valid MAC address.
- */
-export function isMACAddress(value: any): boolean {
-  const regex = /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/
   return regex.test(value)
 }
 
@@ -265,6 +278,7 @@ export function isLatLng(value: any): boolean {
   const regex = /^([-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)),\s*([-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?))$/
   return regex.test(value)
 }
+
 /**
  * Check if any given value is a valid latitude coordinate.
  */
@@ -282,6 +296,14 @@ export function isLongitude(value: any): boolean {
 }
 
 /**
+ * Check if any given value is a valid IP address.
+ */
+export function isIpAddress(value: any): boolean {
+  const regex = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)((?::\d+)?|)$/
+  return regex.test(value)
+}
+
+/**
  * Check if any given value is a valid port number.
  */
 export function isPort(value: number): boolean {
@@ -289,30 +311,9 @@ export function isPort(value: number): boolean {
 }
 
 /**
- * Check the strength of a password against a given policy.
+ * Check if any given value is a valid MAC address.
  */
-export function checkPasswordStrength(value: string, length: number, uppercase: number, numbers: number, special: number): object {
-  let strength = 0
-
-  const counts = {
-    uppercase: (value.match(/[A-Z]/g) || []).length,
-    numbers: (value.match(/[0-9]/g) || []).length,
-    special: (value.match(/[^a-zA-Z0-9]/g) || []).length
-  }
-
-  if (value.length < length) return { score: 1, label: `Password must be at least ${length} characters long` }
-  if (counts.uppercase < uppercase) return { score: 1, label: `Password must contain ${uppercase} uppercase letter` }
-  if (counts.numbers < numbers) return { score: 1, label: `Password must contain ${numbers} number` }
-  if (counts.special < special) return { score: 1, label: `Password must contain ${special} special character` }
-
-  if (value.length >= length) strength++
-  if (counts.uppercase >= uppercase) strength++
-  if (counts.numbers >= numbers) strength++
-  if (counts.special >= special) strength++
-
-  if (strength === 4) return { score: 4, label: 'Very Strong' }
-  if (strength === 3) return { score: 3, label: 'Strong' }
-  if (strength === 2) return { score: 2, label: 'Medium' }
-  if (strength === 1) return { score: 1, label: 'Weak' }
-  return { score: 0, label: 'Very Weak' }
+export function isMacAddress(value: any): boolean {
+  const regex = /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/
+  return regex.test(value)
 }
