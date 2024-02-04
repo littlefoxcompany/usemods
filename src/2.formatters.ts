@@ -71,14 +71,16 @@ export function formatValuation(value: number, decimals: boolean | number = fals
 }
 
 /**
- * Format time into duration 00:00:00
+ * Format a number into a percentage
  */
-export function formatDurationNumbers(seconds: number): string {
-  const hours = Math.floor(seconds / 3600)
-  const minutes = Math.floor((seconds - hours * 3600) / 60)
-  const remainingSeconds = seconds - hours * 3600 - minutes * 60
+export function formatPercentage(number: number, decimals: boolean | number = false): string {
+  const fractionDigits = typeof decimals === 'number' ? decimals : decimals === true ? Number.POSITIVE_INFINITY : 0
 
-  return [hours, minutes, remainingSeconds].map((value) => value.toString().padStart(2, '0')).join(':')
+  return new Intl.NumberFormat('en-US', {
+    style: 'percent',
+    minimumFractionDigits: fractionDigits,
+    maximumFractionDigits: fractionDigits
+  }).format(number)
 }
 
 /**
@@ -113,16 +115,14 @@ export function formatDurationLabels(seconds: number, labels?: string): string {
 }
 
 /**
- * Format a number into a percentage
+ * Format time into duration 00:00:00
  */
-export function formatPercentage(number: number, decimals: boolean | number = false): string {
-  const fractionDigits = typeof decimals === 'number' ? decimals : decimals === true ? Number.POSITIVE_INFINITY : 0
+export function formatDurationNumbers(seconds: number): string {
+  const hours = Math.floor(seconds / 3600)
+  const minutes = Math.floor((seconds - hours * 3600) / 60)
+  const remainingSeconds = seconds - hours * 3600 - minutes * 60
 
-  return new Intl.NumberFormat('en-US', {
-    style: 'percent',
-    minimumFractionDigits: fractionDigits,
-    maximumFractionDigits: fractionDigits
-  }).format(number)
+  return [hours, minutes, remainingSeconds].map((value) => value.toString().padStart(2, '0')).join(':')
 }
 
 /**
@@ -148,30 +148,16 @@ export function formatUnixTime(timestamp: number): string {
 /**
  * Create a string of comma-separated values from an array, object or string with an optional limit and conjunction
  */
-export function formatListString(items: any, limit: number, conjunction: string = 'and'): string {
+export function formatList(items: string | object | any[], limit: number = Infinity, conjunction: string = 'and'): string {
   if (typeof items === 'string') items = items.split(',').map((item) => item.trim())
   if (typeof items === 'object' && !Array.isArray(items)) items = Object.values(items)
   if (!Array.isArray(items) || items.length === 0) return ''
   if (items.length <= 2) return items.join(items.length === 2 ? ` ${conjunction} ` : '')
+  if (items.length <= limit) return items.slice(0, -1).join(', ') + ` ${conjunction} ` + items.slice(-1)
+
   const listedItems = items.slice(0, limit).join(', ')
   const remaining = items.length - limit
-  return items.length <= limit ? `${listedItems} ${conjunction} ${items[items.length - 1]}` : `${listedItems}, ${conjunction} ${remaining} more`
-}
-
-/**
- * Creates an array of list items (`<li>`) from an array, object or string of things
- */
-export function formatListHtml(items: (string | { [key: string]: any })[], listType: string = 'ul'): string {
-  const listItem = (item: string | { [key: string]: any }): string => {
-    if (typeof item === 'object') return `<li>${JSON.stringify(item)}</li>`
-    else return `<li>${item}</li>`
-  }
-
-  const listItems: string = items.map(listItem).join('')
-
-  if (listType === 'ol') return `<ol>${listItems}</ol>`
-  else if (listType === 'ul') return `<ul>${listItems}</ul>`
-  else return listItems
+  return `${listedItems} ${conjunction} ${remaining} more`
 }
 
 /**

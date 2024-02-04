@@ -6,14 +6,18 @@
       </NuxtLink>
 
       <div class="flex items-center gap-6">
-        <NavDropdown label="Docs" class="flex">
-          <div v-for="section in docs" class="flex flex-col">
-            <NavDropdownItem v-for="item in section.children" :key="item._path" :to="item._path">
-              {{ item.title }}
+        <NavDropdown label="Docs">
+          <div v-for="section in docs" class="">
+            <NavDropdownItem v-for="link in section.children" :key="link._path" :to="link._path">
+              <Icon :name="link.title" class="w-5 h-5 text-white/50" />
+              {{ link.title }}
             </NavDropdownItem>
           </div>
         </NavDropdown>
-        <NavDropdown label="Links"></NavDropdown>
+        <NavDropdown label="Links">
+          <NavDropdownItem to="/blog">Nuxtjs</NavDropdownItem>
+          <NavDropdownItem to="/about">LittleFox</NavDropdownItem>
+        </NavDropdown>
       </div>
 
       <!-- Right -->

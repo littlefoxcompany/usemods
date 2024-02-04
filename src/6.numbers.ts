@@ -25,15 +25,15 @@ export function average(numbers: number[]): number {
 /**
  * Calculates the margin based on a percentage.
  */
-export function subtractMargin(value: number, percentage: number): number {
+export function margin(value: number, percentage: number): number {
   return (value * percentage) / 100
 }
 
 /**
  * Adds the margin to the value.
  */
-export function addMargin(value: number, percentage: number): number {
-  return value + subtractMargin(value, percentage)
+export function marginAdded(value: number, percentage: number): number {
+  return value + margin(value, percentage)
 }
 
 /**
