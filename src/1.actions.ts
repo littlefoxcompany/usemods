@@ -29,14 +29,22 @@ export function toggleElementScroll(element: HTMLElement, className: string): vo
 }
 
 /**
- * Copies a text to the clipboard
+ * Copies a text to the clipboard with a callback
  */
-export function copyToClipboard(text: string): void {
-  try {
-    navigator.clipboard.writeText(String(text))
-  } catch (error) {
-    console.error(error)
+export function copyToClipboard(text: string, callback?: () => void): void {
+  if (!navigator.clipboard || !navigator.clipboard.writeText) {
+    console.error('Clipboard API is not available')
+    return
   }
+
+  navigator.clipboard
+    .writeText(String(text))
+    .then(() => {
+      if (callback) callback()
+    })
+    .catch((error) => {
+      console.error('Failed to copy text: ', error)
+    })
 }
 
 /**
