@@ -6,7 +6,8 @@
  */
 export function widont(value: string): string {
   const space = value.lastIndexOf(' ')
-  return value.substring(0, space) + '&nbsp;' + value.substring(space + 1)
+  if (space !== -1) return value.substring(0, space) + '&nbsp;' + value.substring(space + 1)
+  return value
 }
 
 /**
