@@ -106,7 +106,7 @@ export function detectTailwindContainerBreakpoint(id: string): string {
   const element = document.getElementById(id)
   if (!element) return ''
 
-  const width = detectContainerSize(element).width
+  const width = element.clientWidth
   if (width < 320) return '@xs'
   if (width < 384) return '@sm'
   if (width < 448) return '@md'
