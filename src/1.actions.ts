@@ -33,20 +33,22 @@ export function toggleBodyScroll(callback?: Function, className: string = 'fixed
 /**
  * Toggles the element scroll with the specified class name and a optional callback
  */
-export function toggleElementScroll(element: HTMLElement, className: string = 'overflow-clip', callback?: () => void): void {
+export function toggleElementScroll(element: HTMLElement, callback?: () => void): void {
   if (!element) {
     console.warn('toggleElementScroll was called without a valid element.')
     return
   }
 
-  const scrollPosition = {
-    top: element.scrollTop,
-    left: element.scrollLeft
+  // Check if the element is currently prevented from scrolling
+  if (element.dataset.isScrollLocked === 'true') {
+    // Unlock scrolling by removing the inline styles and the attribute
+    element.style.overflow = ''
+    delete element.dataset.isScrollLocked
+  } else {
+    // Lock scrolling by setting overflow to hidden and storing the state
+    element.style.overflow = 'hidden'
+    element.dataset.isScrollLocked = 'true'
   }
-
-  element.classList.toggle(className)
-  element.scrollTop = scrollPosition.top
-  element.scrollLeft = scrollPosition.left
 
   if (callback) callback()
 }
