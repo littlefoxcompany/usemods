@@ -4,7 +4,7 @@
 /**
  * Scrolls to the element with the specified ID.
  */
-export function scrollToAnchor(id: string): void {
+export function scrollToAnchor(id: string, callback?: Function): void {
   setTimeout(() => {
     const element = document.querySelector(id)
     if (!element) return
@@ -12,26 +12,36 @@ export function scrollToAnchor(id: string): void {
       behavior: 'smooth'
     })
   }, 180)
+
+  if (callback) callback()
 }
 
 /**
  * Toggles the body scroll with the specified class name
  */
-export function toggleBodyScroll(className: string): void {
-  document.body.classList.toggle(className)
+export function toggleBodyScroll(callback?: Function) {
+  const body = document.body
+  const isFixed = body.classList.contains('fixed')
+  const scrollY = isFixed ? parseInt(body.style.top, 10) : window.scrollY
+
+  body.style.top = isFixed ? '' : `-${scrollY}px`
+  body.classList.toggle('fixed', !isFixed)
+  if (isFixed) window.scrollTo(0, -scrollY)
+  if (callback) callback()
 }
 
 /**
  * Toggles the element scroll
  */
-export function toggleElementScroll(element: HTMLElement, className: string): void {
+export function toggleElementScroll(element: HTMLElement, className: string, callback?: Function): void {
   element.classList.toggle(className)
+  if (callback) callback()
 }
 
 /**
  * Copies a text to the clipboard with a callback
  */
-export function copyToClipboard(text: string, callback?: () => void): void {
+export function copyToClipboard(text: string, callback?: Function): void {
   if (!navigator.clipboard || !navigator.clipboard.writeText) {
     console.error('Clipboard API is not available')
     return
@@ -50,24 +60,22 @@ export function copyToClipboard(text: string, callback?: () => void): void {
 /**
  * Toggles the fullscreen mode
  */
-export function toggleFullScreen(): void {
-  if (document.fullscreenElement) document.exitFullscreen()
-  else document.documentElement.requestFullscreen()
+export function toggleFullScreen(callback?: Function): void {
+  if (document.fullscreenElement) {
+    document.exitFullscreen()
+  } else {
+    document.documentElement.requestFullscreen().then(() => {
+      if (callback) callback()
+    })
+  }
 }
 
 /**
  * Toggles the dark mode
  */
-export function toggleDarkMode(): void {
-  const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
-  document.documentElement.classList.toggle('dark', !prefersDarkMode)
-}
-
-/**
- * Redirects to a new URL
- */
-export function redirect(url: string): void {
-  window.location.href = url
+export function toggleDarkMode(callback?: Function): void {
+  document.documentElement.classList.toggle('dark')
+  if (callback) callback()
 }
 
 /**
