@@ -43,7 +43,7 @@ export function isEmail(value: any): boolean {
  */
 export function isNumber(value: any): boolean {
   if (typeof value === 'number') return true
-  console.warn('Non-numeric value passed to isNumber validator.')
+  console.warn('[MODS] Non-numeric value passed to isNumber validator.')
   return false
 }
 

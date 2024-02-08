@@ -37,7 +37,7 @@ export function toggleBodyScroll(className: string = 'fixed', callback?: Functio
  */
 export function toggleElementScroll(element: HTMLElement, callback?: () => void): void {
   if (!element) {
-    console.warn('toggleElementScroll was called without a valid element.')
+    console.warn('[MODS] toggleElementScroll was called without a valid element.')
     return
   }
 

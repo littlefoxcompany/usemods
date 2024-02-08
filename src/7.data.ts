@@ -8,7 +8,7 @@ import { isObject, isArray } from './8.validators'
  */
 export function dataShuffle(items: object | any[]): any {
   if (!items || !(isObject(items) || isArray(items))) {
-    console.warn('Warning: dataShuffle() expects an object or array as the first argument.')
+    console.warn('[MODS] Warning: dataShuffle() expects an object or array as the first argument.')
     return items
   }
 
@@ -33,7 +33,7 @@ export function dataShuffle(items: object | any[]): any {
  */
 export function dataReverse(items: object | any[]): any {
   if (!items || !(isObject(items) || isArray(items))) {
-    console.warn('Warning: dataReverse() expects an object or array as the first argument.')
+    console.warn('[MODS] Warning: dataReverse() expects an object or array as the first argument.')
     return items
   }
 
@@ -186,7 +186,7 @@ export function dataCombineAll(...items: (any[] | object)[]): any[] | object {
   } else if (items.every((item) => typeof item === 'object' && !Array.isArray(item))) {
     return Object.assign({}, ...items)
   } else {
-    console.warn('Warning: dataCombineAll() expects either all arrays or all objects as arguments.')
+    console.warn('[MODS] Warning: dataCombineAll() expects either all arrays or all objects as arguments.')
     return items
   }
 }
@@ -206,7 +206,7 @@ export function dataCombineUnique(...items: (any[] | object)[]): any[] | object 
     }
     return combinedObject
   } else {
-    console.warn('Warning: dataCombineUnique() expects either all arrays or all objects as arguments.')
+    console.warn('[MODS] Warning: dataCombineUnique() expects either all arrays or all objects as arguments.')
     return items[0]
   }
 }
