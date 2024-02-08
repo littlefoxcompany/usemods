@@ -6,7 +6,8 @@
  */
 export function scrollToAnchor(id: string, callback?: Function): void {
   setTimeout(() => {
-    const element = document.querySelector(id)
+    const selector = `#${id}`
+    const element = document.querySelector(selector)
     if (!element) return
     element.scrollIntoView({
       behavior: 'smooth',
