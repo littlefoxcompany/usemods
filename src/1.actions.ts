@@ -2,7 +2,7 @@
 // description: A collection of useful actions
 
 /**
- * Scrolls to the element with the specified ID.
+ * Smoothly scrolls to the element with the specified ID without scuffing up your URLs.
  */
 export function scrollToAnchor(id: string, callback?: Function): void {
   setTimeout(() => {
@@ -19,7 +19,7 @@ export function scrollToAnchor(id: string, callback?: Function): void {
 }
 
 /**
- * Toggles the body scroll with the specified class name and a optional callback
+ * Toggles the body scroll with specified class names and a optional callback
  */
 export function toggleBodyScroll(className: string = 'fixed', callback?: Function): void {
   const body = document.body
@@ -33,7 +33,7 @@ export function toggleBodyScroll(className: string = 'fixed', callback?: Functio
 }
 
 /**
- * Toggles the element scroll with the specified class name and a optional callback
+ * Toggles the element scroll with specified class names and a optional callback
  */
 export function toggleElementScroll(element: HTMLElement, callback?: () => void): void {
   if (!element) {
@@ -53,9 +53,10 @@ export function toggleElementScroll(element: HTMLElement, callback?: () => void)
 }
 
 /**
- * Copies a text to the clipboard with a callback
+ * Copies a convereted string to the clipboard
  */
-export function copyToClipboard(text: string, callback?: Function): void {
+export function copyToClipboard(text: any, callback?: Function): void {
+  text = String(text)
   if (!navigator.clipboard || !navigator.clipboard.writeText) {
     console.error('Clipboard API is not available')
     return
@@ -98,7 +99,7 @@ export function toggleDarkMode(callback?: Function): void {
 }
 
 /**
- * Resets a form
+ * Resets a form to its initial state
  */
 export function resetForm(form: HTMLFormElement): void {
   form.reset()
@@ -117,7 +118,7 @@ export function focusOnInvalid(form: HTMLFormElement): void {
 }
 
 /**
- * Focuses on the first element
+ * Focuses on the first element within the specified form
  */
 export function focusOnFirst(element: HTMLElement): void {
   const input = element.querySelector('input') as HTMLInputElement
@@ -128,7 +129,7 @@ export function focusOnFirst(element: HTMLElement): void {
 }
 
 /**
- * Focuses on the last element, incase you want that.
+ * Focuses on the last element as well, incase you want that.
  */
 export function focusOnLast(element: HTMLElement): void {
   const inputs = element.querySelectorAll('input') as NodeListOf<HTMLInputElement>

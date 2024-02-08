@@ -22,6 +22,15 @@
       <!-- Content -->
       <div class="min-h-screen w-7/12">
         <NuxtPage class="w-full" />
+
+        <!-- Jagger Swagger -->
+        <section v-if="route.fullPath === '/docs/actions'" id="jagger" class="flex bg-blue-900 h-96 overflow-clip rounded-2xl mt-24 items-center justify-center relative">
+          <Button @click="scrollToAnchor('scrollToAnchor')" class="z-10 relative shadow-black shadow-2xl">Scroll back</Button>
+          <iframe
+            class="z-0 mix-blend-color-dodge scale-[250%] opacity-75 h-full w-full absolute pointer-events-none object-cover"
+            src="https://giphy.com/embed/ijb5ZE9zIQ2Nq"
+            frameBorder="0" />
+        </section>
       </div>
 
       <!-- Table of Contents -->
@@ -31,9 +40,8 @@
 </template>
 
 <script setup lang="ts">
+  const route = useRoute()
   const { data: sidebar } = await useAsyncData('sidebarLinks', () => fetchContentNavigation())
-
-  provide('docs', sidebar)
 </script>
 
 <style scoped>

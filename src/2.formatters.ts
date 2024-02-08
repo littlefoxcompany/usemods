@@ -129,7 +129,7 @@ export function formatDurationNumbers(seconds: number): string {
  * Generate initials from any string while ignoring common titles
  */
 export function formatInitials(text: string, length: number = 2): string {
-  text = text.replace(/(Mr|Mrs|Ms|Dr|Jr|Sr|Prof|Hon)\.?/g, '')
+  text = text.replace(/(Mr|Mrs|Ms|Dr|Jr|Sr|Prof|Hon|Snr|Jnr|St)\.?/g, '').trim()
   return text
     .split(' ')
     .filter((word) => !['the', 'third'].includes(word.toLowerCase()))

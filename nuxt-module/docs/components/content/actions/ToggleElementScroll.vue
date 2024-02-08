@@ -44,7 +44,7 @@ import type { log } from 'console';
       <p>You're my heart, you're my soul</p>
       <p>Yeah, a feelin' that our love will grow</p>
       <br />
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/4kHl4FoK1Ys" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/4kHl4FoK1Ys" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen defer></iframe>
     </div>
     <ExampleInputs>
       <Button color="secondary" class="w-full" @click="action">Toggle</Button>

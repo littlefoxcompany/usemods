@@ -14,6 +14,6 @@
 </template>
 
 <script setup lang="ts">
-  const seconds = ref(987654321)
-  const labels = ref('short')
+  const seconds = ref(954321)
+  const labels = ref('long')
 </script>
