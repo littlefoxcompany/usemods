@@ -83,10 +83,15 @@ export function toggleFullScreen(callback?: Function): void {
 }
 
 /**
- * Toggles the dark mode
+ * Toggles through dark, light and system color modes
  */
 export function toggleDarkMode(callback?: Function): void {
-  document.documentElement.classList.toggle('dark')
+  const htmlElement = document.documentElement
+  const isDarkMode = htmlElement.classList.toggle('dark')
+
+  if (isDarkMode) htmlElement.classList.remove('light')
+  else htmlElement.classList.add('light')
+
   if (callback) callback()
 }
 
