@@ -38,7 +38,16 @@ export function toggleElementScroll(element: HTMLElement, className: string = 'o
     console.warn('toggleElementScroll was called without a valid element.')
     return
   }
+
+  const scrollPosition = {
+    top: element.scrollTop,
+    left: element.scrollLeft
+  }
+
   element.classList.toggle(className)
+  element.scrollTop = scrollPosition.top
+  element.scrollLeft = scrollPosition.left
+
   if (callback) callback()
 }
 
