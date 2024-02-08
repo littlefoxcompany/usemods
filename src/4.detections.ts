@@ -75,14 +75,16 @@ export function detectScreenSize(): { width: number; height: number } {
 /**
  * Detect the container size via ID
  */
-export function detectContainerSize(id: string): { width: number; height: number } {
-  const element = document.getElementById(id)
-  if (!element) return { width: 0, height: 0 }
-  return {
-    width: element.offsetWidth,
-    height: element.offsetHeight
-  }
-}
+// export function detectContainerSize(element: HTMLElement): { width: number; height: number } {
+//   if (!element) return { width: 0, height: 0 }
+
+//   const rect = element.getBoundingClientRect()
+
+//   return {
+//     width: rect.width,
+//     height: rect.height
+//   }
+// }
 
 /**
  * Detect the current breakpoint based on Tailwind CSS breakpoints
@@ -101,7 +103,10 @@ export function detectTailwindBreakpoint(): string {
  * Detect the current container breakpoint based on Tailwind CSS breakpoints
  */
 export function detectTailwindContainerBreakpoint(id: string): string {
-  const width = detectContainerSize(id).width
+  const element = document.getElementById(id)
+  if (!element) return ''
+
+  const width = element.clientWidth
   if (width < 320) return '@xs'
   if (width < 384) return '@sm'
   if (width < 448) return '@md'

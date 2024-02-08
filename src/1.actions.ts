@@ -9,7 +9,8 @@ export function scrollToAnchor(id: string, callback?: Function): void {
     const element = document.querySelector(id)
     if (!element) return
     element.scrollIntoView({
-      behavior: 'smooth'
+      behavior: 'smooth',
+      block: 'start'
     })
   }, 180)
 
@@ -19,7 +20,7 @@ export function scrollToAnchor(id: string, callback?: Function): void {
 /**
  * Toggles the body scroll with the specified class name and a optional callback
  */
-export function toggleBodyScroll(callback?: Function, className: string = 'fixed'): void {
+export function toggleBodyScroll(className: string = 'fixed', callback?: Function): void {
   const body = document.body
   const isFixed = body.classList.contains(className)
   const scrollY = isFixed ? parseInt(body.style.top, 10) : window.scrollY
@@ -83,10 +84,15 @@ export function toggleFullScreen(callback?: Function): void {
 }
 
 /**
- * Toggles the dark mode
+ * Toggles through dark, light and system color modes
  */
 export function toggleDarkMode(callback?: Function): void {
-  document.documentElement.classList.toggle('dark')
+  const htmlElement = document.documentElement
+  const isDarkMode = htmlElement.classList.toggle('dark')
+
+  if (isDarkMode) htmlElement.classList.remove('light')
+  else htmlElement.classList.add('light')
+
   if (callback) callback()
 }
 
@@ -105,18 +111,30 @@ export function focusOn(element: HTMLElement): void {
 }
 
 /**
+ * Focus and scroll to the first invalid input, select or textarea
+ */
+export function focusOnInvalid(form: HTMLFormElement): void {
+  const input = form.querySelector('input:invalid, select:invalid, textarea:invalid') as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+
+  if (input) {
+    input.focus()
+    input.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  }
+}
+
+/**
  * Focuses on the first element
  */
 export function focusOnFirst(element: HTMLElement): void {
-  const input = element.querySelector('input')
+  const input = element.querySelector('input') as HTMLInputElement
   if (input) input.focus()
 }
 
 /**
- * Focuses on the last element
+ * Focuses on the last element, incase you want that.
  */
 export function focusOnLast(element: HTMLElement): void {
-  const inputs = element.querySelectorAll('input')
+  const inputs = element.querySelectorAll('input') as NodeListOf<HTMLInputElement>
   const input = inputs[inputs.length - 1]
   if (input) input.focus()
 }

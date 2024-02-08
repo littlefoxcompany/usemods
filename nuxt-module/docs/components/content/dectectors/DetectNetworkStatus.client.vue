@@ -1,7 +1,9 @@
 <template>
-  <ExampleClientOnly>
-    {{ result }}
-  </ExampleClientOnly>
+  <Example>
+    <ExampleResult>
+      {{ detectNetworkStatus() }}
+    </ExampleResult>
+  </Example>
 </template>
 
 <script setup lang="ts">

@@ -1,7 +1,7 @@
 <template>
   <Example>
     <ExampleResult>
-      {{ detectDevice() }}
+      {{ detectUserTimezone() }}
     </ExampleResult>
   </Example>
 </template>

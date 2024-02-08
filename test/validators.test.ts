@@ -13,31 +13,26 @@ import {
   isObject,
   isBoolean,
   isDate,
-  isFunction,
   isUndefined,
   isNull,
-  isError,
   isTime,
   isLeapYear,
-  isMap,
   isEven,
   isOdd,
   isPositive,
   isNegative,
   isPrime,
-  isOptimusPrime,
-  isPalindrome,
   isInteger,
   isFloat,
   isBetween,
   isDivisibleBy,
-  isCreditCardNumber,
-  isIPAddress,
-  isMACAddress,
+  isCreditCard,
+  isIpAddress,
+  isMacAddress,
   isLatLng,
   isLatitude,
   isLongitude
-} from '../src/validators'
+} from '../src/8.validators'
 
 test('isEmail', () => {
   expect(isEmail('hello@email.com')).toBe(true)
@@ -45,13 +40,20 @@ test('isEmail', () => {
 })
 
 test('isNumber', () => {
-  expect(isNumber('123')).toBe(true)
+  expect(isNumber(0)).toBe(true)
+  expect(isNumber(123)).toBe(true)
+  expect(isNumber('123')).toBe(false)
   expect(isNumber('abc')).toBe(false)
 })
 
 test('isUrl', () => {
+  expect(isUrl('https://usemods.com')).toBe(true)
   expect(isUrl('https://www.usemods.com')).toBe(true)
+  expect(isUrl('ftp://192.168.0.1')).toBe(true)
+  expect(isUrl('www.usemods')).toBe(false)
   expect(isUrl('usemods.com')).toBe(false)
+  expect(isUrl('com.usemods')).toBe(false)
+  expect(isUrl('usemods')).toBe(false)
 })
 
 test('isUuid', () => {
@@ -61,6 +63,7 @@ test('isUuid', () => {
 
 test('isJson', () => {
   expect(isJson('{"hello": "world"}')).toBe(true)
+  expect(isJson('{"hello": world}')).toBe(false)
   expect(isJson('hello')).toBe(false)
 })
 
@@ -71,20 +74,32 @@ test('isHex', () => {
 
 test('isEmpty', () => {
   expect(isEmpty('')).toBe(true)
+  expect(isEmpty([])).toBe(true)
+  expect(isEmpty({})).toBe(true)
+  expect(isEmpty(null)).toBe(true)
+  expect(isEmpty(undefined)).toBe(true)
   expect(isEmpty('hello')).toBe(false)
+  expect(isEmpty([1])).toBe(false)
+  expect(isEmpty({ key: 'value' })).toBe(false)
 })
 
 test('isAlphabetic', () => {
   expect(isAlphabetic('hello')).toBe(true)
   expect(isAlphabetic('hello123')).toBe(false)
+  expect(isAlphabetic(123)).toBe(false)
+  expect(isAlphabetic(['a', 'b', 'c'])).toBe(false)
 })
 
 test('isAlphanumeric', () => {
+  expect(isAlphanumeric('hello')).toBe(true)
+  expect(isAlphanumeric(123)).toBe(true)
   expect(isAlphanumeric('hello123')).toBe(true)
   expect(isAlphanumeric('hello!')).toBe(false)
+  expect(isAlphanumeric(['a', 2, '!'])).toBe(false)
 })
 
 test('isArray', () => {
+  expect(isArray([])).toBe(true)
   expect(isArray(['hello'])).toBe(true)
   expect(isArray('hello')).toBe(false)
 })
@@ -96,17 +111,15 @@ test('isObject', () => {
 
 test('isBoolean', () => {
   expect(isBoolean(true)).toBe(true)
+  expect(isBoolean(1)).toBe(false)
   expect(isBoolean('hello')).toBe(false)
 })
 
 test('isDate', () => {
   expect(isDate(new Date())).toBe(true)
+  expect(isDate('2024-01-01')).toBe(true)
+  expect(isDate('2024-01-day')).toBe(false)
   expect(isDate('hello')).toBe(false)
-})
-
-test('isFunction', () => {
-  expect(isFunction(() => {})).toBe(true)
-  expect(isFunction('hello')).toBe(false)
 })
 
 test('isUndefined', () => {
@@ -119,11 +132,6 @@ test('isNull', () => {
   expect(isNull('hello')).toBe(false)
 })
 
-test('isError', () => {
-  expect(isError(new Error('hello'))).toBe(true)
-  expect(isError('hello')).toBe(false)
-})
-
 test('isTime', () => {
   expect(isTime('12:00')).toBe(true)
   expect(isTime('hello')).toBe(false)
@@ -132,11 +140,6 @@ test('isTime', () => {
 test('isLeapYear', () => {
   expect(isLeapYear(2020)).toBe(true)
   expect(isLeapYear(2021)).toBe(false)
-})
-
-test('isMap', () => {
-  expect(isMap(new Map())).toBe(true)
-  expect(isMap('hello')).toBe(false)
 })
 
 test('isEven', () => {
@@ -164,16 +167,6 @@ test('isPrime', () => {
   expect(isPrime(4)).toBe(false)
 })
 
-test('isOptimusPrime', () => {
-  expect(isOptimusPrime('Optimus Prime')).toBe(true)
-  expect(isOptimusPrime('Bubblebee')).toBe(false)
-})
-
-test('isPalindrome', () => {
-  expect(isPalindrome('racecar')).toBe(true)
-  expect(isPalindrome('hello')).toBe(false)
-})
-
 test('isInteger', () => {
   expect(isInteger(2)).toBe(true)
   expect(isInteger(2.5)).toBe(false)
@@ -194,20 +187,21 @@ test('isDivisibleBy', () => {
   expect(isDivisibleBy(4, 3)).toBe(false)
 })
 
-test('isCreditCardNumber', () => {
-  expect(isCreditCardNumber('4111111111111111')).toBe(true)
-  expect(isCreditCardNumber('hello')).toBe(false)
+test('isCreditCard', () => {
+  expect(isCreditCard('4111111111111111')).toBe(true)
+  expect(isCreditCard('hello')).toBe(false)
 })
 
-test('isIPAddress', () => {
-  expect(isIPAddress('192.168.0.1')).toBe(true)
-  expect(isIPAddress('192.168.0.1:3000')).toBe(true)
-  expect(isIPAddress('hello')).toBe(false)
+test('isIpAddress', () => {
+  expect(isIpAddress('192.168.0.1')).toBe(true)
+  expect(isIpAddress('192.168.0.1:3000')).toBe(true)
+  expect(isIpAddress('00:00:00:00:00:00')).toBe(false)
+  expect(isIpAddress('hello')).toBe(false)
 })
 
-test('isMACAddress', () => {
-  expect(isMACAddress('00:00:00:00:00:00')).toBe(true)
-  expect(isMACAddress('hello')).toBe(false)
+test('isMacAddress', () => {
+  expect(isMacAddress('00:00:00:00:00:00')).toBe(true)
+  expect(isMacAddress('hello')).toBe(false)
 })
 
 test('isLatLng', () => {

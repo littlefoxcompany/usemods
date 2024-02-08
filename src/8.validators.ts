@@ -51,23 +51,19 @@ export function isNumber(value: any): boolean {
  * Check if any given value is a valid URL.
  */
 export function isUrl(value: any): boolean {
-  const regex = new RegExp(
-    '^(https?:\\/\\/)?' + // protocol
-      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-      '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-      '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-      '(\\#[-a-z\\d_]*)?$',
-    'i'
-  )
+  const regex = /^(?:\w+:)?\/\/([^\s\.]+\.\S{2,}|localhost[\:?\d]*(?:[^\:?\d]\S*)?)$/
   return regex.test(value)
 }
 
 /**
- * Check if any given value is an empty string.
+ * Check if any given string, array or object is empty.
  */
 export function isEmpty(value: any): boolean {
-  return value === ''
+  if (value === null || value === undefined) return true
+  if (typeof value === 'string') return value === ''
+  if (Array.isArray(value)) return value.length === 0
+  if (typeof value === 'object') return Object.keys(value).length === 0
+  return true
 }
 
 /**

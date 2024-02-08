@@ -1,7 +1,7 @@
 <template>
   <button
     :type="type as 'button' | 'reset' | 'submit'"
-    class="px-6 rounded-full justify-center whitespace-nowrap flex gap-2.5 items-center transition-all text-lg border h-11 font-medium select-none"
+    class="px-6 rounded-full translate-y-0 justify-center whitespace-nowrap flex gap-2.5 items-center transition-all text-lg border h-11 font-medium select-none"
     :class="colorClasses">
     <slot />
   </button>
