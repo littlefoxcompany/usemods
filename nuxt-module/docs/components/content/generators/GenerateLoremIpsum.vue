@@ -1,7 +1,7 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormNumber label="Words" v-model="length" :min="1" />
+      <FormNumber label="Length" v-model="length" :min="1" />
       <FormSelect label="Type" v-model="type">
         <option value="words">Words</option>
         <option value="sentences">Sentences</option>

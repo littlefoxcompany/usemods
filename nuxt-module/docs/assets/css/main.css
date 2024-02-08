@@ -1,7 +1,8 @@
 @import '_scrollbar.css';
 
 body {
-  @apply w-screen select-text overflow-x-clip bg-zinc-900 text-white antialiased
+  background-color: #070707;
+  @apply w-screen select-text overflow-x-clip text-white antialiased
   selection:bg-blue-800 selection:text-white scroll-smooth;
 }
 

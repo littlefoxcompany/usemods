@@ -1,7 +1,7 @@
 <template>
   <Example>
     <ExampleInputs>
-      <Button @click="generate" color="dark">Generate</Button>
+      <Button @click="generate" color="secondary">Generate</Button>
     </ExampleInputs>
     <ExampleResult>
       {{ result }}
