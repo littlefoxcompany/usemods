@@ -7,20 +7,22 @@
         id="title"
         class="2xl:text-9xl text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white text-center max-w-[1200px]"></h1>
 
-      <div class="flex gap-3 items-center mt-20">
+      <div class="flex items-center gap-3 mt-20">
         <Button href="/intro/introduction" size="lg">
           Get Started
           <Icon name="heroicons:arrow-right" class="w-5 h-5 text-white/50" />
         </Button>
-        <div class="items-center gap-3 bg-white/[2%] text-white/90 font-mono border flex h-12 px-6 border-white/5 rounded-full">
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_9_49)">
-              <path d="M6.375 10.125H11.625" stroke="#6366F1" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M0.375 1.125L4.875 5.625L0.375 10.125" stroke="#6366F1" stroke-linecap="round" stroke-linejoin="round" />
-            </g>
-          </svg>
 
-          npm i usemods
+        <!-- Packages -->
+        <div id="packages" class="relative h-11 overflow-visible">
+          <button
+            type="button"
+            v-for="item in packages"
+            @click="copy(item)"
+            class="items-center whitespace-nowrap cursor-pointer shadow gap-3 bg-white/[3%] backdrop-blur text-white/90 font-mono border flex h-11 px-6 border-white/5 rounded-full">
+            <Icon name="lucide:terminal" class="w-5 h-5 text-white/50" />
+            {{ item }}
+          </button>
         </div>
       </div>
     </header>
@@ -32,6 +34,16 @@
 
 <script setup lang="ts">
   definePageMeta({ layout: 'public' })
+
+  const packages = ['npm i usemods']
+
+  function copy(text: string) {
+    copyToClipboard(text, callback(true))
+  }
+
+  function callback(value: boolean) {
+    console.log('Copied to clipboard')
+  }
 </script>
 
 <style scoped>

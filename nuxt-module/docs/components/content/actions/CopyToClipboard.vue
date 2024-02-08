@@ -19,7 +19,12 @@ import type LabelVue from '~/components/form/Label.vue'; import type { FormInput
   async function callback(success: boolean): string {
     if (success) {
       label.value = 'Copied!'
-      setTimeout(() => (label.value = 'Copy'), 2000)
+      setTimeout(() => (label.value = randomSaying()), 2000)
     }
+  }
+
+  function randomSaying() {
+    const randomSayings = ['Try again', 'One more', 'Click me', 'Keep going']
+    return randomSayings[Math.floor(Math.random() * randomSayings.length)]
   }
 </script>
