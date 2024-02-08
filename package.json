@@ -1,41 +1,64 @@
 {
   "name": "usemods",
-  "version": "1.0.0",
+  "version": "0.0.4",
   "description": "Zippy little modifiers and utilities for your frontend.",
-  "repository": "jrmymbtlr/usemods",
-  "license": "MIT",
-  "type": "module",
   "scripts": {
-    "dev": "nuxi dev",
-    "docs": "bun run --watch docs.ts",
-    "build": "nuxi build",
-    "generate": "nuxi generate",
-    "preview": "nuxi preview",
-    "lint": "eslint .",
-    "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
-    "test": "vitest run",
-    "test:watch": "vitest watch",
-    "dist": "bun build ./build.ts"
+    "dev": "bun run builder.mjs",
+    "build": "bun run build.mjs",
+    "test": "bun --watch test test/*",
+    "release": "npm run test && changelogen --release && npm publish && git push --follow-tags",
+    "prepublishOnly": "bun run build",
+    "docs": "concurrently \"npm run docs:install && npm run module:dev\" \"npm run dev\"",
+    "docs:install": "npm run module:install && npm i --prefix ./nuxt-module/docs",
+    "module:install": "npm i --prefix ./nuxt-module",
+    "module:dev": "npm run build && npm run dev --prefix ./nuxt-module",
+    "module:release:": "npm run release --prefix ./nuxt-module"
+  },
+  "keywords": [
+    "bun",
+    "usemods",
+    "utils",
+    "helpers",
+    "js",
+    "vue",
+    "nuxt",
+    "react",
+    "next"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/LittleFoxCompany/usemods#readme",
+  "bugs": "https://github.com/LittleFoxCompany/usemods/issues",
+  "author": "Jeremy Butler <jeremy@littlefox.studio>",
+  "contributors": [
+    {
+      "name": "Jeremy Butler",
+      "email": "jeremy@littlefox.studio",
+      "url": "https://github.com/jrmymbtlr"
+    },
+    {
+      "name": "Phillip Hartin",
+      "email": "phillip@littlefox.studio",
+      "url": "https://github.com/pjhartin"
+    }
+  ],
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LittleFoxCompany/usemods.git"
   },
   "devDependencies": {
-    "@nuxt-themes/docus": "^1.15.0",
-    "@nuxt/content": "^2.10.0",
-    "@nuxt/eslint-config": "^0.1.1",
-    "@nuxthq/studio": "^0.14.0",
-    "@nuxtjs/plausible": "^0.2.1",
-    "@nuxtjs/tailwindcss": "^6.10.3",
-    "@types/node": "^20.7.0",
-    "@vitest/ui": "^0.34.3",
-    "eslint": "^8.44.0",
-    "happy-dom": "^10.11.2",
-    "nuxt": "^3.9.0",
-    "nuxt-vitest": "^0.10.5",
-    "typedoc": "^0.25.1",
-    "vitest": "^0.33.0"
-  },
-  "dependencies": {
-    "bun": "^1.0.0",
-    "ts-morph": "^19.0.0",
-    "typedoc-plugin-markdown": "^3.16.0"
+    "@types/web": "^0.0.119",
+    "bun-plugin-dts": "^0.2.1",
+    "bun-types": "^1.0.7",
+    "changelogen": "^0.5.5",
+    "concurrently": "^8.2.2",
+    "monaco-editor": "^0.45.0",
+    "nuxt-monaco-editor": "^1.2.7",
+    "shikiji": "^0.10.0-beta.6",
+    "typescript": "^5.2.2"
   }
 }

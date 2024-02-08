@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "name": "mods-module-docs",
+  "type": "module",
+  "scripts": {
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "generate": "nuxi generate"
+  },
+  "devDependencies": {
+    "@nuxt/image": "^1.2.0",
+    "@nuxtjs/tailwindcss": "^6.10.4",
+    "@tailwindcss/typography": "^0.5.10",
+    "nuxt": "latest",
+    "nuxt-icon": "^0.6.8",
+    "shikiji": "^0.10.1"
+  },
+  "dependencies": {
+    "@nuxt/content": "^2.10.0",
+    "gsap": "npm:@gsap/shockingly@^3.12.5"
+  }
+}
