@@ -33,12 +33,20 @@ export function toggleBodyScroll(callback?: Function, className: string = 'fixed
 /**
  * Toggles the element scroll with the specified class name and a optional callback
  */
-export function toggleElementScroll(element: HTMLElement, className: string = 'overflow-clip', callback?: () => void): void {
+export function toggleElementScroll(element: HTMLElement, callback?: () => void): void {
   if (!element) {
     console.warn('toggleElementScroll was called without a valid element.')
     return
   }
-  element.classList.toggle(className)
+
+  if (element.dataset.isScrollLocked === 'true') {
+    element.style.overflow = ''
+    delete element.dataset.isScrollLocked
+  } else {
+    element.style.overflow = 'hidden'
+    element.dataset.isScrollLocked = 'true'
+  }
+
   if (callback) callback()
 }
 
@@ -75,10 +83,15 @@ export function toggleFullScreen(callback?: Function): void {
 }
 
 /**
- * Toggles the dark mode
+ * Toggles through dark, light and system color modes
  */
 export function toggleDarkMode(callback?: Function): void {
-  document.documentElement.classList.toggle('dark')
+  const htmlElement = document.documentElement
+  const isDarkMode = htmlElement.classList.toggle('dark')
+
+  if (isDarkMode) htmlElement.classList.remove('light')
+  else htmlElement.classList.add('light')
+
   if (callback) callback()
 }
 

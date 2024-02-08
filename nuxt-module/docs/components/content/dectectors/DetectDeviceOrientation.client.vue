@@ -1,7 +1,7 @@
 <template>
   <Example>
     <ExampleResult>
-      {{ detectDevice() }}
+      {{ detectDeviceOrientation() }}
     </ExampleResult>
   </Example>
 </template>

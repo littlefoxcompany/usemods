@@ -1,7 +1,7 @@
 <template>
   <Example>
     <ExampleResult>
-      {{ detectDevice() }}
+      {{ detectScreenSize() }}
     </ExampleResult>
   </Example>
 </template>
