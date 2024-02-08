@@ -38,7 +38,7 @@
   const packages = ['npm i usemods']
 
   function copy(text: string) {
-    copyToClipboard(text, callback(true))
+    copyToClipboard(text, callback)
   }
 
   function callback(value: boolean) {
