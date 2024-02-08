@@ -17,23 +17,27 @@ export function scrollToAnchor(id: string, callback?: Function): void {
 }
 
 /**
- * Toggles the body scroll with the specified class name
+ * Toggles the body scroll with the specified class name and a optional callback
  */
-export function toggleBodyScroll(callback?: Function) {
+export function toggleBodyScroll(callback?: Function, className: string = 'fixed'): void {
   const body = document.body
-  const isFixed = body.classList.contains('fixed')
+  const isFixed = body.classList.contains(className)
   const scrollY = isFixed ? parseInt(body.style.top, 10) : window.scrollY
 
   body.style.top = isFixed ? '' : `-${scrollY}px`
-  body.classList.toggle('fixed', !isFixed)
+  body.classList.toggle(className, !isFixed)
   if (isFixed) window.scrollTo(0, -scrollY)
   if (callback) callback()
 }
 
 /**
- * Toggles the element scroll
+ * Toggles the element scroll with the specified class name and a optional callback
  */
-export function toggleElementScroll(element: HTMLElement, className: string, callback?: Function): void {
+export function toggleElementScroll(element: HTMLElement, className: string = 'overflow-clip', callback?: () => void): void {
+  if (!element) {
+    console.warn('toggleElementScroll was called without a valid element.')
+    return
+  }
   element.classList.toggle(className)
   if (callback) callback()
 }

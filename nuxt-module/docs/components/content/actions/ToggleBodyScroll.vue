@@ -1,7 +1,7 @@
 <template>
   <Example>
     <ExampleInputs>
-      <Button color="secondary" class="w-full" @click="action">Toggle</Button>
+      <Button color="secondary" class="w-full" @click="action">Click</Button>
     </ExampleInputs>
   </Example>
 </template>
