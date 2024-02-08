@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-  const value = ref(['Dr Turk', 'Dr Cox', 'Dr. Kelso', 'Dr. Dorian', 'Dr. Reid', 'Dr. Turk'])
+  const value = ref(['Mick Jagger', 'Keith Richards', 'Ronnie Wood', 'Brian Jones', 'Ian Stewart', 'Bill Wyman', 'Charlie Watts', 'Mick Taylor'])
   const limit = ref(3)
   const conjunction = ref('and')
 </script>

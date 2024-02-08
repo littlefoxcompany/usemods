@@ -11,6 +11,6 @@
 </template>
 
 <script setup lang="ts">
-  const fullName = ref('Dr John Dorian the Third')
+  const fullName = ref('Dr Mick Jagger Snr')
   const length = ref(2)
 </script>
