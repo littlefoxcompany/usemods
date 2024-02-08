@@ -1,5 +1,5 @@
 import { expect, test } from 'bun:test'
-import { formatCurrency, formatDurationLabelsLabels, formatPercentage, formatUnixTime, formatList, formatTitle } from '../src/2.formatters'
+import { formatCurrency, formatDurationLabels, formatPercentage, formatUnixTime, formatList, formatTitle } from '../src/2.formatters'
 
 test('formatCurrency', () => {
   expect(formatCurrency(1000.95)).toBe('$1,001')
@@ -12,11 +12,11 @@ test('formatCurrency', () => {
 })
 
 test('formatDurationLabels', () => {
-  expect(formatDurationLabels(0)).toBe('0s')
-  expect(formatDurationLabels(3600)).toBe('1hr')
-  expect(formatDurationLabels(3600 * 2, 'long')).toBe('2 hours')
-  expect(formatDurationLabels(3600 * 2 + 60)).toBe('2hrs 1min')
-  expect(formatDurationLabels(3600 * 2 + 60 + 1)).toBe('2hrs 1min 1s')
+  expect(formatDurationLabels(0)).toBe('0 seconds')
+  expect(formatDurationLabels(3600)).toBe('1 hour')
+  expect(formatDurationLabels(3600 * 2, 'short')).toBe('2hr')
+  expect(formatDurationLabels(3600 * 2 + 60)).toBe('2 hours 1 minute')
+  expect(formatDurationLabels(3600 * 2 + 60 + 1)).toBe('2 hours 1 minute 1 second')
 })
 
 test('formatPercentage', () => {
@@ -29,9 +29,11 @@ test('formatUnixTime', () => {
 })
 
 test('formatList', () => {
+  expect(formatList(['Apple', 'Oranges'])).toBe('Apple and Oranges')
+  expect(formatList(['Apple', 'Oranges', 'Bananas', 'Grapefruit'])).toBe('Apple, Oranges, Bananas and Grapefruit')
   expect(formatList(['Apple', 'Oranges'], 2)).toBe('Apple and Oranges')
-  expect(formatList(['Apple', 'Oranges', 'Bananas'], 2)).toBe('Apple, Oranges and Bananas')
-  expect(formatList(['Apple', 'Oranges', 'Bananas'], 0, 'or')).toBe('Apple, Oranges or Bananas')
+  expect(formatList(['Apple', 'Oranges', 'Bananas'], 2)).toBe('Apple, Oranges and 1 more')
+  expect(formatList(['Apple', 'Oranges', 'Bananas'], 3, 'or')).toBe('Apple, Oranges or Bananas')
   expect(formatList(['Apple', 'Oranges', 'Bananas', 'Pears'], 2)).toBe('Apple, Oranges and 2 more')
   expect(formatList(['Apple', 'Oranges', 'Bananas', 'Pears', 'Grapes'], 2)).toBe('Apple, Oranges and 3 more')
   expect(formatList(['Apple', 'Oranges', 'Bananas', 'Pears', 'Grapes'], 2, 'or')).toBe('Apple, Oranges or 3 more')
