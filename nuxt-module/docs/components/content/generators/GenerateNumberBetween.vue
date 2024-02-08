@@ -1,8 +1,8 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput type="number" label="Min" v-model="min" :min="1" />
-      <FormInput type="number" label="Max" v-model="max" :min="Number(min) + 1" />
+      <FormInput type="number" label="Min" v-model="min" :min="0" />
+      <FormInput type="number" label="Max" v-model="max" />
     </ExampleInputs>
     <ExampleResult>
       {{ generateNumberBetween(min, max) }}
