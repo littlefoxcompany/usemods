@@ -39,13 +39,10 @@ export function toggleElementScroll(element: HTMLElement, callback?: () => void)
     return
   }
 
-  // Check if the element is currently prevented from scrolling
   if (element.dataset.isScrollLocked === 'true') {
-    // Unlock scrolling by removing the inline styles and the attribute
     element.style.overflow = ''
     delete element.dataset.isScrollLocked
   } else {
-    // Lock scrolling by setting overflow to hidden and storing the state
     element.style.overflow = 'hidden'
     element.dataset.isScrollLocked = 'true'
   }
