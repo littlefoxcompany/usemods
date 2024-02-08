@@ -104,13 +104,6 @@ export function resetForm(form: HTMLFormElement): void {
 }
 
 /**
- * Focuses on an element
- */
-export function focusOn(element: HTMLElement): void {
-  element.focus()
-}
-
-/**
  * Focus and scroll to the first invalid input, select or textarea
  */
 export function focusOnInvalid(form: HTMLFormElement): void {
@@ -127,7 +120,10 @@ export function focusOnInvalid(form: HTMLFormElement): void {
  */
 export function focusOnFirst(element: HTMLElement): void {
   const input = element.querySelector('input') as HTMLInputElement
-  if (input) input.focus()
+  if (input) {
+    input.focus()
+    input.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  }
 }
 
 /**
@@ -136,7 +132,10 @@ export function focusOnFirst(element: HTMLElement): void {
 export function focusOnLast(element: HTMLElement): void {
   const inputs = element.querySelectorAll('input') as NodeListOf<HTMLInputElement>
   const input = inputs[inputs.length - 1]
-  if (input) input.focus()
+  if (input) {
+    input.focus()
+    input.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  }
 }
 
 /**
