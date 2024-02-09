@@ -2,15 +2,6 @@
 // description: Modifiers are a key feature of Mods that allow you to easily modify and enhance your content. They are small pieces of code that can be applied to your JS to add functionality, validation or style.
 
 /**
- * Adds a space between the last two words in a string to prevent lonely words.
- */
-export function widont(value: string): string {
-  const space = value.lastIndexOf(' ')
-  if (space !== -1) return value.substring(0, space) + '&nbsp;' + value.substring(space + 1)
-  return value
-}
-
-/**
  * Adds a prefix to a string if it doesn't already start with the prefix.
  */
 export function startWith(value: string, start: string): string {

@@ -221,3 +221,12 @@ export function formatSentenceCase(text: string): string {
     )
     .join('\n\n')
 }
+
+/**
+ * Adds a space between the last two words in a string to prevent lonely words.
+ */
+export function formatTextWrap(value: string): string {
+  const space = value.lastIndexOf(' ')
+  if (space !== -1) return value.substring(0, space) + '&nbsp;' + value.substring(space + 1)
+  return value
+}

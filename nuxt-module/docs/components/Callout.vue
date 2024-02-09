@@ -1,5 +1,6 @@
 <template>
-  <div class="bg-blue-600/10 rounded-lg w-full border border-blue-900/70 shadow-xl shadow-blue-500/5 text-blue-400 px-3 py-2.5 flex flex-wrap items-center leading-tight">
+  <div
+    class="bg-blue-600/10 text-pretty flex flex-wrap items-center rounded-lg w-full border border-blue-900/70 shadow-xl shadow-blue-500/5 text-blue-400 px-3 py-2.5 items-center leading-tight">
     <slot />
   </div>
 </template>
