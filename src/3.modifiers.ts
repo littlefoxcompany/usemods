@@ -196,13 +196,6 @@ export function stripHtml(text: string): string {
 }
 
 /**
- * Strip HTML tags from a string.
- */
-export function stripTags(text: string): string {
-  return text.replace(/<\/?[^>]+(>|$)/g, '')
-}
-
-/**
  * Strips whitespace from a string.
  */
 export function stripWhitespace(text: string): string {

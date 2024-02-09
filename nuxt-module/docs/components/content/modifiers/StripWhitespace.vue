@@ -4,11 +4,11 @@
       <FormInput label="Value" type="text" v-model="value" />
     </ExampleInputs>
     <ExampleResult>
-      {{ isEmail(value) }}
+      {{ stripWhitespace(value) }}
     </ExampleResult>
   </Example>
 </template>
 
 <script setup lang="ts">
-  const value = ref('j.page@ledzeppelin.com')
+  const value = ref('  Scooters are the past and   our future  ')
 </script>

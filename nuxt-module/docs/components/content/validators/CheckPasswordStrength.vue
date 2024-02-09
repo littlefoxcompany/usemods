@@ -4,7 +4,7 @@
       <FormInput type="text" label="Password" v-model="value" />
     </ExampleInputs>
     <ExampleInputs>
-      <FormNumber label="Length" v-model="length" :min="8" />
+      <FormNumber label="Length" v-model="length" :min="1" />
       <FormNumber label="Uppercase" v-model="uppercase" :min="0" />
       <FormNumber label="Number" v-model="number" :min="0" />
       <FormNumber label="Special" v-model="special" :min="0" />

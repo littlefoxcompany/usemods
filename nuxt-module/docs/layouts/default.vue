@@ -25,11 +25,15 @@
 
         <!-- Jagger Swagger -->
         <section v-if="route.fullPath === '/docs/actions'" id="jagger" class="flex bg-blue-900 h-96 overflow-clip rounded-2xl mt-24 items-center justify-center relative">
-          <Button @click="scrollToAnchor('scrollToAnchor')" class="z-10 relative shadow-black shadow-2xl">Scroll back</Button>
+          <Button @click="scrollToAnchor('scrollToAnchor')" class="z-10 relative shadow-black shadow-2xl">
+            Scroll back
+            <Icon name="heroicons:arrow-up" class="w-4 h-4" />
+          </Button>
           <iframe
             class="z-0 mix-blend-color-dodge scale-[250%] opacity-75 h-full w-full absolute pointer-events-none object-cover"
             src="https://giphy.com/embed/ijb5ZE9zIQ2Nq"
-            frameBorder="0" />
+            frameBorder="0"
+            defer />
         </section>
       </div>
 

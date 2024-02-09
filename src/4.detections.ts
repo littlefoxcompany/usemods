@@ -129,9 +129,16 @@ export function detectNetworkStatus(): string {
 }
 
 /**
+ * Returns the current URL
+ */
+export function detectUrl(): string {
+  return window.location.href
+}
+
+/**
  * Returns a value from the URL by name
  */
-export function detectUrlParameters(url: string, param?: string): string | null {
+export function detectUrlParams(url: string, param?: string): string | null {
   const params = (url.match(/([^?=&]+)(=([^&]*))/g) || []).reduce((a: any, v: any) => ((a[v.slice(0, v.indexOf('='))] = v.slice(v.indexOf('=') + 1)), a), {})
   if (param) return params[param] || null
   return params
@@ -140,21 +147,15 @@ export function detectUrlParameters(url: string, param?: string): string | null 
 /**
  * Returns a value from the URL hash by name
  */
-export function detectUrlHashParameters(): string | null {
-  return detectUrlParameters(window.location.hash)
+export function detectUrlHash(): string | null {
+  return detectUrlParams(window.location.hash)
 }
 
 /**
+ * Returns a value from the URL search by name
  */
-export function detectUrlSearchParameters(): string | null {
-  return detectUrlParameters(window.location.search)
-}
-
-/**
- * Returns the current URL
- */
-export function detectUrl(): string {
-  return window.location.href
+export function detectUrlSearch(): string | null {
+  return detectUrlParams(window.location.search)
 }
 
 /**
@@ -179,29 +180,6 @@ export function detectPort(): string {
 }
 
 /**
- * Returns the current protocol (HTTP or HTTPS)
- */
-export function detectProtocol(): string {
-  return window.location.protocol
-}
-
-/**
- * Returns the URL of the referring page (the page that linked to the current page)
- */
-export function detectReferrer(): string {
-  return document.referrer
-}
-
-/**
- *  Retrieves cached entries and optionally filters the entries based on a provided key
- */
-export function detectCachedData(key?: string): PerformanceEntry[] {
-  const cachedData = window.performance.getEntriesByType('resource')
-  if (key) return cachedData.filter((data) => data.name.includes(key))
-  return cachedData
-}
-
-/**
  * Detects if the element is currently in the viewport
  */
 export function detectInViewport(element: HTMLElement): boolean {
@@ -223,34 +201,6 @@ export function detectInContainer(element: HTMLElement, id: string): boolean {
   if (!container) return false
   const containerRect = container.getBoundingClientRect()
   return rect.top >= containerRect.top && rect.left >= containerRect.left && rect.bottom <= containerRect.bottom && rect.right <= containerRect.right
-}
-
-/**
- * Detects if the element is overflowing vertically
- */
-export function detectOverflowingY(element: HTMLElement): boolean {
-  return element.scrollWidth > element.clientWidth || element.scrollHeight > element.clientHeight
-}
-
-/**
- * Detects if the element is overflowing horizontally
- */
-export function detectOverflowingX(element: HTMLElement): boolean {
-  return element.scrollWidth > element.clientWidth
-}
-
-/**
- * Detects if the element is scrollable (overflowing vertically or horizontally)
- */
-export function detectScrollable(element: HTMLElement): boolean {
-  return detectOverflowingY(element) || detectOverflowingX(element)
-}
-
-/**
- * Detects if the elements is an HTML element
- */
-export function detectElement(element: HTMLElement): boolean {
-  return element instanceof HTMLElement
 }
 
 /**
