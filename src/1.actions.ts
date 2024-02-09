@@ -1,5 +1,5 @@
 // title: Actions
-// description: A collection of useful actions
+// description: A collection of useful actions for common tasks and interactions with the DOM.
 
 /**
  * Smoothly scrolls to the element with the specified ID without scuffing up your URLs.

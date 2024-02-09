@@ -4,11 +4,11 @@
     <NavMain />
 
     <!-- Pages -->
-    <div class="container relative mx-auto flex min-h-screen py-12 gap-20">
+    <div class="container relative mx-auto flex min-h-screen py-12 gap-12">
       <nav class="-mt-2 w-2/12 flex flex-col sticky h-fit top-6">
         <div v-for="section in sidebar" class="pb-12 flex flex-col first:text-xl">
           <NuxtLink
-            v-for="link in section.children"
+            v-for="link in section?.children"
             :key="link._path"
             :to="link._path"
             class="py-2 flex font-medium text-gray-500 items-center hover:text-white/75 gap-3"
@@ -38,7 +38,7 @@
       </div>
 
       <!-- Table of Contents -->
-      <TableOfContents class="shrink max-lg:hidden w-3/12 max-w-[150px] h-fit top-8 sticky" />
+      <TableOfContents class="shrink max-lg:hidden w-4/12 max-w-[150px] h-fit top-8 sticky" />
     </div>
   </main>
 </template>

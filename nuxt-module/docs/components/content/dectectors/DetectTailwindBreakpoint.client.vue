@@ -10,15 +10,15 @@
   const result = ref('')
 
   function updateResult() {
-    result.value = detectNetworkStatus()
+    result.value = detectTailwindBreakpoint()
   }
 
   onMounted(() => {
     updateResult()
-    window.addEventListener('online', updateResult)
+    window.addEventListener('resize', updateResult)
   })
 
   onUnmounted(() => {
-    window.removeEventListener('online', updateResult)
+    window.removeEventListener('resize', updateResult)
   })
 </script>

@@ -6,9 +6,11 @@
       v-for="link in links"
       :key="link.title"
       @click="scrollToAnchor(link.title)"
-      class="py-0.5 flex font-medium text-gray-500 hover:text-white/75 gap-3 cursor-pointer"
+      class="py-0.5 flex font-medium text-gray-500 text-sm hover:text-white/75 gap-3 cursor-pointer"
       :class="{ active: activeLink === link.title }">
-      {{ link.title }}
+      <span class="truncate">
+        {{ link.title }}
+      </span>
     </NuxtLink>
   </nav>
 </template>

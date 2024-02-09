@@ -1,5 +1,5 @@
 // title: Formatters
-// description: Formatter functions are essential tools in web development, designed to enhance the presentation and organisation of data in web applications. These functions allow developers to easily manipulate and display various data types, such as dates, numbers, and strings, in a more readable and user-friendly format.
+// description: Formatter functions manipulate and display various data types, such as dates, numbers, and strings, in a more readable and user-friendly format.
 // icon: formatters
 
 /**
@@ -161,21 +161,6 @@ export function formatList(items: string | object | any[], limit: number = Infin
 }
 
 /**
- * Format a sentence case string
- */
-export function formatSentenceCase(text: string): string {
-  return text
-    .split('\n\n')
-    .map((paragraph) =>
-      paragraph
-        .split('. ')
-        .map((sentence) => sentence.charAt(0).toUpperCase() + sentence.slice(1))
-        .join('. ')
-    )
-    .join('\n\n')
-}
-
-/**
  * Converts a string to title case following the Chicago Manual of Style rules.
  * @reference https://www.chicagomanualofstyle.org/book/ed17/frontmatter/toc.html
 
@@ -220,4 +205,19 @@ export function formatTitle(text: string): string {
       return lowerWord
     })
     .join(' ')
+}
+
+/**
+ * Format a sentence case string
+ */
+export function formatSentenceCase(text: string): string {
+  return text
+    .split('\n\n')
+    .map((paragraph) =>
+      paragraph
+        .split('. ')
+        .map((sentence) => sentence.charAt(0).toUpperCase() + sentence.slice(1))
+        .join('. ')
+    )
+    .join('\n\n')
 }
