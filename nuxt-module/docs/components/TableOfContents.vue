@@ -1,6 +1,7 @@
 <template>
   <nav>
     <p class="font-semibold">On this page</p>
+
     <NuxtLink
       v-for="link in links"
       :key="link.title"
@@ -14,25 +15,24 @@
 
 <script setup lang="ts">
   const route = useRoute()
-  const toc = await queryContent(route.fullPath).only('body').find()
-  const links = toc[0].body?.children?.map((link) => ({ id: link.props?.id, title: link.props?.name }))
-
+  const links = ref([])
   const activeLink = ref('')
 
+  async function fetchLinks() {
+    const toc = await queryContent(route.fullPath).only('body').find()
+    links.value = toc[0].body?.children?.map((link) => ({ id: link.props?.id, title: link.props?.name })) || []
+  }
+
   onMounted(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleSection = entries.find((entry) => entry.isIntersecting)
-        if (visibleSection) activeLink.value = visibleSection.target.id
-      },
-      { rootMargin: '0px', threshold: 0.5 }
-    )
-
-    if (!links) return
-
-    links.forEach((link: { id: string }) => {
-      const section = document.getElementById(link.id)
-      if (section) observer.observe(section)
+    nextTick(() => {
+      fetchLinks()
     })
   })
+
+  watch(
+    () => route.fullPath,
+    () => {
+      fetchLinks()
+    }
+  )
 </script>
