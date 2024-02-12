@@ -1,8 +1,10 @@
 <template>
   <Example>
     <ExampleInputs class="flex flex-col">
-      <FormCode label="Value" v-model="value" />
-      <Button @click="run" class="w-fit">Shuffle</Button>
+      <!-- Display the array in a formatted way -->
+      <FormData :value="value" @result="result = $event" @input="value = $event" />
+
+      <Button @click="dataShuffle(result)" class="w-fit">Shuffle</Button>
     </ExampleInputs>
     <ExampleResult>
       {{ result }}
@@ -11,14 +13,8 @@
 </template>
 
 <script setup lang="ts">
-  const result = ref()
-  const value = ref(['s', 'c', 'o', 'o', 't', 'e', 'r', 's'])
+  import { ref, computed, onMounted } from 'vue'
 
-  function run() {
-    result.value = dataShuffle(value.value)
-  }
-
-  onMounted(() => {
-    run()
-  })
+  const result = ref({} || [])
+  const value = ref<string[]>(['s', 'c', 'o', 'o', 't', 'e', 'r', 's'])
 </script>
