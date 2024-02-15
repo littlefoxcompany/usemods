@@ -152,34 +152,6 @@ export function ordinalize(value: number): string {
 }
 
 /**
- * Wraps each word, sentence or paragraph in a string with a tag.
- */
-export function splitByWords(text: string): string {
-  const sentences = text.split(/([\.\?\!])\s*/)
-
-  let wordIndex = 0
-  let combinedSentences = []
-
-  for (let i = 0; i < sentences.length; i += 2) {
-    const sentence = sentences[i] + (sentences[i + 1] || '')
-
-    if (sentence.trim() === '') continue
-
-    const words = sentence
-      .split(' ')
-      .map((word) => {
-        wordIndex++
-        return `<span class="word"><span class="word-${wordIndex}">${word}</span></span>`
-      })
-      .join(' ')
-
-    combinedSentences.push(`<span class="sentence sentence-${combinedSentences.length + 1}">${words}</span>`)
-  }
-
-  return combinedSentences.join(' ')
-}
-
-/**
  * Strip HTML tags from a string.
  */
 export function stripHtml(text: string): string {
