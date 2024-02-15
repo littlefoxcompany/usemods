@@ -108,9 +108,8 @@ export function resetForm(form: HTMLFormElement): void {
 /**
  * Focuses on and scrolls to the first invalid input, select, or textarea element within a form.
  */
-export function focusOnInvalid(form: HTMLFormElement): void {
-  const input = form.querySelector('input:invalid, select:invalid, textarea:invalid') as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-
+export function focusOnInvalid(element: HTMLElement): void {
+  const input = element.querySelector('input:invalid, select:invalid, textarea:invalid') as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
   if (input) {
     input.focus()
     input.scrollIntoView({ behavior: 'smooth', block: 'center' })
