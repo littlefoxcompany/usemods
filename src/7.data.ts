@@ -46,14 +46,20 @@ export function dataReverse(items: object | any[]): any {
 }
 
 /**
- * Sort an array by a property.
+ * Sort an array or object by a property.
  */
-export function dataSortBy(items: object | any[], property: string): any {
+export function dataSortBy(items: object | any[], property: string, order: 'asc' | 'desc' = 'asc'): any {
+  const comparator = (a: any, b: any) => {
+    if (a[property] < b[property]) return order === 'asc' ? -1 : 1
+    if (a[property] > b[property]) return order === 'asc' ? 1 : -1
+    return 0
+  }
+
   if (isObject(items)) {
     const entries = Object.entries(items)
-    return Object.fromEntries(entries.sort((a, b) => (a[1][property] > b[1][property] ? 1 : -1)) as [string, any][])
+    return Object.fromEntries(entries.sort((a, b) => comparator(a[1], b[1])) as [string, any][])
   } else {
-    return (items as any[]).sort((a, b) => (a[property] > b[property] ? 1 : -1))
+    return (items as any[]).sort(comparator)
   }
 }
 
@@ -80,54 +86,6 @@ export function dataSortBy(items: object | any[], property: string): any {
 export function dataDifference(...arrays: any[][]): any[] {
   const mergedArray = arrays.flat()
   return mergedArray.filter((item, index) => mergedArray.indexOf(item) === index)
-}
-
-/**
- * Returns the first item in an array.
- */
-export function dataFirst(items: object | any[]): object | any[] {
-  if (isObject(items)) {
-    const entries = Object.entries(items)
-    return Object.fromEntries(entries.slice(0, 1) as [string, any][])
-  } else {
-    return (items as any[]).slice(0, 1)
-  }
-}
-
-/**
- * Returns the last item in an array.
- */
-export function dataLast(items: object | any[]): object | any[] {
-  if (isObject(items)) {
-    const entries = Object.entries(items)
-    return Object.fromEntries(entries.slice(-1) as [string, any][])
-  } else {
-    return (items as any[]).slice(-1)
-  }
-}
-
-/**
- * Returns the nth item in an array.
- */
-export function dataNth(items: object | any[], nth: number): object | any[] {
-  if (isObject(items)) {
-    const entries = Object.entries(items)
-    return Object.fromEntries(entries.slice(nth, nth + 1) as [string, any][])
-  } else {
-    return (items as any[]).slice(nth, nth + 1)
-  }
-}
-
-/**
- * Offset the first item in an array.
- */
-export function dataOffset(items: object | any[], offset: number): object | any[] {
-  if (isObject(items)) {
-    const entries = Object.entries(items)
-    return Object.fromEntries(entries.slice(offset) as [string, any][])
-  } else {
-    return (items as any[]).slice(offset)
-  }
 }
 
 /**

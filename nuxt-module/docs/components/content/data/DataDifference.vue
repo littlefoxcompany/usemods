@@ -1,11 +1,16 @@
 <template>
   <Example>
     <ExampleInputs class="flex flex-col">
-      <FormCode label="Value" v-model="value" />
+      <FormData :data="value" />
+      <FormData :data="valueTwo" />
     </ExampleInputs>
+    <ExampleResult>
+      {{ dataDifference(value, valueTwo) }}
+    </ExampleResult>
   </Example>
 </template>
 
 <script setup lang="ts">
-  const value = ref(['s', 'c', 'o', 'o', 't', 'e', 'r', 's'])
+  const value = ['s', 'c', 'o', 'o', 't', 'e', 'r']
+  const valueTwo = ['s', 'c', 'o', 'o', 't', 'e', 'r']
 </script>

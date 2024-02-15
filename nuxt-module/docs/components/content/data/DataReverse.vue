@@ -10,5 +10,5 @@
 </template>
 
 <script setup lang="ts">
-  const value = ref(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'])
+  const value = ['s', 'c', 'o', 'o', 't', 'e', 'r']
 </script>
