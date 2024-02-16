@@ -81,9 +81,9 @@ export function dataSortBy(items: object | any[], property: string, order: 'asc'
 // }
 
 /**
- * Returns the difference between two arrays.
+ * Returns single unique values within an array or object
  */
-export function dataDifference(...arrays: any[][]): any[] {
+export function dataRemoveDuplicates(...arrays: any[][]): any[] {
   const mergedArray = arrays.flat()
   return mergedArray.filter((item, index) => mergedArray.indexOf(item) === index)
 }

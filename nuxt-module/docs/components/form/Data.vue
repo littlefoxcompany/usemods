@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <div class="bg-white/[3%] rounded-lg p-4 border border-white/5" v-html="styledJson"></div>
-  </div>
+  <pre class="bg-white/[3%] w-full rounded-lg p-4 border border-white/5 font-mono text-sm" v-html="styledJson"></pre>
 </template>
 
 <script setup lang="ts">
@@ -11,7 +9,7 @@
 
   const styledJson = computed(() => {
     const jsonString = JSON.stringify(props.data, null, 2)
-    const styledString = jsonString.replace(/(["\,])/g, (match) => {
+    const styledString = jsonString.replace(/(["\{\}\,])/g, (match) => {
       return `<span class="json-special">${match}</span>`
     })
     return styledString

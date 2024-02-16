@@ -21,6 +21,64 @@ export function formatNumber(value: number, decimals: number = 1): string {
 }
 
 /**
+ * Format numbers into words
+ */
+export function formatNumberToWords(value: number): string {
+  const underTwenty = [
+    'zero',
+    'one',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six',
+    'seven',
+    'eight',
+    'nine',
+    'ten',
+    'eleven',
+    'twelve',
+    'thirteen',
+    'fourteen',
+    'fifteen',
+    'sixteen',
+    'seventeen',
+    'eighteen',
+    'nineteen'
+  ]
+  const tens = ['twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety']
+
+  if (value < 20) return underTwenty[value]
+  if (value < 100) return `${tens[Math.floor(value / 10) - 2]}${value % 10 ? '-' + underTwenty[value % 10] : ''}`
+
+  const formatGroup = (number: number): string => {
+    if (number >= 100) {
+      const remainder = number % 100
+      return `${underTwenty[Math.floor(number / 100)]} hundred${remainder ? ` and ${formatGroup(remainder)}` : ''}`
+    } else if (number >= 20) {
+      return `${tens[Math.floor(number / 10) - 2]}${number % 10 ? '-' + underTwenty[number % 10] : ''}`
+    } else {
+      return underTwenty[number]
+    }
+  }
+
+  const scales = ['', ' thousand', ' million', ' billion', ' trillion', ' quadrillion', ' quintillion']
+  let scaleIndex = 0
+  let result = ''
+
+  while (value > 0) {
+    const groupValue = value % 1000
+    if (groupValue > 0) {
+      result = formatGroup(groupValue) + scales[scaleIndex] + (result ? ', ' + result : '')
+    }
+    value = Math.floor(value / 1000)
+    scaleIndex++
+  }
+
+  return result.trim()
+}
+
+/**
  * Format numbers into local currency
  */
 export function formatCurrency(value: number, decimals?: boolean | number, currency: string = 'USD'): string {
