@@ -89,7 +89,7 @@ export function detectScreenSize(): { width: number; height: number } {
 /**
  * Detect the current breakpoint based on Tailwind CSS breakpoints
  */
-export function detectTailwindBreakpoint(): string {
+export function detectBreakpoint(): string {
   const width = window.innerWidth
   if (width < 640) return 'xs'
   if (width < 768) return 'sm'
@@ -102,7 +102,7 @@ export function detectTailwindBreakpoint(): string {
 /**
  * Detect the current container breakpoint based on Tailwind CSS breakpoints
  */
-export function detectTailwindContainerBreakpoint(id: string): string {
+export function detectContainerBreakpoint(id: string): string {
   const element = document.getElementById(id)
   if (!element) return ''
 

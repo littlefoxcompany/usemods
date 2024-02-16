@@ -10,7 +10,7 @@
   const result = ref('')
 
   function updateResult() {
-    result.value = detectTailwindBreakpoint()
+    result.value = detectBreakpoint()
   }
 
   onMounted(() => {
