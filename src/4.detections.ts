@@ -100,13 +100,11 @@ export function detectBreakpoint(): string {
 }
 
 /**
- * Detect the current container breakpoint based on Tailwind CSS breakpoints
+ * Detect any container breakpoint based on Tailwind CSS breakpoints
  */
-export function detectContainerBreakpoint(id: string): string {
-  const element = document.getElementById(id)
-  if (!element) return ''
+export function detectContainerBreakpoint(element: HTMLElement): string {
+  const width = element.getBoundingClientRect().width
 
-  const width = element.clientWidth
   if (width < 320) return '@xs'
   if (width < 384) return '@sm'
   if (width < 448) return '@md'

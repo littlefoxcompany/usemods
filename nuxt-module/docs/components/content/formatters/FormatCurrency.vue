@@ -7,7 +7,7 @@
           <FormSwitch label="Enable" v-model="showDecimals" />
         </template>
       </FormNumber>
-      <FormInput label="Currency" type="text" v-model="currencySymbol" />
+      <FormInput label="Locale" type="text" v-model="currencySymbol" />
     </ExampleInputs>
     <ExampleResult>
       {{ formatCurrency(currency, decimals, currencySymbol) }}
