@@ -85,7 +85,7 @@ export function formatPercentage(value: number, decimals: boolean | number = 2):
     config.maximumFractionDigits = 99
   }
 
-  return new Intl.NumberFormat('en-US', config).format(number)
+  return new Intl.NumberFormat('en-US', config).format(value)
 }
 
 /**

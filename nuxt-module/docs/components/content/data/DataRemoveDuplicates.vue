@@ -5,7 +5,7 @@
       <FormData :data="valueTwo" />
     </ExampleInputs>
     <ExampleResult>
-      {{ DataRemoveDuplicates(value, valueTwo) }}
+      {{ dataRemoveDuplicates(value, valueTwo) }}
     </ExampleResult>
   </Example>
 </template>

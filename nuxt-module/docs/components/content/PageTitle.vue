@@ -1,5 +1,11 @@
 <template>
   <div class="pb-12">
+    <!-- Breadcrumb -->
+    <div class="flex items-center gap-2 mb-4 text-sm font-medium text-white/50">
+      <div>Docs</div>
+      <div>/</div>
+      <div>Page</div>
+    </div>
     <slot />
   </div>
 </template>
