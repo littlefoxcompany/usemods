@@ -56,6 +56,6 @@ import type { log } from 'console';
   const element = ref<HTMLElement | null>(null)
 
   function action() {
-    toggleElementScroll(element.value)
+    if (element.value) toggleElementScroll(element.value)
   }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <div class="container text-white mx-auto flex items-center justify-between py-6">
+    <div class="container text-gray-800 dark:text-white mx-auto flex items-center justify-between py-6">
       <NuxtLink to="/" :prefetch="true">
         <LogoFull class="h-6" />
       </NuxtLink>

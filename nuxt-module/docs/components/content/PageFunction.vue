@@ -1,5 +1,5 @@
 <template>
-  <section class="py-12" :id="name">
+  <section class="py-12 text-gray-900 dark:text-white" :id="name">
     <!-- Title -->
     <div @click="copyToClipboard" class="flex w-fit relative items-center gap-3 cursor-pointer" @mouseover="showCopyToClipboard = true" @mouseout="showCopyToClipboard = false">
       <h3 class="text-3xl font-semibold">{{ name }}</h3>
@@ -21,20 +21,21 @@
     <p class="text-lg mt-2.5">{{ description }}</p>
 
     <!-- Function -->
-    <div class="bg-white/[1%] text-sm flex-wrap gap-px flex items-center mt-6 px-4 py-3 rounded-lg border border-white/5 font-mono">
+    <div
+      class="dark:bg-white/[1%] text-gray-900 dark:text-white bg-indigo-600/5 text-sm flex-wrap gap-px flex items-center mt-6 px-4 py-3 rounded-lg border border-black/5 dark:border-white/5 font-mono">
       {{ name }}
-      <span class="text-white/50 mr-0.5">(</span>
+      <span class="opacity-50 mr-0.5">(</span>
 
       <template v-for="(param, index) in paramsObject" :key="index">
-        <div class="bg-white/5 py-px rounded-md px-1.5 text-white flex gap-1">
+        <div class="dark:bg-white/5 bg-indigo-600/[8%] text-indigo-600 dark:text-indigo-200 py-px rounded-md px-1.5 flex gap-1">
           <span v-if="param.key">{{ param.key }}</span>
           <span v-if="param.value">{{ param.value }}</span>
           <span v-if="param.defaultValue">={{ param.defaultValue }}</span>
         </div>
 
-        <span v-if="index < paramsObject.length - 1" class="mr-0.5 text-white">,</span>
+        <span v-if="index < paramsObject.length - 1" class="mr-0.5">,</span>
       </template>
-      <span class="text-white/50 ml-0.5">)</span>
+      <span class="opacity-50 ml-0.5">)</span>
     </div>
 
     <slot />
@@ -93,7 +94,7 @@
 </script>
 
 <style scoped>
-  :deep(h3) {
+  /* :deep(h3) {
     @apply font-semibold text-3xl;
   }
   :deep(pre) {
@@ -101,5 +102,5 @@
   }
   :deep(p) {
     @apply text-lg mt-2.5 first:text-xl text-zinc-400;
-  }
+  } */
 </style>

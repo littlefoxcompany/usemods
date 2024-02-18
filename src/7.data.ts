@@ -119,7 +119,7 @@ export function dataWithout(items: object | any[], properties: any | any[]): any
 }
 
 /**
- * Combine two or more arrays
+ * Combine two or more arrays or objects into a single array or object.
  */
 export function dataCombineAll(...items: (any[] | object)[]): any[] | object {
   if (items.every((item) => Array.isArray(item))) {
@@ -186,7 +186,7 @@ export function dataFrequency(array: (number | string)[]): Record<string, number
 /**
  * Returns the fequency of a property value in an array
  */
-export function dataFrequencyOfProperty(array: (number | string)[], property: number | string): number {
+export function dataFrequencyOf(array: (number | string)[], property: number | string): number {
   return array.filter((item) => item === property).length
 }
 

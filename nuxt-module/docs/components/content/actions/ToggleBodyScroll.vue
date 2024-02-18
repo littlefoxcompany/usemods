@@ -1,13 +1,7 @@
 <template>
   <Example>
     <ExampleInputs>
-      <Button color="secondary" class="w-full" @click="action">Click</Button>
+      <Button color="secondary" class="w-full" @click="toggleBodyScroll()">Click</Button>
     </ExampleInputs>
   </Example>
 </template>
-
-<script setup lang="ts">
-  function action() {
-    toggleBodyScroll()
-  }
-</script>

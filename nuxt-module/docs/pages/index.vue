@@ -4,7 +4,7 @@
       <h1
         v-html="splitByWords('Zippy little utils for your javascript frameworks.')"
         id="title"
-        class="2xl:text-9xl text-5xl md:text-6xl lg:text-7xl 2xl:text-8xl font-bold text-white text-center max-w-[1200px]"></h1>
+        class="text-5xl text-balance md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-900 dark:text-white text-center max-w-[1200px]"></h1>
 
       <div class="flex items-center gap-3 mt-20">
         <Button href="/intro/introduction" size="lg">
@@ -18,8 +18,8 @@
             type="button"
             v-for="item in packages"
             @click="copy(item)"
-            class="items-center whitespace-nowrap cursor-pointer shadow gap-3 bg-white/[3%] backdrop-blur text-white/90 font-mono border flex h-11 px-6 border-white/5 rounded-full">
-            <Icon name="lucide:terminal" class="w-5 h-5 text-white/50" />
+            class="items-center whitespace-nowrap cursor-pointer dark:shadow gap-3 bg-black/[5%] dark:bg-white/[3%] backdrop-blur text-gray-900 dark:text-white/90 font-mono border flex h-11 px-6 border-white/5 rounded-full">
+            <Icon name="lucide:terminal" class="w-5 h-5 dark:text-white/50" />
             {{ item }}
           </button>
         </div>
