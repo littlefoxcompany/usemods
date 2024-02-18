@@ -89,42 +89,25 @@ export function dataRemoveDuplicates(...arrays: any[][]): any[] {
 }
 
 /**
- * Groups an array of objects by a property.
- */
-// export function dataGroup(items: object | any[], property: string | number): any {
-//   if (isObject(items)) {
-//     const entries: [string, any][] = Object.entries(items)
-//     return Object.fromEntries(entries.reduce((acc, [key, value]) => ((acc[value[property]] = [...(acc[value[property]] || []), value]), acc), {} as { [key: string]: any[] }))
-//   } else {
-//     return (items as any[]).reduce((acc, value) => ((acc[value[property]] = [...(acc[value[property]] || []), value]), acc), {} as { [key: string]: any[] })
-//   }
-// }
-
-/**
- * Chunks an array into sections of a specified size.
- */
-// export function dataGroupBy(items: any[], size: number): any[][] {
-//   const result = []
-//   for (let i = 0; i < items.length; i += size) {
-//     result.push(items.slice(i, i + size))
-//   }
-//   return result
-// }
-
-/**
- * Flatten an array of arrays.
+ * Flatten an array of arrays or an object of objects into a single array or object. That was hard to say.
  */
 export function dataFlatten(items: object | any[]): object | any[] {
   if (isObject(items)) {
-    const entries = Object.entries(items)
-    return Object.fromEntries(entries.flat() as [string, any][])
+    const flattened: { [key: string]: any } = {}
+    Object.keys(items as { [key: string]: any }).forEach((key) => {
+      const item = (items as { [key: string]: any })[key]
+      flattened[key] = Array.isArray(item) ? item.flat() : item
+    })
+    return flattened
+  } else if (Array.isArray(items)) {
+    return items.flat()
   } else {
-    return (items as any[]).flat()
+    return items
   }
 }
 
 /**
- * Returns an array with a filtered out property.
+ * Returns an array without a property or properties.
  */
 export function dataWithout(items: object | any[], properties: any | any[]): any {
   if (isObject(items)) {
@@ -239,3 +222,26 @@ export function hasKeys(object: any, keys: string[], strict: boolean = true): bo
     return keys.some((key) => objectKeys.includes(key))
   }
 }
+
+/**
+ * Groups an array of objects by a property.
+ */
+// export function dataGroup(items: object | any[], property: string | number): any {
+//   if (isObject(items)) {
+//     const entries: [string, any][] = Object.entries(items)
+//     return Object.fromEntries(entries.reduce((acc, [key, value]) => ((acc[value[property]] = [...(acc[value[property]] || []), value]), acc), {} as { [key: string]: any[] }))
+//   } else {
+//     return (items as any[]).reduce((acc, value) => ((acc[value[property]] = [...(acc[value[property]] || []), value]), acc), {} as { [key: string]: any[] })
+//   }
+// }
+
+/**
+ * Chunks an array into sections of a specified size.
+ */
+// export function dataGroupBy(items: any[], size: number): any[][] {
+//   const result = []
+//   for (let i = 0; i < items.length; i += size) {
+//     result.push(items.slice(i, i + size))
+//   }
+//   return result
+// }
