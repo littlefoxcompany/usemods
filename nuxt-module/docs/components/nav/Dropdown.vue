@@ -10,7 +10,7 @@
 
     <!-- Links -->
     <div
-      class="flex z-50 left-1/2 -translate-x-1/2 p-1 absolute bottom-0 translate-y-full bg-zinc-800 rounded-lg border border-white/5"
+      class="flex z-50 left-1/2 -translate-x-1/2 p-1 absolute bottom-0 translate-y-full bg-white/80 dark:bg-zinc-800/90 shadow-2xl backdrop-blur rounded-lg border border-black/5 dark:border-white/5"
       :class="show ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'">
       <slot />
     </div>

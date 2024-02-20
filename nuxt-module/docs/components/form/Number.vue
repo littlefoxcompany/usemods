@@ -4,9 +4,7 @@
       <FormLabel :label="label" :info="info" />
       <slot name="label" />
     </div>
-    <div
-      class="border w-full select-none justify-between items-center border-white/5 flex px-4 h-11 bg-white/[3%] rounded-lg focus-within:border-indigo-400"
-      :class="disabled ? 'opacity-30 pointer-events-none cursor-not-allowed' : ''">
+    <div class="input" :class="disabled ? 'opacity-30 pointer-events-none cursor-not-allowed' : ''">
       {{ mask }}
 
       <input

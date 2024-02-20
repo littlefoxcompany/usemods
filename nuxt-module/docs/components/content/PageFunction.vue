@@ -22,12 +22,12 @@
 
     <!-- Function -->
     <div
-      class="dark:bg-white/[1%] text-gray-900 dark:text-white bg-indigo-600/5 text-sm flex-wrap gap-px flex items-center mt-6 px-4 py-3 rounded-lg border border-black/5 dark:border-white/5 font-mono">
+      class="dark:bg-white/[1%] text-gray-900 dark:text-white bg-indigo-600/[2%] text-sm flex-wrap gap-px flex items-center mt-6 px-4 py-3 rounded-lg border border-black/5 dark:border-white/5 font-mono">
       {{ name }}
       <span class="opacity-50 mr-0.5">(</span>
 
       <template v-for="(param, index) in paramsObject" :key="index">
-        <div class="dark:bg-white/5 bg-indigo-600/[8%] text-indigo-600 dark:text-indigo-200 py-px rounded-md px-1.5 flex gap-1">
+        <div class="dark:bg-white/[8%] bg-indigo-600/[5%] text-indigo-600 dark:text-indigo-100 py-px rounded-md px-1 h-5 items-center flex gap-1">
           <span v-if="param.key">{{ param.key }}</span>
           <span v-if="param.value">{{ param.value }}</span>
           <span v-if="param.defaultValue">={{ param.defaultValue }}</span>

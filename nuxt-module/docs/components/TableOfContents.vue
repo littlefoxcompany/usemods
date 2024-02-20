@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav class="text-gray-900 dark:text-white">
     <p class="font-semibold">On this page</p>
 
     <NuxtLink
