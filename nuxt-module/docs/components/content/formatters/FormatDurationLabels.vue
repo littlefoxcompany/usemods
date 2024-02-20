@@ -6,9 +6,13 @@
         <option value="short" selected>Short</option>
         <option value="long">Long</option>
       </FormSelect>
+      <FormSelect label="Rounding" v-model="rounding">
+        <option value="" selected>False</option>
+        <option value="true">True</option>
+      </FormSelect>
     </ExampleInputs>
     <ExampleResult>
-      {{ formatDurationLabels(seconds, labels) }}
+      {{ formatDurationLabels(seconds, labels, Boolean(rounding)) }}
     </ExampleResult>
   </Example>
 </template>
@@ -16,4 +20,5 @@
 <script setup lang="ts">
   const seconds = ref(954321)
   const labels = ref('long')
+  const rounding = ref('false')
 </script>

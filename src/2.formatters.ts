@@ -91,7 +91,8 @@ export function formatPercentage(value: number, decimals: boolean | number = 2):
 /**
  * Format time into a human-readable string
  */
-export function formatDurationLabels(seconds: number, labels?: string): string {
+export function formatDurationLabels(seconds: number, labels?: string, round: boolean = false): string {
+  console.log(round)
   const time = [
     { unit: labels === 'short' ? 'yr' : ' year', secondsInUnit: 31536000 },
     { unit: labels === 'short' ? 'mo' : ' month', secondsInUnit: 2628000 },
@@ -99,11 +100,19 @@ export function formatDurationLabels(seconds: number, labels?: string): string {
     { unit: labels === 'short' ? 'd' : ' day', secondsInUnit: 86400 },
     { unit: labels === 'short' ? 'hr' : ' hour', secondsInUnit: 3600 },
     { unit: labels === 'short' ? 'min' : ' minute', secondsInUnit: 60 },
-    { unit: labels === 'short' ? 's' : ' second', secondsInUnit: 1 },
-    { unit: labels === 'short' ? 'ms' : ' millisecond', secondsInUnit: 0.001 }
+    { unit: labels === 'short' ? 's' : ' second', secondsInUnit: 1 }
   ]
 
   if (seconds == 0) return `0${labels === 'short' ? 's' : ' seconds'}`
+
+  if (round) {
+    for (const { secondsInUnit } of time) {
+      if (seconds >= secondsInUnit) {
+        seconds = seconds - (seconds % secondsInUnit)
+        break
+      }
+    }
+  }
 
   let remainingSeconds = seconds
   let formattedTime = ''
