@@ -6,15 +6,17 @@
       <div>/</div>
       <div>Page</div>
     </div>
-    <slot />
+    <div class="dark:text-white text-gray-950">
+      <slot />
+    </div>
   </div>
 </template>
 
 <style scoped>
   :deep(h1) {
-    @apply text-4xl font-bold text-gray-950 dark:text-white;
+    @apply text-4xl font-bold;
   }
   :deep(p) {
-    @apply text-xl/[1.6em] text-gray-950 dark:text-white/75 pt-4 font-light text-pretty;
+    @apply text-xl/[1.6em] pt-4 font-light text-pretty;
   }
 </style>

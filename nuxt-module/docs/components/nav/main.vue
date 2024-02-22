@@ -21,7 +21,10 @@
       </div>
 
       <!-- Right -->
-      <Github />
+      <div>
+        <ThemeSwitch />
+        <Github />
+      </div>
     </div>
   </nav>
 </template>

@@ -88,12 +88,21 @@ export function toggleFullScreen(callback?: Function): void {
 /**
  * Toggles through dark, light and system color modes
  */
-export function toggleDarkMode(callback?: Function): void {
-  const htmlElement = document.documentElement
-  const isDarkMode = htmlElement.classList.toggle('dark')
+export function toggleColorScheme(callback?: Function): void {
+  let colorScheme = localStorage.getItem('color-scheme') || 'system'
+  let nextColorScheme = colorScheme === 'dark' ? 'light' : colorScheme === 'light' ? 'system' : 'dark'
+  localStorage.setItem('color-scheme', nextColorScheme)
+  document.documentElement.className = `${nextColorScheme}`
 
-  if (isDarkMode) htmlElement.classList.remove('light')
-  else htmlElement.classList.add('light')
+  if (nextColorScheme === 'system') {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.classList.remove('dark')
+      document.documentElement.classList.add('light')
+    } else {
+      document.documentElement.classList.remove('light')
+      document.documentElement.classList.add('dark')
+    }
+  }
 
   if (callback) callback()
 }
