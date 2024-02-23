@@ -10,10 +10,10 @@
     "prepublishOnly": "bun run build",
     "docs": "concurrently \"npm run docs:install && npm run module:dev\" \"npm run dev\"",
     "docs:install": "npm i --prefix ./nuxt-module && npm i --prefix ./nuxt-module/docs",
-    "module:dev": "npm run build && npm run dev --prefix ./nuxt-module",
-    "module:release:": "npm run release --prefix ./nuxt-module",
+    "module:dev": "npm run build && npm run --prefix ./nuxt-module dev",
+    "module:release:": "npm run --prefix ./nuxt-module release",
     "vercel:install": "npm i && npm run docs:install",
-    "vercel:build": "npm run build && npm run prepack:stub --prefix ./nuxt-module && npm run build --prefix ./nuxt-module/docs"
+    "vercel:build": "npm run build && npm run --prefix ./nuxt-module prepack:stub && npm run --prefix ./nuxt-module/docs build"
   },
   "keywords": [
     "bun",
