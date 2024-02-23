@@ -1,5 +1,5 @@
 /* Scrollbar */
-html {
+html.dark {
   --scrollbar: theme('colors.zinc.800');
   --thumb: theme('colors.zinc.600');
 }
