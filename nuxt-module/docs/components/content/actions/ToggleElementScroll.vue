@@ -1,4 +1,3 @@
-import type { log } from 'console';
 <template>
   <Example>
     <div ref="element" class="overflow-auto h-[400px] px-8 py-4">

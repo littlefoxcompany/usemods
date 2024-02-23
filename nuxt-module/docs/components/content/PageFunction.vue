@@ -22,7 +22,7 @@
 
     <!-- Function -->
     <div
-      class="dark:bg-white/[1%] text-gray-900 dark:text-white bg-indigo-600/[2%] text-sm flex-wrap gap-px flex items-center mt-6 px-4 py-3 rounded-lg border border-black/5 dark:border-white/5 font-mono">
+      class="dark:bg-white/[3%] text-gray-900 dark:text-white bg-indigo-600/[2%] text-sm flex-wrap gap-px flex items-center mt-6 px-4 py-3.5 rounded-xl border border-black/5 dark:border-white/[8%] font-mono">
       {{ name }}
       <span class="opacity-50 mr-0.5">(</span>
 
