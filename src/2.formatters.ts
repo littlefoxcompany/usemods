@@ -2,42 +2,73 @@
 // description: Formatter functions manipulate and display various data types, such as dates, numbers, and strings, in a more readable and user-friendly format.
 // icon: formatters
 
+const currencySymbols = new Map([
+  ['en-US', 'USD'],
+  ['en-GB', 'GBP'],
+  ['en-AU', 'AUD'],
+  ['en-CA', 'CAD'],
+  ['en-NZ', 'NZD'],
+  ['en-ZA', 'ZAR'],
+  ['de-DE', 'EUR'],
+  ['fr-FR', 'EUR'],
+  ['es-ES', 'EUR'],
+  ['it-IT', 'EUR'],
+  ['pt-PT', 'EUR'],
+  ['nl-NL', 'EUR'],
+  ['da-DK', 'DKK'],
+  ['sv-SE', 'SEK'],
+  ['nb-NO', 'NOK'],
+  ['fi-FI', 'EUR'],
+  ['pl-PL', 'PLN'],
+  ['tr-TR', 'TRY'],
+  ['ru-RU', 'RUB'],
+  ['ja-JP', 'JPY'],
+  ['zh-CN', 'CNY'],
+  ['ko-KR', 'KRW'],
+  ['ar-SA', 'SAR'],
+  ['he-IL', 'ILS'],
+  ['id-ID', 'IDR'],
+  ['ms-MY', 'MYR'],
+  ['th-TH', 'THB'],
+  ['vi-VN', 'VND'],
+  ['hi-IN', 'INR'],
+  ['bn-IN', 'INR'],
+  ['pa-IN', 'INR'],
+  ['gu-IN', 'INR'],
+  ['or-IN', 'INR'],
+  ['ta-IN', 'INR'],
+  ['te-IN', 'INR'],
+  ['kn-IN', 'INR'],
+  ['ml-IN', 'INR']
+])
+
 /**
  * Format numbers into thousands, millions or billions
  */
-export function formatNumber(value: number, decimals: number | boolean = true, locale: string = 'en-US'): string {
-  let config: any = {
-    notation: 'compact',
-    compactDisplay: 'short'
-  }
+export function formatNumber(value: number, decimals: number = 2, locale: string = 'en-US'): string {
+  const safeDecimals = Math.max(0, Math.min(decimals, 20))
 
-  if (typeof decimals === 'number') {
-    config.minimumFractionDigits = 0
-    config.maximumFractionDigits = decimals
-  } else if (decimals === true) {
-    config.minimumFractionDigits = 2
-    config.maximumFractionDigits = 10
+  let config: any = {
+    style: 'decimal',
+    minimumFractionDigits: safeDecimals === 0 ? 0 : safeDecimals === 1 ? 1 : 2,
+    maximumFractionDigits: safeDecimals
   }
 
   return new Intl.NumberFormat(locale, config).format(value)
 }
 
 /**
- * Format numbers into local currency
+ * Format numbers into local currency with extra smarts
  */
-export function formatCurrency(value: number, decimals: number | boolean = true, locale: string = 'en-US', currency: string = 'USD'): string {
+export function formatCurrency(value: number, decimals: number = 2, locale: string = 'en-US'): string {
+  const safeDecimals = Math.max(0, Math.min(decimals, 20))
+
   let config: any = {
     style: 'currency',
-    currencyDisplay: 'symbol',
-    currency: currency
-  }
-
-  if (typeof decimals === 'number') {
-    config.minimumFractionDigits = 0
-    config.maximumFractionDigits = decimals
-  } else if (decimals === true) {
-    config.minimumFractionDigits = 2
-    config.maximumFractionDigits = 99
+    currencyDisplay: 'narrowSymbol',
+    minimumFractionDigits: safeDecimals === 0 ? 0 : safeDecimals === 1 ? 1 : 2,
+    maximumFractionDigits: safeDecimals,
+    currency: currencySymbols.get(locale) || 'USD'
   }
 
   return new Intl.NumberFormat(locale, config).format(value)
@@ -46,24 +77,17 @@ export function formatCurrency(value: number, decimals: number | boolean = true,
 /**
  * Format numbers into valuations displayed in thousands, millions or billions
  */
-export function formatValuation(value: number, decimals: number | boolean = true, locale: string = 'en-US', currency: string = 'USD'): string {
+export function formatValuation(value: number, decimals: number = 2, locale: string = 'en-US'): string {
+  const safeDecimals = Math.max(0, Math.min(decimals, 20))
+
   let config: any = {
     style: 'currency',
-    currencyDisplay: 'symbol',
+    currencyDisplay: 'narrowSymbol',
     notation: 'compact',
     compactDisplay: 'short',
-    currency: currency
-  }
-
-  if (decimals === false) {
-    config.minimumFractionDigits = 0
-    config.maximumFractionDigits = 0
-  } else if (typeof decimals === 'number') {
-    config.minimumFractionDigits = 0
-    config.maximumFractionDigits = decimals
-  } else if (decimals === true) {
-    config.minimumFractionDigits = 2
-    config.maximumFractionDigits = 99
+    minimumFractionDigits: safeDecimals === 0 ? 0 : safeDecimals === 1 ? 1 : 2,
+    maximumFractionDigits: safeDecimals,
+    currency: currencySymbols.get(locale) || 'USD'
   }
 
   return new Intl.NumberFormat(locale, config).format(value)
@@ -72,27 +96,36 @@ export function formatValuation(value: number, decimals: number | boolean = true
 /**
  * Format a number into a percentage
  */
-export function formatPercentage(value: number, decimals: boolean | number = 2): string {
+export function formatPercentage(value: number, decimals: number = 2, locale: string = 'en-US'): string {
+  const safeDecimals = Math.max(0, Math.min(decimals, 20))
   let config: any = {
-    style: 'percent'
+    style: 'percent',
+    minimumFractionDigits: safeDecimals === 0 ? 0 : safeDecimals === 1 ? 1 : 2,
+    maximumFractionDigits: safeDecimals
   }
 
-  if (typeof decimals === 'number') {
-    config.minimumFractionDigits = 0
-    config.maximumFractionDigits = decimals
-  } else if (decimals === true) {
-    config.minimumFractionDigits = 2
-    config.maximumFractionDigits = 99
-  }
-
-  return new Intl.NumberFormat('en-US', config).format(value)
+  return new Intl.NumberFormat(locale, config).format(value)
 }
+
+/**
+ * Format a number into a unit formatting
+ */
+// export function formatUnit(value: number, unit: string, decimals: number = 2, locale: string = 'en-US'): string {
+//   let config: any = {
+//     style: 'unit',
+//     unit: unit,
+//     unitDisplay: 'short',
+//     minimumFractionDigits: decimals === 0 ? 0 : decimals === 1 ? 1 : 2,
+//     maximumFractionDigits: Math.min(decimals, 20)
+//   }
+
+//   return new Intl.NumberFormat(locale, config).format(value)
+// }
 
 /**
  * Format time into a human-readable string
  */
 export function formatDurationLabels(seconds: number, labels?: string, round: boolean = false): string {
-  console.log(round)
   const time = [
     { unit: labels === 'short' ? 'yr' : ' year', secondsInUnit: 31536000 },
     { unit: labels === 'short' ? 'mo' : ' month', secondsInUnit: 2628000 },
