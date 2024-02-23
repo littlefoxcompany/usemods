@@ -95,7 +95,7 @@ export function generateLoremIpsum(count: number = 5, format: string = 'words'):
 /**
  * Generate a random hash.
  */
-export function generateHash(length: number = 40): string {
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-  return Array.from({ length }, () => chars[Math.floor(Math.random() * chars.length)]).join('')
-}
+// export function generateHash(length: number = 40): string {
+//   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+//   return Array.from({ length }, () => chars[Math.floor(Math.random() * chars.length)]).join('')
+// }

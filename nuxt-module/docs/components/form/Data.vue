@@ -9,7 +9,7 @@
 
   const styledJson = computed(() => {
     const jsonString = JSON.stringify(props.data, null, 2)
-    const styledString = jsonString.replace(/(["\{\}\,])/g, (match) => {
+    const styledString = jsonString.replace(/(["\{\}\[\]\,])/g, (match) => {
       return `<span class="json-special">${match}</span>`
     })
     return styledString
@@ -18,6 +18,6 @@
 
 <style>
   .json-special {
-    @apply text-white/60;
+    @apply dark:text-white/60 text-indigo-500 font-thin;
   }
 </style>

@@ -13,7 +13,7 @@
             :to="link._path"
             class="py-2 flex font-medium text-gray-400 dark:text-gray-500 items-center dark:hover:text-white/75 gap-3"
             activeClass="active">
-            <Icon :name="link.title" class="w-5 h-5" />
+            <Icon :name="link.title" class="w-5 h-5 shrink-0" />
             {{ link.title }}
           </NuxtLink>
         </div>
@@ -24,7 +24,7 @@
         <NuxtPage class="w-full" />
 
         <!-- Jagger Swagger -->
-        <section v-if="route.fullPath === '/docs/actions'" id="jagger" class="flex bg-blue-900 h-96 overflow-clip rounded-2xl mt-24 items-center justify-center relative">
+        <section v-if="route.fullPath === '/docs/actions'" id="jagger" class="flex bg-indigo-900 h-96 overflow-clip rounded-2xl mt-24 items-center justify-center relative">
           <Button @click="scrollToAnchor('scrollToAnchor')" class="z-10 relative shadow-black shadow-2xl">
             Scroll back
             <Icon name="heroicons:arrow-up" class="w-4 h-4" />

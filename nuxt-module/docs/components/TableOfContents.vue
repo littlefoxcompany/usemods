@@ -6,7 +6,7 @@
       v-for="link in links"
       :key="link.title"
       @click="scrollToAnchor(link.title)"
-      class="py-0.5 flex font-medium text-gray-500 text-sm hover:text-white/75 gap-3 cursor-pointer"
+      class="py-0.5 flex font-medium text-gray-500 text-sm dark:hover:text-white/75 gap-3 cursor-pointer hover:text-indigo-600"
       :class="{ active: activeLink === link.title }">
       <span class="truncate">
         {{ link.title }}

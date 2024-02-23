@@ -6,7 +6,7 @@
 
 body {
   @apply bg-white dark:bg-[#070707] w-screen select-text overflow-x-clip text-white antialiased
-  selection:bg-blue-800 selection:text-white scroll-smooth;
+  selection:bg-indigo-800 selection:text-white scroll-smooth;
 }
 
 /* A better container */

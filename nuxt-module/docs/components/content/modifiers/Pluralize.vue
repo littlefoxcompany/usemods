@@ -9,7 +9,7 @@
     </ExampleResult>
   </Example>
   <Callout class="mt-8">
-    <Icon name="heroicons:chat-bubble-bottom-center-text" class="text-blue-400 mr-2" />
+    <Icon name="heroicons:chat-bubble-bottom-center-text" class="text-indigo-400 mr-2" />
     Our pluralise function handles unusual plurals for English words (so far).
   </Callout>
 </template>

@@ -8,7 +8,7 @@
     </ExampleResult>
   </Example>
   <Callout class="mt-8">
-    <Icon name="heroicons:information-circle-20-solid" class="text-blue-400 mr-2" />
+    <Icon name="heroicons:information-circle-20-solid" class="text-indigo-400 mr-2" />
     Remember
     <code>text-wrap: pretty</code>
     or

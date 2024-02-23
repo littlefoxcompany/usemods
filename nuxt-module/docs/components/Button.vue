@@ -21,7 +21,7 @@
 
   const colorClasses = {
     'bg-gradient-to-br from-indigo-500 to-indigo-600 text-white border-white/20': props.color === 'primary',
-    'bg-black/5 dark:bg-white/[2%] hover:bg-white/[4%] text-white shadow-lg border-white/[5%]': props.color === 'secondary',
+    'bg-white text-indigo-600 dark:bg-white/[2%] hover:bg-white/[4%] dark:text-white shadow-lg border-white/[5%]': props.color === 'secondary',
     'bg-gradient-to-br from-green-500 to-green-700 text-white border-white/20': props.color === 'success',
     'bg-gradient-to-br from-red-500 to-red-700 text-white border-white/20': props.color === 'danger',
     'bg-gradient-to-br from-yellow-500 to-yellow-700 text-white border-white/20': props.color === 'warning'
