@@ -16,6 +16,6 @@
     "shiki": "^1.1.6"
   },
   "dependencies": {
-    "@nuxt/content": "^2.10.0"
+    "@nuxt/content": "^2.12.0"
   }
 }
