@@ -1,8 +1,6 @@
 // title: Detections
 // description: A collection of detections for common data types
 
-import { formatDurationLabels } from './2.formatters'
-
 /**
  * Detect the current device type (Mobile or Desktop)
  */
@@ -199,15 +197,6 @@ export function detectInContainer(element: HTMLElement, id: string): boolean {
   if (!container) return false
   const containerRect = container.getBoundingClientRect()
   return rect.top >= containerRect.top && rect.left >= containerRect.left && rect.bottom <= containerRect.bottom && rect.right <= containerRect.right
-}
-
-/**
- * Returns the reading time of a string in Hours, Minutes, and Seconds.
- */
-export function detectReadingTime(text: string, wordsPerMinute = 200): string {
-  const words = text.split(' ').length
-  const minutes = words / wordsPerMinute
-  return formatDurationLabels(Math.ceil(minutes))
 }
 
 // /**
