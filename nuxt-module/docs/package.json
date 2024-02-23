@@ -13,7 +13,7 @@
     "@tailwindcss/typography": "^0.5.10",
     "nuxt": "latest",
     "nuxt-icon": "^0.6.8",
-    "shikiji": "^0.10.1"
+    "shiki": "^1.1.6"
   },
   "dependencies": {
     "@nuxt/content": "^2.10.0"
