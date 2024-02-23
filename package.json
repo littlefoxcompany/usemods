@@ -12,7 +12,8 @@
     "docs:install": "npm i --prefix ./nuxt-module && npm i --prefix ./nuxt-module/docs",
     "module:dev": "npm run build && npm run dev --prefix ./nuxt-module",
     "module:release:": "npm run release --prefix ./nuxt-module",
-    "vercel:build": "npm i && npm run docs:install && npm run build && npm run prepack:stub --prefix ./nuxt-module && npm run build --prefix ./nuxt-module/docs"
+    "vercel:install": "npm i && npm run docs:install",
+    "vercel:build": "npm run build && npm run prepack:stub --prefix ./nuxt-module && npm run build --prefix ./nuxt-module/docs"
   },
   "keywords": [
     "bun",
