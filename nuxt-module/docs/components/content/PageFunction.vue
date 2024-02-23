@@ -1,5 +1,5 @@
 <template>
-  <section class="py-12 text-gray-900 dark:text-white" :id="name">
+  <section class="py-12 text-gray-900 dark:text-white" :id="name" ref="section">
     <!-- Title -->
     <div @click="copyToClipboard" class="flex w-fit relative items-center gap-3 cursor-pointer" @mouseover="showCopyToClipboard = true" @mouseout="showCopyToClipboard = false">
       <h3 class="text-3xl font-semibold">{{ name }}</h3>
@@ -58,6 +58,10 @@
 
   const showCopyToClipboard = ref(false)
   const showCopied = ref(false)
+  const section = ref<HTMLElement>()
+  const activeSections = useState('activeSections', () => [])
+
+  const sectionIsVisible = useElementVisibility(section)
 
   function copied() {
     showCopied.value = true
@@ -91,16 +95,17 @@
     copied()
     showCopyToClipboard.value = false
   }
-</script>
 
-<style scoped>
-  /* :deep(h3) {
-    @apply font-semibold text-3xl;
-  }
-  :deep(pre) {
-    @apply bg-white/[4%] group-hover:shadow-xl rounded-lg p-3 font-mono mt-6 border border-white/5;
-  }
-  :deep(p) {
-    @apply text-lg mt-2.5 first:text-xl text-zinc-400;
-  } */
-</style>
+  watch(
+    sectionIsVisible,
+    (isVisible) => {
+      if (isVisible) activeSections.value.push(props.name)
+      else activeSections.value = activeSections.value.filter((section) => section !== props.name)
+    },
+    { immediate: true }
+  )
+
+  onUnmounted(() => {
+    activeSections.value = activeSections.value.filter((section) => section !== props.name)
+  })
+</script>
