@@ -1,6 +1,8 @@
 // title: Goodies
 // description: A collection neat little functions that don't belong anywhere else.
 
+import { formatDurationLabels } from './2.formatters'
+
 /**
  * Wraps each word, sentence or paragraph in a string with a tag.
  */
@@ -56,4 +58,13 @@ export function checkPasswordStrength(value: string, length: number, uppercase: 
   if (strength === 2) return { score: 2, label: 'Medium' }
   if (strength === 1) return { score: 1, label: 'Weak' }
   return { score: 0, label: 'Very Weak' }
+}
+
+/**
+ * Returns the reading time of a string in Hours, Minutes, and Seconds.
+ */
+export function readingTime(text: string, wordsPerMinute = 200): string {
+  const words = text.split(' ').length
+  const seconds = Math.floor((words / wordsPerMinute) * 60)
+  return formatDurationLabels(Math.ceil(seconds))
 }
