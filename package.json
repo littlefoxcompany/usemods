@@ -9,10 +9,11 @@
     "release": "npm run test && changelogen --release && npm publish && git push --follow-tags",
     "prepublishOnly": "bun run build",
     "docs": "concurrently \"npm run docs:install && npm run module:dev\" \"npm run dev\"",
-    "docs:install": "npm run module:install && npm i --prefix ./nuxt-module/docs",
-    "module:install": "npm i --prefix ./nuxt-module",
-    "module:dev": "npm run build && npm run dev --prefix ./nuxt-module",
-    "module:release:": "npm run release --prefix ./nuxt-module"
+    "docs:install": "npm i --prefix ./nuxt-module && npm i --prefix ./nuxt-module/docs",
+    "module:dev": "npm run build && npm run --prefix ./nuxt-module dev",
+    "module:release:": "npm run --prefix ./nuxt-module release",
+    "vercel:install": "npm i && npm run docs:install",
+    "vercel:build": "npm run build && npm run --prefix ./nuxt-module prepack:stub && npm run --prefix ./nuxt-module/docs build"
   },
   "keywords": [
     "bun",
@@ -62,7 +63,6 @@
     "monaco-editor": "^0.45.0",
     "nuxt": "^3.10.2",
     "nuxt-monaco-editor": "^1.2.7",
-    "shikiji": "^0.10.0-beta.6",
     "typescript": "^5.2.2"
   }
 }
