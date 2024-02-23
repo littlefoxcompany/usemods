@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
-  css: ['~/assets/css/main.css'],
   modules: ['../src/module', '@nuxtjs/tailwindcss', 'nuxt-icon', '@nuxt/content', '@vueuse/nuxt', '@nuxt/image', '@nuxtjs/color-mode'],
+  css: ['~/assets/css/main.css'],
   content: {
     highlight: {
       theme: 'github-dark',
