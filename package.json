@@ -9,10 +9,10 @@
     "release": "npm run test && changelogen --release && npm publish && git push --follow-tags",
     "prepublishOnly": "bun run build",
     "docs": "concurrently \"npm run docs:install && npm run module:dev\" \"npm run dev\"",
-    "docs:install": "npm run module:install && npm i --prefix ./nuxt-module/docs",
-    "module:install": "npm i --prefix ./nuxt-module",
+    "docs:install": "npm i --prefix ./nuxt-module && npm i --prefix ./nuxt-module/docs",
     "module:dev": "npm run build && npm run dev --prefix ./nuxt-module",
-    "module:release:": "npm run release --prefix ./nuxt-module"
+    "module:release:": "npm run release --prefix ./nuxt-module",
+    "vercel:build": "npm i && npm run docs:install && npm run build && npm run prepack:stub --prefix ./nuxt-module && npm run build --prefix ./nuxt-module/docs"
   },
   "keywords": [
     "bun",
