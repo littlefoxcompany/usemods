@@ -4,13 +4,16 @@
     @apply text-4xl font-bold;
   }
   h2 {
-    @apply text-2xl font-bold mt-12;
+    @apply text-3xl font-bold mt-12;
   }
   p,
   li {
     @apply text-lg/[1.75em] mt-5;
   }
   li {
-    @apply border-l border-gray-300 dark:border-white/15 pl-5;
+    /* @apply border-l border-gray-300 dark:border-white/15 pl-5; */
+  }
+  code {
+    @apply text-sm/[1.75em] bg-gray-100 dark:bg-gray-800 rounded-md p-1;
   }
 }
