@@ -1,4 +1,5 @@
 @import '_scrollbar.css';
+@import '_content.css';
 
 .input {
   @apply border items-center w-full justify-between border-black/15 dark:border-white/5 flex pl-4 h-11 bg-white dark:bg-white/[3%] rounded-lg focus:border-indigo-400 focus:ring-white focus:outline-0;

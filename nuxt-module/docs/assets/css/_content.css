@@ -1,0 +1,16 @@
+.intro {
+  @apply text-gray-950 dark:text-white text-pretty;
+  h1 {
+    @apply text-4xl font-bold;
+  }
+  h2 {
+    @apply text-2xl font-bold mt-12;
+  }
+  p,
+  li {
+    @apply text-lg/[1.75em] mt-5;
+  }
+  li {
+    @apply border-l border-gray-300 dark:border-white/15 pl-5;
+  }
+}

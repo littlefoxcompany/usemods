@@ -132,6 +132,13 @@ export function detectUrl(): string {
 }
 
 /**
+ * Returns the path of the current URL in an array
+ */
+export function detectUrlPath(): string[] {
+  return window.location.pathname.split('/').filter((p) => p)
+}
+
+/**
  * Returns a value from the URL by name
  */
 export function detectUrlParams(url: string, param?: string): string | null {
