@@ -5,15 +5,15 @@ import { processDocs } from './docs.ts'
 const watcher = watch(import.meta.dir + '/src', { recursive: true }, (event, filename) => {
   if (filename.endsWith('.ts')) {
     console.log(`Detected ${event} in ${filename}`)
-    build()
-    processDocs()
+    await build()
+    await processDocs()
   }
 })
 
 // Check for --watch flag and if it's not present, just build once
 if (!process.argv.includes('--watch')) {
-  build()
-  processDocs()
+  await build()
+  await processDocs()
   process.exit(0)
 }
 
