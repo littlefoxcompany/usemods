@@ -32,6 +32,7 @@ function generateMarkdown(tsContent: string): string {
 
   // Create Frontmatter
   markdownContent += `---\n`
+  markdownContent += `id: ${metadata.title}\n`
   markdownContent += `title: ${metadata.title}\n`
   markdownContent += `description: ${metadata.description}\n`
   markdownContent += `icon: ${metadata.icon}\n`

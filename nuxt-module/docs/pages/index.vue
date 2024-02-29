@@ -6,8 +6,8 @@
         id="title"
         class="text-5xl text-balance md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-900 dark:text-white text-center max-w-[1200px]"></h1>
 
-      <div class="flex items-center gap-3 mt-20">
-        <Button href="/intro/introduction" size="lg" class="group">
+      <div class="flex items-center max-md:flex-col gap-3 mt-12 md:mt-20">
+        <Button href="/intro/introduction" size="lg" class="group max-md:w-full">
           Get Started
           <Icon name="heroicons:arrow-right" class="w-5 h-5 text-white/50 group-hover:translate-x-1 duration-200 transition-all" />
         </Button>
@@ -18,7 +18,7 @@
             type="button"
             v-for="item in packages"
             @click="copy(item)"
-            class="items-center whitespace-nowrap cursor-pointer dark:shadow gap-3 bg-black/[5%] dark:bg-white/[3%] backdrop-blur text-gray-900 dark:text-white/90 font-mono border flex h-11 px-6 border-white/5 rounded-full">
+            class="items-center max-md:w-full whitespace-nowrap cursor-pointer dark:shadow gap-3 bg-black/[5%] dark:bg-white/[3%] backdrop-blur text-gray-900 dark:text-white/90 font-mono border flex h-11 px-6 border-white/5 rounded-full">
             <Icon name="lucide:terminal" class="w-5 h-5 dark:text-white/50" />
             {{ item }}
           </button>

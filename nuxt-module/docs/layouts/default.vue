@@ -4,8 +4,8 @@
     <NavMain />
 
     <!-- Pages -->
-    <div class="container relative mx-auto flex max-md:flex-col min-h-screen py-12 gap-12">
-      <nav class="md:-mt-2 w-full md:w-2/12 flex flex-col md:sticky h-fit top-6">
+    <div class="container relative mx-auto flex max-md:flex-col min-h-screen py-6 md:py-12 gap-12">
+      <nav class="md:-mt-2 w-full md:w-2/12 flex flex-col md:sticky h-fit top-6 max-md:hidden">
         <div v-for="section in sidebar" class="pb-12 flex flex-col first:text-xl">
           <NuxtLink
             v-for="link in section?.children"
