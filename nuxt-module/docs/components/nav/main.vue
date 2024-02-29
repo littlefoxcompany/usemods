@@ -31,5 +31,5 @@
 </template>
 
 <script setup lang="ts">
-  const { data: docs } = await useAsyncData('content-links', () => fetchContentNavigation())
+  const docs = inject('content-links')
 </script>
