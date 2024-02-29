@@ -12,6 +12,7 @@
             :key="link._path"
             :to="link._path"
             class="py-2 flex font-medium text-gray-400 dark:text-gray-500 items-center dark:hover:text-white/75 gap-3"
+            :prefetch="true"
             active-class="active">
             <Icon :name="link.title" class="w-5 h-5 shrink-0" />
             {{ link.title }}
@@ -20,8 +21,8 @@
       </nav>
 
       <!-- Content -->
-      <div class="min-h-screen w-full md:w-7/12 text-gray-950 dark:text-white" :class="route.params.slug">
-        <NuxtPage class="w-full" :class="route.params.slug.at(0) === 'docs' ? 'divide-y divide-dashed dark:divide-white/10' : ''" />
+      <div class="min-h-screen w-full md:w-7/12 text-gray-950 dark:text-white" :class="route.params.slug ?? null">
+        <NuxtPage class="w-full" :class="route.params.slug?.at(0) === 'docs' ? 'divide-y divide-dashed dark:divide-white/10' : ''" />
 
         <!-- Jagger Swagger -->
         <section v-if="route.fullPath === '/docs/actions'" id="jagger" class="flex bg-indigo-900 h-96 overflow-clip rounded-2xl mt-24 items-center justify-center relative">

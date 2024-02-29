@@ -6,11 +6,13 @@
         id="title"
         class="text-5xl text-balance md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-900 dark:text-white text-center max-w-[1200px]"></h1>
 
-      <div class="flex items-center max-md:flex-col gap-3 mt-12 md:mt-20">
-        <Button href="/intro/introduction" size="lg" class="group max-md:w-full">
-          Get Started
-          <Icon name="heroicons:arrow-right" class="w-5 h-5 text-white/50 group-hover:translate-x-1 duration-200 transition-all" />
-        </Button>
+      <div class="flex items-center gap-3 mt-20">
+        <NuxtLink to="intro/introduction">
+          <Button size="lg" class="group">
+            Get Started
+            <Icon name="heroicons:arrow-right" class="w-5 h-5 text-white/50 group-hover:translate-x-1 duration-200 transition-all" />
+          </Button>
+        </NuxtLink>
 
         <!-- Packages -->
         <div id="packages" class="relative h-11 overflow-visible">
@@ -26,7 +28,7 @@
       </div>
     </header>
     <section class="shrink">
-      <NuxtPicture src="/scooter.png" width="800" class="mx-auto w-fit flex" />
+      <NuxtPicture src="/big-scooter.png" width="800" class="mx-auto w-fit flex" />
     </section>
   </section>
 </template>
