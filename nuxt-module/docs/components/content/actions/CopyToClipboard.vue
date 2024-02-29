@@ -1,4 +1,3 @@
-import type LabelVue from '~/components/form/Label.vue'; import type { FormInput } from '#build/components'; import type { Button } from '#build/components';
 <template>
   <Example>
     <ExampleInputs>
