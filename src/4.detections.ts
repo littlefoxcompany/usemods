@@ -1,5 +1,5 @@
 // title: Detections
-// description: A collection of detections for common data types
+// description: Client-side detections for various user and browser information. Perfect for personalisation, analytics or debugging weird and wonderful bugs.
 
 /**
  * Detect the current device type (Mobile or Desktop)

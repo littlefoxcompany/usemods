@@ -21,7 +21,7 @@
 
       <!-- Content -->
       <div class="min-h-screen w-full md:w-7/12 text-gray-950 dark:text-white" :class="route.params.slug">
-        <NuxtPage class="w-full" />
+        <NuxtPage class="w-full" :class="route.params.slug.at(0) === 'docs' ? 'divide-y divide-dashed dark:divide-white/10' : ''" />
 
         <!-- Jagger Swagger -->
         <section v-if="route.fullPath === '/docs/actions'" id="jagger" class="flex bg-indigo-900 h-96 overflow-clip rounded-2xl mt-24 items-center justify-center relative">

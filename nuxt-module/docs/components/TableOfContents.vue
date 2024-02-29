@@ -14,7 +14,6 @@
           {{ link.title }}
         </div>
       </NuxtLink>
-      s
     </template>
   </nav>
 </template>
