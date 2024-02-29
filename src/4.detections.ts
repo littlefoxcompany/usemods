@@ -155,9 +155,9 @@ export function detectUrlHash(): string | null {
 /**
  * Returns a value from the URL search by name
  */
-export function detectUrlSearch(): string | null {
-  return detectUrlParams(window.location.search)
-}
+// export function detectUrlSearch(): string | null {
+//   return detectUrlParams(window.location.search)
+// }
 
 /**
  * Returns the current domain
