@@ -48,7 +48,7 @@
 
 <script setup lang="ts">
   const route = useRoute()
-  const { data: sidebar } = await useAsyncData('sidebarLinks', () => fetchContentNavigation())
+  const { data: sidebar } = await useAsyncData('content-links', () => fetchContentNavigation())
 </script>
 
 <style scoped>
