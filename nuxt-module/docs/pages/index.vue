@@ -1,9 +1,7 @@
 <template>
   <section class="grow flex flex-col">
     <header class="flex flex-col justify-center items-center py-12 px-8 grow">
-      <h1
-        v-html="splitByWords('Zippy little utils for your javascript frameworks.')"
-        id="title"
+      <h1 v-html="splitByWords('Zippy little utils for your javascript frameworks.')" id="title" />
 
       <div class="flex items-center gap-3 mt-20">
         <NuxtLink to="intro/introduction">
