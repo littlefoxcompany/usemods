@@ -3,7 +3,9 @@ import { defineNuxtModule, addPlugin, createResolver, addImports } from '@nuxt/k
 import * as utils from '../../dist/index'
 
 // Module options TypeScript interface definition
-export interface ModuleOptions {}
+export interface ModuleOptions {
+  alias: [string, string][]
+}
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
