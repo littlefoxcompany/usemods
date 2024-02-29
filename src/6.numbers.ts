@@ -99,13 +99,6 @@ export function max(numbers: number[]): number {
 }
 
 /**
- * Clamps a number between the specified minimum and maximum values.
- */
-export function clamp(number: number, min: number, max: number): number {
-  return Math.min(Math.max(number, min), max)
-}
-
-/**
  * Returns the minimum and maximum values in an array of numbers.
  */
 export function minMax(numbers: number[]): [number, number] {
@@ -115,23 +108,8 @@ export function minMax(numbers: number[]): [number, number] {
 /**
  * Returns the difference between two values, expressed as a positive number.
  */
-export function range(a: number, b: number): number {
-  return Math.abs(a - b)
-}
-
-/**
- * Returns the difference between two values, as a percentage.
- */
-export function rangeAsPercentage(a: number, b: number, decimals: number | null = null): number {
-  const percentage = ((b - a) / a) * 100
-  return decimals != null ? parseFloat(percentage.toFixed(decimals)) : percentage
-}
-
-/**
- * Returns the percentage of a value, relative to another value.
- */
-export function percentage(value: number, total: number): number {
-  return (value / total) * 100
+export function range(numbers: number[]): number {
+  return max(numbers) - min(numbers)
 }
 
 /**
