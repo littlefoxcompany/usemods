@@ -32,8 +32,15 @@ export function margin(value: number, percentage: number): number {
 /**
  * Adds the margin to the value.
  */
-export function marginAdded(value: number, percentage: number): number {
+export function addMargin(value: number, percentage: number): number {
   return value + margin(value, percentage)
+}
+
+/**
+ * Subtracts the margin from the value.
+ */
+export function subtractMargin(value: number, percentage: number): number {
+  return value - margin(value, percentage)
 }
 
 /**
