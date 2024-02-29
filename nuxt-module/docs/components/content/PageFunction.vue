@@ -43,6 +43,8 @@
 </template>
 
 <script setup lang="ts">
+  import { useElementVisibility } from '@vueuse/core'
+
   const props = defineProps({
     name: {
       type: String,

@@ -13,5 +13,5 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: ''
   },
-  devtools: { enabled: true }
+  devtools: { enabled: false }
 })
