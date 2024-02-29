@@ -3,7 +3,7 @@
   "version": "0.0.4",
   "description": "Zippy little modifiers and utilities for your frontend.",
   "scripts": {
-    "dev": "bun run builder.mjs",
+    "dev": "bun run builder.mjs --watch",
     "build": "bun run build.mjs",
     "test": "bun --watch test test/*",
     "release": "npm run test && changelogen --release && npm publish && git push --follow-tags",

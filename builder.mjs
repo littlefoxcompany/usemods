@@ -10,6 +10,13 @@ const watcher = watch(import.meta.dir + '/src', { recursive: true }, (event, fil
   }
 })
 
+// Check for --watch flag and if it's not present, just build once
+if (!process.argv.includes('--watch')) {
+  build()
+  processDocs()
+  process.exit(0)
+}
+
 process.on('SIGINT', () => {
   console.log('Closing watcher...')
   watcher.close()
