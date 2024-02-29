@@ -12,6 +12,7 @@
             :key="link._path"
             :to="link._path"
             class="py-2 flex font-medium text-gray-400 dark:text-gray-500 items-center dark:hover:text-white/75 gap-3"
+            :prefetch="true"
             active-class="active">
             <Icon :name="link.title" class="w-5 h-5 shrink-0" />
             {{ link.title }}
