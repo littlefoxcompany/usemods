@@ -17,3 +17,12 @@ Zero-dependency functions and modifiers for zippy developers.
 
 [license-src]: https://img.shields.io/npm/l/usemods.svg?style=flat&colorA=18181B&colorB=28CF8D
 [license-href]: https://npmjs.com/package/usemods
+
+#### Installation
+
+```bash
+npm install usemods
+```
+
+
+
