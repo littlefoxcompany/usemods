@@ -25,7 +25,8 @@
   const activeSections = useState('activeSections', () => [])
 
   async function fetchLinks() {
-    const toc = await queryContent(route.fullPath).only('body').find()
+    const pathWithoutParamsAndHash = route.fullPath.split('?')[0].split('#')[0]
+    const toc = await queryContent(pathWithoutParamsAndHash).only('body').find()
     links.value = toc[0].body?.children?.map((link) => ({ id: link.props?.name ?? link.props?.name ?? link.props?.id })).filter((link) => Object.keys(link).length > 0) || []
   }
 

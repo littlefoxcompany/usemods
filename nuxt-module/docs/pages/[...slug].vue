@@ -41,7 +41,7 @@
       </div>
 
       <!-- Table of Contents -->
-      <TableOfContents class="max-md:hidden shrink max-lg:hidden w-4/12 max-w-[150px] h-fit top-8 sticky" />
+      <TableOfContents class="max-md:hidden shrink max-lg:hidden h-fit top-8 sticky" />
     </div>
   </main>
 </template>

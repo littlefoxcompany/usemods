@@ -141,15 +141,22 @@ export function detectUrlPath(): string[] {
 /**
  * Returns a value from the URL by name
  */
-export function detectUrlParams(): string | null {
-  return window.location.search
+export function detectUrlParams(): { [key: string]: string }[] | null {
+  const searchParams = new URLSearchParams(window.location.search)
+  const paramsArray = []
+
+  for (const [key, value] of searchParams.entries()) {
+    paramsArray.push({ [key]: value })
+  }
+
+  return paramsArray.length > 0 ? paramsArray : null
 }
 
 /**
  * Returns a value from the URL hash by name
  */
 export function detectUrlHash(): string | null {
-  return window.location.hash
+  return window.location.hash.replace('#', '')
 }
 
 /**
@@ -158,13 +165,6 @@ export function detectUrlHash(): string | null {
 // export function detectUrlSearch(): string | null {
 //   return detectUrlParams(window.location.search)
 // }
-
-/**
- * Returns the current domain
- */
-export function detectDomain(): string {
-  return window.location.hostname
-}
 
 /**
  * Returns the current IP address
