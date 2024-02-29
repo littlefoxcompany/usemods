@@ -4,13 +4,14 @@
       <h1
         v-html="splitByWords('Zippy little utils for your javascript frameworks.')"
         id="title"
-        class="text-5xl text-balance md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-900 dark:text-white text-center max-w-[1200px]"></h1>
 
       <div class="flex items-center gap-3 mt-20">
-        <Button href="/intro/introduction" size="lg" class="group">
-          Get Started
-          <Icon name="heroicons:arrow-right" class="w-5 h-5 text-white/50 group-hover:translate-x-1 duration-200 transition-all" />
-        </Button>
+        <NuxtLink to="intro/introduction">
+          <Button size="lg" class="group">
+            Get Started
+            <Icon name="heroicons:arrow-right" class="w-5 h-5 text-white/50 group-hover:translate-x-1 duration-200 transition-all" />
+          </Button>
+        </NuxtLink>
 
         <!-- Packages -->
         <div id="packages" class="relative h-11 overflow-visible">
