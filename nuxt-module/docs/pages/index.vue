@@ -26,7 +26,7 @@
       </div>
     </header>
     <section class="shrink">
-      <NuxtPicture src="/scooter.png" width="800" class="mx-auto w-fit flex" />
+      <NuxtPicture src="/big-scooter.png" width="800" class="mx-auto w-fit flex" />
     </section>
   </section>
 </template>
