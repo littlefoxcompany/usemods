@@ -141,17 +141,15 @@ export function detectUrlPath(): string[] {
 /**
  * Returns a value from the URL by name
  */
-export function detectUrlParams(url: string, param?: string): string | null {
-  const params = (url.match(/([^?=&]+)(=([^&]*))/g) || []).reduce((a: any, v: any) => ((a[v.slice(0, v.indexOf('='))] = v.slice(v.indexOf('=') + 1)), a), {})
-  if (param) return params[param] || null
-  return params
+export function detectUrlParams(): string | null {
+  return window.location.search
 }
 
 /**
  * Returns a value from the URL hash by name
  */
 export function detectUrlHash(): string | null {
-  return detectUrlParams(window.location.hash)
+  return window.location.hash
 }
 
 /**

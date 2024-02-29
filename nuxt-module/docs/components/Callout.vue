@@ -7,6 +7,6 @@
 
 <style scoped>
   :deep(code) {
-    @apply dark:bg-indigo-600/15 bg-indigo-500 text-white inline rounded-md px-1 py-0 text-sm font-mono mx-1 dark:text-indigo-300;
+    @apply dark:bg-indigo-600/15 bg-indigo-700/75 text-white inline rounded-md px-1 py-0 text-sm font-mono mx-1 dark:text-indigo-300;
   }
 </style>

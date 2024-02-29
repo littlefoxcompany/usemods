@@ -21,12 +21,15 @@
       <div v-if="!disabled" class="flex items-center gap-1">
         <button
           type="button"
-          class="text-zinc-500 hover:text-white flex"
+          class="text-zinc-500 hover:text-white flex opacity-50 hover:opacity-100 transtion-all"
           @click.stop="$emit('update:modelValue', Number(modelValue) - 1)"
           :class="Number(modelValue) <= Number(min) ? 'opacity-30 hover:opacity-30 pointer-events-none cursor-not-allowed' : ''">
           <Icon name="heroicons:minus-circle-20-solid" class="h-5 w-5 text-indigo-600 dark:text-white" />
         </button>
-        <button type="button" class="text-zinc-500 hover:text-white flex" @click.stop="$emit('update:modelValue', Number(modelValue) + 1)">
+        <button
+          type="button"
+          class="text-zinc-500 hover:text-white flex opacity-50 hover:opacity-100 transtion-all"
+          @click.stop="$emit('update:modelValue', Number(modelValue) + 1)">
           <Icon name="heroicons:plus-circle-20-solid" class="h-5 w-5 text-indigo-600 dark:text-white" />
         </button>
       </div>
