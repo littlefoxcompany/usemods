@@ -29,12 +29,6 @@
     links.value = toc[0].body?.children?.map((link) => ({ id: link.props?.name ?? link.props?.name ?? link.props?.id })).filter((link) => Object.keys(link).length > 0) || []
   }
 
-  onMounted(() => {
-    nextTick(() => {
-      fetchLinks()
-    })
-  })
-
   watch(
     () => route.fullPath,
     () => {
