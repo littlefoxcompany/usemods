@@ -10,6 +10,10 @@ export default defineNuxtConfig({
       search: true
     }
   },
+  routeRules: {
+    '/docs/**': { cache: { maxAge: 60 * 60 * 24 } },
+    '/intro/**': { cache: { maxAge: 60 * 60 * 24 } }
+  },
   colorMode: {
     classSuffix: ''
   },
