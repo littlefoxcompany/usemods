@@ -1,14 +1,14 @@
 <template>
   <nav class="text-gray-900 dark:text-white">
-    <p class="font-semibold pb-4">On this page</p>
+    <p class="pb-4 font-semibold">On this page</p>
 
     <template v-for="link in links" :key="link.id">
       <NuxtLink
         v-if="link.id"
-        class="flex font-medium text-gray-500 text-sm leading-none dark:hover:text-white/75 gap-3 cursor-pointer hover:text-indigo-600"
+        class="flex cursor-pointer gap-3 text-sm font-medium leading-none text-gray-500 hover:text-indigo-600 dark:hover:text-white/75"
         @click="scrollToAnchor(link.id)">
         <div
-          class="border-l transition-all w-2"
+          class="w-2 border-l transition-all"
           :class="activeSections.includes(link.id) ? ' border-indigo-600 dark:border-amber-400 ' : 'border-gray-200 dark:border-white/15'"></div>
         <div class="truncate py-1.5" :class="activeSections.includes(link.id) ? 'text-indigo-600 dark:text-amber-400' : 'text-gray-400 dark:text-white/50'">
           {{ link.id }}

@@ -1,11 +1,11 @@
 <template>
   <div class="relative w-full">
     <FormLabel :label="label" />
-    <div class="relative group cursor-pointer">
+    <div class="group relative cursor-pointer">
       <select :value="modelValue" @change="$event.target && $emit('update:modelValue', ($event.target as HTMLInputElement).value)" class="input appearance-none">
         <slot />
       </select>
-      <Icon name="heroicons:chevron-down" class="top-3.5 absolute right-3 pointer-events-none w-4 group-hover:rotate-180 transition-all h-4 peer-open:rotate-180 text-gray-400" />
+      <Icon name="heroicons:chevron-down" class="pointer-events-none absolute right-3 top-3.5 h-4 w-4 text-gray-400 transition-all group-hover:rotate-180 peer-open:rotate-180" />
     </div>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="border bg-indigo-50/40 dark:shadow-black/10 shadow-indigo-300/[50%] dark:border-white/[8%] focus-within:border-indigo-100 focus-within:shadow-2xl flex flex-col mt-6 divide-y dark:divide-white/5 dark:bg-white/[3%] rounded-xl transition-all overflow-clip">
+    class="mt-6 flex flex-col divide-y overflow-clip rounded-xl border bg-indigo-50/40 shadow-indigo-300/[50%] transition-all focus-within:border-indigo-100 focus-within:shadow-2xl dark:divide-white/5 dark:border-white/[8%] dark:bg-white/[3%] dark:shadow-black/10">
     <slot />
   </div>
 </template>

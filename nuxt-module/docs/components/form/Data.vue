@@ -1,5 +1,5 @@
 <template>
-  <pre class="bg-white/[3%] w-full rounded-lg p-4 border border-white/5 font-mono text-sm" v-html="styledJson"></pre>
+  <pre class="w-full rounded-lg border border-white/5 bg-white/[3%] p-4 font-mono text-sm" v-html="styledJson"></pre>
 </template>
 
 <script setup lang="ts">
@@ -18,6 +18,6 @@
 
 <style>
   .json-special {
-    @apply dark:text-white/60 text-indigo-500 font-thin;
+    @apply font-thin text-indigo-500 dark:text-white/60;
   }
 </style>

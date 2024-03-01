@@ -7,3 +7,5 @@ printWidth: 180
 bracketSameLine: true
 vueIndentScriptAndStyle: true
 tabWidth: 2
+plugins:
+  - prettier-plugin-tailwindcss

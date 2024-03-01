@@ -1,10 +1,10 @@
 <template>
-  <div class="relative group">
-    <div class="flex flex-col items-center justify-center absolute top-0 -translate-y-full left-1/2 -translate-x-1/2 bg-zinc-800 px-2 py-1 gap-1 rounded-md border border-white/10">
+  <div class="group relative">
+    <div class="absolute left-1/2 top-0 flex -translate-x-1/2 -translate-y-full flex-col items-center justify-center gap-1 rounded-md border border-white/10 bg-zinc-800 px-2 py-1">
       <div>{{ value }}</div>
       <div v-if="default" class="whitespace-nowrap">default: {{ default }}</div>
     </div>
-    <div class="flex gap-4 bg-white/[3%] text-white/75 justify-stretch px-2 rounded-lg border border-white/[4%]">
+    <div class="flex justify-stretch gap-4 rounded-lg border border-white/[4%] bg-white/[3%] px-2 text-white/75">
       {{ label }}
     </div>
   </div>

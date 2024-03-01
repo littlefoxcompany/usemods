@@ -1,5 +1,5 @@
 <template>
-  <label class="text-zinc-500 justify-between gap-4 pb-3 leading-none flex">
+  <label class="flex justify-between gap-4 pb-3 leading-none text-zinc-500">
     <div>
       {{ label }}
     </div>

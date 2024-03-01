@@ -1,19 +1,19 @@
 .intro {
-  @apply text-gray-950 dark:text-white text-pretty;
+  @apply text-pretty text-gray-950 dark:text-white;
   h1 {
     @apply text-4xl font-bold;
   }
   h2 {
-    @apply text-3xl font-bold mt-12;
+    @apply mt-12 text-3xl font-bold;
   }
   p,
   li {
-    @apply text-lg/[1.75em] mt-5;
+    @apply mt-5 text-lg/[1.75em];
   }
   li {
     /* @apply border-l border-gray-300 dark:border-white/15 pl-5; */
   }
   code {
-    @apply text-sm/[1.75em] bg-gray-100 dark:bg-gray-800 rounded-md p-1;
+    @apply rounded-md bg-gray-100 p-1 text-sm/[1.75em] dark:bg-gray-800;
   }
 }

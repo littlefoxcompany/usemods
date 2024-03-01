@@ -1,12 +1,12 @@
 <template>
   <div
-    class="bg-indigo-50 dark:bg-indigo-600/10 text-pretty flex flex-wrap rounded-lg w-full border border-indigo-200 dark:border-indigo-900/70 shadow-xl shadow-indigo-500/5 text-indigo-600 dark:text-indigo-400 px-3 py-2.5 items-center leading-tight">
+    class="flex w-full flex-wrap items-center text-pretty rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-2.5 leading-tight text-indigo-600 shadow-xl shadow-indigo-500/5 dark:border-indigo-900/70 dark:bg-indigo-600/10 dark:text-indigo-400">
     <slot />
   </div>
 </template>
 
 <style scoped>
   :deep(code) {
-    @apply dark:bg-indigo-600/15 bg-indigo-700/75 text-white inline rounded-md px-1 py-0 text-sm font-mono mx-1 dark:text-indigo-300;
+    @apply mx-1 inline rounded-md bg-indigo-700/75 px-1 py-0 font-mono text-sm text-white dark:bg-indigo-600/15 dark:text-indigo-300;
   }
 </style>

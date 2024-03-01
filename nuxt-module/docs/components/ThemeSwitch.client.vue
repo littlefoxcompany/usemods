@@ -1,14 +1,14 @@
 <template>
   <div class="flex items-center gap-6">
-    <button type="button" @click="toggle" class="flex h-8 w-8 p-[8px] overflow-hidden relative rounded-md border dark:border-white/20 border-gray-200">
+    <button type="button" @click="toggle" class="relative flex h-8 w-8 overflow-hidden rounded-md border border-gray-200 p-[8px] dark:border-white/20">
       <div
-        class="flex flex-col items-center justify-center gap-3 absolute transition-all duration-500"
+        class="absolute flex flex-col items-center justify-center gap-3 transition-all duration-500"
         :class="{
           'rotate-0': colorMode.value === 'dark',
           'rotate-180': colorMode.value === 'light'
         }">
-        <Icon name="heroicons:moon-solid" class="w-3.5 h-3.5 text-white" />
-        <Icon name="heroicons:sun-solid" class="w-3.5 h-3.5 text-amber-500" />
+        <Icon name="heroicons:moon-solid" class="h-3.5 w-3.5 text-white" />
+        <Icon name="heroicons:sun-solid" class="h-3.5 w-3.5 text-amber-500" />
       </div>
     </button>
   </div>

@@ -57,6 +57,8 @@
     "bun-types": "^1.0.7",
     "changelogen": "^0.5.5",
     "concurrently": "^8.2.2",
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.11",
     "typescript": "^5.2.2"
   }
 }
