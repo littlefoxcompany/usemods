@@ -5,9 +5,14 @@ export default defineNuxtConfig({
     highlight: {
       theme: 'github-dark',
       preload: ['javascript', 'typescript', 'json', 'html', 'css', 'yaml']
-    },
-    experimental: {
-      search: true
+    }
+    // experimental: {
+    //   search: true
+    // }
+  },
+  app: {
+    head: {
+      meta: [{ property: 'og:image', content: '/og-image.jpg' }]
     }
   },
   routeRules: {
