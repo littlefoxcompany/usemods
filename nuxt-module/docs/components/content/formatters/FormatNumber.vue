@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-  const currency = ref(12345678.1242)
-  const decimals = ref(8)
+  const currency = ref(12345.1242)
+  const decimals = ref(2)
   const locale = ref('en-US')
 </script>

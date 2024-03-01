@@ -10,5 +10,5 @@
 </template>
 
 <script setup lang="ts">
-  const seconds = ref(987654321)
+  const seconds = ref(987)
 </script>
