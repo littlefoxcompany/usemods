@@ -37,7 +37,7 @@
     </div>
 
     <Floaters class="absolute left-1/2 top-20 z-0 -translate-x-1/2" />
-    <div class="radial absolute left-1/2 top-0 z-0 aspect-square w-full -translate-x-1/2 -translate-y-1/2 max-lg:hidden"></div>
+    <div class="radial absolute left-1/2 top-0 z-0 hidden aspect-square w-full -translate-x-1/2 -translate-y-1/2 max-lg:hidden dark:flex"></div>
   </main>
 </template>
 
