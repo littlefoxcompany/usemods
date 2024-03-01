@@ -10,7 +10,7 @@
         <div
           class="w-2 border-l transition-all"
           :class="activeSections.includes(link.id) ? ' border-indigo-600 dark:border-amber-400 ' : 'border-gray-200 dark:border-white/15'"></div>
-        <div class="truncate py-1.5" :class="activeSections.includes(link.id) ? 'text-indigo-600 dark:text-amber-400' : 'text-gray-400 dark:text-white/50'">
+        <div class="truncate py-1.5" :class="activeSections.includes(link.id) ? 'text-indigo-600 dark:text-amber-400' : 'text-gray-500 dark:text-white/50'">
           {{ link.id }}
         </div>
       </NuxtLink>

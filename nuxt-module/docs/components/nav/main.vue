@@ -2,7 +2,7 @@
   <nav>
     <div class="container mx-auto flex items-center justify-between py-6 text-gray-800 dark:text-white">
       <div class="flex grow items-center gap-6">
-        <NuxtLink to="/" :prefetch="true" class="shrink-0">
+        <NuxtLink to="/" prefetch class="shrink-0">
           <LogoFull class="h-6 max-md:hidden" />
           <LogoMark class="h-6 md:hidden" />
         </NuxtLink>

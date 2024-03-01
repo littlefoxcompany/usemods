@@ -12,7 +12,7 @@
             v-for="link in section?.children"
             :key="link._path"
             :to="link._path"
-            class="flex items-center gap-3 py-2 font-medium text-gray-400 dark:text-gray-500 dark:hover:text-white/75"
+            class="flex items-center gap-3 py-2 font-medium text-gray-500 dark:text-gray-500 dark:hover:text-white/75"
             active-class="active">
             <Icon :name="link.title" class="h-5 w-5 shrink-0" />
             {{ link.title }}
