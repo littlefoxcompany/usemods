@@ -1,5 +1,5 @@
 <template>
-  <div @mouseover="show = true" @mouseleave="show = false" @click="show = false" class="flex relative group">
+  <div @mouseover="show = true" @mouseleave="show = false" @click="show = false" class="flex z-50 isolate relative group">
     <!-- Title -->
     <div class="flex items-center gap-1">
       <span class="font-semibold">

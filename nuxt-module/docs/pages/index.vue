@@ -1,6 +1,6 @@
 <template>
   <main class="flex flex-col relative min-h-screen">
-    <NavMain class="shrink relative z-10" />
+    <NavMain class="shrink relative z-20" />
     <div class="grow flex relative z-10">
       <section class="grow flex flex-col">
         <header class="flex flex-col justify-center items-center py-8 md:py-12 px-8 grow">
