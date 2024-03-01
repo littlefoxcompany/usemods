@@ -36,7 +36,7 @@
       </section>
     </div>
 
-    <Floaters class="absolute left-1/2 -translate-x-1/2 top-20 z-10" />
+    <Floaters class="absolute left-1/2 -translate-x-1/2 top-20 z-0" />
     <div class="radial absolute w-full aspect-square top-0 left-1/2 -translate-y-1/2 -translate-x-1/2 z-0"></div>
   </main>
 </template>

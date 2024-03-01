@@ -149,15 +149,15 @@
     animation: float 10s infinite ease-in-out;
 
     &:nth-child(2n) {
-      animation-delay: 0.5s;
-    }
-
-    &:nth-child(3n) {
       animation-delay: 1s;
     }
 
+    &:nth-child(3n) {
+      animation-delay: 5s;
+    }
+
     &:nth-child(4n) {
-      animation-delay: 2s;
+      animation-delay: 10s;
     }
   }
 
