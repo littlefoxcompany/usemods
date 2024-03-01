@@ -1,7 +1,7 @@
 <template>
   <div class="w-full">
     <div class="flex items-start justify-between">
-      <FormLabel :label="label" :info="info" />
+      <FormLabel :label="label" :info="info" :for="id" />
       <slot name="label" />
     </div>
     <div class="input !pr-3" :class="disabled ? 'pointer-events-none cursor-not-allowed opacity-30' : ''">
@@ -9,6 +9,7 @@
 
       <input
         v-if="!mask"
+        :id="id"
         :value="modelValue"
         @input="$event.target && $emit('update:modelValue', ($event.target as HTMLInputElement).value)"
         :placeholder="placeholder"
@@ -55,6 +56,8 @@
       default: false
     }
   })
+
+  const id = generateShortId()
 </script>
 
 <style scoped>

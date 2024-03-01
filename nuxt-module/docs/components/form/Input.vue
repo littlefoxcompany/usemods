@@ -1,9 +1,10 @@
 <template>
   <div class="w-full">
-    <FormLabel :label="label" :info="info" />
+    <FormLabel :label="label" :info="info" :for="id" />
 
     <input
       class="input"
+      :id="id"
       :type="type"
       :placeholder="placeholder"
       :value="modelValue"
@@ -16,6 +17,8 @@
   defineOptions({
     inheritAttrs: true
   })
+
+  const id = generateShortId()
 
   const props = defineProps({
     modelValue: {
