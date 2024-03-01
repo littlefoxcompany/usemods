@@ -21,7 +21,7 @@
       </nav>
 
       <!-- Content -->
-      <div class="min-h-screen w-full md:w-7/12 text-gray-950 dark:text-white" :class="route.params.slug ?? null">
+      <div class="min-h-screen w-full lg:w-7/12 text-gray-950 dark:text-white" :class="route.params.slug ?? null">
         <div class="w-full" :class="route.params.slug?.at(0) === 'docs' ? 'divide-y divide-dashed dark:divide-white/10' : ''">
           <ContentDoc class="flex flex-col grow" />
         </div>

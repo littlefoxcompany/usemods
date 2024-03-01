@@ -18,7 +18,7 @@
     </div>
 
     <!-- Description -->
-    <p class="text-lg mt-2.5">{{ description }}</p>
+    <p class="text-pretty md:text-lg mt-2.5">{{ description }}</p>
 
     <!-- Function -->
     <div
