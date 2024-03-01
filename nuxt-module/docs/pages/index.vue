@@ -1,7 +1,7 @@
 <template>
-  <main class="flex flex-col min-h-screen">
-    <NavMain class="shrink" />
-    <div class="grow flex">
+  <main class="flex flex-col relative min-h-screen">
+    <NavMain class="shrink relative z-10" />
+    <div class="grow flex relative z-10">
       <section class="grow flex flex-col">
         <header class="flex flex-col justify-center items-center py-8 md:py-12 px-8 grow">
           <h1
@@ -35,6 +35,9 @@
         </section>
       </section>
     </div>
+
+    <Floaters class="absolute left-1/2 -translate-x-1/2 top-20 z-10" />
+    <div class="radial absolute w-full aspect-square top-0 left-1/2 -translate-y-1/2 -translate-x-1/2 z-0"></div>
   </main>
 </template>
 
@@ -47,6 +50,11 @@
 </script>
 
 <style scoped>
+  .radial {
+    background: radial-gradient(50% 50% at 50% 50%, #2a2a2a 0%, rgba(24, 24, 27, 0) 100%);
+    background: radial-gradient(50% 50% at 50% 50%, color(display-p3 0.165 0.165 0.165) 0%, color(display-p3 0.094 0.094 0.106 / 0) 100%);
+  }
+
   :deep(#title) {
     .word {
       @apply overflow-clip inline-flex relative;
