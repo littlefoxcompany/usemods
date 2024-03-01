@@ -1,33 +1,33 @@
 <template>
   <section class="py-12 text-gray-900 dark:text-white" :id="name" ref="section">
     <!-- Title -->
-    <div @click="copyToClipboard" class="flex w-fit relative items-center gap-3 cursor-pointer" @mouseover="showCopyToClipboard = true" @mouseout="showCopyToClipboard = false">
-      <h3 class="text-3xl font-semibold">{{ name }}</h3>
+    <div @click="copyToClipboard" class="relative flex w-fit cursor-pointer items-center gap-3" @mouseover="showCopyToClipboard = true" @mouseout="showCopyToClipboard = false">
+      <h2 class="text-3xl font-semibold">{{ name }}</h2>
 
       <div
-        class="text-zinc-500 hover:border-white/20 hover:text-white bg-white/[3%] transition-all flex h-6 w-6 border border-white/5 items-center justify-center rounded-md"
-        :class="showCopyToClipboard ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'">
+        class="flex h-6 w-6 items-center justify-center rounded-md border border-white/5 bg-white/[3%] text-zinc-500 transition-all hover:border-white/20 hover:text-white"
+        :class="showCopyToClipboard ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'">
         <Icon name="heroicons:hashtag" class="h-4 w-4" />
       </div>
 
       <div
-        class="text-zinc-500 bg-white/[3%] right-0 translate-x-1/2 mt-1 -mr-7 absolute transition-all flex h-6 px-1.5 border border-white/5 items-center justify-center rounded-md"
-        :class="showCopied ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'">
+        class="absolute right-0 -mr-7 mt-1 flex h-6 translate-x-1/2 items-center justify-center rounded-md border border-white/5 bg-white/[3%] px-1.5 text-zinc-500 transition-all"
+        :class="showCopied ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'">
         Link Copied!
       </div>
     </div>
 
     <!-- Description -->
-    <p class="text-pretty md:text-lg mt-2.5">{{ description }}</p>
+    <p class="mt-2.5 text-pretty md:text-lg">{{ description }}</p>
 
     <!-- Function -->
     <div
-      class="dark:bg-white/[3%] text-gray-900 dark:text-white bg-indigo-600/[2%] text-sm flex-wrap gap-px flex items-center mt-6 px-4 py-3.5 rounded-xl border border-black/5 dark:border-white/[8%] font-mono">
+      class="mt-6 flex flex-wrap items-center gap-px rounded-xl border border-black/5 bg-indigo-600/[2%] px-4 py-3.5 font-mono text-sm text-gray-900 dark:border-white/[8%] dark:bg-white/[3%] dark:text-white">
       {{ name }}
-      <span class="opacity-50 mr-0.5">(</span>
+      <span class="mr-0.5 opacity-50">(</span>
 
       <template v-for="(param, index) in paramsObject" :key="index">
-        <div class="dark:bg-white/[8%] bg-indigo-600/[5%] text-indigo-600 dark:text-indigo-100 py-px rounded-md px-1 h-5 items-center flex gap-1">
+        <div class="flex h-5 items-center gap-1 rounded-md bg-indigo-600/[5%] px-1 py-px text-indigo-600 dark:bg-white/[8%] dark:text-indigo-100">
           <span v-if="param.key">{{ param.key }}</span>
           <span v-if="param.value">{{ param.value }}</span>
           <span v-if="param.defaultValue">={{ param.defaultValue }}</span>
@@ -35,7 +35,7 @@
 
         <span v-if="index < paramsObject.length - 1" class="mr-0.5">,</span>
       </template>
-      <span class="opacity-50 ml-0.5">)</span>
+      <span class="ml-0.5 opacity-50">)</span>
     </div>
 
     <slot />
