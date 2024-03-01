@@ -14,3 +14,9 @@
     }
   })
 </script>
+
+<style scoped>
+  :deep(svg) {
+    @apply text-gray-500;
+  }
+</style>
