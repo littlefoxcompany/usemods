@@ -4,7 +4,7 @@
     <NavMain />
 
     <!-- Pages -->
-    <div class="container relative mx-auto flex min-h-screen gap-12 py-6 max-md:flex-col md:py-12">
+    <div class="container relative mx-auto flex min-h-screen gap-8 py-2 max-md:flex-col md:gap-12 md:py-12">
       <nav class="top-6 flex h-fit w-full flex-col max-md:hidden md:sticky md:-mt-2 md:w-2/12">
         <div v-for="section in sidebar" class="flex flex-col pb-12 first:text-xl">
           <NuxtLink
