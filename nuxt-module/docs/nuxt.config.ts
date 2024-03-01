@@ -11,8 +11,8 @@ export default defineNuxtConfig({
     }
   },
   routeRules: {
-    '/docs/**': { cache: { maxAge: 60 * 60 * 24 } },
-    '/intro/**': { cache: { maxAge: 60 * 60 * 24 } }
+    '/docs/**': { swr: true },
+    '/intro/**': { swr: true }
   },
   colorMode: {
     classSuffix: ''
