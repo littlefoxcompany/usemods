@@ -22,9 +22,7 @@
 
       <!-- Content -->
       <div class="min-h-screen w-full text-gray-950 lg:w-7/12 dark:text-white" :class="route.params.slug ?? null">
-        <div class="w-full" :class="route.params.slug?.at(0) === 'docs' ? 'divide-y divide-dashed dark:divide-white/10' : ''">
-          <ContentDoc class="flex grow flex-col" />
-        </div>
+        <ContentDoc class="flex w-full grow flex-col" :class="route.params.slug?.at(0) === 'docs' ? 'divide-y divide-dashed dark:divide-white/10' : ''" />
 
         <!-- Jagger Swagger -->
         <section v-if="route.fullPath === '/docs/actions'" id="jagger" class="relative mt-24 flex h-96 items-center justify-center overflow-clip rounded-2xl bg-indigo-900">

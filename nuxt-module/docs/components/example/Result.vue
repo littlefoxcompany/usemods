@@ -9,6 +9,6 @@
       </div>
     </div>
 
-    <div class="font-mono text-sm/none text-gray-300 dark:text-white/25">Result</div>
+    <div class="font-mono text-sm/none text-gray-300 max-md:hidden dark:text-white/25">Result</div>
   </div>
 </template>

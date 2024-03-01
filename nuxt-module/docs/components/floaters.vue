@@ -164,15 +164,15 @@
   @keyframes float {
     0% {
       transform: translateY(0);
-      opacity: 0.2;
+      @apply opacity-50 dark:opacity-20;
     }
     50% {
       transform: translateY(-20px);
-      opacity: 0.5;
+      @apply opacity-80 dark:opacity-50;
     }
     100% {
       transform: translateY(0);
-      opacity: 0.2;
+      @apply opacity-50 dark:opacity-20;
     }
   }
 </style>
