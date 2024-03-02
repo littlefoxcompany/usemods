@@ -39,7 +39,7 @@
       </div>
 
       <!-- Table of Contents -->
-      <TableOfContents class="sticky top-8 h-fit shrink max-lg:hidden max-md:hidden" />
+      <LazyTableOfContents class="sticky top-8 h-fit shrink max-lg:hidden max-md:hidden" />
     </div>
   </main>
 </template>

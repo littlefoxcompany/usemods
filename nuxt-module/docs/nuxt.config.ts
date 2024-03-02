@@ -16,8 +16,8 @@ export default defineNuxtConfig({
     }
   },
   routeRules: {
-    '/docs/**': { swr: true },
-    '/intro/**': { swr: true }
+    '/docs/**': { swr: true, prerender: true },
+    '/intro/**': { swr: true, prerender: true }
   },
   colorMode: {
     classSuffix: ''
