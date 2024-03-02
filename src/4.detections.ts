@@ -1,5 +1,6 @@
 // title: Detections
 // description: Client-side detections for various user and browser information. Perfect for personalisation, analytics or debugging weird and wonderful bugs. Please note we're working on making our examples reactive! 🚀
+// lead: Did you hear that? Probably nothing.
 
 /**
  * Detect the current device type (Mobile or Desktop)

@@ -1,5 +1,6 @@
 // title: Goodies
 // description: A collection neat little functions that don't belong anywhere else.
+// lead: A growing pile of treats.
 
 import { formatDurationLabels } from './2.formatters'
 
