@@ -1,5 +1,6 @@
 // title: Generators
 // description: A collection of magical functions that conjure data out of thin air.
+// lead: Conjure data out of thin air.
 
 /**
  * Generate a random number

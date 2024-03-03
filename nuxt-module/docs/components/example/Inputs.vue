@@ -1,5 +1,5 @@
 <template>
-  <div class="flex max-md:flex-col gap-4 justify-stretch p-5 pb-6">
+  <div class="flex justify-stretch gap-4 p-5 pb-6 max-md:flex-col">
     <slot />
   </div>
 </template>

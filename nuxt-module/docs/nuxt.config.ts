@@ -5,13 +5,22 @@ export default defineNuxtConfig({
     highlight: {
       theme: 'github-dark',
       preload: ['javascript', 'typescript', 'json', 'html', 'css', 'yaml']
-    },
-    experimental: {
-      search: true
     }
+    // experimental: {
+    //   search: true
+    // }
+  },
+  app: {
+    head: {
+      meta: [{ property: 'og:image', content: '/og-image.jpg' }]
+    }
+  },
+  routeRules: {
+    '/docs/**': { swr: true, prerender: true },
+    '/intro/**': { swr: true, prerender: true }
   },
   colorMode: {
     classSuffix: ''
   },
-  devtools: { enabled: true }
+  devtools: { enabled: false }
 })

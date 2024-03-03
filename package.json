@@ -3,7 +3,7 @@
   "version": "0.0.4",
   "description": "Zippy little modifiers and utilities for your frontend.",
   "scripts": {
-    "dev": "bun run builder.mjs",
+    "dev": "bun run build.mjs --watch",
     "build": "bun run build.mjs",
     "test": "bun --watch test test/*",
     "release": "npm run test && changelogen --release && npm publish && git push --follow-tags",
@@ -13,7 +13,7 @@
     "module:dev": "npm run build && npm run --prefix ./nuxt-module dev",
     "module:release:": "npm run --prefix ./nuxt-module release",
     "vercel:install": "npm i && npm run docs:install",
-    "vercel:build": "npm run build && npm run --prefix ./nuxt-module dev:prepare && npm run --prefix ./nuxt-module prepack && npm run --prefix ./nuxt-module/docs build"
+    "vercel:build": "bun run build.mjs && npm run build && npm run --prefix ./nuxt-module dev:prepare && npm run --prefix ./nuxt-module prepack && npm run --prefix ./nuxt-module/docs build"
   },
   "keywords": [
     "bun",
@@ -57,6 +57,8 @@
     "bun-types": "^1.0.7",
     "changelogen": "^0.5.5",
     "concurrently": "^8.2.2",
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.11",
     "typescript": "^5.2.2"
   }
 }

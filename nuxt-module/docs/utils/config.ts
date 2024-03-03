@@ -1,3 +1,11 @@
+export function convertToArray(value: string) {
+  try {
+    return JSON.parse(value)
+  } catch (error) {
+    return []
+  }
+}
+
 export const configLocales = [
   'en-US', // English (United States)
   'en-GB', // English (United Kingdom)

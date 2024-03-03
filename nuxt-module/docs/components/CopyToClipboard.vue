@@ -1,7 +1,7 @@
 <template>
-  <button @click="copy(copy)" class="text-white/25 h-5 w-5 hover:text-white transition-all">
-    <Icon v-if="!copied" name="carbon:copy" class="w-4 h-4" />
-    <Icon v-else name="carbon:checkmark" class="w-5 h-5 text-indigo-300 animate-bounce" />
+  <button @click="copy(copy)" class="h-5 w-5 text-white/25 transition-all hover:text-white">
+    <Icon v-if="!copied" name="carbon:copy" class="h-4 w-4" />
+    <Icon v-else name="carbon:checkmark" class="h-5 w-5 animate-bounce text-indigo-300" />
   </button>
 </template>
 

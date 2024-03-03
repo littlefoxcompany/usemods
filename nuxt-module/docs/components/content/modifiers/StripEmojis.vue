@@ -10,5 +10,5 @@
 </template>
 
 <script setup lang="ts">
-  const value = ref('🛵S👨‍💻e🔭r📓i🌊o🍦u🚀s💫')
+  const value = ref('🛵S👨‍💻e🔭r📓i🌊o🍦u🚀s💫 B🍦u💫s📓i🔭n🌊e🛵s🚀s')
 </script>

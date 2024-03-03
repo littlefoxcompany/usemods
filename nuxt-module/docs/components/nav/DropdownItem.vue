@@ -1,7 +1,7 @@
 <template>
   <NuxtLink
     :to="to"
-    class="dark:text-white text-gray-500 px-4 flex items-center gap-3 py-2.5 rounded-lg hover:bg-white/5 border border-transparent hover:border-white/10 transition-all">
+    class="flex items-center gap-3 rounded-lg border border-transparent px-4 py-2.5 text-gray-500 transition-all hover:border-white/10 hover:bg-white/5 md:text-lg dark:text-white">
     <slot />
   </NuxtLink>
 </template>
@@ -14,3 +14,9 @@
     }
   })
 </script>
+
+<style scoped>
+  :deep(svg) {
+    @apply text-gray-500;
+  }
+</style>

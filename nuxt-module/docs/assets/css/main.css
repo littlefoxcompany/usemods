@@ -2,12 +2,12 @@
 @import '_content.css';
 
 .input {
-  @apply border items-center w-full justify-between border-black/15 dark:border-white/5 flex pl-4 h-11 bg-white dark:bg-white/[3%] rounded-lg focus:border-indigo-400 focus:ring-white focus:outline-0;
+  @apply flex h-11 w-full items-center justify-between rounded-lg border border-black/15 bg-white pl-4 focus:border-indigo-400 focus:outline-0 focus:ring-white dark:border-white/5 dark:bg-white/[3%];
 }
 
 body {
-  @apply bg-white dark:bg-zinc-950 w-screen select-text overflow-x-clip text-white antialiased
-  selection:bg-indigo-800 selection:text-white scroll-smooth min-h-screen;
+  @apply min-h-screen w-screen select-text overflow-x-clip scroll-smooth bg-white text-white
+  antialiased selection:bg-indigo-800 selection:text-white dark:bg-zinc-950;
 
   &* {
     @apply transition-colors duration-500;

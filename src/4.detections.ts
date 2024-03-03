@@ -1,5 +1,6 @@
 // title: Detections
-// description: Client-side detections for various user and browser information. Perfect for personalisation, analytics or debugging weird and wonderful bugs.
+// description: Client-side detections for various user and browser information. Perfect for personalisation, analytics or debugging weird and wonderful bugs. Please note we're working on making our examples reactive! 🚀
+// lead: Did you hear that? Probably nothing.
 
 /**
  * Detect the current device type (Mobile or Desktop)
@@ -118,6 +119,37 @@ export function detectContainerBreakpoint(element: HTMLElement): string {
 }
 
 /**
+ * Detect the current scroll position of the window
+ */
+export function detectScrollPosition(): { x: number; y: number } {
+  return {
+    x: window.scrollX,
+    y: window.scrollY
+  }
+}
+
+/**
+ * Detect the absolute mouse position with the page
+ */
+export function detectMousePosition(event: MouseEvent): { x: number; y: number } {
+  return {
+    x: event.pageX,
+    y: event.pageY
+  }
+}
+
+/**
+ * Detect the relative mouse position with the window size
+ */
+export function detectRelativeMousePosition(event: MouseEvent): { x: number; y: number } {
+  const { innerWidth, innerHeight } = window
+  return {
+    x: event.clientX / innerWidth,
+    y: event.clientY / innerHeight
+  }
+}
+
+/**
  * Detect the current network status of the user (Online or Offline)
  */
 export function detectNetworkStatus(): string {
@@ -141,37 +173,28 @@ export function detectUrlPath(): string[] {
 /**
  * Returns a value from the URL by name
  */
-export function detectUrlParams(url: string, param?: string): string | null {
-  const params = (url.match(/([^?=&]+)(=([^&]*))/g) || []).reduce((a: any, v: any) => ((a[v.slice(0, v.indexOf('='))] = v.slice(v.indexOf('=') + 1)), a), {})
-  if (param) return params[param] || null
-  return params
+export function detectUrlParams(): { [key: string]: string }[] | null {
+  const searchParams = new URLSearchParams(window.location.search)
+  const paramsArray = []
+
+  for (const [key, value] of searchParams.entries()) {
+    paramsArray.push({ [key]: value })
+  }
+
+  return paramsArray.length > 0 ? paramsArray : null
 }
 
 /**
  * Returns a value from the URL hash by name
  */
 export function detectUrlHash(): string | null {
-  return detectUrlParams(window.location.hash)
+  return window.location.hash.replace('#', '')
 }
 
 /**
- * Returns a value from the URL search by name
+ * Returns the current host or domain name of the URL
  */
-export function detectUrlSearch(): string | null {
-  return detectUrlParams(window.location.search)
-}
-
-/**
- * Returns the current domain
- */
-export function detectDomain(): string {
-  return window.location.hostname
-}
-
-/**
- * Returns the current IP address
- */
-export function detectIP(): string {
+export function detectHost(): string {
   return window.location.host
 }
 
@@ -185,26 +208,26 @@ export function detectPort(): string {
 /**
  * Detects if the element is currently in the viewport
  */
-export function detectInViewport(element: HTMLElement): boolean {
-  const rect = element.getBoundingClientRect()
-  return (
-    rect.top >= 0 &&
-    rect.left >= 0 &&
-    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-  )
-}
+// export function detectInViewport(element: HTMLElement): boolean {
+//   const rect = element.getBoundingClientRect()
+//   return (
+//     rect.top >= 0 &&
+//     rect.left >= 0 &&
+//     rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+//     rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+//   )
+// }
 
 /**
  * Detects if the element is currently in the container via ID
  */
-export function detectInContainer(element: HTMLElement, id: string): boolean {
-  const rect = element.getBoundingClientRect()
-  const container = document.getElementById(id)
-  if (!container) return false
-  const containerRect = container.getBoundingClientRect()
-  return rect.top >= containerRect.top && rect.left >= containerRect.left && rect.bottom <= containerRect.bottom && rect.right <= containerRect.right
-}
+// export function detectInContainer(element: HTMLElement, id: string): boolean {
+//   const rect = element.getBoundingClientRect()
+//   const container = document.getElementById(id)
+//   if (!container) return false
+//   const containerRect = container.getBoundingClientRect()
+//   return rect.top >= containerRect.top && rect.left >= containerRect.left && rect.bottom <= containerRect.bottom && rect.right <= containerRect.right
+// }
 
 // /**
 //  * Detect the current memory status of the user (RAM)
@@ -240,37 +263,4 @@ export function detectInContainer(element: HTMLElement, id: string): boolean {
 // export function detectSessionStorage(name: string) {
 //   const item = sessionStorage.getItem(name)
 //   if (item) return JSON.parse(item)
-// }
-
-// /**
-//  * Detect the current scroll position of the window
-//  */
-// export function detectScrollPosition(): { x: number; y: number } {
-//   return {
-//     x: window.scrollX,
-//     y: window.scrollY
-//   }
-// }
-
-// /**
-//  * Detect the current mouse position within the window
-//  */
-// export function detectMousePosition(event: MouseEvent): { x: number; y: number } {
-//   return {
-//     x: event.pageX,
-//     y: event.pageY
-//   }
-// }
-
-// /**
-//  * Detect the current mouse position within a container via ID
-//  */
-// export function detectRelativeMousePosition(id: string, event: MouseEvent): { x: number; y: number } {
-//   const element = document.getElementById(id)
-//   if (!element) return { x: 0, y: 0 }
-//   const rect = element.getBoundingClientRect()
-//   return {
-//     x: event.clientX - rect.left,
-//     y: event.clientY - rect.top
-//   }
 // }

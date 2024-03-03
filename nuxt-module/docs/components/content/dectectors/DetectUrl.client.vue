@@ -1,9 +1,6 @@
 <template>
   <Example>
-    <ExampleResult>
-      {{ detectUrl() }}
-    </ExampleResult>
+    <ExampleResult>{{ detectUrl() }}</ExampleResult>
   </Example>
+  <Callout class="mt-8">Hmmm, we're still working on SSR support</Callout>
 </template>
-
-<script setup lang="ts"></script>

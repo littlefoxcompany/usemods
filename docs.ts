@@ -6,7 +6,7 @@ const directoryPath = resolve('./src/')
 const contentDirectory = resolve('./nuxt-module/docs/content/2.docs')
 
 const functionPattern = /\/\*\*[\s\S]*?\*\/\s*(export\s+function\s+([a-zA-Z0-9_]+)\s*\((.*?)\)\s*:\s*([\w<>,\[\]\s]+(?:\{[\s\S]*?})?)?)/gms
-const metadataPattern = /\/\/\s+(title|description):\s+([^\r\n]*)/g
+const metadataPattern = /\/\/\s+(title|description|lead):\s+([^\r\n]*)/g
 
 export async function processDocs() {
   try {
@@ -32,9 +32,10 @@ function generateMarkdown(tsContent: string): string {
 
   // Create Frontmatter
   markdownContent += `---\n`
+  markdownContent += `id: ${metadata.title}\n`
   markdownContent += `title: ${metadata.title}\n`
   markdownContent += `description: ${metadata.description}\n`
-  markdownContent += `icon: ${metadata.icon}\n`
+  if (metadata.lead) markdownContent += `lead: ${metadata.lead}\n`
   markdownContent += `---\n\n`
 
   // Page Title Component
