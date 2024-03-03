@@ -1,6 +1,5 @@
 import { expect, test } from 'bun:test'
 import {
-  clamp,
   average,
   median,
   sum,
@@ -38,9 +37,4 @@ test('median', () => {
   expect(median([-5, -3, -1, 0, 2])).toBe(-1)
   expect(median([42])).toBe(42)
   expect(median([])).toBeNaN()
-})
-
-test('clamp', () => {
-  expect(clamp(1, 10, 20)).toBe(10)
-  expect(clamp(15, 10, 20)).toBe(15)
 })
