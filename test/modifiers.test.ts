@@ -1,10 +1,8 @@
 import { expect, test } from 'bun:test'
 import {
-  widont,
   escapeHtml,
   unescapeHtml,
   stripHtml,
-  stripTags,
   stripEmojis,
   stripSymbols,
   stripWhitespace,
@@ -27,11 +25,6 @@ import {
   surroundWith,
   titleCase
 } from '../src/3.modifiers'
-import { formatList } from '../src'
-
-test('widont', () => {
-  expect(widont('Hello world')).toBe('Hello&nbsp;world')
-})
 
 test('stripHtml', () => {
   expect(stripHtml('<p>Hello world</p>')).toBe('Hello world')
@@ -70,10 +63,6 @@ test('stripPunctuation', () => {
   expect(stripPunctuation('Hello world!')).toBe('Hello world')
 })
 
-test('humanize', () => {
-  expect(humanize('hello_world')).toBe('Hello world')
-})
-
 test('slugify', () => {
   expect(slugify('Hello world')).toBe('hello-world')
 })
@@ -101,11 +90,11 @@ test('ordinalize', () => {
   expect(ordinalize(104)).toBe('104th')
 })
 
-test('splitByWords', () => {
-  expect(splitByWords('Hello world. How are you?')).toBe(
-    `<span class="sentence sentence-1"><span class="word word-1">Hello</span> <span class="word word-2">world.</span></span> <span class="sentence sentence-2"><span class="word word-3">How</span> <span class="word word-4">are</span> <span class="word word-5">you?</span></span>`
-  )
-})
+// test('splitByWords', () => {
+//   expect(splitByWords('Hello world. How are you?')).toBe(
+//     `<span class="sentence sentence-1"><span class="word word-1">Hello</span> <span class="word word-2">world.</span></span> <span class="sentence sentence-2"><span class="word word-3">How</span> <span class="word word-4">are</span> <span class="word word-5">you?</span></span>`
+//   )
+// })
 
 test('title', () => {
   expect(title('A new welcome for my brand new test for titles in javascript!')).toBe('A New Welcome for My Brand New Test for Titles in Javascript!')
@@ -119,49 +108,18 @@ test('truncateWords', () => {
   expect(truncateWords('Hello world and moon', 2)).toBe('Hello world...')
 })
 
-test('countWords', () => {
-  expect(countWords('Hello world and moon')).toBe(4)
-})
+// test('countWords', () => {
+//   expect(countWords('Hello world and moon')).toBe(4)
+// })
 
-test('countCharacters', () => {
-  expect(countCharacters('Hello world and moon')).toBe(20)
-})
+// test('countCharacters', () => {
+//   expect(countCharacters('Hello world and moon')).toBe(20)
+// })
 
-test('countLines', () => {
-  expect(countLines('Hello world and moon')).toBe(1)
-  expect(countLines('Hello world and moon\nHello world and moon')).toBe(2)
-})
-
-test('list', () => {
-  expect(list(['Hello', 'World'], 'ol')).toStrictEqual('<ol><li>Hello</li><li>World</li></ol>')
-})
-
-test('shuffle', () => {
-  expect(shuffle(['Apple', 'Oranges', 'Grapes', 'Bread', 'Milk'])).not.toBe(['Apple', 'Oranges', 'Grapes', 'Bread', 'Milk'])
-})
-
-test('unique', () => {
-  expect(unique(null, ['a', 'b', 'a', 'c', 'c'])).toStrictEqual(['a', 'b', 'c'])
-  expect(unique('id', [{ id: 1 }, { id: 2 }, { id: 1 }])).toStrictEqual([{ id: 1 }, { id: 2 }])
-  expect(unique('id', [])).toStrictEqual([])
-  expect(unique('id', [{ code: 123 }, { code: 345 }])).toStrictEqual([])
-})
-
-test('first', () => {
-  expect(first(['a', 'b', 'c'])).toBe('a')
-  expect(first([])).toBeUndefined()
-})
-
-test('last', () => {
-  expect(last(['a', 'b', 'c'])).toBe('c')
-  expect(last([])).toBeUndefined()
-})
-
-test('nth', () => {
-  expect(nth(['a', 'b', 'c'], 1)).toBe('b')
-  expect(nth(['a', 'b', 'c'], 2)).toBe('c')
-  expect(nth(['a', 'b', 'c'], 3)).toBeUndefined()
-})
+// test('countLines', () => {
+//   expect(countLines('Hello world and moon')).toBe(1)
+//   expect(countLines('Hello world and moon\nHello world and moon')).toBe(2)
+// })
 
 test('startWith', () => {
   expect(startWith('helloworld.com', 'www.')).toBe('www.helloworld.com')

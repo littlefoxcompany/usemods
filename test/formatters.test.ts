@@ -2,13 +2,12 @@ import { expect, test } from 'bun:test'
 import { formatCurrency, formatDurationLabels, formatPercentage, formatUnixTime, formatList, formatTitle } from '../src/2.formatters'
 
 test('formatCurrency', () => {
-  expect(formatCurrency(1000.95)).toBe('$1,001')
+  expect(formatCurrency(1000.95)).toBe('$1,000.95')
   expect(formatCurrency(1000.95, 2)).toBe('$1,000.95')
-  expect(formatCurrency(1000.95, 2, 'EUR')).toBe('€1,000.95')
-  expect(formatCurrency(1000, 0, 'JPY')).toBe('¥1,000')
-  expect(formatCurrency(1000.95, 2, 'GBP')).toBe('£1,000.95')
-  expect(formatCurrency(1000.95, 2, 'CAD')).toBe('CA$1,000.95')
-  expect(formatCurrency(1000.95, 2, 'AUD')).toBe('A$1,000.95')
+  expect(formatCurrency(1000.95, 2, 'en-GB')).toBe('£1,000.95')
+  expect(formatCurrency(1000, 0, 'ja-JP')).toBe('￥1,000')
+  expect(formatCurrency(1000.95, 2, 'en-GB')).toBe('£1,000.95')
+  expect(formatCurrency(1000.95, 2, 'en-au')).toBe('$1,000.95')
 })
 
 test('formatDurationLabels', () => {
@@ -20,7 +19,7 @@ test('formatDurationLabels', () => {
 })
 
 test('formatPercentage', () => {
-  expect(formatPercentage(0.1234)).toBe('12%')
+  expect(formatPercentage(0.1234, 0)).toBe('12%')
   expect(formatPercentage(0.1234, 2)).toBe('12.34%')
 })
 

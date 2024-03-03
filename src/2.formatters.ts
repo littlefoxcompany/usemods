@@ -125,7 +125,7 @@ export function formatPercentage(value: number, decimals: number = 2, locale: st
 /**
  * Format time into a human-readable string
  */
-export function formatDurationLabels(seconds: number, labels?: string, round: boolean = false): string {
+export function formatDurationLabels(seconds: number, labels: 'short' | 'long' = 'long', round: boolean = false): string {
   const time = [
     { unit: labels === 'short' ? 'yr' : ' year', secondsInUnit: 31536000 },
     { unit: labels === 'short' ? 'mo' : ' month', secondsInUnit: 2628000 },
