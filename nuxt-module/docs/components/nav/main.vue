@@ -12,7 +12,9 @@
             <div v-for="section in docs" class="">
               <NavDropdownItem v-for="link in section?.children" :key="link._path" :to="link._path">
                 <Icon :name="link.title" class="h-5 w-5 text-white/50" />
+
                 {{ link.title }}
+                {{ link.lead }}
               </NavDropdownItem>
             </div>
           </NavDropdown>
