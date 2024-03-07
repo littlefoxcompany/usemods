@@ -1,6 +1,6 @@
 {
   "name": "usemods",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "Zippy little modifiers and utilities for your frontend.",
   "scripts": {
     "dev": "bun run build.mjs --watch",
@@ -47,6 +47,7 @@
     "dist"
   ],
   "main": "dist/index.js",
+  "type": "module",
   "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
