@@ -5,7 +5,7 @@
       <section class="flex grow flex-col">
         <header class="flex grow flex-col items-center justify-center px-8 py-8 md:py-12">
           <h1
-            v-html="splitByWords('Zippy little utils for your javascript frameworks.')"
+            v-html="splitByWords('Zippy little utils for your JavaScript projects.')"
             id="title"
             class="max-w-[1200px] text-balance text-center text-4xl font-bold text-gray-900 md:text-6xl lg:text-7xl xl:text-8xl dark:text-white"></h1>
 
@@ -37,7 +37,7 @@
     </div>
 
     <Floaters class="absolute left-1/2 top-20 z-0 -translate-x-1/2" />
-    <div class="radial absolute left-1/2 top-0 z-0 hidden aspect-square w-full -translate-x-1/2 -translate-y-1/2 max-lg:hidden dark:flex"></div>
+    <div class="radial absolute bottom-0 left-1/2 z-0 hidden aspect-square w-full -translate-x-1/2 translate-y-1/2 max-lg:hidden dark:flex"></div>
   </main>
 </template>
 

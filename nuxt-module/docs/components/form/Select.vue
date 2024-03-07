@@ -20,5 +20,5 @@
     }
   })
 
-  const id = generateShortId()
+  const id = useId()
 </script>

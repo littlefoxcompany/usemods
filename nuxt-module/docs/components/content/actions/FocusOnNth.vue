@@ -5,12 +5,18 @@
         <FormInput label="Name" type="text" name="name" placeholder="Name" />
         <FormInput label="Email" type="email" name="email" placeholder="Email" />
         <FormInput label="Password" type="password" name="password" placeholder="Password" />
-        <Button @click="form && focusOnLast(form)">Focus</Button>
+        <FormSelect v-model="index" label="Select" name="select" placeholder="Select an option">
+          <option value="0">First (0)</option>
+          <option value="1">Second (1)</option>
+          <option value="-1">Last (-1)</option>
+        </FormSelect>
+        <Button @click="form && focusOnNth(form, index)">Focus</Button>
       </form>
     </ExampleInputs>
   </Example>
 </template>
 
 <script setup lang="ts">
-  const form = ref<HTMLFormElement | null>(null)
+  const form = ref<HTMLFormElement>()
+  const index = ref(0)
 </script>
