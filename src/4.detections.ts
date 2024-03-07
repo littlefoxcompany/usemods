@@ -192,10 +192,17 @@ export function detectUrlHash(): string | null {
 }
 
 /**
- * Returns the current host or domain name of the URL
+ * Returns the current host or domain name from the URL
  */
 export function detectHost(): string {
   return window.location.host
+}
+
+/**
+ * Returns the current hostname from the URL
+ */
+export function detectHostName(): string {
+  return window.location.hostname
 }
 
 /**

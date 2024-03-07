@@ -5,85 +5,87 @@
 /**
  * Smoothly scrolls to the element with the specified ID without scuffing up your URLs.
  */
-export function scrollToAnchor(id: string, callback?: Function): void {
-  setTimeout(() => {
-    const selector = `#${id}`
-    const element = document.querySelector(selector)
-    if (!element) return
-    element.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    })
-  }, 180)
-
-  if (callback) callback()
+export function scrollToAnchor(id: string): Promise<void> {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const selector = `#${id}`
+      const element = document.querySelector(selector)
+      if (!element) {
+        reject(`Element with id '${id}' not found.`)
+        return
+      }
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      })
+      resolve()
+    }, 180)
+  })
 }
 
 /**
  * Toggles the body scroll with specified class names and a optional callback
  */
-export function toggleBodyScroll(className: string = 'fixed', callback?: Function): void {
-  const body = document.body
-  const isFixed = body.classList.contains(className)
-  const scrollY = isFixed ? parseInt(body.style.top, 10) : window.scrollY
+export function toggleBodyScroll(className: string = 'fixed'): Promise<void> {
+  return new Promise((resolve, reject) => {
+    try {
+      const body = document.body
+      const isFixed = body.classList.contains(className)
+      const scrollY = isFixed ? parseInt(body.style.top, 10) : window.scrollY
 
-  body.style.top = isFixed ? '' : `-${scrollY}px`
-  body.classList.toggle(className, !isFixed)
-  if (isFixed) window.scrollTo(0, -scrollY)
-  if (callback) callback()
+      body.style.top = isFixed ? '' : `-${scrollY}px`
+      body.classList.toggle(className, !isFixed)
+      if (isFixed) window.scrollTo(0, -scrollY)
+
+      resolve()
+    } catch (error) {
+      reject(error)
+    }
+  })
 }
 
 /**
  * Toggles the element scroll with specified class names and a optional callback
  */
-export function toggleElementScroll(element: HTMLElement, callback?: () => void): void {
-  if (!element) {
-    console.warn('[MODS] toggleElementScroll was called without a valid element.')
-    return
-  }
+export function toggleElementScroll(element: HTMLElement): Promise<void> {
+  return new Promise((resolve, reject) => {
+    if (element.dataset.isScrollLocked === 'true') {
+      element.style.overflow = ''
+      delete element.dataset.isScrollLocked
+    } else {
+      element.style.overflow = 'hidden'
+      element.dataset.isScrollLocked = 'true'
+    }
 
-  if (element.dataset.isScrollLocked === 'true') {
-    element.style.overflow = ''
-    delete element.dataset.isScrollLocked
-  } else {
-    element.style.overflow = 'hidden'
-    element.dataset.isScrollLocked = 'true'
-  }
-
-  if (callback) callback()
+    resolve()
+  })
 }
 
 /**
  * Copies a convereted string to the clipboard
  */
-export function copyToClipboard(text: any, callback?: Function): void {
-  text = String(text)
+export function copyToClipboard(value: string | number): Promise<void> {
   if (!navigator.clipboard || !navigator.clipboard.writeText) {
-    console.error('Clipboard API is not available')
-    return
+    return Promise.reject('Clipboard API is not available')
   }
 
-  navigator.clipboard
-    .writeText(String(text))
-    .then(() => {
-      if (callback) callback()
-    })
-    .catch((error) => {
-      console.error('Failed to copy text: ', error)
-    })
+  return navigator.clipboard.writeText(String(value)).catch((error) => {
+    console.error('Failed to copy text: ', error)
+    throw error
+  })
 }
 
 /**
  * Toggles the fullscreen mode
  */
-export function toggleFullScreen(callback?: Function): void {
-  if (document.fullscreenElement) {
-    document.exitFullscreen()
-  } else {
-    document.documentElement.requestFullscreen().then(() => {
-      if (callback) callback()
-    })
-  }
+export function toggleFullScreen(): Promise<void> {
+  return new Promise((resolve, reject) => {
+    if (document.fullscreenElement) {
+      document.exitFullscreen().then(resolve).catch(reject)
+    } else {
+      document.documentElement.requestFullscreen().then(resolve).catch(reject)
+    }
+  })
 }
 
 /**
@@ -111,54 +113,73 @@ export function toggleFullScreen(callback?: Function): void {
 /**
  * Resets a form to its initial state
  */
-export function resetForm(form: HTMLFormElement): void {
-  form.reset()
+export function resetForm(form: HTMLFormElement): Promise<void> {
+  return new Promise((resolve, reject) => {
+    try {
+      form.reset()
+      resolve()
+    } catch (error) {
+      reject(error)
+    }
+  })
 }
 
 /**
  * Focuses on and scrolls to the first invalid input, select, or textarea element within a form.
  */
-export function focusOnInvalid(element: HTMLElement): void {
-  const input = element.querySelector('input:invalid, select:invalid, textarea:invalid') as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-  if (input) {
-    input.focus()
-    input.scrollIntoView({ behavior: 'smooth', block: 'center' })
-  }
+export function focusOnInvalid(container: HTMLElement): Promise<void> {
+  return new Promise((resolve, reject) => {
+    try {
+      const input = container.querySelector('input:invalid, select:invalid, textarea:invalid') as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+      if (input) {
+        input.focus()
+        input.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }
+      resolve()
+    } catch (error) {
+      reject(error)
+    }
+  })
 }
 
 /**
- * Focuses on the first element within the specified form
+ * Focuses on the nth element within the specified form, where 0 is the first element and -1 is the last element.
  */
-export function focusOnFirst(element: HTMLElement): void {
-  const input = element.querySelector('input') as HTMLInputElement
-  if (input) {
-    input.focus()
-    input.scrollIntoView({ behavior: 'smooth', block: 'center' })
-  }
-}
+export function focusOnNth(container: HTMLElement, index: number = 0): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const elements = container.querySelectorAll('input, textarea, select')
+    const elementIndex = index === -1 ? elements.length - 1 : index
 
-/**
- * Focuses on the last element as well, incase you want that.
- */
-export function focusOnLast(element: HTMLElement): void {
-  const inputs = element.querySelectorAll('input') as NodeListOf<HTMLInputElement>
-  const input = inputs[inputs.length - 1]
-  if (input) {
-    input.focus()
-    input.scrollIntoView({ behavior: 'smooth', block: 'center' })
-  }
+    if (elementIndex < 0 || elementIndex >= elements.length) {
+      return reject(new Error(`Element at index ${index} is out of bounds.`))
+    }
+
+    const element = elements[elementIndex] as HTMLElement
+
+    if (!element || typeof element.focus !== 'function') {
+      return reject(new Error('Failed to focus on the element.'))
+    }
+
+    try {
+      element.focus({ preventScroll: true })
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      resolve()
+    } catch (error) {
+      reject(new Error('Failed to focus on the element.'))
+    }
+  })
 }
 
 /**
  *  Sets up a keyboard trap within an HTML element, allowing the focus to cycle between the first and last focusable elements when the Tab key is pressed.
  */
-export function focusTrap(element: HTMLElement): void {
-  const focusableElements = element.querySelectorAll('a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select')
+export function focusTrap(container: HTMLElement): void {
+  const focusableElements = container.querySelectorAll('a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select')
   const firstFocusableElement = focusableElements[0] as HTMLElement
   const lastFocusableElement = focusableElements[focusableElements.length - 1] as HTMLElement
   const KEYCODE_TAB = 9
 
-  element.addEventListener('keydown', (event) => {
+  container.addEventListener('keydown', (event) => {
     const isTabPressed = event.key === 'Tab' || event.keyCode === KEYCODE_TAB
     if (!isTabPressed) return
 
