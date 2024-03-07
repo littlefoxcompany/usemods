@@ -59,7 +59,7 @@
     }
   })
 
-  const id = generateShortId()
+  const id = useId()
 </script>
 
 <style scoped>

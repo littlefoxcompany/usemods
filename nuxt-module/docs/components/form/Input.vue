@@ -18,8 +18,6 @@
     inheritAttrs: true
   })
 
-  const id = generateShortId()
-
   const props = defineProps({
     modelValue: {
       type: [String, Number, Object]
@@ -38,4 +36,6 @@
       type: String
     }
   })
+
+  const id = useId()
 </script>
