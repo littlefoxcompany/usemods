@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.0.9
+
+[compare changes](https://github.com/LittleFoxCompany/usemods/compare/v0.0.8...v0.0.9)
+
+### 💅 Refactors
+
+- Update scrollToAnchor, toggleBodyScroll, toggleElementScroll, ([f08eb1c](https://github.com/LittleFoxCompany/usemods/commit/f08eb1c))
+
+### 🎨 Styles
+
+- Update component styles and refactor form input handling logic ([b3bd840](https://github.com/LittleFoxCompany/usemods/commit/b3bd840))
+
+### ❤️ Contributors
+
+- Jeremy Butler ([@jrmymbtlr](http://github.com/jrmymbtlr))
+
 ## v0.0.8
 
 [compare changes](https://github.com/LittleFoxCompany/usemods/compare/v0.0.6...v0.0.8)
