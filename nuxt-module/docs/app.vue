@@ -6,6 +6,9 @@
 </template>
 
 <script setup lang="ts">
-  const { data: contentLinks } = await useAsyncData('content-links', () => fetchContentNavigation())
-  provide('content-links', contentLinks)
+  const { data: introLinks } = await useAsyncData('intro-links', () => queryContent('intro').only(['_path', 'title', 'lead']).find())
+  const { data: docLinks } = await useAsyncData('doc-links', () => queryContent('docs').only(['_path', 'title', 'lead']).find())
+
+  provide('intro-links', introLinks)
+  provide('doc-links', docLinks)
 </script>
