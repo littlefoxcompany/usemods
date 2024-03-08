@@ -43,7 +43,7 @@ const currencySymbols = new Map([
 ])
 
 /**
- * Format numbers into thousands, millions or billions
+ * Format numbers into neat and formatted strings for people
  */
 export function formatNumber(value: number, decimals: number = 2, locale: string = 'en-US'): string {
   const safeDecimals = Math.max(0, Math.min(decimals, 20))
