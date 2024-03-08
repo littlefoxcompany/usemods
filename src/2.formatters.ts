@@ -1,6 +1,6 @@
 // title: Formatters
 // description: Formatter functions manipulate and display various data types, such as dates, numbers, and strings, in a more readable and user-friendly format.
-// lead: Format difficult content just right
+// lead: Format misbehaving content
 
 const currencySymbols = new Map([
   ['en-US', 'USD'],
