@@ -1,6 +1,6 @@
 // title: Validators
 // description: A collection of validators for common data types
-// lead: Ewww what is that? Validate it!
+// lead: Hmmmm what is that?
 
 /**
  * Check if any given value is a valid email address.

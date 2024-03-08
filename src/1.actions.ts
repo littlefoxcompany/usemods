@@ -1,6 +1,6 @@
 // title: Actions
 // description: A collection of useful actions for common tasks and interactions with the DOM.
-// lead: Karate chops and other useful actions.
+// lead: JS karate chops
 
 /**
  * Smoothly scrolls to the element with the specified ID without scuffing up your URLs.
