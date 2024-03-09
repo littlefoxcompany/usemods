@@ -15,7 +15,7 @@
                   <Icon :name="link.title" class="mt-1 h-5 w-5 shrink-0 text-white/50" />
                   <div>
                     {{ link.title }}
-                    <div class="whitespace-nowrap text-xs text-white/50">{{ link.lead }}</div>
+                    <div class="whitespace-nowrap text-xs text-gray-500 dark:text-white/50">{{ link.lead }}</div>
                   </div>
                 </NavDropdownItem>
               </div>
@@ -25,7 +25,7 @@
                     <Icon :name="link.title" class="mt-1 h-5 w-5 shrink-0 text-white/50" />
                     <div>
                       {{ link.title }}
-                      <div class="whitespace-nowrap text-xs text-white/50">{{ link.lead }}</div>
+                      <div class="whitespace-nowrap text-xs text-gray-500 dark:text-white/50">{{ link.lead }}</div>
                     </div>
                   </NavDropdownItem>
                 </div>
