@@ -6,9 +6,6 @@ export default defineNuxtConfig({
       theme: 'github-dark',
       preload: ['javascript', 'typescript', 'json', 'html', 'css', 'yaml']
     }
-    // experimental: {
-    //   search: true
-    // }
   },
   app: {
     head: {
