@@ -131,7 +131,10 @@ export function detectScrollPosition(): { x: number; y: number } {
 /**
  * Detect the absolute mouse position with the page
  */
-export function detectMousePosition(event: MouseEvent): { x: number; y: number } {
+export function detectMousePosition(event: MouseEvent): {
+  x: number
+  y: number
+} {
   return {
     x: event.pageX,
     y: event.pageY
@@ -141,7 +144,10 @@ export function detectMousePosition(event: MouseEvent): { x: number; y: number }
 /**
  * Detect the relative mouse position with the window size
  */
-export function detectRelativeMousePosition(event: MouseEvent): { x: number; y: number } {
+export function detectRelativeMousePosition(event: MouseEvent): {
+  x: number
+  y: number
+} {
   const { innerWidth, innerHeight } = window
   return {
     x: event.clientX / innerWidth,
