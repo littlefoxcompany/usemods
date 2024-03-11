@@ -50,6 +50,7 @@ function generateMarkdown(tsContent: string): string {
     const [fullMatch, decloration, name, params, returns] = match
     const jsDocPattern = /\/\*\*([\s\S]*?)\*\//
     const jsDocMatch = jsDocPattern.exec(fullMatch)
+    // const functionMatch = decloration.toString().trim()
     const description = jsDocMatch
       ? jsDocMatch[1]
           .trim()

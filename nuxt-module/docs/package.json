@@ -14,6 +14,7 @@
     "@tailwindcss/typography": "^0.5.10",
     "nuxt": "^3.10.3",
     "nuxt-icon": "^0.6.8",
+    "nuxt-shiki": "^0.2.1",
     "shadcn-nuxt": "^0.10.0",
     "shiki": "^1.1.7",
     "vue": "^3.4.20"

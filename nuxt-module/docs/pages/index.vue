@@ -1,5 +1,5 @@
 <template>
-  <main class="relative flex min-h-screen flex-col">
+  <main class="relative flex max-h-screen min-h-screen flex-col overflow-clip">
     <NavMain class="relative z-20 shrink" />
     <div class="relative z-10 flex grow">
       <section class="flex grow flex-col">
@@ -12,7 +12,6 @@
           <div class="mt-20 flex items-center gap-3 max-md:flex-col">
             <NuxtLink to="intro/introduction">
               <Button size="lg" class="group">
-                Get Started
                 <Icon name="heroicons:arrow-right" class="h-5 w-5 text-white/50 transition-all duration-200 group-hover:translate-x-1" />
               </Button>
             </NuxtLink>
