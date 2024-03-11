@@ -1,5 +1,5 @@
 <template>
-  <main class="relative flex min-h-screen flex-col">
+  <main class="relative flex max-h-screen min-h-screen flex-col overflow-clip">
     <NavMain class="relative z-20 shrink" />
     <div class="relative z-10 flex grow">
       <section class="flex grow flex-col">
