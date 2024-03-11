@@ -7,11 +7,12 @@
           <h1
             v-html="splitByWords('Zippy little utils for your JavaScript projects.')"
             id="title"
-            class="max-w-[1200px] text-balance text-center text-4xl font-bold text-gray-900 md:text-6xl lg:text-7xl xl:text-8xl dark:text-white"></h1>
+            class="max-w-[1200px] text-balance text-center font-bold leading-[1.25em] text-gray-900 [font-size:_clamp(3em,8vw,6rem)] dark:text-white"></h1>
 
           <div class="mt-20 flex items-center gap-3 max-md:flex-col">
             <NuxtLink to="intro/introduction">
               <Button size="lg" class="group">
+                Get Started
                 <Icon name="heroicons:arrow-right" class="h-5 w-5 text-white/50 transition-all duration-200 group-hover:translate-x-1" />
               </Button>
             </NuxtLink>
