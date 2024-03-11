@@ -9,8 +9,8 @@ export interface ModuleOptions {
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: 'mods-module',
-    configKey: 'modsModule'
+    name: 'usemods',
+    configKey: 'usemods'
   },
   // Default configuration options of the Nuxt module
   defaults: {
@@ -23,7 +23,6 @@ export default defineNuxtModule<ModuleOptions>({
 
     for (const name of Object.keys(utils)) {
       const alias = aliasMap.has(name) ? aliasMap.get(name!) : name
-      console.debug(`Adding ${name} as ${alias}`)
       addImports({
         name: name,
         as: alias,

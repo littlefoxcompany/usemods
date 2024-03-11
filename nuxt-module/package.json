@@ -1,6 +1,6 @@
 {
   "name": "usemods-nuxt",
-  "version": "1.0.1",
+  "version": "0.0.11",
   "description": "Zippy little modifiers and utilities for your Nuxt app.",
   "repository": {
     "type": "git",
@@ -26,7 +26,7 @@
     "dev": "nuxi dev docs",
     "dev:build": "nuxi build docs",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare docs",
-    "release": "npm run test && npm run prepack && changelogen --release && npm publish",
+    "release": "npm run test && npm run prepack && npm publish",
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest watch"
