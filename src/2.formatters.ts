@@ -1,6 +1,6 @@
 // title: Formatters
 // description: Formatter functions manipulate and display various data types, such as dates, numbers, and strings, in a more readable and user-friendly format.
-// lead: Format difficult content just right
+// lead: Format misbehaving content
 
 const currencySymbols = new Map([
   ['en-US', 'USD'],
@@ -43,7 +43,7 @@ const currencySymbols = new Map([
 ])
 
 /**
- * Format numbers into thousands, millions or billions
+ * Format numbers into neat and formatted strings for people
  */
 export function formatNumber(value: number, decimals: number = 2, locale: string = 'en-US'): string {
   const safeDecimals = Math.max(0, Math.min(decimals, 20))

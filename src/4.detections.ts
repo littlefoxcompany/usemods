@@ -1,6 +1,6 @@
 // title: Detections
 // description: Client-side detections for various user and browser information. Perfect for personalisation, analytics or debugging weird and wonderful bugs. Please note we're working on making our examples reactive! 🚀
-// lead: Did you hear that? Probably nothing.
+// lead: Listen to your clients
 
 /**
  * Detect the current device type (Mobile or Desktop)
@@ -131,7 +131,10 @@ export function detectScrollPosition(): { x: number; y: number } {
 /**
  * Detect the absolute mouse position with the page
  */
-export function detectMousePosition(event: MouseEvent): { x: number; y: number } {
+export function detectMousePosition(event: MouseEvent): {
+  x: number
+  y: number
+} {
   return {
     x: event.pageX,
     y: event.pageY
@@ -141,7 +144,10 @@ export function detectMousePosition(event: MouseEvent): { x: number; y: number }
 /**
  * Detect the relative mouse position with the window size
  */
-export function detectRelativeMousePosition(event: MouseEvent): { x: number; y: number } {
+export function detectRelativeMousePosition(event: MouseEvent): {
+  x: number
+  y: number
+} {
   const { innerWidth, innerHeight } = window
   return {
     x: event.clientX / innerWidth,

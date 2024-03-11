@@ -21,12 +21,24 @@
             <div id="packages" class="relative h-11 overflow-visible">
               <button
                 type="button"
-                v-for="item in packages"
-                @click="copy(item)"
+                @click="copy('npm i usemods')"
                 class="flex h-11 cursor-pointer items-center gap-3 whitespace-nowrap rounded-full border border-white/5 bg-black/[5%] px-6 font-mono text-gray-900 backdrop-blur max-md:w-full dark:bg-white/[3%] dark:text-white/90 dark:shadow">
                 <Icon name="lucide:terminal" class="h-5 w-5 dark:text-white/50" />
-                {{ item }}
+                npm i usemods
               </button>
+            </div>
+          </div>
+
+          <div class="flex flex-col items-center gap-3 pt-16 opacity-50">
+            <div class="text-xs font-semibold uppercase tracking-wider opacity-50">Plug and play with</div>
+            <div class="flex items-center gap-3">
+              <Icon name="logos:nuxt-icon" class="h-7 w-7 grayscale hover:grayscale-0" />
+              <Icon name="logos:nextjs-icon" class="h-8 w-8 grayscale hover:grayscale-0" />
+              <Icon name="logos:vue" class="h-5 w-5 grayscale hover:grayscale-0" />
+              <Icon name="logos:react" class="h-5 w-5 grayscale hover:grayscale-0" />
+              <Icon name="logos:svelte-icon" class="h-5 w-5 grayscale hover:grayscale-0" />
+              <Icon name="logos:solidjs-icon" class="h-5 w-5 grayscale hover:grayscale-0" />
+              <Icon name="logos:nodejs-icon" class="h-5 w-5 grayscale hover:grayscale-0" />
             </div>
           </div>
         </header>
@@ -42,8 +54,6 @@
 </template>
 
 <script setup lang="ts">
-  const packages = ['npm i usemods']
-
   function copy(text: string) {
     copyToClipboard(text)
   }

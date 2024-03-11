@@ -1,6 +1,6 @@
 // title: Numbers
 // description: This file contains functions that are related to numbers.
-// lead: Crunch numbers like a flunked CS student.
+// lead: Crunch crunchy numbers
 
 /**
  * Calculates the sum of an array of numbers.

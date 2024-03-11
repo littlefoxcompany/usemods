@@ -22,7 +22,7 @@
 
     <!-- Function -->
     <div
-      class="mt-6 flex flex-wrap items-center gap-px rounded-xl border border-black/5 bg-indigo-600/[2%] px-4 py-3.5 font-mono text-sm text-gray-900 dark:border-white/[8%] dark:bg-white/[3%] dark:text-white">
+      class="mt-6 flex flex-wrap items-center gap-px rounded-lg border border-black/5 bg-indigo-600/[2%] px-4 py-3.5 font-mono text-sm text-gray-900 dark:border-white/[8%] dark:bg-white/[3%] dark:text-white">
       {{ name }}
       <span class="mr-0.5 opacity-50">(</span>
 
