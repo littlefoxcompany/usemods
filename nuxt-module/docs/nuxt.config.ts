@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  modules: ['../src/module', '@nuxtjs/tailwindcss', 'nuxt-icon', '@nuxt/content', '@vueuse/nuxt', '@nuxt/image', '@nuxtjs/color-mode', 'shadcn-nuxt'],
+  modules: ['../src/module', '@nuxtjs/tailwindcss', 'nuxt-icon', '@nuxt/content', '@vueuse/nuxt', '@nuxt/image', '@nuxtjs/color-mode', 'shadcn-nuxt', 'nuxt-shiki'],
   css: ['~/assets/css/main.css'],
   content: {
     highlight: {
