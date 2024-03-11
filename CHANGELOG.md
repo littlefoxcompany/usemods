@@ -1,6 +1,29 @@
 # Changelog
 
 
+## v0.0.12
+
+[compare changes](https://github.com/LittleFoxCompany/usemods/compare/v0.0.11...v0.0.12)
+
+### 🚀 Enhancements
+
+- Add Nuxt module support and Nuxt-Shiki highlighting ([79e9f50](https://github.com/LittleFoxCompany/usemods/commit/79e9f50))
+
+### 💅 Refactors
+
+- Update main container styling to allow for overflow clipping for better user experience. ([2e0ecaa](https://github.com/LittleFoxCompany/usemods/commit/2e0ecaa))
+- Updated the border radius to rounded-xl for improved design consistency. ([0853eb4](https://github.com/LittleFoxCompany/usemods/commit/0853eb4))
+- Update styling classes in template and pre elements for consistency and improved readability. ([2bed5e0](https://github.com/LittleFoxCompany/usemods/commit/2bed5e0))
+
+### 🏡 Chore
+
+- **release:** V1.0.1 ([ec7dbc8](https://github.com/LittleFoxCompany/usemods/commit/ec7dbc8))
+
+### ❤️ Contributors
+
+- Jeremy Butler ([@jrmymbtlr](http://github.com/jrmymbtlr))
+- Phillip Hartin ([@philliphartin](http://github.com/philliphartin))
+
 ## v0.0.11
 
 [compare changes](https://github.com/LittleFoxCompany/usemods/compare/v0.0.8...v0.0.11)
