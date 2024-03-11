@@ -1,6 +1,6 @@
 {
   "name": "usemods-nuxt",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Zippy little modifiers and utilities for your Nuxt app.",
   "repository": {
     "type": "git",
@@ -32,7 +32,8 @@
     "test:watch": "vitest watch"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.10.3"
+    "@nuxt/kit": "^3.10.3",
+    "usemods": "^0.0.11"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",

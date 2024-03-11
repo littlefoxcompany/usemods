@@ -7,7 +7,7 @@
     "build": "bun run build.mjs",
     "test": "bun test test/*",
     "test:watch": "bun test --watch test/*",
-    "release": "npm run test && changelogen --release && npm publish && npm module:release",
+    "release": "npm run test && changelogen --release && npm publish && npm run module:release",
     "prepublishOnly": "bun run build",
     "docs": "concurrently \"npm link && npm run docs:install && npm run module:dev\" \"npm run dev\"",
     "docs:use-local-package": "npm link",
