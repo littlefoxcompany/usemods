@@ -7,7 +7,7 @@
           <h1
             v-html="splitByWords('Zippy little utils for your JavaScript projects.')"
             id="title"
-            class="max-w-[1200px] text-balance text-center font-bold leading-[1.25em] text-gray-900 [font-size:_clamp(3em,8vw,6rem)] dark:text-white"></h1>
+            class="max-w-[1200px] text-balance text-center font-bold leading-[1.25em] text-gray-900 [font-size:_clamp(2.5em,8vw,6rem)] dark:text-white"></h1>
 
           <div class="mt-20 flex items-center gap-3 max-md:flex-col">
             <NuxtLink to="intro/introduction">
