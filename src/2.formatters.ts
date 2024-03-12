@@ -77,7 +77,7 @@ export function formatCurrency(number: number, decimals: number = 2, locale: str
 /**
  * Format numbers into valuations displayed in thousands, millions or billions
  */
-export function formatValuation(value: number, decimals: number = 2, locale: string = 'en-US'): string {
+export function formatValuation(number: number, decimals: number = 2, locale: string = 'en-US'): string {
   const safeDecimals = Math.max(0, Math.min(decimals, 20))
 
   let config: any = {
@@ -90,7 +90,7 @@ export function formatValuation(value: number, decimals: number = 2, locale: str
     currency: currencySymbols.get(locale) || 'USD'
   }
 
-  return new Intl.NumberFormat(locale, config).format(value)
+  return new Intl.NumberFormat(locale, config).format(number)
 }
 
 /**
