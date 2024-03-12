@@ -54,7 +54,7 @@ export function formatNumber(number: number, decimals: number = 2, locale: strin
     maximumFractionDigits: safeDecimals
   }
 
-  return new Intl.NumberFormat(locale, config).format(value)
+  return new Intl.NumberFormat(locale, config).format(number)
 }
 
 /**
@@ -71,7 +71,7 @@ export function formatCurrency(number: number, decimals: number = 2, locale: str
     currency: currencySymbols.get(locale) || 'USD'
   }
 
-  return new Intl.NumberFormat(locale, config).format(value)
+  return new Intl.NumberFormat(locale, config).format(number)
 }
 
 /**
