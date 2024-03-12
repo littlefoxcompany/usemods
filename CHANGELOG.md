@@ -1,6 +1,35 @@
 # Changelog
 
 
+## v0.0.13
+
+[compare changes](https://github.com/LittleFoxCompany/usemods/compare/v0.0.11...v0.0.13)
+
+### 🚀 Enhancements
+
+- Add Nuxt module support and Nuxt-Shiki highlighting ([79e9f50](https://github.com/LittleFoxCompany/usemods/commit/79e9f50))
+- Add Vue example in the Usage section for clarity and consistency with other sections. ([b96544b](https://github.com/LittleFoxCompany/usemods/commit/b96544b))
+
+### 💅 Refactors
+
+- Update main container styling to allow for overflow clipping for better user experience. ([2e0ecaa](https://github.com/LittleFoxCompany/usemods/commit/2e0ecaa))
+- Updated the border radius to rounded-xl for improved design consistency. ([0853eb4](https://github.com/LittleFoxCompany/usemods/commit/0853eb4))
+- Update styling classes in template and pre elements for consistency and improved readability. ([2bed5e0](https://github.com/LittleFoxCompany/usemods/commit/2bed5e0))
+- Adjusted styling and content for homepage title and Get Started button to improve readability and user experience. ([516e7ce](https://github.com/LittleFoxCompany/usemods/commit/516e7ce))
+- Change parameter name from 'value' to 'number' in formatNumber and formatCurrency functions to improve code readability. ([eb7d336](https://github.com/LittleFoxCompany/usemods/commit/eb7d336))
+- Decreased font size on title to improve readability on smaller screens. ([bebdb80](https://github.com/LittleFoxCompany/usemods/commit/bebdb80))
+- Update version to 0.0.12 and fix value parameter name for formatNumber and formatCurrency functions. ([b321324](https://github.com/LittleFoxCompany/usemods/commit/b321324))
+
+### 🏡 Chore
+
+- **release:** V1.0.1 ([ec7dbc8](https://github.com/LittleFoxCompany/usemods/commit/ec7dbc8))
+- **release:** V0.0.12 ([b0341c2](https://github.com/LittleFoxCompany/usemods/commit/b0341c2))
+
+### ❤️ Contributors
+
+- Jeremy Butler ([@jrmymbtlr](http://github.com/jrmymbtlr))
+- Phillip Hartin ([@philliphartin](http://github.com/philliphartin))
+
 ## v0.0.12
 
 [compare changes](https://github.com/LittleFoxCompany/usemods/compare/v0.0.11...v0.0.12)
