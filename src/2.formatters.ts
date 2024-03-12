@@ -45,7 +45,7 @@ const currencySymbols = new Map([
 /**
  * Format numbers into neat and formatted strings for people
  */
-export function formatNumber(value: number, decimals: number = 2, locale: string = 'en-US'): string {
+export function formatNumber(number: number, decimals: number = 2, locale: string = 'en-US'): string {
   const safeDecimals = Math.max(0, Math.min(decimals, 20))
 
   let config: any = {
@@ -60,7 +60,7 @@ export function formatNumber(value: number, decimals: number = 2, locale: string
 /**
  * Format numbers into local currency with extra smarts
  */
-export function formatCurrency(value: number, decimals: number = 2, locale: string = 'en-US'): string {
+export function formatCurrency(number: number, decimals: number = 2, locale: string = 'en-US'): string {
   const safeDecimals = Math.max(0, Math.min(decimals, 20))
 
   let config: any = {
