@@ -10,7 +10,6 @@
     "release": "npm run test && changelogen --release && npm publish && npm run module:release",
     "prepublishOnly": "bun run build",
     "docs": "concurrently \"npm link && npm run docs:install && npm run module:dev\" \"npm run dev\"",
-    "docs:use-local-package": "npm link",
     "docs:install": "npm i --prefix ./nuxt-module && npm i --prefix ./nuxt-module/docs",
     "module:dev": "npm run build && npm run --prefix ./nuxt-module dev",
     "module:release": "bun run copy-version-number.ts && npm run --prefix ./nuxt-module release",
