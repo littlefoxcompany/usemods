@@ -75,7 +75,7 @@
     }, 800)
   }
 
-  const paramPattern = /\s*([^,]+?(?:\{[^}]*\}|'[^']*'|"[^"]*"|\[[^\]]*\]|[^,])*)\s*(?=,|$)?/g
+  const paramPattern = /\s*([^,]+?(?:\{[^}]*\}|'[^']*'|"[^"]*"|\[[^\]]*]|[^,])*?)\s*(?=,|$)/g
   const matches = props.params?.matchAll(paramPattern) || []
 
   const paramsObject = computed(() => {

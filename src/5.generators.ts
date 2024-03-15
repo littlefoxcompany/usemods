@@ -51,10 +51,10 @@ export function generatePassword(length: number = 8): string {
   const allChars = uppercase + lowercase + numbers + symbols
 
   const passwordArray = [
-    uppercase[Math.floor(Math.random() * uppercase.length)],
-    lowercase[Math.floor(Math.random() * lowercase.length)],
-    numbers[Math.floor(Math.random() * numbers.length)],
-    symbols[Math.floor(Math.random() * symbols.length)]
+    uppercase[Math.floor(window.crypto.getRandomValues(new Uint32Array(1))[0] * uppercase.length)],
+    lowercase[Math.floor(window.crypto.getRandomValues(new Uint32Array(1))[0] * lowercase.length)],
+    numbers[Math.floor(window.crypto.getRandomValues(new Uint32Array(1))[0] * numbers.length)],
+    symbols[Math.floor(window.crypto.getRandomValues(new Uint32Array(1))[0] * symbols.length)]
   ]
 
   for (let i = passwordArray.length; i < length; i++) {
