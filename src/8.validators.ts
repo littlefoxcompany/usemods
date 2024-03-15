@@ -125,7 +125,7 @@ export function isDate(value: any): boolean {
     return !isNaN(value.getTime())
   } else if (typeof value === 'string' || typeof value === 'number') {
     const date = new Date(value)
-    return !isNaN(date.getTime())
+    return !isNaN(date.getTime()) && date.toString() !== 'Invalid Date'
   }
   return false
 }

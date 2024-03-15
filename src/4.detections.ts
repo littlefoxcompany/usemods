@@ -3,6 +3,63 @@
 // lead: Listen to your clients
 
 /**
+ * Detect the current scroll position of the window
+ */
+export function detectScrollPosition(): { x: number; y: number } {
+  return {
+    x: window.scrollX,
+    y: window.scrollY
+  }
+}
+
+/**
+ * Detect the absolute mouse position with the page
+ */
+export function detectMousePosition(event: MouseEvent): {
+  x: number
+  y: number
+} {
+  return {
+    x: event.pageX,
+    y: event.pageY
+  }
+}
+
+/**
+ * Detect the relative mouse position with the window size
+ */
+export function detectRelativeMousePosition(event: MouseEvent): {
+  x: number
+  y: number
+} {
+  const { innerWidth, innerHeight } = window
+  return {
+    x: event.clientX / innerWidth,
+    y: event.clientY / innerHeight
+  }
+}
+
+/**
+ * Detect the browser's window size
+ */
+export function detectWindowSize(): { width: number; height: number } {
+  return {
+    width: window.innerWidth,
+    height: window.innerHeight
+  }
+}
+
+/**
+ * Detect the screen or monitor size
+ */
+export function detectScreenSize(): { width: number; height: number } {
+  return {
+    width: window.screen.width,
+    height: window.screen.height
+  }
+}
+
+/**
  * Detect the current device type (Mobile or Desktop)
  */
 export function detectDevice(): string {
@@ -52,26 +109,6 @@ export function detectDeviceOrientation(): string {
 }
 
 /**
- * Detect the browser's window size
- */
-export function detectWindowSize(): { width: number; height: number } {
-  return {
-    width: window.innerWidth,
-    height: window.innerHeight
-  }
-}
-
-/**
- * Detect the screen or monitor size
- */
-export function detectScreenSize(): { width: number; height: number } {
-  return {
-    width: window.screen.width,
-    height: window.screen.height
-  }
-}
-
-/**
  * Detect the container size via ID
  */
 // export function detectContainerSize(element: HTMLElement): { width: number; height: number } {
@@ -116,43 +153,6 @@ export function detectContainerBreakpoint(element: HTMLElement): string {
   if (width < 1152) return '@6xl'
   if (width < 1280) return '@7xl'
   return '@7xl'
-}
-
-/**
- * Detect the current scroll position of the window
- */
-export function detectScrollPosition(): { x: number; y: number } {
-  return {
-    x: window.scrollX,
-    y: window.scrollY
-  }
-}
-
-/**
- * Detect the absolute mouse position with the page
- */
-export function detectMousePosition(event: MouseEvent): {
-  x: number
-  y: number
-} {
-  return {
-    x: event.pageX,
-    y: event.pageY
-  }
-}
-
-/**
- * Detect the relative mouse position with the window size
- */
-export function detectRelativeMousePosition(event: MouseEvent): {
-  x: number
-  y: number
-} {
-  const { innerWidth, innerHeight } = window
-  return {
-    x: event.clientX / innerWidth,
-    y: event.clientY / innerHeight
-  }
 }
 
 /**
