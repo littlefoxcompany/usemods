@@ -11,7 +11,7 @@
 
           <div class="mt-10 flex items-center gap-3 max-md:flex-col md:mt-20">
             <NuxtLink to="intro/introduction">
-              <Button size="lg" class="group">
+              <Button size="lg" class="group max-md:w-full">
                 Get Started
                 <Icon name="heroicons:arrow-right" class="h-5 w-5 text-white/50 transition-all duration-200 group-hover:translate-x-1" />
               </Button>
@@ -29,8 +29,8 @@
             </div>
           </div>
 
-          <div class="flex flex-col items-center gap-3 pt-16 opacity-50">
-            <div class="text-xs font-semibold uppercase tracking-wider opacity-50">Plug and play with</div>
+          <div class="flex flex-col items-center gap-3 pt-12 opacity-50 md:pt-16">
+            <div class="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-white/50">Plug and play with</div>
             <div class="flex items-center gap-3">
               <Icon name="logos:nuxt-icon" class="h-7 w-7 grayscale hover:grayscale-0" />
               <Icon name="logos:nextjs-icon" class="h-8 w-8 grayscale hover:grayscale-0" />

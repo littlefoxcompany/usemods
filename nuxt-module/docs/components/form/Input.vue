@@ -20,7 +20,7 @@
 
   const props = defineProps({
     modelValue: {
-      type: [String, Number, Object]
+      type: [String, Number, Object, Boolean]
     },
     placeholder: {
       type: String

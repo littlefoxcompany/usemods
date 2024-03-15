@@ -3,7 +3,7 @@
     <ExampleResult>{{ result }}</ExampleResult>
   </Example>
   <Callout class="mt-8">
-    <Icon class="w-5 h-5 mr-2" name="heroicons:cursor-arrow-rays" />
+    <Icon class="mr-2 h-5 w-5" name="heroicons:cursor-arrow-rays" />
     Don't forget to add a mousemove event listener
   </Callout>
 </template>

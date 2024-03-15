@@ -108,21 +108,6 @@ export function formatPercentage(value: number, decimals: number = 2, locale: st
 }
 
 /**
- * Format a number into a unit formatting
- */
-// export function formatUnit(value: number, unit: string, decimals: number = 2, locale: string = 'en-US'): string {
-//   let config: any = {
-//     style: 'unit',
-//     unit: unit,
-//     unitDisplay: 'short',
-//     minimumFractionDigits: decimals === 0 ? 0 : decimals === 1 ? 1 : 2,
-//     maximumFractionDigits: Math.min(decimals, 20)
-//   }
-
-//   return new Intl.NumberFormat(locale, config).format(value)
-// }
-
-/**
  * Format time into a human-readable string
  */
 export function formatDurationLabels(seconds: number, labels: 'short' | 'long' = 'long', round: boolean = false): string {
@@ -335,3 +320,18 @@ export function formatTextWrap(value: string): string {
   if (space !== -1) return value.substring(0, space) + '&nbsp;' + value.substring(space + 1)
   return value
 }
+
+/**
+ * Format a number into a unit formatting
+ */
+// export function formatUnit(value: number, unit: string, decimals: number = 2, locale: string = 'en-US'): string {
+//   let config: any = {
+//     style: 'unit',
+//     unit: unit,
+//     unitDisplay: 'short',
+//     minimumFractionDigits: decimals === 0 ? 0 : decimals === 1 ? 1 : 2,
+//     maximumFractionDigits: Math.min(decimals, 20)
+//   }
+
+//   return new Intl.NumberFormat(locale, config).format(value)
+// }
