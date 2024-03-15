@@ -1,7 +1,7 @@
 import { expect, test } from 'bun:test'
 import { dataSortBy } from '../src/7.data'
 
-test('sortBy', () => {
+test('dataSortBy', () => {
   const items = [
     { name: 'John', age: 25 },
     { name: 'Jane', age: 30 },
