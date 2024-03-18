@@ -103,6 +103,7 @@ export function max(numbers: number[]): number {
  * Returns the minimum and maximum values in an array of numbers.
  */
 export function minMax(numbers: number[]): [number, number] {
+  if (numbers.length === 0) return [0, 0]
   return [min(numbers), max(numbers)]
 }
 

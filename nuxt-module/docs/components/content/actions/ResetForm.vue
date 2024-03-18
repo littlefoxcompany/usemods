@@ -2,9 +2,9 @@
   <Example>
     <ExampleInputs>
       <form ref="form" class="flex items-end gap-3 max-md:flex-col">
-        <FormInput label="Name" type="text" name="name" placeholder="Name" />
-        <FormInput label="Email" type="email" name="email" placeholder="Email" />
-        <FormInput label="Password" type="password" name="password" placeholder="Password" />
+        <FormInput label="Name" type="text" name="name" value="Jimmy" placeholder="Name" />
+        <FormInput label="Email" type="email" name="email" value="jimmy@usemods.com" placeholder="Email" />
+        <FormInput label="Password" type="password" name="password" value="secrets" placeholder="Password" />
         <Button @click="resetForm(form)">Reset</Button>
       </form>
     </ExampleInputs>
