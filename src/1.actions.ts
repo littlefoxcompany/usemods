@@ -24,7 +24,7 @@ export function scrollToAnchor(id: string): Promise<void> {
 }
 
 /**
- * Toggles the body scroll with specified class names and a optional callback
+ * Toggles the body scroll with specified class names and returns a promise
  */
 export function toggleBodyScroll(className: string = 'fixed'): Promise<void> {
   return new Promise((resolve, reject) => {
@@ -45,7 +45,7 @@ export function toggleBodyScroll(className: string = 'fixed'): Promise<void> {
 }
 
 /**
- * Toggles the element scroll with specified class names and a optional callback
+ * Toggles the element scroll with specified class names and returns a promise
  */
 export function toggleElementScroll(element: HTMLElement): Promise<void> {
   return new Promise((resolve, reject) => {
