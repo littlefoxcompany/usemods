@@ -22,9 +22,9 @@
 
     <!-- Function -->
     <div
-      class="mt-6 flex flex-wrap items-center gap-px rounded-xl border border-black/5 bg-indigo-600/[2%] px-4 py-3.5 font-mono text-sm text-gray-900 dark:border-white/[8%] dark:bg-white/[3%] dark:text-white">
+      class="mt-6 flex flex-wrap items-center gap-px rounded-xl border border-black/5 bg-indigo-600/[2%] px-4 py-3.5 font-mono text-sm text-gray-900 dark:border-white/[8%] dark:bg-white/[3%] dark:text-gray-400">
       {{ name }}
-      <span class="mr-0.5 opacity-50">(</span>
+      <span class="mr-0.5 text-gray-500">(</span>
 
       <template v-for="(param, index) in paramsObject" :key="index">
         <div class="flex h-5 items-center gap-1 rounded-md bg-indigo-600/[5%] px-1 py-px text-indigo-600 dark:bg-white/[8%] dark:text-indigo-100">
@@ -35,7 +35,7 @@
 
         <span v-if="index < paramsObject.length - 1" class="mr-0.5">,</span>
       </template>
-      <span class="ml-0.5 opacity-50">)</span>
+      <span class="ml-0.5 text-gray-500">)</span>
     </div>
 
     <slot />

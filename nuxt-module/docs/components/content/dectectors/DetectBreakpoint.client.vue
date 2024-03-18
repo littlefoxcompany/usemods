@@ -9,16 +9,12 @@
 <script setup lang="ts">
   const result = ref('')
 
-  function updateResult() {
-    result.value = detectBreakpoint()
-  }
-
   onMounted(() => {
-    updateResult()
-    window.addEventListener('resize', updateResult)
+    result.value = detectBreakpoint()
+    window.addEventListener('resize', (event) => (result.value = detectBreakpoint()))
   })
 
   onUnmounted(() => {
-    window.removeEventListener('resize', updateResult)
+    window.removeEventListener('resize', (event) => (result.value = detectBreakpoint()))
   })
 </script>

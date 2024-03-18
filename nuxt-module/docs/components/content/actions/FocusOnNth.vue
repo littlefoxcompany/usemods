@@ -2,9 +2,9 @@
   <Example>
     <ExampleInputs>
       <form ref="form" class="flex items-end gap-3 max-md:flex-col">
-        <FormInput label="Name" type="text" name="name" placeholder="Name" />
-        <FormInput label="Email" type="email" name="email" placeholder="Email" />
-        <FormInput label="Password" type="password" name="password" placeholder="Password" />
+        <FormInput label="Name" type="text" name="name" value="" placeholder="Name" />
+        <FormInput label="Email" type="email" name="email" value="" placeholder="Email" />
+        <FormInput label="Password" type="password" name="password" value="" placeholder="Password" />
         <FormSelect v-model="index" label="Select" name="select" placeholder="Select an option">
           <option value="0">First (0)</option>
           <option value="1">Second (1)</option>

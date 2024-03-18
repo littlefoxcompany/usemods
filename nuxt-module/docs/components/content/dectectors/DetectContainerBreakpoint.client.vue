@@ -8,20 +8,19 @@
 
 <script setup lang="ts">
   const result = ref('')
-  const container = ref<HTMLElement | null>(null)
-
-  function updateResult() {
-    if (container.value) {
-      result.value = detectContainerBreakpoint(container.value)
-    }
-  }
+  const container = ref<HTMLElement>()
 
   onMounted(() => {
-    updateResult()
-    window.addEventListener('resize', updateResult)
+    if (container.value) result.value = detectContainerBreakpoint(container.value)
+
+    window.addEventListener('resize', (event) => {
+      if (container.value) result.value = detectContainerBreakpoint(container.value)
+    })
   })
 
   onUnmounted(() => {
-    window.removeEventListener('resize', updateResult)
+    window.removeEventListener('resize', (event) => {
+      if (container.value) result.value = detectContainerBreakpoint(container.value)
+    })
   })
 </script>

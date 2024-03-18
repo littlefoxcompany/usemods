@@ -14,7 +14,7 @@ export async function processDocs() {
     const tsFiles = (await readdir(directoryPath)).filter((file) => extname(file) === '.ts' && file !== 'index.ts')
     const readPromises = tsFiles.map((tsFile) => readFile(resolve(directoryPath, tsFile), 'utf-8'))
 
-    const filesContent = await Promise.all(readPromises) // Read files in parallel
+    const filesContent = await Promise.all(readPromises)
 
     filesContent.forEach((tsContent, index) => {
       const markdownContent = generateMarkdown(tsContent)
