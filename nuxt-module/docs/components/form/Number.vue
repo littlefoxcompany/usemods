@@ -23,7 +23,7 @@
         <button
           type="button"
           name="decrement"
-          class="transtion-all flex text-zinc-500 opacity-50 hover:text-white hover:opacity-100"
+          class="transtion-all flex touch-manipulation select-none text-zinc-500 opacity-50 hover:text-white hover:opacity-100"
           @click.stop="$emit('update:modelValue', Number(modelValue) - 1)"
           :class="Number(modelValue) <= Number(min) ? 'pointer-events-none cursor-not-allowed opacity-30 hover:opacity-30' : ''">
           <Icon name="heroicons:minus-circle-20-solid" class="h-5 w-5 text-indigo-600 dark:text-white" />
@@ -31,7 +31,7 @@
         <button
           type="button"
           name="increment"
-          class="transtion-all flex text-zinc-500 opacity-50 hover:text-white hover:opacity-100"
+          class="transtion-all flex touch-manipulation select-none text-zinc-500 opacity-50 hover:text-white hover:opacity-100"
           @click.stop="$emit('update:modelValue', Number(modelValue) + 1)">
           <Icon name="heroicons:plus-circle-20-solid" class="h-5 w-5 text-indigo-600 dark:text-white" />
         </button>
