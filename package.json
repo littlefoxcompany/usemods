@@ -9,7 +9,7 @@
     "test:watch": "bun test --watch test/*",
     "release": "npm run test && changelogen --release && npm publish && npm run module:release",
     "prepublishOnly": "bun run build",
-    "docs": "concurrently \"npm link && npm run docs:install && npm run module:dev\" \"npm run dev\"",
+    "docs": "concurrently \"npm run docs:install && npm run module:dev\" \"npm run dev\"",
     "docs:install": "npm i --prefix ./nuxt-module && npm i --prefix ./nuxt-module/docs",
     "module:dev": "npm run build && npm run --prefix ./nuxt-module dev",
     "module:release": "bun run copy-version-number.ts && npm run --prefix ./nuxt-module release",
@@ -59,6 +59,7 @@
     "bun-types": "^1.0.7",
     "changelogen": "^0.5.5",
     "concurrently": "^8.2.2",
+    "fs-extra": "^11.2.0",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.11",
     "typescript": "^5.2.2"
