@@ -1,4 +1,4 @@
-import { expect, test } from 'bun:test'
+import { expect, test } from 'vitest'
 import { formatCurrency, formatDurationLabels, formatPercentage, formatUnixTime, formatList, formatTitle } from '../src/2.formatters'
 
 test('formatCurrency', () => {
