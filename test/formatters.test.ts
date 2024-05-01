@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest'
-import { formatCurrency, formatDurationLabels, formatPercentage, formatUnixTime, formatList, formatTitle } from '../src/2.formatters'
+import { formatCurrency, formatDurationLabels, formatPercentage, formatUnixTime, formatList, formatTitle, formatInitials } from '../src/2.formatters'
 
 test('formatCurrency', () => {
   expect(formatCurrency(1000.95)).toBe('$1,000.95')
@@ -43,4 +43,15 @@ test('formatTitle', () => {
   expect(formatTitle('welcome to the jungle')).toBe('Welcome to the Jungle')
   expect(formatTitle('the quick brown fox jumps over the lazy dog')).toBe('The Quick Brown Fox Jumps Over the Lazy Dog')
   expect(formatTitle('UseMods is cooler than a vegan leather jacket')).toBe('UseMods is Cooler than a Vegan Leather Jacket')
+})
+
+test('formatInitials', () => {
+  expect(formatInitials('Penelope Pitstop')).toBe('PP')
+  expect(formatInitials('Zippy')).toBe('Z')
+  expect(formatInitials('Dr. Robotnik')).toBe('R')
+  expect(formatInitials('Mrs. Marple')).toBe('M')
+  // @ts-expect-error
+  expect(formatInitials(undefined)).toBe('')
+  // @ts-expect-error
+  expect(formatInitials(null)).toBe('')
 })

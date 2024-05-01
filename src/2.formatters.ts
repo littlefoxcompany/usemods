@@ -219,7 +219,8 @@ export function formatNumberToWords(value: number): string {
  * Generate initials from any string while ignoring common titles
  */
 export function formatInitials(text: string, length: number = 2): string {
-  text = text.replace(/(Mr|Mrs|Ms|Dr|Jr|Sr|Prof|Hon|Snr|Jnr|St)\.?/g, '').trim()
+  if (!text) return ''
+  text = text.replace(/(Mrs|Mr|Ms|Dr|Jr|Sr|Prof|Hon|Snr|Jnr|St)\.?/g, '').trim()
   return text
     .split(' ')
     .filter((word) => !['the', 'third'].includes(word.toLowerCase()))
