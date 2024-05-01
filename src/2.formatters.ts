@@ -257,6 +257,7 @@ export function formatList(items: string | object | any[], limit: number = Infin
 
  */
 export function formatTitle(text: string): string {
+  if (!text) return ''
   const exceptions = new Set([
     'a',
     'an',

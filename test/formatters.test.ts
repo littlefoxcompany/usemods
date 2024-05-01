@@ -1,7 +1,9 @@
 import { expect, test } from 'vitest'
-import { formatCurrency, formatDurationLabels, formatPercentage, formatUnixTime, formatList, formatTitle, formatInitials } from '../src/2.formatters'
+import { formatCurrency, formatDurationLabels, formatPercentage, formatUnixTime, formatList, formatTitle, formatInitials, formatValuation } from '../src/2.formatters'
 
 test('formatCurrency', () => {
+  expect(formatCurrency(0)).toBe('$0.00')
+  expect(formatCurrency(0, 0)).toBe('$0')
   expect(formatCurrency(1000.95)).toBe('$1,000.95')
   expect(formatCurrency(1000.95, 2)).toBe('$1,000.95')
   expect(formatCurrency(1000.95, 2, 'en-GB')).toBe('£1,000.95')
@@ -21,6 +23,7 @@ test('formatDurationLabels', () => {
 test('formatPercentage', () => {
   expect(formatPercentage(0.1234, 0)).toBe('12%')
   expect(formatPercentage(0.1234, 2)).toBe('12.34%')
+  expect(formatPercentage(0.125, 0)).toBe('13%')
 })
 
 test('formatUnixTime', () => {
@@ -36,6 +39,7 @@ test('formatList', () => {
   expect(formatList(['Apple', 'Oranges', 'Bananas', 'Pears'], 2)).toBe('Apple, Oranges and 2 more')
   expect(formatList(['Apple', 'Oranges', 'Bananas', 'Pears', 'Grapes'], 2)).toBe('Apple, Oranges and 3 more')
   expect(formatList(['Apple', 'Oranges', 'Bananas', 'Pears', 'Grapes'], 2, 'or')).toBe('Apple, Oranges or 3 more')
+  expect(formatList([], 2, 'or')).toBe('')
 })
 
 test('formatTitle', () => {
@@ -43,6 +47,10 @@ test('formatTitle', () => {
   expect(formatTitle('welcome to the jungle')).toBe('Welcome to the Jungle')
   expect(formatTitle('the quick brown fox jumps over the lazy dog')).toBe('The Quick Brown Fox Jumps Over the Lazy Dog')
   expect(formatTitle('UseMods is cooler than a vegan leather jacket')).toBe('UseMods is Cooler than a Vegan Leather Jacket')
+  // @ts-expect-error
+  expect(formatTitle(null)).toBe('')
+  // @ts-expect-error
+  expect(formatTitle(undefined)).toBe('')
 })
 
 test('formatInitials', () => {
@@ -54,4 +62,11 @@ test('formatInitials', () => {
   expect(formatInitials(undefined)).toBe('')
   // @ts-expect-error
   expect(formatInitials(null)).toBe('')
+})
+
+test('formatValuation', () => {
+  expect(formatValuation(0)).toBe('$0.00')
+  expect(formatValuation(0, 0)).toBe('$0')
+  expect(formatValuation(0, 0, 'en-GB')).toBe('£0')
+  expect(formatValuation(0, 0, 'en-GB')).toBe('£0')
 })
