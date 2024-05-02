@@ -1,4 +1,4 @@
-import { expect, test } from 'bun:test'
+import { expect, test } from 'vitest'
 import { splitByWords, checkPasswordStrength, readingTime } from '../src/9.goodies'
 
 test('splitByWords', () => {

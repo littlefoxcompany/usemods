@@ -1,4 +1,4 @@
-import { expect, test } from 'bun:test'
+import { expect, test } from 'vitest'
 import { dataSortBy } from '../src/7.data'
 
 test('dataSortBy', () => {
