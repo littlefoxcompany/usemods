@@ -42,23 +42,38 @@ export declare function focusTrap(container: HTMLElement): void;
 /**
  * Format numbers into neat and formatted strings for people
  */
-export declare function formatNumber(number: number, decimals?: number, locale?: string): string;
+export declare function formatNumber(number: number, options?: {
+	decimals?: number;
+	locale?: string;
+}): string;
 /**
  * Format numbers into local currency with extra smarts
  */
-export declare function formatCurrency(number: number, decimals?: number, locale?: string): string;
+export declare function formatCurrency(number: number, options?: {
+	decimals?: number;
+	locale?: string;
+}): string;
 /**
  * Format numbers into valuations displayed in thousands, millions or billions
  */
-export declare function formatValuation(number: number, decimals?: number, locale?: string): string;
+export declare function formatValuation(number: number, options?: {
+	decimals?: number;
+	locale?: string;
+}): string;
 /**
  * Format a number into a percentage
  */
-export declare function formatPercentage(value: number, decimals?: number, locale?: string): string;
+export declare function formatPercentage(value: number, options?: {
+	decimals?: number;
+	locale?: string;
+}): string;
 /**
  * Format time into a human-readable string
  */
-export declare function formatDurationLabels(seconds: number, labels?: "short" | "long", round?: boolean): string;
+export declare function formatDurationLabels(seconds: number, options?: {
+	labels?: "short" | "long";
+	round?: boolean;
+}): string;
 /**
  * Format time into duration 00:00:00
  */
@@ -70,7 +85,9 @@ export declare function formatNumberToWords(value: number): string;
 /**
  * Generate initials from any string while ignoring common titles
  */
-export declare function formatInitials(text: string, length?: number): string;
+export declare function formatInitials(text: string, options?: {
+	length?: number;
+}): string;
 /**
  * Format Unix timestamp into a datetime string
  */
@@ -78,7 +95,10 @@ export declare function formatUnixTime(timestamp: number): string;
 /**
  * Create a string of comma-separated values from an array, object or string with an optional limit and conjunction
  */
-export declare function formatList(items: string | object | any[], limit?: number, conjunction?: string): string;
+export declare function formatList(items: string | object | any[], options?: {
+	limit?: number;
+	conjunction?: string;
+}): string;
 /**
  * Converts a string to title case following the Chicago Manual of Style rules.
  * @reference https://www.chicagomanualofstyle.org/book/ed17/frontmatter/toc.html
@@ -392,7 +412,10 @@ export declare function dataReverse(items: object | any[]): any;
 /**
  * Sort an array or object by a property.
  */
-export declare function dataSortBy(items: object | any[], property: string, order?: "asc" | "desc"): any;
+export declare function dataSortBy(items: object | any[], options?: {
+	property?: string;
+	order?: "asc" | "desc";
+}): any;
 /**
  * Returns single unique values within an array or object
  */
@@ -557,5 +580,11 @@ export declare function checkPasswordStrength(value: string, length: number, upp
  * Returns the reading time of a string in Hours, Minutes, and Seconds.
  */
 export declare function readingTime(text: string, wordsPerMinute?: number): string;
+/**
+ * Replaces placeholders in a string with values from an object.
+ */
+export declare function mergeFields(text: string, fields: {
+	[key: string | number]: string | number;
+}, brackets?: string): string;
 
 export {};
