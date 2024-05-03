@@ -8,7 +8,7 @@
       </FormSelect>
     </ExampleInputs>
     <ExampleResult>
-      {{ formatPercentage(percentage, decimals, locale) }}
+      {{ formatPercentage(percentage, { decimals, locale }) }}
     </ExampleResult>
   </Example>
 </template>

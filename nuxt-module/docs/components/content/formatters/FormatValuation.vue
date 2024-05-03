@@ -8,7 +8,7 @@
       </FormSelect>
     </ExampleInputs>
     <ExampleResult>
-      {{ formatValuation(currency, decimals, locale) }}
+      {{ formatValuation(currency, { decimals, locale }) }}
     </ExampleResult>
   </Example>
 </template>

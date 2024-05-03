@@ -12,13 +12,13 @@
       </FormSelect>
     </ExampleInputs>
     <ExampleResult>
-      {{ formatDurationLabels(seconds, labels, round) }}
+      {{ formatDurationLabels(seconds, { labels, round }) }}
     </ExampleResult>
   </Example>
 </template>
 
 <script setup lang="ts">
   const seconds = ref(954321)
-  const labels = ref('long')
+  const labels = ref<'long' | 'short'>('long')
   const round = ref(false)
 </script>
