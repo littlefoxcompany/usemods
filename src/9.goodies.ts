@@ -66,6 +66,21 @@ export function checkPasswordStrength(value: string, length: number, uppercase: 
  */
 export function readingTime(text: string, wordsPerMinute = 200): string {
   const words = text.split(' ').length
-  const seconds = Math.floor((words / wordsPerMinute) * 60)
-  return formatDurationLabels(Math.ceil(seconds))
+  const minutes = Math.ceil(words / wordsPerMinute)
+  return formatDurationLabels(minutes * 60)
+}
+/**
+ * Replaces placeholders in a string with values from an object.
+ */
+export function mergeFields(text: string, fields: { [key: string | number]: string | number }, brackets = '{{}}'): string {
+  const bracketHalf = brackets.length / 2
+  const escapeRegExp = (string: any) => string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, '\\$1')
+  const startBracket = escapeRegExp(brackets.slice(0, bracketHalf))
+  const endBracket = escapeRegExp(brackets.slice(bracketHalf))
+  const pattern = new RegExp(`${startBracket}(\\w+)${endBracket}`, 'g')
+
+  return text.replace(pattern, (match, key) => {
+    const replacement = fields[key.trim()]
+    return replacement !== undefined ? replacement.toString() : match
+  })
 }
