@@ -20,8 +20,11 @@ export function dataShuffle(items: object | any[]): any {
         const j = Math.floor(Math.random() * (i + 1))
         ;[array[i], array[j]] = [array[j], array[i]]
       }
-      // Check if the array is still in its original order
-      shuffled = !array.every((element, index) => element === items[index])
+
+      shuffled = !array.every((element, index) => {
+        if (Array.isArray(items)) return element === items[index]
+        return false
+      })
     }
     return array
   }
