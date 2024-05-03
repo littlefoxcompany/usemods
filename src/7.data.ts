@@ -14,9 +14,14 @@ export function dataShuffle(items: object | any[]): any {
   }
 
   const shuffleArray = (array: any[]) => {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1))
-      ;[array[i], array[j]] = [array[j], array[i]]
+    let shuffled = false
+    while (!shuffled) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1))
+        ;[array[i], array[j]] = [array[j], array[i]]
+      }
+      // Check if the array is still in its original order
+      shuffled = !array.every((element, index) => element === items[index])
     }
     return array
   }
@@ -49,8 +54,12 @@ export function dataReverse(items: object | any[]): any {
 /**
  * Sort an array or object by a property.
  */
-export function dataSortBy(items: object | any[], property: string, order: 'asc' | 'desc' = 'asc'): any {
+export function dataSortBy(items: object | any[], options?: { property?: string; order?: 'asc' | 'desc' }): any {
   const comparator = (a: any, b: any) => {
+    const property = options?.property
+    const order = options?.order ?? 'asc'
+    if (!property) return 0
+
     if (a[property] < b[property]) return order === 'asc' ? -1 : 1
     if (a[property] > b[property]) return order === 'asc' ? 1 : -1
     return 0
@@ -80,11 +89,11 @@ export function dataFlatten(items: object | any[]): object | any[] {
     const flattened: { [key: string]: any } = {}
     Object.keys(items as { [key: string]: any }).forEach((key) => {
       const item = (items as { [key: string]: any })[key]
-      flattened[key] = Array.isArray(item) ? item.flat() : item
+      flattened[key] = Array.isArray(item) ? dataFlatten(item) : item
     })
     return flattened
   } else if (Array.isArray(items)) {
-    return items.flat()
+    return items.reduce((acc, val) => acc.concat(Array.isArray(val) ? dataFlatten(val) : val), [])
   } else {
     return items
   }
@@ -94,11 +103,13 @@ export function dataFlatten(items: object | any[]): object | any[] {
  * Returns an array without a property or properties.
  */
 export function dataWithout(items: object | any[], properties: any | any[]): any {
+  const propertyArray = Array.isArray(properties) ? properties : [properties]
+
   if (isObject(items)) {
     const entries = Object.entries(items)
-    return Object.fromEntries(entries.filter(([key]) => !properties.includes(key)))
+    return Object.fromEntries(entries.filter(([key]) => !propertyArray.includes(key)))
   } else {
-    return (items as any[]).filter((item) => !properties.includes(item))
+    return (items as any[]).filter((item) => !propertyArray.includes(item))
   }
 }
 

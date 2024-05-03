@@ -45,8 +45,8 @@ const currencySymbols = new Map([
 /**
  * Format numbers into neat and formatted strings for people
  */
-export function formatNumber(number: number, decimals: number = 2, locale: string = 'en-US'): string {
-  const safeDecimals = Math.max(0, Math.min(decimals, 20))
+export function formatNumber(number: number, options?: { decimals?: number; locale?: string }): string {
+  const safeDecimals = Math.max(0, Math.min(options?.decimals ?? 2, 20))
 
   let config: any = {
     style: 'decimal',
@@ -54,31 +54,31 @@ export function formatNumber(number: number, decimals: number = 2, locale: strin
     maximumFractionDigits: safeDecimals
   }
 
-  return new Intl.NumberFormat(locale, config).format(number)
+  return new Intl.NumberFormat(options?.locale ?? 'en-US', config).format(number)
 }
 
 /**
  * Format numbers into local currency with extra smarts
  */
-export function formatCurrency(number: number, decimals: number = 2, locale: string = 'en-US'): string {
-  const safeDecimals = Math.max(0, Math.min(decimals, 20))
+export function formatCurrency(number: number, options?: { decimals?: number; locale?: string }): string {
+  const safeDecimals = Math.max(0, Math.min(options?.decimals ?? 2, 20))
 
   let config: any = {
     style: 'currency',
     currencyDisplay: 'narrowSymbol',
     minimumFractionDigits: safeDecimals === 0 ? 0 : safeDecimals === 1 ? 1 : 2,
     maximumFractionDigits: safeDecimals,
-    currency: currencySymbols.get(locale) || 'USD'
+    currency: currencySymbols.get(options?.locale ?? 'en-US') || 'USD'
   }
 
-  return new Intl.NumberFormat(locale, config).format(number)
+  return new Intl.NumberFormat(options?.locale ?? 'en-US', config).format(number)
 }
 
 /**
  * Format numbers into valuations displayed in thousands, millions or billions
  */
-export function formatValuation(number: number, decimals: number = 2, locale: string = 'en-US'): string {
-  const safeDecimals = Math.max(0, Math.min(decimals, 20))
+export function formatValuation(number: number, options?: { decimals?: number; locale?: string }): string {
+  const safeDecimals = Math.max(0, Math.min(options?.decimals ?? 2, 20))
 
   let config: any = {
     style: 'currency',
@@ -87,43 +87,43 @@ export function formatValuation(number: number, decimals: number = 2, locale: st
     compactDisplay: 'short',
     minimumFractionDigits: safeDecimals === 0 ? 0 : safeDecimals === 1 ? 1 : 2,
     maximumFractionDigits: safeDecimals,
-    currency: currencySymbols.get(locale) || 'USD'
+    currency: currencySymbols.get(options?.locale ?? 'en-US') || 'USD'
   }
 
-  return new Intl.NumberFormat(locale, config).format(number)
+  return new Intl.NumberFormat(options?.locale ?? 'en-US', config).format(number)
 }
 
 /**
  * Format a number into a percentage
  */
-export function formatPercentage(value: number, decimals: number = 2, locale: string = 'en-US'): string {
-  const safeDecimals = Math.max(0, Math.min(decimals, 20))
+export function formatPercentage(value: number, options?: { decimals?: number; locale?: string }): string {
+  const safeDecimals = Math.max(0, Math.min(options?.decimals ?? 2, 20))
   let config: any = {
     style: 'percent',
     minimumFractionDigits: safeDecimals === 0 ? 0 : safeDecimals === 1 ? 1 : 2,
     maximumFractionDigits: safeDecimals
   }
 
-  return new Intl.NumberFormat(locale, config).format(value)
+  return new Intl.NumberFormat(options?.locale ?? 'en-US', config).format(value)
 }
 
 /**
  * Format time into a human-readable string
  */
-export function formatDurationLabels(seconds: number, labels: 'short' | 'long' = 'long', round: boolean = false): string {
+export function formatDurationLabels(seconds: number, options?: { labels?: 'short' | 'long'; round?: boolean }): string {
   const time = [
-    { unit: labels === 'short' ? 'yr' : ' year', secondsInUnit: 31536000 },
-    { unit: labels === 'short' ? 'mo' : ' month', secondsInUnit: 2628000 },
-    { unit: labels === 'short' ? 'wk' : ' week', secondsInUnit: 604800 },
-    { unit: labels === 'short' ? 'd' : ' day', secondsInUnit: 86400 },
-    { unit: labels === 'short' ? 'hr' : ' hour', secondsInUnit: 3600 },
-    { unit: labels === 'short' ? 'min' : ' minute', secondsInUnit: 60 },
-    { unit: labels === 'short' ? 's' : ' second', secondsInUnit: 1 }
+    { unit: options?.labels === 'short' ? 'yr' : ' year', secondsInUnit: 31536000 },
+    { unit: options?.labels === 'short' ? 'mo' : ' month', secondsInUnit: 2628000 },
+    { unit: options?.labels === 'short' ? 'wk' : ' week', secondsInUnit: 604800 },
+    { unit: options?.labels === 'short' ? 'd' : ' day', secondsInUnit: 86400 },
+    { unit: options?.labels === 'short' ? 'hr' : ' hour', secondsInUnit: 3600 },
+    { unit: options?.labels === 'short' ? 'min' : ' minute', secondsInUnit: 60 },
+    { unit: options?.labels === 'short' ? 's' : ' second', secondsInUnit: 1 }
   ]
 
-  if (seconds == 0) return `0${labels === 'short' ? 's' : ' seconds'}`
+  if (seconds == 0) return `0${options?.labels === 'short' ? 's' : ' seconds'}`
 
-  if (round) {
+  if (options?.round) {
     for (const { secondsInUnit } of time) {
       if (seconds >= secondsInUnit) {
         seconds = seconds - (seconds % secondsInUnit)
@@ -138,7 +138,7 @@ export function formatDurationLabels(seconds: number, labels: 'short' | 'long' =
   for (const { unit, secondsInUnit } of time) {
     const count = Math.floor(remainingSeconds / secondsInUnit)
     if (count > 0) {
-      formattedTime += `${count}${count === 1 || labels === 'short' ? unit : unit + 's'} `
+      formattedTime += `${count}${count === 1 || options?.labels === 'short' ? unit : unit + 's'} `
       remainingSeconds -= count * secondsInUnit
     }
   }
@@ -218,7 +218,7 @@ export function formatNumberToWords(value: number): string {
 /**
  * Generate initials from any string while ignoring common titles
  */
-export function formatInitials(text: string, length: number = 2): string {
+export function formatInitials(text: string, options?: { length?: number }): string {
   if (!text) return ''
   text = text.replace(/(Mrs|Mr|Ms|Dr|Jr|Sr|Prof|Hon|Snr|Jnr|St)\.?/g, '').trim()
   return text
@@ -226,7 +226,7 @@ export function formatInitials(text: string, length: number = 2): string {
     .filter((word) => !['the', 'third'].includes(word.toLowerCase()))
     .map((word) => word.charAt(0).toUpperCase())
     .join('')
-    .substring(0, length)
+    .substring(0, options?.length ?? 2)
 }
 
 /**
@@ -239,16 +239,18 @@ export function formatUnixTime(timestamp: number): string {
 /**
  * Create a string of comma-separated values from an array, object or string with an optional limit and conjunction
  */
-export function formatList(items: string | object | any[], limit: number = Infinity, conjunction: string = 'and'): string {
+export function formatList(items: string | object | any[], options?: { limit?: number; conjunction?: string }): string {
   if (typeof items === 'string') items = items.split(',').map((item) => item.trim())
   if (typeof items === 'object' && !Array.isArray(items)) items = Object.values(items)
   if (!Array.isArray(items) || items.length === 0) return ''
-  if (items.length <= 2) return items.join(items.length === 2 ? ` ${conjunction} ` : '')
-  if (items.length <= limit) return items.slice(0, -1).join(', ') + ` ${conjunction} ` + items.slice(-1)
+  if (items.length <= 2) return items.join(items.length === 2 ? ` ${options?.conjunction || 'and'} ` : '')
 
-  const listedItems = items.slice(0, limit).join(', ')
-  const remaining = items.length - limit
-  return `${listedItems} ${conjunction} ${remaining} more`
+  const effectiveLimit = options?.limit ?? items.length
+  if (items.length <= effectiveLimit) return items.slice(0, -1).join(', ') + ` ${options?.conjunction || 'and'} ` + items.slice(-1)
+
+  const listedItems = items.slice(0, effectiveLimit).join(', ')
+  const remaining = items.length - effectiveLimit
+  return `${listedItems} ${options?.conjunction || 'and'} ${remaining} more`
 }
 
 /**
