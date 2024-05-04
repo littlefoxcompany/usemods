@@ -1,0 +1,30 @@
+{
+  "private": true,
+  "name": "usemods-website",
+  "type": "module",
+  "scripts": {
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "generate": "nuxi generate"
+  },
+  "devDependencies": {
+    "@nuxt/image": "^1.7.0",
+    "@nuxtjs/color-mode": "^3.4.1",
+    "@nuxtjs/tailwindcss": "^6.12.0",
+    "@tailwindcss/typography": "^0.5.13",
+    "nuxt": "^3.11.2",
+    "nuxt-icon": "^0.6.10",
+    "vue": "^3.4.20"
+  },
+  "dependencies": {
+    "@nuxt/content": "^2.12.1",
+    "@vueuse/core": "^10.9.0",
+    "@vueuse/nuxt": "^10.9.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "lucide-vue-next": "^0.352.0",
+    "radix-vue": "^1.5.1",
+    "tailwind-merge": "^2.2.1",
+    "tailwindcss-animate": "^1.0.7"
+  }
+}
