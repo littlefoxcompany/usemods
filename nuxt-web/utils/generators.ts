@@ -14,7 +14,6 @@ export function generateNumber(length: number): number {
  */
 export function generateNumberBetween(min: number, max: number): number {
   if (min > max) console.warn('[MODS] Warning: min value is higher than max value')
-
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
@@ -33,6 +32,7 @@ export function generateUuid(): string {
  * Generate a unique short ID based on the current timestamp
  */
 export function generateShortId(length: number = 36): string {
+  if (length < 4) length = 4
   const timestampPart = Math.floor(Date.now()).toString(length).toUpperCase()
   const randomPart = Math.random().toString(length).slice(2).toUpperCase()
   return (timestampPart + randomPart).slice(0, length)
@@ -111,7 +111,6 @@ export async function generateHash(length = 40, salt = '', algorithm = 'SHA-256'
     const buffer = await crypto.subtle.digest(algorithm, data);
     const hashArray = Array.from(new Uint8Array(buffer));
 
-    
     const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 
     return hashHex.slice(0, length);

@@ -15,6 +15,6 @@
     "outDir": "dist",
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
-    "types": ["bun-types", "web"]
+    "types": ["bun-types", "node"],
   }
 }

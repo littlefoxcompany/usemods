@@ -3,18 +3,15 @@
   "version": "0.0.14",
   "description": "Zippy little modifiers and utilities for your frontend.",
   "scripts": {
-    "dev": "bun run build.mjs --watch",
-    "build": "bun run build.mjs",
+    "dev": "cd nuxt-web && npm run dev",
+    "docs": "bun run docs.mjs",
     "test": "vitest run test/*",
     "test:watch": "vitest test/*",
     "release": "npm run test && changelogen --release && npm publish && npm run module:release",
     "prepublishOnly": "bun run build",
-    "docs": "concurrently \"npm run docs:install && npm run module:dev\" \"npm run dev\"",
-    "docs:install": "npm i --prefix ./nuxt-module && npm i --prefix ./nuxt-module/docs",
     "module:dev": "npm run build && npm run --prefix ./nuxt-module dev",
     "module:release": "bun run copy-version-number.ts && npm run --prefix ./nuxt-module release",
-    "vercel:install": "npm i && npm run docs:install",
-    "vercel:build": "bun run build.mjs && npm run build && npm run --prefix ./nuxt-module dev:prepare && npm run --prefix ./nuxt-module prepack && npm run --prefix ./nuxt-module/docs build"
+    "vercel:install": "cd nuxt-web && npm install"
   },
   "keywords": [
     "bun",
