@@ -26,7 +26,7 @@ export function detectMousePosition(event: MouseEvent): {
 }
 
 /**
- * Detect the relative mouse position with the window size
+ * Detect the relative mouse position with the window size and returns a percentage value
  */
 export function detectRelativeMousePosition(event: MouseEvent): {
   x: number
@@ -34,8 +34,8 @@ export function detectRelativeMousePosition(event: MouseEvent): {
 } {
   const { innerWidth, innerHeight } = window
   return {
-    x: event.clientX / innerWidth,
-    y: event.clientY / innerHeight
+    x: parseFloat((event.clientX / innerWidth).toFixed(2)),
+    y: parseFloat((event.clientY / innerHeight).toFixed(2))
   }
 }
 

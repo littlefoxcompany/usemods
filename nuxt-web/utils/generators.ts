@@ -31,10 +31,9 @@ export function generateUuid(): string {
 /**
  * Generate a unique short ID based on the current timestamp
  */
-export function generateShortId(length: number = 36): string {
-  if (length < 4) length = 4
-  const timestampPart = Math.floor(Date.now()).toString(length).toUpperCase()
-  const randomPart = Math.random().toString(length).slice(2).toUpperCase()
+export function generateShortId(length: number = 19): string {
+  const timestampPart = Math.floor(Date.now()).toString().toUpperCase()
+  const randomPart = Math.random().toString().slice(2).toUpperCase()
   return (timestampPart + randomPart).slice(0, length)
 }
 
@@ -42,7 +41,7 @@ export function generateShortId(length: number = 36): string {
  * Generate a random, secure password with a mix of character types.
  */
 export function generatePassword(length: number = 8): string {
-  if (length < 8) length = 8
+  length = Math.max(length, 8)
 
   const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
   const lowercase = uppercase.toLowerCase()
@@ -50,19 +49,24 @@ export function generatePassword(length: number = 8): string {
   const symbols = '!@#$%^&*'
   const allChars = uppercase + lowercase + numbers + symbols
 
-  const passwordArray = [
-    uppercase[Math.floor(window.crypto.getRandomValues(new Uint32Array(1))[0] * uppercase.length)],
-    lowercase[Math.floor(window.crypto.getRandomValues(new Uint32Array(1))[0] * lowercase.length)],
-    numbers[Math.floor(window.crypto.getRandomValues(new Uint32Array(1))[0] * numbers.length)],
-    symbols[Math.floor(window.crypto.getRandomValues(new Uint32Array(1))[0] * symbols.length)]
-  ]
+  const passwordArray: string[] = []
+  const types = [uppercase, lowercase, numbers, symbols]
 
+  // Ensure at least one character from each type
+  types.forEach((type) => {
+    const randomIndex = window.crypto.getRandomValues(new Uint32Array(1))[0] % type.length
+    passwordArray.push(type[randomIndex])
+  })
+
+  // Add random characters until reaching the desired length
   for (let i = passwordArray.length; i < length; i++) {
-    passwordArray.push(allChars[Math.floor(Math.random() * allChars.length)])
+    const randomIndex = window.crypto.getRandomValues(new Uint32Array(1))[0] % allChars.length
+    passwordArray.push(allChars[randomIndex])
   }
 
+  // Securely shuffle the array using Fisher-Yates algorithm
   for (let i = passwordArray.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
+    const j = window.crypto.getRandomValues(new Uint32Array(1))[0] % (i + 1)
     ;[passwordArray[i], passwordArray[j]] = [passwordArray[j], passwordArray[i]]
   }
 
@@ -98,24 +102,21 @@ export function generateLoremIpsum(count: number = 5, format: string = 'words'):
  */
 export async function generateHash(length = 40, salt = '', algorithm = 'SHA-256') {
   try {
-    
     if (length < 0 || length > 64) {
-      throw new Error('Length must be between 0 and 64 for SHA-256 hashes.');
+      throw new Error('Length must be between 0 and 64 for SHA-256 hashes.')
     }
 
-    
-    const encoder = new TextEncoder();
-    const data = encoder.encode(salt);
+    const encoder = new TextEncoder()
+    const data = encoder.encode(salt)
 
-    
-    const buffer = await crypto.subtle.digest(algorithm, data);
-    const hashArray = Array.from(new Uint8Array(buffer));
+    const buffer = await crypto.subtle.digest(algorithm, data)
+    const hashArray = Array.from(new Uint8Array(buffer))
 
-    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    const hashHex = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('')
 
-    return hashHex.slice(0, length);
+    return hashHex.slice(0, length)
   } catch (error) {
-    console.error('Error generating hash:', error);
-    throw error; 
+    console.error('Error generating hash:', error)
+    throw error
   }
 }

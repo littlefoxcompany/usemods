@@ -72,15 +72,15 @@ export function readingTime(text: string, wordsPerMinute = 200): string {
 /**
  * Replaces placeholders in a string with values from an object.
  */
-export function mergeFields(text: string, fields: { [key: string | number]: string | number }, brackets = '{{}}'): string {
-  const bracketHalf = brackets.length / 2
-  const escapeRegExp = (string: any) => string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, '\\$1')
-  const startBracket = escapeRegExp(brackets.slice(0, bracketHalf))
-  const endBracket = escapeRegExp(brackets.slice(bracketHalf))
-  const pattern = new RegExp(`${startBracket}(\\w+)${endBracket}`, 'g')
+export function mergeFields(text: string, fields: Record<string | number, string | number>): string {
+  const pattern = /\{\{\s*(\w+)\s*\}\}/g
 
   return text.replace(pattern, (match, key) => {
-    const replacement = fields[key.trim()]
-    return replacement !== undefined ? replacement.toString() : match
+    if (key in fields) {
+      return fields[key].toString()
+    } else {
+      console.warn(`[MODS] Warning: Field "${key}" not found in object`)
+      return `{{${key}}}`
+    }
   })
 }

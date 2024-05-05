@@ -14,3 +14,8 @@ test('splitByWords', () => {
 //   expect(mod.checkPasswordStrength('Password1', 8, 1, 1, 1)).toEqual({ score: 1, label: 'Password must contain 1 special character' })
 //   expect(mod.checkPasswordStrength('Password1!', 8, 1, 1, 1)).toEqual({ score: 4, label: 'Very Strong' })
 // })
+
+test('mergeFields', () => {
+  expect(mod.mergeFields('The {{a}} said {{b}}', { a: 'cat', b: 'meow' })).toEqual('The cat said meow')
+  expect(mod.mergeFields('The {{ a }} said {{ b }}', { a: 'cat', b: 'meow' })).toEqual('The cat said meow')
+})
