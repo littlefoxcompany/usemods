@@ -1,5 +1,5 @@
 // title: Actions
-// description: A collection of useful actions for common tasks and interactions with the DOM.
+// description: A stack of handy functions you could write yourself, but don't want to.
 // lead: JS karate chops
 
 /**

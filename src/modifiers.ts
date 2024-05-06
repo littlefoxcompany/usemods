@@ -1,5 +1,5 @@
 // title: Modifiers
-// description: Modifiers are a key feature of Mods that allow you to easily modify and enhance your content. They are small pieces of code that can be applied to your JS to add functionality, validation or style.
+// description: Modify and transform your content with our collection of efficient and easy-to-use functions designed to dicipher, manipulate, and transform strings.
 // lead: Bend content to your will
 
 /**

@@ -21,6 +21,6 @@
     @apply text-4xl font-bold;
   }
   :deep(p) {
-    @apply text-pretty pt-4 font-light md:text-xl/[1.6em];
+    @apply text-pretty pt-4 font-light md:text-xl/[1.6em] lg:text-2xl/[1.6em];
   }
 </style>
