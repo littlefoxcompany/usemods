@@ -60,7 +60,8 @@ export function generatePassword(length: number = 8): string {
 
   // Add random characters until reaching the desired length
   for (let i = passwordArray.length; i < length; i++) {
-    const randomIndex = window.crypto.getRandomValues(new Uint32Array(1))[0] % allChars.length
+    const randomValues = window.crypto.getRandomValues(new Uint32Array(1))
+    const randomIndex = Math.floor((randomValues[0] / (0xffffffff + 1)) * allChars.length)
     passwordArray.push(allChars[randomIndex])
   }
 
