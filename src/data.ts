@@ -1,5 +1,5 @@
 // title: Data
-// description: A collection of functions for formatting, filtering and arranging arrays and objects.
+// description: A collection of functions for formatting, filtering and taming wild arrays and objects.
 // lead: Arrays and objects, oh my!
 
 import { isObject, isArray } from './validators'
