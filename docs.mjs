@@ -14,6 +14,7 @@ const metadataPattern = /\s+(title|description|lead):\s+([^\r\n]*)/g
 const jsdocPattern = /\/\*\*([\s\S]*?)\*\//g
 
 function generateMarkdown(file, name) {
+  console.log(`Generating Markdown for ${name}`)
   const content = readFileSync(file, 'utf8')
   const metadata = Object.fromEntries([...content.matchAll(metadataPattern)].map((match) => [match[1], match[2]]))
 
@@ -56,7 +57,7 @@ function generateMarkdown(file, name) {
 
 // Generate Markdown for each File
 function generateAll() {
-  const files = ['actions', 'formatters', 'modifiers', 'detections', 'generators', 'numbers', 'data', 'validators', 'animators', 'goodies']
+  const files = ['actions', 'formatters', 'modifiers', 'detections', 'generators', 'numbers', 'data', 'validators', 'goodies']
   files.forEach((file, index) => generateMarkdown(join(srcPath, `${file}.ts`), `${index + 1}.${file}`))
 }
 
