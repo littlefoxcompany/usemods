@@ -56,7 +56,7 @@ function generateMarkdown(file, name) {
 
 // Generate Markdown for each File
 function generateAll() {
-  const files = ['actions', 'formatters', 'modifiers', 'detections', 'generators', 'numbers', 'data', 'validators', 'goodies']
+  const files = ['actions', 'formatters', 'modifiers', 'detections', 'generators', 'numbers', 'data', 'validators', 'animators', 'goodies']
   files.forEach((file, index) => generateMarkdown(join(srcPath, `${file}.ts`), `${index + 1}.${file}`))
 }
 
