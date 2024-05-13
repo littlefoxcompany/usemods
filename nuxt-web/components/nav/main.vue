@@ -10,7 +10,7 @@
         <div class="flex grow items-center gap-4 md:justify-center md:gap-6">
           <NavDropdown label="Docs">
             <div class="flex w-full items-stretch gap-3 divide-x divide-white/5 p-1">
-              <div class="flex shrink flex-col p-2">
+              <div class="flex shrink flex-col">
                 <NavDropdownItem v-for="link in introLinks" :key="link.id" :to="link._path">
                   <Icon :name="link.title" class="mt-1 h-5 w-5 shrink-0 text-white/50" />
                   <div>
@@ -19,7 +19,11 @@
                   </div>
                 </NavDropdownItem>
               </div>
-              <div class="flex w-[800px] flex-col p-2">
+            </div>
+          </NavDropdown>
+          <NavDropdown label="Functions">
+            <div class="flex w-full items-stretch gap-3 divide-x divide-white/5 p-1">
+              <div class="flex w-[720px] flex-col">
                 <div class="grid grid-cols-3">
                   <NavDropdownItem v-for="link in docLinks" :key="link._path" :to="link._path">
                     <Icon :name="link.title" class="mt-1 h-5 w-5 shrink-0 text-white/50" />

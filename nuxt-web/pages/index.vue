@@ -5,7 +5,7 @@
       <section class="flex grow flex-col">
         <header class="flex grow flex-col items-center justify-center px-8 py-8 md:py-12">
           <h1
-            v-html="splitByWords('Zippy little utils for your JavaScript projects.')"
+            v-html="animateText('Zippy little utils for your JavaScript projects.', { splitBy: 'word', time: 0.2, unit: 's', class: 'animate-fade-in-up' })"
             id="title"
             class="max-w-[1200px] text-balance text-center font-bold leading-[1.25em] text-gray-900 [font-size:_clamp(2.3em,8vw,5rem)] dark:text-white"></h1>
 
@@ -65,50 +65,12 @@
     background: radial-gradient(50% 50% at 50% 50%, color(display-p3 0.165 0.165 0.165) 0%, color(display-p3 0.094 0.094 0.106 / 0) 100%);
   }
 
-  :deep(#title) {
-    .word {
-      @apply relative inline-flex overflow-clip;
-
-      span {
-        @apply -translate-y-full leading-[1.1em] opacity-0;
-        animation: fadeUp 0.5s ease-in-out forwards;
-
-        &.word-1 {
-          animation-delay: 0.1s;
-        }
-
-        &.word-2 {
-          animation-delay: 0.2s;
-        }
-
-        &.word-3 {
-          animation-delay: 0.3s;
-        }
-
-        &.word-4 {
-          animation-delay: 0.4s;
-        }
-
-        &.word-5 {
-          animation-delay: 0.5s;
-        }
-
-        &.word-6 {
-          animation-delay: 0.6s;
-        }
-
-        &.word-7 {
-          animation-delay: 0.7s;
-        }
-      }
-    }
+  :deep(.animate-fade-in-up) {
+    @apply relative translate-y-full opacity-0;
+    animation: fadeUp 1.5s cubic-bezier(0.2, 0.6, 0.3, 1) forwards;
   }
 
   @keyframes fadeUp {
-    0% {
-      opacity: 0;
-      transform: translateY(100%);
-    }
     100% {
       opacity: 1;
       transform: translateY(0%);

@@ -6,6 +6,9 @@
   h2 {
     @apply mt-12 text-3xl font-bold;
   }
+  h3 {
+    @apply mt-10 text-2xl font-bold;
+  }
   p,
   li {
     @apply mt-5 text-lg/[1.75em];
@@ -14,6 +17,6 @@
     /* @apply border-l border-gray-300 dark:border-white/15 pl-5; */
   }
   pre {
-    @apply dark:bg-white/[3%] text-gray-900 dark:text-white bg-indigo-600/[2%] text-sm flex-wrap gap-px flex items-center mt-6 px-4 py-3.5 rounded-xl border border-black/5 dark:border-white/[8%] font-mono;
+    @apply mt-6 flex flex-wrap items-center gap-px rounded-xl border border-black/5 bg-indigo-600/[2%] px-4 py-3.5 font-mono text-sm text-gray-900 dark:border-white/[8%] dark:bg-white/[3%] dark:text-white;
   }
 }

@@ -156,7 +156,7 @@ export function ordinalize(value: number): string {
  * Strip HTML tags from a string.
  */
 export function stripHtml(text: string): string {
-  return text.replace(/<[^>]*>?/gm, '')
+  return text.replace(/<[^>]*>/gm, '')
 }
 
 /**

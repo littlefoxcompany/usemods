@@ -31,7 +31,9 @@
 
       <!-- Content -->
       <div class="min-h-screen w-full text-gray-950 lg:w-7/12 dark:text-white" :class="route.params.slug ?? null">
-        <ContentDoc class="flex w-full grow flex-col" :class="route.params.slug?.at(0) === 'docs' ? 'divide-y divide-dashed divide-indigo-200 dark:divide-white/10' : ''" />
+        <ContentDoc
+          class="flex w-full grow flex-col"
+          :class="route.params.slug?.at(0) === 'docs' ? 'divide-y divide-dashed divide-indigo-200 dark:divide-white/10' : ''"></ContentDoc>
 
         <!-- Jagger Swagger -->
         <Jagger v-if="route.fullPath === '/docs/actions'" />
