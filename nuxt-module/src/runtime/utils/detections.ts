@@ -136,26 +136,6 @@ export function detectBreakpoint(): string {
 }
 
 /**
- * Detect any container breakpoint based on Tailwind CSS breakpoints
- */
-export function detectContainerBreakpoint(element: HTMLElement): string {
-  const width = element.getBoundingClientRect().width
-
-  if (width < 320) return '@xs'
-  if (width < 384) return '@sm'
-  if (width < 448) return '@md'
-  if (width < 512) return '@lg'
-  if (width < 576) return '@xl'
-  if (width < 672) return '@2xl'
-  if (width < 768) return '@3xl'
-  if (width < 896) return '@4xl'
-  if (width < 1024) return '@5xl'
-  if (width < 1152) return '@6xl'
-  if (width < 1280) return '@7xl'
-  return '@7xl'
-}
-
-/**
  * Detect the current network status of the user (Online or Offline)
  */
 export function detectNetworkStatus(): string {
@@ -276,4 +256,24 @@ export function detectPort(): string {
 // export function detectSessionStorage(name: string) {
 //   const item = sessionStorage.getItem(name)
 //   if (item) return JSON.parse(item)
+// }
+
+/**
+ * Detect any container breakpoint based on Tailwind CSS breakpoints
+ */
+// export function detectContainerBreakpoint(element: HTMLElement): string {
+//   const width = element.getBoundingClientRect().width
+
+//   if (width < 320) return '@xs'
+//   if (width < 384) return '@sm'
+//   if (width < 448) return '@md'
+//   if (width < 512) return '@lg'
+//   if (width < 576) return '@xl'
+//   if (width < 672) return '@2xl'
+//   if (width < 768) return '@3xl'
+//   if (width < 896) return '@4xl'
+//   if (width < 1024) return '@5xl'
+//   if (width < 1152) return '@6xl'
+//   if (width < 1280) return '@7xl'
+//   return '@7xl'
 // }

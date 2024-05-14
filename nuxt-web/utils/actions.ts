@@ -26,15 +26,15 @@ export function scrollToAnchor(id: string): Promise<void> {
 /**
  * Toggles the body scroll with specified class names and returns a promise
  */
-export function toggleBodyScroll(classes: string[] = ['fixed'], action: 'add' | 'remove' | 'toggle' = 'toggle'): Promise<void> {
+export function toggleBodyScroll(className: string = 'fixed', action: 'add' | 'remove' | 'toggle' = 'toggle'): Promise<void> {
   return new Promise((resolve, reject) => {
     try {
       const body = document.body
-      const isFixed = classes.some((className) => body.classList.contains(className))
+      const isFixed = body.classList.contains(className)
       const scrollY = isFixed ? parseInt(body.style.top, 10) : window.scrollY
 
       body.style.top = isFixed ? '' : `-${scrollY}px`
-      classes.forEach((className) => body.classList[action](className))
+      body.classList[action](className)
       if (isFixed) window.scrollTo(0, -scrollY)
 
       resolve()

@@ -255,8 +255,6 @@ export function formatList(items: string | object | string[], options?: { limit?
 
 /**
  * Converts a string to title case following the Chicago Manual of Style rules.
- * @reference https://www.chicagomanualofstyle.org/book/ed17/frontmatter/toc.html
-
  */
 export function formatTitle(text: string): string {
   if (!text) return ''

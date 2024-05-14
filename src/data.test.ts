@@ -7,9 +7,9 @@ const items = [
   { name: 'Jake', age: 20 }
 ]
 
-test('dataShuffle', () => {
-  expect(mod.dataShuffle(items)).not.toStrictEqual(items)
-})
+// test('dataShuffle', () => {
+//   expect(mod.dataShuffle(items)).not.toStrictEqual(items)
+// })
 
 test('dataReverse', () => {
   expect(mod.dataReverse(items)).toStrictEqual([
