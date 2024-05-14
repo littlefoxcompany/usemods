@@ -1,6 +1,10 @@
 # Changelog
 
 
+## v0.0.19
+
+[compare changes](https://github.com/LittleFoxCompany/usemods/compare/v0.0.18...v0.0.19)
+
 ## v0.0.18
 
 [compare changes](https://github.com/LittleFoxCompany/usemods/compare/v0.0.17...v0.0.18)
