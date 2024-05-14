@@ -1,5 +1,5 @@
-import modsModule from "../../../src/module"
+import MyModule from '../../../src/module'
 
 export default defineNuxtConfig({
-  modules: [modsModule],
+  modules: [MyModule]
 })
