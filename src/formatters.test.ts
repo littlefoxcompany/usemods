@@ -58,9 +58,9 @@ test('formatTitle', () => {
   expect(mod.formatTitle('welcome to the jungle')).toBe('Welcome to the Jungle')
   expect(mod.formatTitle('the quick brown fox jumps over the lazy dog')).toBe('The Quick Brown Fox Jumps Over the Lazy Dog')
   expect(mod.formatTitle('UseMods is cooler than a vegan leather jacket')).toBe('UseMods is Cooler than a Vegan Leather Jacket')
-  // @ts-expect-error
+  // @ts-expect-error: null is not a valid input for formatTitle
   expect(mod.formatTitle(null)).toBe('')
-  // @ts-expect-error
+  // @ts-expect-error: undefined is not a valid input for formatTitle
   expect(mod.formatTitle(undefined)).toBe('')
 })
 
@@ -93,8 +93,8 @@ test('formatInitials', () => {
   expect(mod.formatInitials('Dr. Robotnik')).toBe('R')
   expect(mod.formatInitials('Mrs. Marple')).toBe('M')
   expect(mod.formatInitials('William W Whittle', { length: 3 })).toBe('WWW')
-  // @ts-expect-error
+  // @ts-expect-error: undefined is not a valid input for formatInitials
   expect(mod.formatInitials(undefined)).toBe('')
-  // @ts-expect-error
+  // @ts-expect-error: null is not a valid input for formatInitials
   expect(mod.formatInitials(null)).toBe('')
 })
