@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.0.22
+
+[compare changes](https://github.com/LittleFoxCompany/usemods/compare/v0.0.21...v0.0.22)
+
+### 🏡 Chore
+
+- **release:** V0.0.21 ([a7b0b7e](https://github.com/LittleFoxCompany/usemods/commit/a7b0b7e))
+
+### ❤️ Contributors
+
+- Phillip Hartin ([@philliphartin](http://github.com/philliphartin))
+
 ## v0.0.21
 
 [compare changes](https://github.com/LittleFoxCompany/usemods/compare/v0.0.20...v0.0.21)
