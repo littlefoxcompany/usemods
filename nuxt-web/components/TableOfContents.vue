@@ -29,8 +29,8 @@
   const route = useRoute()
   const links = ref([{ id: '' }])
 
-  const pageId = detectUrlPath()
   const activeSections = useState('activeSections', () => [])
+const pageId = useRoute().params.slug
 
   async function fetchLinks() {
     const toc = await queryContent(route.fullPath.split('?')[0].split('#')[0]).only('body').find()
