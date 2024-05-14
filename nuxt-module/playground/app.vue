@@ -1,8 +1,5 @@
 <template>
-  <div>
-    Nuxt module playground!
-  </div>
+  <div>{{ slugify('Welcome to the mods playground') }}</div>
 </template>
 
-<script setup>
-</script>
+<script setup></script>
