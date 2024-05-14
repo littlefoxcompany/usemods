@@ -25,10 +25,9 @@ npm install usemods
 ```
 
 ### Remaining Tasks
-
-- [ ] Fix the initial build step for the core utilities
+- [x] Fix the initial build step for the core utilities
 - [x] Web: Copy the core utilities
-- [ ] Modudle: Copy the core utilities to the nuxt module 
-- [ ] Release: Auomated release of the core utilities
-- [ ] Release: Copy version number of the core utilities to the nuxt module
-- [ ] Automated release of the nuxt module
+- [x] Module: Copy the core utilities to the nuxt module 
+- [x] Release: Auomated release of the core utilities
+- [x] Release: Copy version number of the core utilities to the nuxt module
+- [ ] Automated release of the nuxt module only tracks the core utilities and module changes

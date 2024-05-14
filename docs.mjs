@@ -20,6 +20,7 @@ function generateMarkdown(file, name) {
 
   // Copy file to Website
   copyFileSync(file, join(websitePath, 'utils', basename(file)))
+  copyFileSync(file, join(nuxtModulePath, 'src/runtime/utils', basename(file)))
 
   let markdown = ''
 
