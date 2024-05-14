@@ -1,15 +1,14 @@
-import dts from 'bun-plugin-dts'
 import { resolve, extname, basename, join } from 'path'
-import { watch, mkdir, readFileSync, writeFileSync, copyFileSync } from 'fs'
+import { watch, readFileSync, writeFileSync, copyFileSync } from 'fs'
 
 // Paths
 const srcPath = resolve('src')
-const distPath = resolve('dist')
+// const distPath = resolve('dist')
 const nuxtModulePath = resolve('nuxt-module')
 const websitePath = resolve('nuxt-web')
 
 // Functions
-const functionPattern = /\/\*\*[\s\S]*?\*\/\s*(export\s+function\s+([a-zA-Z0-9_]+)\s*\((.*?)\)\s*:\s*([\w<>,\[\]\s]+(?:\{[\s\S]*?})?)?)/gms
+const functionPattern = /\/\*\*[\s\S]*?\*\/\s*(export\s+function\s+([a-zA-Z0-9_]+)\s*\((.*?)\)\s*:\s*([\w<>,[\]\s]+(?:\{[\s\S]*?})?)?)/gms
 const metadataPattern = /\s+(title|description|lead):\s+([^\r\n]*)/g
 const jsdocPattern = /\/\*\*([\s\S]*?)\*\//g
 
@@ -42,7 +41,7 @@ function generateMarkdown(file, name) {
 
   for (const match of functions) {
     const [full] = match.slice(0)
-    const [component, name, params] = match.slice(1)
+    const [, name, params] = match.slice(1)
     const jsdoc = full.match(jsdocPattern)[0]
     const description = jsdoc.replace(/\/\*\*|\*\/|\*/g, '').trim()
 
@@ -57,7 +56,7 @@ function generateMarkdown(file, name) {
 
 // Generate Markdown for each File
 function generateAll() {
-  const files = ['actions', 'animations', 'formatters', 'modifiers', 'detections', 'generators', 'numbers', 'data', 'validators', 'goodies']
+  const files = ['actions', 'formatters', 'modifiers', 'detections', 'generators', 'numbers', 'data', 'validators', 'animations', 'goodies']
   files.forEach((file, index) => generateMarkdown(join(srcPath, `${file}.ts`), `${index + 1}.${file}`))
 }
 
@@ -65,7 +64,7 @@ function generateAll() {
 generateAll()
 
 // Watch for Changes
-const watcher = watch(srcPath, { recursive: true }, async (event, filename) => {
+watch(srcPath, { recursive: true }, async (event, filename) => {
   if (filename.endsWith('.ts')) {
     console.log(`Detected ${event} in ${filename}`)
     generateAll()
