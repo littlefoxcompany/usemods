@@ -16,32 +16,32 @@
       </NuxtLink>
     </template>
 
-    <NuxtLink
-      :to="`https://github.com/LittleFoxCompany/usemods/blob/main/src/${pageId.at(-1)}.ts`"
-      class="flex items-center gap-1.5 py-8 text-sm font-medium leading-none text-zinc-500">
-      <Icon name="fa6-brands:github" class="-mt-px mr-1.5 h-4 w-4" />
-      View on GitHub
-    </NuxtLink>
+      <NuxtLink
+        :to="`https://github.com/LittleFoxCompany/usemods/blob/main/src/${pageId.at(-1)}.ts`"
+        class="flex items-center gap-1.5 py-8 text-sm font-medium leading-none text-zinc-500">
+        <Icon name="fa6-brands:github" class="-mt-px mr-1.5 h-4 w-4" />
+        View on GitHub
+      </NuxtLink>
   </nav>
 </template>
 
 <script setup lang="ts">
-  const route = useRoute()
-  const links = ref([{ id: '' }])
+const route = useRoute()
+const links = ref([{ id: '' }])
 
-  const activeSections = useState('activeSections', () => [])
 const pageId = useRoute().params.slug
+const activeSections = useState('activeSections', () => [])
 
-  async function fetchLinks() {
-    const toc = await queryContent(route.fullPath.split('?')[0].split('#')[0]).only('body').find()
-    links.value = toc[0].body?.children?.map((link) => ({ id: link.props?.name ?? link.props?.name ?? link.props?.id })).filter((link) => Object.keys(link).length > 0) || []
-  }
+async function fetchLinks() {
+  const toc = await queryContent(route.fullPath.split('?')[0].split('#')[0]).only('body').find()
+  links.value = toc[0].body?.children?.map((link) => ({ id: link.props?.name ?? link.props?.name ?? link.props?.id })).filter((link) => Object.keys(link).length > 0) || []
+}
 
-  watch(
-    () => route.fullPath,
-    () => {
-      fetchLinks()
-    },
-    { immediate: true }
-  )
+watch(
+  () => route.fullPath,
+  () => {
+    fetchLinks()
+  },
+  { immediate: true }
+)
 </script>

@@ -26,7 +26,11 @@
       {{ name }}
       <span class="mr-px text-gray-500">(</span>
 
-      <template v-for="(param, index) in paramsObject" :key="index">
+      <div class="flex items-center gap-1 rounded-md bg-indigo-600/[5%] px-1 py-px text-indigo-600 dark:bg-white/[8%] dark:text-indigo-100">
+        {{ params }}
+      </div>
+
+      <!-- <template v-for="(param, index) in paramsObject" :key="index">
         <div class="flex h-5 items-center gap-1 rounded-md bg-indigo-600/[5%] px-1 py-px text-indigo-600 dark:bg-white/[8%] dark:text-indigo-100">
           <span v-if="param.key">{{ param.key }}</span>
           <span v-if="param.value">{{ param.value }}</span>
@@ -34,7 +38,7 @@
         </div>
 
         <span v-if="index < paramsObject.length - 1" class="mr-0.5">,</span>
-      </template>
+      </template> -->
       <span class="ml-px text-gray-500">)</span>
     </div>
 
@@ -75,22 +79,22 @@
     }, 800)
   }
 
-  const paramPattern = /\s*([^,]+?(?:\{[^}]*\}|'[^']*'|"[^"]*?"|\[[^\]]*]|[^,])*?)\s*(?=,|$)/g
-  const matches = props.params?.matchAll(paramPattern) || []
+  // const paramPattern = /\s*([^:]+?)\s*:\s*([^=]+?)\s*(?:=\s*([^,]+))?\s*(?=,|$)/g
+  // const matches = props.params?.matchAll(paramPattern) || []
 
-  const paramsObject = computed(() => {
-    const matchesArray = Array.from(matches)
-    return matchesArray.map((match) => {
-      const key = match[1]
-      const value = match[2]
-      const defaultValue = match[4]
-      return {
-        key,
-        value,
-        defaultValue
-      }
-    })
-  })
+  // const paramsObject = computed(() => {
+  //   const matchesArray = Array.from(matches)
+  //   return matchesArray.map((match) => {
+  //     const key = match[1]
+  //     const value = match[2]
+  //     const defaultValue = match[3]
+  //     return {
+  //       key,
+  //       value,
+  //       defaultValue
+  //     }
+  //   })
+  // })
 
   function copyToClipboard() {
     const url = window.location.href

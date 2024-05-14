@@ -14,7 +14,6 @@ const metadataPattern = /\s+(title|description|lead):\s+([^\r\n]*)/g
 const jsdocPattern = /\/\*\*([\s\S]*?)\*\//g
 
 function generateMarkdown(file, name) {
-  console.log(`Generating Markdown for ${name}`)
   const content = readFileSync(file, 'utf8')
   const metadata = Object.fromEntries([...content.matchAll(metadataPattern)].map((match) => [match[1], match[2]]))
 
@@ -33,10 +32,10 @@ function generateMarkdown(file, name) {
   markdown += '---\n'
 
   // Page Title
-  markdown += `::page-title\n`
+  markdown += '::page-title\n'
   markdown += `# ${metadata.title}\n`
   markdown += `${metadata.description}\n`
-  markdown += `::\n\n`
+  markdown += '::\n\n'
 
   // Functions
   const functions = [...content.matchAll(functionPattern)]
@@ -49,8 +48,8 @@ function generateMarkdown(file, name) {
 
     markdown += `::page-function{name="${name}" description="${description}" params="${params}" }\n`
     markdown += `:::${name}\n`
-    markdown += `:::\n`
-    markdown += `::\n\n`
+    markdown += ':::\n'
+    markdown += '::\n\n'
   }
 
   writeFileSync(join(websitePath, 'content/2.docs', `${name}.md`), markdown)

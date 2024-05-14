@@ -8,6 +8,7 @@
     "generate": "nuxi generate"
   },
   "devDependencies": {
+    "@nuxt/eslint": "^0.3.12",
     "@nuxt/image": "^1.7.0",
     "@nuxtjs/color-mode": "^3.4.1",
     "@nuxtjs/tailwindcss": "^6.12.0",
