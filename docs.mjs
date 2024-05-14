@@ -61,20 +61,6 @@ function generateAll() {
   files.forEach((file, index) => generateMarkdown(join(srcPath, `${file}.ts`), `${index + 1}.${file}`))
 }
 
-// async function build() {
-//   return await Bun.build({
-//     entrypoints: ['./src/*.ts'],
-//     outdir: './dist',
-//     target: 'browser',
-//     minify: {
-//       whitespace: true,
-//       identifiers: false,
-//       syntax: true
-//     },
-//     plugins: [dts()]
-//   }).then(() => console.log('Build complete'))
-// }
-
 // Run Once
 generateAll()
 
