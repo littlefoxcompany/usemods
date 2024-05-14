@@ -24,5 +24,10 @@ Zero-dependency functions and modifiers for zippy developers.
 npm install usemods
 ```
 
-
-
+### Remaining Tasks
+- [ ] Fix the initial build step for the core utilities
+- [ ] Copy the core utilities to the nuxt module 
+- [ ] Copy the core utilities to the docs/web app
+- [ ] Release: Auomated release of the core utilities
+- [ ] Release: Copy version number of the core utilities to the nuxt module
+- [ ] Automated release of the nuxt module
