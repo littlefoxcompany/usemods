@@ -48,7 +48,7 @@ export function toggleBodyScroll(className: string = 'fixed'): Promise<void> {
  * Toggles the element scroll with specified class names and returns a promise
  */
 export function toggleElementScroll(element: HTMLElement): Promise<void> {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     if (element.dataset.isScrollLocked === 'true') {
       element.style.overflow = ''
       delete element.dataset.isScrollLocked
