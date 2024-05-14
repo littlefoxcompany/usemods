@@ -2,63 +2,13 @@
 // description: A collection of functions for formatting, filtering and taming wild arrays and objects.
 // lead: Arrays and objects, oh my!
 
-import { isObject, isArray } from './validators'
-
-/**
- * Shuffles your data in a random order.
- */
-export function dataShuffle(items: object | any[]): any {
-  if (!items || !(isObject(items) || isArray(items))) {
-    console.warn('[MODS] Warning: dataShuffle() expects an object or array as the first argument.')
-    return items
-  }
-
-  const shuffleArray = (array: any[]) => {
-    let shuffled = false
-    while (!shuffled) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1))
-        ;[array[i], array[j]] = [array[j], array[i]]
-      }
-
-      shuffled = !array.every((element, index) => {
-        if (Array.isArray(items)) return element === items[index]
-        return false
-      })
-    }
-    return array
-  }
-
-  if (isObject(items)) {
-    const entries = Object.entries(items)
-    return Object.fromEntries(shuffleArray(entries) as [string, any][])
-  } else {
-    return shuffleArray([...(items as any[])])
-  }
-}
-
-/**
- * Reverse an array.
- */
-export function dataReverse(items: object | any[]): any {
-  if (!items || !(isObject(items) || isArray(items))) {
-    console.warn('[MODS] Warning: dataReverse() expects an object or array as the first argument.')
-    return items
-  }
-
-  if (isObject(items)) {
-    const entries = Object.entries(items)
-    return Object.fromEntries(entries.reverse() as [string, any][])
-  } else {
-    return (items as any[]).reverse()
-  }
-}
+import { isObject } from './validators'
 
 /**
  * Sort an array or object by a property.
  */
-export function dataSortBy(items: object | any[], options?: { property?: string; order?: 'asc' | 'desc' }): any {
-  const comparator = (a: any, b: any) => {
+export function dataSortBy(items: object | string[] | number[], options?: { property?: string; order?: 'asc' | 'desc' }): object | string[] | number[] {
+  const comparator = (a: string | number, b: string | number) => {
     const property = options?.property
     const order = options?.order ?? 'asc'
     if (!property) return 0
@@ -70,16 +20,33 @@ export function dataSortBy(items: object | any[], options?: { property?: string;
 
   if (isObject(items)) {
     const entries = Object.entries(items)
-    return Object.fromEntries(entries.sort((a, b) => comparator(a[1], b[1])) as [string, any][])
+    return Object.fromEntries(entries.sort((a, b) => comparator(a[1], b[1])) as [string, string | number | object | string[] | number[]][])
   } else {
-    return (items as any[]).sort(comparator)
+    return (items as string[] | number[]).sort(comparator)
+  }
+}
+
+/**
+ * Reverse an array.
+ */
+export function dataReverse(items: object | string[] | number[]): object | string[] | number[] {
+  if (!items) {
+    console.warn('[MODS] Warning: dataReverse() expects an object or array as the first argument.')
+    return items
+  }
+
+  if (isObject(items)) {
+    const entries = Object.entries(items)
+    return Object.fromEntries(entries.reverse() as [string, string | number | object | string[] | number[]][])
+  } else {
+    return (items as string[] | number[]).reverse()
   }
 }
 
 /**
  * Returns single unique values within an array or object
  */
-export function dataRemoveDuplicates(...arrays: any[][]): any[] {
+export function dataRemoveDuplicates<T extends string | number>(...arrays: T[][]): T[] {
   const mergedArray = arrays.flat()
   return mergedArray.filter((item, index) => mergedArray.indexOf(item) === index)
 }
@@ -87,11 +54,11 @@ export function dataRemoveDuplicates(...arrays: any[][]): any[] {
 /**
  * Flatten an array of arrays or an object of objects into a single array or object. That was hard to say.
  */
-export function dataFlatten(items: object | any[]): object | any[] {
+export function dataFlatten(items: object | string[] | number[]): object | string[] | number[] {
   if (isObject(items)) {
-    const flattened: { [key: string]: any } = {}
-    Object.keys(items as { [key: string]: any }).forEach((key) => {
-      const item = (items as { [key: string]: any })[key]
+    const flattened: { [key: string]: string | number | object | string[] | number[] } = {}
+    Object.keys(items as { [key: string]: string | number | object | string[] | number[] }).forEach((key) => {
+      const item = (items as { [key: string]: string | number | object | string[] | number[] })[key]
       flattened[key] = Array.isArray(item) ? dataFlatten(item) : item
     })
     return flattened
@@ -105,14 +72,14 @@ export function dataFlatten(items: object | any[]): object | any[] {
 /**
  * Returns an array without a property or properties.
  */
-export function dataWithout(items: object | any[], properties: any | any[]): any {
+export function dataWithout(items: object | string[] | number[], properties: string | number | string[] | number[]): object | string[] | number[] {
   const propertyArray = Array.isArray(properties) ? properties : [properties]
 
   if (isObject(items)) {
     const entries = Object.entries(items)
     return Object.fromEntries(entries.filter(([key]) => !propertyArray.includes(key)))
   } else {
-    return (items as any[]).filter((item) => !propertyArray.includes(item))
+    return (items as string[] | number[]).filter((item) => !propertyArray.includes(item))
   }
 }
 

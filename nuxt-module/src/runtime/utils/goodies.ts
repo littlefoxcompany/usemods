@@ -8,10 +8,10 @@ import { formatDurationLabels } from './formatters'
  * Wraps each word, sentence or paragraph in a string with a tag.
  */
 export function splitByWords(text: string): string {
-  const sentences = text.split(/([\.\?\!])\s*/)
+  const sentences = text.split(/([.?!]\s*)/)
 
   let wordIndex = 0
-  let combinedSentences = []
+  const combinedSentences = []
 
   for (let i = 0; i < sentences.length; i += 2) {
     const sentence = sentences[i] + (sentences[i + 1] || '')

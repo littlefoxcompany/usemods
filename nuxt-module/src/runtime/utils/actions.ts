@@ -26,7 +26,7 @@ export function scrollToAnchor(id: string): Promise<void> {
 /**
  * Toggles the body scroll with specified class names and returns a promise
  */
-export function toggleBodyScroll(className: string = 'fixed'): Promise<void> {
+export function toggleBodyScroll(className: string = 'fixed', action: 'add' | 'remove' | 'toggle' = 'toggle'): Promise<void> {
   return new Promise((resolve, reject) => {
     try {
       const body = document.body
@@ -34,7 +34,7 @@ export function toggleBodyScroll(className: string = 'fixed'): Promise<void> {
       const scrollY = isFixed ? parseInt(body.style.top, 10) : window.scrollY
 
       body.style.top = isFixed ? '' : `-${scrollY}px`
-      body.classList.toggle(className, !isFixed)
+      body.classList[action](className)
       if (isFixed) window.scrollTo(0, -scrollY)
 
       resolve()
@@ -48,7 +48,7 @@ export function toggleBodyScroll(className: string = 'fixed'): Promise<void> {
  * Toggles the element scroll with specified class names and returns a promise
  */
 export function toggleElementScroll(element: HTMLElement): Promise<void> {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     if (element.dataset.isScrollLocked === 'true') {
       element.style.overflow = ''
       delete element.dataset.isScrollLocked

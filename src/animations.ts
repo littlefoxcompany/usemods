@@ -14,11 +14,11 @@ export function animateText(text: string, options: { splitBy?: 'word' | 'charact
 
   const result = elements.map((element, index) => {
     const delay = `${index * time}${unit}`
-    const spanStyle = `display: inline-block; position: relative;`
+    const spanStyle = 'display: inline-block; position: relative;'
     const translateStyle = `position: absolute; top: 0; left: 0; animation-delay: ${delay};`
 
     if (element === ' ' && splitBy === 'character') {
-      return `<span class="space" style="white-space: pre;"> </span>`
+      return '<span class="space" style="white-space: pre;"> </span>'
     } else {
       return `<span class="relative overflow-clip" style="${spanStyle}">
                 <span class="ghost" style="visibility: hidden;">${element}</span>

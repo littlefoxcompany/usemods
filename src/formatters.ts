@@ -2,7 +2,45 @@
 // description: Wrangle wild data types into submission. Spruce up numbers, give strings smarts, and make complex content dazzle.
 // lead: Format misbehaving content
 
-import { currencySymbols } from './z_config'
+const currencySymbols = new Map([
+  ['en-US', 'USD'],
+  ['en-GB', 'GBP'],
+  ['en-AU', 'AUD'],
+  ['en-CA', 'CAD'],
+  ['en-NZ', 'NZD'],
+  ['en-ZA', 'ZAR'],
+  ['de-DE', 'EUR'],
+  ['fr-FR', 'EUR'],
+  ['es-ES', 'EUR'],
+  ['it-IT', 'EUR'],
+  ['pt-PT', 'EUR'],
+  ['nl-NL', 'EUR'],
+  ['da-DK', 'DKK'],
+  ['sv-SE', 'SEK'],
+  ['nb-NO', 'NOK'],
+  ['fi-FI', 'EUR'],
+  ['pl-PL', 'PLN'],
+  ['tr-TR', 'TRY'],
+  ['ru-RU', 'RUB'],
+  ['ja-JP', 'JPY'],
+  ['zh-CN', 'CNY'],
+  ['ko-KR', 'KRW'],
+  ['ar-SA', 'SAR'],
+  ['he-IL', 'ILS'],
+  ['id-ID', 'IDR'],
+  ['ms-MY', 'MYR'],
+  ['th-TH', 'THB'],
+  ['vi-VN', 'VND'],
+  ['hi-IN', 'INR'],
+  ['bn-IN', 'INR'],
+  ['pa-IN', 'INR'],
+  ['gu-IN', 'INR'],
+  ['or-IN', 'INR'],
+  ['ta-IN', 'INR'],
+  ['te-IN', 'INR'],
+  ['kn-IN', 'INR'],
+  ['ml-IN', 'INR']
+]) as Map<string, string>
 
 /**
  * Format numbers into neat and formatted strings for people

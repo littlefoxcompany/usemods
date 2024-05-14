@@ -4,36 +4,36 @@
       <FormData :data="value" />
     </ExampleInputs>
     <ExampleInputs>
-      <FormSelect v-model="sortBy">
+      <FormSelect v-model="property">
         <option value="name">Name</option>
         <option value="age">Age</option>
       </FormSelect>
-      <FormSelect v-model="sortOrder">
+      <FormSelect v-model="order">
         <option value="asc">Asc</option>
         <option value="desc">Desc</option>
       </FormSelect>
     </ExampleInputs>
     <ExampleResult>
-      {{ dataSortBy(value, sortBy, sortOrder) }}
+      {{ dataSortBy(value,{ property, order }) }}
     </ExampleResult>
   </Example>
 </template>
 
 <script setup lang="ts">
-  const sortBy = ref('name')
-  const sortOrder = ref('asc')
-  const value = [
-    {
-      name: 'Kieth Richards',
-      age: 77
-    },
-    {
-      name: 'Mick Jagger',
-      age: 78
-    },
-    {
-      name: 'Charlie Watts',
-      age: 80
-    }
-  ]
+const property = ref('name')
+const order = ref<'asc' | 'desc'>('asc')
+const value = [
+  {
+    name: 'Kieth Richards',
+    age: 77
+  },
+  {
+    name: 'Mick Jagger',
+    age: 78
+  },
+  {
+    name: 'Charlie Watts',
+    age: 80
+  }
+]
 </script>

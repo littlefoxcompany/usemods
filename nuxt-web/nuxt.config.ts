@@ -1,5 +1,13 @@
 export default defineNuxtConfig({
-  modules: ['@nuxtjs/tailwindcss', 'nuxt-icon', '@nuxt/content', '@vueuse/nuxt', '@nuxt/image', '@nuxtjs/color-mode'],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    'nuxt-icon',
+    '@nuxt/content',
+    '@vueuse/nuxt',
+    '@nuxt/image',
+    '@nuxtjs/color-mode',
+    '@nuxt/eslint'
+  ],
   css: ['~/assets/css/main.css'],
   content: {
     highlight: {
@@ -12,10 +20,10 @@ export default defineNuxtConfig({
       meta: [{ property: 'og:image', content: '/og-image.jpg' }]
     }
   },
-  routeRules: {
-    '/docs/**': { swr: true, prerender: true },
-    '/intro/**': { swr: true, prerender: true }
-  },
+  // routeRules: {
+  //   '/docs/**': { swr: true, prerender: true },
+  //   '/intro/**': { swr: true, prerender: true }
+  // },
   colorMode: {
     classSuffix: ''
   },

@@ -40,7 +40,7 @@ const currencySymbols = new Map([
   ['te-IN', 'INR'],
   ['kn-IN', 'INR'],
   ['ml-IN', 'INR']
-])
+]) as Map<string, string>
 
 /**
  * Format numbers into neat and formatted strings for people
@@ -48,7 +48,7 @@ const currencySymbols = new Map([
 export function formatNumber(number: number, options?: { decimals?: number; locale?: string }): string {
   const safeDecimals = Math.max(0, Math.min(options?.decimals ?? 2, 20))
 
-  let config: any = {
+  const config: Intl.NumberFormatOptions = {
     style: 'decimal',
     minimumFractionDigits: safeDecimals === 0 ? 0 : safeDecimals === 1 ? 1 : 2,
     maximumFractionDigits: safeDecimals
@@ -63,7 +63,7 @@ export function formatNumber(number: number, options?: { decimals?: number; loca
 export function formatCurrency(number: number, options?: { decimals?: number; locale?: string }): string {
   const safeDecimals = Math.max(0, Math.min(options?.decimals ?? 2, 20))
 
-  let config: any = {
+  const config: Intl.NumberFormatOptions = {
     style: 'currency',
     currencyDisplay: 'narrowSymbol',
     minimumFractionDigits: safeDecimals === 0 ? 0 : safeDecimals === 1 ? 1 : 2,
@@ -80,7 +80,7 @@ export function formatCurrency(number: number, options?: { decimals?: number; lo
 export function formatValuation(number: number, options?: { decimals?: number; locale?: string }): string {
   const safeDecimals = Math.max(0, Math.min(options?.decimals ?? 2, 20))
 
-  let config: any = {
+  const config: Intl.NumberFormatOptions = {
     style: 'currency',
     currencyDisplay: 'narrowSymbol',
     notation: 'compact',
@@ -98,7 +98,7 @@ export function formatValuation(number: number, options?: { decimals?: number; l
  */
 export function formatPercentage(value: number, options?: { decimals?: number; locale?: string }): string {
   const safeDecimals = Math.max(0, Math.min(options?.decimals ?? 2, 20))
-  let config: any = {
+  const config: Intl.NumberFormatOptions = {
     style: 'percent',
     minimumFractionDigits: safeDecimals === 0 ? 0 : safeDecimals === 1 ? 1 : 2,
     maximumFractionDigits: safeDecimals
@@ -237,9 +237,9 @@ export function formatUnixTime(timestamp: number): string {
 }
 
 /**
- * Create a string of comma-separated values from an array, object or string with an optional limit and conjunction
+ * Create a string of comma-separated values from an array, object, or string with an optional limit and conjunction
  */
-export function formatList(items: string | object | any[], options?: { limit?: number; conjunction?: string }): string {
+export function formatList(items: string | object | string[], options?: { limit?: number; conjunction?: string }): string {
   if (typeof items === 'string') items = items.split(',').map((item) => item.trim())
   if (typeof items === 'object' && !Array.isArray(items)) items = Object.values(items)
   if (!Array.isArray(items) || items.length === 0) return ''
