@@ -6,7 +6,9 @@
  * Generate a random number
  */
 export function generateNumber(length: number): number {
-  return Math.floor(Math.random() * Math.pow(10, length))
+  const min = Math.pow(10, length - 1)
+  const max = Math.pow(10, length) - 1
+  return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 /**

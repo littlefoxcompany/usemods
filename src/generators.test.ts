@@ -2,6 +2,10 @@ import { expect, test } from 'vitest'
 import * as mod from './generators'
 
 test('generateNumber', () => {
+  expect(mod.generateNumber(1).toString()).toHaveLength(1)
+  expect(mod.generateNumber(2).toString()).toHaveLength(2)
+  expect(mod.generateNumber(3).toString()).toHaveLength(3)
+  expect(mod.generateNumber(4).toString()).toHaveLength(4)
   expect(mod.generateNumber(5).toString()).toHaveLength(5)
   expect(mod.generateNumber(10).toString()).toHaveLength(10)
 })
