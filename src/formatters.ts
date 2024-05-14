@@ -2,45 +2,7 @@
 // description: Wrangle wild data types into submission. Spruce up numbers, give strings smarts, and make complex content dazzle.
 // lead: Format misbehaving content
 
-const currencySymbols = new Map([
-  ['en-US', 'USD'],
-  ['en-GB', 'GBP'],
-  ['en-AU', 'AUD'],
-  ['en-CA', 'CAD'],
-  ['en-NZ', 'NZD'],
-  ['en-ZA', 'ZAR'],
-  ['de-DE', 'EUR'],
-  ['fr-FR', 'EUR'],
-  ['es-ES', 'EUR'],
-  ['it-IT', 'EUR'],
-  ['pt-PT', 'EUR'],
-  ['nl-NL', 'EUR'],
-  ['da-DK', 'DKK'],
-  ['sv-SE', 'SEK'],
-  ['nb-NO', 'NOK'],
-  ['fi-FI', 'EUR'],
-  ['pl-PL', 'PLN'],
-  ['tr-TR', 'TRY'],
-  ['ru-RU', 'RUB'],
-  ['ja-JP', 'JPY'],
-  ['zh-CN', 'CNY'],
-  ['ko-KR', 'KRW'],
-  ['ar-SA', 'SAR'],
-  ['he-IL', 'ILS'],
-  ['id-ID', 'IDR'],
-  ['ms-MY', 'MYR'],
-  ['th-TH', 'THB'],
-  ['vi-VN', 'VND'],
-  ['hi-IN', 'INR'],
-  ['bn-IN', 'INR'],
-  ['pa-IN', 'INR'],
-  ['gu-IN', 'INR'],
-  ['or-IN', 'INR'],
-  ['ta-IN', 'INR'],
-  ['te-IN', 'INR'],
-  ['kn-IN', 'INR'],
-  ['ml-IN', 'INR']
-])
+import { currencySymbols } from './z_config'
 
 /**
  * Format numbers into neat and formatted strings for people
@@ -48,7 +10,7 @@ const currencySymbols = new Map([
 export function formatNumber(number: number, options?: { decimals?: number; locale?: string }): string {
   const safeDecimals = Math.max(0, Math.min(options?.decimals ?? 2, 20))
 
-  let config: any = {
+  const config = {
     style: 'decimal',
     minimumFractionDigits: safeDecimals === 0 ? 0 : safeDecimals === 1 ? 1 : 2,
     maximumFractionDigits: safeDecimals
@@ -63,7 +25,7 @@ export function formatNumber(number: number, options?: { decimals?: number; loca
 export function formatCurrency(number: number, options?: { decimals?: number; locale?: string }): string {
   const safeDecimals = Math.max(0, Math.min(options?.decimals ?? 2, 20))
 
-  let config: any = {
+  const config = {
     style: 'currency',
     currencyDisplay: 'narrowSymbol',
     minimumFractionDigits: safeDecimals === 0 ? 0 : safeDecimals === 1 ? 1 : 2,
@@ -80,7 +42,7 @@ export function formatCurrency(number: number, options?: { decimals?: number; lo
 export function formatValuation(number: number, options?: { decimals?: number; locale?: string }): string {
   const safeDecimals = Math.max(0, Math.min(options?.decimals ?? 2, 20))
 
-  let config: any = {
+  const config = {
     style: 'currency',
     currencyDisplay: 'narrowSymbol',
     notation: 'compact',
@@ -98,7 +60,7 @@ export function formatValuation(number: number, options?: { decimals?: number; l
  */
 export function formatPercentage(value: number, options?: { decimals?: number; locale?: string }): string {
   const safeDecimals = Math.max(0, Math.min(options?.decimals ?? 2, 20))
-  let config: any = {
+  const config = {
     style: 'percent',
     minimumFractionDigits: safeDecimals === 0 ? 0 : safeDecimals === 1 ? 1 : 2,
     maximumFractionDigits: safeDecimals
