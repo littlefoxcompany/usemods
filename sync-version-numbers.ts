@@ -2,7 +2,7 @@
 import { readFileSync, writeFileSync } from 'fs'
 import { join } from 'path'
 
-function copyVersioNumberToPackage(packageSource: string, packageTarget: string) {
+function syncVersionNumbers(packageSource: string, packageTarget: string) {
   // Read package-a version
   const packageA = JSON.parse(readFileSync(join(process.cwd(), packageSource), 'utf8'))
   const version = packageA.version
@@ -17,4 +17,4 @@ function copyVersioNumberToPackage(packageSource: string, packageTarget: string)
   console.log(`Updated ${packageTarget} version to ${version}`)
 }
 
-copyVersioNumberToPackage('package.json', 'nuxt-module/package.json')
+syncVersionNumbers('package.json', 'nuxt-module/package.json')
