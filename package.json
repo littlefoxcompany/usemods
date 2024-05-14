@@ -1,12 +1,12 @@
 {
   "name": "usemods",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Zippy little modifiers and utilities for your frontend.",
   "scripts": {
     "dev": "npm i --prefix ./nuxt-web && npm run dev --prefix ./nuxt-web",
     "docs": "bun run docs.mjs",
-    "test": "vitest run test/*",
-    "test:watch": "vitest test/*",
+    "test": "vitest run src/*",
+    "test:watch": "vitest src/*",
     "prepublishOnly": "bun run build",
     "release": "npm run test && changelogen --release && npm publish && npm run module:release",
     "nuxt-module:dev": "npm i --prefix ./nuxt-module && npm run --prefix ./nuxt-module dev",
