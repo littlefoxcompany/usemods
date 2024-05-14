@@ -15,6 +15,9 @@ test('unescapeHtml', () => {
 
 test('stripEmojis', () => {
   expect(mod.stripEmojis('Hello 😃')).toBe('Hello ')
+  expect(mod.stripEmojis('Hello 😃👍')).toBe('Hello ')
+  expect(mod.stripEmojis('Hello 😃👍🏻')).toBe('Hello ')
+  expect(mod.stripEmojis('Hello 🎉')).toBe('Hello ')
 })
 
 test('stripWhitespace', () => {
@@ -32,6 +35,7 @@ test('stripSymbols', () => {
 
 test('stripPunctuation', () => {
   expect(mod.stripPunctuation('Hello world!')).toBe('Hello world')
+  expect(mod.stripPunctuation('Hello, world!')).toBe('Hello world')
 })
 
 test('slugify', () => {
