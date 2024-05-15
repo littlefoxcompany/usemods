@@ -38,4 +38,4 @@ jobs:
       
       - id: test
         name: Run tests
-        run: bun test
+        run: bun run test
