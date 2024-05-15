@@ -6,7 +6,7 @@
  * Check if any given value is a valid email address.
  */
 export function isEmail(value: string): boolean {
-  const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
+  const regex = /^(?!.*[._+-]{2})(?!.*[._+-]$)[a-zA-Z0-9._+-]+(?<!\.)@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
   return regex.test(value)
 }
 

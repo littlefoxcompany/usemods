@@ -2,8 +2,36 @@ import { expect, test } from 'vitest'
 import * as mod from './validators'
 
 test('isEmail', () => {
+  // Valid email addresses
   expect(mod.isEmail('hello@email.com')).toBe(true)
-  expect(mod.isEmail('helloemail.com')).toBe(false)
+  expect(mod.isEmail('john.doe+marketing@email.hospital')).toBe(true)
+  expect(mod.isEmail('jane_d@example.abogado')).toBe(true)
+  expect(mod.isEmail('first.last@sub.domain.com')).toBe(true)
+  expect(mod.isEmail('_Yosemite.Sam@example.com')).toBe(true)
+  expect(mod.isEmail('firstname-lastname@example.com')).toBe(true)
+  expect(mod.isEmail('email@example.co.uk')).toBe(true)
+  expect(mod.isEmail('1234567890@example.com')).toBe(true)
+  expect(mod.isEmail('email@example.name')).toBe(true)
+  expect(mod.isEmail('email@example.museum')).toBe(true)
+  expect(mod.isEmail('email@example.travel')).toBe(true)
+
+  // Invalid email addresses
+  expect(mod.isEmail('helloemail.com')).toBe(false) // Missing @
+  expect(mod.isEmail('plainaddress')).toBe(false) // Missing @ and domain
+  expect(mod.isEmail('@missing-local-part.com')).toBe(false) // Missing local part
+  expect(mod.isEmail('missing-at-sign.com')).toBe(false) // Missing @
+  expect(mod.isEmail('missing-domain@.com')).toBe(false) // Missing domain
+  expect(mod.isEmail('missing-tld@domain.')).toBe(false) // Missing TLD
+  expect(mod.isEmail('missingdot@com')).toBe(false) // Missing dot in domain
+  expect(mod.isEmail('two..dots@example.com')).toBe(false) // Consecutive dots in local part
+  expect(mod.isEmail('john.doe@example..com')).toBe(false) // Consecutive dots in domain
+  expect(mod.isEmail('jane_d@example.abogado@com')).toBe(false) // Two @ signs
+  expect(mod.isEmail('hello@123.123.123.123')).toBe(false) // IP address instead of domain
+  expect(mod.isEmail('john.doe.@example.com')).toBe(false) // Trailing dot in local part
+  expect(mod.isEmail('john..doe@example.com')).toBe(false) // Consecutive dots in local part
+  expect(mod.isEmail('john.doe@example')).toBe(false) // Missing TLD
+  expect(mod.isEmail('jd+m@email.c')).toBe(false) // TLD too short
+  expect(mod.isEmail('h#email.com')).toBe(false) // Invalid character in local part
 })
 
 test('isNumber', () => {
