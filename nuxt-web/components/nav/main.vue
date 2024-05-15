@@ -21,15 +21,16 @@
               </div>
             </div>
           </NavDropdown>
+          
           <NavDropdown label="Functions">
             <div class="flex w-full items-stretch gap-3 divide-x divide-white/5 p-1">
-              <div class="flex w-[720px] flex-col">
-                <div class="grid grid-cols-3">
+              <div class="flex w-fit md:w-[720px] flex-col">
+                <div class="grid grid-cols-2 md:grid-cols-3">
                   <NavDropdownItem v-for="link in docLinks" :key="link._path" :to="link._path">
                     <Icon :name="link.title" class="mt-1 h-5 w-5 shrink-0 text-white/50" />
                     <div>
                       {{ link.title }}
-                      <div class="whitespace-nowrap text-xs text-gray-500 dark:text-white/50">{{ link.lead }}</div>
+                      <div class="max-md:hidden whitespace-nowrap text-xs text-gray-500 dark:text-white/50">{{ link.lead }}</div>
                     </div>
                   </NavDropdownItem>
                 </div>
@@ -49,6 +50,6 @@
 </template>
 
 <script setup lang="ts">
-  const introLinks = inject('intro-links')
-  const docLinks = inject('doc-links')
+const introLinks = inject('intro-links')
+const docLinks = inject('doc-links')
 </script>
