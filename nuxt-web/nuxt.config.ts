@@ -23,12 +23,17 @@ export default defineNuxtConfig({
       meta: [{ property: 'og:image', content: '/og-image.jpg' }]
     }
   },
-  // routeRules: {
-  //   '/docs/**': { swr: true, prerender: true },
-  //   '/intro/**': { swr: true, prerender: true }
-  // },
+  routeRules: {
+    '/docs/**': { swr: true, prerender: true },
+    '/intro/**': { swr: true, prerender: true }
+  },
   colorMode: {
     classSuffix: ''
+  },
+  eslint: {
+    config: {
+      stylistic: true,
+    },
   },
   devtools: { enabled: false }
 })
