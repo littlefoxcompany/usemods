@@ -1,10 +1,11 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Value" type="text" v-model="value" />
-      <FormNumber label="limit" v-model="limit" :min="1" />
+      <FormInput label="Value" type="text" v-model="value" required />
+      <FormNumber label="Limit" v-model="limit" :min="1" />
       <FormInput label="Value" type="text" v-model="conjunction" />
     </ExampleInputs>
+    <ExampleCode :code="`formatList(${value}, { limit: ${limit}, conjunction: ${conjunction} })`"/>
     <ExampleResult>
       {{ formatList(value, { limit, conjunction }) }}
     </ExampleResult>
