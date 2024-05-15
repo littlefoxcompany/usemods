@@ -13,7 +13,7 @@
 }
 
 body {
-  @apply min-h-screen w-screen select-text overflow-x-clip scroll-smooth bg-white text-white
+  @apply relative min-h-screen w-screen select-text overflow-x-clip scroll-smooth bg-white text-white
   antialiased selection:bg-indigo-800 selection:text-white dark:bg-zinc-950;
 
   &* {
