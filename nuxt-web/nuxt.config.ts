@@ -11,7 +11,10 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   content: {
     highlight: {
-      theme: 'github-dark',
+      theme: {
+        default: 'github-light',
+        dark: 'github-dark',
+      },
       preload: ['javascript', 'typescript', 'json', 'html', 'css', 'yaml']
     }
   },
