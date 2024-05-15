@@ -1,0 +1,13 @@
+.animate-fade-in-up {
+    @apply relative translate-y-full opacity-0;
+    animation: fadeUp 1.5s cubic-bezier(0.2, 0.6, 0.3, 1) forwards;
+
+    @keyframes fadeUp {
+    100% {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+  }
+}
+
+  
