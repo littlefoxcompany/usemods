@@ -25,16 +25,17 @@ jobs:
       - id: checkout
         name: Checkout
         uses: actions/checkout@v3
+      
       - id: setup-bun
         name: Setup Bun
         uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
+      
       - id: install-deps
         name: Install dependencies
-        run: |
-          bun install
+        run: bun install
+      
       - id: test
-        name: Run test
-        run: |
-          bun run test
+        name: Run tests
+        run: bun test
