@@ -64,16 +64,4 @@
     background: radial-gradient(50% 50% at 50% 50%, #2a2a2a 0%, rgba(24, 24, 27, 0) 100%);
     background: radial-gradient(50% 50% at 50% 50%, color(display-p3 0.165 0.165 0.165) 0%, color(display-p3 0.094 0.094 0.106 / 0) 100%);
   }
-
-  :deep(.animate-fade-in-up) {
-    @apply relative translate-y-full opacity-0;
-    animation: fadeUp 1.5s cubic-bezier(0.2, 0.6, 0.3, 1) forwards;
-  }
-
-  @keyframes fadeUp {
-    100% {
-      opacity: 1;
-      transform: translateY(0%);
-    }
-  }
 </style>
