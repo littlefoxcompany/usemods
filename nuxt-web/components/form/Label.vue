@@ -1,8 +1,7 @@
 <template>
-  <label class="flex justify-between gap-4 pb-3 leading-none text-zinc-500">
-    {{ label }}
-
-    <div v-if="info">{{ info }}</div>
+  <label class="flex w-full justify-between gap-4 pb-3 items-end leading-none text-zinc-500">
+    <span>{{ label }}</span>
+    <div v-if="info" class="text-xs/none font-medium opacity-75">{{ info }}</div>
   </label>
 </template>
 
