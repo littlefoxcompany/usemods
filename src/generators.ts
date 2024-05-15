@@ -54,21 +54,31 @@ export function generatePassword(length: number = 8): string {
   const passwordArray: string[] = []
   const types = [uppercase, lowercase, numbers, symbols]
 
+  // Function to get a random index without bias
+  const getRandomIndex = (max: number) => {
+    const range = 256 - (256 % max)
+    let randomValue
+    do {
+      randomValue = window.crypto.getRandomValues(new Uint8Array(1))[0]
+    } while (randomValue >= range)
+    return randomValue % max
+  }
+
   // Ensure at least one character from each type
   types.forEach((type) => {
-    const randomIndex = window.crypto.getRandomValues(new Uint32Array(1))[0] % type.length
+    const randomIndex = getRandomIndex(type.length)
     passwordArray.push(type[randomIndex])
   })
 
   // Add random characters until reaching the desired length
   for (let i = passwordArray.length; i < length; i++) {
-    const randomIndex = window.crypto.getRandomValues(new Uint32Array(1))[0] % allChars.length
+    const randomIndex = getRandomIndex(allChars.length)
     passwordArray.push(allChars[randomIndex])
   }
 
   // Securely shuffle the array using Fisher-Yates algorithm
   for (let i = passwordArray.length - 1; i > 0; i--) {
-    const j = window.crypto.getRandomValues(new Uint32Array(1))[0] % (i + 1)
+    const j = getRandomIndex(i + 1)
     ;[passwordArray[i], passwordArray[j]] = [passwordArray[j], passwordArray[i]]
   }
 
