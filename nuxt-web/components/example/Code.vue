@@ -18,7 +18,7 @@ const props = defineProps<{
 const formattedCode = computed(() => formatCode(props.code));
 
 function formatCode(input: string) {
-  const regex = /(\b\d+(\.\d+)?\b|(\b\w+\b):\s*\b[\w.-]+\b)/g;
+  const regex = /(\b\d+(\.\d+)?\b|(\b\w+\b):\s*'[^']*'|\b\w+\b:\s*\b[\w.-]+\b)/g;
   const result = input.replace(regex, (match) => `<span class="option">${match}</span>`);
   return result;
 }
@@ -26,7 +26,7 @@ function formatCode(input: string) {
 
 <style scoped>
 :deep(.option) {
-    @apply bg-gray-50 px-2 py-1 rounded-lg text-gray-500 dark:text-white dark:bg-white/5;
+    @apply bg-gray-50 px-2 py-1 rounded-lg text-base text-gray-500 dark:text-white dark:bg-white/5;
 }
 </style>
 
