@@ -3,6 +3,7 @@
     <ExampleInputs>
       <FormNumber v-model="length" label="Length" max="36" />
     </ExampleInputs>
+    <ExampleCode :code="`generateShortId(${length})`" />
     <ExampleResult>
       {{ generateShortId(length) }}
     </ExampleResult>

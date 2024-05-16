@@ -1,8 +1,9 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Value" type="number" v-model="seconds" />
+      <FormInput label="Seconds" type="number" v-model="seconds" />
     </ExampleInputs>
+    <ExampleCode :code="`formatDurationNumbers(${seconds})`" />
     <ExampleResult>
       {{ formatDurationNumbers(seconds) }}
     </ExampleResult>

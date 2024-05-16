@@ -35,7 +35,8 @@ export function splitByWords(text: string): string {
 /**
  * Check the strength of a password against a given policy.
  */
-export function checkPasswordStrength(value: string, length: number, uppercase: number, numbers: number, special: number): object {
+export function checkPasswordStrength(value: string, options?: { length?: number, uppercase?: number, number?: number, special?: number }): object {
+  const { length = 8, uppercase = 1, number = 1, special = 1 } = options || {}
   let strength = 0
 
   const counts = {
@@ -46,12 +47,12 @@ export function checkPasswordStrength(value: string, length: number, uppercase: 
 
   if (value.length < length) return { score: 1, label: `Password must be at least ${length} characters long` }
   if (counts.uppercase < uppercase) return { score: 1, label: `Password must contain ${uppercase} uppercase letter` }
-  if (counts.numbers < numbers) return { score: 1, label: `Password must contain ${numbers} number` }
+  if (counts.numbers < number) return { score: 1, label: `Password must contain ${number} number` }
   if (counts.special < special) return { score: 1, label: `Password must contain ${special} special character` }
 
   if (value.length >= length) strength++
   if (counts.uppercase >= uppercase) strength++
-  if (counts.numbers >= numbers) strength++
+  if (counts.numbers >= number) strength++
   if (counts.special >= special) strength++
 
   if (strength === 4) return { score: 4, label: 'Very Strong' }
@@ -61,14 +62,6 @@ export function checkPasswordStrength(value: string, length: number, uppercase: 
   return { score: 0, label: 'Very Weak' }
 }
 
-/**
- * Returns the reading time of a string in Hours, Minutes, and Seconds.
- */
-export function readingTime(text: string, wordsPerMinute = 200): string {
-  const words = text.split(' ').length
-  const minutes = Math.ceil(words / wordsPerMinute)
-  return formatDurationLabels(minutes * 60)
-}
 /**
  * Replaces placeholders in a string with values from an object.
  */
@@ -83,4 +76,13 @@ export function mergeFields(text: string, fields: Record<string | number, string
       return `{{${key}}}`
     }
   })
+}
+
+/**
+ * Returns the reading time of a string in Hours, Minutes, and Seconds.
+ */
+export function readingTime(text: string, wordsPerMinute = 200): string {
+  const words = text.split(' ').length
+  const minutes = Math.ceil(words / wordsPerMinute)
+  return formatDurationLabels(minutes * 60)
 }

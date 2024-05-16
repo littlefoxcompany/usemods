@@ -4,6 +4,7 @@
       <FormInput label="Value" type="text" v-model="value" />
       <Button color="secondary" class="self-end" @click="action">{{ label }}</Button>
     </ExampleInputs>
+    <ExampleCode :code="`copyToClipboard('${value}')`" />
   </Example>
 </template>
 
@@ -12,7 +13,7 @@
   const label = ref('Copy')
 
   function action() {
-    copyToClipboard(value.value, callback(true))
+    copyToClipboard(value.value)
   }
 
   async function callback(success: boolean): string {

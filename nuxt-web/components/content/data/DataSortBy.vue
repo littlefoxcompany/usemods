@@ -13,6 +13,7 @@
         <option value="desc">Desc</option>
       </FormSelect>
     </ExampleInputs>
+    <ExampleCode :code="`dataSortBy(${JSON.stringify(value)}, { property: '${property}', order: '${order}' })`" />
     <ExampleResult>
       {{ dataSortBy(value,{ property, order }) }}
     </ExampleResult>

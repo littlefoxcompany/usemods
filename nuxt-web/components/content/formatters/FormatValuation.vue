@@ -1,12 +1,13 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Value" type="number" v-model="currency" />
-      <FormNumber label="Decimals" v-model="decimals" />
-      <FormSelect label="Locale" v-model="locale">
+      <FormInput label="Number" type="number" v-model="currency" />
+      <FormNumber label="Decimals" v-model="decimals" info="Default: 2" />
+      <FormSelect label="Locale" v-model="locale" info="Default: 'en-US'">
         <option v-for="locale in configLocales" :value="locale" :key="locale">{{ locale }}</option>
       </FormSelect>
     </ExampleInputs>
+    <ExampleCode :code="`formatValuation(${currency}, { decimals: ${decimals}, locale: ${locale} })`" />
     <ExampleResult>
       {{ formatValuation(currency, { decimals, locale }) }}
     </ExampleResult>

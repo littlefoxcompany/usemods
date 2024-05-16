@@ -10,5 +10,5 @@
 </template>
 
 <script setup lang="ts">
-  const value = ref('<p>Some <strong>HTML</strong> content</p>')
+  const value = ref('<div>Some <strong>HTML</strong> content</div>')
 </script>

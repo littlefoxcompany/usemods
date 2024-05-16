@@ -3,6 +3,7 @@
     <ExampleInputs>
       <FormNumber label="Length" v-model="length" :min="1" />
     </ExampleInputs>
+    <ExampleCode :code="`generateNumber(${length})`" />
     <ExampleResult>
       {{ generateNumber(length) }}
     </ExampleResult>

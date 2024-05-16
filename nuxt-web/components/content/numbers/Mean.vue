@@ -3,6 +3,7 @@
     <ExampleInputs>
       <FormInput label="Value" type="text" v-model.number="value" />
     </ExampleInputs>
+    <ExampleCode :code="`mean(${value})`" />
     <ExampleResult>
       {{ mean(convertToArray(value)) }}
     </ExampleResult>

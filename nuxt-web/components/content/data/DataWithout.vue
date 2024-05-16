@@ -11,6 +11,7 @@
         <option value="country">Country</option>
       </FormSelect>
     </ExampleInputs>
+    <ExampleCode :code="`dataWithout(${JSON.stringify(value)}, '${key}')`" />
     <ExampleResult>
       {{ dataWithout(value, key) }}
     </ExampleResult>

@@ -1,6 +1,6 @@
 <template>
   <div class="relative w-full">
-    <FormLabel :label="label" :for="id" />
+    <FormLabel :label="label" :for="id" :info="info" />
     <div class="group relative cursor-pointer">
       <select :id="id" :value="modelValue" @change="$event.target && $emit('update:modelValue', ($event.target as HTMLInputElement).value)" class="input appearance-none">
         <slot />
@@ -16,6 +16,9 @@
       type: [String, Boolean, Number]
     },
     label: {
+      type: String
+    },
+    info: {
       type: String
     }
   })

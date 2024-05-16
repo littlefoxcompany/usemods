@@ -3,6 +3,7 @@
     <ExampleInputs>
       <FormNumber label="Length" v-model="length" :min="8" />
     </ExampleInputs>
+    <ExampleCode :code="`generatePassword(${length})`" />
     <ExampleResult>
       {{ generatePassword(length) }}
     </ExampleResult>

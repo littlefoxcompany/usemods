@@ -13,7 +13,8 @@ export default [
     rules: {
       '@stylistic/indent': ['error', 2],
       '@stylistic/quotes': ['error', 'single'],
-    }
+    },
+    ignorePatterns: ['node_modules', '.nuxt', 'dist', 'nuxt-web', 'nuxt-module'],
   },
   { languageOptions: { globals: globals.browser } },
   pluginJs.configs.recommended,

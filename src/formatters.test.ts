@@ -93,6 +93,8 @@ test('formatInitials', () => {
   expect(mod.formatInitials('Dr. Robotnik')).toBe('R')
   expect(mod.formatInitials('Mrs. Marple')).toBe('M')
   expect(mod.formatInitials('William W Whittle', { length: 3 })).toBe('WWW')
+  expect(mod.formatInitials('William Snrmadeup', { length: 2 })).toBe('WS')
+  expect(mod.formatInitials('William Stan', { length: 2 })).toBe('WS')
   // @ts-expect-error: undefined is not a valid input for formatInitials
   expect(mod.formatInitials(undefined)).toBe('')
   // @ts-expect-error: null is not a valid input for formatInitials

@@ -1,5 +1,5 @@
 // title: Animators
-// description: Pixar without the budget or talent
+// description: Pixar without the budget or talent. Watch this page, there's more opinionated animations coming soon.
 // lead: Ruthlessly animate everything
 
 /**

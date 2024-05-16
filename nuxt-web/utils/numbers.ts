@@ -125,10 +125,10 @@ export function standardDeviation(numbers: number[]): number {
  * Returns the measure of asymmetry of the probability distribution of an array of numbers.
  * The skewness value can be positive, zero, negative, or undefined.
  */
-export function skewness(numbers: number[]): number | undefined {
+export function skewness(numbers: number[]): number {
   const n = numbers.length
   const meanValue = mean(numbers)
-  if (standardDeviation(numbers) === 0) return undefined
+  if (standardDeviation(numbers) === 0) return 0
   let sum = 0
   for (const num of numbers) sum += (num - meanValue) ** 3
   return (n / ((n - 1) * (n - 2))) * (sum / standardDeviation(numbers) ** 3)

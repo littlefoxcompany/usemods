@@ -1,8 +1,9 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Value" type="number" v-model.number="seconds" />
+      <FormInput label="Timestamp" type="number" v-model.number="seconds" />
     </ExampleInputs>
+    <ExampleCode :code="`formatUnixTime(${seconds})`" />
     <ExampleResult>
       {{ formatUnixTime(seconds) }}
     </ExampleResult>

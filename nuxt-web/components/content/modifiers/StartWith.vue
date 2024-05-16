@@ -4,6 +4,7 @@
       <FormInput label="Value" type="text" v-model="value" />
       <FormInput label="Start" type="text" v-model="start" />
     </ExampleInputs>
+    <ExampleCode :code="`startWith('${value}', '${start}')`" />
     <ExampleResult>
       {{ startWith(value, start) }}
     </ExampleResult>

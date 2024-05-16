@@ -4,6 +4,7 @@
       <FormInput label="Value" type="text" v-model.number="value" />
       <FormInput label="Percent" type="text" v-model.number="value2" />
     </ExampleInputs>
+    <ExampleCode :code="`subtractMargin(${value}, ${value2})`" />
     <ExampleResult>
       {{ addMarkup(value, value2) }}
     </ExampleResult>

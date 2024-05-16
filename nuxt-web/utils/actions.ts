@@ -34,7 +34,15 @@ export function toggleBodyScroll(className: string = 'fixed', action: 'add' | 'r
       const scrollY = isFixed ? parseInt(body.style.top, 10) : window.scrollY
 
       body.style.top = isFixed ? '' : `-${scrollY}px`
-      body.classList[action](className)
+
+      if (action === 'add') {
+        body.classList.add(className)
+      } else if (action === 'remove') {
+        body.classList.remove(className)
+      } else {
+        body.classList.toggle(className)
+      }
+
       if (isFixed) window.scrollTo(0, -scrollY)
 
       resolve()
@@ -64,15 +72,17 @@ export function toggleElementScroll(element: HTMLElement): Promise<void> {
 /**
  * Copies a convereted string to the clipboard
  */
-export function copyToClipboard(value: string | number): Promise<void> {
+export async function copyToClipboard(value: string | number): Promise<void> {
   if (!navigator.clipboard || !navigator.clipboard.writeText) {
-    return Promise.reject('Clipboard API is not available')
+    throw new Error('Clipboard API is not available');
   }
 
-  return navigator.clipboard.writeText(String(value)).catch((error) => {
-    console.error('Failed to copy text: ', error)
-    throw error
-  })
+  try {
+    await navigator.clipboard.writeText(String(value));
+  } catch (error) {
+    console.error('Failed to copy text: ', error);
+    throw error;
+  }
 }
 
 /**

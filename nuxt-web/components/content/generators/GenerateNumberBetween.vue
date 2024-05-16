@@ -4,6 +4,7 @@
       <FormInput type="number" label="Min" v-model="min" :min="0" />
       <FormInput type="number" label="Max" v-model="max" />
     </ExampleInputs>
+    <ExampleCode :code="`generateNumberBetween(${min}, ${max})`" />
     <ExampleResult>
       {{ generateNumberBetween(min, max) }}
     </ExampleResult>

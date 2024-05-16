@@ -3,6 +3,7 @@
     <ExampleInputs>
       <FormInput label="Value" type="text" v-model.number="value" />
     </ExampleInputs>
+    <ExampleCode :code="`mode(${convertToArray(value)})`" />
     <ExampleResult>
       {{ mode(convertToArray(value)) }}
     </ExampleResult>

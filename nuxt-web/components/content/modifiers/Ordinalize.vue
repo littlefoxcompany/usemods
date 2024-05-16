@@ -3,6 +3,7 @@
     <ExampleInputs>
       <FormNumber label="Value" v-model="value" />
     </ExampleInputs>
+    <ExampleCode :code="`ordinalize(${value})`" />
     <ExampleResult>
       {{ ordinalize(value) }}
     </ExampleResult>

@@ -1,8 +1,9 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Value" type="text" v-model="value" step="0.01" />
+      <FormInput label="Text" type="text" v-model="value" step="0.01" />
     </ExampleInputs>
+    <ExampleCode :code="`formatTitle(${value})`" />
     <ExampleResult>
       {{ formatTitle(value) }}
     </ExampleResult>
