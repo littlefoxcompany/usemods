@@ -16,7 +16,8 @@ export default defineNuxtConfig({
         dark: 'github-dark',
       },
       preload: ['javascript', 'typescript', 'json', 'html', 'css', 'yaml']
-    }
+    },
+    ignores: ['\\.txt$'],
   },
   app: {
     head: {
