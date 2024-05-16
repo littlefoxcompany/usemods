@@ -1,8 +1,9 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Value" type="text" v-model="value" />
+      <FormInput label="Text" type="text" v-model="value" />
     </ExampleInputs>
+    <ExampleCode :code="`formatTextWrap(${value})`" />
     <ExampleResult>
       {{ formatTextWrap(value) }}
     </ExampleResult>

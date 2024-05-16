@@ -2,10 +2,11 @@
   <Example>
     <ExampleInputs>
       <FormInput label="Full Name" type="text" v-model="fullName" />
-      <FormNumber label="Length" v-model="length" :min="1" />
+      <FormNumber label="Length" v-model="length" :min="1" info="Default: 2" />
     </ExampleInputs>
+    <ExampleCode :code="`formatInitials(${fullName}, { length: ${length} })`" />
     <ExampleResult>
-      {{ formatInitials(fullName, length) }}
+      {{ formatInitials(fullName, { length }) }}
     </ExampleResult>
   </Example>
 </template>

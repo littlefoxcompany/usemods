@@ -1,16 +1,17 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Value" type="number" v-model="seconds" />
-      <FormSelect label="Format" v-model="labels">
+      <FormInput label="Seconds" type="number" v-model="seconds" />
+      <FormSelect label="Format" v-model="labels" info="Default: 'short'">
         <option value="short" selected>Short</option>
         <option value="long">Long</option>
       </FormSelect>
-      <FormSelect label="Rounding" v-model="round">
+      <FormSelect label="Rounding" v-model="round" info="Default: false">
         <option :value="false">False</option>
         <option :value="true">True</option>
       </FormSelect>
     </ExampleInputs>
+    <ExampleCode :code="`formatDurationLabels(${seconds}, { labels: '${labels}', round: ${round} })`" />
     <ExampleResult>
       {{ formatDurationLabels(seconds, { labels, round }) }}
     </ExampleResult>
