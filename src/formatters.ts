@@ -160,7 +160,7 @@ export function formatDurationNumbers(seconds: number): string {
 /**
  * Format numbers into words
  */
-export function formatNumberToWords(value: number): string {
+export function formatNumberToWords(number: number): string {
   const underTwenty = [
     'zero',
     'one',
@@ -185,8 +185,8 @@ export function formatNumberToWords(value: number): string {
   ]
   const tens = ['twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety']
 
-  if (value < 20) return underTwenty[value]
-  if (value < 100) return `${tens[Math.floor(value / 10) - 2]}${value % 10 ? '-' + underTwenty[value % 10] : ''}`
+  if (number < 20) return underTwenty[number]
+  if (number < 100) return `${tens[Math.floor(number / 10) - 2]}${number % 10 ? '-' + underTwenty[number % 10] : ''}`
 
   const formatGroup = (number: number): string => {
     if (number >= 100) {
@@ -203,12 +203,12 @@ export function formatNumberToWords(value: number): string {
   let scaleIndex = 0
   let result = ''
 
-  while (value > 0) {
-    const groupValue = value % 1000
+  while (number > 0) {
+    const groupValue = number % 1000
     if (groupValue > 0) {
       result = formatGroup(groupValue) + scales[scaleIndex] + (result ? ', ' + result : '')
     }
-    value = Math.floor(value / 1000)
+    number = Math.floor(number / 1000)
     scaleIndex++
   }
 
@@ -220,7 +220,8 @@ export function formatNumberToWords(value: number): string {
  */
 export function formatInitials(text: string, options?: { length?: number }): string {
   if (!text) return ''
-  text = text.replace(/(Mrs|Mr|Ms|Dr|Jr|Sr|Prof|Hon|Snr|Jnr|St)\.?/g, '').trim()
+  text = text.replace(/(Mrs|Mr|Ms|Dr|Jr|Sr|Prof|Hon|Snr|Jnr|St)\.?/g, ' ').trim()
+  
   return text
     .split(' ')
     .filter((word) => !['the', 'third'].includes(word.toLowerCase()))
