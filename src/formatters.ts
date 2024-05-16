@@ -220,7 +220,7 @@ export function formatNumberToWords(number: number): string {
  */
 export function formatInitials(text: string, options?: { length?: number }): string {
   if (!text) return ''
-  text = text.replace(/(Mrs|Mr|Ms|Dr|Jr|Sr|Prof|Hon|Snr|Jnr|St)\.?/g, ' ').trim()
+  text = text.replace(/\b(Mrs|Mr|Ms|Dr|Jr|Sr|Prof|Hon|Snr|Jnr|St)\b\.?/g, ' ').trim()
   
   return text
     .split(' ')
