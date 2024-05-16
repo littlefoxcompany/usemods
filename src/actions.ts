@@ -34,7 +34,15 @@ export function toggleBodyScroll(className: string = 'fixed', action: 'add' | 'r
       const scrollY = isFixed ? parseInt(body.style.top, 10) : window.scrollY
 
       body.style.top = isFixed ? '' : `-${scrollY}px`
-      body.classList[action](className)
+
+      if (action === 'add') {
+        body.classList.add(className)
+      } else if (action === 'remove') {
+        body.classList.remove(className)
+      } else {
+        body.classList.toggle(className)
+      }
+
       if (isFixed) window.scrollTo(0, -scrollY)
 
       resolve()
