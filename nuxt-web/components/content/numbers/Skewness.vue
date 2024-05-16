@@ -3,6 +3,7 @@
     <ExampleInputs>
       <FormInput label="Value" type="text" v-model.number="value" />
     </ExampleInputs>
+    <ExampleCode :code="`skewness(${value})`" />
     <ExampleResult>
       {{ skewness(convertToArray(value)) }}
     </ExampleResult>

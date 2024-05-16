@@ -3,6 +3,7 @@
     <ExampleInputs>
       <FormInput label="Value" type="text" v-model.number="value" />
     </ExampleInputs>
+    <ExampleCode :code="`range(${value})`" />
     <ExampleResult>
       {{ range(convertToArray(value)) }}
     </ExampleResult>
