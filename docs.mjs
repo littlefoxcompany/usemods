@@ -1,6 +1,9 @@
 import { resolve, extname, basename, join } from 'path'
 import { watch, readFileSync, writeFileSync, copyFileSync } from 'fs'
 
+// Arguments
+const args = process.argv.slice(2);
+
 // Paths
 const srcPath = resolve('src')
 // const distPath = resolve('dist')
@@ -64,9 +67,15 @@ function generateAll() {
 generateAll()
 
 // Watch for Changes
-watch(srcPath, { recursive: true }, async (event, filename) => {
-  if (filename.endsWith('.ts')) {
-    console.log(`Detected ${event} in ${filename}`)
-    generateAll()
-  }
-})
+if (args.includes('--watch')) {
+  watch(srcPath, { recursive: true }, async (event, filename) => {
+    if (filename.endsWith('.ts')) {
+      console.log(`Detected ${event} in ${filename}`);
+      generateAll();
+    }
+  });
+} else if (args.includes('--build')) {
+  generateAll();
+} else {
+  console.log('No valid command provided. Use --watch or --build.');
+}

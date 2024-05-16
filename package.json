@@ -4,7 +4,9 @@
   "description": "Zippy little modifiers and utilities for your frontend.",
   "scripts": {
     "dev": "npm i --prefix ./nuxt-web && npm run dev --prefix ./nuxt-web",
-    "docs": "bun run docs.mjs",
+    "docs": "bun run docs.mjs --watch",
+    "docs:build": "bun run docs.mjs --build",
+    "vercel": "bun run docs:build && npm i --prefix ./nuxt-web && npm run build --prefix ./nuxt-web",
     "test": "vitest run src/*",
     "test:watch": "vitest src/*",
     "release": "npm run test && changelogen --release && npm publish && npm run nuxt-module:release",
@@ -66,5 +68,8 @@
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.9.0",
     "vitest": "^1.5.3"
+  },
+  "dependencies": {
+    "usemods-website": "./nuxt-web"
   }
 }
