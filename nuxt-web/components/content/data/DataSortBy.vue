@@ -25,7 +25,7 @@ const property = ref('name')
 const order = ref<'asc' | 'desc'>('asc')
 const value = [
   {
-    name: 'Kieth Richards',
+    name: 'Keith Richards',
     age: 77
   },
   {
