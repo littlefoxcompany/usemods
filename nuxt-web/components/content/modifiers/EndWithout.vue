@@ -4,6 +4,7 @@
       <FormInput label="Value" type="text" v-model="value" />
       <FormInput label="End" type="text" v-model="start" />
     </ExampleInputs>
+    <ExampleCode :code="`endWithout('${value}', '${start}')`" />
     <ExampleResult>
       {{ endWithout(value, start) }}
     </ExampleResult>

@@ -5,6 +5,7 @@
       <FormInput label="Start" type="text" v-model="start" />
       <FormInput label="End" type="text" v-model="end" />
     </ExampleInputs>
+    <ExampleCode :code="`surroundWith('${value}', '${start}', '${end}')`" />
     <ExampleResult>
       {{ surroundWith(value, start, end) }}
     </ExampleResult>

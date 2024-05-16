@@ -4,6 +4,7 @@
       <FormInput label="Value" type="text" v-model="value" />
       <FormNumber label="Count" v-model.number="count" />
     </ExampleInputs>
+    <ExampleCode :code="`pluralize('${value}', ${count})`" />
     <ExampleResult>
       {{ pluralize(value, count) }}
     </ExampleResult>
