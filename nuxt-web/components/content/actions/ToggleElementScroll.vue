@@ -46,15 +46,11 @@
       <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/4kHl4FoK1Ys" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen defer></iframe>
     </div>
     <ExampleInputs>
-      <Button color="secondary" class="w-full" @click="action">Toggle</Button>
+      <Button color="secondary" class="w-full" @click="toggleElementScroll(element)">Toggle</Button>
     </ExampleInputs>
   </Example>
 </template>
 
 <script setup lang="ts">
   const element = ref<HTMLElement | null>(null)
-
-  function action() {
-    if (element.value) toggleElementScroll(element.value)
-  }
 </script>
