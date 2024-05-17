@@ -14,6 +14,7 @@ export function detectScrollPosition(): { x: number; y: number } {
 
 /**
  * Detect the absolute mouse position with the page
+ * @info Don't forget to add a mousemove event listener to the window
  */
 export function detectMousePosition(event: MouseEvent): {
   x: number
@@ -27,6 +28,7 @@ export function detectMousePosition(event: MouseEvent): {
 
 /**
  * Detect the relative mouse position with the window size and returns a percentage value
+ * @info Don't forget to add a mousemove event listener to the window
  */
 export function detectRelativeMousePosition(event: MouseEvent): {
   x: number

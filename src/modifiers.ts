@@ -101,6 +101,7 @@ const irregularPlurals = new Map([
 
 /**
  * Adds plurals to a string except for excluded words.
+ * @info This handles most english pluralisation rules, but there are exceptions.
  */
 export function pluralize(value: string, count: number): string {
   if (!value) return ''
@@ -123,6 +124,7 @@ export function pluralize(value: string, count: number): string {
 
 /**
  * Removes plurals from a string.
+ * @info This handles most english pluralisation rules, but there are exceptions.
  */
 export function singularize(value: string): string {
   value = value.trim().toLowerCase()
