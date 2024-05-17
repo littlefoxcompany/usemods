@@ -8,6 +8,19 @@
 ### 🏡 Chore
 
 - **release:** V0.0.23 ([15f6b9a](https://github.com/LittleFoxCompany/usemods/commit/15f6b9a))
+- **release:** V1.0.1 ([5b19273](https://github.com/LittleFoxCompany/usemods/commit/5b19273))
+
+### ❤️ Contributors
+
+- Jeremy Butler ([@jrmymbtlr](http://github.com/jrmymbtlr))
+
+## v1.0.1
+
+[compare changes](https://github.com/LittleFoxCompany/usemods/compare/v0.0.22...v1.0.1)
+
+### 🏡 Chore
+
+- **release:** V0.0.23 ([15f6b9a](https://github.com/LittleFoxCompany/usemods/commit/15f6b9a))
 
 ### ❤️ Contributors
 
