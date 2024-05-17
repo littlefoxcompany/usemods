@@ -22,9 +22,15 @@
 
     <slot />
 
-        <!-- Function -->
+    <!-- Info -->
+    <Callout v-if="info" class="mt-6">
+      <Icon name="heroicons:information-circle" class="h-5 w-5 text-indigo-600" />
+      {{ info }}
+    </Callout>
+
+    <!-- Function -->
     <div
-      class="mt-6 flex flex-wrap items-center gap-px rounded-xl border border-black/5 bg-indigo-600/[2%] px-5 py-4 font-mono text-sm text-gray-900 dark:border-white/[8%] dark:bg-white/[3%] dark:text-gray-400">
+      class="mt-6 flex flex-wrap items-center gap-px rounded-xl border border-black/5 bg-indigo-600/[2%] px-5 py-5 font-mono text-sm text-gray-900 dark:border-white/[8%] dark:bg-white/[3%] dark:text-gray-400">
       {{ name }}
       <span class="mr-px text-gray-500">(</span>
 
@@ -61,6 +67,9 @@
       type: String
     },
     code: {
+      type: String
+    },
+    info: {
       type: String
     }
   })

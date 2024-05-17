@@ -2,10 +2,6 @@
   <Example>
     <ExampleResult>{{ result }}</ExampleResult>
   </Example>
-  <Callout class="mt-8">
-    <Icon class="mr-2 h-5 w-5" name="heroicons:cursor-arrow-rays" />
-    Don't forget to add a mousemove event listener
-  </Callout>
 </template>
 
 <script setup lang="ts">
