@@ -1,6 +1,6 @@
 {
   "name": "usemods-nuxt",
-  "version": "0.0.23",
+  "version": "1.0.1",
   "description": "Zippy little modifiers and utilities for your Nuxt app.",
   "repository": {
     "type": "git",
