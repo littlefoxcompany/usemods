@@ -46,9 +46,10 @@ function generateMarkdown(file, name) {
     const [full] = match.slice(0)
     const [, name, params] = match.slice(1)
     const jsdoc = full.match(jsdocPattern)[0]
-    const description = jsdoc.replace(/\/\*\*|\*\/|\*/g, '').trim()
+    const description = jsdoc.replace(/\/\*\*|\*\/|\*/g, '').replace(/@\w+.*$/gm, '').trim()
+    const info = (jsdoc.match(/@info\s+(.*)/) || [])[1]?.trim() || ''
 
-    markdown += `::page-function{name="${name}" description="${description}" params="${params}" }\n`
+    markdown += `::page-function{name="${name}" description="${description}" params="${params}" info="${info}" }\n`
     markdown += `:::${name}\n`
     markdown += ':::\n'
     markdown += '::\n\n'
