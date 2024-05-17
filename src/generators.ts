@@ -40,49 +40,57 @@ export function generateShortId(length: number = 19): string {
 }
 
 /**
- * Generate a random, secure password with a mix of character types.
+ * Generate a random, secure password with a mix of character types and pleasant special characters.
+ * @info Don't forget to use our Password Checker in the Goodies section
  */
-export function generatePassword(length: number = 8): string {
-  length = Math.max(length, 8)
+export function generatePassword(options?: { length?: number, uppercase?: number, number?: number, special?: number }): string {
+  const { length = 8, uppercase = 1, number = 1, special = 1 } = options || {}
+  const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  const numberChars = '0123456789'
+  const specialChars = '!@#$%&()_+?'
+  const allChars = 'abcdefghijklmnopqrstuvwxyz' + uppercaseChars + numberChars + specialChars
 
-  const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  const lowercase = uppercase.toLowerCase()
-  const numbers = '0123456789'
-  const symbols = '!@#$%^&*'
-  const allChars = uppercase + lowercase + numbers + symbols
+  let password = ''
+  
+  // Ensure the first character is a letter
+  password += allChars.charAt(generateRandomIndex(52)) // Selects a random letter from the first 52 characters (lowercase + uppercase)
 
-  const passwordArray: string[] = []
-  const types = [uppercase, lowercase, numbers, symbols]
+  for (let i = 1; i < length; i++) {
+    password += allChars.charAt(Math.floor(Math.random() * allChars.length))
+  }
 
-  // Function to get a random index without bias
-  const getRandomIndex = (max: number) => {
-    const range = 256 - (256 % max)
-    let randomValue
+  // Ensure the password meets the criteria
+  const ensureCriteria = (regex: RegExp, chars: string, count: number) => {
+    while ((password.match(regex) || []).length < count) {
+      const randomIndex = generateRandomIndex(password.length)
+      password = password.substring(0, randomIndex) + chars.charAt(Math.floor(Math.random() * chars.length)) + password.substring(randomIndex + 1)
+    }
+  }
+
+  ensureCriteria(/[A-Z]/g, uppercaseChars, uppercase)
+  ensureCriteria(/[0-9]/g, numberChars, number)
+  ensureCriteria(/[^a-zA-Z0-9]/g, specialChars, special)
+
+  return password
+}
+
+/**
+ * Random number generator using cryptographic methods to avoid random().
+ */
+export function generateRandomIndex(max: number): number {
+  const range = 256 - (256 % max);
+  let randomValue;
+  if (typeof window !== 'undefined' && window.crypto && window.crypto.getRandomValues) {
     do {
-      randomValue = window.crypto.getRandomValues(new Uint8Array(1))[0]
-    } while (randomValue >= range)
-    return randomValue % max
+      randomValue = window.crypto.getRandomValues(new Uint8Array(1))[0];
+    } while (randomValue >= range);
+  } else {
+    const crypto = require('crypto');
+    do {
+      randomValue = crypto.randomBytes(1)[0];
+    } while (randomValue >= range);
   }
-
-  // Ensure at least one character from each type
-  types.forEach((type) => {
-    const randomIndex = getRandomIndex(type.length)
-    passwordArray.push(type[randomIndex])
-  })
-
-  // Add random characters until reaching the desired length
-  for (let i = passwordArray.length; i < length; i++) {
-    const randomIndex = getRandomIndex(allChars.length)
-    passwordArray.push(allChars[randomIndex])
-  }
-
-  // Securely shuffle the array using Fisher-Yates algorithm
-  for (let i = passwordArray.length - 1; i > 0; i--) {
-    const j = getRandomIndex(i + 1)
-    ;[passwordArray[i], passwordArray[j]] = [passwordArray[j], passwordArray[i]]
-  }
-
-  return passwordArray.join('')
+  return randomValue % max;
 }
 
 /**
