@@ -34,7 +34,7 @@
       {{ name }}
       <span class="mr-px text-gray-500">(</span>
 
-      <div class="flex items-center gap-1 rounded-md bg-indigo-600/[5%] px-1 py-px text-indigo-600 dark:bg-white/[8%] dark:text-indigo-100">
+      <div class="flex items-center gap-1 rounded-md bg-indigo-600/[5%] px-1 py-px text-indigo-600 dark:bg-white/[8%] text-pretty dark:text-indigo-100">
         {{ params }}
       </div>
 
