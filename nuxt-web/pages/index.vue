@@ -11,7 +11,7 @@
 
           <div class="mt-10 flex items-center gap-3 max-md:flex-col md:mt-20">
             <NuxtLink to="intro/introduction">
-              <Button size="lg" class="group max-md:w-full">
+              <Button size="lg" class="group !rounded-full max-md:w-full">
                 Get Started
                 <Icon name="heroicons:arrow-right" class="h-5 w-5 text-white/50 transition-all duration-200 group-hover:translate-x-1" />
               </Button>

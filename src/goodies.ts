@@ -6,6 +6,7 @@ import { formatDurationLabels } from './formatters'
 
 /**
  * Wraps each word, sentence or paragraph in a string with a tag.
+ * @info Don't forget to render the HTML safely.
  */
 export function splitByWords(text: string): string {
   const sentences = text.split(/([.?!]\s*)/)

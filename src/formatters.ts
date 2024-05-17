@@ -317,6 +317,7 @@ export function formatSentenceCase(text: string): string {
 
 /**
  * Adds a space between the last two words in a string to prevent lonely words.
+ * @info Remember `text-wrap: pretty` and `text-wrap: balance` are available for most browsers.
  */
 export function formatTextWrap(value: string): string {
   const space = value.lastIndexOf(' ')

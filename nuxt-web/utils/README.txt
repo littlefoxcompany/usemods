@@ -1,0 +1,2 @@
+# Synced Files
+Please note all Mod files sync via the `./docs.mjs` here for automagical imports into the Nuxt Website and Nuxt Module. For any changes to the functions please refer to the `./src` folder.

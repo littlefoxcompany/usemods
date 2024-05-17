@@ -25,6 +25,7 @@ export function scrollToAnchor(id: string): Promise<void> {
 
 /**
  * Toggles the body scroll with specified class names and returns a promise
+ * @info Use your own class names, or ensure fixed is within your Tailwindcss JIT
  */
 export function toggleBodyScroll(className: string = 'fixed', action: 'add' | 'remove' | 'toggle' = 'toggle'): Promise<void> {
   return new Promise((resolve, reject) => {

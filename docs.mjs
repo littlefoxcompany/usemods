@@ -1,6 +1,9 @@
 import { resolve, extname, basename, join } from 'path'
 import { watch, readFileSync, writeFileSync, copyFileSync } from 'fs'
 
+// Arguments
+const args = process.argv.slice(2);
+
 // Paths
 const srcPath = resolve('src')
 // const distPath = resolve('dist')
@@ -43,9 +46,10 @@ function generateMarkdown(file, name) {
     const [full] = match.slice(0)
     const [, name, params] = match.slice(1)
     const jsdoc = full.match(jsdocPattern)[0]
-    const description = jsdoc.replace(/\/\*\*|\*\/|\*/g, '').trim()
+    const description = jsdoc.replace(/\/\*\*|\*\/|\*/g, '').replace(/@\w+.*$/gm, '').trim()
+    const info = (jsdoc.match(/@info\s+(.*)/) || [])[1]?.trim() || ''
 
-    markdown += `::page-function{name="${name}" description="${description}" params="${params}" }\n`
+    markdown += `::page-function{name="${name}" description="${description}" params="${params}" info="${info}" }\n`
     markdown += `:::${name}\n`
     markdown += ':::\n'
     markdown += '::\n\n'
@@ -64,9 +68,15 @@ function generateAll() {
 generateAll()
 
 // Watch for Changes
-watch(srcPath, { recursive: true }, async (event, filename) => {
-  if (filename.endsWith('.ts')) {
-    console.log(`Detected ${event} in ${filename}`)
-    generateAll()
-  }
-})
+if (args.includes('--watch')) {
+  watch(srcPath, { recursive: true }, async (event, filename) => {
+    if (filename.endsWith('.ts')) {
+      console.log(`Detected ${event} in ${filename}`);
+      generateAll();
+    }
+  });
+} else if (args.includes('--build')) {
+  generateAll();
+} else {
+  console.log('No valid command provided. Use --watch or --build.');
+}
