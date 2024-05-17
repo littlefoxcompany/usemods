@@ -35,6 +35,7 @@ export function splitByWords(text: string): string {
 
 /**
  * Check the strength of a password against a given policy.
+ * @info Don't forget to use our Password Generator in the Generators section
  */
 export function checkPasswordStrength(value: string, options?: { length?: number, uppercase?: number, number?: number, special?: number }): object {
   const { length = 8, uppercase = 1, number = 1, special = 1 } = options || {}
