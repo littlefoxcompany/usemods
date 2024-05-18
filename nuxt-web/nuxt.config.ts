@@ -6,7 +6,8 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@nuxt/image',
     '@nuxtjs/color-mode',
-    '@nuxt/eslint'
+    '@nuxt/eslint',
+    "shadcn-nuxt"
   ],
   css: ['~/assets/css/main.css'],
   content: {
@@ -35,6 +36,10 @@ export default defineNuxtConfig({
     config: {
       stylistic: true,
     },
+  },
+  shadcn: {
+    prefix: '',
+    componentDir: './components/ui'
   },
   devtools: { enabled: false }
 })
