@@ -108,6 +108,22 @@ export function formatPercentage(value: number, options?: { decimals?: number; l
 }
 
 /**
+ * Format a number into a your unit of choice
+ */
+export function formatUnit(value: number, options: { unit: string; decimals?: number; unitDisplay?: 'short' | 'long'; locale?: string }): string {
+  const safeDecimals = Math.max(0, Math.min(options?.decimals ?? 2, 20))
+  const config: Intl.NumberFormatOptions = {
+    unit: options.unit,
+    style: 'unit',
+    unitDisplay: options.unitDisplay ?? 'long',
+    minimumFractionDigits: safeDecimals === 0 ? 0 : safeDecimals === 1 ? 1 : 2,
+    maximumFractionDigits: safeDecimals
+  }
+
+  return new Intl.NumberFormat(options.locale ?? 'en-US', config).format(value)
+}
+
+/**
  * Format time into a human-readable string
  */
 export function formatDurationLabels(seconds: number, options?: { labels?: 'short' | 'long'; round?: boolean }): string {
@@ -184,22 +200,19 @@ export function formatNumberToWords(number: number): string {
     'nineteen'
   ]
   const tens = ['twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety']
+  const scales = ['', ' thousand', ' million', ' billion', ' trillion', ' quadrillion', ' quintillion']
+
 
   if (number < 20) return underTwenty[number]
   if (number < 100) return `${tens[Math.floor(number / 10) - 2]}${number % 10 ? '-' + underTwenty[number % 10] : ''}`
 
-  const formatGroup = (number: number): string => {
-    if (number >= 100) {
-      const remainder = number % 100
-      return `${underTwenty[Math.floor(number / 100)]} hundred${remainder ? ` and ${formatGroup(remainder)}` : ''}`
-    } else if (number >= 20) {
-      return `${tens[Math.floor(number / 10) - 2]}${number % 10 ? '-' + underTwenty[number % 10] : ''}`
-    } else {
-      return underTwenty[number]
-    }
-  }
+  const formatGroup = (num: number): string => {
+    if (num < 20) return underTwenty[num];
+    if (num < 100) return `${tens[Math.floor(num / 10) - 2]}${num % 10 ? '-' + underTwenty[num % 10] : ''}`;
+    const remainder = num % 100;
+    return `${underTwenty[Math.floor(num / 100)]} hundred${remainder ? ` and ${formatGroup(remainder)}` : ''}`;
+  };
 
-  const scales = ['', ' thousand', ' million', ' billion', ' trillion', ' quadrillion', ' quintillion']
   let scaleIndex = 0
   let result = ''
 
@@ -234,6 +247,10 @@ export function formatInitials(text: string, options?: { length?: number }): str
  * Format Unix timestamp into a datetime string
  */
 export function formatUnixTime(timestamp: number): string {
+  if (isNaN(timestamp) || timestamp < 0 || timestamp > 9999999999) {
+    console.warn('[MODS] Invalid Unix timestamp:', timestamp)
+    return String(timestamp)
+  }
   return new Date(timestamp * 1000).toISOString().replace('T', ' ').replace('Z', '')
 }
 
@@ -324,18 +341,3 @@ export function formatTextWrap(value: string): string {
   if (space !== -1) return value.substring(0, space) + '&nbsp;' + value.substring(space + 1)
   return value
 }
-
-/**
- * Format a number into a unit formatting
- */
-// export function formatUnit(value: number, unit: string, decimals: number = 2, locale: string = 'en-US'): string {
-//   let config: any = {
-//     style: 'unit',
-//     unit: unit,
-//     unitDisplay: 'short',
-//     minimumFractionDigits: decimals === 0 ? 0 : decimals === 1 ? 1 : 2,
-//     maximumFractionDigits: Math.min(decimals, 20)
-//   }
-
-//   return new Intl.NumberFormat(locale, config).format(value)
-// }

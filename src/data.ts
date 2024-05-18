@@ -48,7 +48,7 @@ export function dataReverse(items: object | string[] | number[]): object | strin
  */
 export function dataRemoveDuplicates<T extends string | number>(...arrays: T[][]): T[] {
   const mergedArray = arrays.flat()
-  return mergedArray.filter((item, index) => mergedArray.indexOf(item) === index)
+  return Array.from(new Set(mergedArray))
 }
 
 /**

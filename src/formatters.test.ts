@@ -41,6 +41,14 @@ test('formatPercentage', () => {
   expect(mod.formatPercentage(0.125, { decimals: 0 })).toBe('13%')
 })
 
+test('formatUnit', () => {
+  expect(mod.formatUnit(1000, { unit: 'meter', decimals: 0 })).toBe('1,000 meters')
+  expect(mod.formatUnit(1000, { unit: 'meter', decimals: 0 })).toBe('1,000 meters')
+  expect(mod.formatUnit(1000, { unit: 'meter', decimals: 2, unitDisplay: 'short' })).toBe('1,000.00 m')
+  expect(mod.formatUnit(1000, { unit: 'meter', decimals: 2, unitDisplay: 'long' })).toBe('1,000.00 meters')
+  expect(mod.formatUnit(1000, { unit: 'meter', decimals: 2, locale: 'en-AU', unitDisplay: 'long' })).toBe('1,000.00 metres')
+})
+
 test('formatList', () => {
   expect(mod.formatList(['Apple', 'Oranges'])).toBe('Apple and Oranges')
   expect(mod.formatList(['Apple', 'Oranges', 'Bananas', 'Grapefruit'])).toBe('Apple, Oranges, Bananas and Grapefruit')
