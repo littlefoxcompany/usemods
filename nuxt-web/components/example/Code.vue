@@ -26,7 +26,7 @@ function formatCode(input: string) {
 
 <style scoped>
 :deep(.option) {
-    @apply bg-gray-50 px-2 py-1 rounded-lg text-base text-gray-500 dark:text-white dark:bg-white/5 inline-flex;
+    @apply px-2 py-0 rounded-lg text-base bg-indigo-600/10 text-indigo-500 dark:text-white dark:bg-white/10 inline-flex;
 }
 </style>
 

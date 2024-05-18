@@ -6,9 +6,14 @@
  * Generate a random number
  */
 export function generateNumber(length: number): number {
-  const min = Math.pow(10, length - 1)
-  const max = Math.pow(10, length) - 1
-  return Math.floor(Math.random() * (max - min + 1) + min)
+  if (!Number.isInteger(length) || length <= 0) {
+    console.warn('[MODS] Warning: length must be a positive integer')
+    return 0
+  }
+
+  const min = 10 ** (length - 1);
+  const max = 10 ** length - 1;
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 /**
@@ -78,6 +83,8 @@ export function generatePassword(options?: { length?: number, uppercase?: number
  * Random number generator using cryptographic methods to avoid random().
  */
 export function generateRandomIndex(max: number): number {
+  if (max <= 0) throw new Error('[MODS] Max value must be a positive integer')
+  if (max > 256) throw new Error('[MODS] Max value must be less than 256')
   const range = 256 - (256 % max);
   let randomValue;
   if (typeof window !== 'undefined' && window.crypto && window.crypto.getRandomValues) {

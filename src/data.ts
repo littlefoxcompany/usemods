@@ -48,22 +48,21 @@ export function dataReverse(items: object | string[] | number[]): object | strin
  */
 export function dataRemoveDuplicates<T extends string | number>(...arrays: T[][]): T[] {
   const mergedArray = arrays.flat()
-  return mergedArray.filter((item, index) => mergedArray.indexOf(item) === index)
+  return Array.from(new Set(mergedArray))
 }
 
 /**
  * Flatten an array of arrays or an object of objects into a single array or object. That was hard to say.
  */
-export function dataFlatten(items: object | string[] | number[]): object | string[] | number[] {
+export function dataFlatten(items: object | any[]): object | any[] {
   if (isObject(items)) {
-    const flattened: { [key: string]: string | number | object | string[] | number[] } = {}
-    Object.keys(items as { [key: string]: string | number | object | string[] | number[] }).forEach((key) => {
-      const item = (items as { [key: string]: string | number | object | string[] | number[] })[key]
-      flattened[key] = Array.isArray(item) ? dataFlatten(item) : item
-    })
+    const flattened: { [key: string]: any } = {}
+    for (const [key, value] of Object.entries(items)) {
+      flattened[key] = Array.isArray(value) ? dataFlatten(value) : value
+    }
     return flattened
   } else if (Array.isArray(items)) {
-    return items.reduce((acc, val) => acc.concat(Array.isArray(val) ? dataFlatten(val) : val), [])
+    return items.flatMap(item => Array.isArray(item) ? dataFlatten(item) : item)
   } else {
     return items
   }

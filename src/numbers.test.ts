@@ -10,7 +10,7 @@ test('average', () => {
   expect(mod.average([1, 2, 3, 4])).toBe(2.5)
   expect(mod.average([-5, -3, -1, 0, 2])).toBe(-1.4)
   expect(mod.average([42])).toBe(42)
-  expect(mod.average([])).toBeNaN()
+  expect(mod.average([])).toBe(0)
 })
 
 test('median', () => {

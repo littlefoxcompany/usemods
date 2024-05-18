@@ -6,6 +6,7 @@
  * Calculates the sum of an array of numbers.
  */
 export function sum(numbers: number[]): number {
+  if (numbers.length === 0) return 0
   return numbers.reduce((a, b) => a + b, 0)
 }
 
@@ -13,6 +14,7 @@ export function sum(numbers: number[]): number {
  * Calculates the mean of an array of numbers.
  */
 export function mean(numbers: number[]): number {
+  if (numbers.length === 0) return 0
   return sum(numbers) / numbers.length
 }
 
@@ -20,6 +22,7 @@ export function mean(numbers: number[]): number {
  * Calculates the mean of an array of numbers.
  */
 export function average(numbers: number[]): number {
+  if (numbers.length === 0) return 0
   return mean(numbers)
 }
 

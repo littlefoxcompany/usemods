@@ -11,6 +11,7 @@ export function scrollToAnchor(id: string): Promise<void> {
       const selector = `#${id}`
       const element = document.querySelector(selector)
       if (!element) {
+        console.warn(`[MODS] Element with id '${id}' not found.`)
         reject(`Element with id '${id}' not found.`)
         return
       }
@@ -48,6 +49,7 @@ export function toggleBodyScroll(className: string = 'fixed', action: 'add' | 'r
 
       resolve()
     } catch (error) {
+      console.warn('[MODS] Failed to toggle body scroll.')
       reject(error)
     }
   })
@@ -58,6 +60,11 @@ export function toggleBodyScroll(className: string = 'fixed', action: 'add' | 'r
  */
 export function toggleElementScroll(element: HTMLElement): Promise<void> {
   return new Promise((resolve) => {
+    if (!element) {
+      console.warn('[MODS] Element is required to toggle scroll.')
+      return resolve()
+    }
+    
     if (element.dataset.isScrollLocked === 'true') {
       element.style.overflow = ''
       delete element.dataset.isScrollLocked

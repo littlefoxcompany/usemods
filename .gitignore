@@ -13,6 +13,8 @@ sw.*
 docs/content/2.functions
 nuxt-module/docs/content/1.docs
 nuxt-module/docs/content/2.docs
-nuxt-module/src/runtime/utils/*.ts
 nuxt-web/content/2.docs/*.md
+nuxt-module/src/runtime/utils/*.ts
+!nuxt-module/src/runtime/utils/config.ts
 nuxt-web/utils/*.ts
+!nuxt-web/utils/config.ts
