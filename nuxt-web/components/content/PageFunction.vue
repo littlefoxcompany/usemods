@@ -32,9 +32,9 @@
     <div class="flex justify-between text-sm dark:border-white/[8%] gap-2 mt-6 rounded-xl border border-black/5 bg-indigo-600/[2%] px-5 py-5">
     <div
       class=" font-mono text-gray-900 dark:text-gray-400">
-      <span>{{ name }}</span>
+      <span class="text-indigo-600 dark:text-gray-200">{{ name }}</span>
       <span class="mr-px text-gray-500">(</span>
-      <span class="inline-flex items-center gap-1 rounded-md bg-indigo-600/[5%] px-1 py-px text-indigo-600 dark:bg-white/[8%] text-pretty dark:text-indigo-100">{{ params }}</span>
+      <span class="text-indigo-600 dark:text-gray-200">{{ params }}</span>
       <span class="ml-px text-gray-500">)</span>
       </div>
     </div>
@@ -66,9 +66,7 @@
   const showCopyToClipboard = ref(false)
   const showCopied = ref(false)
   const section = ref<HTMLElement>()
-const activeSections = useState('activeSections', () => [])
-  
-
+  const activeSections = useState('activeSections', () => [])
   const sectionIsVisible = useElementVisibility(section)
 
   function copied() {
