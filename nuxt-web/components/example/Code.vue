@@ -6,7 +6,15 @@
             </div>
             <div class="min-h-7 text-lg font-medium text-gray-500 dark:text-white/50 text-pretty" v-html="formattedCode"></div>
         </div>
-        <div class="font-mono text-sm/none text-gray-300 max-md:hidden dark:text-white/25">Example</div>
+        <button type="button" @click="copyToClipboard(props.code), copied()" class="flex items-center gap-2 text-indigo-500 dark:text-white/50 hover:text-indigo-600 dark:hover:text-white/75">
+            <Icon v-if="showCopied" name="🎉" class="w-4 h-4" />
+            <Icon v-else name="heroicons:clipboard" class="w-3 h-3" />
+            <span class="text-sm/none">
+                <span v-if="showCopied">Copied</span>
+                <span v-else>Copy</span>
+            </span>
+        </button>
+        
     </div>
 </template>
 
@@ -16,6 +24,14 @@ const props = defineProps<{
 }>();
 
 const formattedCode = computed(() => formatCode(props.code));
+const showCopied = ref(false)
+
+function copied() {
+    showCopied.value = true
+    setTimeout(() => {
+        showCopied.value = false
+    }, 800)
+}
 
 function formatCode(input: string) {
   const regex = /(\b\d+(\.\d+)?\b|(\b\w+\b):\s*'[^']*'|\b\w+\b:\s*\b[\w.-]+\b)/g;
