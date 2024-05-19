@@ -12,7 +12,7 @@
       <FormSelect label="Unit" v-model="unit">
         <option v-for="unit in configUnits" :value="unit" :key="unit">{{ unit }}</option>
       </FormSelect>
-      <FormSelect label="Display" v-model="unitDisplay">
+      <FormSelect label="Display" v-model="unitDisplay" info="Default: 'long'">
         <option value="long">Long</option>
         <option value="short">Short</option>
       </FormSelect>
