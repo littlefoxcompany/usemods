@@ -6,6 +6,46 @@ export function convertToArray(value: string) {
     }
 }
 
+export const currencySymbols = new Map([
+    ['en-US', 'USD'], // US Dollar
+    ['en-GB', 'GBP'], // British Pound
+    ['en-AU', 'AUD'], // Australian Dollar
+    ['en-CA', 'CAD'], // Canadian Dollar
+    ['en-NZ', 'NZD'], // New Zealand Dollar
+    ['en-ZA', 'ZAR'], // South African Rand
+    ['de-DE', 'EUR'], // Euro (Germany)
+    ['fr-FR', 'EUR'], // Euro (France)
+    ['es-ES', 'EUR'], // Euro (Spain)
+    ['it-IT', 'EUR'], // Euro (Italy)
+    ['pt-PT', 'EUR'], // Euro (Portugal)
+    ['nl-NL', 'EUR'], // Euro (Netherlands)
+    ['fi-FI', 'EUR'], // Euro (Finland)
+    ['da-DK', 'DKK'], // Danish Krone
+    ['sv-SE', 'SEK'], // Swedish Krona
+    ['nb-NO', 'NOK'], // Norwegian Krone
+    ['pl-PL', 'PLN'], // Polish Zloty
+    ['tr-TR', 'TRY'], // Turkish Lira
+    ['ru-RU', 'RUB'], // Russian Ruble
+    ['ja-JP', 'JPY'], // Japanese Yen
+    ['zh-CN', 'CNY'], // Chinese Yuan
+    ['ko-KR', 'KRW'], // South Korean Won
+    ['ar-SA', 'SAR'], // Saudi Riyal
+    ['he-IL', 'ILS'], // Israeli Shekel
+    ['id-ID', 'IDR'], // Indonesian Rupiah
+    ['ms-MY', 'MYR'], // Malaysian Ringgit
+    ['th-TH', 'THB'], // Thai Baht
+    ['vi-VN', 'VND'], // Vietnamese Dong
+    ['hi-IN', 'INR'], // Indian Rupee
+    ['bn-IN', 'INR'], // Indian Rupee
+    ['pa-IN', 'INR'], // Indian Rupee
+    ['gu-IN', 'INR'], // Indian Rupee
+    ['or-IN', 'INR'], // Indian Rupee
+    ['ta-IN', 'INR'], // Indian Rupee
+    ['te-IN', 'INR'], // Indian Rupee
+    ['kn-IN', 'INR'], // Indian Rupee
+    ['ml-IN', 'INR'] // Indian Rupee
+])
+
 export const configLocales = new Set([
     'en-US', // English (United States)
     'en-GB', // English (United Kingdom)
@@ -177,3 +217,7 @@ export const irregularPlurals = new Map([
     ['wife', 'wives'],
     ['woman', 'women']
 ]);
+
+export const numberUnderTwenty: string[] = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen']
+export const numberTens: string[] = ['twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety']
+export const numberScales: string[] = ['', ' thousand', ' million', ' billion', ' trillion', ' quadrillion', ' quintillion']

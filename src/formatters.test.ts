@@ -28,11 +28,14 @@ test('formatValuation', () => {
 
 test('formatDurationLabels', () => {
   expect(mod.formatDurationLabels(0)).toBe('0 seconds')
+  expect(mod.formatDurationLabels(0.005)).toBe('5 milliseconds')
+  expect(mod.formatDurationLabels(0.5)).toBe('500 milliseconds')
   expect(mod.formatDurationLabels(3600)).toBe('1 hour')
-  expect(mod.formatDurationLabels(3600 * 2, { labels: 'short' })).toBe('2hr')
+  expect(mod.formatDurationLabels(3600 * 2, { labels: 'short' })).toBe('2 hr')
   expect(mod.formatDurationLabels(3600 * 2, { labels: 'long' })).toBe('2 hours')
   expect(mod.formatDurationLabels(3600 * 2 + 60)).toBe('2 hours 1 minute')
-  expect(mod.formatDurationLabels(3600 * 2 + 60 + 1)).toBe('2 hours 1 minute 1 second')
+  expect(mod.formatDurationLabels(3600 * 2 + 60 + 1.5)).toBe('2 hours 1 minute 1 second 500 milliseconds')
+  expect(mod.formatDurationLabels(3600 * 400 + 60 + 1)).toBe('16 days 16 hours 1 minute 1 second')
 })
 
 test('formatPercentage', () => {
