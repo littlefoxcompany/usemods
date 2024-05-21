@@ -1,22 +1,33 @@
 import { expect, test } from 'vitest'
 import * as mod from './data'
 
-const items = [
+const arrayExample = [
   { name: 'John', age: 25 },
   { name: 'Jane', age: 30 },
   { name: 'Jake', age: 20 }
 ]
+
+const objectExample = {
+  name: 'John',
+  age: 25,
+  country: 'USA'
+}
 
 // test('dataShuffle', () => {
 //   expect(mod.dataShuffle(items)).not.toStrictEqual(items)
 // })
 
 test('dataReverse', () => {
-  expect(mod.dataReverse(items)).toStrictEqual([
+  expect(mod.dataReverse(arrayExample)).toStrictEqual([
     { name: 'Jake', age: 20 },
     { name: 'Jane', age: 30 },
     { name: 'John', age: 25 }
   ])
+  expect(mod.dataReverse(objectExample)).toStrictEqual({
+    country: 'USA',
+    age: 25,
+    name: 'John',
+  })
 })
 
 test('dataRemoveDuplicates', () => {
@@ -25,19 +36,19 @@ test('dataRemoveDuplicates', () => {
 })
 
 test('dataSortBy', () => {
-  expect(mod.dataSortBy(items, { property: 'age' })).toStrictEqual([
+  expect(mod.dataSortBy(arrayExample, { property: 'age' })).toStrictEqual([
     { name: 'Jake', age: 20 },
     { name: 'John', age: 25 },
     { name: 'Jane', age: 30 }
   ])
 
-  expect(mod.dataSortBy(items, { property: 'age', order: 'desc' })).toStrictEqual([
+  expect(mod.dataSortBy(arrayExample, { property: 'age', order: 'desc' })).toStrictEqual([
     { name: 'Jane', age: 30 },
     { name: 'John', age: 25 },
     { name: 'Jake', age: 20 }
   ])
 
-  expect(mod.dataSortBy(items, { property: 'name' })).toStrictEqual([
+  expect(mod.dataSortBy(arrayExample, { property: 'name' })).toStrictEqual([
     { name: 'Jake', age: 20 },
     { name: 'Jane', age: 30 },
     { name: 'John', age: 25 }
