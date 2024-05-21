@@ -51,22 +51,33 @@ export function surroundWith(text: string, start: string, end: string): string {
  * @info This handles most english pluralisation rules, but there are exceptions.
  */
 export function pluralize(value: string, count: number): string {
-  if (!value) return ''
-  value = value.trim().toLowerCase()
+  if (count === 1 || !value || typeof value !== 'string') return value || '';
 
-  if (count === 1) return value
-  if (unchangingPlurals.has(value)) return value
-  if (irregularPlurals.has(value)) return irregularPlurals.get(value) || value
+  value = value.trim().toLowerCase();
+  if (unchangingPlurals.has(value)) return value;
+  if (irregularPlurals.has(value)) return irregularPlurals.get(value) || value;
 
-  if (value.endsWith('f')) return value.slice(0, -1) + 'ves'
-  if (value.endsWith('fe')) return value.slice(0, -2) + 'ves'
-  if (value.endsWith('y')) return value.slice(0, -1) + 'ies'
-  if (value.endsWith('s')) return value
-  if (value.endsWith('x')) return value + 'es'
-  if (value.endsWith('ch')) return value + 'es'
-  if (value.endsWith('sh')) return value + 'es'
+  const suffixRules = new Map<string, string>([
+    ['ch', 'ches'],
+    ['ss', 'sses'],
+    ['sh', 'shes'],
+    ['x', 'xes'],
+    ['s', 'ses'],
+    ['z', 'zes'],
+    ['o', 'oes'],
+    ['us', 'i'],
+    ['f', 'ves'],
+    ['fe', 'ves'],
+    ['y', 'ies']
+  ]);
 
-  return value + 's'
+  for (const [suffix, replacement] of suffixRules) {
+    if (value.endsWith(suffix)) {
+      return value.slice(0, -suffix.length) + replacement;
+    }
+  }
+
+  return value + 's';
 }
 
 /**
@@ -77,17 +88,31 @@ export function singularize(value: string): string {
   value = value.trim().toLowerCase()
 
   if (unchangingPlurals.has(value)) return value
-  if (irregularPlurals.has(value)) return irregularPlurals.get(value) || value
+  
+  for (const [singular, plural] of irregularPlurals) {
+    if (plural === value) return singular;
+  }
 
-  if (value.endsWith('ives')) return value.slice(0, -4) + 'ife'
-  if (value.endsWith('ves')) return value.slice(0, -3) + 'f'
-  if (value.endsWith('ies')) return value.slice(0, -3) + 'y'
-  if (value.endsWith('ches') || value.endsWith('shes') || value.endsWith('xes')) return value.slice(0, -2)
-  if (value.endsWith('oes')) return value.slice(0, -2)
-  if (value.endsWith('us') || value.endsWith('ss')) return value
-  if (value.endsWith('i')) return value.slice(0, -1) + 'us'
-  if (value.endsWith('a')) return value.slice(0, -1) + 'on'
-  if (value.endsWith('s') && value.length > 1) return value.slice(0, -1)
+  const singularRules = new Map<string, (value: string) => string>([
+    ['ives', value => value.slice(0, -4) + 'ife'],
+    ['ves', value => value.slice(0, -3) + 'f'],
+    ['ies', value => value.slice(0, -3) + 'y'],
+    ['ches', value => value.slice(0, -2)],
+    ['shes', value => value.slice(0, -2)],
+    ['xes', value => value.slice(0, -2)],
+    ['oes', value => value.slice(0, -2)],
+    ['ses', value => value.slice(0, -2)],
+    ['es', value => value.slice(0, -1)],
+    ['i', value => value.slice(0, -1) + 'us'],
+    ['a', value => value.slice(0, -1) + 'on'],
+    ['s', value => value.length > 1 ? value.slice(0, -1) : value]
+  ]);
+
+  for (const [suffix, transform] of singularRules) {
+    if (value.endsWith(suffix)) {
+      return transform(value);
+    }
+  }
 
   return value
 }
