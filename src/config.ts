@@ -1,11 +1,3 @@
-export function convertToArray(value: string) {
-    try {
-        return JSON.parse(value)
-    } catch (error) {
-        return []
-    }
-}
-
 export const currencySymbols = new Map([
     ['en-US', 'USD'], // US Dollar
     ['en-GB', 'GBP'], // British Pound
