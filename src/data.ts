@@ -27,7 +27,7 @@ export function dataSortBy(items: object | string[] | number[], options?: { prop
 }
 
 /**
- * Reverse an array.
+ * Reverse an array or object.
  */
 export function dataReverse(items: object | string[] | number[]): object | string[] | number[] {
   if (!items) {
