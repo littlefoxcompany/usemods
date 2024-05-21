@@ -3,7 +3,7 @@
     <ExampleInputs>
       <FormInput label="Text" type="text" v-model="value" />
     </ExampleInputs>
-    <ExampleCode :code="`formatTextWrap(${value})`" />
+    <ExampleCode :code="`formatTextWrap('${value}')`" />
     <ExampleResult>
       {{ formatTextWrap(value) }}
     </ExampleResult>

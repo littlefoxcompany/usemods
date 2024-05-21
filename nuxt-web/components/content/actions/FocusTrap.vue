@@ -15,7 +15,7 @@
   const form = ref<HTMLFormElement | null>(null)
 
   function action() {
-    focusTrap(form.value)
-    focusOnFirst(form.value)
+    focusTrap(form.value!)
+    focusOnNth(form.value!, 0)
   }
 </script>

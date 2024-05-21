@@ -2,6 +2,8 @@
 // description: Modify and transform your content with our collection of efficient and easy-to-use functions designed to dicipher, manipulate, and transform strings.
 // lead: Bend content to your will
 
+import { unchangingPlurals, irregularPlurals } from './config'
+
 /**
  * Adds a prefix to a string if it doesn't already start with the prefix.
  */
@@ -43,61 +45,6 @@ export function surroundWith(text: string, start: string, end: string): string {
   if (text.endsWith(end)) return start + text
   return start + text + end
 }
-
-const unchangingPlurals = new Set([
-  'sheep',
-  'fish',
-  'deer',
-  'hay',
-  'moose',
-  'series',
-  'species',
-  'aircraft',
-  'bison',
-  'buffalo',
-  'cod',
-  'elk',
-  'halibut',
-  'hovercraft',
-  'lego',
-  'mackerel',
-  'salmon',
-  'spacecraft',
-  'swine',
-  'trout',
-  'tuna'
-])
-const irregularPlurals = new Map([
-  ['child', 'children'],
-  ['person', 'people'],
-  ['man', 'men'],
-  ['woman', 'women'],
-  ['tooth', 'teeth'],
-  ['foot', 'feet'],
-  ['mouse', 'mice'],
-  ['goose', 'geese'],
-  ['ox', 'oxen'],
-  ['leaf', 'leaves'],
-  ['life', 'lives'],
-  ['knife', 'knives'],
-  ['wife', 'wives'],
-  ['half', 'halves'],
-  ['elf', 'elves'],
-  ['loaf', 'loaves'],
-  ['potato', 'potatoes'],
-  ['tomato', 'tomatoes'],
-  ['cactus', 'cacti'],
-  ['focus', 'foci'],
-  ['fungus', 'fungi'],
-  ['nucleus', 'nuclei'],
-  ['syllabus', 'syllabi'],
-  ['analysis', 'analyses'],
-  ['diagnosis', 'diagnoses'],
-  ['oasis', 'oases'],
-  ['thesis', 'theses'],
-  ['crisis', 'crises']
-  // TODO: Add more irregular plurals
-])
 
 /**
  * Adds plurals to a string except for excluded words.

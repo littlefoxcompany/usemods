@@ -2,45 +2,7 @@
 // description: Wrangle wild data types into submission. Spruce up numbers, give strings smarts, and make complex content dazzle.
 // lead: Format misbehaving content
 
-const currencySymbols = new Map([
-  ['en-US', 'USD'],
-  ['en-GB', 'GBP'],
-  ['en-AU', 'AUD'],
-  ['en-CA', 'CAD'],
-  ['en-NZ', 'NZD'],
-  ['en-ZA', 'ZAR'],
-  ['de-DE', 'EUR'],
-  ['fr-FR', 'EUR'],
-  ['es-ES', 'EUR'],
-  ['it-IT', 'EUR'],
-  ['pt-PT', 'EUR'],
-  ['nl-NL', 'EUR'],
-  ['da-DK', 'DKK'],
-  ['sv-SE', 'SEK'],
-  ['nb-NO', 'NOK'],
-  ['fi-FI', 'EUR'],
-  ['pl-PL', 'PLN'],
-  ['tr-TR', 'TRY'],
-  ['ru-RU', 'RUB'],
-  ['ja-JP', 'JPY'],
-  ['zh-CN', 'CNY'],
-  ['ko-KR', 'KRW'],
-  ['ar-SA', 'SAR'],
-  ['he-IL', 'ILS'],
-  ['id-ID', 'IDR'],
-  ['ms-MY', 'MYR'],
-  ['th-TH', 'THB'],
-  ['vi-VN', 'VND'],
-  ['hi-IN', 'INR'],
-  ['bn-IN', 'INR'],
-  ['pa-IN', 'INR'],
-  ['gu-IN', 'INR'],
-  ['or-IN', 'INR'],
-  ['ta-IN', 'INR'],
-  ['te-IN', 'INR'],
-  ['kn-IN', 'INR'],
-  ['ml-IN', 'INR']
-]) as Map<string, string>
+import { currencySymbols, numberUnderTwenty, numberTens, numberScales } from './config'
 
 /**
  * Format numbers into neat and formatted strings for people
@@ -127,105 +89,70 @@ export function formatUnit(value: number, options: { unit: string; decimals?: nu
  * Format time into a human-readable string
  */
 export function formatDurationLabels(seconds: number, options?: { labels?: 'short' | 'long'; round?: boolean }): string {
-  const time = [
-    { unit: options?.labels === 'short' ? 'yr' : ' year', secondsInUnit: 31536000 },
-    { unit: options?.labels === 'short' ? 'mo' : ' month', secondsInUnit: 2628000 },
-    { unit: options?.labels === 'short' ? 'wk' : ' week', secondsInUnit: 604800 },
-    { unit: options?.labels === 'short' ? 'd' : ' day', secondsInUnit: 86400 },
-    { unit: options?.labels === 'short' ? 'hr' : ' hour', secondsInUnit: 3600 },
-    { unit: options?.labels === 'short' ? 'min' : ' minute', secondsInUnit: 60 },
-    { unit: options?.labels === 'short' ? 's' : ' second', secondsInUnit: 1 }
-  ]
+  if (seconds <= 0) return formatUnit(0, { unit: 'second', decimals: 0, unitDisplay: options?.labels ?? 'long' });
+  if (options?.round) seconds = Math.round(seconds);
 
-  if (seconds == 0) return `0${options?.labels === 'short' ? 's' : ' seconds'}`
+  const units = [
+    { unit: 'year', value: 31536000 },
+    { unit: 'day', value: 86400 },
+    { unit: 'hour', value: 3600 },
+    { unit: 'minute', value: 60 },
+    { unit: 'second', value: 1 },
+  ];
 
-  if (options?.round) {
-    for (const { secondsInUnit } of time) {
-      if (seconds >= secondsInUnit) {
-        seconds = seconds - (seconds % secondsInUnit)
-        break
-      }
+  const labels = options?.labels ?? 'long';
+  const results = [];
+
+  units.forEach(({ unit, value }) => {
+    const unitValue = Math.floor(seconds / value);
+    if (unitValue > 0) {
+      results.push(formatUnit(unitValue, { unit, decimals: 0, unitDisplay: labels }));
+      seconds %= value;
     }
-  }
+  });
 
-  let remainingSeconds = seconds
-  let formattedTime = ''
-
-  for (const { unit, secondsInUnit } of time) {
-    const count = Math.floor(remainingSeconds / secondsInUnit)
-    if (count > 0) {
-      formattedTime += `${count}${count === 1 || options?.labels === 'short' ? unit : unit + 's'} `
-      remainingSeconds -= count * secondsInUnit
-    }
-  }
-
-  return formattedTime.trim()
+  const milliseconds = Math.floor((seconds % 1) * 1000);
+  if (milliseconds > 0) results.push(formatUnit(milliseconds, { unit: 'millisecond', decimals: 0, unitDisplay: labels }));
+  return results.join(' ');
 }
 
 /**
  * Format time into duration 00:00:00
  */
 export function formatDurationNumbers(seconds: number): string {
-  const hours = Math.floor(seconds / 3600)
-  const minutes = Math.floor((seconds - hours * 3600) / 60)
-  const remainingSeconds = seconds - hours * 3600 - minutes * 60
+  const h = Math.floor(seconds / 3600)
+  const m = Math.floor((seconds - h * 3600) / 60)
+  const s = seconds - h * 3600 - m * 60
 
-  return [hours, minutes, remainingSeconds].map((value) => value.toString().padStart(2, '0')).join(':')
+  return [h, m, s].map((value) => value.toString().padStart(2, '0')).join(':')
 }
 
 /**
  * Format numbers into words
  */
 export function formatNumberToWords(number: number): string {
-  const underTwenty = [
-    'zero',
-    'one',
-    'two',
-    'three',
-    'four',
-    'five',
-    'six',
-    'seven',
-    'eight',
-    'nine',
-    'ten',
-    'eleven',
-    'twelve',
-    'thirteen',
-    'fourteen',
-    'fifteen',
-    'sixteen',
-    'seventeen',
-    'eighteen',
-    'nineteen'
-  ]
-  const tens = ['twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety']
-  const scales = ['', ' thousand', ' million', ' billion', ' trillion', ' quadrillion', ' quintillion']
-
-
-  if (number < 20) return underTwenty[number]
-  if (number < 100) return `${tens[Math.floor(number / 10) - 2]}${number % 10 ? '-' + underTwenty[number % 10] : ''}`
+  if (number < 20) return numberUnderTwenty[number];
+  if (number < 100) return `${numberTens[Math.floor(number / 10) - 2]}${number % 10 ? '-' + numberUnderTwenty[number % 10] : ''}`;
 
   const formatGroup = (num: number): string => {
-    if (num < 20) return underTwenty[num];
-    if (num < 100) return `${tens[Math.floor(num / 10) - 2]}${num % 10 ? '-' + underTwenty[num % 10] : ''}`;
-    const remainder = num % 100;
-    return `${underTwenty[Math.floor(num / 100)]} hundred${remainder ? ` and ${formatGroup(remainder)}` : ''}`;
+    if (num < 20) return numberUnderTwenty[num];
+    if (num < 100) return `${numberTens[Math.floor(num / 10) - 2]}${num % 10 ? '-' + numberUnderTwenty[num % 10] : ''}`;
+    return `${numberUnderTwenty[Math.floor(num / 100)]} hundred${num % 100 ? ` and ${formatGroup(num % 100)}` : ''}`;
   };
 
-  let scaleIndex = 0
-  let result = ''
+  let result = '';
+  let scaleIndex = 0;
 
   while (number > 0) {
-    const groupValue = number % 1000
+    const groupValue = number % 1000;
     if (groupValue > 0) {
-      result = formatGroup(groupValue) + scales[scaleIndex] + (result ? ', ' + result : '')
+      result = formatGroup(groupValue) + numberScales[scaleIndex] + (result ? ', ' + result : '');
     }
-    number = Math.floor(number / 1000)
-    scaleIndex++
+    number = Math.floor(number / 1000);
+    scaleIndex++;
   }
 
-  return result.trim()
+  return result.trim();
 }
 
 /**

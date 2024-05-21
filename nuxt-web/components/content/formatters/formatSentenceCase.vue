@@ -3,7 +3,7 @@
     <ExampleInputs>
       <FormInput label="Text" type="text" v-model="value" />
     </ExampleInputs>
-    <ExampleCode :code="`formatSentenceCase(${value})`" />
+    <ExampleCode :code="`formatSentenceCase('${value}')`" />
     <ExampleResult>
       {{ formatSentenceCase(value) }}
     </ExampleResult>

@@ -173,10 +173,9 @@ export function focusTrap(container: HTMLElement): void {
   const focusableElements = container.querySelectorAll('a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select')
   const firstFocusableElement = focusableElements[0] as HTMLElement
   const lastFocusableElement = focusableElements[focusableElements.length - 1] as HTMLElement
-  const KEYCODE_TAB = 9
 
   container.addEventListener('keydown', (event) => {
-    const isTabPressed = event.key === 'Tab' || event.keyCode === KEYCODE_TAB
+    const isTabPressed = event.key === 'Tab'
     if (!isTabPressed) return
 
     if (event.shiftKey) {
@@ -191,4 +190,19 @@ export function focusTrap(container: HTMLElement): void {
       }
     }
   })
+}
+
+/**
+ * Scrolls to the top of the page
+ */
+export function scrollToTop(): void {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
+
+/**
+ * Scrolls to the bottom of the page
+ */
+export function scrollToBottom(): void {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
 }
