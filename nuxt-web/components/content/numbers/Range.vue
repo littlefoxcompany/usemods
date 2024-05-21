@@ -5,7 +5,7 @@
     </ExampleInputs>
     <ExampleCode :code="`range(${value})`" />
     <ExampleResult>
-      {{ range(convertToArray(value)) }}
+      {{ range(JSON.parse(value)) }}
     </ExampleResult>
   </Example>
 </template>

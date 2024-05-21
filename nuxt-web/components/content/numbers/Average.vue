@@ -5,7 +5,7 @@
     </ExampleInputs>
     <ExampleCode :code="`average(${value})`" />
     <ExampleResult>
-      {{ average(convertToArray(value)) }}
+      {{ average(JSON.parse(value)) }}
     </ExampleResult>
   </Example>
 </template>

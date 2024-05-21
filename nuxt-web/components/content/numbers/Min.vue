@@ -3,9 +3,9 @@
     <ExampleInputs>
       <FormInput label="Value" type="text" v-model.number="value" />
     </ExampleInputs>
-    <ExampleCode :code="`min(convertToArray(value))`" />
+    <ExampleCode :code="`min(JSON.parse(value))`" />
     <ExampleResult>
-      {{ min(convertToArray(value)) }}
+      {{ min(JSON.parse(value)) }}
     </ExampleResult>
   </Example>
 </template>

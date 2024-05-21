@@ -5,7 +5,7 @@
     </ExampleInputs>
     <ExampleCode :code="`sum(${value})`" />
     <ExampleResult>
-      {{ sum(convertToArray(value)) }}
+      {{ sum(JSON.parse(value)) }}
     </ExampleResult>
   </Example>
 </template>
