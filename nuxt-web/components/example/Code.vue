@@ -4,7 +4,7 @@
             <div class="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-indigo-50 dark:bg-white/5">
                 <Icon name="ph:code-bold" class="w-3 shrink-0 text-indigo-600 dark:text-white/50" />
             </div>
-            <div class="min-h-7 text-lg font-medium text-gray-500 dark:text-white/50 text-pretty" v-html="formattedCode"></div>
+            <div class="min-h-7 text-lg text-gray-500 dark:text-white/50 text-pretty" v-html="formattedCode"></div>
         </div>
         <button type="button" @click="copyToClipboard(props.code), copied()" class="flex h-7 items-center gap-2 text-indigo-500 dark:text-white/50 hover:text-indigo-600 dark:hover:text-white/75">
             <Icon v-if="showCopied" name="🎉" class="w-4 h-4" />

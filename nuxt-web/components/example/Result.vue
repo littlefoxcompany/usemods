@@ -4,7 +4,7 @@
       <div class="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-indigo-50 dark:bg-white/5">
         <Icon name="ph:equals-bold" class="w-3 shrink-0 text-indigo-600 dark:text-white/50" />
       </div>
-      <div class="min-h-7 text-lg font-semibold">
+      <div class="min-h-7 text-xl font-semibold">
         <slot />
       </div>
     </div>

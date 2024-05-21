@@ -5,7 +5,7 @@
         <FormInput label="Name" type="text" name="name" value="Timmy" placeholder="Name" />
         <FormInput label="Email*" type="email" name="email" value="" placeholder="Email" required />
         <FormInput label="Password" type="password" name="password" value="passwordsarehard" placeholder="Password" />
-        <Button @click="focusOnInvalid(form)">Focus</Button>
+        <Button @click="focusOnInvalid(form!)">Focus</Button>
       </form>
     </ExampleInputs>
   </Example>

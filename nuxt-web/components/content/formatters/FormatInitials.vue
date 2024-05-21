@@ -4,7 +4,7 @@
       <FormInput label="Full Name" type="text" v-model="fullName" />
       <FormNumber label="Length" v-model="length" :min="1" info="Default: 2" />
     </ExampleInputs>
-    <ExampleCode :code="`formatInitials(${fullName}, { length: ${length} })`" />
+    <ExampleCode :code="`formatInitials('${fullName}', { length: ${length} })`" />
     <ExampleResult>
       {{ formatInitials(fullName, { length }) }}
     </ExampleResult>
