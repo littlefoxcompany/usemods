@@ -14,8 +14,12 @@ export function sum(numbers: number[]): number {
  * Calculates the mean of an array of numbers.
  */
 export function mean(numbers: number[]): number {
-  if (numbers.length === 0) return 0
-  return sum(numbers) / numbers.length
+  if (numbers.length === 0) {
+    console.log("[MODS] mean array is empty.")
+    return 0
+  }
+  const sum = numbers.reduce((acc, val) => acc + val, 0)
+  return sum / numbers.length
 }
 
 /**
@@ -48,17 +52,25 @@ export function subtractMargin(value: number, percentage: number): number {
 }
 
 /**
- * Calculates the markup based on a percentage.
- */
-export function subtractMarkup(value: number, percentage: number): number {
-  return value / (1 + percentage / 100)
-}
-
-/**
  * Adds the markup to the value.
  */
 export function addMarkup(value: number, percentage: number): number {
-  return value + subtractMarkup(value, percentage)
+  if (value === 0) {
+    console.log("[MODS] addMarkup value is 0.")
+    return 0
+  }
+  return Math.round(value * (1 + percentage / 100) * 100) / 100
+}
+
+/**
+ * Calculates the markup based on a percentage.
+ */
+export function subtractMarkup(value: number, percentage: number): number {
+  if (value === 0) {
+    console.log("[MODS] subtractMarkup value is 0.")
+    return 0
+  }
+  return Math.round((value / (1 + percentage / 100)) * 100) / 100
 }
 
 /**
@@ -78,20 +90,38 @@ export function median(numbers: number[]): number {
 /**
  * Calculates the mode of an array of numbers.
  */
-export function mode(numbers: number[]): number | null {
+export function mode(numbers: number[]): number[] | null {
   if (numbers.length === 0) return null
-  if (numbers.length === 1) return numbers[0]
+  if (numbers.length === 1) return [numbers[0]]
+
   const frequencyMap = new Map<number, number>()
-  numbers.forEach((num) => frequencyMap.set(num, (frequencyMap.get(num) || 0) + 1))
-  const maxEntry = [...frequencyMap.entries()].reduce((a, b) => (a[1] > b[1] ? a : b))
-  if (maxEntry[1] > 1) return maxEntry[0]
-  return null
+  let maxFrequency = 0
+
+  numbers.forEach((num) => {
+    const frequency = (frequencyMap.get(num) || 0) + 1
+    frequencyMap.set(num, frequency)
+    if (frequency > maxFrequency) {
+      maxFrequency = frequency
+    }
+  })
+
+  if (maxFrequency === 1) return null
+
+  const modes = [...frequencyMap.entries()]
+    .filter(([_, freq]) => freq === maxFrequency)
+    .map(([num, _]) => num)
+
+  return modes
 }
 
 /**
  * Finds the minimum value in an array of numbers.
  */
 export function min(numbers: number[]): number {
+  if (numbers.length === 0) {
+    console.log("[MODS] min array is empty.")
+    return 0
+  }
   return Math.min(...numbers)
 }
 
@@ -99,6 +129,10 @@ export function min(numbers: number[]): number {
  * Finds the maximum value in an array of numbers.
  */
 export function max(numbers: number[]): number {
+  if (numbers.length === 0) {
+    console.log("[MODS] max array is empty.")
+    return 0
+  }
   return Math.max(...numbers)
 }
 
@@ -106,7 +140,10 @@ export function max(numbers: number[]): number {
  * Returns the minimum and maximum values in an array of numbers.
  */
 export function minMax(numbers: number[]): [number, number] {
-  if (numbers.length === 0) return [0, 0]
+  if (numbers.length === 0) {
+    console.log("[MODS] minMax array is empty.")
+    return [0, 0]
+  }
   return [min(numbers), max(numbers)]
 }
 
@@ -114,24 +151,43 @@ export function minMax(numbers: number[]): [number, number] {
  * Returns the difference between two values, expressed as a positive number.
  */
 export function range(numbers: number[]): number {
+  if (numbers.length === 0) {
+    console.log("[MODS] range array is empty.")
+    return NaN
+  }
   return max(numbers) - min(numbers)
 }
 
 /**
  * Returns the standard deviation of an array of numbers.
  */
-export function standardDeviation(numbers: number[]): number {
-  return Math.sqrt(mean(numbers.map((num) => Math.pow(num - mean(numbers), 2))))
+export function standardDeviation(numbers: number[], options?: { method: 'sample' | 'population' }): number {
+  if (numbers.length === 0) {
+    console.log("[MODS] standardDeviation array is empty.")
+    return NaN
+  }
+  options = options || { method: 'population' }
+  const meanValue = mean(numbers)
+  const n = options.method === 'sample' ? numbers.length - 1 : numbers.length
+  const sum = numbers.reduce((acc, num) => acc + (num - meanValue) ** 2, 0)
+  return Math.sqrt(sum / n)
 }
+
 
 /**
  * Returns the measure of asymmetry of the probability distribution of an array of numbers. The skewness value can be positive, zero, negative, or undefined.
  */
 export function skewness(numbers: number[]): number {
-  const n = numbers.length
-  const meanValue = mean(numbers)
-  if (standardDeviation(numbers) === 0) return 0
-  let sum = 0
-  for (const num of numbers) sum += (num - meanValue) ** 3
-  return (n / ((n - 1) * (n - 2))) * (sum / standardDeviation(numbers) ** 3)
+  const n = numbers.length;
+  if (n < 3) {
+    console.log("[MODS] skewness requires at least 3 numbers.");
+    return NaN;
+  }
+
+  const meanValue = mean(numbers);
+  const stdDev = standardDeviation(numbers);
+  if (stdDev === 0) return 0;
+
+  const sumCubedDeviations = numbers.reduce((acc, num) => acc + (num - meanValue) ** 3, 0);
+  return (n / ((n - 1) * (n - 2))) * (sumCubedDeviations / (stdDev ** 3));
 }
