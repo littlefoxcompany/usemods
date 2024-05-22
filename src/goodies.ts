@@ -57,9 +57,9 @@ export function checkPasswordStrength(value: string, options?: { length?: number
   if (counts.special < special) return { score: 1, label: `Password must contain ${special} special character` }
 
   if (value.length >= 8) strength++
-  if (counts.uppercase >= uppercase) strength++
-  if (counts.numbers >= number) strength++
-  if (counts.special >= special) strength++
+  if (counts.uppercase >= 1) strength++
+  if (counts.numbers >= 1) strength++
+  if (counts.special >= 1) strength++
 
   if (strength === 4) return { score: 4, label: 'Very Strong' }
   if (strength === 3) return { score: 3, label: 'Strong' }
