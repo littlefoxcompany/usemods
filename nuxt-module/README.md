@@ -1,4 +1,4 @@
-![Frame 1209](https://github.com/jrmymbtlr/usemods/assets/24998792/e2dda730-da67-448d-b1c8-bad447c5fa5b)
+![Frame 1209](https://public.usemods.com/Nuxt@2x.jpg)
 
 # Use Mods (Nuxt Module)
 Auto-imported functions and modifiers for zippy Nuxt developers. 
@@ -22,26 +22,32 @@ Auto-imported functions and modifiers for zippy Nuxt developers.
 [nuxt-href]: https://nuxt.com
 
 ## Quick Setup
+```bash
+npx nuxi module add usemods-nuxt
+```
 
-1. Add `usemods` dependency to your project
+## Manual Setup
+
+1. Add `usemods-nuxt` dependency to your project
+
 
 ```bash
 # Using pnpm
-pnpm add -D mods-module
+pnpm add -D usemods-nuxt
 
 # Using yarn
-yarn add --dev mods-module
+yarn add --dev usemods-nuxt
 
 # Using npm
-npm install --save-dev mods-module
+npm install --save-dev usemods-nuxt
 ```
 
-2. Add `usemods` to the `modules` section of `nuxt.config.ts`
+2. Add `usemods-nuxt` to the `modules` section of `nuxt.config.ts`
 
 ```js
 export default defineNuxtConfig({
-  modules: ["usemods"],
+  modules: ["usemods-nuxt"],
 })
 ```
 
-That's it! You've got every mod in your Nuxt app ✨
+That's it! You've got every mod util in your Nuxt app ✨🛵
