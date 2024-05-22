@@ -31,9 +31,24 @@ test('generateShortId', () => {
 })
 
 test('generatePassword', () => {
+
+  const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  const numberChars = '0123456789'
+  const specialChars = '!@#$%&()_+?'
+  const allChars = 'abcdefghijklmnopqrstuvwxyz' + uppercaseChars + numberChars + specialChars
+
+  // Defaults
   expect(mod.generatePassword()).toHaveLength(8)
-  expect(mod.generatePassword({length: 12})).toHaveLength(12)
-  expect(mod.generatePassword({length: 8})).toHaveLength(8)
-  expect(mod.generatePassword({length: 12, special: 1})).toMatch(new RegExp(/^[0-9a-zA-Z!@#$%^&*()]{12}$/))
-  expect(mod.generatePassword({length: 8, special: 1})).toMatch(new RegExp(/^[0-9a-zA-Z!@#$%^&*()]{8}$/))
+  expect(mod.generatePassword()).toMatch(new RegExp(`^[${allChars}]{8}$`))
+
+  // Length
+  expect(mod.generatePassword({ length: 12 })).toHaveLength(12)
+  expect(mod.generatePassword({ length: 8 })).toHaveLength(8)
+
+  // Uppercase
+  expect(mod.generatePassword({ uppercase: 2 })).toMatch(new RegExp(`[A-Z]{1,}`))
+
+  // Numbers
+  expect(mod.generatePassword({ number: 2 })).toMatch(new RegExp(`[0-9]{3,}`))
+  
 })
