@@ -49,7 +49,7 @@ export function formatValuation(number: number, options?: { decimals?: number; l
     compactDisplay: 'short',
     minimumFractionDigits: safeDecimals,
     maximumFractionDigits: safeDecimals,
-    currency: currencySymbols.get(options?.locale ?? 'en-US') || 'USD'
+    currency: currencySymbols.get(options?.locale ?? 'en-US')
   }
 
   return new Intl.NumberFormat(options?.locale ?? 'en-US', config).format(number)
@@ -79,7 +79,7 @@ export function formatPercentage(number: number, options?: { decimals?: number; 
   const safeDecimals = Math.max(0, Math.min(options?.decimals ?? 2, 20))
   const config: Intl.NumberFormatOptions = {
     style: 'percent',
-    minimumFractionDigits: safeDecimals === 0 ? 0 : safeDecimals === 1 ? 1 : 2,
+    minimumFractionDigits: safeDecimals,
     maximumFractionDigits: safeDecimals
   }
 
@@ -121,19 +121,26 @@ export function formatDurationLabels(seconds: number, options?: { labels?: 'shor
  * Format time into duration 00:00:00
  */
 export function formatDurationNumbers(seconds: number): string {
-  const h = Math.floor(seconds / 3600)
-  const m = Math.floor((seconds - h * 3600) / 60)
-  const s = seconds - h * 3600 - m * 60
+  const h = Math.floor(seconds / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  const s = Math.floor(seconds % 60);
+  const ms = Math.floor((seconds % 1) * 1000);
 
-  return [h, m, s].map((value) => value.toString().padStart(2, '0')).join(':')
+  const timeParts = [h, m, s].map((value) => value.toString().padStart(2, '0'));
+
+  if (ms > 0) {
+    const msString = Math.floor(ms / 10).toString().padStart(2, '0');
+    timeParts.push(msString);
+  }
+
+  return timeParts.join(':');
 }
 
 /**
  * Format numbers into words
  */
 export function formatNumberToWords(number: number): string {
-  if (number < 20) return numberUnderTwenty[number];
-  if (number < 100) return `${numberTens[Math.floor(number / 10) - 2]}${number % 10 ? '-' + numberUnderTwenty[number % 10] : ''}`;
+  if (number === 0) return numberUnderTwenty[0];
 
   const formatGroup = (num: number): string => {
     if (num < 20) return numberUnderTwenty[num];
@@ -147,7 +154,7 @@ export function formatNumberToWords(number: number): string {
   while (number > 0) {
     const groupValue = number % 1000;
     if (groupValue > 0) {
-      result = formatGroup(groupValue) + numberScales[scaleIndex] + (result ? ', ' + result : '');
+      result = `${formatGroup(groupValue)}${numberScales[scaleIndex]}${result ? ', ' + result : ''}`;
     }
     number = Math.floor(number / 1000);
     scaleIndex++;
