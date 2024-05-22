@@ -9,7 +9,11 @@ import { formatDurationLabels } from './formatters'
  * @info Don't forget to render the HTML safely.
  */
 export function splitByWords(text: string): string {
-  const sentences = text.split(/([.?!]\s*)/)
+  if (!text) {
+    console.warn('[MODS] Warning: No text to split')
+    return ''
+  }
+  const sentences = text.split(/([.?!]+\s*)/)
 
   let wordIndex = 0
   const combinedSentences = []
@@ -23,14 +27,14 @@ export function splitByWords(text: string): string {
       .split(' ')
       .map((word) => {
         wordIndex++
-        return `<span class="word"><span class="word-${wordIndex}">${word}</span></span>`
+        return `<span class="word word-${wordIndex}">${word}</span>`
       })
       .join(' ')
 
     combinedSentences.push(`<span class="sentence sentence-${combinedSentences.length + 1}">${words}</span>`)
   }
 
-  return combinedSentences.join(' ')
+  return combinedSentences.join('')
 }
 
 /**
@@ -52,7 +56,7 @@ export function checkPasswordStrength(value: string, options?: { length?: number
   if (counts.numbers < number) return { score: 1, label: `Password must contain ${number} number` }
   if (counts.special < special) return { score: 1, label: `Password must contain ${special} special character` }
 
-  if (value.length >= length) strength++
+  if (value.length >= 8) strength++
   if (counts.uppercase >= uppercase) strength++
   if (counts.numbers >= number) strength++
   if (counts.special >= special) strength++
