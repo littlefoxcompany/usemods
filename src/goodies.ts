@@ -88,6 +88,10 @@ export function mergeFields(text: string, fields: Record<string | number, string
  * Returns the reading time of a string in Hours, Minutes, and Seconds.
  */
 export function readingTime(text: string, wordsPerMinute = 200): string {
+  if (!text) {
+    console.warn('[MODS] Warning: No text to read')
+    return '0 minutes'
+  }
   const words = text.split(' ').length
   const minutes = Math.ceil(words / wordsPerMinute)
   return formatDurationLabels(minutes * 60)
