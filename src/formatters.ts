@@ -2,7 +2,7 @@
 // description: Wrangle wild data types into submission. Spruce up numbers, give strings smarts, and make complex content dazzle.
 // lead: Format misbehaving content
 
-import { currencySymbols, numberUnderTwenty, numberTens, numberScales } from './config'
+import { currencySymbols, numberUnderTwenty, numberTens, numberScales, formatTitleExceptions } from './config'
 
 /**
  * Format numbers into neat and formatted strings for people
@@ -74,7 +74,7 @@ export function formatPercentage(number: number, options?: { decimals?: number; 
  */
 export function formatUnit(number: number, options: { unit: string; decimals?: number; unitDisplay?: 'short' | 'long'; locale?: string }): string {
   const decimalPlaces = (number.toString().split('.')[1] || '').length;
-  const safeDecimals = Math.max(0, Math.min(options?.decimals ?? decimalPlaces, decimalPlaces));
+  const safeDecimals = Math.max(0, Math.min(options?.decimals ?? options.decimals ?? decimalPlaces, decimalPlaces));
   const config: Intl.NumberFormatOptions = {
     unit: options.unit,
     style: 'unit',
@@ -204,40 +204,12 @@ export function formatList(items: string | object | string[], options?: { limit?
  */
 export function formatTitle(text: string): string {
   if (!text) return ''
-  const exceptions = new Set([
-    'a',
-    'an',
-    'to',
-    'the',
-    'for',
-    'and',
-    'nor',
-    'but',
-    'or',
-    'yet',
-    'so',
-    'in',
-    'is',
-    'it',
-    'than',
-    'on',
-    'at',
-    'with',
-    'under',
-    'above',
-    'from',
-    'of',
-    'although',
-    'because',
-    'since',
-    'unless'
-  ])
 
   return text
     .split(' ')
     .map((word, index, wordsArray) => {
       const lowerWord = word.toLowerCase()
-      if (index === 0 || index === wordsArray.length - 1 || !exceptions.has(lowerWord)) {
+      if (index === 0 || index === wordsArray.length - 1 || !formatTitleExceptions.has(lowerWord)) {
         return word.charAt(0).toUpperCase() + word.slice(1)
       }
       return lowerWord
@@ -264,8 +236,8 @@ export function formatSentenceCase(text: string): string {
  * Adds a space between the last two words in a string to prevent lonely words.
  * @info Remember `text-wrap: pretty` and `text-wrap: balance` are available for most browsers.
  */
-export function formatTextWrap(value: string): string {
-  const space = value.lastIndexOf(' ')
-  if (space !== -1) return value.substring(0, space) + '&nbsp;' + value.substring(space + 1)
-  return value
+export function formatTextWrap(text: string): string {
+  const space = text.lastIndexOf(' ')
+  if (space !== -1) return text.substring(0, space) + '&nbsp;' + text.substring(space + 1)
+  return text
 }
