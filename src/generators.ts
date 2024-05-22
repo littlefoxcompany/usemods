@@ -19,9 +19,8 @@ export function generateNumber(length: number): number {
 /**
  * Generate a random number between two values
  */
-export function generateNumberBetween(min: number, max: number): number {
-  if (min > max) console.warn('[MODS] Warning: min value is higher than max value')
-  return Math.floor(Math.random() * (max - min + 1) + min)
+export function generateNumberBetween(from: number, to: number): number {
+  return Math.floor(Math.random() * (to - from + 1) + from)
 }
 
 /**
