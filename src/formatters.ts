@@ -8,27 +8,29 @@ import { currencySymbols, numberUnderTwenty, numberTens, numberScales } from './
  * Format numbers into neat and formatted strings for people
  */
 export function formatNumber(number: number, options?: { decimals?: number; locale?: string }): string {
-  const safeDecimals = Math.max(0, Math.min(options?.decimals ?? 2, 20))
+  const decimalPlaces = (number.toString().split('.')[1] || '').length;
+  const safeDecimals = Math.max(0, Math.min(options?.decimals ?? decimalPlaces, decimalPlaces));
 
   const config: Intl.NumberFormatOptions = {
     style: 'decimal',
-    minimumFractionDigits: safeDecimals === 0 ? 0 : safeDecimals === 1 ? 1 : 2,
-    maximumFractionDigits: safeDecimals
-  }
+    minimumFractionDigits: safeDecimals,
+    maximumFractionDigits: safeDecimals,
+  };
 
-  return new Intl.NumberFormat(options?.locale ?? 'en-US', config).format(number)
+  return new Intl.NumberFormat(options?.locale ?? 'en-US', config).format(number);
 }
 
 /**
  * Format numbers into local currency with extra smarts
  */
 export function formatCurrency(number: number, options?: { decimals?: number; locale?: string }): string {
-  const safeDecimals = Math.max(0, Math.min(options?.decimals ?? 2, 20))
+  const decimalPlaces = (number.toString().split('.')[1] || '').length;
+  const safeDecimals = Math.max(0, Math.min(options?.decimals ?? decimalPlaces, decimalPlaces));
 
   const config: Intl.NumberFormatOptions = {
     style: 'currency',
     currencyDisplay: 'narrowSymbol',
-    minimumFractionDigits: safeDecimals === 0 ? 0 : safeDecimals === 1 ? 1 : 2,
+    minimumFractionDigits: safeDecimals,
     maximumFractionDigits: safeDecimals,
     currency: currencySymbols.get(options?.locale ?? 'en-US') || 'USD'
   }
@@ -40,14 +42,14 @@ export function formatCurrency(number: number, options?: { decimals?: number; lo
  * Format numbers into valuations displayed in thousands, millions or billions
  */
 export function formatValuation(number: number, options?: { decimals?: number; locale?: string }): string {
-  const safeDecimals = Math.max(0, Math.min(options?.decimals ?? 2, 20))
+  const safeDecimals = Math.max(0, Math.min(options?.decimals ?? 0, 20))
 
   const config: Intl.NumberFormatOptions = {
     style: 'currency',
     currencyDisplay: 'narrowSymbol',
     notation: 'compact',
     compactDisplay: 'short',
-    minimumFractionDigits: safeDecimals === 0 ? 0 : safeDecimals === 1 ? 1 : 2,
+    minimumFractionDigits: safeDecimals,
     maximumFractionDigits: safeDecimals,
     currency: currencySymbols.get(options?.locale ?? 'en-US') || 'USD'
   }

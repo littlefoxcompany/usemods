@@ -7,9 +7,9 @@
         <option v-for="locale in configLocales" :value="locale" :key="locale">{{ locale }}</option>
       </FormSelect>
     </ExampleInputs>
-    <ExampleCode :code="`formatNumber(${currency}, { decimals: ${decimals}, locale: ${locale} })`"/>
+    <ExampleCode :code="`formatNumber(${currency}, { ${decimals ? `decimals: ${decimals},` : ''} locale: ${locale} })`"/>
     <ExampleResult>
-      {{ formatNumber(currency, { decimals, locale }) }}
+      {{ formatNumber(currency, { ...(decimals ? { decimals } : {}), locale }) }}
     </ExampleResult>
   </Example>
 </template>

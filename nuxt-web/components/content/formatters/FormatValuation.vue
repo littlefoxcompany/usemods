@@ -16,6 +16,6 @@
 
 <script setup lang="ts">
   const currency = ref(12345678910)
-  const decimals = ref(1)
+  const decimals = ref(0)
   const locale = ref('en-US')
 </script>
