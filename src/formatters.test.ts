@@ -21,8 +21,8 @@ test('formatCurrency', () => {
 })
 
 test('formatValuation', () => {
-  expect(mod.formatValuation(0)).toBe('$0.00')
-  expect(mod.formatValuation(12345678)).toBe('$12.35M')
+  expect(mod.formatValuation(0)).toBe('$0')
+  expect(mod.formatValuation(12345678)).toBe('$12M')
   expect(mod.formatValuation(12345678, { decimals: 0 })).toBe('$12M')
   expect(mod.formatValuation(12345678, { decimals: 0, locale: 'en-GB' })).toBe('£12M')
   expect(mod.formatValuation(12345678, { decimals: 2, locale: 'en-GB' })).toBe('£12.35M')

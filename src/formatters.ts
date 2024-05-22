@@ -24,7 +24,7 @@ export function formatNumber(number: number, options?: { decimals?: number; loca
  * Format numbers into local currency with extra smarts
  */
 export function formatCurrency(number: number, options?: { decimals?: number; locale?: string }): string {
-  
+
   const config: Intl.NumberFormatOptions = {
     style: 'currency',
     currencyDisplay: 'narrowSymbol',
@@ -58,7 +58,7 @@ export function formatValuation(number: number, options?: { decimals?: number; l
 /**
  * Format a number into a percentage
  */
-export function formatPercentage(value: number, options?: { decimals?: number; locale?: string }): string {
+export function formatPercentage(number: number, options?: { decimals?: number; locale?: string }): string {
   const safeDecimals = Math.max(0, Math.min(options?.decimals ?? 2, 20))
   const config: Intl.NumberFormatOptions = {
     style: 'percent',
@@ -66,23 +66,24 @@ export function formatPercentage(value: number, options?: { decimals?: number; l
     maximumFractionDigits: safeDecimals
   }
 
-  return new Intl.NumberFormat(options?.locale ?? 'en-US', config).format(value)
+  return new Intl.NumberFormat(options?.locale ?? 'en-US', config).format(number)
 }
 
 /**
  * Format a number into a your unit of choice
  */
-export function formatUnit(value: number, options: { unit: string; decimals?: number; unitDisplay?: 'short' | 'long'; locale?: string }): string {
-  const safeDecimals = Math.max(0, Math.min(options?.decimals ?? 2, 20))
+export function formatUnit(number: number, options: { unit: string; decimals?: number; unitDisplay?: 'short' | 'long'; locale?: string }): string {
+  const decimalPlaces = (number.toString().split('.')[1] || '').length;
+  const safeDecimals = Math.max(0, Math.min(options?.decimals ?? decimalPlaces, decimalPlaces));
   const config: Intl.NumberFormatOptions = {
     unit: options.unit,
     style: 'unit',
     unitDisplay: options.unitDisplay ?? 'long',
-    minimumFractionDigits: safeDecimals === 0 ? 0 : safeDecimals === 1 ? 1 : 2,
+    minimumFractionDigits: safeDecimals,
     maximumFractionDigits: safeDecimals
   }
 
-  return new Intl.NumberFormat(options.locale ?? 'en-US', config).format(value)
+  return new Intl.NumberFormat(options.locale ?? 'en-US', config).format(number)
 }
 
 /**
