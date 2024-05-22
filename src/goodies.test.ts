@@ -12,6 +12,8 @@ test('splitByWords', () => {
 })
 
 test('checkPasswordStrength', () => {
+  // Empty
+  expect(mod.checkPasswordStrength('')).toEqual({ score: 0, label: 'Very Weak' })
   // Basic checks
   expect(mod.checkPasswordStrength('hello')).toEqual({ score: 1, label: 'Password must be at least 8 characters long' })
   expect(mod.checkPasswordStrength('hello1234')).toEqual({ score: 1, label: 'Password must contain 1 uppercase letter' })
@@ -36,11 +38,17 @@ test('checkPasswordStrength', () => {
 
 
 test('mergeFields', () => {
+  // Empty
+  expect(mod.mergeFields('', {})).toEqual('')
+  // Basic checks
   expect(mod.mergeFields('The {{a}} said {{b}}', { a: 'cat', b: 'meow' })).toEqual('The cat said meow')
   expect(mod.mergeFields('The {{ a }} said {{ b }}', { a: 'cat', b: 'meow' })).toEqual('The cat said meow')
   expect(mod.mergeFields('The {{ z }} said {{ t }}', { a: 'cat', b: 'meow' })).toEqual('The {{z}} said {{t}}')
 })
 
 test('readingTime', () => {
+  // Empty
+  expect(mod.readingTime('')).toBe('0 minutes')
+  // Basic checks
   expect(mod.readingTime('Hello world', 200)).toBe('1 minute')
 })
