@@ -9,7 +9,7 @@ import { currencySymbols, numberUnderTwenty, numberTens, numberScales, formatTit
  */
 export function formatNumber(number: number, options?: { decimals?: number; locale?: string }): string {
   const decimalPlaces = (number.toString().split('.')[1] || '').length;
-  const safeDecimals = Math.max(0, Math.min(options?.decimals ?? decimalPlaces, decimalPlaces));
+  const safeDecimals = options?.decimals ?? decimalPlaces;
 
   const config: Intl.NumberFormatOptions = {
     style: 'decimal',
@@ -56,6 +56,23 @@ export function formatValuation(number: number, options?: { decimals?: number; l
 }
 
 /**
+ * Format a number into a your unit of choice
+ */
+export function formatUnit(number: number, options: { unit: string; decimals?: number; unitDisplay?: 'short' | 'long'; locale?: string }): string {
+  const decimalPlaces = (number.toString().split('.')[1] || '').length;
+  const safeDecimals = options?.decimals ?? decimalPlaces;
+  const config: Intl.NumberFormatOptions = {
+    unit: options.unit,
+    style: 'unit',
+    unitDisplay: options.unitDisplay ?? 'long',
+    minimumFractionDigits: safeDecimals,
+    maximumFractionDigits: safeDecimals
+  }
+
+  return new Intl.NumberFormat(options.locale ?? 'en-US', config).format(number)
+}
+
+/**
  * Format a number into a percentage
  */
 export function formatPercentage(number: number, options?: { decimals?: number; locale?: string }): string {
@@ -67,23 +84,6 @@ export function formatPercentage(number: number, options?: { decimals?: number; 
   }
 
   return new Intl.NumberFormat(options?.locale ?? 'en-US', config).format(number)
-}
-
-/**
- * Format a number into a your unit of choice
- */
-export function formatUnit(number: number, options: { unit: string; decimals?: number; unitDisplay?: 'short' | 'long'; locale?: string }): string {
-  const decimalPlaces = (number.toString().split('.')[1] || '').length;
-  const safeDecimals = Math.max(0, Math.min(options?.decimals ?? options.decimals ?? decimalPlaces, decimalPlaces));
-  const config: Intl.NumberFormatOptions = {
-    unit: options.unit,
-    style: 'unit',
-    unitDisplay: options.unitDisplay ?? 'long',
-    minimumFractionDigits: safeDecimals,
-    maximumFractionDigits: safeDecimals
-  }
-
-  return new Intl.NumberFormat(options.locale ?? 'en-US', config).format(number)
 }
 
 /**
