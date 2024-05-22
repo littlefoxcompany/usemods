@@ -1,4 +1,4 @@
-import { expect, test } from 'vitest'
+import { expect, test, describe } from 'vitest'
 import * as mod from './generators'
 
 test('generateNumber', () => {
@@ -8,6 +8,7 @@ test('generateNumber', () => {
   expect(mod.generateNumber(4).toString()).toHaveLength(4)
   expect(mod.generateNumber(5).toString()).toHaveLength(5)
   expect(mod.generateNumber(10).toString()).toHaveLength(10)
+  expect(mod.generateNumber(0)).toBe(0)
 })
 
 test('generateNumberBetween', () => {
@@ -15,6 +16,8 @@ test('generateNumberBetween', () => {
   expect(mod.generateNumberBetween(5, 10)).toBeLessThanOrEqual(10)
   expect(mod.generateNumberBetween(10, 15)).toBeGreaterThanOrEqual(10)
   expect(mod.generateNumberBetween(10, 15)).toBeLessThanOrEqual(15)
+  expect(mod.generateNumberBetween(15, 10)).toBeLessThanOrEqual(15)
+  expect(mod.generateNumberBetween(1, 1)).toBe(1)
 })
 
 test('generateUuid', () => {
@@ -27,9 +30,10 @@ test('generateShortId', () => {
   expect(mod.generateShortId(19)).toMatch(/^[0-9a-zA-Z]{19}$/)
 })
 
-// test('generatePassword', () => {
-//   expect(mod.generatePassword(12)).toHaveLength(12)
-//   expect(mod.generatePassword(12)).toMatch(/^[0-9a-zA-Z]{12}$/)
-//   expect(mod.generatePassword(8)).toHaveLength(8)
-//   expect(mod.generatePassword(8)).toMatch(/^[0-9a-zA-Z]{8}$/)
-// })
+test('generatePassword', () => {
+  expect(mod.generatePassword()).toHaveLength(8)
+  expect(mod.generatePassword({length: 12})).toHaveLength(12)
+  expect(mod.generatePassword({length: 8})).toHaveLength(8)
+  expect(mod.generatePassword({length: 12, special: 1})).toMatch(new RegExp(/^[0-9a-zA-Z!@#$%^&*()]{12}$/))
+  expect(mod.generatePassword({length: 8, special: 1})).toMatch(new RegExp(/^[0-9a-zA-Z!@#$%^&*()]{8}$/))
+})
