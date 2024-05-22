@@ -8,21 +8,26 @@ import { isObject } from './validators'
  * Sort an array or object by a property.
  */
 export function dataSortBy(items: object | string[] | number[], options?: { property?: string; order?: 'asc' | 'desc' }): object | string[] | number[] {
-  const comparator = (a: string | number, b: string | number) => {
-    const property = options?.property
-    const order = options?.order ?? 'asc'
-    if (!property) return 0
+  const { property, order = 'asc' } = options || {};
+  if (!property) return items;
 
-    if (a[property] < b[property]) return order === 'asc' ? -1 : 1
-    if (a[property] > b[property]) return order === 'asc' ? 1 : -1
-    return 0
-  }
+  const comparator = (a: any, b: any) => {
+    const aValue = a[property];
+    const bValue = b[property];
+
+    if (Array.isArray(aValue) && Array.isArray(bValue)) {
+      return (aValue.length - bValue.length) * (order === 'asc' ? 1 : -1);
+    } else if (typeof aValue === 'string' && typeof bValue === 'string') {
+      return aValue.localeCompare(bValue) * (order === 'asc' ? 1 : -1);
+    } else {
+      return (aValue - bValue) * (order === 'asc' ? 1 : -1);
+    }
+  };
 
   if (isObject(items)) {
-    const entries = Object.entries(items)
-    return Object.fromEntries(entries.sort((a, b) => comparator(a[1], b[1])) as [string, string | number | object | string[] | number[]][])
+    return Object.fromEntries(Object.entries(items).sort((a, b) => comparator(a[1], b[1])));
   } else {
-    return (items as string[] | number[]).sort(comparator)
+    return (items as string[] | number[]).sort(comparator);
   }
 }
 
@@ -30,9 +35,9 @@ export function dataSortBy(items: object | string[] | number[], options?: { prop
  * Reverse an array or object.
  */
 export function dataReverse(items: object | string[] | number[]): object | string[] | number[] {
-  if (!items) {
+  if ((Array.isArray(items) && items.length === 0) || (!Array.isArray(items) && Object.keys(items).length === 0)) {
     console.warn('[MODS] Warning: dataReverse() expects an object or array as the first argument.')
-    return items
+    return items;
   }
 
   if (isObject(items)) {
