@@ -213,3 +213,32 @@ export const irregularPlurals = new Map([
 export const numberUnderTwenty: string[] = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen']
 export const numberTens: string[] = ['twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety']
 export const numberScales: string[] = ['', ' thousand', ' million', ' billion', ' trillion', ' quadrillion', ' quintillion']
+
+export const formatTitleExceptions = new Set([
+    'a',
+    'an',
+    'to',
+    'the',
+    'for',
+    'and',
+    'nor',
+    'but',
+    'or',
+    'yet',
+    'so',
+    'in',
+    'is',
+    'it',
+    'than',
+    'on',
+    'at',
+    'with',
+    'under',
+    'above',
+    'from',
+    'of',
+    'although',
+    'because',
+    'since',
+    'unless'
+])
