@@ -1,7 +1,11 @@
 /* Components */
-@import '_scrollbar.css';
+/* @import '_scrollbar.css'; */
 @import '_content.css';
 @import '_animations.css';
+
+:root {
+  color-scheme: dark;
+}
 
 /* Utilities */
 @tailwind base;
