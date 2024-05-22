@@ -50,12 +50,12 @@ export function surroundWith(text: string, start: string, end: string): string {
  * Adds plurals to a string except for excluded words.
  * @info This handles most english pluralisation rules, but there are exceptions.
  */
-export function pluralize(value: string, count: number): string {
-  if (count === 1 || !value || typeof value !== 'string') return value || '';
+export function pluralize(word: string, count: number): string {
+  if (count === 1 || !word || typeof word !== 'string') return word
 
-  value = value.trim().toLowerCase();
-  if (unchangingPlurals.has(value)) return value;
-  if (irregularPlurals.has(value)) return irregularPlurals.get(value) || value;
+  word = word.trim().toLowerCase()
+  if (unchangingPlurals.has(word)) return word
+  if (irregularPlurals.has(word)) return irregularPlurals.get(word)!
 
   const suffixRules = new Map<string, string>([
     ['ch', 'ches'],
@@ -72,12 +72,12 @@ export function pluralize(value: string, count: number): string {
   ]);
 
   for (const [suffix, replacement] of suffixRules) {
-    if (value.endsWith(suffix)) {
-      return value.slice(0, -suffix.length) + replacement;
+    if (word.endsWith(suffix)) {
+      return word.slice(0, -suffix.length) + replacement;
     }
   }
 
-  return value + 's';
+  return word + 's';
 }
 
 /**
@@ -199,8 +199,10 @@ export function deslugify(text: string): string {
  * Removes spaces and capitalizes the first letter of each word except for the first word.
  */
 export function camelCase(text: string): string {
+  if (!text) return ''
   return text
     .trim()
+    .replace(/[^\w\s-]/g, '')
     .split(/[-\s]/)
     .map((word, index) => {
       if (index === 0) return word.toLowerCase()
@@ -213,8 +215,10 @@ export function camelCase(text: string): string {
  * Removes spaces and capitalizes the first letter of each word.
  */
 export function pascalCase(text: string): string {
+  if (!text) return ''
   return text
     .trim()
+    .replace(/[^\w\s-]/g, '')
     .split(/[-\s]/)
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join('')
@@ -224,18 +228,24 @@ export function pascalCase(text: string): string {
  * Replaces spaces with underscores and converts to lowercase.
  */
 export function snakeCase(text: string): string {
-  return text.trim().replace(/\s+/g, '_').toLowerCase()
+  if (!text) return ''
+  return text
+    .trim()
+    .replace(/[^\w\s]/g, '')
+    .replace(/\s+/g, '_')
+    .toLowerCase()
 }
 
 /**
  * Replaces spaces with hyphens and converts to lowercase.
  */
 export function kebabCase(text: string): string {
+  if (!text) return ''
   return text
-    .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => {
-      return index === 0 ? word.toLowerCase() : '-' + word.toLowerCase()
-    })
-    .replace(/\s+/g, '')
+    .trim()
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/\s+/g, '-')
 }
 
 /**

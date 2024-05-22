@@ -304,109 +304,109 @@ export function isMacAddress(value: string): boolean {
   return regex.test(value);
 }
 
-/**
- * Check if you're a passionate iPhone fan.
- */
-export function isIos(): boolean {
-  return /iPad|iPhone|iPod/.test(navigator.platform);
-}
+// /**
+//  * Check if you're a passionate iPhone fan.
+//  */
+// export function isIos(): boolean {
+//   return /iPad|iPhone|iPod/.test(navigator.platform);
+// }
 
-/**
- * Check if you're a fervent Windows fan.
- */
-export function isWindows(): boolean {
-  return /Win/.test(navigator.platform);
-}
+// /**
+//  * Check if you're a fervent Windows fan.
+//  */
+// export function isWindows(): boolean {
+//   return /Win/.test(navigator.platform);
+// }
 
-/**
- * Check if you're a devoted Linux fan.
- */
-export function isLinux(): boolean {
-  return /Linux/.test(navigator.platform);
-}
+// /**
+//  * Check if you're a devoted Linux fan.
+//  */
+// export function isLinux(): boolean {
+//   return /Linux/.test(navigator.platform);
+// }
 
-/**
- * Check if you're a zealous Android fan.
- */
-export function isAndroid(): boolean {
-  return /Android/.test(navigator.platform);
-}
+// /**
+//  * Check if you're a zealous Android fan.
+//  */
+// export function isAndroid(): boolean {
+//   return /Android/.test(navigator.platform);
+// }
 
-/**
- * Check if you're a staunch Mac fan.
- */
-export function isMac(): boolean {
-  return /Mac/.test(navigator.platform);
-}
+// /**
+//  * Check if you're a staunch Mac fan.
+//  */
+// export function isMac(): boolean {
+//   return /Mac/.test(navigator.platform);
+// }
 
-/**
- * Check if you're a die-hard Chrome fan.
- */
-export function isChrome(): boolean {
-  return /Chrome/.test(navigator.userAgent);
-}
+// /**
+//  * Check if you're a die-hard Chrome fan.
+//  */
+// export function isChrome(): boolean {
+//   return /Chrome/.test(navigator.userAgent);
+// }
 
-/**
- * Check if you're a dedicated Firefox fan.
- */
-export function isFirefox(): boolean {
-  return /Firefox/.test(navigator.userAgent);
-}
+// /**
+//  * Check if you're a dedicated Firefox fan.
+//  */
+// export function isFirefox(): boolean {
+//   return /Firefox/.test(navigator.userAgent);
+// }
 
-/**
- * Check if you're a lonely Safari fan.
- */
-export function isSafari(): boolean {
-  return /Safari/.test(navigator.userAgent);
-}
+// /**
+//  * Check if you're a lonely Safari fan.
+//  */
+// export function isSafari(): boolean {
+//   return /Safari/.test(navigator.userAgent);
+// }
 
-/**
- * Check if you're an ardent Edge fan.
- */
-export function isEdge(): boolean {
-  return /Edge/.test(navigator.userAgent);
-}
+// /**
+//  * Check if you're an ardent Edge fan.
+//  */
+// export function isEdge(): boolean {
+//   return /Edge/.test(navigator.userAgent);
+// }
 
-/**
- * Check if you're rocking a mobile
- */
-export function isMobile(): boolean {
-  return /Mobi/.test(navigator.userAgent);
-}
+// /**
+//  * Check if you're rocking a mobile
+//  */
+// export function isMobile(): boolean {
+//   return /Mobi/.test(navigator.userAgent);
+// }
 
-/**
- * Check if you're tablet user
- */
-export function isTablet(): boolean {
-  return /Tablet/.test(navigator.userAgent);
-}
+// /**
+//  * Check if you're tablet user
+//  */
+// export function isTablet(): boolean {
+//   return /Tablet/.test(navigator.userAgent);
+// }
 
-/**
- * Check if you're pro desktop user
- */
-export function isDesktop(): boolean {
-  return !isMobile() && !isTablet();
-}
+// /**
+//  * Check if you're pro desktop user
+//  */
+// export function isDesktop(): boolean {
+//   return !isMobile() && !isTablet();
+// }
 
-/**
- * Check if you're portrait
- */
-export function isPortrait(): boolean {
-  return window.innerHeight > window.innerWidth;
-}
+// /**
+//  * Check if you're portrait
+//  */
+// export function isPortrait(): boolean {
+//   return window.innerHeight > window.innerWidth;
+// }
 
-/**
- * Check if you're landscape
- */
-export function isLandscape(): boolean {
-  return window.innerWidth > window.innerHeight;
-}
+// /**
+//  * Check if you're landscape
+//  */
+// export function isLandscape(): boolean {
+//   return window.innerWidth > window.innerHeight;
+// }
 
-/**
- * Check if you're a cyborg or a bot
- */
-export function isBot(): boolean {
-  return /bot|googlebot|crawler|spider|robot|crawling/i.test(
-    navigator.userAgent
-  );
-}
+// /**
+//  * Check if you're a cyborg or a bot
+//  */
+// export function isBot(): boolean {
+//   return /bot|googlebot|crawler|spider|robot|crawling/i.test(
+//     navigator.userAgent
+//   );
+// }
