@@ -214,7 +214,6 @@ export function isPrime(value: number): boolean {
  */
 export function isInteger(value: any): boolean {
   if (typeof value !== "number") return false;
-  if (!isNumber(value)) return false;
   return (value) % 1 === 0;
 }
 
@@ -223,7 +222,6 @@ export function isInteger(value: any): boolean {
  */
 export function isFloat(value: any): boolean {
   if (typeof value !== "number") return false;
-  if (!isNumber(value)) return false;
   return !isInteger(value);
 }
 

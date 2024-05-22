@@ -173,20 +173,31 @@ test("isPrime", () => {
 
 test("isInteger", () => {
   expect(mod.isInteger(2)).toBe(true);
+  expect(mod.isInteger(-2)).toBe(true);
   expect(mod.isInteger(2.5)).toBe(false);
   expect(mod.isInteger("hello")).toBe(false);
   expect(mod.isInteger("2")).toBe(false);
   expect(mod.isInteger({})).toBe(false);
+  expect(mod.isInteger([])).toBe(false);
+  expect(mod.isInteger(null)).toBe(false);
+  expect(mod.isInteger(true)).toBe(false);
+  expect(mod.isInteger(undefined)).toBe(false);
 });
 
 test("isFloat", () => {
   expect(mod.isFloat(2.5)).toBe(true);
-  expect(mod.isFloat({})).toBe(false);
   expect(mod.isFloat(2)).toBe(false);
+  expect(mod.isFloat("hello")).toBe(false);
+  expect(mod.isFloat({})).toBe(false);
+  expect(mod.isFloat([])).toBe(false);
+  expect(mod.isFloat(null)).toBe(false);
+  expect(mod.isFloat(true)).toBe(false);
+  expect(mod.isFloat(undefined)).toBe(false);
 });
 
 test("isBetween", () => {
   expect(mod.isBetween(4, 2, 6)).toBe(true);
+  expect(mod.isBetween(4, 6, 2)).toBe(true);
   expect(mod.isBetween(4, 6, 8)).toBe(false);
 });
 
