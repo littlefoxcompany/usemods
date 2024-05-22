@@ -19,9 +19,9 @@
       </div>
     </ExampleInputs>
 
-    <ExampleCode :code="`formatUnit(${number}, { unit: ${unit}, decimals: ${decimals}, unitDisplay: ${unitDisplay}, locale: ${locale} })`"/>
+    <ExampleCode :code="`formatUnit(${number}, { unit: ${unit}, ${decimals ? `decimals: ${decimals},` : ''} unitDisplay: ${unitDisplay}, locale: ${locale} })`"/>
     <ExampleResult>
-      {{ formatUnit(number, { unit, decimals, unitDisplay: unitDisplay as 'long' | 'short', locale }) }}
+      {{ formatUnit(number, { unit, ...(decimals ? { decimals } : {}), unitDisplay: unitDisplay as 'long' | 'short', locale }) }}
     </ExampleResult>
   </Example>
 </template>
