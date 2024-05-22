@@ -71,7 +71,9 @@ test('formatUnit', () => {
 })
 
 test('formatList', () => {
-  expect(mod.formatList(['Apple', 'Oranges'])).toBe('Apple and Oranges')
+  expect(mod.formatList(['Apple'])).toBe('Apple')
+  expect(mod.formatList('Apple, Oranges')).toBe('Apple and Oranges')
+  expect(mod.formatList({'0': 'Apple', '1': 'Oranges'})).toBe('Apple and Oranges')
   expect(mod.formatList(['Apple', 'Oranges', 'Bananas', 'Grapefruit'])).toBe('Apple, Oranges, Bananas and Grapefruit')
   expect(mod.formatList(['Apple', 'Oranges'], { limit: 2 })).toBe('Apple and Oranges')
   expect(mod.formatList(['Apple', 'Oranges', 'Bananas'], { limit: 2 })).toBe('Apple, Oranges and 1 more')
@@ -116,6 +118,9 @@ test('formatNumberToWord', () => {
 })
 
 test('formatUnixTime', () => {
+  expect(mod.formatUnixTime(0)).toBe('1970-01-01 00:00:00.000')
+  expect(mod.formatUnixTime(-10)).toBe('-10')
+  expect(mod.formatUnixTime(1619999999)).toBe('2021-05-02 23:59:59.000')
   expect(mod.formatUnixTime(1620000000)).toBe('2021-05-03 00:00:00.000')
 })
 
@@ -131,4 +136,26 @@ test('formatInitials', () => {
   expect(mod.formatInitials(undefined)).toBe('')
   // @ts-expect-error: null is not a valid input for formatInitials
   expect(mod.formatInitials(null)).toBe('')
+})
+
+test('formatSentenceCase', () => {
+  expect(mod.formatSentenceCase('')).toBe('')
+  expect(mod.formatSentenceCase('hello world')).toBe('Hello world')
+  expect(mod.formatSentenceCase('welcome to the jungle')).toBe('Welcome to the jungle')
+  expect(mod.formatSentenceCase('the quick brown fox jumps over the lazy dog')).toBe('The quick brown fox jumps over the lazy dog')
+  expect(mod.formatSentenceCase('UseMods is cooler than a vegan leather jacket')).toBe('UseMods is cooler than a vegan leather jacket')
+  // @ts-expect-error: null is not a valid input for formatSentenceCase
+  expect(mod.formatSentenceCase(null)).toBe('')
+  // @ts-expect-error: undefined is not a valid input for formatSentenceCase
+  expect(mod.formatSentenceCase(undefined)).toBe('')
+})
+
+test('formatTextWrap', () => {
+  expect(mod.formatTextWrap('')).toBe('')
+  expect(mod.formatTextWrap('hello world')).toBe('hello&nbsp;world')
+  expect(mod.formatTextWrap('hello world how are you')).toBe('hello world how are&nbsp;you')
+  expect(mod.formatTextWrap('This is a test')).toBe('This is a&nbsp;test');
+  expect(mod.formatTextWrap('Test')).toBe('Test');
+  expect(mod.formatTextWrap('TestTest')).toBe('TestTest');
+  expect(mod.formatTextWrap('')).toBe('');
 })

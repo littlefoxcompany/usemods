@@ -228,6 +228,10 @@ export function formatTitle(text: string): string {
  * Format a sentence case string
  */
 export function formatSentenceCase(text: string): string {
+  if (!text) {
+    console.warn('[MODS] Empty formatSentenceCase text')
+    return ''
+  }
   return text
     .split('\n\n')
     .map((paragraph) =>
@@ -244,6 +248,10 @@ export function formatSentenceCase(text: string): string {
  * @info Remember `text-wrap: pretty` and `text-wrap: balance` are available for most browsers.
  */
 export function formatTextWrap(text: string): string {
+  if (!text) {
+    console.warn('[MODS] Empty formatTextWrap text')
+    return ''
+  }
   const space = text.lastIndexOf(' ')
   if (space !== -1) return text.substring(0, space) + '&nbsp;' + text.substring(space + 1)
   return text
