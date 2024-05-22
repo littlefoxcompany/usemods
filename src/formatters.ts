@@ -24,14 +24,12 @@ export function formatNumber(number: number, options?: { decimals?: number; loca
  * Format numbers into local currency with extra smarts
  */
 export function formatCurrency(number: number, options?: { decimals?: number; locale?: string }): string {
-  const decimalPlaces = (number.toString().split('.')[1] || '').length;
-  const safeDecimals = Math.max(0, Math.min(options?.decimals ?? decimalPlaces, decimalPlaces));
-
+  
   const config: Intl.NumberFormatOptions = {
     style: 'currency',
     currencyDisplay: 'narrowSymbol',
-    minimumFractionDigits: safeDecimals,
-    maximumFractionDigits: safeDecimals,
+    minimumFractionDigits: options?.decimals ?? 2,
+    maximumFractionDigits: options?.decimals ?? 2,
     currency: currencySymbols.get(options?.locale ?? 'en-US') || 'USD'
   }
 
