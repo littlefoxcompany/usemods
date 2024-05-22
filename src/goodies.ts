@@ -41,22 +41,26 @@ export function splitByWords(text: string): string {
  * Check the strength of a password against a given policy.
  * @info Don't forget to use our Password Generator in the Generators section
  */
-export function checkPasswordStrength(value: string, options?: { length?: number, uppercase?: number, number?: number, special?: number }): object {
+export function checkPasswordStrength(text: string, options?: { length?: number, uppercase?: number, number?: number, special?: number }): object {
+  if (!text) {
+    console.warn('[MODS] Warning: No password to check')
+    return { score: 0, label: 'Very Weak' }
+  }
   const { length = 8, uppercase = 1, number = 1, special = 1 } = options || {}
   let strength = 0
 
   const counts = {
-    uppercase: (value.match(/[A-Z]/g) || []).length,
-    numbers: (value.match(/[0-9]/g) || []).length,
-    special: (value.match(/[^a-zA-Z0-9]/g) || []).length
+    uppercase: (text.match(/[A-Z]/g) || []).length,
+    numbers: (text.match(/[0-9]/g) || []).length,
+    special: (text.match(/[^a-zA-Z0-9]/g) || []).length
   }
 
-  if (value.length < length) return { score: 1, label: `Password must be at least ${length} characters long` }
+  if (text.length < length) return { score: 1, label: `Password must be at least ${length} characters long` }
   if (counts.uppercase < uppercase) return { score: 1, label: `Password must contain ${uppercase} uppercase letter` }
   if (counts.numbers < number) return { score: 1, label: `Password must contain ${number} number` }
   if (counts.special < special) return { score: 1, label: `Password must contain ${special} special character` }
 
-  if (value.length >= 8) strength++
+  if (text.length >= 8) strength++
   if (counts.uppercase >= 1) strength++
   if (counts.numbers >= 1) strength++
   if (counts.special >= 1) strength++
@@ -72,6 +76,10 @@ export function checkPasswordStrength(value: string, options?: { length?: number
  * Replaces placeholders in a string with values from an object.
  */
 export function mergeFields(text: string, fields: Record<string | number, string | number>): string {
+  if (!text) {
+    console.warn('[MODS] Warning: No text to merge')
+    return ''
+  }
   const pattern = /\{\{\s*(\w+)\s*\}\}/g
 
   return text.replace(pattern, (match, key) => {
