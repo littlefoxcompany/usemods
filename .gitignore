@@ -15,12 +15,4 @@ nuxt-module/docs/content/2.docs
 nuxt-web/content/2.docs/*.md
 nuxt-module/src/runtime/utils/*.ts
 nuxt-web/utils/*.ts
-.VSCodeCounter/2024-05-23_15-01-29/details.md
-.VSCodeCounter/2024-05-23_15-01-29/diff-details.md
-.VSCodeCounter/2024-05-23_15-01-29/diff.csv
-.VSCodeCounter/2024-05-23_15-01-29/diff.md
-.VSCodeCounter/2024-05-23_15-01-29/diff.txt
-.VSCodeCounter/2024-05-23_15-01-29/results.csv
-.VSCodeCounter/2024-05-23_15-01-29/results.json
-.VSCodeCounter/2024-05-23_15-01-29/results.md
-.VSCodeCounter/2024-05-23_15-01-29/results.txt
+.VSCodeCounter/*
