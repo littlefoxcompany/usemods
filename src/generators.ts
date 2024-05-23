@@ -82,10 +82,16 @@ export function generatePassword(options?: { length?: number, uppercase?: number
  * Random number generator using cryptographic methods to avoid random().
  */
 export function generateRandomIndex(max: number): number {
-  if (max <= 0) throw new Error('[MODS] Max value must be a positive integer')
-  if (max > 256) throw new Error('[MODS] Max value must be less than 256')
+  if (max <= 0) {
+    throw new Error('[MODS] Max generateRandomIndex value must be a positive integer')
+  }
+  if (max > 256) {
+    throw new Error('[MODS] Max generateRandomIndex value must be less than 256')
+  }
+  
   const range = 256 - (256 % max);
   let randomValue;
+
   if (typeof window !== 'undefined' && window.crypto && window.crypto.getRandomValues) {
     do {
       randomValue = window.crypto.getRandomValues(new Uint8Array(1))[0];
@@ -96,13 +102,15 @@ export function generateRandomIndex(max: number): number {
       randomValue = crypto.randomBytes(1)[0];
     } while (randomValue >= range);
   }
+  
   return randomValue % max;
 }
 
 /**
  * Generate Lorem Ipsum text in various formats.
  */
-export function generateLoremIpsum(count: number = 5, format: string = 'words'): string {
+export function generateLoremIpsum(count: number = 5, options?: { format: 'words' | 'sentences' | 'paragraphs' }): string {
+  const { format = 'words' } = options || {}
   const lorem = 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'.split(' ')
 
   const generateSentence = () => {
@@ -117,16 +125,17 @@ export function generateLoremIpsum(count: number = 5, format: string = 'words'):
   if (format === 'sentences') {
     return Array.from({ length: count }, generateSentence).join(' ')
   } else if (format === 'paragraphs') {
-    return Array.from({ length: count }, () => Array.from({ length: Math.floor(Math.random() * 3) + 2 }, generateSentence).join(' ')).join('\n\n')
+    return Array.from({ length: count }, () => Array.from({ length: Math.floor(Math.random() * 10) + 5 }, generateSentence).join(' ')).join('\n\n')
   } else {
-    return lorem.slice(0, count).join(' ')
+    return Array.from({ length: count }, () => lorem[Math.floor(Math.random() * lorem.length)]).join(' ')
   }
 }
 
 /**
  * Generate a random hash. Recommended for SSR only, or hide the salt.
  */
-export async function generateHash(length = 40, salt = '', algorithm = 'SHA-256') {
+export async function generateHash(length = 40, salt = '', options?: { algorithm: 'SHA-1' | 'SHA-256' | 'SHA-512' }): Promise<string> {
+  const { algorithm = 'SHA-256' } = options || {}
   try {
     if (length < 0 || length > 64) {
       throw new Error('Length must be between 0 and 64 for SHA-256 hashes.')
