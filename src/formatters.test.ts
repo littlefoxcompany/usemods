@@ -4,6 +4,9 @@ import * as mod from './formatters'
 test('formatNumber', () => {
   expect(mod.formatNumber(0)).toBe('0')
   expect(mod.formatNumber(1000.95)).toBe('1,000.95')
+  expect(mod.formatNumber(1000.95, { decimals: 20 })).toBe('1,000.95')
+  expect(mod.formatNumber(1000.95, { decimals: 1 })).toBe('1,001.0')
+  expect(mod.formatNumber(1000.95, { decimals: 1 })).toBe('1,001.0')
   expect(mod.formatNumber(1000.95, { decimals: 2 })).toBe('1,000.95')
   expect(mod.formatNumber(1000.95, { decimals: 0 })).toBe('1,001')
   expect(mod.formatNumber(1000.95, { decimals: 1 })).toBe('1,001.0')

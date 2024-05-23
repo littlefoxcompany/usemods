@@ -9,7 +9,7 @@ import { currencySymbols, numberUnderTwenty, numberTens, numberScales, formatTit
  */
 export function formatNumber(number: number, options?: { decimals?: number; locale?: string }): string {
   const decimalPlaces = (number.toString().split('.')[1] || '').length;
-  const safeDecimals = options?.decimals ?? decimalPlaces;
+  const safeDecimals = Math.min(options?.decimals ?? decimalPlaces, decimalPlaces);
 
   const config: Intl.NumberFormatOptions = {
     style: 'decimal',
