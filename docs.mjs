@@ -70,7 +70,7 @@ function copyFiles(src, dest)
 
 // Generate Markdown for each File
 function generateAll() {
-  const files = ['actions', 'formatters', 'modifiers', 'devices','detections',  'generators', 'numbers', 'data', 'validators', 'animations', 'goodies']
+  const files = ['actions', 'formatters', 'modifiers', 'devices','detections',  'generators', 'tailwind', 'numbers', 'data', 'validators', 'animations', 'goodies']
   files.forEach((file, index) => generateMarkdown(join(srcPath, `${file}.ts`), `${index + 1}.${file}`))
   copyFileSync(join(srcPath, 'config.ts'), join(nuxtWebPath, 'utils', 'config.ts'))
   copyFileSync(join(srcPath, 'config.ts'), join(nuxtModulePath, 'src/runtime/utils', 'config.ts'))
