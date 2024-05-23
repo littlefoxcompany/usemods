@@ -1,5 +1,5 @@
 import { resolve, extname, basename, join } from 'path'
-import { watch, readFileSync, readdirSync, writeFileSync, copyFileSync } from 'fs'
+import { watch, readFileSync, readdirSync, writeFileSync, copyFileSync, unlinkSync } from 'fs'
 
 // Arguments
 const args = process.argv.slice(2);
@@ -70,13 +70,30 @@ function copyFiles(src, dest)
 
 // Generate Markdown for each File
 function generateAll() {
-  const files = ['actions', 'formatters', 'modifiers', 'detections', 'generators', 'numbers', 'data', 'validators', 'animations', 'goodies']
+  const files = ['actions', 'formatters', 'modifiers', 'devices','detections',  'generators', 'numbers', 'data', 'validators', 'animations', 'goodies']
   files.forEach((file, index) => generateMarkdown(join(srcPath, `${file}.ts`), `${index + 1}.${file}`))
   copyFileSync(join(srcPath, 'config.ts'), join(nuxtWebPath, 'utils', 'config.ts'))
   copyFileSync(join(srcPath, 'config.ts'), join(nuxtModulePath, 'src/runtime/utils', 'config.ts'))
 }
 
 // Run Once
+async function clearAll() {
+  const webFiles = readdirSync(join(nuxtWebPath, 'utils')).filter(file => file.endsWith('.ts'))
+  const moduleFiles = readdirSync(join(nuxtModulePath, 'src/runtime/utils')).filter(file => file.endsWith('.ts'))
+  const documentFiles = readdirSync(join(nuxtWebPath, 'content/2.docs')).filter(file => file.endsWith('.md'))
+  for (const file of webFiles) {
+    unlinkSync(join(nuxtWebPath, 'utils', file))
+  }
+  for (const file of moduleFiles) {
+    unlinkSync(join(nuxtModulePath, 'src/runtime/utils', file))
+  }
+  for (const file of documentFiles) {
+    unlinkSync(join(nuxtWebPath, 'content/2.docs', file))
+  }
+}
+
+// Clear and Generate on State
+clearAll()
 generateAll()
 
 // Watch for Changes
