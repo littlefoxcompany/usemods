@@ -4,10 +4,7 @@
     <div class="relative z-10 flex grow">
       <section class="flex grow flex-col">
         <header class="flex grow flex-col items-center justify-center px-8 py-8 md:py-12">
-          <h1
-            v-html="animateText('Zippy little utils for your JavaScript projects.', { splitBy: 'word', time: 0.2, unit: 's', class: 'animate-fade-in-up' })"
-            id="title"
-            class="max-w-[1200px] text-balance text-center font-bold leading-[1.25em] text-gray-900 [font-size:_clamp(2.3em,8vw,5rem)] dark:text-white"></h1>
+          <h1 v-html="animateText('Zippy little utils for your JavaScript projects.', { splitBy: 'word', time: 0.2, unit: 's', class: 'animate-fade-in-up' })" id="title" class="max-w-[1200px] text-balance text-center font-bold leading-[1.25em] text-gray-900 [font-size:_clamp(2.3em,8vw,5rem)] dark:text-white"></h1>
 
           <div class="mt-10 flex items-center gap-3 max-md:flex-col md:mt-20">
             <NuxtLink to="intro/introduction">
@@ -19,10 +16,7 @@
 
             <!-- Packages -->
             <div id="packages" class="relative h-11 overflow-visible">
-              <button
-                type="button"
-                @click="copy('npm i usemods')"
-                class="flex h-11 cursor-pointer items-center gap-3 whitespace-nowrap rounded-full border border-white/5 bg-black/[5%] px-6 font-mono text-gray-900 backdrop-blur max-md:w-full dark:bg-white/[3%] dark:text-white/90 dark:shadow">
+              <button type="button" @click="copy('npm i usemods')" class="flex h-11 cursor-pointer items-center gap-3 whitespace-nowrap rounded-full border border-white/5 bg-black/[5%] px-6 font-mono text-gray-900 backdrop-blur max-md:w-full dark:bg-white/[3%] dark:text-white/90 dark:shadow">
                 <Icon name="lucide:terminal" class="h-5 w-5 dark:text-white/50" />
                 npm i usemods
               </button>
@@ -54,14 +48,14 @@
 </template>
 
 <script setup lang="ts">
-  function copy(text: string) {
-    copyToClipboard(text)
-  }
+function copy(text: string) {
+  copyToClipboard(text)
+}
 </script>
 
 <style scoped>
-  .radial {
-    background: radial-gradient(50% 50% at 50% 50%, #2a2a2a 0%, rgba(24, 24, 27, 0) 100%);
-    background: radial-gradient(50% 50% at 50% 50%, color(display-p3 0.165 0.165 0.165) 0%, color(display-p3 0.094 0.094 0.106 / 0) 100%);
-  }
+.radial {
+  background: radial-gradient(50% 50% at 50% 50%, #2a2a2a 0%, rgba(24, 24, 27, 0) 100%);
+  background: radial-gradient(50% 50% at 50% 50%, color(display-p3 0.165 0.165 0.165) 0%, color(display-p3 0.094 0.094 0.106 / 0) 100%);
+}
 </style>

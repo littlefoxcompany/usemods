@@ -11,4 +11,9 @@ const { data: docLinks } = await useAsyncData('doc-links', () => queryContent('d
 
 provide('intro-links', introLinks)
 provide('doc-links', docLinks)
+
+onMounted(() => {
+  addDeviceClasses()
+})
+
 </script>
