@@ -86,26 +86,32 @@ test("isAlphabetic", () => {
 
 test("isAlphanumeric", () => {
   expect(mod.isAlphanumeric("hello")).toBe(true);
+  // @ts-expect-error - Testing invalid input
   expect(mod.isAlphanumeric(123)).toBe(true);
   expect(mod.isAlphanumeric("hello123")).toBe(true);
   expect(mod.isAlphanumeric("hello!")).toBe(false);
+  // @ts-expect-error - Testing invalid input
   expect(mod.isAlphanumeric(["a", 2, "!"])).toBe(false);
 });
 
 test("isArray", () => {
   expect(mod.isArray([])).toBe(true);
   expect(mod.isArray(["hello"])).toBe(true);
+  // @ts-expect-error - Testing invalid input
   expect(mod.isArray("hello")).toBe(false);
 });
 
 test("isObject", () => {
   expect(mod.isObject({ hello: "world" })).toBe(true);
+  // @ts-expect-error - Testing invalid input
   expect(mod.isObject("hello")).toBe(false);
 });
 
 test("isBoolean", () => {
   expect(mod.isBoolean(true)).toBe(true);
+  // @ts-expect-error - Testing invalid input
   expect(mod.isBoolean(1)).toBe(false);
+  // @ts-expect-error - Testing invalid input
   expect(mod.isBoolean("hello")).toBe(false);
 });
 
@@ -123,16 +129,19 @@ test("isPort", () => {
   expect(mod.isPort(65535)).toBe(true);
   expect(mod.isPort(65536)).toBe(false);
   expect(mod.isPort(-1)).toBe(false);
+  // @ts-expect-error - Testing invalid input
   expect(mod.isPort("hello")).toBe(false);
 })
 
 test("isUndefined", () => {
   expect(mod.isUndefined(undefined)).toBe(true);
+  // @ts-expect-error - Testing invalid input
   expect(mod.isUndefined("hello")).toBe(false);
 });
 
 test("isNull", () => {
   expect(mod.isNull(null)).toBe(true);
+  // @ts-expect-error - Testing invalid input
   expect(mod.isNull("hello")).toBe(false);
 });
 

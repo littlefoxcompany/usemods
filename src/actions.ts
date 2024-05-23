@@ -64,7 +64,7 @@ export function toggleElementScroll(element: HTMLElement): Promise<void> {
       console.warn('[MODS] Element is required to toggle scroll.')
       return resolve()
     }
-    
+
     if (element.dataset.isScrollLocked === 'true') {
       element.style.overflow = ''
       delete element.dataset.isScrollLocked

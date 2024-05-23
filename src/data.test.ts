@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest';
 import * as mod from './data';
 
-const arrayExample = [{ name: 'John', age: 25 }, { name: 'Jane', age: 30 }, { name: 'Jimmy', age: 2 },{ name: 'Jake', age: 20 }];
+const arrayExample = [{ name: 'John', age: 25 }, { name: 'Jane', age: 30 }, { name: 'Jimmy', age: 2 }, { name: 'Jake', age: 20 }];
 
 const objectExample: { name: string; age: number; country: string } = {
   name: 'John',
@@ -78,7 +78,7 @@ test('dataSortBy', () => {
 });
 
 test('dataReverse', () => {
-  const arrayExample = [{ name: 'John', age: 25 },{ name: 'Jane', age: 30 },{ name: 'Jake', age: 20 }];
+  const arrayExample = [{ name: 'John', age: 25 }, { name: 'Jane', age: 30 }, { name: 'Jake', age: 20 }];
   expect(mod.dataReverse(arrayExample)).toStrictEqual([
     { name: 'Jake', age: 20 },
     { name: 'Jane', age: 30 },

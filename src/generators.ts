@@ -55,7 +55,7 @@ export function generatePassword(options?: { length?: number, uppercase?: number
   const allChars = 'abcdefghijklmnopqrstuvwxyz' + uppercaseChars + numberChars + specialChars
 
   let password = ''
-  
+
   // Ensure the first character is a letter
   password += allChars.charAt(generateRandomIndex(52)) // Selects a random letter from the first 52 characters (lowercase + uppercase)
 
@@ -88,7 +88,7 @@ export function generateRandomIndex(max: number): number {
   if (max > 256) {
     throw new Error('[MODS] Max generateRandomIndex value must be less than 256')
   }
-  
+
   const range = 256 - (256 % max);
   let randomValue;
 

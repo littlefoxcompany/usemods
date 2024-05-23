@@ -69,8 +69,10 @@ test('generateRandomIndex', () => {
   // Window
   const originalWindow = global.window;
   global.window = {
+    // @ts-ignore - Mock Test
     crypto: {
       getRandomValues: vi.fn((arr) => {
+        // @ts-ignore - Mock Test
         arr[0] = 5;
         return arr;
       }),

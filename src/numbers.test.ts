@@ -107,7 +107,7 @@ test('range', () => {
 test('standardDeviation', () => {
   expect(mod.standardDeviation([1, 2, 3])).toBeCloseTo(0.82, 2)
   expect(mod.standardDeviation([1, 2, 3, 4])).toBeCloseTo(1.12, 2)
-  expect(mod.standardDeviation([1, 2, 3, 4], {method: 'sample'})).toBeCloseTo(1.2909944487358056, 2)
+  expect(mod.standardDeviation([1, 2, 3, 4], { method: 'sample' })).toBeCloseTo(1.2909944487358056, 2)
   expect(mod.standardDeviation([-5, -3, -1, 0, 2])).toBeCloseTo(2.4166091947189146, 2)
   expect(mod.standardDeviation([42])).toBe(0)
   expect(mod.standardDeviation([])).toBeNaN()

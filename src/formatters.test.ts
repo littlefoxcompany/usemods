@@ -73,7 +73,7 @@ test('formatUnit', () => {
 test('formatList', () => {
   expect(mod.formatList(['Apple'])).toBe('Apple')
   expect(mod.formatList('Apple, Oranges')).toBe('Apple and Oranges')
-  expect(mod.formatList({'0': 'Apple', '1': 'Oranges'})).toBe('Apple and Oranges')
+  expect(mod.formatList({ '0': 'Apple', '1': 'Oranges' })).toBe('Apple and Oranges')
   expect(mod.formatList(['Apple', 'Oranges', 'Bananas', 'Grapefruit'])).toBe('Apple, Oranges, Bananas and Grapefruit')
   expect(mod.formatList(['Apple', 'Oranges'], { limit: 2 })).toBe('Apple and Oranges')
   expect(mod.formatList(['Apple', 'Oranges', 'Bananas'], { limit: 2 })).toBe('Apple, Oranges and 1 more')

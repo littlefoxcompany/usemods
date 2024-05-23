@@ -88,7 +88,7 @@ export function singularize(value: string): string {
   value = value.trim().toLowerCase()
 
   if (unchangingPlurals.has(value)) return value
-  
+
   for (const [singular, plural] of irregularPlurals) {
     if (plural === value) return singular;
   }
