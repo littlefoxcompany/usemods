@@ -8,7 +8,7 @@
         </div>
         <button type="button" @click="copyToClipboard(props.code), copied()" class="flex h-7 items-center gap-2 text-indigo-500 dark:text-white/50 hover:text-indigo-600 dark:hover:text-white/75">
             <Icon v-if="showCopied" name="🎉" class="w-4 h-4" />
-            <Icon v-else name="heroicons:clipboard" class="w-3 h-3" />
+            <Icon v-else name="heroicons:square-2-stack" class="w-3 h-3" />
             <span class="text-sm/none">
                 <span v-if="showCopied">Copied</span>
                 <span v-else>Copy</span>
