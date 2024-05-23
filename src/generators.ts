@@ -102,7 +102,7 @@ export function generateRandomIndex(max: number): number {
       randomValue = crypto.randomBytes(1)[0];
     } while (randomValue >= range);
   }
-  
+
   return randomValue % max;
 }
 
@@ -133,25 +133,46 @@ export function generateLoremIpsum(count: number = 5, options?: { format: 'words
 
 /**
  * Generate a random hash. Recommended for SSR only, or hide the salt.
+ * @info Deprecated: Use a secure hash function like SHA-256 or SHA-512 instead.
  */
-export async function generateHash(length = 40, salt = '', options?: { algorithm: 'SHA-1' | 'SHA-256' | 'SHA-512' }): Promise<string> {
-  const { algorithm = 'SHA-256' } = options || {}
-  try {
-    if (length < 0 || length > 64) {
-      throw new Error('Length must be between 0 and 64 for SHA-256 hashes.')
-    }
+// export async function generateHash(length = 40, salt = '', options?: { algorithm: 'SHA-256' | 'SHA-512' }): Promise<string> {
+//   const { algorithm = 'SHA-256' } = options || {}
 
-    const encoder = new TextEncoder()
-    const data = encoder.encode(salt)
+//   // Validate algorithm
+//   if (!['SHA-256', 'SHA-512'].includes(algorithm)) {
+//     throw new Error('Invalid algorithm. Use SHA-256 or SHA-512.')
+//   }
 
-    const buffer = await crypto.subtle.digest(algorithm, data)
-    const hashArray = Array.from(new Uint8Array(buffer))
+//   // Adjust length based on algorithm
+//   const maxLength = algorithm === 'SHA-256' ? 64 : 128
+//   if (length < 0 || length > maxLength) {
+//     throw new Error(`Length must be between 0 and ${maxLength} for ${algorithm} hashes.`)
+//   }
 
-    const hashHex = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('')
+//   // Generate a random salt if none is provided
+//   if (!salt) {
+//     const randomSalt = new Uint8Array(16)
+//     if (typeof window !== 'undefined' && window.crypto && window.crypto.getRandomValues) {
+//       window.crypto.getRandomValues(randomSalt)
+//     } else {
+//       const crypto = require('crypto')
+//       crypto.randomFillSync(randomSalt)
+//     }
+//     salt = Array.from(randomSalt).map(b => b.toString(16).padStart(2, '0')).join('')
+//   }
 
-    return hashHex.slice(0, length)
-  } catch (error) {
-    console.error('Error generating hash:', error)
-    throw error
-  }
-}
+//   try {
+//     const encoder = new TextEncoder()
+//     const data = encoder.encode(salt)
+
+//     const buffer = await crypto.subtle.digest(algorithm, data)
+//     const hashArray = Array.from(new Uint8Array(buffer))
+
+//     const hashHex = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('')
+
+//     return hashHex.slice(0, length)
+//   } catch (error) {
+//     console.error('Error generating hash:', error)
+//     throw error
+//   }
+// }

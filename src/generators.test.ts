@@ -1,4 +1,4 @@
-import { expect, test, describe } from 'vitest'
+import { expect, test, vi } from 'vitest'
 import * as mod from './generators'
 
 test('generateNumber', () => {
@@ -56,11 +56,33 @@ test('generatePassword', () => {
 })
 
 test('generateRandomIndex', () => {
-  // Max
+  // Default
   expect(mod.generateRandomIndex(10)).toBeGreaterThanOrEqual(0)
   expect(mod.generateRandomIndex(10)).toBeLessThanOrEqual(9)
+
+  // Min
   expect(() => mod.generateRandomIndex(0)).toThrow('[MODS] Max generateRandomIndex value must be a positive integer')
+
+  // Max
   expect(() => mod.generateRandomIndex(300)).toThrow('[MODS] Max generateRandomIndex value must be less than 256')
+
+  // Window
+  const originalWindow = global.window;
+  global.window = {
+    crypto: {
+      getRandomValues: vi.fn((arr) => {
+        arr[0] = 5;
+        return arr;
+      }),
+    },
+  }
+
+  expect(mod.generateRandomIndex(10)).toBeLessThanOrEqual(9)
+  expect(global.window.crypto.getRandomValues).toHaveBeenCalled()
+
+  // Restore original window
+  global.window = originalWindow
+  vi.restoreAllMocks()
 })
 
 test('generateLoremIpsum', () => {
@@ -78,29 +100,4 @@ test('generateLoremIpsum', () => {
   expect(mod.generateLoremIpsum(5, { format: 'paragraphs' }).split('\n').filter(Boolean).length).toBe(5)
   expect(mod.generateLoremIpsum(10, { format: 'paragraphs' }).split('\n').filter(Boolean).length).toBe(10)
   expect(mod.generateLoremIpsum(100, { format: 'paragraphs' }).split('\n').filter(Boolean).length).toBe(100)
-})
-
-test('generateHash', async () => {
-  // Default length
-  const hash1 = await mod.generateHash()
-  expect(hash1).toHaveLength(40)
-  expect(hash1).toMatch(/^[0-9a-f]{40}$/)
-
-  // Custom length
-  const hash2 = await mod.generateHash(32)
-  expect(hash2).toHaveLength(32)
-  expect(hash2).toMatch(/^[0-9a-f]{32}$/)
-
-  // Custom salt
-  const hash3 = await mod.generateHash(40, 'customSalt')
-  expect(hash3).toHaveLength(40)
-  expect(hash3).toMatch(/^[0-9a-f]{40}$/)
-
-  // Custom algorithm
-  const hash4 = await mod.generateHash(40, '', { algorithm: 'SHA-1' })
-  expect(hash4).toHaveLength(40)
-  expect(hash4).toMatch(/^[0-9a-f]{40}$/)
-
-  // Invalid length
-  await expect(mod.generateHash(0)).rejects.toThrow('Length must be between 0 and 64 for SHA-256 hashes.')
 })
