@@ -8,26 +8,36 @@ import { isObject } from './validators'
  * Sort an array or object by a property.
  */
 export function dataSortBy(items: object | string[] | number[], options?: { property?: string; order?: 'asc' | 'desc' }): object | string[] | number[] {
-  const { property, order = 'asc' } = options || {};
-  if (!property) return items;
+  // Default options
+  const defaultOptions = { order: 'asc' }
+  const { property, order } = { ...defaultOptions, ...options }
 
-  const comparator = (a: any, b: any) => {
-    const aValue = a[property];
-    const bValue = b[property];
+  // Sorting logic
+  const compare = (a: any, b: any) => {
+    let valueA, valueB
 
-    if (Array.isArray(aValue) && Array.isArray(bValue)) {
-      return (aValue.length - bValue.length) * (order === 'asc' ? 1 : -1);
-    } else if (typeof aValue === 'string' && typeof bValue === 'string') {
-      return aValue.localeCompare(bValue) * (order === 'asc' ? 1 : -1);
+    if (property) {
+      valueA = a[property]
+      valueB = b[property]
     } else {
-      return (aValue - bValue) * (order === 'asc' ? 1 : -1);
+      valueA = a
+      valueB = b
     }
-  };
 
-  if (isObject(items)) {
-    return Object.fromEntries(Object.entries(items).sort((a, b) => comparator(a[1], b[1])));
+    if (valueA < valueB) {
+      return order === 'asc' ? -1 : 1
+    } else if (valueA > valueB) {
+      return order === 'asc' ? 1 : -1
+    } else {
+      return 0
+    }
+  }
+
+  // Sort items
+  if (Array.isArray(items)) {
+    return items.sort(compare)
   } else {
-    return (items as string[] | number[]).sort(comparator);
+    return items
   }
 }
 
@@ -62,10 +72,21 @@ export function dataRemoveDuplicates<T extends string | number>(...arrays: T[][]
 export function dataFlatten(items: object | any[]): object | any[] {
   if (isObject(items)) {
     const flattened: { [key: string]: any } = {}
-    for (const [key, value] of Object.entries(items)) {
-      flattened[key] = Array.isArray(value) ? dataFlatten(value) : value
+
+    function flattenObject(obj: object, parentKey: string = '') {
+      for (const [key, value] of Object.entries(obj)) {
+        const newKey = parentKey ? `${parentKey}.${key}` : key
+        if (isObject(value)) {
+          flattenObject(value, newKey)
+        } else {
+          flattened[newKey] = value
+        }
+      }
     }
+
+    flattenObject(items)
     return flattened
+
   } else if (Array.isArray(items)) {
     return items.flatMap(item => Array.isArray(item) ? dataFlatten(item) : item)
   } else {
@@ -86,151 +107,3 @@ export function dataWithout(items: object | string[] | number[], properties: str
     return (items as string[] | number[]).filter((item) => !propertyArray.includes(item))
   }
 }
-
-// /**
-//  * Return the frequency of all values (numbers, string or boolean) in an array as an object
-//  */
-// export function dataFrequency(array: (number | string)[]): Record<string, number> {
-//   return array.reduce(
-//     (acc, curr) => {
-//       acc[curr] = (acc[curr] || 0) + 1
-//       return acc
-//     },
-//     {} as Record<string, number>
-//   )
-// }
-
-// /**
-//  * Returns the fequency of a property value in an array
-//  */
-// export function dataFrequencyOf(array: (number | string)[], property: number | string): number {
-//   return array.filter((item) => item === property).length
-// }
-
-// /**
-//  * Check if a property exists in an object without checking its value.
-//  */
-// export function hasProperties(object: any, properties: string[], strict: boolean = true): boolean {
-//   const objectProperties = Object.keys(object)
-
-//   if (strict) {
-//     return properties.every((property) => objectProperties.includes(property))
-//   } else {
-//     return properties.some((property) => objectProperties.includes(property))
-//   }
-// }
-
-// /**
-//  * Check if an array of key exists in an object
-//  */
-// export function hasKeys(object: any, keys: string[], strict: boolean = true): boolean {
-//   const objectKeys = Object.keys(object)
-
-//   if (strict) {
-//     return keys.every((key) => objectKeys.includes(key))
-//   } else {
-//     return keys.some((key) => objectKeys.includes(key))
-//   }
-// }
-
-// /**
-//  * Checks if a property and value pair exists in an object.
-//  */
-// export function isPresent(object: any, property: string, value: any): boolean {
-//   return object.hasOwnProperty(property) && object[property] === value
-// }
-
-// /**
-//  * Groups an array of objects by a property.
-//  */
-// export function dataGroup(items: object | any[], property: string | number): any {
-//   if (isObject(items)) {
-//     const entries: [string, any][] = Object.entries(items)
-//     return Object.fromEntries(entries.reduce((acc, [key, value]) => ((acc[value[property]] = [...(acc[value[property]] || []), value]), acc), {} as { [key: string]: any[] }))
-//   } else {
-//     return (items as any[]).reduce((acc, value) => ((acc[value[property]] = [...(acc[value[property]] || []), value]), acc), {} as { [key: string]: any[] })
-//   }
-// }
-
-// /**
-//  * Chunks an array into sections of a specified size.
-//  */
-// export function dataGroupBy(items: any[], size: number): any[][] {
-//   const result = []
-//   for (let i = 0; i < items.length; i += size) {
-//     result.push(items.slice(i, i + size))
-//   }
-//   return result
-// }
-
-// /**
-//  * Returns unique values within an array or object
-//  */
-// export function dataUnique(items: object | any[]): any {
-//   if (!items || !(isObject(items) || isArray(items))) {
-//     console.warn('Warning: dataUnique() expects an object or array as the first argument.')
-//     return items
-//   }
-
-//   const combinedItems = Array.isArray(items) ? items : Object.values(items)
-//   const seenValues = new Set()
-
-//   return combinedItems.filter((item) => {
-//     return seenValues.has(item) ? false : seenValues.add(item)
-//   })
-// }
-
-// /**
-//  * Combine two or more arrays or objects into a single array or object.
-//  */
-// export function dataCombineAll(...items: (any[] | object)[]): any[] | object {
-//   if (items.every((item) => Array.isArray(item))) {
-//     return ([] as any[]).concat(...items)
-//   } else if (items.every((item) => typeof item === 'object' && !Array.isArray(item))) {
-//     return Object.assign({}, ...items)
-//   } else {
-//     console.warn('[MODS] Warning: dataCombineAll() expects either all arrays or all objects as arguments.')
-//     return items
-//   }
-// }
-
-// /**
-//  * Combine two or more unique arrays
-//  */
-// export function dataCombineUnique(...items: (any[] | object)[]): any[] | object {
-//   if (items.every((item) => Array.isArray(item))) {
-//     return Array.from(new Set(([] as any[]).concat(...items)))
-//   } else if (items.every((item) => typeof item === 'object' && !Array.isArray(item))) {
-//     const combinedObject = Object.assign({}, ...items)
-//     for (const key in combinedObject) {
-//       if (Array.isArray(combinedObject[key])) {
-//         combinedObject[key] = Array.from(new Set(combinedObject[key]))
-//       }
-//     }
-//     return combinedObject
-//   } else {
-//     console.warn('[MODS] Warning: dataCombineUnique() expects either all arrays or all objects as arguments.')
-//     return items[0]
-//   }
-// }
-
-// /**
-//  * Combine two or more arrays or objects without a property.
-//  */
-// export function dataCombineWithout(
-//   property: string | number,
-//   ...items: (({ [key: string]: any } | { [key: number]: any }) | ({ [key: string]: any } | { [key: number]: any })[])[]
-// ): any[] {
-//   let combined: any[] = []
-
-//   for (let item of items) {
-//     if (Array.isArray(item)) {
-//       combined = [...combined, ...item]
-//     } else {
-//       combined.push(item)
-//     }
-//   }
-
-//   const unique = Array.from(new Set(combined.map((item) => item[property])))
-//   return unique
-// }
