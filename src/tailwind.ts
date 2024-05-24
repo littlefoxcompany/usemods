@@ -36,7 +36,3 @@ export const modDevices = plugin(function ({ addVariant, e }) {
         };
     }
 });
-
-
-
-
