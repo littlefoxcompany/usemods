@@ -1,23 +1,26 @@
-<template>
-  <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g clip-path="url(#clip0_99_161)">
-      <path
-        d="M12.375 12.1987V7.6987L6.375 12.1987L4.125 7.6987H1.125V18.1987H17.625V7.6987L12.375 12.1987Z"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round" />
-      <path
-        d="M11.3199 4.69879C10.5984 2.95204 8.66042 1.69879 6.37517 1.69879C4.08992 1.69879 2.15192 2.95204 1.43042 4.69879H11.3199Z"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round" />
-      <path d="M8.62524 15.1988H9.37524" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
-      <path d="M13.8752 15.1988H14.6252" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+<template><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+    <g :fill="fill">
+      <path d="M4,3.348c-.132,0-.266-.035-.386-.107-.355-.214-.469-.675-.256-1.03,.45-.747,1.271-1.211,2.143-1.211h1.75c.383,0,.738-.224,.903-.569,.179-.373,.626-.532,1-.353,.374,.179,.532,.627,.353,1-.414,.864-1.299,1.422-2.256,1.422h-1.75c-.354,0-.675,.181-.857,.485-.141,.233-.389,.363-.643,.363Z" :fill="_secondaryfill"></path>
+      <path d="M16.565,5.069c-.266-.122-.578-.08-.801,.109l-3.764,3.199v-2.628c0-.292-.17-.558-.436-.681-.265-.122-.578-.08-.8,.109l-4.696,3.997-.253-3.55c-.065-.911-.832-1.625-1.746-1.625h-.638c-.914,0-1.68,.714-1.746,1.625l-.607,8.5c-.035,.483,.135,.963,.464,1.317,.33,.354,.797,.558,1.281,.558H15.25c.965,0,1.75-.785,1.75-1.75V5.75c0-.292-.17-.558-.435-.681Zm-7.315,7.681h-.5c-.414,0-.75-.336-.75-.75s.336-.75,.75-.75h.5c.414,0,.75,.336,.75,.75s-.336,.75-.75,.75Zm4,0h-.5c-.414,0-.75-.336-.75-.75s.336-.75,.75-.75h.5c.414,0,.75,.336,.75,.75s-.336,.75-.75,.75Z" :fill="fill"></path>
     </g>
-    <defs>
-      <clipPath id="clip0_99_161">
-        <rect width="18" height="18" fill="white" style="fill: white; fill-opacity: 1" transform="translate(0 0.573975)" />
-      </clipPath>
-    </defs>
-  </svg>
-</template>
+  </svg></template>
+
+<script>
+export default {
+  props: {
+    fill: {
+      type: String,
+      default: "currentColor"
+    },
+    secondaryfill: {
+      type: String
+    }
+  },
+  computed: {
+    _secondaryfill: function ()
+    {
+      return this.secondaryfill || this.fill
+    }
+  }
+}
+</script>

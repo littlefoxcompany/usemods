@@ -1,29 +1,27 @@
-<template>
-  <svg viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g clip-path="url(#clip0_99_141)">
-      <path
-        d="M17.625 9.94907C17.625 11.5808 17.1412 13.1758 16.2346 14.5325C15.3281 15.8892 14.0396 16.9466 12.5321 17.5711C11.0247 18.1955 9.36585 18.3589 7.76551 18.0405C6.16517 17.7222 4.69516 16.9365 3.54137 15.7827C2.38759 14.6289 1.60185 13.1589 1.28353 11.5586C0.965197 9.95822 1.12857 8.29942 1.753 6.79193C2.37742 5.28444 3.43484 3.99596 4.79155 3.08944C6.14826 2.18292 7.74331 1.69907 9.375 1.69907"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round" />
-      <path
-        d="M4.87524 9.94907C4.87524 9.05905 5.13916 8.18902 5.63363 7.449C6.1281 6.70898 6.8309 6.1322 7.65317 5.79161C8.47544 5.45102 9.38024 5.3619 10.2532 5.53553C11.1261 5.70917 11.9279 6.13775 12.5572 6.76709C13.1866 7.39642 13.6151 8.19825 13.7888 9.07116C13.9624 9.94408 13.8733 10.8489 13.5327 11.6711C13.1921 12.4934 12.6153 13.1962 11.8753 13.6907C11.1353 14.1851 10.2653 14.4491 9.37524 14.4491"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round" />
-      <path
-        d="M9.375 11.4491C10.2034 11.4491 10.875 10.7776 10.875 9.94914C10.875 9.12072 10.2034 8.44914 9.375 8.44914C8.54657 8.44914 7.875 9.12072 7.875 9.94914C7.875 10.7776 8.54657 11.4491 9.375 11.4491Z"
-        fill="currentColor" />
-      <path
-        d="M12.375 2.2621C13.4371 2.6781 14.4018 3.30917 15.2085 4.11569C16.0151 4.92222 16.6463 5.88679 17.0625 6.94885"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round" />
+<template><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g :fill="fill">
+      <path d="M9,24H8a8.009,8.009,0,0,1-8-8V15H2v1a6.006,6.006,0,0,0,6,6H9Z" :fill="_secondaryfill"></path>
+      <path d="M9,20H8a4,4,0,0,1-4-4V15H6v1a2,2,0,0,0,2,2H9Z" :fill="_secondaryfill"></path>
+      <path d="M19,14H16.414l-1-1L19.5,8.914,17.293,6.707l1.414-1.414L20.914,7.5l.171-.172a3.121,3.121,0,0,0-4.414-4.414L11,8.586l-1-1V5L5,0,1,4,6,9H8.586l1,1-3,3L11,17.414l3-3,1,1V18l5,5,4-4Z" :fill="fill"></path>
     </g>
-    <defs>
-      <clipPath id="clip0_99_141">
-        <rect width="18" height="18" fill="currentColor" transform="translate(0 0.57399)" />
-      </clipPath>
-    </defs>
-  </svg>
-</template>
+  </svg></template>
+
+<script>
+export default {
+  props: {
+    fill: {
+      type: String,
+      default: "currentColor"
+    },
+    secondaryfill: {
+      type: String
+    }
+  },
+  computed: {
+    _secondaryfill: function ()
+    {
+      return this.secondaryfill || this.fill
+    }
+  }
+}
+</script>

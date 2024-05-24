@@ -1,33 +1,30 @@
-<template>
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g clip-path="url(#clip0_99_279)">
-      <path
-        d="M3.5 0.5H2.5C1.948 0.5 1.5 0.948 1.5 1.5V6.172C1.5 6.702 1.289 7.211 0.914 7.586L0.5 8L0.914 8.414C1.289 8.789 1.5 9.298 1.5 9.828V14.5C1.5 15.052 1.948 15.5 2.5 15.5H3.5"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round" />
-      <path
-        d="M12.5 0.5H13.5C14.052 0.5 14.5 0.948 14.5 1.5V6.172C14.5 6.702 14.711 7.211 15.086 7.586L15.5 8L15.086 8.414C14.711 8.789 14.5 9.298 14.5 9.828V14.5C14.5 15.052 14.052 15.5 13.5 15.5H12.5"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round" />
-      <path d="M4.5 2.5H5.5V6.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
-      <path d="M10.5 9.5H11.5V13.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
-      <path
-        d="M6.5 9.5H5.5C4.94772 9.5 4.5 9.94772 4.5 10.5V12.5C4.5 13.0523 4.94772 13.5 5.5 13.5H6.5C7.05228 13.5 7.5 13.0523 7.5 12.5V10.5C7.5 9.94772 7.05228 9.5 6.5 9.5Z"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round" />
-      <path
-        d="M10.5 2.5H9.5C8.94772 2.5 8.5 2.94772 8.5 3.5V5.5C8.5 6.05228 8.94772 6.5 9.5 6.5H10.5C11.0523 6.5 11.5 6.05228 11.5 5.5V3.5C11.5 2.94772 11.0523 2.5 10.5 2.5Z"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round" />
+<template><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g :fill="fill">
+      <path d="M3,22c-1.103,0-2-.897-2-2v-6.172c0-.263-.107-.521-.293-.707l-.414-.414c-.391-.391-.391-1.023,0-1.414l.414-.414c.186-.187,.293-.444,.293-.707V4c0-1.103,.897-2,2-2,.552,0,1,.447,1,1s-.448,1-1,1h-.001v6.172c.001,.67-.217,1.307-.62,1.828,.403,.521,.621,1.158,.621,1.828v6.172c.552,0,1,.447,1,1s-.448,1-1,1Z" :fill="fill"></path>
+      <path d="M21,22c-.552,0-1-.447-1-1s.448-1,1-1v-6.172c0-.67,.218-1.307,.621-1.828-.403-.521-.621-1.158-.621-1.828V4c-.552,0-1-.447-1-1s.448-1,1-1c1.103,0,2,.897,2,2v6.172c0,.263,.107,.521,.293,.707l.414,.414c.391,.391,.391,1.023,0,1.414l-.414,.414c-.186,.187-.293,.444-.293,.707v6.172c0,1.103-.897,2-2,2Z" :fill="fill"></path>
+      <path d="M9,11c-.552,0-1-.447-1-1V5h-1c-.552,0-1-.447-1-1s.448-1,1-1h2c.552,0,1,.447,1,1v6c0,.553-.448,1-1,1Z" :fill="fill"></path>
+      <path d="M17,21c-.552,0-1-.447-1-1v-5h-1c-.552,0-1-.447-1-1s.448-1,1-1h2c.552,0,1,.447,1,1v6c0,.553-.448,1-1,1Z" :fill="fill"></path>
+      <path d="M15,11c-1.654,0-3-1.346-3-3v-2c0-1.654,1.346-3,3-3s3,1.346,3,3v2c0,1.654-1.346,3-3,3Zm0-6c-.551,0-1,.448-1,1v2c0,.552,.449,1,1,1s1-.448,1-1v-2c0-.552-.449-1-1-1Z" :fill="_secondaryfill"></path>
+      <path d="M9,21c-1.654,0-3-1.346-3-3v-2c0-1.654,1.346-3,3-3s3,1.346,3,3v2c0,1.654-1.346,3-3,3Zm0-6c-.551,0-1,.448-1,1v2c0,.552,.449,1,1,1s1-.448,1-1v-2c0-.552-.449-1-1-1Z" :fill="_secondaryfill"></path>
     </g>
-    <defs>
-      <clipPath id="clip0_99_279">
-        <rect width="16" height="16" fill="white" style="fill: white; fill-opacity: 1" />
-      </clipPath>
-    </defs>
-  </svg>
-</template>
+  </svg></template>
+
+<script>
+export default {
+  props: {
+    fill: {
+      type: String,
+      default: "currentColor"
+    },
+    secondaryfill: {
+      type: String
+    }
+  },
+  computed: {
+    _secondaryfill: function ()
+    {
+      return this.secondaryfill || this.fill
+    }
+  }
+}
+</script>
