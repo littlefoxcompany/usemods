@@ -48,7 +48,8 @@ export function isEmpty(
 /**
  * Check if any given value is a valid UUID.
  */
-export function isUuid(value: string): boolean {
+export function isUuid(value: unknown): boolean {
+  if (typeof value !== 'string') return false
   const regex = /^[a-f\d]{8}(-[a-f\d]{4}){4}[a-f\d]{8}$/i
   return regex.test(value)
 }
@@ -56,7 +57,8 @@ export function isUuid(value: string): boolean {
 /**
  * Check if any given value is a valid JSON string.
  */
-export function isJson(value: string): boolean {
+export function isJson(value: unknown): boolean {
+  if (typeof value !== 'string') return false
   try {
     JSON.parse(value)
     return true
@@ -68,8 +70,9 @@ export function isJson(value: string): boolean {
 /**
  * Check if any given value is an object.
  */
-export function isObject(value: object): boolean {
-  return value && typeof value === 'object' && value.constructor === Object
+export function isObject(value: unknown): boolean {
+  if (typeof value !== 'object' || value === null) return false
+  return value.constructor === Object
 }
 
 /**
@@ -212,7 +215,7 @@ export function isPrime(value: number): boolean {
 /**
  * Check if the number is an integer.
  */
-export function isInteger(value: any): boolean {
+export function isInteger(value: unknown): boolean {
   if (typeof value !== 'number') return false
   return (value) % 1 === 0
 }
@@ -220,7 +223,7 @@ export function isInteger(value: any): boolean {
 /**
  * Check if the number is a float.
  */
-export function isFloat(value: any): boolean {
+export function isFloat(value: unknown): boolean {
   if (typeof value !== 'number') return false
   return !isInteger(value)
 }
@@ -245,7 +248,7 @@ export function isDivisibleBy(value: number, divisor: number): boolean {
 /**
  * Check if any given value is a valid credit card number.
  */
-export function isCreditCard(value: any): boolean {
+export function isCreditCard(value: unknown): boolean {
   if (typeof value === 'number') value = value.toString()
   if (typeof value !== 'string') return false
   const regex =
@@ -301,110 +304,3 @@ export function isMacAddress(value: string): boolean {
   const regex = /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/
   return regex.test(value)
 }
-
-// /**
-//  * Check if you're a passionate iPhone fan.
-//  */
-// export function isIos(): boolean {
-//   return /iPad|iPhone|iPod/.test(navigator.platform);
-// }
-
-// /**
-//  * Check if you're a fervent Windows fan.
-//  */
-// export function isWindows(): boolean {
-//   return /Win/.test(navigator.platform);
-// }
-
-// /**
-//  * Check if you're a devoted Linux fan.
-//  */
-// export function isLinux(): boolean {
-//   return /Linux/.test(navigator.platform);
-// }
-
-// /**
-//  * Check if you're a zealous Android fan.
-//  */
-// export function isAndroid(): boolean {
-//   return /Android/.test(navigator.platform);
-// }
-
-// /**
-//  * Check if you're a staunch Mac fan.
-//  */
-// export function isMac(): boolean {
-//   return /Mac/.test(navigator.platform);
-// }
-
-// /**
-//  * Check if you're a die-hard Chrome fan.
-//  */
-// export function isChrome(): boolean {
-//   return /Chrome/.test(navigator.userAgent);
-// }
-
-// /**
-//  * Check if you're a dedicated Firefox fan.
-//  */
-// export function isFirefox(): boolean {
-//   return /Firefox/.test(navigator.userAgent);
-// }
-
-// /**
-//  * Check if you're a lonely Safari fan.
-//  */
-// export function isSafari(): boolean {
-//   return /Safari/.test(navigator.userAgent);
-// }
-
-// /**
-//  * Check if you're an ardent Edge fan.
-//  */
-// export function isEdge(): boolean {
-//   return /Edge/.test(navigator.userAgent);
-// }
-
-// /**
-//  * Check if you're rocking a mobile
-//  */
-// export function isMobile(): boolean {
-//   return /Mobi/.test(navigator.userAgent);
-// }
-
-// /**
-//  * Check if you're tablet user
-//  */
-// export function isTablet(): boolean {
-//   return /Tablet/.test(navigator.userAgent);
-// }
-
-// /**
-//  * Check if you're pro desktop user
-//  */
-// export function isDesktop(): boolean {
-//   return !isMobile() && !isTablet();
-// }
-
-// /**
-//  * Check if you're portrait
-//  */
-// export function isPortrait(): boolean {
-//   return window.innerHeight > window.innerWidth;
-// }
-
-// /**
-//  * Check if you're landscape
-//  */
-// export function isLandscape(): boolean {
-//   return window.innerWidth > window.innerHeight;
-// }
-
-// /**
-//  * Check if you're a cyborg or a bot
-//  */
-// export function isBot(): boolean {
-//   return /bot|googlebot|crawler|spider|robot|crawling/i.test(
-//     navigator.userAgent
-//   );
-// }

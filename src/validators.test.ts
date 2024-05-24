@@ -51,14 +51,19 @@ test('isUrl', () => {
 })
 
 test('isUuid', () => {
+  // Valid UUIDs
   expect(mod.isUuid('a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11')).toBe(true)
+  // False positives
   expect(mod.isUuid('hello')).toBe(false)
+  expect(mod.isUuid(1234567890)).toBe(false)
 })
 
 test('isJson', () => {
   expect(mod.isJson('{"hello": "world"}')).toBe(true)
+  // False
   expect(mod.isJson('{"hello": world}')).toBe(false)
   expect(mod.isJson('hello')).toBe(false)
+  expect(mod.isJson(123)).toBe(false)
 })
 
 test('isHex', () => {
