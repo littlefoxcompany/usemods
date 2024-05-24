@@ -47,7 +47,7 @@ export function dataSortBy(items: object | string[] | number[], options?: { prop
 export function dataReverse(items: object | string[] | number[]): object | string[] | number[] {
   if ((Array.isArray(items) && items.length === 0) || (!Array.isArray(items) && Object.keys(items).length === 0)) {
     console.warn('[MODS] Warning: dataReverse() expects an object or array as the first argument.')
-    return items;
+    return items
   }
 
   if (isObject(items)) {

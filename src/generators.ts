@@ -11,9 +11,9 @@ export function generateNumber(length: number): number {
     return 0
   }
 
-  const min = 10 ** (length - 1);
-  const max = 10 ** length - 1;
-  return Math.floor(Math.random() * (max - min + 1) + min);
+  const min = 10 ** (length - 1)
+  const max = 10 ** length - 1
+  return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 /**
@@ -89,21 +89,21 @@ export function generateRandomIndex(max: number): number {
     throw new Error('[MODS] Max generateRandomIndex value must be less than 256')
   }
 
-  const range = 256 - (256 % max);
-  let randomValue;
+  const range = 256 - (256 % max)
+  let randomValue
 
   if (typeof window !== 'undefined' && window.crypto && window.crypto.getRandomValues) {
     do {
-      randomValue = window.crypto.getRandomValues(new Uint8Array(1))[0];
-    } while (randomValue >= range);
+      randomValue = window.crypto.getRandomValues(new Uint8Array(1))[0]
+    } while (randomValue >= range)
   } else {
-    const crypto = require('crypto');
+    const crypto = require('crypto')
     do {
-      randomValue = crypto.randomBytes(1)[0];
-    } while (randomValue >= range);
+      randomValue = crypto.randomBytes(1)[0]
+    } while (randomValue >= range)
   }
 
-  return randomValue % max;
+  return randomValue % max
 }
 
 /**

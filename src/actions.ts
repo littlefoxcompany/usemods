@@ -82,14 +82,14 @@ export function toggleElementScroll(element: HTMLElement): Promise<void> {
  */
 export async function copyToClipboard(value: string | number): Promise<void> {
   if (!navigator.clipboard || !navigator.clipboard.writeText) {
-    throw new Error('Clipboard API is not available');
+    throw new Error('Clipboard API is not available')
   }
 
   try {
-    await navigator.clipboard.writeText(String(value));
+    await navigator.clipboard.writeText(String(value))
   } catch (error) {
-    console.error('Failed to copy text: ', error);
-    throw error;
+    console.error('Failed to copy text: ', error)
+    throw error
   }
 }
 
@@ -99,7 +99,7 @@ export async function copyToClipboard(value: string | number): Promise<void> {
 export function toggleFullScreen(): Promise<void> {
   return new Promise((resolve, reject) => {
     if (document.fullscreenElement) {
-    document.exitFullscreen().then(resolve).catch(reject)
+      document.exitFullscreen().then(resolve).catch(reject)
     } else {
       document.documentElement.requestFullscreen().then(resolve).catch(reject)
     }

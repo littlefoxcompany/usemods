@@ -15,7 +15,7 @@ export function sum(numbers: number[]): number {
  */
 export function mean(numbers: number[]): number {
   if (numbers.length === 0) {
-    console.log("[MODS] mean array is empty.")
+    console.log('[MODS] mean array is empty.')
     return 0
   }
   const sum = numbers.reduce((acc, val) => acc + val, 0)
@@ -56,7 +56,7 @@ export function subtractMargin(value: number, percentage: number): number {
  */
 export function addMarkup(value: number, percentage: number): number {
   if (value === 0) {
-    console.log("[MODS] addMarkup value is 0.")
+    console.log('[MODS] addMarkup value is 0.')
     return 0
   }
   return Math.round(value * (1 + percentage / 100) * 100) / 100
@@ -67,7 +67,7 @@ export function addMarkup(value: number, percentage: number): number {
  */
 export function subtractMarkup(value: number, percentage: number): number {
   if (value === 0) {
-    console.log("[MODS] subtractMarkup value is 0.")
+    console.log('[MODS] subtractMarkup value is 0.')
     return 0
   }
   return Math.round((value / (1 + percentage / 100)) * 100) / 100
@@ -119,7 +119,7 @@ export function mode(numbers: number[]): number[] | null {
  */
 export function min(numbers: number[]): number {
   if (numbers.length === 0) {
-    console.log("[MODS] min array is empty.")
+    console.log('[MODS] min array is empty.')
     return 0
   }
   return Math.min(...numbers)
@@ -130,7 +130,7 @@ export function min(numbers: number[]): number {
  */
 export function max(numbers: number[]): number {
   if (numbers.length === 0) {
-    console.log("[MODS] max array is empty.")
+    console.log('[MODS] max array is empty.')
     return 0
   }
   return Math.max(...numbers)
@@ -141,7 +141,7 @@ export function max(numbers: number[]): number {
  */
 export function minMax(numbers: number[]): [number, number] {
   if (numbers.length === 0) {
-    console.log("[MODS] minMax array is empty.")
+    console.log('[MODS] minMax array is empty.')
     return [0, 0]
   }
   return [min(numbers), max(numbers)]
@@ -152,7 +152,7 @@ export function minMax(numbers: number[]): [number, number] {
  */
 export function range(numbers: number[]): number {
   if (numbers.length === 0) {
-    console.log("[MODS] range array is empty.")
+    console.log('[MODS] range array is empty.')
     return NaN
   }
   return max(numbers) - min(numbers)
@@ -163,7 +163,7 @@ export function range(numbers: number[]): number {
  */
 export function standardDeviation(numbers: number[], options?: { method: 'sample' | 'population' }): number {
   if (numbers.length === 0) {
-    console.log("[MODS] standardDeviation array is empty.")
+    console.log('[MODS] standardDeviation array is empty.')
     return NaN
   }
   options = options || { method: 'population' }
@@ -178,16 +178,16 @@ export function standardDeviation(numbers: number[], options?: { method: 'sample
  * Returns the measure of asymmetry of the probability distribution of an array of numbers. The skewness value can be positive, zero, negative, or undefined.
  */
 export function skewness(numbers: number[]): number {
-  const n = numbers.length;
+  const n = numbers.length
   if (n < 3) {
-    console.log("[MODS] skewness requires at least 3 numbers.");
-    return NaN;
+    console.log('[MODS] skewness requires at least 3 numbers.')
+    return NaN
   }
 
-  const meanValue = mean(numbers);
-  const stdDev = standardDeviation(numbers);
-  if (stdDev === 0) return 0;
+  const meanValue = mean(numbers)
+  const stdDev = standardDeviation(numbers)
+  if (stdDev === 0) return 0
 
-  const sumCubedDeviations = numbers.reduce((acc, num) => acc + (num - meanValue) ** 3, 0);
-  return (n / ((n - 1) * (n - 2))) * (sumCubedDeviations / (stdDev ** 3));
+  const sumCubedDeviations = numbers.reduce((acc, num) => acc + (num - meanValue) ** 3, 0)
+  return (n / ((n - 1) * (n - 2))) * (sumCubedDeviations / (stdDev ** 3))
 }

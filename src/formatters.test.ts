@@ -157,8 +157,8 @@ test('formatTextWrap', () => {
   expect(mod.formatTextWrap('')).toBe('')
   expect(mod.formatTextWrap('hello world')).toBe('hello&nbsp;world')
   expect(mod.formatTextWrap('hello world how are you')).toBe('hello world how are&nbsp;you')
-  expect(mod.formatTextWrap('This is a test')).toBe('This is a&nbsp;test');
-  expect(mod.formatTextWrap('Test')).toBe('Test');
-  expect(mod.formatTextWrap('TestTest')).toBe('TestTest');
-  expect(mod.formatTextWrap('')).toBe('');
+  expect(mod.formatTextWrap('This is a test')).toBe('This is a&nbsp;test')
+  expect(mod.formatTextWrap('Test')).toBe('Test')
+  expect(mod.formatTextWrap('TestTest')).toBe('TestTest')
+  expect(mod.formatTextWrap('')).toBe('')
 })

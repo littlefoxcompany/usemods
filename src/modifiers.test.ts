@@ -19,11 +19,11 @@ test('endWith', () => {
 test('endWithout', () => {
   expect(mod.endWithout('www.helloworld.com', '.com')).toBe('www.helloworld')
   expect(mod.endWithout('helloworld.com', '.com')).toBe('helloworld')
-  expect(mod.endWithout('filename.txt', '.txt')).toBe('filename');
-  expect(mod.endWithout('filename.txt', '.jpg')).toBe('filename.txt');
-  expect(mod.endWithout('', '.txt')).toBe('');
-  expect(mod.endWithout('filename.txt', '')).toBe('filename.txt');
-  expect(mod.endWithout('.txt', '.txt')).toBe('');
+  expect(mod.endWithout('filename.txt', '.txt')).toBe('filename')
+  expect(mod.endWithout('filename.txt', '.jpg')).toBe('filename.txt')
+  expect(mod.endWithout('', '.txt')).toBe('')
+  expect(mod.endWithout('filename.txt', '')).toBe('filename.txt')
+  expect(mod.endWithout('.txt', '.txt')).toBe('')
 })
 
 test('surroundWith', () => {

@@ -8,16 +8,16 @@ import { currencySymbols, numberUnderTwenty, numberTens, numberScales, formatTit
  * Format numbers into neat and formatted strings for people
  */
 export function formatNumber(number: number, options?: { decimals?: number; locale?: string }): string {
-  const decimalPlaces = (number.toString().split('.')[1] || '').length;
-  const safeDecimals = Math.min(options?.decimals ?? decimalPlaces, decimalPlaces);
+  const decimalPlaces = (number.toString().split('.')[1] || '').length
+  const safeDecimals = Math.min(options?.decimals ?? decimalPlaces, decimalPlaces)
 
   const config: Intl.NumberFormatOptions = {
     style: 'decimal',
     minimumFractionDigits: safeDecimals,
     maximumFractionDigits: safeDecimals,
-  };
+  }
 
-  return new Intl.NumberFormat(options?.locale ?? 'en-US', config).format(number);
+  return new Intl.NumberFormat(options?.locale ?? 'en-US', config).format(number)
 }
 
 /**
@@ -59,8 +59,8 @@ export function formatValuation(number: number, options?: { decimals?: number; l
  * Format a number into a your unit of choice
  */
 export function formatUnit(number: number, options: { unit: string; decimals?: number; unitDisplay?: 'short' | 'long'; locale?: string }): string {
-  const decimalPlaces = (number.toString().split('.')[1] || '').length;
-  const safeDecimals = options?.decimals ?? decimalPlaces;
+  const decimalPlaces = (number.toString().split('.')[1] || '').length
+  const safeDecimals = options?.decimals ?? decimalPlaces
   const config: Intl.NumberFormatOptions = {
     unit: options.unit,
     style: 'unit',
@@ -90,8 +90,8 @@ export function formatPercentage(number: number, options?: { decimals?: number; 
  * Format time into a human-readable string
  */
 export function formatDurationLabels(seconds: number, options?: { labels?: 'short' | 'long'; round?: boolean }): string {
-  if (seconds <= 0) return formatUnit(0, { unit: 'second', decimals: 0, unitDisplay: options?.labels ?? 'long' });
-  if (options?.round) seconds = Math.round(seconds);
+  if (seconds <= 0) return formatUnit(0, { unit: 'second', decimals: 0, unitDisplay: options?.labels ?? 'long' })
+  if (options?.round) seconds = Math.round(seconds)
 
   const units = [
     { unit: 'year', value: 31536000 },
@@ -99,68 +99,68 @@ export function formatDurationLabels(seconds: number, options?: { labels?: 'shor
     { unit: 'hour', value: 3600 },
     { unit: 'minute', value: 60 },
     { unit: 'second', value: 1 },
-  ];
+  ]
 
-  const labels = options?.labels ?? 'long';
-  const results = [];
+  const labels = options?.labels ?? 'long'
+  const results = []
 
   units.forEach(({ unit, value }) => {
-    const unitValue = Math.floor(seconds / value);
+    const unitValue = Math.floor(seconds / value)
     if (unitValue > 0) {
-      results.push(formatUnit(unitValue, { unit, decimals: 0, unitDisplay: labels }));
-      seconds %= value;
+      results.push(formatUnit(unitValue, { unit, decimals: 0, unitDisplay: labels }))
+      seconds %= value
     }
-  });
+  })
 
-  const milliseconds = Math.floor((seconds % 1) * 1000);
-  if (milliseconds > 0) results.push(formatUnit(milliseconds, { unit: 'millisecond', decimals: 0, unitDisplay: labels }));
-  return results.join(' ');
+  const milliseconds = Math.floor((seconds % 1) * 1000)
+  if (milliseconds > 0) results.push(formatUnit(milliseconds, { unit: 'millisecond', decimals: 0, unitDisplay: labels }))
+  return results.join(' ')
 }
 
 /**
  * Format time into duration 00:00:00
  */
 export function formatDurationNumbers(seconds: number): string {
-  const h = Math.floor(seconds / 3600);
-  const m = Math.floor((seconds % 3600) / 60);
-  const s = Math.floor(seconds % 60);
-  const ms = Math.floor((seconds % 1) * 1000);
+  const h = Math.floor(seconds / 3600)
+  const m = Math.floor((seconds % 3600) / 60)
+  const s = Math.floor(seconds % 60)
+  const ms = Math.floor((seconds % 1) * 1000)
 
-  const timeParts = [h, m, s].map((value) => value.toString().padStart(2, '0'));
+  const timeParts = [h, m, s].map((value) => value.toString().padStart(2, '0'))
 
   if (ms > 0) {
-    const msString = Math.floor(ms / 10).toString().padStart(2, '0');
-    timeParts.push(msString);
+    const msString = Math.floor(ms / 10).toString().padStart(2, '0')
+    timeParts.push(msString)
   }
 
-  return timeParts.join(':');
+  return timeParts.join(':')
 }
 
 /**
  * Format numbers into words
  */
 export function formatNumberToWords(number: number): string {
-  if (number === 0) return numberUnderTwenty[0];
+  if (number === 0) return numberUnderTwenty[0]
 
   const formatGroup = (num: number): string => {
-    if (num < 20) return numberUnderTwenty[num];
-    if (num < 100) return `${numberTens[Math.floor(num / 10) - 2]}${num % 10 ? '-' + numberUnderTwenty[num % 10] : ''}`;
-    return `${numberUnderTwenty[Math.floor(num / 100)]} hundred${num % 100 ? ` and ${formatGroup(num % 100)}` : ''}`;
-  };
-
-  let result = '';
-  let scaleIndex = 0;
-
-  while (number > 0) {
-    const groupValue = number % 1000;
-    if (groupValue > 0) {
-      result = `${formatGroup(groupValue)}${numberScales[scaleIndex]}${result ? ', ' + result : ''}`;
-    }
-    number = Math.floor(number / 1000);
-    scaleIndex++;
+    if (num < 20) return numberUnderTwenty[num]
+    if (num < 100) return `${numberTens[Math.floor(num / 10) - 2]}${num % 10 ? '-' + numberUnderTwenty[num % 10] : ''}`
+    return `${numberUnderTwenty[Math.floor(num / 100)]} hundred${num % 100 ? ` and ${formatGroup(num % 100)}` : ''}`
   }
 
-  return result.trim();
+  let result = ''
+  let scaleIndex = 0
+
+  while (number > 0) {
+    const groupValue = number % 1000
+    if (groupValue > 0) {
+      result = `${formatGroup(groupValue)}${numberScales[scaleIndex]}${result ? ', ' + result : ''}`
+    }
+    number = Math.floor(number / 1000)
+    scaleIndex++
+  }
+
+  return result.trim()
 }
 
 /**
