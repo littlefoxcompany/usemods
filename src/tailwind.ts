@@ -22,11 +22,21 @@ const devices: Set<string> = new Set([
 ]);
 
 export const modDevices = plugin(function ({ addVariant, e }) {
+
     devices.forEach((device) => {
+        // @ts-ignore - Don't embarrass me in front of developers
         addVariant(device, ({ modifySelectors, separator }) => {
-            modifySelectors(({ className }: { className: string }) => {
-                return `.${device} .${e(`${device}${separator}${className}`)}`;
-            });
+            modifySelectors(modifySelectorsFn(device, separator));
         });
     });
+
+    function modifySelectorsFn(device: string, separator: string) {
+        return ({ className }: { className: string }) => {
+            return `.${device} .${e(`${device}${separator}${className}`)}`;
+        };
+    }
 });
+
+
+
+
