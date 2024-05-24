@@ -45,10 +45,10 @@ test('generatePassword', () => {
   expect(mod.generatePassword({ length: 8 })).toHaveLength(8)
 
   // Uppercase
-  expect(mod.generatePassword({ uppercase: 2 })).toMatch(new RegExp(`[A-Z]{1,}`))
+  expect(mod.generatePassword({ uppercase: 2 })).toMatch(new RegExp('[A-Z]{1,}'))
 
   // Numbers
-  expect(mod.generatePassword({ number: 2 })).toMatch(new RegExp(`[0-9]{1,}`))
+  expect(mod.generatePassword({ number: 2 })).toMatch(new RegExp('[0-9]{1,}'))
 
   // Special
   expect(mod.generatePassword({ special: 2 })).toMatch(new RegExp(`[${specialChars}]{1,}`))
@@ -67,14 +67,14 @@ test('generateRandomIndex', () => {
   expect(() => mod.generateRandomIndex(300)).toThrow('[MODS] Max generateRandomIndex value must be less than 256')
 
   // Window
-  const originalWindow = global.window;
+  const originalWindow = global.window
   global.window = {
     // @ts-ignore - Mock Test
     crypto: {
       getRandomValues: vi.fn((arr) => {
         // @ts-ignore - Mock Test
-        arr[0] = 5;
-        return arr;
+        arr[0] = 5
+        return arr
       }),
     },
   }

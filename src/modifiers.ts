@@ -69,15 +69,15 @@ export function pluralize(word: string, count: number): string {
     ['f', 'ves'],
     ['fe', 'ves'],
     ['y', 'ies']
-  ]);
+  ])
 
   for (const [suffix, replacement] of suffixRules) {
     if (word.endsWith(suffix)) {
-      return word.slice(0, -suffix.length) + replacement;
+      return word.slice(0, -suffix.length) + replacement
     }
   }
 
-  return word + 's';
+  return word + 's'
 }
 
 /**
@@ -90,7 +90,7 @@ export function singularize(value: string): string {
   if (unchangingPlurals.has(value)) return value
 
   for (const [singular, plural] of irregularPlurals) {
-    if (plural === value) return singular;
+    if (plural === value) return singular
   }
 
   const singularRules = new Map<string, (value: string) => string>([
@@ -106,11 +106,11 @@ export function singularize(value: string): string {
     ['i', value => value.slice(0, -1) + 'us'],
     ['a', value => value.slice(0, -1) + 'on'],
     ['s', value => value.length > 1 ? value.slice(0, -1) : value]
-  ]);
+  ])
 
   for (const [suffix, transform] of singularRules) {
     if (value.endsWith(suffix)) {
-      return transform(value);
+      return transform(value)
     }
   }
 
@@ -175,7 +175,7 @@ export function stripEmojis(text: string): string {
     .replace(/[\u{1FA00}-\u{1FA6F}]/gu, '') // Chess Symbols
     .replace(/[\u{1FA70}-\u{1FAFF}]/gu, '') // Symbols and Pictographs Extended-A
     .replace(/[\u{2600}-\u{26FF}]/gu, '') // Miscellaneous Symbols
-    .replace(/[\u{2700}-\u{27BF}]/gu, ''); // Dingbats
+    .replace(/[\u{2700}-\u{27BF}]/gu, '') // Dingbats
 }
 
 /**
