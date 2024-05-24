@@ -8,20 +8,25 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  type: {
-    type: String as PropType<'button' | 'reset' | 'submit'>,
-    default: 'button'
-  },
-  color: {
-    type: String as PropType<'primary' | 'secondary'>,
-    default: 'primary'
-  },
-  size: {
-    type: String as PropType<'sm' | 'md' | 'lg'>,
-    default: 'md'
+  const props = defineProps({
+    type: {
+      type: String as PropType<'button' | 'reset' | 'submit'>,
+      default: 'button'
+    },
+    color: {
+      type: String as PropType<'primary' | 'secondary'>,
+      default: 'primary'
+    },
+    size: {
+      type: String as PropType<'sm' | 'md' | 'lg'>,
+      default: 'md'
+    }
+  })
+
+  const colorClasses = {
+    'bg-gradient-to-br from-indigo-500 to-indigo-600 text-white border-white/20': props.color === 'primary',
+    'bg-white text-indigo-600 dark:bg-white/[2%] hover:bg-white/[4%] dark:text-white shadow-lg border-white/[5%] dark:hover:bg-white/[3%]': props.color === 'secondary',
   }
-})
 
   const sizeClasses = {
     'h-9 px-3 gap-2 text-sm': props.size === 'sm',
