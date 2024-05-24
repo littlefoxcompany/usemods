@@ -192,17 +192,17 @@ export function focusTrap(container: HTMLElement): void {
   })
 }
 
-/**
- * Scrolls to the top of the page
- */
-export function scrollToTop(): void {
-  window.scrollTo({ top: 0, behavior: 'smooth' })
-}
+// /**
+//  * Scrolls to the top of the page
+//  */
+// export function scrollToTop(): void {
+//   window.scrollTo({ top: 0, behavior: 'smooth' })
+// }
 
 
-/**
- * Scrolls to the bottom of the page
- */
-export function scrollToBottom(): void {
-  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
-}
+// /**
+//  * Scrolls to the bottom of the page
+//  */
+// export function scrollToBottom(): void {
+//   window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+// }

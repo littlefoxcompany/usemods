@@ -48,7 +48,8 @@ export function isEmpty(
 /**
  * Check if any given value is a valid UUID.
  */
-export function isUuid(value: string): boolean {
+export function isUuid(value: unknown): boolean {
+  if (typeof value !== 'string') return false
   const regex = /^[a-f\d]{8}(-[a-f\d]{4}){4}[a-f\d]{8}$/i
   return regex.test(value)
 }
@@ -56,7 +57,8 @@ export function isUuid(value: string): boolean {
 /**
  * Check if any given value is a valid JSON string.
  */
-export function isJson(value: string): boolean {
+export function isJson(value: unknown): boolean {
+  if (typeof value !== 'string') return false
   try {
     JSON.parse(value)
     return true
@@ -68,8 +70,9 @@ export function isJson(value: string): boolean {
 /**
  * Check if any given value is an object.
  */
-export function isObject(value: object): boolean {
-  return value && typeof value === 'object' && value.constructor === Object
+export function isObject(value: unknown): boolean {
+  if (typeof value !== 'object' || value === null) return false
+  return value.constructor === Object
 }
 
 /**
@@ -212,7 +215,7 @@ export function isPrime(value: number): boolean {
 /**
  * Check if the number is an integer.
  */
-export function isInteger(value: any): boolean {
+export function isInteger(value: unknown): boolean {
   if (typeof value !== 'number') return false
   return (value) % 1 === 0
 }
@@ -220,7 +223,7 @@ export function isInteger(value: any): boolean {
 /**
  * Check if the number is a float.
  */
-export function isFloat(value: any): boolean {
+export function isFloat(value: unknown): boolean {
   if (typeof value !== 'number') return false
   return !isInteger(value)
 }
@@ -245,7 +248,7 @@ export function isDivisibleBy(value: number, divisor: number): boolean {
 /**
  * Check if any given value is a valid credit card number.
  */
-export function isCreditCard(value: any): boolean {
+export function isCreditCard(value: unknown): boolean {
   if (typeof value === 'number') value = value.toString()
   if (typeof value !== 'string') return false
   const regex =
