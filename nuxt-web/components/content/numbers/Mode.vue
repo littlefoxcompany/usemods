@@ -3,9 +3,9 @@
     <ExampleInputs>
       <FormInput label="Value" type="text" v-model.number="value" />
     </ExampleInputs>
-    <ExampleCode :code="`mode(${convertToArray(value)})`" />
+    <ExampleCode :code="`mode(${JSON.parse(value)})`" />
     <ExampleResult>
-      {{ mode(convertToArray(value)) }}
+      {{ mode(JSON.parse(value)) }}
     </ExampleResult>
   </Example>
 </template>

@@ -8,9 +8,9 @@
         <option value="paragraphs">Paragraphs</option>
       </FormSelect>
     </ExampleInputs>
-    <ExampleCode :code="`generateLoremIpsum(${length}, '${type}')`" />
+    <ExampleCode :code="`generateLoremIpsum(${length}, { format: '${type}' })`" />
     <ExampleResult>
-      {{ generateLoremIpsum(length, type) }}
+      {{ generateLoremIpsum(length, { format: type as 'words' | 'sentences' | 'paragraphs' }) }}
     </ExampleResult>
   </Example>
 </template>

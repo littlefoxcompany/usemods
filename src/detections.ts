@@ -16,10 +16,7 @@ export function detectScrollPosition(): { x: number; y: number } {
  * Detect the absolute mouse position with the page
  * @info Don't forget to add a mousemove event listener to the window
  */
-export function detectMousePosition(event: MouseEvent): {
-  x: number
-  y: number
-} {
+export function detectMousePosition(event: MouseEvent): { x: number; y: number } {
   return {
     x: event.pageX,
     y: event.pageY
@@ -109,20 +106,6 @@ export function detectUserTimezone(): string {
 export function detectDeviceOrientation(): string {
   return window.screen.orientation.type
 }
-
-/**
- * Detect the container size via ID
- */
-// export function detectContainerSize(element: HTMLElement): { width: number; height: number } {
-//   if (!element) return { width: 0, height: 0 }
-
-//   const rect = element.getBoundingClientRect()
-
-//   return {
-//     width: rect.width,
-//     height: rect.height
-//   }
-// }
 
 /**
  * Detect the current breakpoint based on Tailwind CSS breakpoints
@@ -278,4 +261,18 @@ export function detectPort(): string {
 //   if (width < 1152) return '@6xl'
 //   if (width < 1280) return '@7xl'
 //   return '@7xl'
+// }
+
+/**
+ * Detect the container size via ID
+ */
+// export function detectContainerSize(element: HTMLElement): { width: number; height: number } {
+//   if (!element) return { width: 0, height: 0 }
+
+//   const rect = element.getBoundingClientRect()
+
+//   return {
+//     width: rect.width,
+//     height: rect.height
+//   }
 // }

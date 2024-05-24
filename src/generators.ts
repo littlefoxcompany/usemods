@@ -11,17 +11,16 @@ export function generateNumber(length: number): number {
     return 0
   }
 
-  const min = 10 ** (length - 1);
-  const max = 10 ** length - 1;
-  return Math.floor(Math.random() * (max - min + 1) + min);
+  const min = 10 ** (length - 1)
+  const max = 10 ** length - 1
+  return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 /**
  * Generate a random number between two values
  */
-export function generateNumberBetween(min: number, max: number): number {
-  if (min > max) console.warn('[MODS] Warning: min value is higher than max value')
-  return Math.floor(Math.random() * (max - min + 1) + min)
+export function generateNumberBetween(from: number, to: number): number {
+  return Math.floor(Math.random() * (to - from + 1) + from)
 }
 
 /**
@@ -56,7 +55,7 @@ export function generatePassword(options?: { length?: number, uppercase?: number
   const allChars = 'abcdefghijklmnopqrstuvwxyz' + uppercaseChars + numberChars + specialChars
 
   let password = ''
-  
+
   // Ensure the first character is a letter
   password += allChars.charAt(generateRandomIndex(52)) // Selects a random letter from the first 52 characters (lowercase + uppercase)
 
@@ -83,27 +82,35 @@ export function generatePassword(options?: { length?: number, uppercase?: number
  * Random number generator using cryptographic methods to avoid random().
  */
 export function generateRandomIndex(max: number): number {
-  if (max <= 0) throw new Error('[MODS] Max value must be a positive integer')
-  if (max > 256) throw new Error('[MODS] Max value must be less than 256')
-  const range = 256 - (256 % max);
-  let randomValue;
+  if (max <= 0) {
+    throw new Error('[MODS] Max generateRandomIndex value must be a positive integer')
+  }
+  if (max > 256) {
+    throw new Error('[MODS] Max generateRandomIndex value must be less than 256')
+  }
+
+  const range = 256 - (256 % max)
+  let randomValue
+
   if (typeof window !== 'undefined' && window.crypto && window.crypto.getRandomValues) {
     do {
-      randomValue = window.crypto.getRandomValues(new Uint8Array(1))[0];
-    } while (randomValue >= range);
+      randomValue = window.crypto.getRandomValues(new Uint8Array(1))[0]
+    } while (randomValue >= range)
   } else {
-    const crypto = require('crypto');
+    const crypto = require('crypto')
     do {
-      randomValue = crypto.randomBytes(1)[0];
-    } while (randomValue >= range);
+      randomValue = crypto.randomBytes(1)[0]
+    } while (randomValue >= range)
   }
-  return randomValue % max;
+
+  return randomValue % max
 }
 
 /**
  * Generate Lorem Ipsum text in various formats.
  */
-export function generateLoremIpsum(count: number = 5, format: string = 'words'): string {
+export function generateLoremIpsum(count: number = 5, options?: { format: 'words' | 'sentences' | 'paragraphs' }): string {
+  const { format = 'words' } = options || {}
   const lorem = 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'.split(' ')
 
   const generateSentence = () => {
@@ -118,32 +125,54 @@ export function generateLoremIpsum(count: number = 5, format: string = 'words'):
   if (format === 'sentences') {
     return Array.from({ length: count }, generateSentence).join(' ')
   } else if (format === 'paragraphs') {
-    return Array.from({ length: count }, () => Array.from({ length: Math.floor(Math.random() * 3) + 2 }, generateSentence).join(' ')).join('\n\n')
+    return Array.from({ length: count }, () => Array.from({ length: Math.floor(Math.random() * 10) + 5 }, generateSentence).join(' ')).join('\n\n')
   } else {
-    return lorem.slice(0, count).join(' ')
+    return Array.from({ length: count }, () => lorem[Math.floor(Math.random() * lorem.length)]).join(' ')
   }
 }
 
 /**
  * Generate a random hash. Recommended for SSR only, or hide the salt.
+ * @info Deprecated: Use a secure hash function like SHA-256 or SHA-512 instead.
  */
-export async function generateHash(length = 40, salt = '', algorithm = 'SHA-256') {
-  try {
-    if (length < 0 || length > 64) {
-      throw new Error('Length must be between 0 and 64 for SHA-256 hashes.')
-    }
+// export async function generateHash(length = 40, salt = '', options?: { algorithm: 'SHA-256' | 'SHA-512' }): Promise<string> {
+//   const { algorithm = 'SHA-256' } = options || {}
 
-    const encoder = new TextEncoder()
-    const data = encoder.encode(salt)
+//   // Validate algorithm
+//   if (!['SHA-256', 'SHA-512'].includes(algorithm)) {
+//     throw new Error('Invalid algorithm. Use SHA-256 or SHA-512.')
+//   }
 
-    const buffer = await crypto.subtle.digest(algorithm, data)
-    const hashArray = Array.from(new Uint8Array(buffer))
+//   // Adjust length based on algorithm
+//   const maxLength = algorithm === 'SHA-256' ? 64 : 128
+//   if (length < 0 || length > maxLength) {
+//     throw new Error(`Length must be between 0 and ${maxLength} for ${algorithm} hashes.`)
+//   }
 
-    const hashHex = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('')
+//   // Generate a random salt if none is provided
+//   if (!salt) {
+//     const randomSalt = new Uint8Array(16)
+//     if (typeof window !== 'undefined' && window.crypto && window.crypto.getRandomValues) {
+//       window.crypto.getRandomValues(randomSalt)
+//     } else {
+//       const crypto = require('crypto')
+//       crypto.randomFillSync(randomSalt)
+//     }
+//     salt = Array.from(randomSalt).map(b => b.toString(16).padStart(2, '0')).join('')
+//   }
 
-    return hashHex.slice(0, length)
-  } catch (error) {
-    console.error('Error generating hash:', error)
-    throw error
-  }
-}
+//   try {
+//     const encoder = new TextEncoder()
+//     const data = encoder.encode(salt)
+
+//     const buffer = await crypto.subtle.digest(algorithm, data)
+//     const hashArray = Array.from(new Uint8Array(buffer))
+
+//     const hashHex = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('')
+
+//     return hashHex.slice(0, length)
+//   } catch (error) {
+//     console.error('Error generating hash:', error)
+//     throw error
+//   }
+// }

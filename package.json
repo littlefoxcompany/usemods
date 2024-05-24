@@ -62,6 +62,7 @@
     "changelogen": "^0.5.5",
     "concurrently": "^8.2.2",
     "eslint": "^8.57.0",
+    "eslint-plugin-nuxt": "^4.0.0",
     "eslint-plugin-vue": "^9.26.0",
     "fs-extra": "^11.2.0",
     "globals": "^15.2.0",

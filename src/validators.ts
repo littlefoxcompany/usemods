@@ -6,7 +6,8 @@
  * Check if any given value is a valid email address.
  */
 export function isEmail(value: string): boolean {
-  const regex = /^(?!.*[._+-]{2})(?!.*[._+-]$)[a-zA-Z0-9._+-]+(?<!\.)@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+  const regex =
+    /^(?!.*[._+-]{2})(?!.*[._+-]$)[a-zA-Z0-9._+-]+(?<!\.)@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
   return regex.test(value)
 }
 
@@ -23,7 +24,8 @@ export function isNumber(value: string | number): boolean {
  * Check if any given value is a valid URL.
  */
 export function isUrl(value: string): boolean {
-  const regex = /^(?:\w+:)?\/\/([^\s.]+\.\S{2,}|localhost[:?\d]*(?:[^:?\d]\S*)?)$/
+  const regex =
+    /^(?:\w+:)?\/\/([^\s.]+\.\S{2,}|localhost[:?\d]*(?:[^:?\d]\S*)?)$/
   return regex.test(value)
 }
 
@@ -31,18 +33,23 @@ export function isUrl(value: string): boolean {
 /**
  * Check if any given string, array or object is empty.
  */
-export function isEmpty(value: string | string[] | number[] | object | null | undefined): boolean {
-  if (value === null || value === undefined) return true
-  if (typeof value === 'string') return value === ''
-  if (Array.isArray(value)) return value.length === 0
-  if (typeof value === 'object') return Object.keys(value).length === 0
-  return false
+export function isEmpty(
+  value: string | string[] | number[] | object | null | undefined
+): boolean {
+  return (
+    value === null ||
+    value === undefined ||
+    (typeof value === 'string' && value === '') ||
+    (Array.isArray(value) && value.length === 0) ||
+    (typeof value === 'object' && Object.keys(value).length === 0)
+  )
 }
 
 /**
  * Check if any given value is a valid UUID.
  */
-export function isUuid(value: string): boolean {
+export function isUuid(value: unknown): boolean {
+  if (typeof value !== 'string') return false
   const regex = /^[a-f\d]{8}(-[a-f\d]{4}){4}[a-f\d]{8}$/i
   return regex.test(value)
 }
@@ -50,7 +57,8 @@ export function isUuid(value: string): boolean {
 /**
  * Check if any given value is a valid JSON string.
  */
-export function isJson(value: string): boolean {
+export function isJson(value: unknown): boolean {
+  if (typeof value !== 'string') return false
   try {
     JSON.parse(value)
     return true
@@ -62,8 +70,9 @@ export function isJson(value: string): boolean {
 /**
  * Check if any given value is an object.
  */
-export function isObject(value: object): boolean {
-  return value && typeof value === 'object' && value.constructor === Object
+export function isObject(value: unknown): boolean {
+  if (typeof value !== 'object' || value === null) return false
+  return value.constructor === Object
 }
 
 /**
@@ -84,9 +93,11 @@ export function isHex(value: string): boolean {
 /**
  * Check if any given value contains only alphabetic characters.
  */
-export function isAlphabetic(value: string): boolean {
+export function isAlphabetic(
+  value: string | number | string[] | number[]
+): boolean {
   const regex = /^[a-zA-Z]+$/
-  return regex.test(value)
+  return regex.test(value as string)
 }
 
 /**
@@ -121,7 +132,9 @@ export function isNull(value: null): boolean {
 /**
  * Check if any given value is a valid Date object.
  */
-export function isDate(value: Date): boolean {
+export function isDate(
+  value: Date | string | number | string[] | number[]
+): boolean {
   if (value instanceof Date) {
     return !isNaN(value.getTime())
   } else if (typeof value === 'string' || typeof value === 'number') {
@@ -202,16 +215,16 @@ export function isPrime(value: number): boolean {
 /**
  * Check if the number is an integer.
  */
-export function isInteger(value: number): boolean {
-  if (!isNumber(value)) return false
-  return value % 1 === 0
+export function isInteger(value: unknown): boolean {
+  if (typeof value !== 'number') return false
+  return (value) % 1 === 0
 }
 
 /**
  * Check if the number is a float.
  */
-export function isFloat(value: number): boolean {
-  if (!isNumber(value)) return false
+export function isFloat(value: unknown): boolean {
+  if (typeof value !== 'number') return false
   return !isInteger(value)
 }
 
@@ -220,7 +233,7 @@ export function isFloat(value: number): boolean {
  */
 export function isBetween(value: number, min: number, max: number): boolean {
   if (min > max) {
-    ;[min, max] = [max, min]
+    [min, max] = [max, min]
   }
   return value >= min && value <= max
 }
@@ -235,8 +248,11 @@ export function isDivisibleBy(value: number, divisor: number): boolean {
 /**
  * Check if any given value is a valid credit card number.
  */
-export function isCreditCard(value: string): boolean {
-  const regex = /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/
+export function isCreditCard(value: unknown): boolean {
+  if (typeof value === 'number') value = value.toString()
+  if (typeof value !== 'string') return false
+  const regex =
+    /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:0111|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/
   return regex.test(value)
 }
 
@@ -244,7 +260,8 @@ export function isCreditCard(value: string): boolean {
  * Check if any given value is a valid latitude-longitude coordinate in the format lat,lng or lat,lng.
  */
 export function isLatLng(value: string): boolean {
-  const regex = /^([-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)),\s*([-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?))$/
+  const regex =
+    /^([-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)),\s*([-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?))$/
   return regex.test(value)
 }
 
@@ -268,7 +285,8 @@ export function isLongitude(value: string): boolean {
  * Check if any given value is a valid IP address.
  */
 export function isIpAddress(value: string): boolean {
-  const regex = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)((?::\d+)?|)$/
+  const regex =
+    /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)((?::\d+)?|)$/
   return regex.test(value)
 }
 
@@ -285,109 +303,4 @@ export function isPort(value: number): boolean {
 export function isMacAddress(value: string): boolean {
   const regex = /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/
   return regex.test(value)
-}
-
-/**
- * Check if you're a passionate iPhone fan.
- */
-export function isIos(): boolean {
-  return /iPad|iPhone|iPod/.test(navigator.platform)
-}
-
-/**
- * Check if you're a fervent Windows fan.
- */
-export function isWindows(): boolean {
-  return /Win/.test(navigator.platform)
-}
-
-/**
- * Check if you're a devoted Linux fan.
- */
-export function isLinux(): boolean {
-  return /Linux/.test(navigator.platform)
-}
-
-/**
- * Check if you're a zealous Android fan.
- */
-export function isAndroid(): boolean {
-  return /Android/.test(navigator.platform)
-}
-
-/**
- * Check if you're a staunch Mac fan.
- */
-export function isMac(): boolean {
-  return /Mac/.test(navigator.platform)
-}
-
-/**
- * Check if you're a die-hard Chrome fan.
- */
-export function isChrome(): boolean {
-  return /Chrome/.test(navigator.userAgent)
-}
-
-/**
- * Check if you're a dedicated Firefox fan.
- */
-export function isFirefox(): boolean {
-  return /Firefox/.test(navigator.userAgent)
-}
-
-/**
- * Check if you're a lonely Safari fan.
- */
-export function isSafari(): boolean {
-  return /Safari/.test(navigator.userAgent)
-}
-
-/**
- * Check if you're an ardent Edge fan.
- */
-export function isEdge(): boolean {
-  return /Edge/.test(navigator.userAgent)
-}
-
-/**
- * Check if you're rocking a mobile
- */
-export function isMobile(): boolean {
-  return /Mobi/.test(navigator.userAgent)
-}
-
-/**
- * Check if you're tablet user
- */
-export function isTablet(): boolean {
-  return /Tablet/.test(navigator.userAgent)
-}
-
-/**
- * Check if you're pro desktop user
- */
-export function isDesktop(): boolean {
-  return !isMobile() && !isTablet()
-}
-
-/**
- * Check if you're portrait
- */
-export function isPortrait(): boolean {
-  return window.innerHeight > window.innerWidth
-}
-
-/**
- * Check if you're landscape
- */
-export function isLandscape(): boolean {
-  return window.innerWidth > window.innerHeight
-}
-
-/**
- * Check if you're a cyborg or a bot
- */
-export function isBot(): boolean {
-  return /bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent)
 }

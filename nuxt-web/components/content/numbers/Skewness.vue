@@ -5,7 +5,7 @@
     </ExampleInputs>
     <ExampleCode :code="`skewness(${value})`" />
     <ExampleResult>
-      {{ skewness(convertToArray(value)) }}
+      {{ skewness(JSON.parse(value)) }}
     </ExampleResult>
   </Example>
 </template>

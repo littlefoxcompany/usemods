@@ -1,19 +1,19 @@
 <template>
     <div class="flex max-md:flex-col items-center justify-between gap-6 bg-white px-5 py-4 dark:bg-white/[3%]">
-        <div class="flex items-start gap-3">
-            <div class="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-indigo-50 dark:bg-white/5">
+        <div class="flex items-start max-md:text-center gap-3">
+            <div class="mt-1 max-md:hidden flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-indigo-50 dark:bg-white/5">
                 <Icon name="ph:code-bold" class="w-3 shrink-0 text-indigo-600 dark:text-white/50" />
             </div>
             <div class="min-h-7 text-lg text-gray-500 dark:text-white/50 text-pretty" v-html="formattedCode"></div>
         </div>
-        <button type="button" @click="copyToClipboard(props.code), copied()" class="flex h-7 items-center gap-2 text-indigo-500 dark:text-white/50 hover:text-indigo-600 dark:hover:text-white/75">
-            <Icon v-if="showCopied" name="🎉" class="w-4 h-4" />
-            <Icon v-else name="heroicons:clipboard" class="w-3 h-3" />
+        <Button color="secondary" size="sm" @click="copyToClipboard(props.code), copied()" class="max-md:w-full">
+            <!-- <Icon v-if="showCopied" name="🎉" class="w-3 h-3" /> -->
+            <Icon v-if="!showCopied" name="heroicons:square-2-stack" class="w-3 h-3" />
             <span class="text-sm/none">
                 <span v-if="showCopied">Copied</span>
                 <span v-else>Copy</span>
             </span>
-        </button>
+        </Button>
     </div>
 </template>
 

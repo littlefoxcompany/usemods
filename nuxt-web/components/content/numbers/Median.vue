@@ -3,9 +3,9 @@
     <ExampleInputs>
       <FormInput label="Value" type="text" v-model.number="value" />
     </ExampleInputs>
-    <ExampleCode :code="`median(${convertToArray(value)})`" />
+    <ExampleCode :code="`median(${JSON.parse(value)})`" />
     <ExampleResult>
-      {{ median(convertToArray(value)) }}
+      {{ median(JSON.parse(value)) }}
     </ExampleResult>
   </Example>
 </template>

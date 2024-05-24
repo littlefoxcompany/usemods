@@ -14,7 +14,6 @@ test('isEmail', () => {
   expect(mod.isEmail('email@example.name')).toBe(true)
   expect(mod.isEmail('email@example.museum')).toBe(true)
   expect(mod.isEmail('email@example.travel')).toBe(true)
-
   // Invalid email addresses
   expect(mod.isEmail('helloemail.com')).toBe(false) // Missing @
   expect(mod.isEmail('plainaddress')).toBe(false) // Missing @ and domain
@@ -52,14 +51,19 @@ test('isUrl', () => {
 })
 
 test('isUuid', () => {
+  // Valid UUIDs
   expect(mod.isUuid('a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11')).toBe(true)
+  // False positives
   expect(mod.isUuid('hello')).toBe(false)
+  expect(mod.isUuid(1234567890)).toBe(false)
 })
 
 test('isJson', () => {
   expect(mod.isJson('{"hello": "world"}')).toBe(true)
+  // False
   expect(mod.isJson('{"hello": world}')).toBe(false)
   expect(mod.isJson('hello')).toBe(false)
+  expect(mod.isJson(123)).toBe(false)
 })
 
 test('isHex', () => {
@@ -87,26 +91,32 @@ test('isAlphabetic', () => {
 
 test('isAlphanumeric', () => {
   expect(mod.isAlphanumeric('hello')).toBe(true)
+  // @ts-expect-error - Testing invalid input
   expect(mod.isAlphanumeric(123)).toBe(true)
   expect(mod.isAlphanumeric('hello123')).toBe(true)
   expect(mod.isAlphanumeric('hello!')).toBe(false)
+  // @ts-expect-error - Testing invalid input
   expect(mod.isAlphanumeric(['a', 2, '!'])).toBe(false)
 })
 
 test('isArray', () => {
   expect(mod.isArray([])).toBe(true)
   expect(mod.isArray(['hello'])).toBe(true)
+  // @ts-expect-error - Testing invalid input
   expect(mod.isArray('hello')).toBe(false)
 })
 
 test('isObject', () => {
   expect(mod.isObject({ hello: 'world' })).toBe(true)
+  // @ts-expect-error - Testing invalid input
   expect(mod.isObject('hello')).toBe(false)
 })
 
 test('isBoolean', () => {
   expect(mod.isBoolean(true)).toBe(true)
+  // @ts-expect-error - Testing invalid input
   expect(mod.isBoolean(1)).toBe(false)
+  // @ts-expect-error - Testing invalid input
   expect(mod.isBoolean('hello')).toBe(false)
 })
 
@@ -115,15 +125,28 @@ test('isDate', () => {
   expect(mod.isDate('2024-01-01')).toBe(true)
   expect(mod.isDate('2024-01-day')).toBe(false)
   expect(mod.isDate('hello')).toBe(false)
+  // @ts-expect-error - Testing invalid date object
+  expect(mod.isDate({ year: 2024, month: 1, day: 1 })).toBe(false)
+})
+
+test('isPort', () => {
+  expect(mod.isPort(80)).toBe(true)
+  expect(mod.isPort(65535)).toBe(true)
+  expect(mod.isPort(65536)).toBe(false)
+  expect(mod.isPort(-1)).toBe(false)
+  // @ts-expect-error - Testing invalid input
+  expect(mod.isPort('hello')).toBe(false)
 })
 
 test('isUndefined', () => {
   expect(mod.isUndefined(undefined)).toBe(true)
+  // @ts-expect-error - Testing invalid input
   expect(mod.isUndefined('hello')).toBe(false)
 })
 
 test('isNull', () => {
   expect(mod.isNull(null)).toBe(true)
+  // @ts-expect-error - Testing invalid input
   expect(mod.isNull('hello')).toBe(false)
 })
 
@@ -164,16 +187,31 @@ test('isPrime', () => {
 
 test('isInteger', () => {
   expect(mod.isInteger(2)).toBe(true)
+  expect(mod.isInteger(-2)).toBe(true)
   expect(mod.isInteger(2.5)).toBe(false)
+  expect(mod.isInteger('hello')).toBe(false)
+  expect(mod.isInteger('2')).toBe(false)
+  expect(mod.isInteger({})).toBe(false)
+  expect(mod.isInteger([])).toBe(false)
+  expect(mod.isInteger(null)).toBe(false)
+  expect(mod.isInteger(true)).toBe(false)
+  expect(mod.isInteger(undefined)).toBe(false)
 })
 
 test('isFloat', () => {
   expect(mod.isFloat(2.5)).toBe(true)
   expect(mod.isFloat(2)).toBe(false)
+  expect(mod.isFloat('hello')).toBe(false)
+  expect(mod.isFloat({})).toBe(false)
+  expect(mod.isFloat([])).toBe(false)
+  expect(mod.isFloat(null)).toBe(false)
+  expect(mod.isFloat(true)).toBe(false)
+  expect(mod.isFloat(undefined)).toBe(false)
 })
 
 test('isBetween', () => {
   expect(mod.isBetween(4, 2, 6)).toBe(true)
+  expect(mod.isBetween(4, 6, 2)).toBe(true)
   expect(mod.isBetween(4, 6, 8)).toBe(false)
 })
 
@@ -182,9 +220,22 @@ test('isDivisibleBy', () => {
   expect(mod.isDivisibleBy(4, 3)).toBe(false)
 })
 
+test('isOver9000', () => {
+  expect(mod.isOver9000(9001)).toBe(true)
+  expect(mod.isOver9000(9000)).toBe(false)
+})
+
 test('isCreditCard', () => {
   expect(mod.isCreditCard('4111111111111111')).toBe(true)
+  expect(mod.isCreditCard(4111111111111111)).toBe(true)
   expect(mod.isCreditCard('hello')).toBe(false)
+  expect(mod.isCreditCard({})).toBe(false)
+  expect(mod.isCreditCard(1234567890123456)).toBe(false)
+})
+
+test('isZero', () => {
+  expect(mod.isZero(0)).toBe(true)
+  expect(mod.isZero(1)).toBe(false)
 })
 
 test('isIpAddress', () => {

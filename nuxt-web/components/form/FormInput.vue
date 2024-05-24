@@ -14,28 +14,28 @@
 </template>
 
 <script setup lang="ts">
-  defineOptions({
-    inheritAttrs: true
-  })
+defineOptions({
+  inheritAttrs: true
+})
 
-  const props = defineProps({
-    modelValue: {
-      type: [String, Number, Object, Boolean]
-    },
-    placeholder: {
-      type: String
-    },
-    label: {
-      type: String
-    },
-    type: {
-      type: String,
-      default: 'text'
-    },
-    info: {
-      type: String
-    }
-  })
+const props = defineProps({
+  modelValue: {
+    type: [String, Number, Object, Boolean]
+  },
+  placeholder: {
+    type: String
+  },
+  label: {
+    type: String
+  },
+  type: {
+    type: String,
+    default: 'text'
+  },
+  info: {
+    type: String
+  }
+})
 
-  const id = useId()
+const id = useId()
 </script>

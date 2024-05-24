@@ -15,3 +15,4 @@ nuxt-module/docs/content/2.docs
 nuxt-web/content/2.docs/*.md
 nuxt-module/src/runtime/utils/*.ts
 nuxt-web/utils/*.ts
+.VSCodeCounter/*

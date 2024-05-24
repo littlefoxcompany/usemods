@@ -64,7 +64,7 @@ export function toggleElementScroll(element: HTMLElement): Promise<void> {
       console.warn('[MODS] Element is required to toggle scroll.')
       return resolve()
     }
-    
+
     if (element.dataset.isScrollLocked === 'true') {
       element.style.overflow = ''
       delete element.dataset.isScrollLocked
@@ -82,14 +82,14 @@ export function toggleElementScroll(element: HTMLElement): Promise<void> {
  */
 export async function copyToClipboard(value: string | number): Promise<void> {
   if (!navigator.clipboard || !navigator.clipboard.writeText) {
-    throw new Error('Clipboard API is not available');
+    throw new Error('Clipboard API is not available')
   }
 
   try {
-    await navigator.clipboard.writeText(String(value));
+    await navigator.clipboard.writeText(String(value))
   } catch (error) {
-    console.error('Failed to copy text: ', error);
-    throw error;
+    console.error('Failed to copy text: ', error)
+    throw error
   }
 }
 
@@ -192,17 +192,17 @@ export function focusTrap(container: HTMLElement): void {
   })
 }
 
-/**
- * Scrolls to the top of the page
- */
-export function scrollToTop(): void {
-  window.scrollTo({ top: 0, behavior: 'smooth' })
-}
+// /**
+//  * Scrolls to the top of the page
+//  */
+// export function scrollToTop(): void {
+//   window.scrollTo({ top: 0, behavior: 'smooth' })
+// }
 
 
-/**
- * Scrolls to the bottom of the page
- */
-export function scrollToBottom(): void {
-  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
-}
+// /**
+//  * Scrolls to the bottom of the page
+//  */
+// export function scrollToBottom(): void {
+//   window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+// }

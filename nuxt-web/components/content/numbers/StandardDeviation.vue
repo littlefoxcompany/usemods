@@ -5,7 +5,7 @@
     </ExampleInputs>
     <ExampleCode :code="`standardDeviation(${value})`" />
     <ExampleResult>
-      {{ standardDeviation(convertToArray(value)) }}
+      {{ standardDeviation(JSON.parse(value)) }}
     </ExampleResult>
   </Example>
 </template>

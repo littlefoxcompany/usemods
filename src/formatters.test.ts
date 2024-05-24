@@ -2,13 +2,19 @@ import { expect, test } from 'vitest'
 import * as mod from './formatters'
 
 test('formatNumber', () => {
+  expect(mod.formatNumber(0)).toBe('0')
   expect(mod.formatNumber(1000.95)).toBe('1,000.95')
+  expect(mod.formatNumber(1000.95, { decimals: 20 })).toBe('1,000.95')
+  expect(mod.formatNumber(1000.95, { decimals: 1 })).toBe('1,001.0')
+  expect(mod.formatNumber(1000.95, { decimals: 1 })).toBe('1,001.0')
   expect(mod.formatNumber(1000.95, { decimals: 2 })).toBe('1,000.95')
+  expect(mod.formatNumber(1000.95, { decimals: 0 })).toBe('1,001')
+  expect(mod.formatNumber(1000.95, { decimals: 1 })).toBe('1,001.0')
   expect(mod.formatNumber(1000.95, { decimals: 2, locale: 'id-ID' })).toBe('1.000,95')
 })
 
 test('formatCurrency', () => {
-  expect(mod.formatCurrency(0)).toBe('$0.00')
+  expect(mod.formatCurrency(0)).toBe('$0')
   expect(mod.formatCurrency(0, { decimals: 0 })).toBe('$0')
   expect(mod.formatCurrency(1000.95)).toBe('$1,000.95')
   expect(mod.formatCurrency(1000.95, { decimals: 2 })).toBe('$1,000.95')
@@ -19,8 +25,8 @@ test('formatCurrency', () => {
 })
 
 test('formatValuation', () => {
-  expect(mod.formatValuation(0)).toBe('$0.00')
-  expect(mod.formatValuation(12345678)).toBe('$12.35M')
+  expect(mod.formatValuation(0)).toBe('$0')
+  expect(mod.formatValuation(12345678)).toBe('$12M')
   expect(mod.formatValuation(12345678, { decimals: 0 })).toBe('$12M')
   expect(mod.formatValuation(12345678, { decimals: 0, locale: 'en-GB' })).toBe('£12M')
   expect(mod.formatValuation(12345678, { decimals: 2, locale: 'en-GB' })).toBe('£12.35M')
@@ -28,6 +34,7 @@ test('formatValuation', () => {
 
 test('formatDurationLabels', () => {
   expect(mod.formatDurationLabels(0)).toBe('0 seconds')
+  expect(mod.formatDurationLabels(0, { labels: 'short' })).toBe('0 sec')
   expect(mod.formatDurationLabels(0.005)).toBe('5 milliseconds')
   expect(mod.formatDurationLabels(0.5)).toBe('500 milliseconds')
   expect(mod.formatDurationLabels(3600)).toBe('1 hour')
@@ -36,15 +43,29 @@ test('formatDurationLabels', () => {
   expect(mod.formatDurationLabels(3600 * 2 + 60)).toBe('2 hours 1 minute')
   expect(mod.formatDurationLabels(3600 * 2 + 60 + 1.5)).toBe('2 hours 1 minute 1 second 500 milliseconds')
   expect(mod.formatDurationLabels(3600 * 400 + 60 + 1)).toBe('16 days 16 hours 1 minute 1 second')
+  expect(mod.formatDurationLabels(3600 * 400 + 60 + 1, { round: true })).toBe('16 days 16 hours 1 minute 1 second')
+})
+
+test('formatDurationNumbers', () => {
+  expect(mod.formatDurationNumbers(0)).toBe('00:00:00')
+  expect(mod.formatDurationNumbers(0.5)).toBe('00:00:00:50')
+  expect(mod.formatDurationNumbers(3600)).toBe('01:00:00')
+  expect(mod.formatDurationNumbers(3600 * 2)).toBe('02:00:00')
+  expect(mod.formatDurationNumbers(3600 * 2 + 60)).toBe('02:01:00')
+  expect(mod.formatDurationNumbers(3600 * 2 + 60 + 1.5)).toBe('02:01:01:50')
+  expect(mod.formatDurationNumbers(3600 * 400 + 60 + 1)).toBe('400:01:01')
+  expect(mod.formatDurationNumbers(3600 * 400 + 60 + 1)).toBe('400:01:01')
 })
 
 test('formatPercentage', () => {
+  expect(mod.formatPercentage(0)).toBe('0%')
   expect(mod.formatPercentage(0.1234, { decimals: 0 })).toBe('12%')
-  expect(mod.formatPercentage(0.1234, { decimals: 2 })).toBe('12.34%')
+  expect(mod.formatPercentage(0.1234)).toBe('12.34%')
   expect(mod.formatPercentage(0.125, { decimals: 0 })).toBe('13%')
 })
 
 test('formatUnit', () => {
+  expect(mod.formatUnit(0, { unit: 'meter' })).toBe('0 meters')
   expect(mod.formatUnit(1000, { unit: 'meter', decimals: 0 })).toBe('1,000 meters')
   expect(mod.formatUnit(1000, { unit: 'meter', decimals: 0 })).toBe('1,000 meters')
   expect(mod.formatUnit(1000, { unit: 'meter', decimals: 2, unitDisplay: 'short' })).toBe('1,000.00 m')
@@ -53,7 +74,9 @@ test('formatUnit', () => {
 })
 
 test('formatList', () => {
-  expect(mod.formatList(['Apple', 'Oranges'])).toBe('Apple and Oranges')
+  expect(mod.formatList(['Apple'])).toBe('Apple')
+  expect(mod.formatList('Apple, Oranges')).toBe('Apple and Oranges')
+  expect(mod.formatList({ '0': 'Apple', '1': 'Oranges' })).toBe('Apple and Oranges')
   expect(mod.formatList(['Apple', 'Oranges', 'Bananas', 'Grapefruit'])).toBe('Apple, Oranges, Bananas and Grapefruit')
   expect(mod.formatList(['Apple', 'Oranges'], { limit: 2 })).toBe('Apple and Oranges')
   expect(mod.formatList(['Apple', 'Oranges', 'Bananas'], { limit: 2 })).toBe('Apple, Oranges and 1 more')
@@ -79,6 +102,9 @@ test('formatNumberToWord', () => {
   expect(mod.formatNumberToWords(0)).toBe('zero')
   expect(mod.formatNumberToWords(1)).toBe('one')
   expect(mod.formatNumberToWords(12)).toBe('twelve')
+  expect(mod.formatNumberToWords(100)).toBe('one hundred')
+  expect(mod.formatNumberToWords(200)).toBe('two hundred')
+  expect(mod.formatNumberToWords(300)).toBe('three hundred')
   expect(mod.formatNumberToWords(123)).toBe('one hundred and twenty-three')
   expect(mod.formatNumberToWords(1234)).toBe('one thousand, two hundred and thirty-four')
   expect(mod.formatNumberToWords(12345)).toBe('twelve thousand, three hundred and forty-five')
@@ -95,6 +121,9 @@ test('formatNumberToWord', () => {
 })
 
 test('formatUnixTime', () => {
+  expect(mod.formatUnixTime(0)).toBe('1970-01-01 00:00:00.000')
+  expect(mod.formatUnixTime(-10)).toBe('-10')
+  expect(mod.formatUnixTime(1619999999)).toBe('2021-05-02 23:59:59.000')
   expect(mod.formatUnixTime(1620000000)).toBe('2021-05-03 00:00:00.000')
 })
 
@@ -110,4 +139,26 @@ test('formatInitials', () => {
   expect(mod.formatInitials(undefined)).toBe('')
   // @ts-expect-error: null is not a valid input for formatInitials
   expect(mod.formatInitials(null)).toBe('')
+})
+
+test('formatSentenceCase', () => {
+  expect(mod.formatSentenceCase('')).toBe('')
+  expect(mod.formatSentenceCase('hello world')).toBe('Hello world')
+  expect(mod.formatSentenceCase('welcome to the jungle')).toBe('Welcome to the jungle')
+  expect(mod.formatSentenceCase('the quick brown fox jumps over the lazy dog')).toBe('The quick brown fox jumps over the lazy dog')
+  expect(mod.formatSentenceCase('UseMods is cooler than a vegan leather jacket')).toBe('UseMods is cooler than a vegan leather jacket')
+  // @ts-expect-error: null is not a valid input for formatSentenceCase
+  expect(mod.formatSentenceCase(null)).toBe('')
+  // @ts-expect-error: undefined is not a valid input for formatSentenceCase
+  expect(mod.formatSentenceCase(undefined)).toBe('')
+})
+
+test('formatTextWrap', () => {
+  expect(mod.formatTextWrap('')).toBe('')
+  expect(mod.formatTextWrap('hello world')).toBe('hello&nbsp;world')
+  expect(mod.formatTextWrap('hello world how are you')).toBe('hello world how are&nbsp;you')
+  expect(mod.formatTextWrap('This is a test')).toBe('This is a&nbsp;test')
+  expect(mod.formatTextWrap('Test')).toBe('Test')
+  expect(mod.formatTextWrap('TestTest')).toBe('TestTest')
+  expect(mod.formatTextWrap('')).toBe('')
 })
