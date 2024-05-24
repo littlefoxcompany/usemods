@@ -1,7 +1,7 @@
 <template>
   <button
     :type="type as 'button' | 'reset' | 'submit'"
-    class="flex h-11 translate-y-0 touch-manipulation select-none items-center justify-center gap-2.5 whitespace-nowrap rounded-lg border px-5 text-lg font-medium transition-all"
+    class="flex translate-y-0 touch-manipulation select-none items-center justify-center whitespace-nowrap rounded-lg border text-lg font-medium transition-all"
     :class="[colorClasses, sizeClasses]">
     <slot />
   </button>
@@ -29,8 +29,8 @@
   }
 
   const sizeClasses = {
-    'h-9 px-4 text-sm': props.size === 'sm',
-    'h-11 px-5 text-lg': props.size === 'md',
-    'h-14 px-6 text-xl': props.size === 'lg'
+    'h-9 px-3 gap-2 text-sm': props.size === 'sm',
+    'h-11 px-5 gap-3 text-lg': props.size === 'md',
+    'h-14 px-6 gap-4 text-xl': props.size === 'lg'
   }
 </script>

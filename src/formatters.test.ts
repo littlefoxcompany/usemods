@@ -14,7 +14,7 @@ test('formatNumber', () => {
 })
 
 test('formatCurrency', () => {
-  expect(mod.formatCurrency(0)).toBe('$0.00')
+  expect(mod.formatCurrency(0)).toBe('$0')
   expect(mod.formatCurrency(0, { decimals: 0 })).toBe('$0')
   expect(mod.formatCurrency(1000.95)).toBe('$1,000.95')
   expect(mod.formatCurrency(1000.95, { decimals: 2 })).toBe('$1,000.95')
@@ -58,7 +58,7 @@ test('formatDurationNumbers', () => {
 })
 
 test('formatPercentage', () => {
-  expect(mod.formatPercentage(0)).toBe('0.00%')
+  expect(mod.formatPercentage(0)).toBe('0%')
   expect(mod.formatPercentage(0.1234, { decimals: 0 })).toBe('12%')
   expect(mod.formatPercentage(0.1234)).toBe('12.34%')
   expect(mod.formatPercentage(0.125, { decimals: 0 })).toBe('13%')

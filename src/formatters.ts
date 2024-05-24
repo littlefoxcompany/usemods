@@ -24,12 +24,14 @@ export function formatNumber(number: number, options?: { decimals?: number; loca
  * Format numbers into local currency with extra smarts
  */
 export function formatCurrency(number: number, options?: { decimals?: number; locale?: string }): string {
+  const decimalPlaces = (number.toString().split('.')[1] || '').length
+  const safeDecimals = Math.min(options?.decimals ?? decimalPlaces, decimalPlaces)
 
   const config: Intl.NumberFormatOptions = {
     style: 'currency',
     currencyDisplay: 'narrowSymbol',
-    minimumFractionDigits: options?.decimals ?? 2,
-    maximumFractionDigits: options?.decimals ?? 2,
+    minimumFractionDigits: safeDecimals,
+    maximumFractionDigits: safeDecimals,
     currency: currencySymbols.get(options?.locale ?? 'en-US') || 'USD'
   }
 
@@ -60,7 +62,8 @@ export function formatValuation(number: number, options?: { decimals?: number; l
  */
 export function formatUnit(number: number, options: { unit: string; decimals?: number; unitDisplay?: 'short' | 'long'; locale?: string }): string {
   const decimalPlaces = (number.toString().split('.')[1] || '').length
-  const safeDecimals = options?.decimals ?? decimalPlaces
+  const safeDecimals = Math.max(0, Math.max(options.decimals ?? decimalPlaces, decimalPlaces))
+
   const config: Intl.NumberFormatOptions = {
     unit: options.unit,
     style: 'unit',
@@ -76,14 +79,19 @@ export function formatUnit(number: number, options: { unit: string; decimals?: n
  * Format a number into a percentage
  */
 export function formatPercentage(number: number, options?: { decimals?: number; locale?: string }): string {
-  const safeDecimals = Math.max(0, Math.min(options?.decimals ?? 2, 20))
+  const decimalPlaces = (number.toString().split('.')[1] || '').length
+  const safeDecimals = Math.max(0, Math.min(options?.decimals ?? decimalPlaces, decimalPlaces))
+
   const config: Intl.NumberFormatOptions = {
     style: 'percent',
     minimumFractionDigits: safeDecimals,
     maximumFractionDigits: safeDecimals
   }
 
-  return new Intl.NumberFormat(options?.locale ?? 'en-US', config).format(number)
+  let formattedNumber = new Intl.NumberFormat(options?.locale ?? 'en-US', config).format(number)
+  formattedNumber = formattedNumber.replace(/(\.\d*?[1-9])0+%$/, '$1%').replace(/\.0+%$/, '%')
+
+  return formattedNumber
 }
 
 /**
