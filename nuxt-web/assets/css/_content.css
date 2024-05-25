@@ -1,4 +1,4 @@
-.intro {
+body {
   @apply text-pretty text-gray-950 dark:text-white;
   h1 {
     @apply text-4xl font-bold;

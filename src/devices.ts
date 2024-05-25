@@ -11,7 +11,6 @@ export function isServerSide(): boolean {
 
 /**
  * Adds detected devices as classes to your project's body class
- * @info Unlike the detect functions this will only 
  */
 export function addDeviceClasses(): void {
   if (isServerSide()) return
@@ -37,7 +36,7 @@ export function addDeviceClasses(): void {
   for (const [check, className] of devices) {
     if (check()) classes.push(className)
   }
-  
+    
   document.body.className = classes.join(' ')
 }
 

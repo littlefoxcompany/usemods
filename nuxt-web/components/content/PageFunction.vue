@@ -1,5 +1,5 @@
 <template>
-  <section class="py-12 text-gray-900 dark:text-white" :id="name" ref="section">
+  <section class="pb-12 text-gray-900 dark:text-white" :id="name" ref="section">
 
     <div @click="copyToClipboard(`${detectHost()}#${props.name.toLowerCase()}`), copied()" class="relative flex w-fit cursor-pointer items-center gap-3" @mouseover="showCopyToClipboard = true" @mouseout="showCopyToClipboard = false">
       <h2 class="text-3xl font-semibold">{{ name }}</h2>

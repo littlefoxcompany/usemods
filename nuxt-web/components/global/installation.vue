@@ -11,7 +11,7 @@ export default {
   props: {
     fill: {
       type: String,
-      default: "currentColor"
+      default: 'currentColor'
     },
     secondaryfill: {
       type: String
