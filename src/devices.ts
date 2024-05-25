@@ -10,7 +10,8 @@ export function isServerSide(): boolean {
 }
 
 /**
- * Adds device detection to your project's body class
+ * Adds detected devices as classes to your project's body class
+ * @info Unlike the detect functions this will only 
  */
 export function addDeviceClasses(): void {
   if (isServerSide()) return
