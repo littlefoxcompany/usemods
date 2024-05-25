@@ -25,7 +25,7 @@
     </Callout>
 
     <!-- Function -->
-    <div class="flex justify-between text-sm dark:border-white/[8%] gap-2 mt-6 rounded-xl border border-black/5 bg-indigo-600/[2%] px-5 py-5">
+    <div class="flex justify-between text-sm dark:border-white/[6%] gap-2 mt-6 rounded-xl border border-black/5 bg-indigo-600/[2%] dark:bg-white/[2%] px-5 py-5">
       <div class=" font-mono text-gray-900 dark:text-gray-400">
         <span class="text-indigo-600 dark:text-gray-200">{{ name }}</span>
         <span class="mr-px text-gray-500">(</span>
