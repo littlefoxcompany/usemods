@@ -49,22 +49,6 @@ export function isIos(): boolean {
 }
 
 /**
- * Check if you're a fervent Windows fan.
- */
-export function isWindows(): boolean {
-  if (isServerSide()) return false
-  return /Win/.test(navigator.platform)
-}
-
-/**
- * Check if you're a devoted Linux fan.
- */
-export function isLinux(): boolean {
-  if (isServerSide()) return false
-  return /Linux/.test(navigator.platform)
-}
-
-/**
  * Check if you're a zealous Android fan.
  */
 export function isAndroid(): boolean {
@@ -78,6 +62,23 @@ export function isAndroid(): boolean {
 export function isMac(): boolean {
   if (isServerSide()) return false
   return /Mac/.test(navigator.platform)
+}
+
+/**
+ * Check if you're a fervent Windows fan.
+ */
+export function isWindows(): boolean {
+  if (isServerSide()) return false
+  return /Win/.test(navigator.platform)
+}
+
+/**
+ * Check if you're a devoted Linux fan.
+ * @info Fun fact, most Linux users will tell you they have Linux before the function does.
+ */
+export function isLinux(): boolean {
+  if (isServerSide()) return false
+  return /Linux/.test(navigator.platform)
 }
 
 /**
@@ -160,4 +161,18 @@ export function isBot(): boolean {
   return /bot|googlebot|crawler|spider|robot|crawling/i.test(
     navigator.userAgent
   )
+}
+
+/**
+ * Check if you're a human
+ */
+export function isHuman(): boolean {
+  return !isBot()
+}
+
+/**
+ * Check if you're a developer
+ */
+export function isDeveloper(): boolean {
+  return process.env.NODE_ENV === 'development'
 }
