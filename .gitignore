@@ -17,3 +17,4 @@ nuxt-module/src/runtime/utils/*.ts
 nuxt-web/utils/*.ts
 .VSCodeCounter/
 .VSCodeCounter/*
+nuxt-web/pages/playground/*
