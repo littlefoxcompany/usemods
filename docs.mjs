@@ -1,8 +1,9 @@
 import { resolve, extname, basename, join } from 'path'
 import { watch, readFileSync, readdirSync, writeFileSync, copyFileSync, unlinkSync } from 'fs'
+import { argv } from 'process'
 
 // Arguments
-const args = process.argv.slice(2);
+const args = argv.slice(2)
 
 // Paths
 const srcPath = resolve('src')
@@ -58,8 +59,7 @@ function generateMarkdown(file, name) {
 }
 
 // Find any files in ./src/utils and move them to ./nuxt-module/src/runtime/utils and ./nuxt-web/utils
-function copyFiles(src, dest)
-{ 
+function copyFiles(src, dest) { 
   const files = readdirSync(src)
   files.forEach((file) => {
     if (file.endsWith('.ts')) {
@@ -70,7 +70,7 @@ function copyFiles(src, dest)
 
 // Generate Markdown for each File
 function generateAll() {
-  const files = ['actions', 'formatters', 'modifiers', 'devices','detections',  'generators', 'tailwind', 'numbers', 'data', 'validators', 'animations', 'goodies']
+  const files = ['actions', 'formatters', 'modifiers', 'generators', 'numbers', 'data', 'validators', 'detections', 'devices', 'tailwind', 'animations', 'goodies']
   files.forEach((file, index) => generateMarkdown(join(srcPath, `${file}.ts`), `${index + 1}.${file}`))
   copyFileSync(join(srcPath, 'config.ts'), join(nuxtWebPath, 'utils', 'config.ts'))
   copyFileSync(join(srcPath, 'config.ts'), join(nuxtModulePath, 'src/runtime/utils', 'config.ts'))
@@ -100,12 +100,12 @@ generateAll()
 if (args.includes('--watch')) {
   watch(srcPath, { recursive: true }, async (event, filename) => {
     if (filename.endsWith('.ts')) {
-      console.log(`Detected ${event} in ${filename}`);
-      generateAll();
+      console.log(`Detected ${event} in ${filename}`)
+      generateAll()
     }
-  });
+  })
 } else if (args.includes('--build')) {
-  generateAll();
+  generateAll()
 } else {
-  console.log('No valid command provided. Use --watch or --build.');
+  console.log('No valid command provided. Use --watch or --build.')
 }
