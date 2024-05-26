@@ -28,6 +28,9 @@ export function addDeviceClasses(): void {
     [isMobile, 'mobile'],
     [isTablet, 'tablet'],
     [isLandscape, 'landscape'],
+    [isPortrait, 'portrait'],
+    [isDesktop, 'desktop'],
+    [isHuman, 'human'],
     [isBot, 'bot']
   ])
   

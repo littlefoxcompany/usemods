@@ -15,6 +15,9 @@ const functionPattern = /\/\*\*[\s\S]*?\*\/\s*(export\s+function\s+([a-zA-Z0-9_]
 const metadataPattern = /\s+(title|description|lead):\s+([^\r\n]*)/g
 const jsdocPattern = /\/\*\*([\s\S]*?)\*\//g
 
+// Files
+const files = ['actions', 'formatters', 'modifiers', 'generators', 'numbers', 'data', 'validators', 'detections', 'devices', 'animations', 'goodies']
+
 function generateMarkdown(file, name) {
   const content = readFileSync(file, 'utf8')
   const metadata = Object.fromEntries([...content.matchAll(metadataPattern)].map((match) => [match[1], match[2]]))
@@ -58,19 +61,9 @@ function generateMarkdown(file, name) {
   writeFileSync(join(nuxtWebPath, 'content/2.docs', `${name}.md`), markdown)
 }
 
-// Find any files in ./src/utils and move them to ./nuxt-module/src/runtime/utils and ./nuxt-web/utils
-function copyFiles(src, dest) { 
-  const files = readdirSync(src)
-  files.forEach((file) => {
-    if (file.endsWith('.ts')) {
-      copyFileSync(join(src, file), join(dest, file))
-    } 
-  })
-}
 
 // Generate Markdown for each File
 function generateAll() {
-  const files = ['actions', 'formatters', 'modifiers', 'generators', 'numbers', 'data', 'validators', 'detections', 'devices', 'tailwind', 'animations', 'goodies']
   files.forEach((file, index) => generateMarkdown(join(srcPath, `${file}.ts`), `${index + 1}.${file}`))
   copyFileSync(join(srcPath, 'config.ts'), join(nuxtWebPath, 'utils', 'config.ts'))
   copyFileSync(join(srcPath, 'config.ts'), join(nuxtModulePath, 'src/runtime/utils', 'config.ts'))
@@ -81,6 +74,7 @@ async function clearAll() {
   const webFiles = readdirSync(join(nuxtWebPath, 'utils')).filter(file => file.endsWith('.ts'))
   const moduleFiles = readdirSync(join(nuxtModulePath, 'src/runtime/utils')).filter(file => file.endsWith('.ts'))
   const documentFiles = readdirSync(join(nuxtWebPath, 'content/2.docs')).filter(file => file.endsWith('.md'))
+
   for (const file of webFiles) {
     unlinkSync(join(nuxtWebPath, 'utils', file))
   }
@@ -88,7 +82,10 @@ async function clearAll() {
     unlinkSync(join(nuxtModulePath, 'src/runtime/utils', file))
   }
   for (const file of documentFiles) {
-    unlinkSync(join(nuxtWebPath, 'content/2.docs', file))
+    const baseName = basename(file, extname(file))
+    if (!files.includes(baseName)) {
+      unlinkSync(join(nuxtWebPath, 'content/2.docs', file))
+    }
   }
 }
 
