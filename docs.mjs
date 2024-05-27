@@ -83,7 +83,7 @@ async function clearAll() {
   }
   for (const file of documentFiles) {
     const baseName = basename(file, extname(file))
-    if (!files.includes(baseName)) {
+    if (files.includes(baseName)) {
       unlinkSync(join(nuxtWebPath, 'content/2.docs', file))
     }
   }
