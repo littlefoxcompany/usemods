@@ -39,7 +39,8 @@ export function addDeviceClasses(): void {
   for (const [check, className] of devices) {
     if (check()) classes.push(className)
   }
-    
+  
+  if (classes.length === 0) return
   document.body.className = classes.join(' ')
 }
 

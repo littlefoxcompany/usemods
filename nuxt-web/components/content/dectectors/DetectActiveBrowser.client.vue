@@ -7,15 +7,15 @@
 </template>
 
 <script setup lang="ts">
-  const result = ref(false)
+const result = ref(false)
 
-  function updateResult() {
-    result.value = detectActiveBrowser()
-  }
+function updateResult() {
+  result.value = detectActiveBrowser()
+}
 
-  onMounted(() => {
-    updateResult()
-  })
+onMounted(() => {
+  updateResult()
+})
 
-  onUnmounted(() => {})
+onUnmounted(() => {})
 </script>

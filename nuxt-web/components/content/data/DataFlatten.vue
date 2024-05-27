@@ -10,5 +10,5 @@
 </template>
 
 <script setup lang="ts">
-  const value = ['s', ['c', 'o'], ['o', 't'], ['e', 'r']]
+const value = ['s', ['c', 'o'], ['o', 't'], ['e', 'r']]
 </script>

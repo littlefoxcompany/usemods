@@ -1,14 +1,14 @@
 <template>
   <Example class="flex">
     <ExampleInputs class="flex flex-col">
-    <div class="flex gap-4">
+    <div class="flex gap-4 w-full">
         <FormInput v-model="value" label="Title" />
         <FormSelect v-model="splitBy" label="Select" name="select" placeholder="Select an option">
             <option value="word">Word</option>
             <option value="character">Character</option>
         </FormSelect>
       </div>
-      <div class="flex gap-4">
+      <div class="flex gap-4 w-full">
       <FormInput v-model="time" label="Time" type="number" name="time" value="100" placeholder="Time" />
       <FormSelect v-model="unit" label="Unit" name="unit" placeholder="Select an option">
         <option value="ms">ms</option>
@@ -24,20 +24,20 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch } from 'vue'
 
-const value = ref('Zippy little utils for your JavaScript projects.');
-const splitBy = ref('word');
-const time = ref(100);
-const unit = ref('ms');
-const className = ref('animate-fade-in-up');
-const animationKey = ref(0);
+const value = ref('Zippy little utils for your JavaScript projects.')
+const splitBy = ref('word')
+const time = ref(100)
+const unit = ref('ms')
+const className = ref('animate-fade-in-up')
+const animationKey = ref(0)
 
 const animated = computed(() => {
-  return animateText(value.value, { splitBy: splitBy.value, time: time.value, unit: unit.value, class: className.value });
-});
+  return animateText(value.value, { splitBy: splitBy.value, time: time.value, unit: unit.value, class: className.value })
+})
 
 watch([value, splitBy, time, unit, className], () => {
-  animationKey.value += 1;
-});
+  animationKey.value += 1
+})
 </script>
