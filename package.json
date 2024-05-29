@@ -13,7 +13,7 @@
     "release:minor": "npm run test && changelogen --release --minor && npm publish && npm run nuxt-module:release",
     "release:patch": "npm run test && changelogen --release --patch && npm publish && npm run nuxt-module:release",
     "nuxt-module:dev": "npm i --prefix ./nuxt-module && npm run --prefix ./nuxt-module dev",
-    "nuxt-module:release": "bun run sync-version-numbers.ts && npm run --prefix ./nuxt-module release"
+    "nuxt-module:release": "bun run sync-versions.ts && npm run --prefix ./nuxt-module release"
   },
   "keywords": [
     "bun",
