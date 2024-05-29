@@ -10,34 +10,34 @@ export function isServerSide(): boolean {
 }
 
 /**
+ * Detects the user's device based on the user agent string and returns the information as an object.
+ */
+export function detectUserDevice(): object | string {
+  if (isServerSide()) return 'server'
+  return {
+    os: detectOS(),
+    browser: detectBrowser(),
+    device: detectDevice()
+  }
+}
+
+/**
  * Adds detected devices as classes to your project's body class
  */
 export function addDeviceClasses(): void {
   if (isServerSide()) return
   
-  const devices = new Map([
-    [isIos, 'ios'],
-    [isWindows, 'windows'],
-    [isLinux, 'linux'],
-    [isAndroid, 'android'],
-    [isMac, 'mac'],
-    [isChrome, 'chrome'],
-    [isFirefox, 'firefox'],
-    [isSafari, 'safari'],
-    [isEdge, 'edge'],
-    [isMobile, 'mobile'],
-    [isTablet, 'tablet'],
-    [isLandscape, 'landscape'],
-    [isPortrait, 'portrait'],
-    [isDesktop, 'desktop'],
-    [isHuman, 'human'],
-    [isBot, 'bot']
-  ])
-  
+  // detectUserDevice
+
+  const deviceInfo = detectUserDevice()
   const classes = []
-  
-  for (const [check, className] of devices) {
-    if (check()) classes.push(className)
+
+  if (typeof deviceInfo === 'object') {
+    if (deviceInfo.os) classes.push(`${deviceInfo.os.toLowerCase()}`)
+    if (deviceInfo.browser) classes.push(`${deviceInfo.browser.toLowerCase()}`)
+    if (deviceInfo.device) classes.push(`${deviceInfo.device.toLowerCase()}`)
+  } else {
+    classes.push(deviceInfo)
   }
   
   if (classes.length === 0) return
@@ -45,11 +45,62 @@ export function addDeviceClasses(): void {
 }
 
 /**
+ * Detect the current device type (Mobile or Desktop)
+ */
+export function detectDevice(): string {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop'
+}
+
+/**
+ * Detect the current browser
+ */
+export function detectBrowser(): string {
+  if (isServerSide()) return 'server'
+  const userAgent = navigator.userAgent.toLowerCase()
+  switch (true) {
+    case userAgent.includes('chrome'):
+      return 'Chrome'
+    case userAgent.includes('firefox'):
+      return 'Firefox'
+    case /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent):
+      return 'Safari'
+    case userAgent.includes('edge'):
+      return 'Edge'
+    default:
+      return 'Unknown'
+  }
+}
+
+/**
+ * Detect the current operating system
+ */
+export function detectOS(): string {
+  if (isServerSide()) return 'server'
+  const userAgent = navigator.userAgent.toLowerCase()
+  switch (true) {
+    case userAgent.includes('win'):
+      return 'Windows'
+    case userAgent.includes('mac'):
+      return 'Mac'
+    case userAgent.includes('linux'):
+      return 'Linux'
+    case userAgent.includes('x11'):
+      return 'UNIX'
+    case userAgent.includes('android'):
+      return 'Android'
+    case userAgent.includes('iphone'):
+      return 'iOS'
+    default:
+      return 'Unknown'
+  }
+}
+
+/**
  * Check if you're a passionate iPhone fan.
  */
 export function isIos(): boolean {
   if (isServerSide()) return false
-  return /iPad|iPhone|iPod/.test(navigator.platform)
+  return /iPad|iPhone|iPod/.test(navigator.userAgent)
 }
 
 /**
@@ -57,7 +108,7 @@ export function isIos(): boolean {
  */
 export function isAndroid(): boolean {
   if (isServerSide()) return false
-  return /Android/.test(navigator.platform)
+  return /Android/.test(navigator.userAgent)
 }
 
 /**
@@ -65,7 +116,7 @@ export function isAndroid(): boolean {
  */
 export function isMac(): boolean {
   if (isServerSide()) return false
-  return /Mac/.test(navigator.platform)
+  return /Mac/.test(navigator.userAgent)
 }
 
 /**
@@ -73,7 +124,7 @@ export function isMac(): boolean {
  */
 export function isWindows(): boolean {
   if (isServerSide()) return false
-  return /Win/.test(navigator.platform)
+  return /Win/.test(navigator.userAgent)
 }
 
 /**
@@ -82,7 +133,7 @@ export function isWindows(): boolean {
  */
 export function isLinux(): boolean {
   if (isServerSide()) return false
-  return /Linux/.test(navigator.platform)
+  return /Linux/.test(navigator.userAgent)
 }
 
 /**
