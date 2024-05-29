@@ -24,7 +24,7 @@
 
     <!-- Info -->
     <Callout v-if="info" class="mt-6">
-      <Icon name="heroicons:information-circle-solid" class="h-5 w-5 text-indigo-500" />
+      <Icon name="heroicons:information-circle-solid" class="h-5 w-5 shrink-0 text-indigo-500" />
       {{ info }}
     </Callout>
 
