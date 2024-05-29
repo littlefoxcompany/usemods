@@ -71,8 +71,5 @@
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.9.0",
     "vitest": "^1.5.3"
-  },
-  "dependencies": {
-    "usemods-website": "./nuxt-web"
   }
 }
