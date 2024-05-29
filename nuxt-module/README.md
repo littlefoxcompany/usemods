@@ -21,6 +21,10 @@ Auto-imported functions and modifiers for zippy Nuxt developers.
 [nuxt-src]: https://img.shields.io/badge/Nuxt-18181B?logo=nuxt.js
 [nuxt-href]: https://nuxt.com
 
+[![CI](https://github.com/LittleFoxCompany/usemods/actions/workflows/ci.yml/badge.svg)](https://github.com/LittleFoxCompany/usemods/actions/workflows/ci.yml)
+
+[![CodeQL](https://github.com/LittleFoxCompany/usemods/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main)](https://github.com/LittleFoxCompany/usemods/actions/workflows/github-code-scanning/codeql)
+
 ## Quick Setup
 ```bash
 npx nuxi module add usemods-nuxt

@@ -1,6 +1,6 @@
 {
   "name": "usemods",
-  "version": "1.1.0",
+  "version": "1.2.1",
   "description": "Zippy little modifiers and utilities for your frontend.",
   "scripts": {
     "dev": "npm i --prefix ./nuxt-web && npm run dev --prefix ./nuxt-web",
@@ -71,8 +71,5 @@
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.9.0",
     "vitest": "^1.5.3"
-  },
-  "dependencies": {
-    "usemods-website": "./nuxt-web"
   }
 }

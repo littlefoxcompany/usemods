@@ -1,6 +1,36 @@
 # Changelog
 
 
+## v1.2.1
+
+[compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.2.0...v1.2.1)
+
+### 🏡 Chore
+
+- Bump version to 1.2.0 ([5f047b8](https://github.com/LittleFoxCompany/usemods/commit/5f047b8))
+- Update dependencies and add CI badges ([dfc6d42](https://github.com/LittleFoxCompany/usemods/commit/dfc6d42))
+- Remove unused dependency and update package.json ([4cc6506](https://github.com/LittleFoxCompany/usemods/commit/4cc6506))
+
+### ❤️ Contributors
+
+- Jeremy Butler ([@jrmymbtlr](http://github.com/jrmymbtlr))
+
+## v1.2.0
+
+[compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.1.0...v1.2.0)
+
+### 💅 Refactors
+
+- Remove unused code from playground page ([365178c](https://github.com/LittleFoxCompany/usemods/commit/365178c))
+
+### 🏡 Chore
+
+- Update number calculation components to parse input as JSON ([5967f35](https://github.com/LittleFoxCompany/usemods/commit/5967f35))
+
+### ❤️ Contributors
+
+- Jeremy Butler ([@jrmymbtlr](http://github.com/jrmymbtlr))
+
 ## v1.1.0
 
 [compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.0.1...v1.1.0)

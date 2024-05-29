@@ -6,6 +6,13 @@
         <FormSelect v-model="splitBy" label="Select" name="select" placeholder="Select an option">
             <option value="word">Word</option>
             <option value="character">Character</option>
+          </FormSelect>
+        </div>
+        <div class="flex gap-4 w-full">
+        <FormInput v-model="time" label="Time" type="number" name="time" value="100" placeholder="Time" />
+        <FormSelect v-model="unit" label="Unit" name="unit" placeholder="Select an option">
+          <option value="ms">ms</option>
+          <option value="s">s</option>
         </FormSelect>
       </div>
       <div class="flex gap-4 w-full">
@@ -17,6 +24,7 @@
       </div>
       <FormInput v-model="className" label="Classes" type="text" name="classes" placeholder="Classes" />
     </ExampleInputs>
+
     <ExampleResult>
       <h1 :key="animationKey" v-html="animated" class="text-balance text-center font-bold leading-[1.25em] text-4xl text-gray-900 dark:text-white"></h1>
     </ExampleResult>
