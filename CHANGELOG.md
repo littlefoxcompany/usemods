@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v1.3.1
+
+[compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.3.0...v1.3.1)
+
+## v1.3.0
+
+[compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.2.1...v1.3.0)
+
+### 💅 Refactors
+
+- Remove unused code from playground page ([57be9e9](https://github.com/LittleFoxCompany/usemods/commit/57be9e9))
+
+### ❤️ Contributors
+
+- Jeremy Butler ([@jrmymbtlr](http://github.com/jrmymbtlr))
+
 ## v1.2.1
 
 [compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.2.0...v1.2.1)

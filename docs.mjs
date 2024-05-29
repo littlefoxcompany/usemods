@@ -1,13 +1,15 @@
+import process from 'process'
 import { resolve, extname, basename, join } from 'path'
-import { watch, readFileSync, readdirSync, writeFileSync, copyFileSync, unlinkSync } from 'fs'
+import { watch, readFileSync, writeFileSync, copyFileSync } from 'fs'
 import { argv } from 'process'
+import { rollup } from 'rollup'
+import typescript from 'rollup-plugin-typescript2'
 
 // Arguments
 const args = argv.slice(2)
 
 // Paths
 const srcPath = resolve('src')
-const nuxtModulePath = resolve('nuxt-module')
 const nuxtWebPath = resolve('nuxt-web')
 
 // Functions
@@ -24,7 +26,6 @@ function generateMarkdown(file, name) {
 
   // Copy file to Website
   copyFileSync(file, join(nuxtWebPath, 'utils', basename(file)))
-  copyFileSync(file, join(nuxtModulePath, 'src/runtime/utils', basename(file)))
 
   let markdown = ''
 
@@ -63,10 +64,10 @@ function generateMarkdown(file, name) {
 
 
 // Generate Markdown for each File
+const files = ['actions', 'formatters', 'modifiers', 'detections', 'generators', 'numbers', 'data', 'validators', 'animations', 'goodies']
 function generateAll() {
   files.forEach((file, index) => generateMarkdown(join(srcPath, `${file}.ts`), `${index + 1}.${file}`))
   copyFileSync(join(srcPath, 'config.ts'), join(nuxtWebPath, 'utils', 'config.ts'))
-  copyFileSync(join(srcPath, 'config.ts'), join(nuxtModulePath, 'src/runtime/utils', 'config.ts'))
 }
 
 // Run Once
@@ -99,10 +100,36 @@ if (args.includes('--watch')) {
     if (filename.endsWith('.ts')) {
       console.log(`Detected ${event} in ${filename}`)
       generateAll()
+      console.log(`Detected ${event} in ${filename}`)
+      generateAll()
     }
+  })
+}else if(args.includes('--bundle')) {
+  generateBundle()
   })
 } else if (args.includes('--build')) {
   generateAll()
+  generateAll()
 } else {
   console.log('No valid command provided. Use --watch or --build.')
+  console.log('No valid command provided. Use --watch or --build.')
+}
+
+async function generateBundle() {
+  const bundle = await rollup({
+    input: './src/index.ts',
+    plugins: [
+      typescript({
+        tsconfig: './tsconfig.json',
+        rollupCommonJSResolveHack: false,
+        clean: true,
+      })
+    ]
+  })
+
+  await bundle.write({
+    file: './dist/index.js',
+  })
+
+  console.log('dist bundle created')
 }
