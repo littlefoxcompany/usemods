@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "declaration": true,
     "forceConsistentCasingInFileNames": true,
     "target": "ESNext",
     "module": "esnext",
@@ -15,6 +16,8 @@
     "outDir": "dist",
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
-    "types": ["bun-types", "node"],
-  }
+    "types": ["node"],
+  },
+  "exclude": ["src/**/*.test.ts", "node_modules", "dist", "nuxt-web", "nuxt-module", "rollup.config.js", ],
+  "include": ["src/**/*"]
 }

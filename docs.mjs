@@ -1,7 +1,8 @@
 import process from 'process'
-import dts from 'bun-plugin-dts'
 import { resolve, extname, basename, join } from 'path'
 import { watch, readFileSync, writeFileSync, copyFileSync } from 'fs'
+import { rollup } from 'rollup'
+import typescript from 'rollup-plugin-typescript2'
 
 // Arguments
 const args = process.argv.slice(2)
@@ -77,22 +78,27 @@ if (args.includes('--watch')) {
   })
 } else if (args.includes('--build')) {
   generateAll()
-  bundle()
+  build()
   
 } else {
   console.log('No valid command provided. Use --watch or --build.')
 }
+async function build() {
+  const bundle = await rollup({
+    input: './src/index.ts',
+    plugins: [
+      typescript({
+        tsconfig: './tsconfig.json',
+        rollupCommonJSResolveHack: false,
+        clean: true,
+      })
+    ]
+  })
 
-async function bundle() {
-  return await Bun.build({
-    entrypoints: ['./src/index.ts'],
-    outdir: './dist',
-    target: 'browser',
-    minify: {
-      whitespace: true,
-      identifiers: false,
-      syntax: true
-    },
-    plugins: [dts()]
-  }).then(() => console.log('Distribution bundle created'))
+  await bundle.write({
+    file: './dist/index.js',
+  })
+
+  console.log('Distribution bundle created')
+
 }
