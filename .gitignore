@@ -1,21 +1,38 @@
+# Node modules
 node_modules
+
+# IDE/Editor files
 *.iml
 .idea
-*.log*
-.nuxt
 .vscode
 .DS_Store
+
+# Logs
+*.log*
+
+# Build directories and files
+.nuxt
 coverage
 dist
-sw.*
-.env
 .output
+sw.*
+
+# Environment variables
+.env
+
+# Documentation and content
 docs/content/2.functions
 nuxt-module/docs/content/2.docs
 nuxt-web/content/2.docs/*.md
-!nuxt-web/content/2.docs/12.tailwind.md
+nuxt-web/pages/playground/*
+
+# Source files
 nuxt-module/src/runtime/utils/*.ts
 nuxt-web/utils/*.ts
+
+# VSCode Counter
 .VSCodeCounter/
 .VSCodeCounter/*
-nuxt-web/pages/playground/*
+
+# Include specific files
+!nuxt-web/content/2.docs/12.tailwind.md
