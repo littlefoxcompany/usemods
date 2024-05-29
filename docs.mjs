@@ -76,14 +76,15 @@ if (args.includes('--watch')) {
       generateAll()
     }
   })
+}else if(args.includes('--bundle')) {
+  generateBundle()
 } else if (args.includes('--build')) {
   generateAll()
-  build()
-  
 } else {
   console.log('No valid command provided. Use --watch or --build.')
 }
-async function build() {
+
+async function generateBundle() {
   const bundle = await rollup({
     input: './src/index.ts',
     plugins: [
@@ -99,6 +100,5 @@ async function build() {
     file: './dist/index.js',
   })
 
-  console.log('Distribution bundle created')
-
+  console.log('dist bundle created')
 }

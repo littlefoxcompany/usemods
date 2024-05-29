@@ -3,10 +3,11 @@
   "version": "1.3.0",
   "description": "Zippy little modifiers and utilities for your frontend.",
   "scripts": {
-    "prepublish": "bun run docs:build",
+    "prepublish": "bun run docs:bundle",
     "dev": "npm i --prefix ./nuxt-web && npm run dev --prefix ./nuxt-web",
     "docs": "bun run docs.mjs --watch",
     "docs:build": "bun run docs.mjs --build",
+    "docs:bundle": "bun run docs.mjs --bundle",
     "vercel": "bun run docs:build && npm i --prefix ./nuxt-web && npm run build --prefix ./nuxt-web",
     "test": "vitest run src/*",
     "test:watch": "vitest src/*",
