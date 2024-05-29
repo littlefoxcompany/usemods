@@ -1,4 +1,5 @@
-import { defineNuxtModule, createResolver, addPlugin, addImportsDir } from '@nuxt/kit'
+import { defineNuxtModule, addImports } from '@nuxt/kit'
+import * as utils from 'usemods'
 
 export interface ModuleOptions {
   alias: [string, string][]
@@ -13,9 +14,15 @@ export default defineNuxtModule<ModuleOptions>({
   defaults: {
     alias: []
   },
-  setup(options, nuxt) {
-    const { resolve } = createResolver(import.meta.url)
-    addImportsDir(resolve('./runtime/utils'))
-    addPlugin(resolve('./runtime/plugin'))
+  setup(options) {
+    const aliasMap = new Map<string, string>(options.alias)
+    for (const name of Object.keys(utils)) {
+      const alias = aliasMap.has(name) ? aliasMap.get(name!) : name
+      addImports({
+        name: name,
+        as: alias,
+        from: 'usemods'
+      })
+    }
   }
 })
