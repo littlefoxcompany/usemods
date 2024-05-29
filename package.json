@@ -3,6 +3,7 @@
   "version": "1.3.0",
   "description": "Zippy little modifiers and utilities for your frontend.",
   "scripts": {
+    "prepublish": "bun run docs:build",
     "dev": "npm i --prefix ./nuxt-web && npm run dev --prefix ./nuxt-web",
     "docs": "bun run docs.mjs --watch",
     "docs:build": "bun run docs.mjs --build",

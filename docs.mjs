@@ -1,4 +1,5 @@
 import process from 'process'
+import dts from 'bun-plugin-dts'
 import { resolve, extname, basename, join } from 'path'
 import { watch, readFileSync, writeFileSync, copyFileSync } from 'fs'
 
@@ -57,8 +58,8 @@ function generateMarkdown(file, name) {
 }
 
 // Generate Markdown for each File
+const files = ['actions', 'formatters', 'modifiers', 'detections', 'generators', 'numbers', 'data', 'validators', 'animations', 'goodies']
 function generateAll() {
-  const files = ['actions', 'formatters', 'modifiers', 'detections', 'generators', 'numbers', 'data', 'validators', 'animations', 'goodies']
   files.forEach((file, index) => generateMarkdown(join(srcPath, `${file}.ts`), `${index + 1}.${file}`))
   copyFileSync(join(srcPath, 'config.ts'), join(nuxtWebPath, 'utils', 'config.ts'))
 }
@@ -76,6 +77,22 @@ if (args.includes('--watch')) {
   })
 } else if (args.includes('--build')) {
   generateAll()
+  bundle()
+  
 } else {
   console.log('No valid command provided. Use --watch or --build.')
+}
+
+async function bundle() {
+  return await Bun.build({
+    entrypoints: ['./src/index.ts'],
+    outdir: './dist',
+    target: 'browser',
+    minify: {
+      whitespace: true,
+      identifiers: false,
+      syntax: true
+    },
+    plugins: [dts()]
+  }).then(() => console.log('Distribution bundle created'))
 }
