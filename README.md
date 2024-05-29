@@ -18,6 +18,10 @@ Zero-dependency functions and modifiers for zippy developers.
 [license-src]: https://img.shields.io/npm/l/usemods.svg?style=flat&colorA=18181B&colorB=28CF8D
 [license-href]: https://npmjs.com/package/usemods
 
+[![CI](https://github.com/LittleFoxCompany/usemods/actions/workflows/ci.yml/badge.svg)](https://github.com/LittleFoxCompany/usemods/actions/workflows/ci.yml)
+
+[![CodeQL](https://github.com/LittleFoxCompany/usemods/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main)](https://github.com/LittleFoxCompany/usemods/actions/workflows/github-code-scanning/codeql)
+
 # Installation
 Use your favourite package manager to install usemods. Also works with your least favourite package manager.
 
