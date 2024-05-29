@@ -1,6 +1,8 @@
 import process from 'process'
 import { resolve, extname, basename, join } from 'path'
 import { watch, readFileSync, writeFileSync, copyFileSync } from 'fs'
+import { rollup } from 'rollup'
+import typescript from 'rollup-plugin-typescript2'
 
 // Arguments
 const args = process.argv.slice(2)
@@ -57,8 +59,8 @@ function generateMarkdown(file, name) {
 }
 
 // Generate Markdown for each File
+const files = ['actions', 'formatters', 'modifiers', 'detections', 'generators', 'numbers', 'data', 'validators', 'animations', 'goodies']
 function generateAll() {
-  const files = ['actions', 'formatters', 'modifiers', 'detections', 'generators', 'numbers', 'data', 'validators', 'animations', 'goodies']
   files.forEach((file, index) => generateMarkdown(join(srcPath, `${file}.ts`), `${index + 1}.${file}`))
   copyFileSync(join(srcPath, 'config.ts'), join(nuxtWebPath, 'utils', 'config.ts'))
 }
@@ -74,8 +76,29 @@ if (args.includes('--watch')) {
       generateAll()
     }
   })
+}else if(args.includes('--bundle')) {
+  generateBundle()
 } else if (args.includes('--build')) {
   generateAll()
 } else {
   console.log('No valid command provided. Use --watch or --build.')
+}
+
+async function generateBundle() {
+  const bundle = await rollup({
+    input: './src/index.ts',
+    plugins: [
+      typescript({
+        tsconfig: './tsconfig.json',
+        rollupCommonJSResolveHack: false,
+        clean: true,
+      })
+    ]
+  })
+
+  await bundle.write({
+    file: './dist/index.js',
+  })
+
+  console.log('dist bundle created')
 }

@@ -30,7 +30,6 @@ export function isUrl(value: string): boolean {
 }
 
 /**
-/**
  * Check if any given string, array or object is empty.
  */
 export function isEmpty(
