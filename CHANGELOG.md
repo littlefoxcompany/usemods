@@ -1,6 +1,20 @@
 # Changelog
 
 
+## v1.2.1
+
+[compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.2.0...v1.2.1)
+
+### 🏡 Chore
+
+- Bump version to 1.2.0 ([5f047b8](https://github.com/LittleFoxCompany/usemods/commit/5f047b8))
+- Update dependencies and add CI badges ([dfc6d42](https://github.com/LittleFoxCompany/usemods/commit/dfc6d42))
+- Remove unused dependency and update package.json ([4cc6506](https://github.com/LittleFoxCompany/usemods/commit/4cc6506))
+
+### ❤️ Contributors
+
+- Jeremy Butler ([@jrmymbtlr](http://github.com/jrmymbtlr))
+
 ## v1.2.0
 
 [compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.1.0...v1.2.0)

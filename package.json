@@ -1,6 +1,6 @@
 {
   "name": "usemods",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Zippy little modifiers and utilities for your frontend.",
   "scripts": {
     "dev": "npm i --prefix ./nuxt-web && npm run dev --prefix ./nuxt-web",
