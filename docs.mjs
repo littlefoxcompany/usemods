@@ -1,12 +1,12 @@
+import process from 'process'
 import { resolve, extname, basename, join } from 'path'
-import { watch, readFileSync, readdirSync, writeFileSync, copyFileSync } from 'fs'
+import { watch, readFileSync, writeFileSync, copyFileSync } from 'fs'
 
 // Arguments
-const args = process.argv.slice(2);
+const args = process.argv.slice(2)
 
 // Paths
 const srcPath = resolve('src')
-const nuxtModulePath = resolve('nuxt-module')
 const nuxtWebPath = resolve('nuxt-web')
 
 // Functions
@@ -20,7 +20,6 @@ function generateMarkdown(file, name) {
 
   // Copy file to Website
   copyFileSync(file, join(nuxtWebPath, 'utils', basename(file)))
-  copyFileSync(file, join(nuxtModulePath, 'src/runtime/utils', basename(file)))
 
   let markdown = ''
 
@@ -57,23 +56,11 @@ function generateMarkdown(file, name) {
   writeFileSync(join(nuxtWebPath, 'content/2.docs', `${name}.md`), markdown)
 }
 
-// Find any files in ./src/utils and move them to ./nuxt-module/src/runtime/utils and ./nuxt-web/utils
-function copyFiles(src, dest)
-{ 
-  const files = readdirSync(src)
-  files.forEach((file) => {
-    if (file.endsWith('.ts')) {
-      copyFileSync(join(src, file), join(dest, file))
-    } 
-  })
-}
-
 // Generate Markdown for each File
 function generateAll() {
   const files = ['actions', 'formatters', 'modifiers', 'detections', 'generators', 'numbers', 'data', 'validators', 'animations', 'goodies']
   files.forEach((file, index) => generateMarkdown(join(srcPath, `${file}.ts`), `${index + 1}.${file}`))
   copyFileSync(join(srcPath, 'config.ts'), join(nuxtWebPath, 'utils', 'config.ts'))
-  copyFileSync(join(srcPath, 'config.ts'), join(nuxtModulePath, 'src/runtime/utils', 'config.ts'))
 }
 
 // Run Once
@@ -83,12 +70,12 @@ generateAll()
 if (args.includes('--watch')) {
   watch(srcPath, { recursive: true }, async (event, filename) => {
     if (filename.endsWith('.ts')) {
-      console.log(`Detected ${event} in ${filename}`);
-      generateAll();
+      console.log(`Detected ${event} in ${filename}`)
+      generateAll()
     }
-  });
+  })
 } else if (args.includes('--build')) {
-  generateAll();
+  generateAll()
 } else {
-  console.log('No valid command provided. Use --watch or --build.');
+  console.log('No valid command provided. Use --watch or --build.')
 }
