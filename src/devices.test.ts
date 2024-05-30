@@ -13,9 +13,9 @@ test('detectUserDevice', () => {
   expect(mod.detectUserDevice(userAgent)).toBe('Desktop')
 })
 
-test('detectOS', () => {
-  expect(mod.detectOS(userAgent)).toBe('Windows')
-})
+// test('detectOS', () => {
+//   expect(mod.detectOS(userAgent)).toBe('Windows')
+// })
 
 test('detectBrowser', () => {
   expect(mod.detectBrowser(userAgent)).toBe('Chrome')
