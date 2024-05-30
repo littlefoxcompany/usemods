@@ -1,6 +1,4 @@
-import { describe, it, expect, vi } from 'vitest'
-import plugin from 'tailwindcss/plugin'
-import { modDevices } from './tailwind'
+import { describe, it, expect } from 'vitest'
 
 describe('modDevices plugin', () => {
   it('should modify selectors correctly', () => {
