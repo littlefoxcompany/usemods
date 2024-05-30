@@ -13,8 +13,8 @@ export function isServerSide(): boolean {
  * Detects the user's device based on the user agent string and returns the information as an object.
  */
 export function detectUserDevice(userAgent?: string): object | string {
-  if (isServerSide()) return 'server'
-  const result = userAgent || navigator.userAgent
+  if (isServerSide() && !userAgent) return 'server'
+  const result = userAgent || navigator.userAgent.toLowerCase()
   return {
     os: detectOS(result),
     browser: detectBrowser(result),
@@ -25,12 +25,10 @@ export function detectUserDevice(userAgent?: string): object | string {
 /**
  * Adds detected devices as classes to your project's body class
  */
-export function addDeviceClasses(): void {
-  if (isServerSide()) return
-  
-  // detectUserDevice
+export function addDeviceClasses(userAgent?: string): object | undefined {
+  if (isServerSide() && !userAgent) return
 
-  const deviceInfo = detectUserDevice()
+  const deviceInfo = detectUserDevice(userAgent)
   const classes = []
 
   if (typeof deviceInfo === 'object') {
@@ -57,19 +55,14 @@ export function detectDevice(userAgent?: string): string {
  * Detect the current browser
  */
 export function detectBrowser(userAgent?: string): string {
-  if (isServerSide()) return 'server'
+  if (isServerSide() && !userAgent) return 'server'
   const result = userAgent || navigator.userAgent.toLowerCase()
   switch (true) {
-    case result.includes('chrome'):
-      return 'Chrome'
-    case result.includes('firefox'):
-      return 'Firefox'
-    case /Safari/.test(result) && !/Chrome/.test(result):
-      return 'Safari'
-    case result.includes('edge'):
-      return 'Edge'
-    default:
-      return 'Unknown'
+    case result.includes('chrome'): return 'Chrome'
+    case result.includes('firefox'): return 'Firefox'
+    case /Safari/.test(result) && !/Chrome/.test(result): return 'Safari'
+    case result.includes('edge'): return 'Edge'
+    default: return 'Unknown'
   }
 }
 
@@ -77,23 +70,16 @@ export function detectBrowser(userAgent?: string): string {
  * Detect the current operating system
  */
 export function detectOS(userAgent?: string): string {
-  if (isServerSide()) return 'server'
+  if (isServerSide() && !userAgent) return 'server'
   const result = userAgent || navigator.userAgent.toLowerCase()
   switch (true) {
-    case result.includes('win'):
-      return 'Windows'
-    case result.includes('mac'):
-      return 'Mac'
-    case result.includes('linux'):
-      return 'Linux'
-    case result.includes('x11'):
-      return 'UNIX'
-    case result.includes('android'):
-      return 'Android'
-    case result.includes('iphone'):
-      return 'iOS'
-    default:
-      return 'Unknown'
+    case result.includes('windows'): return 'Windows'
+    case result.includes('mac'): return 'Mac'
+    case result.includes('linux'): return 'Linux'
+    case result.includes('x11'): return 'UNIX'
+    case result.includes('android'): return 'Android'
+    case result.includes('iphone'): return 'iOS'
+    default: return 'Unknown'
   }
 }
 
@@ -101,7 +87,7 @@ export function detectOS(userAgent?: string): string {
  * Check if you're a passionate iPhone fan.
  */
 export function isIos(userAgent?: string): boolean {
-  if (isServerSide()) return false
+  if (isServerSide() && !userAgent) return false
   const result = userAgent || navigator.userAgent
   return /iPad|iPhone|iPod/.test(result)
 }
@@ -110,7 +96,7 @@ export function isIos(userAgent?: string): boolean {
  * Check if you're a zealous Android fan.
  */
 export function isAndroid(userAgent?: string): boolean {
-  if (isServerSide()) return false
+  if (isServerSide() && !userAgent) return false
   const result = userAgent || navigator.userAgent
   return /Android/.test(result)
 }
@@ -119,7 +105,7 @@ export function isAndroid(userAgent?: string): boolean {
  * Check if you're a staunch Mac fan.
  */
 export function isMac(userAgent?: string): boolean {
-  if (isServerSide()) return false
+  if (isServerSide() && !userAgent) return false
   const result = userAgent || navigator.userAgent
   return /Mac/.test(result)
 }
@@ -128,7 +114,7 @@ export function isMac(userAgent?: string): boolean {
  * Check if you're a fervent Windows fan.
  */
 export function isWindows(userAgent?: string): boolean {
-  if (isServerSide()) return false
+  if (isServerSide() && !userAgent) return false
   const result = userAgent || navigator.userAgent
   return /Win/.test(result)
 }
@@ -138,7 +124,7 @@ export function isWindows(userAgent?: string): boolean {
  * @info Fun fact, most Linux users will tell you they have Linux before the function does.
  */
 export function isLinux(userAgent?: string): boolean {
-  if (isServerSide()) return false
+  if (isServerSide() && !userAgent) return false
   const result = userAgent || navigator.userAgent
   return /Linux/.test(result)
 }
@@ -147,7 +133,7 @@ export function isLinux(userAgent?: string): boolean {
  * Check if you're a die-hard Chrome fan.
  */
 export function isChrome(userAgent?: string): boolean {
-  if (isServerSide()) return false
+  if (isServerSide() && !userAgent) return false
   const result = userAgent || navigator.userAgent
   return /Chrome/.test(result)
 }
@@ -156,7 +142,7 @@ export function isChrome(userAgent?: string): boolean {
  * Check if you're a dedicated Firefox fan.
  */
 export function isFirefox(userAgent?: string): boolean {
-  if (isServerSide()) return false
+  if (isServerSide() && !userAgent) return false
   const result = userAgent || navigator.userAgent
   return /Firefox/.test(result)
 }
@@ -165,7 +151,7 @@ export function isFirefox(userAgent?: string): boolean {
  * Check if you're a lonely Safari fan.
  */
 export function isSafari(userAgent?: string): boolean {
-  if (isServerSide()) return false
+  if (isServerSide() && !userAgent) return false
   const result = userAgent || navigator.userAgent
   return /Safari/.test(result) && !/Chrome/.test(result)
 }
@@ -174,7 +160,7 @@ export function isSafari(userAgent?: string): boolean {
  * Check if you're an ardent Edge fan.
  */
 export function isEdge(userAgent?: string): boolean {
-  if (isServerSide()) return false
+  if (isServerSide() && !userAgent) return false
   const result = userAgent || navigator.userAgent
   return /Edge/.test(result)
 }
@@ -183,7 +169,7 @@ export function isEdge(userAgent?: string): boolean {
  * Check if you're rocking a mobile
  */
 export function isMobile(userAgent?: string): boolean {
-  if (isServerSide()) return false
+  if (isServerSide() && !userAgent) return false
   const result = userAgent || navigator.userAgent
   return /Mobi/.test(result)
 }
@@ -192,7 +178,7 @@ export function isMobile(userAgent?: string): boolean {
  * Check if you're tablet user
  */
 export function isTablet(userAgent?: string): boolean {
-  if (isServerSide()) return false
+  if (isServerSide() && !userAgent) return false
   const result = userAgent || navigator.userAgent
   return /Tablet/.test(result)
 }
@@ -201,7 +187,7 @@ export function isTablet(userAgent?: string): boolean {
  * Check if you're pro desktop user
  */
 export function isDesktop(userAgent?: string): boolean {
-  if (isServerSide()) return false
+  if (isServerSide() && !userAgent) return false
   const result = userAgent || navigator.userAgent
   return !isMobile(result) && !isTablet(result)
 }
@@ -210,7 +196,7 @@ export function isDesktop(userAgent?: string): boolean {
  * Check if you're portrait
  */
 export function isPortrait(): boolean {
-  if (isServerSide()) return false
+  if (isServerSide() && !userAgent) return false
   return window.innerHeight > window.innerWidth
 }
 
@@ -226,7 +212,7 @@ export function isLandscape(): boolean {
  * Check if you're a cyborg or a bot
  */
 export function isBot(userAgent?: string): boolean {
-  if (isServerSide()) return false
+  if (isServerSide() && !userAgent) return false
   const result = userAgent || navigator.userAgent
   return /bot|googlebot|crawler|spider|robot|crawling/i.test(result)
 }
@@ -235,7 +221,7 @@ export function isBot(userAgent?: string): boolean {
  * Check if you're a human
  */
 export function isHuman(userAgent?: string): boolean {
-  if (isServerSide()) return false
+  if (isServerSide() && !userAgent) return false
   const result = userAgent || navigator.userAgent
   return !isBot(result)
 }
