@@ -1,19 +1,26 @@
-<template>
-  <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g clip-path="url(#clip0_99_182)">
-      <path d="M11.6252 12.1988C14.6252 12.1988 13.8752 18.1988 16.8752 18.1988" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
-      <path d="M17.6252 12.1988C15.3752 12.1988 13.1252 18.1988 10.8752 18.1988" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
-      <path d="M4.12524 7.69882H10.1252" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
-      <path
-        d="M1.125 15.9489C1.125 16.5457 1.36205 17.118 1.78401 17.5399C2.20597 17.9619 2.77826 18.1989 3.375 18.1989C8.25 18.1989 6 1.69894 10.875 1.69894C11.4717 1.69894 12.044 1.936 12.466 2.35795C12.8879 2.77991 13.125 3.35221 13.125 3.94894"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round" />
+<template><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g :fill="fill">
+      <path d="M23,12c-1.576,0-2.905,1.332-4.228,3.001-.725-1.58-1.772-3.001-3.772-3.001-.552,0-1,.447-1,1s.448,1,1,1c1.114,0,1.681,1.066,2.368,2.841-1.137,1.507-2.457,3.159-3.368,3.159-.552,0-1,.447-1,1s.448,1,1,1c1.576,0,2.905-1.332,4.228-3.001,.725,1.58,1.772,3.001,3.772,3.001,.552,0,1-.447,1-1s-.448-1-1-1c-1.114,0-1.682-1.067-2.368-2.841,1.137-1.507,2.457-3.159,3.368-3.159,.552,0,1-.447,1-1s-.448-1-1-1Z" :fill="_secondaryfill"></path>
+      <path d="M7,22c-.417,0-.79-.259-.937-.648l-2.756-7.352H1c-.552,0-1-.447-1-1s.448-1,1-1h3c.417,0,.79,.259,.937,.648l2.055,5.481L13.062,1.654c.145-.394,.52-.654,.938-.654h9c.552,0,1,.447,1,1s-.448,1-1,1H14.697L7.938,21.346c-.145,.393-.518,.653-.936,.654h-.003Z" :fill="fill"></path>
     </g>
-    <defs>
-      <clipPath id="clip0_99_182">
-        <rect width="18" height="18" fill="white" style="fill: white; fill-opacity: 1" transform="translate(0 0.573975)" />
-      </clipPath>
-    </defs>
-  </svg>
-</template>
+  </svg></template>
+
+<script>
+export default {
+  props: {
+    fill: {
+      type: String,
+      default: "currentColor"
+    },
+    secondaryfill: {
+      type: String
+    }
+  },
+  computed: {
+    _secondaryfill: function ()
+    {
+      return this.secondaryfill || this.fill
+    }
+  }
+}
+</script>

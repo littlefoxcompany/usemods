@@ -11,6 +11,6 @@
 </template>
 
 <script setup lang="ts">
-  const property = ref('')
-  const value = ref(['s', 'c', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 't', 'e', 'r', 's'])
+const property = ref('')
+const value = ref(['s', 'c', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 't', 'e', 'r', 's'])
 </script>

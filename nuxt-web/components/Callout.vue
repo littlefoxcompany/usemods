@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex gap-2 w-full flex-wrap items-center text-pretty rounded-xl border border-indigo-200 bg-indigo-50 px-4 py-4 leading-tight text-indigo-600 shadow-xl shadow-indigo-500/5 dark:border-indigo-900/70 dark:bg-indigo-600/10 dark:text-indigo-400">
+    class="flex gap-2 w-full items-center text-pretty rounded-xl border border-indigo-200 bg-indigo-50 px-4 py-4 leading-tight text-indigo-600 shadow-xl shadow-indigo-500/5 dark:border-indigo-900/70 dark:bg-indigo-600/10 dark:text-indigo-400">
     <slot />
   </div>
 </template>

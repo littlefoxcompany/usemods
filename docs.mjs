@@ -1,11 +1,13 @@
-import process from 'process'
 import { resolve, extname, basename, join } from 'path'
-import { watch, readFileSync, writeFileSync, copyFileSync } from 'fs'
+import { watch, promises as fsPromises } from 'fs'
+import { argv } from 'process'
 import { rollup } from 'rollup'
 import typescript from 'rollup-plugin-typescript2'
 
+const { readFile, writeFile, copyFile, readdir, unlink } = fsPromises
+
 // Arguments
-const args = process.argv.slice(2)
+const args = argv.slice(2)
 
 // Paths
 const srcPath = resolve('src')
@@ -16,12 +18,14 @@ const functionPattern = /\/\*\*[\s\S]*?\*\/\s*(export\s+function\s+([a-zA-Z0-9_]
 const metadataPattern = /\s+(title|description|lead):\s+([^\r\n]*)/g
 const jsdocPattern = /\/\*\*([\s\S]*?)\*\//g
 
-function generateMarkdown(file, name) {
-  const content = readFileSync(file, 'utf8')
+// Files
+const files = ['actions', 'formatters', 'modifiers', 'generators', 'numbers', 'data', 'validators', 'detections', 'devices', 'animations', 'goodies']
+
+async function generateMarkdown(file, name) {
+  const content = await readFile(file, 'utf8')
   const metadata = Object.fromEntries([...content.matchAll(metadataPattern)].map((match) => [match[1], match[2]]))
 
-  // Copy file to Website
-  copyFileSync(file, join(nuxtWebPath, 'utils', basename(file)))
+  await copyFile(file, join(nuxtWebPath, 'utils', basename(file)))
 
   let markdown = ''
 
@@ -55,31 +59,41 @@ function generateMarkdown(file, name) {
     markdown += '::\n\n'
   }
 
-  writeFileSync(join(nuxtWebPath, 'content/2.docs', `${name}.md`), markdown)
+  await writeFile(join(nuxtWebPath, 'content/2.docs', `${name}.md`), markdown)
 }
 
-// Generate Markdown for each File
-const files = ['actions', 'formatters', 'modifiers', 'detections', 'generators', 'numbers', 'data', 'validators', 'animations', 'goodies']
-function generateAll() {
-  files.forEach((file, index) => generateMarkdown(join(srcPath, `${file}.ts`), `${index + 1}.${file}`))
-  copyFileSync(join(srcPath, 'config.ts'), join(nuxtWebPath, 'utils', 'config.ts'))
+async function generateAll() {
+  await Promise.all(files.map((file, index) => generateMarkdown(join(srcPath, `${file}.ts`), `${index + 1}.${file}`)))
+  await copyFile(join(srcPath, 'config.ts'), join(nuxtWebPath, 'utils', 'config.ts'))
 }
 
-// Run Once
-generateAll()
+async function clearAll() {
+  const [webFiles, documentFiles] = await Promise.all([
+    readdir(join(nuxtWebPath, 'utils')),
+    readdir(join(nuxtWebPath, 'content/2.docs'))
+  ])
+
+  await Promise.all([
+    ...webFiles.filter(file => file.endsWith('.ts')).map(file => unlink(join(nuxtWebPath, 'utils', file))),
+    ...documentFiles.filter(file => files.includes(basename(file, extname(file)))).map(file => unlink(join(nuxtWebPath, 'content/2.docs', file)))
+  ])
+}
+
+// Clear and Generate on State
+clearAll().then(generateAll)
 
 // Watch for Changes
 if (args.includes('--watch')) {
-  watch(srcPath, { recursive: true }, async (event, filename) => {
-    if (filename.endsWith('.ts')) {
-      console.log(`Detected ${event} in ${filename}`)
-      generateAll()
-    }
+  watch(srcPath, { recursive: true }, async () => {
+    await generateAll()
+    console.log('Generated all files')
   })
-}else if(args.includes('--bundle')) {
+} else if (args.includes('--bundle')) {
   generateBundle()
+  console.log('Generated bundle')
 } else if (args.includes('--build')) {
   generateAll()
+  console.log('Generated all files')
 } else {
   console.log('No valid command provided. Use --watch or --build.')
 }

@@ -13,13 +13,10 @@
 </template>
 
 <script setup lang="ts">
-  const route = useRoute()
+const route = useRoute()
 </script>
 
 <style scoped>
-  :deep(h1) {
-    @apply text-4xl font-bold;
-  }
   :deep(p) {
     @apply text-pretty pt-4 font-light md:text-xl/[1.6em] lg:text-2xl/[1.6em];
   }

@@ -58,26 +58,9 @@ export function detectScreenSize(): { width: number; height: number } {
   }
 }
 
-/**
- * Detect the current device type (Mobile or Desktop)
- */
-export function detectDevice(): string {
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop'
-}
 
-/**
- * Detect the current operating system
- */
-export function detectOS(): string {
-  const userAgent = navigator.userAgent.toLowerCase()
-  if (userAgent.includes('win')) return 'Windows'
-  if (userAgent.includes('mac')) return 'Mac'
-  if (userAgent.includes('linux')) return 'Linux'
-  if (userAgent.includes('x11')) return 'UNIX'
-  if (userAgent.includes('android')) return 'Android'
-  if (userAgent.includes('iphone')) return 'iOS'
-  return 'Unknown'
-}
+
+
 
 /**
  * Detect if the browser window is currently active or hidden.

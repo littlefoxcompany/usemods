@@ -1,13 +1,13 @@
 export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
-    'nuxt-icon',
     '@nuxt/content',
     '@vueuse/nuxt',
     '@nuxt/image',
     '@nuxtjs/color-mode',
     '@nuxt/eslint',
-    "shadcn-nuxt"
+    'shadcn-nuxt',
+    'nuxt-icon',
   ],
   css: ['~/assets/css/main.css'],
   content: {

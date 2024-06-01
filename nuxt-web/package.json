@@ -8,7 +8,7 @@
     "generate": "nuxi generate"
   },
   "devDependencies": {
-    "@nuxt/eslint": "^0.3.12",
+    "@nuxt/eslint": "^0.3.13",
     "@nuxt/image": "^1.7.0",
     "@nuxtjs/color-mode": "^3.4.1",
     "@nuxtjs/tailwindcss": "^6.12.0",
@@ -17,16 +17,16 @@
     "nuxt-icon": "^0.6.10",
     "shadcn-nuxt": "^0.10.4",
     "typescript": "^5.4.5",
-    "vue": "^3.4.20"
+    "vue": "^3.4.27"
   },
   "dependencies": {
     "@nuxt/content": "^2.12.1",
-    "@vueuse/core": "^10.9.0",
-    "@vueuse/nuxt": "^10.9.0",
+    "@vueuse/core": "^10.10.0",
+    "@vueuse/nuxt": "^10.10.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "lucide-vue-next": "^0.352.0",
-    "radix-vue": "^1.8.0",
+    "lucide-vue-next": "^0.379.0",
+    "radix-vue": "^1.8.2",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7"
   }

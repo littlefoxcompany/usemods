@@ -19,15 +19,15 @@
 </template>
 
 <script setup lang="ts">
-  const key = ref('address')
-  const value = {
-    name: 'John',
-    age: 25,
-    address: {
-      street: '123 Main St',
-      city: 'Springfield',
-      state: 'IL'
-    },
-    country: 'USA'
-  }
+const key = ref('address')
+const value = {
+  name: 'John',
+  age: 25,
+  address: {
+    street: '123 Main St',
+    city: 'Springfield',
+    state: 'IL'
+  },
+  country: 'USA'
+}
 </script>

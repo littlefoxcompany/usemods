@@ -8,6 +8,7 @@
       <div class="top-6 flex h-fit w-full flex-col max-md:hidden md:sticky md:-mt-2 md:w-2/12">
         <NuxtLink
           v-for="link in introLinks"
+          :key="link.title"
           prefetch
           :to="link._path"
           class="flex items-center gap-3 py-2 text-xl font-medium text-gray-500 dark:text-gray-500 dark:hover:text-white/75"
@@ -19,6 +20,7 @@
         <div class="mt-8 flex flex-col gap-1">
           <NuxtLink
             v-for="link in docLinks"
+            :key="link.title"
             prefetch
             :to="link._path"
             class="flex items-center gap-3 py-2 font-medium text-gray-500 dark:text-gray-500 dark:hover:text-white/75"
@@ -33,7 +35,9 @@
       <div class="min-h-screen w-full text-gray-950 lg:w-7/12 dark:text-white" :class="route.params.slug ?? null">
         <ContentDoc
           class="flex w-full grow flex-col"
-          :class="route.params.slug?.at(0) === 'docs' ? 'divide-y divide-dashed divide-indigo-200 dark:divide-white/10' : ''"></ContentDoc>
+         ></ContentDoc>
+
+         <!--  :class="route.params.slug?.at(0) === 'docs' ? 'divide-y divide-dashed divide-indigo-200 dark:divide-white/10' : ''" -->
 
         <!-- Jagger Swagger -->
         <Jagger v-if="route.fullPath === '/docs/actions'" />
@@ -49,9 +53,9 @@
 </template>
 
 <script setup lang="ts">
-  const route = useRoute()
-  const introLinks = inject('intro-links')
-  const docLinks = inject('doc-links')
+const route = useRoute()
+const introLinks = inject('intro-links')
+const docLinks = inject('doc-links')
 </script>
 
 <style scoped>

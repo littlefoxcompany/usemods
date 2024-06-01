@@ -1,17 +1,25 @@
-<template>
-  <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g clip-path="url(#clip0_99_190)">
-      <path d="M4.87524 9.94882L7.87524 12.9488L13.8752 6.94882" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
-      <path
-        d="M9.375 18.1989C13.9314 18.1989 17.625 14.5052 17.625 9.94885C17.625 5.3925 13.9314 1.69885 9.375 1.69885C4.81865 1.69885 1.125 5.3925 1.125 9.94885C1.125 14.5052 4.81865 18.1989 9.375 18.1989Z"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round" />
+<template><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g :fill="fill">
+      <path d="M21.2,1.839L12.2,.039c-.129-.026-.263-.026-.392,0L2.808,1.839c-.469,.092-.808,.503-.808,.981V13c0,8,10,11,10,11,0,0,10-3,10-11V2.82c0-.476-.334-.886-.8-.981Zm-3.441,6.812l-6,7c-.181,.211-.442,.338-.721,.348-.013,0-.026,0-.039,0-.265,0-.519-.105-.707-.293l-3-3c-.391-.391-.391-1.023,0-1.414s1.023-.391,1.414,0l2.236,2.236,5.297-6.18c.36-.418,.992-.468,1.41-.108,.419,.359,.468,.991,.108,1.41Z" :fill="fill"></path>
     </g>
-    <defs>
-      <clipPath id="clip0_99_190">
-        <rect width="18" height="18" fill="white" style="fill: white; fill-opacity: 1" transform="translate(0 0.573975)" />
-      </clipPath>
-    </defs>
-  </svg>
-</template>
+  </svg></template>
+
+<script>
+export default {
+  props: {
+    fill: {
+      type: String,
+      default: "currentColor"
+    },
+    secondaryfill: {
+      type: String
+    }
+  },
+  computed: {
+    _secondaryfill: function ()
+    {
+      return this.secondaryfill || this.fill
+    }
+  }
+}
+</script>

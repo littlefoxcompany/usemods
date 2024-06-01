@@ -1,9 +1,9 @@
 <template>
   <Example class="flex">
     <ExampleInputs class="flex flex-col">
-      <div class="flex gap-4 w-full">
-          <FormInput v-model="value" label="Title" />
-          <FormSelect v-model="splitBy" label="Select" name="select" placeholder="Select an option">
+    <div class="flex gap-4 w-full">
+        <FormInput v-model="value" label="Title" />
+        <FormSelect v-model="splitBy" label="Select" name="select" placeholder="Select an option">
             <option value="word">Word</option>
             <option value="character">Character</option>
           </FormSelect>
@@ -14,7 +14,14 @@
           <option value="ms">ms</option>
           <option value="s">s</option>
         </FormSelect>
-        </div>
+      </div>
+      <div class="flex gap-4 w-full">
+      <FormInput v-model="time" label="Time" type="number" name="time" value="100" placeholder="Time" />
+      <FormSelect v-model="unit" label="Unit" name="unit" placeholder="Select an option">
+        <option value="ms">ms</option>
+        <option value="s">s</option>
+      </FormSelect>
+      </div>
       <FormInput v-model="className" label="Classes" type="text" name="classes" placeholder="Classes" />
     </ExampleInputs>
 

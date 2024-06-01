@@ -1,5 +1,6 @@
-.intro {
+body {
   @apply text-pretty text-gray-950 dark:text-white;
+  
   h1 {
     @apply text-4xl font-bold;
   }
@@ -13,10 +14,7 @@
   li {
     @apply mt-5 text-lg/[1.75em];
   }
-  li {
-    /* @apply border-l border-gray-300 dark:border-white/15 pl-5; */
-  }
   pre {
-    @apply mt-6 flex flex-wrap items-center gap-px rounded-xl border border-black/5 bg-indigo-600/[2%] px-4 py-3.5 font-mono text-sm text-gray-900 dark:border-white/[8%] dark:bg-white/[3%] dark:text-white;
+    @apply mt-6 flex flex-wrap leading-6 items-center gap-px rounded-xl border border-black/5 bg-indigo-600/[2%] px-4 py-3.5 font-mono text-sm text-gray-900 dark:border-white/[8%] dark:bg-white/[3%] dark:text-white;
   }
 }
