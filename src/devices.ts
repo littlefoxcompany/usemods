@@ -25,21 +25,20 @@ export function detectUserDevice(userAgent?: string): object | string {
 /**
  * Adds detected devices as classes to your project's body class
  */
-export function addDeviceClasses(userAgent?: string): object | undefined {
+export function addDeviceClasses(userAgent?: string): void {
   if (isServerSide() && !userAgent) return
 
-  const deviceInfo = detectUserDevice(userAgent)
-  const classes = []
-
-  if (typeof deviceInfo === 'object') {
-    if (deviceInfo.os) classes.push(`${deviceInfo.os.toLowerCase()}`)
-    if (deviceInfo.browser) classes.push(`${deviceInfo.browser.toLowerCase()}`)
-    if (deviceInfo.device) classes.push(`${deviceInfo.device.toLowerCase()}`)
-  } else {
-    classes.push(deviceInfo)
-  }
+  const deviceInfo = detectUserDevice(userAgent) as { os: string, browser: string, device: string }
   
+  // Gather the classes
+  const classes = ['os', 'browser', 'device']
+    .map(key => (deviceInfo as any)[key]?.toLowerCase())
+    .filter(value => value && value !== 'unknown')
+  
+  // If no classes, return
   if (classes.length === 0) return
+
+  // Add the classes to the body
   document.body.className = classes.join(' ')
 }
 
@@ -62,7 +61,7 @@ export function detectBrowser(userAgent?: string): string {
     case result.includes('firefox'): return 'Firefox'
     case /Safari/.test(result) && !/Chrome/.test(result): return 'Safari'
     case result.includes('edge'): return 'Edge'
-    default: return 'Unknown'
+    default: return 'unknown'
   }
 }
 
@@ -79,7 +78,7 @@ export function detectOS(userAgent?: string): string {
     case result.includes('x11'): return 'UNIX'
     case result.includes('android'): return 'Android'
     case result.includes('iphone'): return 'iOS'
-    default: return 'Unknown'
+    default: return 'unknown'
   }
 }
 

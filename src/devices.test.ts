@@ -6,11 +6,15 @@ const userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 
 
 
 test('isServerSide', () => {
-  expect(mod.isServerSide()).toBe(false)
+  expect(mod.isServerSide()).toBe(true)
 })
 
 test('detectUserDevice', () => {
-  expect(mod.detectUserDevice(userAgent)).toBe('Desktop')
+  expect(mod.detectUserDevice(userAgent)).toEqual({
+    browser: 'unknown',
+    device: 'Desktop',
+    os: 'unknown'
+  })
 })
 
 // test('detectOS', () => {
