@@ -4,30 +4,35 @@
 
 import plugin from 'tailwindcss/plugin'
 
-// Define the set of devices
+// Define the type for the device set
 const devices: Set<string> = new Set([
-  'ios', 'windows', 'linux', 'android', 'mac', 'chrome', 'firefox', 'safari', 'edge',
-  'mobile', 'tablet', 'desktop', 'portrait', 'landscape',
+  'ios',
+  'windows',
+  'linux',
+  'android',
+  'mac',
+  'chrome',
+  'firefox',
+  'safari',
+  'edge',
+  'mobile',
+  'tablet',
+  'desktop',
+  'portrait',
+  'landscape',
 ])
 
-// Function to create the modifySelectors function for a given device and separator
-function createModifySelectorsFn(device: string, separator: string, e: (className: string) => string) {
-  return ({ className }: { className: string }) => {
-    return `.${device} .${e(`${device}${separator}${className}`)}`
-  }
-}
-
-// Tailwind CSS plugin to add device variants
-export const modDevices = plugin(function ({ addVariant, e }) {
-  const modifySelectorsCache: { [key: string]: (params: { className: string }) => string } = {}
-
+// Define the plugin with types
+export const modDevices = plugin(function ({ addVariant, e }: { addVariant: any; e: (className: string) => string }) {
   devices.forEach((device) => {
-    addVariant(device, ({ modifySelectors, separator }) => {
-      const cacheKey = `${device}${separator}`
-      if (!modifySelectorsCache[cacheKey]) {
-        modifySelectorsCache[cacheKey] = createModifySelectorsFn(device, separator, e)
-      }
-      modifySelectors(modifySelectorsCache[cacheKey])
+    addVariant(device, ({ modifySelectors, separator }: { modifySelectors: any; separator: string }) => {
+      modifySelectors(modifySelectorsFn(device, separator))
     })
   })
-})1
+
+  function modifySelectorsFn(device: string, separator: string) {
+    return ({ className }: { className: string }) => {
+      return `.${device} .${e(`${device}${separator}${className}`)}`
+    }
+  }
+})

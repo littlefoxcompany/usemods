@@ -195,7 +195,7 @@ export function isDesktop(userAgent?: string): boolean {
  * Check if you're portrait
  */
 export function isPortrait(): boolean {
-  if (isServerSide() && !userAgent) return false
+  if (isServerSide()) return false
   return window.innerHeight > window.innerWidth
 }
 
