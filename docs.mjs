@@ -3,6 +3,7 @@ import { watch, promises as fsPromises } from 'fs'
 import { argv } from 'process'
 import { rollup } from 'rollup'
 import typescript from 'rollup-plugin-typescript2'
+import terser from '@rollup/plugin-terser'
 
 const { readFile, writeFile, copyFile, readdir, unlink } = fsPromises
 
@@ -112,6 +113,7 @@ async function generateBundle() {
 
   await bundle.write({
     file: './dist/index.js',
+    plugins: [terser()]
   })
 
   console.log('dist bundle created')
