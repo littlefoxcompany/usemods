@@ -25,7 +25,7 @@
     "@vueuse/nuxt": "^10.10.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "lucide-vue-next": "^0.379.0",
+    "lucide-vue-next": "^0.381.0",
     "radix-vue": "^1.8.2",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7"
