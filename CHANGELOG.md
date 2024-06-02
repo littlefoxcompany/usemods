@@ -1,6 +1,45 @@
 # Changelog
 
 
+## v1.4.0
+
+[compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.3.1...v1.4.0)
+
+### 🚀 Enhancements
+
+- Fix bug in clearAll function for document deletion ([25328c6](https://github.com/LittleFoxCompany/usemods/commit/25328c6))
+- Add 'tailwind' file to the list of files for generating markdown ([1b22fda](https://github.com/LittleFoxCompany/usemods/commit/1b22fda))
+
+### 💅 Refactors
+
+- Refactor device detection and add user agent detection ([e65294c](https://github.com/LittleFoxCompany/usemods/commit/e65294c))
+- Remove unnecessary test case for modDevices plugin ([5f524db](https://github.com/LittleFoxCompany/usemods/commit/5f524db))
+- Remove unnecessary test case for modDevices plugin ([a5b2dda](https://github.com/LittleFoxCompany/usemods/commit/a5b2dda))
+- Update Tailwind documentation with plugin usage ([e1d41fb](https://github.com/LittleFoxCompany/usemods/commit/e1d41fb))
+- Remove unnecessary test case for modDevices plugin ([f7fcf71](https://github.com/LittleFoxCompany/usemods/commit/f7fcf71))
+- Remove unnecessary test case for modDevices plugin ([186a3e4](https://github.com/LittleFoxCompany/usemods/commit/186a3e4))
+- Remove unnecessary test case for modDevices plugin ([c16afee](https://github.com/LittleFoxCompany/usemods/commit/c16afee))
+- Update Tailwind documentation with plugin usage ([5318110](https://github.com/LittleFoxCompany/usemods/commit/5318110))
+- Remove unnecessary test case for modDevices plugin ([56ea552](https://github.com/LittleFoxCompany/usemods/commit/56ea552))
+- Remove unused code for animating text ([f798966](https://github.com/LittleFoxCompany/usemods/commit/f798966))
+
+### 📖 Documentation
+
+- Update Tailwind plugin documentation ([9158e42](https://github.com/LittleFoxCompany/usemods/commit/9158e42))
+
+### 🏡 Chore
+
+- Update .gitignore and add device classes for device detection ([6fd8938](https://github.com/LittleFoxCompany/usemods/commit/6fd8938))
+- Update file generation and cleanup process ([84795f1](https://github.com/LittleFoxCompany/usemods/commit/84795f1))
+- Update npm dependencies and dev tools versions ([94fd1d6](https://github.com/LittleFoxCompany/usemods/commit/94fd1d6))
+- Update npm dependencies and dev tools versions ([ef89c6e](https://github.com/LittleFoxCompany/usemods/commit/ef89c6e))
+- Update optional dependency for @rollup/rollup-linux-x64-gnu to version 4.9.5 ([385ead1](https://github.com/LittleFoxCompany/usemods/commit/385ead1))
+- Update npm dependencies to latest versions ([77caeef](https://github.com/LittleFoxCompany/usemods/commit/77caeef))
+
+### ❤️ Contributors
+
+- Jeremy Butler ([@jrmymbtlr](http://github.com/jrmymbtlr))
+
 ## v1.3.1
 
 [compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.3.0...v1.3.1)
