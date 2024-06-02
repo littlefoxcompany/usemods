@@ -20,13 +20,19 @@ const metadataPattern = /\s+(title|description|lead):\s+([^\r\n]*)/g
 const jsdocPattern = /\/\*\*([\s\S]*?)\*\//g
 
 // Files
-const files = ['actions', 'formatters', 'modifiers', 'generators', 'numbers', 'data', 'validators', 'detections', 'devices', 'animations', 'goodies']
+const files = ['actions', 'formatters', 'modifiers', 'generators', 'numbers', 'data', 'validators', 'detections', 'devices', 'animations', 'goodies', 'tailwind']
 
 async function generateMarkdown(file, name) {
   const content = await readFile(file, 'utf8')
   const metadata = Object.fromEntries([...content.matchAll(metadataPattern)].map((match) => [match[1], match[2]]))
 
   await copyFile(file, join(nuxtWebPath, 'utils', basename(file)))
+
+  // If Tailwind stop herec
+  // If you're reading this...it's a great first fix to contribute to the project.
+  if (name === '12.tailwind') {
+    return
+  }
 
   let markdown = ''
 
