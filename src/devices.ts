@@ -57,10 +57,10 @@ export function detectBrowser(userAgent?: string): string {
   if (isServerSide() && !userAgent) return 'server'
   const result = userAgent || navigator.userAgent.toLowerCase()
   switch (true) {
-    case result.includes('chrome'): return 'Chrome'
+    case result.includes('chrome') && !result.includes('edg'): return 'Chrome'
     case result.includes('firefox'): return 'Firefox'
-    case /Safari/.test(result) && !/Chrome/.test(result): return 'Safari'
-    case result.includes('edge'): return 'Edge'
+    case result.includes('safari') && !result.includes('chrome') && !result.includes('crios') && !result.includes('fxios'): return 'Safari'
+    case result.includes('edg'): return 'Edge'
     default: return 'unknown'
   }
 }
@@ -71,13 +71,14 @@ export function detectBrowser(userAgent?: string): string {
 export function detectOS(userAgent?: string): string {
   if (isServerSide() && !userAgent) return 'server'
   const result = userAgent || navigator.userAgent.toLowerCase()
+  console.log('result', result)
   switch (true) {
+    case result.includes('iphone') || result.includes('ipad'): return 'iOS'
+    case result.includes('android'): return 'Android'
     case result.includes('windows'): return 'Windows'
     case result.includes('mac'): return 'Mac'
     case result.includes('linux'): return 'Linux'
     case result.includes('x11'): return 'UNIX'
-    case result.includes('android'): return 'Android'
-    case result.includes('iphone'): return 'iOS'
     default: return 'unknown'
   }
 }

@@ -3,7 +3,7 @@
   "name": "usemods-website",
   "type": "module",
   "scripts": {
-    "dev": "nuxi dev",
+    "dev": "nuxi dev --host",
     "build": "nuxi build",
     "generate": "nuxi generate"
   },
@@ -25,8 +25,8 @@
     "@vueuse/nuxt": "^10.10.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "lucide-vue-next": "^0.381.0",
-    "radix-vue": "^1.8.2",
+    "lucide-vue-next": "^0.383.0",
+    "radix-vue": "^1.8.3",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7"
   }
