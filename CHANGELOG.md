@@ -1,6 +1,10 @@
 # Changelog
 
 
+## v1.4.1
+
+[compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.4.0...v1.4.1)
+
 ## v1.4.0
 
 [compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.3.1...v1.4.0)
