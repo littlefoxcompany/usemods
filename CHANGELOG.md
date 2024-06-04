@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.4.2
+
+[compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.4.1...v1.4.2)
+
+### 🚀 Enhancements
+
+- Improve browser and OS detection logic ([1679a6c](https://github.com/LittleFoxCompany/usemods/commit/1679a6c))
+
+### ❤️ Contributors
+
+- Jeremy Butler ([@jrmymbtlr](http://github.com/jrmymbtlr))
+
 ## v1.4.1
 
 [compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.4.0...v1.4.1)
