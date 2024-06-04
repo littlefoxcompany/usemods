@@ -145,6 +145,25 @@ export function formatDurationNumbers(seconds: number): string {
 }
 
 /**
+ * Format file size into human-readable string
+ */
+export function formatFileSize(number: number, options?: { decimals?: number; units?: 'bytes' | 'KB' | 'MB' | 'GB' | 'TB'; unitDisplay?: 'short' | 'long'; locale?: string }): string {
+  const bytesInUnit = { bytes: 1, KB: 1024, MB: 1024 ** 2, GB: 1024 ** 3, TB: 1024 ** 4 }
+  
+  const { decimals = 0, units = 'bytes', unitDisplay = 'short', locale = 'en-US' } = options || {}
+  const unit = units || ['bytes', 'KB', 'MB', 'GB', 'TB'].find((unit) => number < bytesInUnit[unit as keyof typeof bytesInUnit]) || 'TB'
+  const value = number / bytesInUnit[unit as keyof typeof bytesInUnit]
+
+  return new Intl.NumberFormat(locale, {
+    style: 'unit',
+    unit: unit === 'bytes' ? 'byte' : unit.toLowerCase(),
+    unitDisplay,
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals
+  }).format(value)
+}
+
+/**
  * Format numbers into words
  */
 export function formatNumberToWords(number: number): string {
