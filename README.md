@@ -29,9 +29,32 @@ Use your favourite package manager to install usemods. Also works with your leas
 npm install usemods
 ```
 
-# Contributing
+## Nuxt
+If you use Nuxt, you can automatically add the module to your nuxt.config.js. We're actively working on composables and other Nuxt-specific features, so stay tuned!
 
-## Compiled Docs
+```bash
+npx nuxi module add usemods-nuxt
+```
+
+# Usage
+Once you've installed the package, you can import the functions as you need. We'll add better examples in the future, but hopefully your familiar with the basics.
+```vue
+<!-- Vue -->
+<template>
+  <div>
+    {{ formatNumber(123456789) }}
+  </div>
+  <button @click="copyToClipboard('Hello, world!')">
+    Copy to clipboard
+  </button>
+</template>
+
+<script setup>
+  import { copyToClipboard, formatNumber } from 'usemods'
+</script>
+```
+
+# Contributing
 Welcome to the documentation for Mods. We combine Nuxt Content and Vue Components to achieve interactive blocks.
 
 ### Content
