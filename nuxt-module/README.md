@@ -3,12 +3,13 @@
 # Use Mods (Nuxt Module)
 Auto-imported functions and modifiers for zippy Nuxt developers. 
 
+<!-- Badges -->
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![License][license-src]][license-href]
-[![Nuxt][nuxt-src]][nuxt-href]
+[![CI][ci-src]][ci-href]
+[![CodeQL][codeql-src]][codeql-href]
 
-<!-- Badges -->
 [npm-version-src]: https://img.shields.io/npm/v/usemods-nuxt/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
 [npm-version-href]: https://npmjs.com/package/usemods-nuxt
 
@@ -18,12 +19,11 @@ Auto-imported functions and modifiers for zippy Nuxt developers.
 [license-src]: https://img.shields.io/npm/l/usemods-nuxt.svg?style=flat&colorA=18181B&colorB=28CF8D
 [license-href]: https://npmjs.com/package/usemods-nuxt
 
-[nuxt-src]: https://img.shields.io/badge/Nuxt-18181B?logo=nuxt.js
-[nuxt-href]: https://nuxt.com
+[ci-src]: https://github.com/LittleFoxCompany/usemods/actions/workflows/ci.yml/badge.svg
+[ci-href]: https://github.com/LittleFoxCompany/usemods/actions/workflows/ci.yml
 
-[![CI](https://github.com/LittleFoxCompany/usemods/actions/workflows/ci.yml/badge.svg)](https://github.com/LittleFoxCompany/usemods/actions/workflows/ci.yml)
-
-[![CodeQL](https://github.com/LittleFoxCompany/usemods/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main)](https://github.com/LittleFoxCompany/usemods/actions/workflows/github-code-scanning/codeql)
+[codeql-src]: https://github.com/LittleFoxCompany/usemods/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main
+[codeql-href]: https://github.com/LittleFoxCompany/usemods/actions/workflows/github-code-scanning/codeql
 
 ## Quick Setup
 ```bash
