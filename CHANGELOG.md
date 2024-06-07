@@ -1,9 +1,16 @@
 # Changelog
 
-
 ## v1.4.3
 
 [compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.4.2...v1.4.3)
+
+### 🏡 Chore
+
+- **release:** V1.4.3 ([208d0a1](https://github.com/LittleFoxCompany/usemods/commit/208d0a1))
+
+### ❤️ Contributors
+
+- Jeremy Butler ([@jrmymbtlr](http://github.com/jrmymbtlr))
 
 ## v1.4.2
 
