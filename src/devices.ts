@@ -89,7 +89,7 @@ export function detectOS(userAgent?: string): string {
 export function isIos(userAgent?: string): boolean {
   if (isServerSide() && !userAgent) return false
   const result = userAgent || navigator.userAgent
-  return /iPad|iPhone|iPod/.test(result)
+  return /iPad|iPhone|iPod|iPadOS|iPhoneOS/.test(result)
 }
 
 /**
