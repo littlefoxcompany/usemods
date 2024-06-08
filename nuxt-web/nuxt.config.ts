@@ -8,8 +8,15 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     'shadcn-nuxt',
     'nuxt-icon',
+    '@nuxtjs/seo',
+    '@nuxtjs/sitemap'
   ],
   css: ['~/assets/css/main.css'],
+  sitemap: {
+    sources: [
+      '/api/sitemap'
+    ]
+  },
   content: {
     highlight: {
       theme: {
