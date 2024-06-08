@@ -13,7 +13,7 @@ Zero-dependency functions and modifiers for zippy developers.
 [npm-version-src]: https://img.shields.io/npm/v/usemods/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
 [npm-version-href]: https://npmjs.com/package/usemods
 
-[npm-downloads-src]: https://img.shields.io/npm/dm/usemods.svg?style=flat&colorA=18181B&colorB=28CF8D
+[npm-downloads-src]: https://img.shields.io/npm/d18m/usemods.svg?style=flat&colorA=18181B&colorB=28CF8D
 [npm-downloads-href]: https://npmjs.com/package/usemods
 
 [license-src]: https://img.shields.io/npm/l/usemods.svg?style=flat&colorA=18181B&colorB=28CF8D

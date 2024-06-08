@@ -13,7 +13,7 @@ Auto-imported functions and modifiers for zippy Nuxt developers.
 [npm-version-src]: https://img.shields.io/npm/v/usemods-nuxt/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
 [npm-version-href]: https://npmjs.com/package/usemods-nuxt
 
-[npm-downloads-src]: https://img.shields.io/npm/dm/usemods-nuxt.svg?style=flat&colorA=18181B&colorB=28CF8D
+[npm-downloads-src]: https://img.shields.io/npm/d18m/usemods-nuxt.svg?style=flat&colorA=18181B&colorB=28CF8D
 [npm-downloads-href]: https://npmjs.com/package/usemods-nuxt
 
 [license-src]: https://img.shields.io/npm/l/usemods-nuxt.svg?style=flat&colorA=18181B&colorB=28CF8D
