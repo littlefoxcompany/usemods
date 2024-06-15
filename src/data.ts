@@ -8,37 +8,18 @@ import { isObject } from './validators'
  * Sort an array or object by a property.
  */
 export function dataSortBy(items: object | string[] | number[], options?: { property?: string; order?: 'asc' | 'desc' }): object | string[] | number[] {
-  // Default options
-  const defaultOptions = { order: 'asc' }
-  const { property, order } = { ...defaultOptions, ...options }
+  const { property, order = 'asc' } = options || {}
 
-  // Sorting logic
   const compare = (a: any, b: any) => {
-    let valueA, valueB
+    const valueA = property ? a[property] : a
+    const valueB = property ? b[property] : b
 
-    if (property) {
-      valueA = a[property]
-      valueB = b[property]
-    } else {
-      valueA = a
-      valueB = b
-    }
-
-    if (valueA < valueB) {
-      return order === 'asc' ? -1 : 1
-    } else if (valueA > valueB) {
-      return order === 'asc' ? 1 : -1
-    } else {
-      return 0
-    }
+    if (valueA < valueB) return order === 'asc' ? -1 : 1
+    if (valueA > valueB) return order === 'asc' ? 1 : -1
+    return 0
   }
 
-  // Sort items
-  if (Array.isArray(items)) {
-    return items.sort(compare)
-  } else {
-    return items
-  }
+  return Array.isArray(items) ? items.sort(compare) : items
 }
 
 /**
@@ -51,8 +32,7 @@ export function dataReverse(items: object | string[] | number[]): object | strin
   }
 
   if (isObject(items)) {
-    const entries = Object.entries(items)
-    return Object.fromEntries(entries.reverse() as [string, string | number | object | string[] | number[]][])
+    return Object.fromEntries(Object.entries(items).reverse())
   } else {
     return (items as string[] | number[]).reverse()
   }
@@ -62,8 +42,7 @@ export function dataReverse(items: object | string[] | number[]): object | strin
  * Returns single unique values within an array or object
  */
 export function dataRemoveDuplicates<T extends string | number>(...arrays: T[][]): T[] {
-  const mergedArray = arrays.flat()
-  return Array.from(new Set(mergedArray))
+  return Array.from(new Set(arrays.flat()))
 }
 
 /**
@@ -101,9 +80,55 @@ export function dataWithout(items: object | string[] | number[], properties: str
   const propertyArray = Array.isArray(properties) ? properties : [properties]
 
   if (isObject(items)) {
-    const entries = Object.entries(items)
-    return Object.fromEntries(entries.filter(([key]) => !propertyArray.includes(key)))
+    return Object.fromEntries(Object.entries(items).filter(([key]) => !propertyArray.includes(key)))
   } else {
     return (items as string[] | number[]).filter((item) => !propertyArray.includes(item))
   }
 }
+
+// 
+
+// /**
+//  * Group an array of objects by a property.
+//  */
+// export function dataGroupBy(items: object[] | string[] | number[], property: string): { [key: string]: object[] | string[] | number[] } {
+//   if (!Array.isArray(items)) {
+//     console.warn('[MODS] Warning: dataGroupBy() expects an array as the first argument.')
+//     return {}
+//   }
+
+//   return items.reduce((acc, item) => {
+//     const key = item[property]
+//     if (!acc[key]) {
+//       acc[key] = []
+//     }
+//     acc[key].push(item)
+//     return acc
+//   }, {} as { [key: string]: object[] | string[] | number[] })
+// }
+
+// /**
+//  * Merge multiple objects or arrays into one.
+//  */
+// export function dataMerge(...items: (object | any[])[]): object | any[] {
+//   if (items.every(isObject)) {
+//     return Object.assign({}, ...items)
+//   } else if (items.every(Array.isArray)) {
+//     return items.flat()
+//   } else {
+//     console.warn('[MODS] Warning: dataMerge() expects either all objects or all arrays as arguments.')
+//     return items
+//   }
+// }
+
+// /**
+//  * Pick specific properties from an object.
+//  */
+// export function dataPick(obj: object, properties: string[]): object {
+//   return properties.reduce((acc, key) => {
+//     if (key in obj) {
+//       acc[key] = obj[key]
+//     }
+//     return acc
+//   }, {} as { [key: string]: any })
+// }

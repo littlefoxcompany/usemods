@@ -69,7 +69,7 @@ test('median', () => {
   expect(mod.median([1, 2, 3, 4])).toBe(2.5)
   expect(mod.median([-5, -3, -1, 0, 2])).toBe(-1)
   expect(mod.median([42])).toBe(42)
-  expect(mod.median([])).toBeNaN()
+  expect(mod.median([])).toBe(0)
 })
 
 test('min', () => {

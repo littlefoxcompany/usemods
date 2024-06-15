@@ -81,14 +81,10 @@ export function toggleElementScroll(element: HTMLElement): Promise<void> {
  * Copies a convereted string to the clipboard
  */
 export async function copyToClipboard(value: string | number): Promise<void> {
-  if (!navigator.clipboard || !navigator.clipboard.writeText) {
-    throw new Error('Clipboard API is not available')
-  }
-
   try {
     await navigator.clipboard.writeText(String(value))
   } catch (error) {
-    console.error('Failed to copy text: ', error)
+    console.error('[MODS] Failed to copy text: ', error)
     throw error
   }
 }
@@ -97,13 +93,9 @@ export async function copyToClipboard(value: string | number): Promise<void> {
  * Toggles the fullscreen mode
  */
 export function toggleFullScreen(): Promise<void> {
-  return new Promise((resolve, reject) => {
-    if (document.fullscreenElement) {
-      document.exitFullscreen().then(resolve).catch(reject)
-    } else {
-      document.documentElement.requestFullscreen().then(resolve).catch(reject)
-    }
-  })
+  return document.fullscreenElement
+    ? document.exitFullscreen()
+    : document.documentElement.requestFullscreen()
 }
 
 /**
@@ -192,17 +184,17 @@ export function focusTrap(container: HTMLElement): void {
   })
 }
 
-// /**
-//  * Scrolls to the top of the page
-//  */
-// export function scrollToTop(): void {
-//   window.scrollTo({ top: 0, behavior: 'smooth' })
-// }
+/**
+ * Scrolls to the top of the page
+ */
+export function scrollToTop(): void {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
 
 
-// /**
-//  * Scrolls to the bottom of the page
-//  */
-// export function scrollToBottom(): void {
-//   window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
-// }
+/**
+ * Scrolls to the bottom of the page
+ */
+export function scrollToBottom(): void {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+}

@@ -57,3 +57,12 @@ export const formatTitleExceptions = new Set([
   'a', 'an', 'to', 'the', 'for', 'and', 'nor', 'but', 'or', 'yet', 'so', 'in', 'is', 'it', 'than', 'on', 'at', 'with', 
   'under', 'above', 'from', 'of', 'although', 'because', 'since', 'unless'
 ])
+
+export const bytesInUnit = new Map([
+  ['byte', 1], 
+  ['kilobyte', 1024], 
+  ['megabyte', 1024 ** 2], 
+  ['gigabyte', 1024 ** 3], 
+  ['terabyte', 1024 ** 4], 
+  ['petabyte', 1024 ** 5]
+])
