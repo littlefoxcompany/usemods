@@ -2,7 +2,7 @@
 // description: Wrangle wild data types into submission. Spruce up numbers, give strings smarts, and make complex content dazzle.
 // lead: Format misbehaving content
 
-import { currencySymbols, numberUnderTwenty, numberTens, numberScales, formatTitleExceptions } from './config'
+import { currencySymbols, numberUnderTwenty, numberTens, numberScales, formatTitleExceptions, bytesInUnit } from './config'
 
 /**
  * Format numbers into neat and formatted strings for people
@@ -147,20 +147,24 @@ export function formatDurationNumbers(seconds: number): string {
 /**
  * Format file size into human-readable string
  */
-export function formatFileSize(number: number, options?: { decimals?: number; units?: 'bytes' | 'KB' | 'MB' | 'GB' | 'TB'; unitDisplay?: 'short' | 'long'; locale?: string }): string {
-  const bytesInUnit = { bytes: 1, KB: 1024, MB: 1024 ** 2, GB: 1024 ** 3, TB: 1024 ** 4 }
+export function formatFileSize(number: number, options?: { decimals?: number; inputUnit?: string; outputUnit?: string; unitDisplay?: 'short' | 'long'; locale?: string }): string {
+  const { decimals = 0, unitDisplay = 'short', locale = 'en-US' } = options || {}
   
-  const { decimals = 0, units = 'bytes', unitDisplay = 'short', locale = 'en-US' } = options || {}
-  const unit = units || ['bytes', 'KB', 'MB', 'GB', 'TB'].find((unit) => number < bytesInUnit[unit as keyof typeof bytesInUnit]) || 'TB'
-  const value = number / bytesInUnit[unit as keyof typeof bytesInUnit]
+  // 
+  const inputUnit = options?.inputUnit || 'byte'
+  const outputUnit = options?.outputUnit || 'auto'
 
-  return new Intl.NumberFormat(locale, {
-    style: 'unit',
-    unit: unit === 'bytes' ? 'byte' : unit.toLowerCase(),
-    unitDisplay,
-    minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals
-  }).format(value)
+  const valueInBytes = number * (bytesInUnit.get(inputUnit) || 1)
+  
+  if (outputUnit === 'auto') {
+    const largestUnit = Array.from(bytesInUnit.keys()).reverse().find((unit) => valueInBytes >= (bytesInUnit.get(unit) || 0))
+    if (!largestUnit) return formatUnit(valueInBytes, { unit: inputUnit, decimals, unitDisplay, locale })
+    return formatUnit(valueInBytes / bytesInUnit.get(largestUnit)!, { unit: largestUnit, decimals, unitDisplay, locale })
+  }
+
+  else {
+    return formatUnit(valueInBytes / (bytesInUnit.get(outputUnit) || 1), { unit: outputUnit, decimals, unitDisplay, locale })
+  }
 }
 
 /**
