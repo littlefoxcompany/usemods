@@ -58,6 +58,7 @@ export const formatTitleExceptions = new Set([
   'under', 'above', 'from', 'of', 'although', 'because', 'since', 'unless'
 ])
 
+// File Size Conversion
 export const bytesInUnit = new Map([
   ['byte', 1], 
   ['kilobyte', 1024], 
@@ -65,4 +66,16 @@ export const bytesInUnit = new Map([
   ['gigabyte', 1024 ** 3], 
   ['terabyte', 1024 ** 4], 
   ['petabyte', 1024 ** 5]
+])
+
+// Length Conversion
+export const lengthUnitConversions = new Map([
+  ['millimeter', {value: 1, system: 'metric'}],
+  ['centimeter', {value: 10, system: 'metric'}],
+  ['meter', {value: 1000, system: 'metric'}],
+  ['kilometer', {value: 1000000, system: 'metric'}],
+  ['inch', {value: 25.4, system: 'imperial'}],
+  ['foot', {value: 304.8, system: 'imperial'}],
+  ['yard', {value: 914.4, system: 'imperial'}],
+  ['mile', {value: 1609344, system: 'imperial'}]
 ])

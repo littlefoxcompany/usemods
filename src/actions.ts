@@ -198,3 +198,33 @@ export function scrollToTop(): void {
 export function scrollToBottom(): void {
   window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
 }
+
+/**
+ * Debounces a function
+ */
+export function debounce<T extends (...args: unknown[]) => void>(fn: T, delay: number): (...args: Parameters<T>) => void {
+  let timeout: ReturnType<typeof setTimeout> | undefined
+
+  return function (this: ThisParameterType<T>, ...args: Parameters<T>) {
+    if (timeout) {
+      clearTimeout(timeout)
+    }
+    timeout = setTimeout(() => fn.apply(this, args), delay)
+  }
+}
+
+/**
+ * Throttles a function
+ */
+export function throttle<T extends (...args: unknown[]) => void>(fn: T, delay: number): (...args: Parameters<T>) => void {
+  let timeout: ReturnType<typeof setTimeout> | null = null
+
+  return function (this: ThisParameterType<T>, ...args: Parameters<T>) {
+    if (timeout) return
+
+    timeout = setTimeout(() => {
+      fn.apply(this, args)
+      timeout = null
+    }, delay)
+  }
+}

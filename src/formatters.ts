@@ -2,7 +2,7 @@
 // description: Wrangle wild data types into submission. Spruce up numbers, give strings smarts, and make complex content dazzle.
 // lead: Format misbehaving content
 
-import { currencySymbols, numberUnderTwenty, numberTens, numberScales, formatTitleExceptions, bytesInUnit } from './config'
+import { currencySymbols, numberUnderTwenty, numberTens, numberScales, formatTitleExceptions, bytesInUnit, lengthUnitConversions } from './config'
 
 /**
  * Format numbers into neat and formatted strings for people
@@ -62,7 +62,7 @@ export function formatValuation(number: number, options?: { decimals?: number; l
  */
 export function formatUnit(number: number, options: { unit: string; decimals?: number; unitDisplay?: 'short' | 'long'; locale?: string }): string {
   const decimalPlaces = (number.toString().split('.')[1] || '').length
-  const safeDecimals = Math.max(0, Math.max(options.decimals ?? decimalPlaces, decimalPlaces))
+  const safeDecimals = Math.max(0, Math.min(options.decimals ?? decimalPlaces, decimalPlaces))
 
   const config: Intl.NumberFormatOptions = {
     unit: options.unit,
@@ -145,26 +145,37 @@ export function formatDurationNumbers(seconds: number): string {
 }
 
 /**
- * Format file size into human-readable string
+ * Format and auto calculate file size into human-readable string
  */
 export function formatFileSize(number: number, options?: { decimals?: number; inputUnit?: string; outputUnit?: string; unitDisplay?: 'short' | 'long'; locale?: string }): string {
-  const { decimals = 0, unitDisplay = 'short', locale = 'en-US' } = options || {}
-  
-  // 
-  const inputUnit = options?.inputUnit || 'byte'
-  const outputUnit = options?.outputUnit || 'auto'
-
+  const { decimals = 0, unitDisplay = 'short', locale = 'en-US', inputUnit = 'byte', outputUnit = 'auto' } = options || {}
   const valueInBytes = number * (bytesInUnit.get(inputUnit) || 1)
-  
-  if (outputUnit === 'auto') {
-    const largestUnit = Array.from(bytesInUnit.keys()).reverse().find((unit) => valueInBytes >= (bytesInUnit.get(unit) || 0))
-    if (!largestUnit) return formatUnit(valueInBytes, { unit: inputUnit, decimals, unitDisplay, locale })
-    return formatUnit(valueInBytes / bytesInUnit.get(largestUnit)!, { unit: largestUnit, decimals, unitDisplay, locale })
-  }
 
-  else {
-    return formatUnit(valueInBytes / (bytesInUnit.get(outputUnit) || 1), { unit: outputUnit, decimals, unitDisplay, locale })
-  }
+  const targetUnit = outputUnit === 'auto'
+    ? Array.from(bytesInUnit.keys())
+      .reverse()
+      .find(unit => valueInBytes >= (bytesInUnit.get(unit) || 0)) || inputUnit
+    : outputUnit
+
+  return formatUnit(valueInBytes / (bytesInUnit.get(targetUnit) || 1), { unit: targetUnit, decimals, unitDisplay, locale })
+}
+
+/**
+ * Format and auto calculate length into human-readable string
+ */
+export function formatLength(number: number, options?: { decimals?: number; inputUnit?: string; outputUnit?: string; unitDisplay?: 'short' | 'long'; locale?: string }): string {
+  const { decimals = 0, unitDisplay = 'short', locale = 'en-US', inputUnit = 'millimeter', outputUnit = 'auto' } = options || {}
+  const valueInMillimeters = number * (lengthUnitConversions.get(inputUnit)?.value || 1)
+  const system = lengthUnitConversions.get(inputUnit)?.system
+
+  const targetUnit = outputUnit === 'auto'
+    ? Array.from(lengthUnitConversions.keys())
+      .filter(unit => lengthUnitConversions.get(unit)?.system === system)
+      .reverse()
+      .find(unit => valueInMillimeters >= (lengthUnitConversions.get(unit)?.value || 0)) || inputUnit
+    : outputUnit
+
+  return formatUnit(valueInMillimeters / (lengthUnitConversions.get(targetUnit)?.value || 1), { unit: targetUnit, decimals, unitDisplay, locale })
 }
 
 /**
