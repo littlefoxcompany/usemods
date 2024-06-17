@@ -6,6 +6,7 @@ Zero-dependency functions and modifiers for zippy developers.
 <!-- Badges -->
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
+[![npm nuxt downloads][npm-nuxt-downloads-src]][npm-nuxt-downloads-href]
 [![License][license-src]][license-href]
 [![CI][ci-src]][ci-href]
 [![CodeQL][codeql-src]][codeql-href]
@@ -15,6 +16,9 @@ Zero-dependency functions and modifiers for zippy developers.
 
 [npm-downloads-src]: https://img.shields.io/npm/d18m/usemods.svg?style=flat&colorA=18181B&colorB=28CF8D
 [npm-downloads-href]: https://npmjs.com/package/usemods
+
+[npm-nuxt-downloads-src]: https://img.shields.io/npm/d18m/usemods-nuxt?style=flat&label=nuxt%20downloads&colorA=18181B&colorB=28CF8D
+[npm-nuxt-downloads-href]: https://npmjs.com/package/usemods-nuxt
 
 [license-src]: https://img.shields.io/npm/l/usemods.svg?style=flat&colorA=18181B&colorB=28CF8D
 [license-href]: https://npmjs.com/package/usemods
