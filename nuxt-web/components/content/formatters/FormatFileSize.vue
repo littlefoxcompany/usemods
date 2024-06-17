@@ -3,10 +3,12 @@
     <ExampleInputs class="flex flex-col gap-4 items-stretch">
       <div class="flex max-md:flex-col gap-4">
         <FormInput label="Number" type="number" v-model.number="number" />
-        <FormNumber label="Decimals" v-model="decimals" info="Default: 0" :min="0" :max="20"/>
+        <FormNumber label="Decimals" v-model="decimals" :min="0" :max="20"/>
         <FormSelect label="Locale" v-model="locale" info="Default: 'en-US'">
+            <option value="undefined">Default</option>
           <option v-for="locale in configLocales" :value="locale" :key="locale">{{ locale }}</option>
         </FormSelect>
+        
         <FormSelect label="Display" v-model="unitDisplay" info="Default: 'short'">
           <option value="long">Long</option>
           <option value="short">Short</option>
@@ -24,7 +26,7 @@
       </div>
     </ExampleInputs>
 
-    <ExampleCode :code="`formatFileSize(${number}, { inputUnit: ${inputUnit}, ${outputUnit !== 'auto' ? `outputUnit: ${outputUnit},` : ''} ${isNumber(decimals) ? `decimals: ${decimals},` : ''} unitDisplay: ${unitDisplay}, locale: ${locale} })`" />
+    <ExampleCode :code="`formatFileSize(${number}, { inputUnit: ${inputUnit}, ${outputUnit !== 'auto' ? `outputUnit: ${outputUnit},` : ''} ${isNumber(decimals) ? `decimals: ${decimals},` : ''} unitDisplay: ${unitDisplay}, ${locale !== undefined ? `locale: ${locale},` : ''} })`" />
     
     <ExampleResult>
       {{ formatFileSize(number, { inputUnit, outputUnit, ...(isNumber(decimals) ? { decimals } : {}), unitDisplay, locale }) }}
@@ -36,7 +38,7 @@
 const number = ref(1024)
 const inputUnit = ref('byte')
 const outputUnit = ref('auto')
-const decimals = ref(0)
-const locale = ref('en-US')
+const decimals = ref(undefined)
+const locale = ref(undefined)
 const unitDisplay = ref<'short' | 'long'>('short')
 </script>
