@@ -16,7 +16,7 @@
         </div>
   
         <div class="flex max-md:flex-col gap-4">
-          <FormSelect label="Input Unit" v-model="inputUnit" info="Default: 'byte'">
+          <FormSelect label="Input Unit" v-model="inputUnit" info="Default: 'millimeters'">
             <option v-for="[unit] in lengthUnitConversions" :value="unit" :key="unit">{{ unit }}</option>
           </FormSelect>
           <FormSelect label="Output Unit" v-model="outputUnit" info="Default: 'auto'">
@@ -27,7 +27,6 @@
       </ExampleInputs>
   
       <ExampleCode :code="`formatLength(${number}, { inputUnit: ${inputUnit}, ${outputUnit !== 'auto' ? `outputUnit: ${outputUnit},` : ''} ${isNumber(decimals) ? `decimals: ${decimals},` : ''} unitDisplay: ${unitDisplay}, ${locale !== undefined ? `locale: ${locale},` : ''} })`" />
-      
       <ExampleResult>
         {{ formatLength(number, { inputUnit, outputUnit, ...(isNumber(decimals) ? { decimals } : {}), unitDisplay, locale }) }}
       </ExampleResult>
@@ -35,11 +34,10 @@
   </template>
     
 <script setup lang="ts">
-const number = ref(1024)
+const number = ref(1500)
 const inputUnit = ref('millimeter')
 const outputUnit = ref('auto')
-const decimals = ref(undefined)
+const decimals = ref(null)
 const locale = ref(undefined)
 const unitDisplay = ref<'short' | 'long'>('short')
-
 </script>

@@ -38,7 +38,7 @@
 const number = ref(1024)
 const inputUnit = ref('byte')
 const outputUnit = ref('auto')
-const decimals = ref(undefined)
+const decimals = ref(null)
 const locale = ref(undefined)
 const unitDisplay = ref<'short' | 'long'>('short')
 </script>
