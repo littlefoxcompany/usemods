@@ -62,8 +62,8 @@ export function formatValuation(number: number, options?: { decimals?: number; l
  */
 export function formatUnit(number: number, options: { unit: string; decimals?: number; unitDisplay?: 'short' | 'long'; locale?: string }): string {
   const decimalPlaces = (number.toString().split('.')[1] || '').length
-  const safeDecimals = Math.max(0, Math.min(options.decimals ?? decimalPlaces, decimalPlaces))
-
+  const safeDecimals = Math.min(options?.decimals ?? 21, decimalPlaces)
+  
   const config: Intl.NumberFormatOptions = {
     unit: options.unit,
     style: 'unit',
@@ -148,7 +148,7 @@ export function formatDurationNumbers(seconds: number): string {
  * Format and auto calculate file size into human-readable string
  */
 export function formatFileSize(number: number, options?: { decimals?: number; inputUnit?: string; outputUnit?: string; unitDisplay?: 'short' | 'long'; locale?: string }): string {
-  const { decimals = 0, unitDisplay = 'short', locale = 'en-US', inputUnit = 'byte', outputUnit = 'auto' } = options || {}
+  const { decimals = undefined, unitDisplay = 'short', locale = 'en-US', inputUnit = 'byte', outputUnit = 'auto' } = options || {}
   const valueInBytes = number * (bytesInUnit.get(inputUnit) || 1)
 
   const targetUnit = outputUnit === 'auto'
@@ -164,7 +164,7 @@ export function formatFileSize(number: number, options?: { decimals?: number; in
  * Format and auto calculate length into human-readable string
  */
 export function formatLength(number: number, options?: { decimals?: number; inputUnit?: string; outputUnit?: string; unitDisplay?: 'short' | 'long'; locale?: string }): string {
-  const { decimals = 0, unitDisplay = 'short', locale = 'en-US', inputUnit = 'millimeter', outputUnit = 'auto' } = options || {}
+  const { decimals = undefined, unitDisplay = 'short', locale = 'en-US', inputUnit = 'millimeter', outputUnit = 'auto' } = options || {}
   const valueInMillimeters = number * (lengthUnitConversions.get(inputUnit)?.value || 1)
   const system = lengthUnitConversions.get(inputUnit)?.system
 
