@@ -69,7 +69,7 @@ export function formatUnit(number: number, options: { unit: string; decimals?: n
     style: 'unit',
     unitDisplay: options.unitDisplay ?? 'long',
     minimumFractionDigits: safeDecimals,
-    maximumFractionDigits: safeDecimals
+    maximumFractionDigits: safeDecimals,
   }
 
   return new Intl.NumberFormat(options.locale ?? 'en-US', config).format(number)
@@ -165,12 +165,18 @@ export function formatFileSize(number: number, options?: { decimals?: number; in
  */
 export function formatLength(number: number, options?: { decimals?: number; inputUnit?: string; outputUnit?: string; unitDisplay?: 'short' | 'long'; locale?: string }): string {
   const { decimals = undefined, unitDisplay = 'short', locale = 'en-US', inputUnit = 'millimeter', outputUnit = 'auto' } = options || {}
-  const valueInMillimeters = number * (lengthUnitConversions.get(inputUnit)?.value || 1)
-  const system = lengthUnitConversions.get(inputUnit)?.system
+  const inputUnitValue = lengthUnitConversions.get(inputUnit)
+
+  if (!inputUnitValue) {
+    console.warn(`[MODS] Unsupported input unit: ${inputUnit}`)
+    return String(number)
+  }
+
+  const valueInMillimeters = number * inputUnitValue.value
 
   const targetUnit = outputUnit === 'auto'
     ? Array.from(lengthUnitConversions.keys())
-      .filter(unit => lengthUnitConversions.get(unit)?.system === system)
+      .filter(unit => lengthUnitConversions.get(unit)?.system === inputUnitValue.system)
       .reverse()
       .find(unit => valueInMillimeters >= (lengthUnitConversions.get(unit)?.value || 0)) || inputUnit
     : outputUnit
