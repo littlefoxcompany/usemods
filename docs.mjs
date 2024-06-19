@@ -28,7 +28,7 @@ async function generateMarkdown(file, name) {
 
   await copyFile(file, join(nuxtWebPath, 'utils', basename(file)))
 
-  // If Tailwind stop herec
+  // If Tailwind stop here
   // If you're reading this...it's a great first fix to contribute to the project.
   if (name === '12.tailwind') {
     return
