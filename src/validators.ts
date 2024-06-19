@@ -14,7 +14,7 @@ export function isEmail(value: string): boolean {
 /**
  * Check if any given value is a valid number.
  */
-export function isNumber(value: string | number): boolean {
+export function isNumber(value: unknown): boolean {
   if (typeof value === 'number') return true
   console.warn('[MODS] Non-numeric value passed to isNumber validator.')
   return false

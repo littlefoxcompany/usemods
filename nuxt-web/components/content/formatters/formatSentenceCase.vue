@@ -11,5 +11,5 @@
 </template>
 
 <script setup lang="ts">
-  const value = ref('scooters are safe. i like scooters.')
+const value = ref('scooters are safe. i like scooters.')
 </script>

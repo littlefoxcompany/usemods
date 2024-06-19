@@ -21,7 +21,7 @@
 
     <ExampleCode :code="`formatUnit(${number}, { unit: ${unit}, ${isNumber(decimals) ? `decimals: ${decimals},` : ''} unitDisplay: ${unitDisplay}, locale: ${locale} })`"/>
     <ExampleResult>
-      {{ formatUnit(number, { unit, ...(isNumber(decimals) ? { decimals } : {}), unitDisplay: unitDisplay as 'long' | 'short', locale }) }}
+      {{ formatUnit(number, { unit, ...(isNumber(decimals) ? { decimals } : {}), unitDisplay, locale }) }}
     </ExampleResult>
   </Example>
 </template>
@@ -31,5 +31,5 @@ const number = ref(0.12)
 const decimals = ref(0)
 const locale = ref('en-US')
 const unit = ref('degree')
-const unitDisplay = ref('long')
+const unitDisplay = ref<'long' | 'short'>('long')
 </script>

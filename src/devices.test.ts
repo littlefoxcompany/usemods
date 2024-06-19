@@ -17,18 +17,6 @@ test('detectUserDevice', () => {
   })
 })
 
-// test('detectOS', () => {
-//   expect(mod.detectOS(userAgent)).toBe('Windows')
-// })
-
-// test('detectBrowser', () => {
-//   expect(mod.detectBrowser(userAgent)).toBe('Chrome')
-// })
-
-// test('detectDevice', () => {
-//   expect(mod.detectDevice(userAgent)).toBe('Desktop')
-// })
-
 test('isAndroid', () => {
   expect(mod.isAndroid(userAgent)).toBe(false)
 })

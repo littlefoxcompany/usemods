@@ -6,7 +6,8 @@
       @click="copyToClipboard(`${detectHost()}#${props.name.toLowerCase()}`), copied()"
       @mouseover="showCopyToClipboard = true"
       @mouseout="showCopyToClipboard = false">
-      <h2 class="text-3xl font-semibold">{{ name }}</h2>
+
+      <h2 class="text-2xl md:text-3xl font-semibold">{{ name }}</h2>
 
       <div class="flex h-6 w-6 mb-1 items-center justify-center rounded-md border border-white/5 bg-white/[3%] text-zinc-500 transition-all hover:border-white/20 hover:text-white" :class="showCopyToClipboard ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'">
         <Icon name="heroicons:hashtag" class="h-4 w-4" />

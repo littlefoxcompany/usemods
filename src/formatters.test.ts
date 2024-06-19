@@ -68,9 +68,9 @@ test('formatUnit', () => {
   expect(mod.formatUnit(0, { unit: 'meter' })).toBe('0 meters')
   expect(mod.formatUnit(1000, { unit: 'meter', decimals: 0 })).toBe('1,000 meters')
   expect(mod.formatUnit(1000, { unit: 'meter', decimals: 0 })).toBe('1,000 meters')
-  expect(mod.formatUnit(1000, { unit: 'meter', decimals: 2, unitDisplay: 'short' })).toBe('1,000.00 m')
-  expect(mod.formatUnit(1000, { unit: 'meter', decimals: 2, unitDisplay: 'long' })).toBe('1,000.00 meters')
-  expect(mod.formatUnit(1000, { unit: 'meter', decimals: 2, locale: 'en-AU', unitDisplay: 'long' })).toBe('1,000.00 metres')
+  expect(mod.formatUnit(1000, { unit: 'meter', decimals: 2, unitDisplay: 'short' })).toBe('1,000 m')
+  expect(mod.formatUnit(1000, { unit: 'meter', decimals: 2, unitDisplay: 'long' })).toBe('1,000 meters')
+  expect(mod.formatUnit(1000, { unit: 'meter', decimals: 2, locale: 'en-AU', unitDisplay: 'long' })).toBe('1,000 metres')
 })
 
 test('formatList', () => {
@@ -161,4 +161,25 @@ test('formatTextWrap', () => {
   expect(mod.formatTextWrap('Test')).toBe('Test')
   expect(mod.formatTextWrap('TestTest')).toBe('TestTest')
   expect(mod.formatTextWrap('')).toBe('')
+})
+
+test('formatFileSize', () => {
+  expect(mod.formatFileSize(1024)).toBe('1 kB')
+  expect(mod.formatFileSize(1024, { inputUnit: 'byte' })).toBe('1 kB')
+  expect(mod.formatFileSize(1024, { inputUnit: 'byte', outputUnit: 'megabyte' })).toBe('0.0009765625 MB')
+  expect(mod.formatFileSize(1024, { outputUnit: 'megabyte' })).toBe('0.0009765625 MB')
+  expect(mod.formatFileSize(1024, { inputUnit: 'byte', outputUnit: 'megabyte', decimals: 2 })).toBe('0.00 MB')
+  // Invalid input unit
+  expect(mod.formatFileSize(1024, { inputUnit: 'kbdd' })).toBe('1 kB')
+})
+
+test('formatLength', () => {
+  expect(mod.formatLength(1500, { outputUnit: 'auto' })).toBe('1.5 m')
+  expect(mod.formatLength(1500, { outputUnit: 'kilometer' })).toBe('0.0015 km')
+  expect(mod.formatLength(1500, { inputUnit: 'kilometer', outputUnit: 'kilometer' })).toBe('1,500 km')
+  expect(mod.formatLength(1500, { outputUnit: 'kilometer', locale: 'ar-SA' })).toBe('٠٫٠٠١٥ كم')
+  expect(mod.formatLength(1500, { outputUnit: 'inch' })).toBe('59.05511811023622 in')
+  expect(mod.formatLength(1500, { outputUnit: 'inch', decimals: 2 })).toBe('59.06 in')
+  // Invalid input unit
+  expect(mod.formatLength(1500, { inputUnit: 'kbdd' })).toBe('1500')
 })

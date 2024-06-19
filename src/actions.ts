@@ -3,6 +3,21 @@
 // lead: JS karate chops
 
 /**
+ * Scrolls to the top of the page
+ */
+export function scrollToTop(): void {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
+
+/**
+ * Scrolls to the bottom of the page
+ */
+export function scrollToBottom(): void {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+}
+
+/**
  * Smoothly scrolls to the element with the specified ID without scuffing up your URLs.
  */
 export function scrollToAnchor(id: string): Promise<void> {
@@ -81,14 +96,10 @@ export function toggleElementScroll(element: HTMLElement): Promise<void> {
  * Copies a convereted string to the clipboard
  */
 export async function copyToClipboard(value: string | number): Promise<void> {
-  if (!navigator.clipboard || !navigator.clipboard.writeText) {
-    throw new Error('Clipboard API is not available')
-  }
-
   try {
     await navigator.clipboard.writeText(String(value))
   } catch (error) {
-    console.error('Failed to copy text: ', error)
+    console.error('[MODS] Failed to copy text: ', error)
     throw error
   }
 }
@@ -97,13 +108,9 @@ export async function copyToClipboard(value: string | number): Promise<void> {
  * Toggles the fullscreen mode
  */
 export function toggleFullScreen(): Promise<void> {
-  return new Promise((resolve, reject) => {
-    if (document.fullscreenElement) {
-      document.exitFullscreen().then(resolve).catch(reject)
-    } else {
-      document.documentElement.requestFullscreen().then(resolve).catch(reject)
-    }
-  })
+  return document.fullscreenElement
+    ? document.exitFullscreen()
+    : document.documentElement.requestFullscreen()
 }
 
 /**
@@ -192,17 +199,32 @@ export function focusTrap(container: HTMLElement): void {
   })
 }
 
-// /**
-//  * Scrolls to the top of the page
-//  */
-// export function scrollToTop(): void {
-//   window.scrollTo({ top: 0, behavior: 'smooth' })
+/**
+ * Debounces a function
+ */
+// export function debounce<T extends (...args: unknown[]) => void>(fn: T, delay: number): (...args: Parameters<T>) => void {
+//   let timeoutId: ReturnType<typeof setTimeout> | undefined
+
+//   return function (this: ThisParameterType<T>, ...args: Parameters<T>): void {
+//     if (timeoutId) {
+//       clearTimeout(timeoutId)
+//     }
+//     timeoutId = setTimeout(() => fn.apply(this, args), delay)
+//   }
 // }
 
+/**
+ * Throttles a function
+ */
+// export function throttle<T extends (...args: unknown[]) => void>(fn: T, delay: number): (...args: Parameters<T>) => void {
+//   let timeout: ReturnType<typeof setTimeout> | null = null
 
-// /**
-//  * Scrolls to the bottom of the page
-//  */
-// export function scrollToBottom(): void {
-//   window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+//   return function (this: ThisParameterType<T>, ...args: Parameters<T>) {
+//     if (timeout) return
+
+//     timeout = setTimeout(() => {
+//       fn.apply(this, args)
+//       timeout = null
+//     }, delay)
+//   }
 // }

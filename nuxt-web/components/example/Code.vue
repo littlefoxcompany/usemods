@@ -6,8 +6,8 @@
             </div>
             <div class="min-h-7 text-lg text-gray-500 dark:text-white/50 text-pretty" v-html="formattedCode"></div>
         </div>
-        <Button color="secondary" size="sm" @click="copyToClipboard(props.code), copied()" class="max-md:w-full">
-            <!-- <Icon v-if="showCopied" name="🎉" class="w-3 h-3" /> -->
+        <Button color="secondary" size="sm" @click="copyToClipboard(props.code), copied()" class="max-md:w-full max-md:h-12 md:w-24">
+            <Icon v-if="showCopied" name="🎉" class="w-3 h-3" />
             <Icon v-if="!showCopied" name="heroicons:square-2-stack" class="w-3 h-3" />
             <span class="text-sm/none">
                 <span v-if="showCopied">Copied</span>
@@ -41,7 +41,7 @@ function formatCode(input: string) {
 
 <style scoped>
 :deep(.option) {
-    @apply px-2 py-0 rounded-lg text-base bg-indigo-600/10 text-indigo-500 dark:text-white dark:bg-white/10 inline-flex;
+    @apply text-base underline decoration-indigo-200 dark:decoration-white/10 underline-offset-[6px] decoration-dashed text-indigo-500 dark:text-white inline-flex;
 }
 </style>
 

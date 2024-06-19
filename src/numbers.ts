@@ -6,7 +6,6 @@
  * Calculates the sum of an array of numbers.
  */
 export function sum(numbers: number[]): number {
-  if (numbers.length === 0) return 0
   return numbers.reduce((a, b) => a + b, 0)
 }
 
@@ -18,15 +17,13 @@ export function mean(numbers: number[]): number {
     console.log('[MODS] mean array is empty.')
     return 0
   }
-  const sum = numbers.reduce((acc, val) => acc + val, 0)
-  return sum / numbers.length
+  return sum(numbers) / numbers.length
 }
 
 /**
  * Calculates the mean of an array of numbers.
  */
 export function average(numbers: number[]): number {
-  if (numbers.length === 0) return 0
   return mean(numbers)
 }
 
@@ -77,14 +74,10 @@ export function subtractMarkup(value: number, percentage: number): number {
  * Calculates the median of an array of numbers.
  */
 export function median(numbers: number[]): number {
-  const sorted = numbers.sort((a, b) => a - b) // Fixed sorting for numbers
+  if (numbers.length === 0) return 0
+  const sorted = numbers.slice().sort((a, b) => a - b)
   const middle = Math.floor(sorted.length / 2)
-
-  if (sorted.length % 2 === 0) {
-    return (sorted[middle - 1] + sorted[middle]) / 2
-  }
-
-  return sorted[middle]
+  return sorted.length % 2 === 0 ? (sorted[middle - 1] + sorted[middle]) / 2 : sorted[middle]
 }
 
 /**

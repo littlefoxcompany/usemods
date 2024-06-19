@@ -1,5 +1,5 @@
 <template>
-  <div class="pb-12">
+  <div class="md:pb-8">
     <!-- Breadcrumb -->
     <div class="mb-4 flex items-center gap-2 text-sm font-medium text-gray-500 dark:text-white/50">
       <div>Docs</div>
@@ -18,6 +18,6 @@ const route = useRoute()
 
 <style scoped>
   :deep(p) {
-    @apply text-pretty pt-4 font-light md:text-xl/[1.6em] lg:text-2xl/[1.6em];
+    @apply text-pretty font-light md:text-xl/[1.6em] lg:text-2xl/[1.6em];
   }
 </style>

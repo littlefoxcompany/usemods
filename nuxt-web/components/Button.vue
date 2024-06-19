@@ -1,7 +1,7 @@
 <template>
   <button
-    :type="type as 'button' | 'reset' | 'submit'"
     class="flex translate-y-0 touch-manipulation select-none items-center justify-center whitespace-nowrap rounded-lg border text-lg font-medium transition-all"
+    :type="type as 'button' | 'reset' | 'submit'"
     :class="[colorClasses, sizeClasses]">
     <slot />
   </button>
@@ -25,7 +25,7 @@
 
   const colorClasses = {
     'bg-gradient-to-br from-indigo-500 to-indigo-600 text-white border-white/20': props.color === 'primary',
-    'bg-white text-indigo-600 dark:bg-white/[2%] hover:bg-white/[4%] dark:text-white shadow-lg border-white/[5%] dark:hover:bg-white/[3%]': props.color === 'secondary',
+    'bg-white text-indigo-600 dark:bg-white/[2%] hover:bg-white/[4%] dark:text-white shadow-md border-indigo-100/75 dark:border-white/10 dark:hover:bg-white/[3%]': props.color === 'secondary',
   }
 
   const sizeClasses = {
