@@ -2,6 +2,8 @@
 // description: A collection of magical functions that conjure data out of thin air.
 // lead: Conjure data out of thin air
 
+import crypto from 'crypto'
+
 /**
  * Generate a random number
  */
@@ -97,7 +99,6 @@ export function generateRandomIndex(max: number): number {
       randomValue = window.crypto.getRandomValues(new Uint8Array(1))[0]
     } while (randomValue >= range)
   } else {
-    const crypto = require('crypto')
     do {
       randomValue = crypto.randomBytes(1)[0]
     } while (randomValue >= range)

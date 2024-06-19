@@ -17,6 +17,11 @@ export default defineNuxtConfig({
       '/api/sitemap'
     ]
   },
+  site: {
+    name: 'UseMods',
+    description: 'UseMods is a collection of helper functions for JavaScript and TypeScript.',
+    url: 'https://usemods.com'
+  },
   content: {
     highlight: {
       theme: {

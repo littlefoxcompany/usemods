@@ -15,9 +15,9 @@
         </div>
       </NuxtLink>
     </template>
-
       <NuxtLink
         :to="`https://github.com/LittleFoxCompany/usemods/blob/main/src/${pageId.at(-1)}.ts`"
+        target="_blank"
         class="flex items-center gap-1.5 py-8 text-sm font-medium leading-none text-zinc-500">
         <Icon name="fa6-brands:github" class="-mt-px mr-1.5 h-4 w-4" />
         View on GitHub
