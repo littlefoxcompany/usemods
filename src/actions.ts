@@ -203,13 +203,13 @@ export function scrollToBottom(): void {
  * Debounces a function
  */
 export function debounce<T extends (...args: unknown[]) => void>(fn: T, delay: number): (...args: Parameters<T>) => void {
-  let timeout: ReturnType<typeof setTimeout> | undefined
+  let timeoutId: ReturnType<typeof setTimeout> | undefined
 
-  return function (this: ThisParameterType<T>, ...args: Parameters<T>) {
-    if (timeout) {
-      clearTimeout(timeout)
+  return function (this: ThisParameterType<T>, ...args: Parameters<T>): void {
+    if (timeoutId) {
+      clearTimeout(timeoutId)
     }
-    timeout = setTimeout(() => fn.apply(this, args), delay)
+    timeoutId = setTimeout(() => fn.apply(this, args), delay)
   }
 }
 
