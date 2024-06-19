@@ -1,5 +1,24 @@
 # Changelog
 
+## v1.5.0
+
+[compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.4.3...v1.5.0)
+
+### 🚀 Enhancements
+
+- Add FormatLength component for formatting lengths ([e062f4b](https://github.com/LittleFoxCompany/usemods/commit/e062f4b))
+
+### 🏡 Chore
+
+- Update npm dependencies ([d6d0a95](https://github.com/LittleFoxCompany/usemods/commit/d6d0a95))
+- Update npm dependencies and bump version ([dbd11ad](https://github.com/LittleFoxCompany/usemods/commit/dbd11ad))
+- Refactor debounce function to use clearer variable names ([d66d728](https://github.com/LittleFoxCompany/usemods/commit/d66d728))
+- Remove commented out code in devices.test.ts ([f3ab336](https://github.com/LittleFoxCompany/usemods/commit/f3ab336))
+
+### ❤️ Contributors
+
+- Jeremy Butler ([@jrmymbtlr](http://github.com/jrmymbtlr))
+
 ## v1.4.3
 
 [compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.4.2...v1.4.3)
