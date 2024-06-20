@@ -14,8 +14,12 @@ test('formatNumber', () => {
 })
 
 test('formatCurrency', () => {
-  expect(mod.formatCurrency(0)).toBe('$0')
+  expect(mod.formatCurrency(0.00)).toBe('$0.00')
+  expect(mod.formatCurrency(0.10)).toBe('$0.10')
+  expect(mod.formatCurrency(0)).toBe('$0.00')
   expect(mod.formatCurrency(0, { decimals: 0 })).toBe('$0')
+  expect(mod.formatCurrency(0.000009876)).toBe('$0.000009876')
+  expect(mod.formatCurrency(0.000009876, { decimals: 7 })).toBe('$0.0000099')
   expect(mod.formatCurrency(1000.95)).toBe('$1,000.95')
   expect(mod.formatCurrency(1000.95, { decimals: 2 })).toBe('$1,000.95')
   expect(mod.formatCurrency(1000.95, { decimals: 2, locale: 'en-GB' })).toBe('£1,000.95')

@@ -24,7 +24,7 @@ export function formatNumber(number: number, options?: { decimals?: number; loca
  * Format numbers into local currency with extra smarts
  */
 export function formatCurrency(number: number, options?: { decimals?: number; locale?: string }): string {
-  const decimalPlaces = (number.toString().split('.')[1] || '').length
+  const decimalPlaces = (number.toString().split('.')[1] || '0').padEnd(2, '0').length
   const safeDecimals = Math.min(options?.decimals ?? decimalPlaces, decimalPlaces)
 
   const config: Intl.NumberFormatOptions = {
