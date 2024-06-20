@@ -7,6 +7,7 @@
 ### 🏡 Chore
 
 - Update npm dependency to latest stable version ([4c9d539](https://github.com/LittleFoxCompany/usemods/commit/4c9d539))
+- **release:** V1.5.1 ([ae5e29e](https://github.com/LittleFoxCompany/usemods/commit/ae5e29e))
 
 ### ❤️ Contributors
 
