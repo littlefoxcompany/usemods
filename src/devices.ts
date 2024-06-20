@@ -71,7 +71,6 @@ export function detectBrowser(userAgent?: string): string {
 export function detectOS(userAgent?: string): string {
   if (isServerSide() && !userAgent) return 'server'
   const result = userAgent || navigator.userAgent.toLowerCase()
-  console.log('result', result)
   switch (true) {
     case result.includes('iphone') || result.includes('ipad'): return 'iOS'
     case result.includes('android'): return 'Android'

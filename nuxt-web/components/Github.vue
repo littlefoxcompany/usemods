@@ -1,6 +1,7 @@
 <template>
   <div class="flex">
     <NuxtLink to="https://github.com/LittleFoxCompany/usemods" target="_blank" 
+    aria-label="View on GitHub"
      class="flex h-8 items-center gap-2 rounded-lg border border-gray-200 px-2 dark:border-white/20">
       <Icon name="fa6-brands:github" class="h-4 w-4 dark:text-white" />
       <!-- <span v-if="data?.stargazers_count" class="text-sm">
