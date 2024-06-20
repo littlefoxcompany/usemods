@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.5.1
+
+[compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.5.0...v1.5.1)
+
+### 🏡 Chore
+
+- Update npm dependency to latest stable version ([4c9d539](https://github.com/LittleFoxCompany/usemods/commit/4c9d539))
+
+### ❤️ Contributors
+
+- Jeremy Butler ([@jrmymbtlr](http://github.com/jrmymbtlr))
+
 ## v1.5.0
 
 [compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.4.3...v1.5.0)
