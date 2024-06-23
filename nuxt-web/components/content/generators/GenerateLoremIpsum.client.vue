@@ -16,6 +16,6 @@
 </template>
 
 <script setup lang="ts">
-  const length = ref(2)
-  const type = ref('words')
+const length = ref(2)
+const type = ref('words')
 </script>

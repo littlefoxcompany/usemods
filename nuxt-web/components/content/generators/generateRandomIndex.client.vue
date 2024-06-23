@@ -11,5 +11,5 @@
 </template>
 
 <script setup lang="ts">
-  const length = ref(120)
+const length = ref(120)
 </script>
