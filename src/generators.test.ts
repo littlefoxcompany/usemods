@@ -61,18 +61,18 @@ test('generateRandomIndex', () => {
   expect(mod.generateRandomIndex(10)).toBeLessThanOrEqual(9)
 
   // Min
-  expect(() => mod.generateRandomIndex(0)).toThrow('[MODS] Max generateRandomIndex value must be a positive integer')
+  expect(() => mod.generateRandomIndex(0)).toThrow('[MODS] Max generateRandomIndex must be between 1 and 255')
 
   // Max
-  expect(() => mod.generateRandomIndex(300)).toThrow('[MODS] Max generateRandomIndex value must be less than 256')
+  expect(() => mod.generateRandomIndex(300)).toThrow('[MODS] Max generateRandomIndex must be between 1 and 255')
 
   // Window
   const originalWindow = global.window
   global.window = {
-    // @ts-ignore - Mock Test
+    // @ts-expect-error - Mock Test
     crypto: {
       getRandomValues: vi.fn((arr) => {
-        // @ts-ignore - Mock Test
+        // @ts-expect-error - Mock Test
         arr[0] = 5
         return arr
       }),

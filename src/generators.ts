@@ -2,7 +2,7 @@
 // description: A collection of magical functions that conjure data out of thin air.
 // lead: Conjure data out of thin air
 
-import crypto from 'crypto'
+import { isServerSide } from './devices'
 
 /**
  * Generate a random number
@@ -84,25 +84,19 @@ export function generatePassword(options?: { length?: number, uppercase?: number
  * Random number generator using cryptographic methods to avoid random().
  */
 export function generateRandomIndex(max: number): number {
-  if (max <= 0) {
-    throw new Error('[MODS] Max generateRandomIndex value must be a positive integer')
-  }
-  if (max > 256) {
-    throw new Error('[MODS] Max generateRandomIndex value must be less than 256')
+  if (max <= 0 || max > 256) {
+    throw new Error('[MODS] Max generateRandomIndex must be between 1 and 255')
   }
 
   const range = 256 - (256 % max)
+  
   let randomValue
-
-  if (typeof window !== 'undefined' && window.crypto && window.crypto.getRandomValues) {
-    do {
-      randomValue = window.crypto.getRandomValues(new Uint8Array(1))[0]
-    } while (randomValue >= range)
-  } else {
-    do {
-      randomValue = crypto.randomBytes(1)[0]
-    } while (randomValue >= range)
-  }
+  const getRandomValue = () => (!isServerSide() && window.crypto && window.crypto.getRandomValues)
+    ? window.crypto.getRandomValues(new Uint8Array(1))[0]
+    : globalThis.crypto.getRandomValues(new Uint8Array(1))[0]
+  do {
+    randomValue = getRandomValue()
+  } while (randomValue >= range)
 
   return randomValue % max
 }
