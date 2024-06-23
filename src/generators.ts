@@ -91,9 +91,15 @@ export function generateRandomIndex(max: number): number {
   const range = 256 - (256 % max)
   
   let randomValue
-  const getRandomValue = () => (!isServerSide() && window.crypto && window.crypto.getRandomValues)
-    ? window.crypto.getRandomValues(new Uint8Array(1))[0]
-    : globalThis.crypto.getRandomValues(new Uint8Array(1))[0]
+  const getRandomValue = () => {
+    if (!isServerSide() && window.crypto && window.crypto.getRandomValues) {
+      return window.crypto.getRandomValues(new Uint8Array(1))[0]
+    } else if (globalThis.crypto && globalThis.crypto.getRandomValues) {
+      return globalThis.crypto.getRandomValues(new Uint8Array(1))[0]
+    } else {
+      throw new Error('[MODS] crypto.getRandomValues is not available')
+    }
+  }
   do {
     randomValue = getRandomValue()
   } while (randomValue >= range)
