@@ -1,6 +1,6 @@
 {
   "name": "usemods",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "Zippy little modifiers and utilities for your frontend.",
   "scripts": {
     "prepublishOnly": "bun run docs:bundle",

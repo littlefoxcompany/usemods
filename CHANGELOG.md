@@ -1,5 +1,23 @@
 # Changelog
 
+## v1.5.2
+
+[compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.5.1...v1.5.2)
+
+### 🩹 Fixes
+
+- Ensure node detection before globalThis to remove explicit cypto import ([11b514e](https://github.com/LittleFoxCompany/usemods/commit/11b514e))
+
+### 🏡 Chore
+
+- Refactor generator components to use client-side rendering ([4692f8f](https://github.com/LittleFoxCompany/usemods/commit/4692f8f))
+- Refactor getRandomValue function to handle different environments ([3ac00c1](https://github.com/LittleFoxCompany/usemods/commit/3ac00c1))
+- Update Node.js version in CI workflow to support 18.x, 20.x, and 22.x ([b685f43](https://github.com/LittleFoxCompany/usemods/commit/b685f43))
+
+### ❤️ Contributors
+
+- Jeremy Butler ([@jrmymbtlr](http://github.com/jrmymbtlr))
+
 ## v1.5.1
 
 [compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.5.0...v1.5.1)
