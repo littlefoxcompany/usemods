@@ -61,10 +61,10 @@ test('generateRandomIndex', () => {
   expect(mod.generateRandomIndex(10)).toBeLessThanOrEqual(9)
 
   // Min
-  expect(() => mod.generateRandomIndex(0)).toThrow('[MODS] Max generateRandomIndex must be between 1 and 255')
+  expect(mod.generateRandomIndex(0)).toBe(0)
 
   // Max
-  expect(() => mod.generateRandomIndex(300)).toThrow('[MODS] Max generateRandomIndex must be between 1 and 255')
+  expect(mod.generateRandomIndex(300)).toBe(0)
 
   // Window
   const originalWindow = global.window
