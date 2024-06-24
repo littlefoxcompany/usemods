@@ -5,9 +5,16 @@
 /**
  * Check if you're a server-side user.
  */
-export function isServerSide(): boolean {
-  return typeof window === 'undefined'
+export function isServerSide() {
+  if (typeof window !== 'undefined') {
+    return false
+  }
+  if (typeof process !== 'undefined' && process.versions && process.versions.node) {
+    return true
+  }
+  return true
 }
+
 
 /**
  * Detects the user's device based on the user agent string and returns the information as an object.

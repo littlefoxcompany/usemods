@@ -2,7 +2,7 @@
 // description: A collection of magical functions that conjure data out of thin air.
 // lead: Conjure data out of thin air
 
-import crypto from 'crypto'
+import { isServerSide } from './devices'
 
 /**
  * Generate a random number
@@ -62,14 +62,14 @@ export function generatePassword(options?: { length?: number, uppercase?: number
   password += allChars.charAt(generateRandomIndex(52)) // Selects a random letter from the first 52 characters (lowercase + uppercase)
 
   for (let i = 1; i < length; i++) {
-    password += allChars.charAt(Math.floor(Math.random() * allChars.length))
+    password += allChars.charAt(generateRandomIndex(allChars.length))
   }
 
   // Ensure the password meets the criteria
   const ensureCriteria = (regex: RegExp, chars: string, count: number) => {
     while ((password.match(regex) || []).length < count) {
       const randomIndex = generateRandomIndex(password.length)
-      password = password.substring(0, randomIndex) + chars.charAt(Math.floor(Math.random() * chars.length)) + password.substring(randomIndex + 1)
+      password = password.substring(0, randomIndex) + chars.charAt(Math.floor(generateRandomIndex(chars.length))) + password.substring(randomIndex + 1)
     }
   }
 
@@ -84,25 +84,27 @@ export function generatePassword(options?: { length?: number, uppercase?: number
  * Random number generator using cryptographic methods to avoid random().
  */
 export function generateRandomIndex(max: number): number {
-  if (max <= 0) {
-    throw new Error('[MODS] Max generateRandomIndex value must be a positive integer')
-  }
-  if (max > 256) {
-    throw new Error('[MODS] Max generateRandomIndex value must be less than 256')
+  if (max <= 0 || max > 256) {
+    console.warn('[MODS] Max generateRandomIndex must be between 1 and 255')
+    return 0
   }
 
   const range = 256 - (256 % max)
+  
   let randomValue
-
-  if (typeof window !== 'undefined' && window.crypto && window.crypto.getRandomValues) {
-    do {
-      randomValue = window.crypto.getRandomValues(new Uint8Array(1))[0]
-    } while (randomValue >= range)
-  } else {
-    do {
-      randomValue = crypto.randomBytes(1)[0]
-    } while (randomValue >= range)
+  const getRandomValue = () => {
+    if (!isServerSide() && window.crypto && window.crypto.getRandomValues) {
+      return window.crypto.getRandomValues(new Uint8Array(1))[0]
+    } else if (globalThis.crypto && globalThis.crypto.getRandomValues) {
+      return globalThis.crypto.getRandomValues(new Uint8Array(1))[0]
+    } else {
+      console.warn('[MODS] crypto.getRandomValues is not available. Using random() fallback.')
+      return Math.floor(Math.random() * max)
+    }
   }
+  do {
+    randomValue = getRandomValue()
+  } while (randomValue === undefined || randomValue >= range)
 
   return randomValue % max
 }
