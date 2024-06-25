@@ -79,3 +79,10 @@ export const lengthUnitConversions = new Map([
   ['yard', {value: 914.4, system: 'imperial'}],
   ['mile', {value: 1609344, system: 'imperial'}]
 ])
+
+// Temperature Conversion
+export const temperatureUnitConversions = new Map([
+  ['Celsius', {factor: 1, offset: 0}],
+  ['Fahrenheit', {factor: 5/9, offset: -32}],
+  ['Kelvin', {factor: 1, offset: -273.15}]
+])

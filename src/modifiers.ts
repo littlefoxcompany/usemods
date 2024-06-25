@@ -2,7 +2,7 @@
 // description: Modify and transform your content with our collection of efficient and easy-to-use functions designed to dicipher, manipulate, and transform strings.
 // lead: Bend content to your will
 
-import { unchangingPlurals, irregularPlurals } from './config'
+import * as map from './maps'
 
 /**
  * Adds a prefix to a string if it doesn't already start with the prefix.
@@ -54,8 +54,8 @@ export function pluralize(word: string, count: number): string {
   if (count === 1 || !word || typeof word !== 'string') return word
 
   word = word.trim().toLowerCase()
-  if (unchangingPlurals.has(word)) return word
-  if (irregularPlurals.has(word)) return irregularPlurals.get(word)!
+  if (map.unchangingPlurals.has(word)) return word
+  if (map.irregularPlurals.has(word)) return map.irregularPlurals.get(word)!
 
   const suffixRules = new Map<string, string>([
     ['ch', 'ches'],
@@ -87,9 +87,9 @@ export function pluralize(word: string, count: number): string {
 export function singularize(value: string): string {
   value = value.trim().toLowerCase()
 
-  if (unchangingPlurals.has(value)) return value
+  if (map.unchangingPlurals.has(value)) return value
 
-  for (const [singular, plural] of irregularPlurals) {
+  for (const [singular, plural] of map.irregularPlurals) {
     if (plural === value) return singular
   }
 

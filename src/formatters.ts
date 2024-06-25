@@ -2,7 +2,7 @@
 // description: Wrangle wild data types into submission. Spruce up numbers, give strings smarts, and make complex content dazzle.
 // lead: Format misbehaving content
 
-import { currencySymbols, numberUnderTwenty, numberTens, numberScales, formatTitleExceptions, bytesInUnit, lengthUnitConversions } from './config'
+import * as map from './maps'
 
 /**
  * Format numbers into neat and formatted strings for people
@@ -32,7 +32,7 @@ export function formatCurrency(number: number, options?: { decimals?: number; lo
     currencyDisplay: 'narrowSymbol',
     minimumFractionDigits: safeDecimals,
     maximumFractionDigits: safeDecimals,
-    currency: currencySymbols.get(options?.locale ?? 'en-US') || 'USD'
+    currency: map.currencySymbols.get(options?.locale ?? 'en-US') || 'USD'
   }
 
   return new Intl.NumberFormat(options?.locale ?? 'en-US', config).format(number)
@@ -51,7 +51,7 @@ export function formatValuation(number: number, options?: { decimals?: number; l
     compactDisplay: 'short',
     minimumFractionDigits: safeDecimals,
     maximumFractionDigits: safeDecimals,
-    currency: currencySymbols.get(options?.locale ?? 'en-US')
+    currency: map.currencySymbols.get(options?.locale ?? 'en-US')
   }
 
   return new Intl.NumberFormat(options?.locale ?? 'en-US', config).format(number)
@@ -149,15 +149,15 @@ export function formatDurationNumbers(seconds: number): string {
  */
 export function formatFileSize(number: number, options?: { decimals?: number; inputUnit?: string; outputUnit?: string; unitDisplay?: 'short' | 'long'; locale?: string }): string {
   const { decimals = undefined, unitDisplay = 'short', locale = 'en-US', inputUnit = 'byte', outputUnit = 'auto' } = options || {}
-  const valueInBytes = number * (bytesInUnit.get(inputUnit) || 1)
+  const valueInBytes = number * (map.bytesInUnit.get(inputUnit) || 1)
 
   const targetUnit = outputUnit === 'auto'
-    ? Array.from(bytesInUnit.keys())
+    ? Array.from(map.bytesInUnit.keys())
       .reverse()
-      .find(unit => valueInBytes >= (bytesInUnit.get(unit) || 0)) || inputUnit
+      .find(unit => valueInBytes >= (map.bytesInUnit.get(unit) || 0)) || inputUnit
     : outputUnit
 
-  return formatUnit(valueInBytes / (bytesInUnit.get(targetUnit) || 1), { unit: targetUnit, decimals, unitDisplay, locale })
+  return formatUnit(valueInBytes / (map.bytesInUnit.get(targetUnit) || 1), { unit: targetUnit, decimals, unitDisplay, locale })
 }
 
 /**
@@ -165,7 +165,7 @@ export function formatFileSize(number: number, options?: { decimals?: number; in
  */
 export function formatLength(number: number, options?: { decimals?: number; inputUnit?: string; outputUnit?: string; unitDisplay?: 'short' | 'long'; locale?: string }): string {
   const { decimals = undefined, unitDisplay = 'short', locale = 'en-US', inputUnit = 'millimeter', outputUnit = 'auto' } = options || {}
-  const inputUnitValue = lengthUnitConversions.get(inputUnit)
+  const inputUnitValue = map.lengthUnitConversions.get(inputUnit)
 
   if (!inputUnitValue) {
     console.warn(`[MODS] Unsupported input unit: ${inputUnit}`)
@@ -175,25 +175,56 @@ export function formatLength(number: number, options?: { decimals?: number; inpu
   const valueInMillimeters = number * inputUnitValue.value
 
   const targetUnit = outputUnit === 'auto'
-    ? Array.from(lengthUnitConversions.keys())
-      .filter(unit => lengthUnitConversions.get(unit)?.system === inputUnitValue.system)
+    ? Array.from(map.lengthUnitConversions.keys())
+      .filter(unit => map.lengthUnitConversions.get(unit)?.system === inputUnitValue.system)
       .reverse()
-      .find(unit => valueInMillimeters >= (lengthUnitConversions.get(unit)?.value || 0)) || inputUnit
+      .find(unit => valueInMillimeters >= (map.lengthUnitConversions.get(unit)?.value || 0)) || inputUnit
     : outputUnit
 
-  return formatUnit(valueInMillimeters / (lengthUnitConversions.get(targetUnit)?.value || 1), { unit: targetUnit, decimals, unitDisplay, locale })
+  return formatUnit(valueInMillimeters / (map.lengthUnitConversions.get(targetUnit)?.value || 1), { unit: targetUnit, decimals, unitDisplay, locale })
+}
+
+/**
+ * Format and auto calculate temperature into human-readable string
+ */
+export function formatTemperature(number: number, options?: { decimals?: number; inputUnit?: string; outputUnit?: string; unitDisplay?: 'short' | 'long'; locale?: string }): string {
+  const { decimals = undefined, unitDisplay = 'short', locale = 'en-US', inputUnit = 'Celsius', outputUnit = 'auto' } = options || {}
+  const inputUnitValue = map.temperatureUnitConversions.get(inputUnit)
+
+  if (!inputUnitValue) {
+    console.warn(`[MODS] Unsupported input unit: ${inputUnit}`)
+    return String(number)
+  }
+
+  const valueInCelsius = (number + inputUnitValue.offset) * inputUnitValue.factor
+
+  const targetUnit = outputUnit === 'auto'
+    ? Array.from(map.temperatureUnitConversions.keys())
+      .find(unit => unit === inputUnit) || 'Celsius'
+    : outputUnit
+
+  const targetUnitValue = map.temperatureUnitConversions.get(targetUnit)
+
+  if (!targetUnitValue) {
+    console.warn(`[MODS] Unsupported output unit: ${targetUnit}`)
+    return String(number)
+  }
+
+  const valueInTargetUnit = (valueInCelsius / targetUnitValue.factor) - targetUnitValue.offset
+
+  return formatUnit(valueInTargetUnit, { unit: targetUnit, decimals, unitDisplay, locale })
 }
 
 /**
  * Format numbers into words
  */
 export function formatNumberToWords(number: number): string {
-  if (number === 0) return numberUnderTwenty[0]
+  if (number === 0) return map.numberUnderTwenty[0]
 
   const formatGroup = (num: number): string => {
-    if (num < 20) return numberUnderTwenty[num]
-    if (num < 100) return `${numberTens[Math.floor(num / 10) - 2]}${num % 10 ? '-' + numberUnderTwenty[num % 10] : ''}`
-    return `${numberUnderTwenty[Math.floor(num / 100)]} hundred${num % 100 ? ` and ${formatGroup(num % 100)}` : ''}`
+    if (num < 20) return map.numberUnderTwenty[num]
+    if (num < 100) return `${map.numberTens[Math.floor(num / 10) - 2]}${num % 10 ? '-' + map.numberUnderTwenty[num % 10] : ''}`
+    return `${map.numberUnderTwenty[Math.floor(num / 100)]} hundred${num % 100 ? ` and ${formatGroup(num % 100)}` : ''}`
   }
 
   let result = ''
@@ -202,7 +233,7 @@ export function formatNumberToWords(number: number): string {
   while (number > 0) {
     const groupValue = number % 1000
     if (groupValue > 0) {
-      result = `${formatGroup(groupValue)}${numberScales[scaleIndex]}${result ? ', ' + result : ''}`
+      result = `${formatGroup(groupValue)}${map.numberScales[scaleIndex]}${result ? ', ' + result : ''}`
     }
     number = Math.floor(number / 1000)
     scaleIndex++
@@ -264,7 +295,7 @@ export function formatTitle(text: string): string {
     .split(' ')
     .map((word, index, wordsArray) => {
       const lowerWord = word.toLowerCase()
-      if (index === 0 || index === wordsArray.length - 1 || !formatTitleExceptions.has(lowerWord)) {
+      if (index === 0 || index === wordsArray.length - 1 || !map.formatTitleExceptions.has(lowerWord)) {
         return word.charAt(0).toUpperCase() + word.slice(1)
       }
       return lowerWord
