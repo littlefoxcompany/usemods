@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     '@nuxtjs/sitemap'
   ],
   css: ['~/assets/css/main.css'],
+  app: { head: { htmlAttrs: { lang: 'en' } } },
   sitemap: {
     sources: [
       '/api/sitemap'

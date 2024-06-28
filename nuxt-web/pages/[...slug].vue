@@ -1,7 +1,7 @@
 <template>
   <main>
     <!-- Navigation -->
-    <NavMain />
+    <NavMainNavigation />
 
     <!-- Pages -->
     <div class="container relative mx-auto flex min-h-screen gap-8 py-2 max-md:flex-col md:gap-12 md:py-12">

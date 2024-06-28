@@ -1,6 +1,6 @@
 <template>
   <main class="relative flex max-h-screen min-h-screen flex-col overflow-clip">
-    <NavMain class="relative z-20 shrink" />
+    <NavMainNavigation class="relative z-20 shrink" />
     <div class="relative z-10 flex grow">
       <section class="flex grow flex-col">
         <header class="flex grow flex-col items-center justify-center px-8 py-8 md:py-12">
@@ -16,7 +16,7 @@
 
             <!-- Packages -->
             <div id="packages" class="relative h-11 overflow-visible">
-              <button type="button" @click="copy('npm i usemods')" class="flex h-11 cursor-pointer items-center gap-3 whitespace-nowrap rounded-full border border-white/5 bg-black/[5%] px-6 font-mono text-gray-900 backdrop-blur max-md:w-full dark:bg-white/[3%] dark:text-white/90 dark:shadow">
+              <button type="button" @click="copyToClipboard('npm i usemods')" class="flex h-11 cursor-pointer items-center gap-3 whitespace-nowrap rounded-full border border-white/5 bg-black/[5%] px-6 font-mono text-gray-900 backdrop-blur max-md:w-full dark:bg-white/[3%] dark:text-white/90 dark:shadow">
                 <Icon name="lucide:terminal" class="h-5 w-5 dark:text-white/50" />
                 npm i usemods
               </button>
@@ -37,7 +37,12 @@
           </div>
         </header>
         <section class="shrink">
-          <NuxtPicture src="/big-scooter.png" width="800" class="mx-auto flex w-fit" />
+          <NuxtPicture src="/big-scooter.png"
+          format="webp"
+          alt="A big mods scoooter"
+          size="100vw md:800"
+          densities="1x, 2x"
+          class="mx-auto flex w-fit" />
         </section>
       </section>
     </div>
@@ -47,11 +52,7 @@
   </main>
 </template>
 
-<script setup lang="ts">
-function copy(text: string) {
-  copyToClipboard(text)
-}
-</script>
+<script setup lang="ts"></script>
 
 <style scoped>
 .radial {

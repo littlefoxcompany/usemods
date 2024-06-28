@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center gap-6">
-    <button type="button" name="theme-toggle" @click="toggle" class="relative flex h-8 w-8 overflow-hidden rounded-md border border-gray-200 p-[8px] dark:border-white/20">
+    <button type="button" name="theme-toggle" alt="Toggle theme" @click="toggle" class="relative flex h-8 w-8 overflow-hidden rounded-md border border-gray-200 p-[8px] dark:border-white/20">
       <div
         class="absolute flex flex-col items-center justify-center gap-3 transition-all duration-500"
         :class="{
@@ -15,9 +15,9 @@
 </template>
 
 <script setup lang="ts">
-  const colorMode = useColorMode()
+const colorMode = useColorMode()
 
-  function toggle() {
-    colorMode.preference = colorMode.value === 'light' ? 'dark' : 'light'
-  }
+function toggle() {
+  colorMode.preference = colorMode.value === 'light' ? 'dark' : 'light'
+}
 </script>
