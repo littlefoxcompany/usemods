@@ -16,12 +16,22 @@ export const configLocales = new Set([
 ])
 
 export const configUnits = new Set([
-  'acre', 'bit', 'byte', 'celsius', 'centimeter', 'day', 'degree', 'fahrenheit', 'fluid-ounce', 
-  'foot', 'gallon', 'gigabit', 'gigabyte', 'gram', 'hectare', 'hour', 'inch', 'kilobit', 
-  'kilobyte', 'kilogram', 'kilometer', 'liter', 'megabit', 'megabyte', 'meter', 'microsecond', 
-  'mile', 'mile-scandinavian', 'milliliter', 'millimeter', 'millisecond', 'minute', 'month', 
-  'nanosecond', 'ounce', 'percent', 'petabyte', 'pound', 'second', 'stone', 'terabit', 
-  'terabyte', 'week', 'yard', 'year'
+  // Area
+  'acre', 'hectare',
+  // Digital Storage
+  'bit', 'byte', 'kilobit', 'kilobyte', 'megabit', 'megabyte', 'gigabit', 'gigabyte', 'terabit', 'terabyte', 'petabyte',
+  // Temperature
+  'celsius', 'fahrenheit',
+  // Length
+  'centimeter', 'inch', 'foot', 'yard', 'mile', 'mile-scandinavian', 'millimeter', 'meter', 'kilometer',
+  // Volume
+  'fluid-ounce', 'gallon', 'liter', 'milliliter',
+  // Weight
+  'gram', 'kilogram', 'ounce', 'pound', 'stone',
+  // Time
+  'day', 'hour', 'microsecond', 'millisecond', 'minute', 'month', 'nanosecond', 'second', 'week', 'year',
+  // Miscellaneous
+  'degree', 'percent'
 ])
 
 export const unchangingPlurals = new Set([
@@ -80,9 +90,19 @@ export const lengthUnitConversions = new Map([
   ['mile', {value: 1609344, system: 'imperial'}]
 ])
 
-// Temperature Conversion
-export const temperatureUnitConversions = new Map([
-  ['Celsius', {factor: 1, offset: 0}],
-  ['Fahrenheit', {factor: 5/9, offset: -32}],
-  ['Kelvin', {factor: 1, offset: -273.15}]
+// Volume Conversion
+export const volumeUnitConversions = new Map([
+  ['milliliter', {value: 1, system: 'metric'}],
+  ['liter', {value: 1000, system: 'metric'}],
+  ['cup', {value: 236.588, system: 'imperial'}],
+  ['tablespoon', {value: 14.7868, system: 'imperial'}],
+  ['teaspoon', { value: 4.92892, system: 'imperial' }]
+])
+
+export const weightUnitConversions = new Map([
+  ['gram', {value: 1, system: 'metric'}],
+  ['kilogram', { value: 1000, system: 'metric' }],
+  ['ounce', { value: 28.3495, system: 'imperial' }],
+  ['pound', { value: 453.592, system: 'imperial' }],
+  ['stone', { value: 6350.293, system: 'imperial' }],
 ])

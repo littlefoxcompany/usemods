@@ -188,31 +188,26 @@ export function formatLength(number: number, options?: { decimals?: number; inpu
  * Format and auto calculate temperature into human-readable string
  */
 export function formatTemperature(number: number, options?: { decimals?: number; inputUnit?: string; outputUnit?: string; unitDisplay?: 'short' | 'long'; locale?: string }): string {
-  const { decimals = undefined, unitDisplay = 'short', locale = 'en-US', inputUnit = 'Celsius', outputUnit = 'auto' } = options || {}
-  const inputUnitValue = map.temperatureUnitConversions.get(inputUnit)
+  const { decimals, unitDisplay = 'short', locale = 'en-US', inputUnit = 'celsius', outputUnit = 'celsius' } = options || {}
 
-  if (!inputUnitValue) {
-    console.warn(`[MODS] Unsupported input unit: ${inputUnit}`)
+  const validUnits = new Set(['auto', 'celsius', 'fahrenheit'])
+
+  if (!validUnits.has(inputUnit) || !validUnits.has(outputUnit)) {
+    console.warn('[MODS] Unsupported temperature unit')
     return String(number)
   }
 
-  const valueInCelsius = (number + inputUnitValue.offset) * inputUnitValue.factor
-
-  const targetUnit = outputUnit === 'auto'
-    ? Array.from(map.temperatureUnitConversions.keys())
-      .find(unit => unit === inputUnit) || 'Celsius'
-    : outputUnit
-
-  const targetUnitValue = map.temperatureUnitConversions.get(targetUnit)
-
-  if (!targetUnitValue) {
-    console.warn(`[MODS] Unsupported output unit: ${targetUnit}`)
-    return String(number)
+  if (inputUnit === outputUnit || inputUnit === 'auto' || outputUnit === 'auto') {
+    return formatUnit(number, { unit: inputUnit, decimals, unitDisplay, locale })
+  } else {
+    let convertedNumber = number
+    if (inputUnit === 'celsius' && outputUnit === 'fahrenheit') {
+      convertedNumber = (number * 9 / 5) + 32
+    } else if (inputUnit === 'fahrenheit' && outputUnit === 'celsius') {
+      convertedNumber = (number - 32) * 5 / 9
+    }
+    return formatUnit(convertedNumber, { unit: outputUnit, decimals, unitDisplay, locale })
   }
-
-  const valueInTargetUnit = (valueInCelsius / targetUnitValue.factor) - targetUnitValue.offset
-
-  return formatUnit(valueInTargetUnit, { unit: targetUnit, decimals, unitDisplay, locale })
 }
 
 /**
