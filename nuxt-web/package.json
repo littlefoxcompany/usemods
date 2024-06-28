@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "nuxi dev",
     "build": "nuxi build",
-    "generate": "nuxi generate"
+    "generate": "nuxi generate",
+    "vercel": "npm --prefix ./../ i && npm --prefix ./../ run docs:build && npm i && npm run build"
   },
   "devDependencies": {
     "@nuxt/eslint": "^0.3.13",
