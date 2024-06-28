@@ -38,10 +38,10 @@
         </header>
         <section class="shrink">
           <NuxtPicture src="/big-scooter.png"
-          format="webp"
+          format="avif,webp"
           alt="A big mods scoooter"
-          size="100vw md:800"
-          densities="1x, 2x"
+          size="50vw md:800px"
+          densities="1x 2x"
           class="mx-auto flex w-fit" />
         </section>
       </section>
