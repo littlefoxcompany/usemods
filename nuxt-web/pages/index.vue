@@ -37,7 +37,8 @@
           </div>
         </header>
         <section class="shrink">
-          <NuxtPicture src="/big-scooter.png"
+          <NuxtImg
+          src="/big-scooter.png"
           format="avif,webp"
           alt="A big mods scoooter"
           size="50vw md:800px"
