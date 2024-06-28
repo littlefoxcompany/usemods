@@ -73,8 +73,5 @@
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.13.1",
     "vitest": "^1.6.0"
-  },
-  "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "4.18.0"
   }
 }
