@@ -37,11 +37,13 @@
           </div>
         </header>
         <section class="shrink">
-          <NuxtImg
+          <NuxtPicture
+          provider="cloudflare"
           src="/big-scooter.png"
           format="avif,webp"
           alt="A big mods scoooter"
           width="800px"
+          height="510"
           size="50vw md:800px"
           densities="1x 2x"
           class="mx-auto flex w-fit" />

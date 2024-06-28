@@ -39,9 +39,14 @@ export default defineNuxtConfig({
     ignores: ['\\.txt$'],
   },
   routeRules: {
-    // '/': { prerender: true },
+    '/': { prerender: true },
     '/docs/**': { swr: true, prerender: true },
     '/intro/**': { swr: true, prerender: true }
+  },
+  image: {
+    cloudflare: {
+      baseURL: 'https://public.usemods.com/'
+    }
   },
   colorMode: {
     classSuffix: ''
