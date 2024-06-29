@@ -46,6 +46,7 @@
           height="510"
           size="50vw md:800px"
           densities="1x 2x"
+          :modifiers="{format: 'auto'}"
           class="mx-auto flex w-fit" />
         </section>
       </section>
