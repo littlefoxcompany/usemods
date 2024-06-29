@@ -40,7 +40,7 @@
           <NuxtPicture
           provider="cloudflare"
           src="/big-scooter.png"
-          format="avif,webp"
+          format="webp"
           alt="A big mods scoooter"
           width="800px"
           height="510"
