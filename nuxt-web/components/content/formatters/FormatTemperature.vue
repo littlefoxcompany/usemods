@@ -17,11 +17,11 @@
   
         <div class="flex max-md:flex-col gap-4">
           <FormSelect label="Input Unit" v-model="inputUnit" info="Default: 'celsius'">
-            <option v-for="[unit] in temperatureUnitConversions" :value="unit" :key="unit">{{ unit }}</option>
+            <option v-for="unit in temperatureUnitConversions" :value="unit" :key="unit">{{ unit }}</option>
           </FormSelect>
           <FormSelect label="Output Unit" v-model="outputUnit" info="Default: 'auto'">
             <option value="auto">auto</option>
-            <option v-for="[unit] in temperatureUnitConversions" :value="unit" :key="unit">{{ unit }}</option>
+            <option v-for="unit in temperatureUnitConversions" :value="unit" :key="unit">{{ unit }}</option>
           </FormSelect>
         </div>
       </ExampleInputs>
@@ -38,4 +38,9 @@ const outputUnit = ref('auto')
 const decimals = ref<number | undefined>(undefined)
 const locale = ref<string | undefined>(undefined)
 const unitDisplay = ref<'short' | 'long'>('short')
+
+const temperatureUnitConversions = ref([
+  'celsius',
+  'fahrenheit',
+])
 </script>
