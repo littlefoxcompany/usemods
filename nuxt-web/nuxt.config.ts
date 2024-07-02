@@ -44,8 +44,14 @@ export default defineNuxtConfig({
     '/intro/**': { swr: true, prerender: true }
   },
   image: {
+
+
     cloudflare: {
-      baseURL: 'https://public.usemods.com/'
+      baseURL: 'https://usemods.com/',
+      modifiers: {
+        format: 'auto',
+        quality: 85,
+      }
     }
   },
   colorMode: {
