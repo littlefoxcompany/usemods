@@ -1,5 +1,28 @@
 # Changelog
 
+## v1.6.0
+
+[compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.5.2...v1.6.0)
+
+### 🚀 Enhancements
+
+- Add lazy loading for images in index page ([d6ceca8](https://github.com/LittleFoxCompany/usemods/commit/d6ceca8))
+
+### 💅 Refactors
+
+- Improve accessibility in ThemeSwitch and MainNavigation components ([2588901](https://github.com/LittleFoxCompany/usemods/commit/2588901))
+- Update unit and decimals initialization in FormatUnit.vue ([1d8cb35](https://github.com/LittleFoxCompany/usemods/commit/1d8cb35))
+- Update temperature unit options in FormatTemperature.vue ([4b94cea](https://github.com/LittleFoxCompany/usemods/commit/4b94cea))
+
+### 🏡 Chore
+
+- Update usemods package version to 1.5.2 ([4a9d340](https://github.com/LittleFoxCompany/usemods/commit/4a9d340))
+- Update file paths and imports for maps.ts ([e4afb50](https://github.com/LittleFoxCompany/usemods/commit/e4afb50))
+
+### ❤️ Contributors
+
+- Jeremy Butler ([@jrmymbtlr](http://github.com/jrmymbtlr))
+
 ## v1.5.2
 
 [compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.5.1...v1.5.2)
