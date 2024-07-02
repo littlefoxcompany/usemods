@@ -28,8 +28,8 @@
 
 <script setup lang="ts">
 const number = ref(0.12)
-const decimals = ref(0)
+const decimals = ref(null)
 const locale = ref('en-US')
-const unit = ref('degree')
+const unit = ref('acre')
 const unitDisplay = ref<'long' | 'short'>('long')
 </script>
