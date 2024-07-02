@@ -12,6 +12,12 @@ export default defineNuxtConfig({
     '@nuxtjs/sitemap'
   ],
   css: ['~/assets/css/main.css'],
+  app: {
+    head: {
+      htmlAttrs: { lang: 'en' },
+      meta: [{ property: 'og:image', content: '/og-image.jpg' }]
+    }
+  },
   sitemap: {
     sources: [
       '/api/sitemap'
@@ -32,14 +38,21 @@ export default defineNuxtConfig({
     },
     ignores: ['\\.txt$'],
   },
-  app: {
-    head: {
-      meta: [{ property: 'og:image', content: '/og-image.jpg' }]
-    }
-  },
   routeRules: {
+    '/': { prerender: true },
     '/docs/**': { swr: true, prerender: true },
     '/intro/**': { swr: true, prerender: true }
+  },
+  image: {
+
+
+    cloudflare: {
+      baseURL: 'https://usemods.com/',
+      modifiers: {
+        format: 'auto',
+        quality: 85,
+      }
+    }
   },
   colorMode: {
     classSuffix: ''

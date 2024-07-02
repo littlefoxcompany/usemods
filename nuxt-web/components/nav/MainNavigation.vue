@@ -2,7 +2,7 @@
   <nav>
     <div class="container mx-auto grid grid-cols-3 items-center justify-between py-6 text-gray-800 dark:text-white">      
       <!-- Logo -->
-      <NuxtLink to="/" prefetch>
+      <NuxtLink alt="Home" to="/" aria-label="Home" prefetch>
         <LogoFull class="h-6 max-md:hidden" />
         <LogoMark class="h-6 md:hidden" />
       </NuxtLink>
