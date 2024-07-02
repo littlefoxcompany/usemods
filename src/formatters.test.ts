@@ -187,3 +187,14 @@ test('formatLength', () => {
   // Invalid input unit
   expect(mod.formatLength(1500, { inputUnit: 'kbdd' })).toBe('1500')
 })
+
+test('formatTemperature', () => {
+  expect(mod.formatTemperature(0)).toBe('0°C')
+  expect(mod.formatTemperature(0, { unitDisplay: 'long' })).toBe('0 degrees Celsius')
+  expect(mod.formatTemperature(0, { unitDisplay: 'short' })).toBe('0°C')
+  expect(mod.formatTemperature(0, { inputUnit: 'celsius', outputUnit: 'fahrenheit' })).toBe('32°F')
+  expect(mod.formatTemperature(0, { inputUnit: 'celsius', outputUnit: 'fahrenheit', unitDisplay: 'long' })).toBe('32 degrees Fahrenheit')
+  expect(mod.formatTemperature(0, { inputUnit: 'celsius', outputUnit: 'fahrenheit', unitDisplay: 'short' })).toBe('32°F')
+  expect(mod.formatTemperature(0, { inputUnit: 'fahrenheit', outputUnit: 'celsius', unitDisplay: 'short' })).toBe('-17.77777777777778°C')
+  expect(mod.formatTemperature(0, { inputUnit: 'fahrenheit', outputUnit: 'celsius', unitDisplay: 'short', decimals: 2 })).toBe('-17.78°C')
+})
