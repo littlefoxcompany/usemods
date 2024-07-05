@@ -9,6 +9,9 @@ export function animateText(text: string, options: { splitBy?: 'word' | 'charact
   if (!text) return ''
 
   const { splitBy = 'character', time = 0.1, unit = 's', class: cssClass = '' } = options
+  const validUnits = ['ms', 's']
+  if (!validUnits.includes(unit)) throw new Error(`[MODS] Invalid animation unit: ${unit}`)
+
   const delimiter = splitBy === 'word' ? ' ' : ''
   const elements = text.split(delimiter)
 
@@ -19,9 +22,9 @@ export function animateText(text: string, options: { splitBy?: 'word' | 'charact
     if (element === ' ' && splitBy === 'character') {
       return '<span class="space" style="white-space: pre;"> </span>'
     } else {
-      return `<span style="display: inline-block; position: relative; overflow: clip;">
+      return `<span style="display: inline-block; position: relative; overflow: clip; margin-right: -0.5rem; margin-left: -0.5rem; padding-right: 0.5rem; padding-left: 0.5rem;">
                 <span class="ghost" style="visibility: hidden;" aria-hidden="true">${element}</span>
-                <span class="translate ${cssClass}" style="${translateStyle}">${element}</span>
+                <span class="translate ${cssClass}" style="${translateStyle}" aria-label="${element}">${element}</span>
               </span>`
     }
   })
