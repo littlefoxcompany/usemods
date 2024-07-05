@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.6.1
+
+[compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.6.0...v1.6.1)
+
+### 🏡 Chore
+
+- Add validation for animation unit in animateText function ([ba0c076](https://github.com/LittleFoxCompany/usemods/commit/ba0c076))
+
+### ❤️ Contributors
+
+- Jeremy Butler ([@jrmymbtlr](http://github.com/jrmymbtlr))
+
 ## v1.6.0
 
 [compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.5.2...v1.6.0)
