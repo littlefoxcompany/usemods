@@ -33,7 +33,7 @@ const route = useRoute()
 const activeSections = useState('activeSections', () => [])
 const pageId = useRoute().params.slug
 
-const { data } = useAsyncData('toc', () => queryContent(route.path).findOne().then(
+const { data } = useAsyncData('toc' + pageId, () => queryContent(route.path).findOne().then(
 ))
 
 // Function to scroll to the anchor
