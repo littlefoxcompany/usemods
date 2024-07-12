@@ -5,7 +5,7 @@
 /**
  * Check if you're a server-side user.
  */
-export function isServerSide() {
+export function isServerSide(): boolean {
   if (typeof window !== 'undefined') {
     return false
   }
