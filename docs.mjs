@@ -30,11 +30,15 @@ async function generateMarkdown(file, name) {
 
   // If Tailwind stop here
   // If you're reading this...it's a great first fix to contribute to the project.
+
   if (name === '12.tailwind') {
     return
   }
 
   let markdown = ''
+
+  // Functions
+  const functions = [...content.matchAll(functionPattern)]
 
   // Create Frontmatter
   markdown += '---\n'
@@ -42,6 +46,7 @@ async function generateMarkdown(file, name) {
   markdown += `title: ${metadata.title}\n`
   markdown += `description: ${metadata.description}\n`
   markdown += `lead: ${metadata.lead}\n`
+  markdown += `toc: [${functions.map(match => `"${match[2]}"`).join(', ')}]\n`
   markdown += '---\n'
 
   // Page Title
@@ -50,9 +55,6 @@ async function generateMarkdown(file, name) {
   markdown += `${metadata.description}\n`
   markdown += '::\n\n'
 
-  // Functions
-  const functions = [...content.matchAll(functionPattern)]
-
   for (const match of functions) {
     const [full] = match.slice(0)
     const [, name, params] = match.slice(1)
@@ -60,7 +62,7 @@ async function generateMarkdown(file, name) {
     const description = jsdoc.replace(/\/\*\*|\*\/|\*/g, '').replace(/@\w+.*$/gm, '').trim()
     const info = (jsdoc.match(/@info\s+(.*)/) || [])[1]?.trim() || ''
 
-    markdown += `::page-function{name="${name}" description="${description}" params="${params}" info="${info}" }\n`
+    markdown += `::page-function{name="${name}" description="${description}"${params ? ` params="${params}"` : ''}${info ? ` info="${info}"` : ''} }\n`
     markdown += `:::${name}\n`
     markdown += ':::\n'
     markdown += '::\n\n'

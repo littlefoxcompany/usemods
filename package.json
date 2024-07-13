@@ -8,7 +8,7 @@
     "docs": "node docs.mjs --watch",
     "docs:build": "node docs.mjs --build",
     "docs:bundle": "node docs.mjs --bundle",
-    "vercel": "npm install && npm run docs:build && npm --prefix ./nuxt-web i && npm run --prefix ./nuxt-web build",
+    "vercel": "npm install && npm run docs:build && npm --prefix ./nuxt-web i && npm run --prefix ./nuxt-web generate",
     "test": "vitest run src/*",
     "test:watch": "vitest src/*",
     "release:major": "npm run test && changelogen --release --major && npm publish && npm run nuxt-module:release",
