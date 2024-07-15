@@ -78,7 +78,7 @@ export function formatUnit(number: number, options: { unit: string; decimals?: n
 /**
  * Format a number into a percentage
  */
-export function formatPercentage(number: number, options?: { decimals?: number; locale?: string }): string {
+export function formatPercentage(number: number, options?: { decimals?: number; locale?: string, removeTrailingZeros?: boolean }): string {
 
   const decimalPlaces = ((number*100).toString().split('.')[1] || '').length
   const safeDecimals = options?.decimals !== undefined ? options.decimals : Math.max(0, decimalPlaces)
@@ -90,6 +90,9 @@ export function formatPercentage(number: number, options?: { decimals?: number; 
   }
 
   let formattedNumber = new Intl.NumberFormat(options?.locale ?? 'en-US', config).format(number)
+  if (options?.removeTrailingZeros) {
+    formattedNumber = formattedNumber.replace(/(\.\d*?[1-9])0+%$/, '$1%').replace(/\.0+%$/, '%')
+  }
 
   return formattedNumber
 }

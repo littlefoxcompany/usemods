@@ -77,6 +77,8 @@ test('formatPercentage', () => {
   expect(mod.formatPercentage(0.12, { decimals: 2})).toBe('12.00%')
   expect(mod.formatPercentage(0.01, { decimals: 2})).toBe('1.00%')
   expect(mod.formatPercentage(0.01, { decimals: 0})).toBe('1%')
+  expect(mod.formatPercentage(0.126, { decimals: 5, removeTrailingZeros: false})).toBe('12.60000%')
+  expect(mod.formatPercentage(0.126, { decimals: 5, removeTrailingZeros: true})).toBe('12.6%')
 })
 
 test('formatUnit', () => {
