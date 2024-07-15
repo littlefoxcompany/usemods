@@ -63,9 +63,20 @@ test('formatDurationNumbers', () => {
 
 test('formatPercentage', () => {
   expect(mod.formatPercentage(0)).toBe('0%')
-  expect(mod.formatPercentage(0.1234, { decimals: 0 })).toBe('12%')
+  expect(mod.formatPercentage(0.123)).toBe('12.3%')
   expect(mod.formatPercentage(0.1234)).toBe('12.34%')
+  expect(mod.formatPercentage(0.12345)).toBe('12.345%')
+  expect(mod.formatPercentage(0.1, { decimals: 0 })).toBe('10%')
+  expect(mod.formatPercentage(0.123, { decimals: 0 })).toBe('12%')
+  expect(mod.formatPercentage(0.1234, { decimals: 0 })).toBe('12%')
+  expect(mod.formatPercentage(0.12345, { decimals: 0 })).toBe('12%')
   expect(mod.formatPercentage(0.125, { decimals: 0 })).toBe('13%')
+  expect(mod.formatPercentage(0.125, { decimals: 1 })).toBe('12.5%')
+  expect(mod.formatPercentage(0.1255, { decimals: 1 })).toBe('12.6%')
+  expect(mod.formatPercentage(0.1255, { decimals: 2})).toBe('12.55%')
+  expect(mod.formatPercentage(0.12, { decimals: 2})).toBe('12.00%')
+  expect(mod.formatPercentage(0.01, { decimals: 2})).toBe('1.00%')
+  expect(mod.formatPercentage(0.01, { decimals: 0})).toBe('1%')
 })
 
 test('formatUnit', () => {
