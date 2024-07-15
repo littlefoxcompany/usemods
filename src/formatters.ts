@@ -79,17 +79,25 @@ export function formatUnit(number: number, options: { unit: string; decimals?: n
  * Format a number into a percentage
  */
 export function formatPercentage(number: number, options?: { decimals?: number; locale?: string, removeTrailingZeros?: boolean }): string {
+  let decimals = 0
 
-  const decimalPlaces = ((number*100).toString().split('.')[1] || '').length
-  const safeDecimals = options?.decimals !== undefined ? options.decimals : Math.max(0, decimalPlaces)
+  if (options?.decimals !== undefined) {
+    decimals = options.decimals
+  } else {
+    const fraction = number * 100
+    const fractionString = fraction.toString()
+    const decimalPart = fractionString.includes('.') ? fractionString.split('.')[1].split('0')[0] : ''
+    decimals = decimalPart.length
+  }
 
   const config: Intl.NumberFormatOptions = {
     style: 'percent',
-    minimumFractionDigits: safeDecimals,
-    maximumFractionDigits: safeDecimals
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals
   }
 
   let formattedNumber = new Intl.NumberFormat(options?.locale ?? 'en-US', config).format(number)
+
   if (options?.removeTrailingZeros) {
     formattedNumber = formattedNumber.replace(/(\.\d*?[1-9])0+%$/, '$1%').replace(/\.0+%$/, '%')
   }
