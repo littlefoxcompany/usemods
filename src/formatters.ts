@@ -241,24 +241,37 @@ export function formatNumberToWords(number: number): string {
  * Formats content into paragraphs with a minimum number of characters per sentence and minimum number of sentences per paragraph
  * @info Use whitespace-pre-wrap to ensure the whitespace is preserved
  */
-export function formatParagraphs(text: string, options?: { minCharacters?: number; minSentences?: number }): string {
-  const { minCharacters = 80, minSentences = 2 } = options || {}
-  const sentences = text.split(/[.!?]+/).filter(sentence => sentence.trim().length > 0)
+export function formatParagraphs(text: string, options?: { minSentenceCount: number, minCharacterCount: number }): string {
+  const { minSentenceCount = 3, minCharacterCount = 100 } = options || {}
+  function isValidSentenceEnd(text: string, index: number): boolean {
+    return text[index] === '.' && (index === text.length - 1 || text[index + 1] === ' ') && !/\d\.\d/.test(text.slice(index - 1, index + 2));
+  }
 
-  return sentences
-    .filter(sentence => sentence.trim().length >= minCharacters)
-    .reduce((acc, sentence, index, filteredSentences) => {
-      if (index > 0 && index % minSentences !== 0) {
-        acc.push(' ')
-      }
-      acc.push(sentence.trim())
-      if ((index + 1) % minSentences === 0 && index < filteredSentences.length - 1) {
-        acc.push('\n\n')
-      }
-      return acc
-    }, [] as string[])
-    .join('')
-    .trim()
+  const sentences = text.split(/(?<=\.)\s+/).filter(Boolean);
+
+  const paragraphs: string[] = [];
+  let currentParagraph: string[] = [];
+  let currentSentenceCount = 0;
+
+  for (const sentence of sentences) {
+    if (sentence.length >= minCharacterCount || isValidSentenceEnd(sentence, sentence.length - 1)) {
+      currentSentenceCount++;
+    }
+
+    currentParagraph.push(sentence);
+
+    if (currentSentenceCount >= minSentenceCount) {
+      paragraphs.push(currentParagraph.join(' '));
+      currentParagraph = [];
+      currentSentenceCount = 0;
+    }
+  }
+
+  if (currentParagraph.length > 0) {
+    paragraphs.push(currentParagraph.join(' '));
+  }
+
+  return paragraphs.join('\n\n');
 }
 
 /**
