@@ -109,18 +109,18 @@ if (args.includes('--watch')) {
 
 async function generateBundle() {
   const bundle = await rollup({
-    input: './src/index.ts',
+    input: resolve(srcPath, 'index.ts'),
     plugins: [
       typescript({
-        tsconfig: './tsconfig.json',
+        tsconfig: resolve(srcPath, '..', 'tsconfig.json'),
         rollupCommonJSResolveHack: false,
         clean: true,
       })
     ]
   })
-
   await bundle.write({
-    file: './dist/index.js',
+    file: resolve(srcPath, '..', 'dist', 'index.js'),
+    format: 'esm',
     plugins: [terser()]
   })
 
