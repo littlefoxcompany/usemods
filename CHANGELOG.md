@@ -1,5 +1,28 @@
 # Changelog
 
+## v1.7.0
+
+[compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.6.1...v1.7.0)
+
+### 🚀 Enhancements
+
+- Improve formatParagraphs function to handle empty sentences ([8e9a99d](https://github.com/LittleFoxCompany/usemods/commit/8e9a99d))
+
+### 🏡 Chore
+
+- Bump module number to 1.6.1 ([f90b841](https://github.com/LittleFoxCompany/usemods/commit/f90b841))
+- Update TableOfContents.vue to include table of contents in generated markdown ([ebfdcf7](https://github.com/LittleFoxCompany/usemods/commit/ebfdcf7))
+- Update TableOfContents.vue to include table of contents in generated markdown ([4f4d0b8](https://github.com/LittleFoxCompany/usemods/commit/4f4d0b8))
+- Refactor generateMarkdown function to include optional parameters ([51dc6ac](https://github.com/LittleFoxCompany/usemods/commit/51dc6ac))
+- Update Vercel command to use 'generate' instead of 'build' ([1a50ff4](https://github.com/LittleFoxCompany/usemods/commit/1a50ff4))
+- Update TableOfContents.vue to include item titles in generated markdown ([63b3718](https://github.com/LittleFoxCompany/usemods/commit/63b3718))
+- **deps-dev:** Bump nuxt ([ee804b9](https://github.com/LittleFoxCompany/usemods/commit/ee804b9))
+- Add @css-inline/css-inline ([1f4302b](https://github.com/LittleFoxCompany/usemods/commit/1f4302b))
+
+### ❤️ Contributors
+
+- Jeremy Butler ([@jrmymbtlr](http://github.com/jrmymbtlr))
+
 ## v1.6.1
 
 [compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.6.0...v1.6.1)
