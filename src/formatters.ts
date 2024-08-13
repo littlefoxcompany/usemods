@@ -238,6 +238,30 @@ export function formatNumberToWords(number: number): string {
 }
 
 /**
+ * Formats content into paragraphs with a minimum number of characters per sentence and minimum number of sentences per paragraph
+ * @info Use whitespace-pre-wrap to ensure the whitespace is preserved
+ */
+export function formatParagraphs(text: string, options?: { minCharacters?: number; minSentences?: number }): string {
+  const { minCharacters = 80, minSentences = 2 } = options || {}
+  const sentences = text.split(/[.!?]+/).filter(sentence => sentence.trim().length > 0)
+
+  return sentences
+    .filter(sentence => sentence.trim().length >= minCharacters)
+    .reduce((acc, sentence, index, filteredSentences) => {
+      if (index > 0 && index % minSentences !== 0) {
+        acc.push(' ')
+      }
+      acc.push(sentence.trim())
+      if ((index + 1) % minSentences === 0 && index < filteredSentences.length - 1) {
+        acc.push('\n\n')
+      }
+      return acc
+    }, [] as string[])
+    .join('')
+    .trim()
+}
+
+/**
  * Generate initials from any string while ignoring common titles
  */
 export function formatInitials(text: string, options?: { length?: number }): string {

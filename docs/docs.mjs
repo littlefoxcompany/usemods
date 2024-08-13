@@ -11,8 +11,8 @@ const { readFile, writeFile, copyFile, readdir, unlink } = fsPromises
 const args = argv.slice(2)
 
 // Paths
-const srcPath = resolve('src')
-const nuxtWebPath = resolve('nuxt-web')
+const srcPath = resolve('./../src')
+const nuxtWebPath = resolve('./../nuxt-web')
 
 // Functions
 const functionPattern = /\/\*\*[\s\S]*?\*\/\s*(export\s+function\s+([a-zA-Z0-9_]+)\s*\((.*?)\)\s*:\s*([\w<>,[\]\s]+(?:\{[\s\S]*?})?)?)/gms
