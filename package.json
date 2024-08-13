@@ -12,7 +12,7 @@
     "release:minor": "pnpm run test && changelogen --release --minor && pnpm publish && pnpm run nuxt-module:release",
     "release:patch": "npm run test && changelogen --release --patch && npm publish && npm run nuxt-module:release",
 
-    "deploy": "pnpm i && pnpm -r --stream build",
+    "build": "pnpm i && pnpm -r --stream build",
 
     "nuxt-module:dev": "pnpm i --prefix ./nuxt-module && pnpm run --prefix ./nuxt-module dev",
     "nuxt-module:release": "node sync-versions.ts && npm run --prefix ./nuxt-module release",
