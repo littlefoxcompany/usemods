@@ -243,7 +243,7 @@ export function formatNumberToWords(number: number): string {
  */
 export function formatParagraphs(text: string, options?: { minCharacters?: number; minSentences?: number }): string {
   const { minCharacters = 80, minSentences = 2 } = options || {}
-  const sentences = text.match(/[^.!?]+[.!?]+/g) || []
+  const sentences = text.split(/[.!?]+/).filter(sentence => sentence.trim().length > 0)
 
   return sentences
     .filter(sentence => sentence.trim().length >= minCharacters)
