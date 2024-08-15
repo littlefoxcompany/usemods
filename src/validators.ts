@@ -32,9 +32,7 @@ export function isUrl(value: string): boolean {
 /**
  * Check if any given string, array or object is empty.
  */
-export function isEmpty(
-  value: string | string[] | number[] | object | null | undefined
-): boolean {
+export function isEmpty(value: string | string[] | number[] | object | null | undefined): boolean {
   return (
     value === null ||
     value === undefined ||

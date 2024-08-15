@@ -153,7 +153,7 @@ export function detectHost(): string {
 }
 
 /**
- * Returns the current hostname from the URL
+ * Returns the current hostname from the URL 
  */
 export function detectHostName(): string {
   return window.location.hostname
