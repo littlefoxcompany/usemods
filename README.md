@@ -34,6 +34,8 @@ Use your favourite package manager to install usemods. Also works with your leas
 
 ```bash
 npm install usemods
+pnpm add usemods
+bun add usemods
 ```
 
 ## Nuxt
@@ -65,13 +67,10 @@ Once you've installed the package, you can import the functions as you need. We'
 Welcome to the documentation for Mods. We combine Nuxt Content and Vue Components to achieve interactive blocks.
 
 ### Content
-To make content changes to the docs, please refer to the original `./src` and use `bun run docs` to compile update-to-date markdown files here. You can read more on the compiler in `./docs.mjs`
+To make content changes to the docs, please refer to the original `./src` and use `pnpm dev` to compile update-to-date markdown files here. You can read more on the compiler in `./docs/docs.mjs`
 
 ### Vue Components
 To make changes to how the Mod displays and interacts, please see the corresponding `.vue` files found in `./nuxt-web/components/content/`
 
 ### Running the Website
-To run the UseMods website, run `bun run dev` from the website folder which should perform any installs first, then checkout `localhost:3000`.
-
-### Running the Docs Compiler
-To make the magic happen, run the `bun install` on the root. From there, you can run `bun run docs` to initiate a watcher and compiler on `./src`. You'll now generate documentation from the JSDOCs and sync files to the utils section in the Nuxt Website and Nuxt Module.
+To run the UseMods website, run `pnpm dev` from the website folder which should perform any installs first, then checkout `localhost:3000`. This will also initiate a recursive watcher on the `./src` folder to automatically generate documentation from the JSDOCs of each function and sync changes made to the functions.
