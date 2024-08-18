@@ -1,7 +1,10 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormNumber label="Max" v-model="length" :min="1" />
+      <FormNumber
+        v-model="length"
+        label="Max"
+        :min="1" />
     </ExampleInputs>
     <ExampleCode :code="`generateRandomIndex(${length})`" />
     <ExampleResult>

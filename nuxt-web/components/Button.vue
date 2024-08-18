@@ -1,37 +1,36 @@
 <template>
   <button
     class="flex translate-y-0 touch-manipulation select-none items-center justify-center whitespace-nowrap rounded-lg border text-lg font-medium transition-all"
-    :type="type as 'button' | 'reset' | 'submit'"
+    :type="type"
     :class="[colorClasses, sizeClasses]">
     <slot />
   </button>
 </template>
 
 <script setup lang="ts">
-  const props = defineProps({
-    type: {
-      type: String as PropType<'button' | 'reset' | 'submit'>,
-      default: 'button'
-    },
-    color: {
-      type: String as PropType<'primary' | 'secondary'>,
-      default: 'primary'
-    },
-    size: {
-      type: String as PropType<'sm' | 'md' | 'lg'>,
-      default: 'md'
-    }
-  })
+const props = defineProps({
+  type: {
+    type: String as PropType<'button' | 'reset' | 'submit'>,
+    default: 'button',
+  },
+  color: {
+    type: String as PropType<'primary' | 'secondary'>,
+    default: 'primary',
+  },
+  size: {
+    type: String as PropType<'sm' | 'md' | 'lg'>,
+    default: 'md',
+  },
+})
 
-  const colorClasses = {
-    'bg-gradient-to-br from-indigo-500 to-indigo-600 text-white border-white/20': props.color === 'primary',
-    'bg-white text-indigo-600 dark:bg-white/[2%] hover:bg-white/[4%] dark:text-white shadow-md border-indigo-100/75 dark:border-white/10 dark:hover:bg-white/[3%]': props.color === 'secondary',
-  }
+const colorClasses = {
+  'bg-gradient-to-br from-indigo-500 to-indigo-600 text-white border-white/20': props.color === 'primary',
+  'bg-white text-indigo-600 dark:bg-white/[2%] hover:bg-white/[4%] dark:text-white shadow-md border-indigo-100/75 dark:border-white/10 dark:hover:bg-white/[3%]': props.color === 'secondary',
+}
 
-  const sizeClasses = {
-    'h-9 px-3 gap-2 text-sm': props.size === 'sm',
-    'h-11 px-5 gap-3 text-lg': props.size === 'md',
-    'h-14 px-6 gap-4 text-xl': props.size === 'lg'
-  }
+const sizeClasses = {
+  'h-9 px-3 gap-2 text-sm': props.size === 'sm',
+  'h-11 px-5 gap-3 text-lg': props.size === 'md',
+  'h-14 px-6 gap-4 text-xl': props.size === 'lg',
+}
 </script>
-

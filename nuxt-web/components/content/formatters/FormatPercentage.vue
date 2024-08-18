@@ -1,13 +1,30 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Number" type="number" v-model.number="percentage" step="0.01" />
-      <FormNumber label="Decimals" v-model="decimals" info="Default: 0" :min="0" :max="20"/>
-      <FormSelect label="Locale" v-model="locale" info="Default: 'en-US'">
-        <option v-for="locale in configLocales" :value="locale" :key="locale">{{ locale }}</option>
+      <FormInput
+        v-model.number="percentage"
+        label="Number"
+        type="number"
+        step="0.01" />
+      <FormNumber
+        v-model="decimals"
+        label="Decimals"
+        info="Default: 0"
+        :min="0"
+        :max="20" />
+      <FormSelect
+        v-model="locale"
+        label="Locale"
+        info="Default: 'en-US'">
+        <option
+          v-for="locale in configLocales"
+          :key="locale"
+          :value="locale">
+          {{ locale }}
+        </option>
       </FormSelect>
     </ExampleInputs>
-    <ExampleCode :code="`formatPercentage(${percentage}, { ${isNumber(decimals) ? `decimals: ${decimals},` : ''} locale: ${locale} })`"/>
+    <ExampleCode :code="`formatPercentage(${percentage}, { ${isNumber(decimals) ? `decimals: ${decimals},` : ''} locale: ${locale} })`" />
     <ExampleResult>
       {{ formatPercentage(percentage, { ...(isNumber(decimals) ? { decimals } : {}), locale }) }}
     </ExampleResult>

@@ -6,14 +6,14 @@ export default defineSitemapEventHandler(async (e) => {
   const contentList = (await serverQueryContent(e).find()) as ParsedContent[]
   const sections = ['docs', 'intro']
 
-  return sections.flatMap(section => 
+  return sections.flatMap(section =>
     contentList
       .filter(page => page._path?.startsWith(`/${section}`))
       .map((page) => {
         return asSitemapUrl({
           loc: `/${section}${page._path?.replace(`/${section}`, '')}`,
-          lastmod: page.updatedAt
+          lastmod: page.updatedAt,
         })
-      })
+      }),
   )
 })

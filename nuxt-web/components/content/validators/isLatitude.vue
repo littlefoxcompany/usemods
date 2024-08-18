@@ -1,7 +1,10 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Value" type="number" v-model="value" />
+      <FormInput
+        v-model="value"
+        label="Value"
+        type="number" />
     </ExampleInputs>
     <ExampleResult>
       {{ isLatitude(value) }}
@@ -10,5 +13,5 @@
 </template>
 
 <script setup lang="ts">
-  const value = ref('90.0')
+const value = ref('90.0')
 </script>

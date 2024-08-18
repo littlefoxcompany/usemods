@@ -1,7 +1,9 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Value" v-model="value" />
+      <FormInput
+        v-model="value"
+        label="Value" />
     </ExampleInputs>
     <ExampleResult>
       {{ isArray(value) }}
@@ -10,5 +12,5 @@
 </template>
 
 <script setup lang="ts">
-  const value = ref(['a', 'b', 'c'])
+const value = ref(['a', 'b', 'c'])
 </script>

@@ -7,18 +7,18 @@
 </template>
 
 <script setup lang="ts">
-  const result = ref('')
+const result = ref('')
 
-  function updateResult() {
-    result.value = detectNetworkStatus()
-  }
+function updateResult() {
+  result.value = detectNetworkStatus()
+}
 
-  onMounted(() => {
-    updateResult()
-    window.addEventListener('online', updateResult)
-  })
+onMounted(() => {
+  updateResult()
+  window.addEventListener('online', updateResult)
+})
 
-  onUnmounted(() => {
-    window.removeEventListener('online', updateResult)
-  })
+onUnmounted(() => {
+  window.removeEventListener('online', updateResult)
+})
 </script>

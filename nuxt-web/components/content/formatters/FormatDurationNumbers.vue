@@ -1,7 +1,10 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Seconds" type="number" v-model="seconds" />
+      <FormInput
+        v-model="seconds"
+        label="Seconds"
+        type="number" />
     </ExampleInputs>
     <ExampleCode :code="`formatDurationNumbers(${seconds})`" />
     <ExampleResult>
@@ -11,5 +14,5 @@
 </template>
 
 <script setup lang="ts">
-  const seconds = ref(987)
+const seconds = ref(987)
 </script>

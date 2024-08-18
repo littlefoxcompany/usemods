@@ -1,7 +1,11 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Text" type="text" v-model="value" step="0.01" />
+      <FormInput
+        v-model="value"
+        label="Text"
+        type="text"
+        step="0.01" />
     </ExampleInputs>
     <ExampleCode :code="`formatTitle('${value}')`" />
     <ExampleResult>
@@ -11,5 +15,5 @@
 </template>
 
 <script setup lang="ts">
-  const value = ref('Revolutionary scooter trend sweeps the nation. Exploring the surprising surge in "Scooter Mania", but is it more than a fad?')
+const value = ref('Revolutionary scooter trend sweeps the nation. Exploring the surprising surge in "Scooter Mania", but is it more than a fad?')
 </script>

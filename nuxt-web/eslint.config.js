@@ -8,7 +8,9 @@ export default withNuxt(
         singleline: 'never',
         multiline: 'never',
       }],
+      'vue/multi-word-component-names': 'off',
     },
+    ignores: ['./utils/**'],
   },
   {
     plugins: { tailwindcss: pluginTailwindCSS },

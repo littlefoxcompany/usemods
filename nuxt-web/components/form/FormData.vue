@@ -4,6 +4,6 @@
 
 <script setup lang="ts">
 const props = defineProps({
-  data: Object || Array
+  data: Object || Array,
 })
 </script>

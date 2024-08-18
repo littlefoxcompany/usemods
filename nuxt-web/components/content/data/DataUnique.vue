@@ -1,7 +1,9 @@
 <template>
   <Example>
     <ExampleInputs class="flex flex-col">
-      <FormInput label="Property" v-model="property" />
+      <FormInput
+        v-model="property"
+        label="Property" />
       <!-- <FormCode label="Value" v-model="value" /> -->
     </ExampleInputs>
     <ExampleResult>

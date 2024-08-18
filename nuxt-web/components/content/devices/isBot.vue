@@ -1,7 +1,7 @@
 <template>
-    <Example>
-        <ExampleResult>
-            {{ isBot() ? 'Is Bot 🤓' : 'Not Bot 👎' }}
-        </ExampleResult>
-    </Example>
+  <Example>
+    <ExampleResult>
+      {{ isBot() ? 'Is Bot 🤓' : 'Not Bot 👎' }}
+    </ExampleResult>
+  </Example>
 </template>

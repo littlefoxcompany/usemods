@@ -2,7 +2,10 @@
   <div>
     <Example>
       <ExampleInputs>
-        <FormInput label="Value" type="text" v-model="value" />
+        <FormInput
+          v-model="value"
+          label="Value"
+          type="text" />
       </ExampleInputs>
       <ExampleResult>
         {{ splitByWords(value) }}
@@ -12,5 +15,5 @@
 </template>
 
 <script setup lang="ts">
-  const value = ref('Scooters are the future')
+const value = ref('Scooters are the future')
 </script>

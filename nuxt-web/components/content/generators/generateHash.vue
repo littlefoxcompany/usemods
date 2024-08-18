@@ -1,7 +1,9 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormNumber label="Length" v-model="length" />
+      <FormNumber
+        v-model="length"
+        label="Length" />
     </ExampleInputs>
     <ExampleResult>
       {{ generateHash(length) }}
@@ -10,5 +12,5 @@
 </template>
 
 <script setup lang="ts">
-  const length = ref(40)
+const length = ref(40)
 </script>

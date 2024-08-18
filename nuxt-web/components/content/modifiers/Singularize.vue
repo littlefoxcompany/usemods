@@ -1,7 +1,10 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Value" type="text" v-model="value" />
+      <FormInput
+        v-model="value"
+        label="Value"
+        type="text" />
     </ExampleInputs>
     <ExampleCode :code="`singularize('${value}')`" />
     <ExampleResult>
@@ -11,5 +14,5 @@
 </template>
 
 <script setup lang="ts">
-  const value = ref('knives')
+const value = ref('knives')
 </script>

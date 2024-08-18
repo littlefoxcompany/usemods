@@ -13,7 +13,7 @@
       </h2>
 
       <div
-        class="mb-1 flex size-6 items-center justify-center rounded-md border border-white/5 bg-white/[3%] text-zinc-500 transition-all hover:border-white/20 hover:text-white"
+        class="mb-1 flex size-6 items-center justify-center rounded-md border border-zinc-200 bg-white/[3%] text-zinc-500 transition-all hover:text-indigo-600 dark:border-white/5 dark:hover:border-white/20 dark:hover:text-white"
         :class="showCopyToClipboard ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'">
         <Icon
           name="heroicons:hashtag"
@@ -21,7 +21,7 @@
       </div>
 
       <div
-        class="buttom-4 absolute right-0 mt-1 flex h-6 items-center justify-center rounded-md border border-white/5 bg-white/[3%] px-1.5 text-zinc-500 transition-all"
+        class="absolute right-0 mt-1 flex h-6 items-center justify-center rounded-md border border-white/5 bg-white/[3%] px-1.5 text-zinc-500 transition-all"
         :class="showCopied ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'">
         Link Copied!
       </div>

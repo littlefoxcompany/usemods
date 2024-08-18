@@ -7,14 +7,14 @@
 </template>
 
 <script setup lang="ts">
-  const result = ref('')
+const result = ref('')
 
-  onMounted(() => {
-    result.value = detectBreakpoint()
-    window.addEventListener('resize', (event) => (result.value = detectBreakpoint()))
-  })
+onMounted(() => {
+  result.value = detectBreakpoint()
+  window.addEventListener('resize', () => (result.value = detectBreakpoint()))
+})
 
-  onUnmounted(() => {
-    window.removeEventListener('resize', (event) => (result.value = detectBreakpoint()))
-  })
+onUnmounted(() => {
+  window.removeEventListener('resize', () => (result.value = detectBreakpoint()))
+})
 </script>

@@ -1,41 +1,45 @@
 <template>
   <div class="w-full">
-    <FormLabel :label="label" :info="info" :for="id" />
+    <FormLabel
+      :label="label"
+      :info="info"
+      :for="id" />
 
     <input
-      class="input"
       :id="id"
+      class="input"
       :type="type"
       :placeholder="placeholder"
       :value="modelValue"
-      @input="$event.target && $emit('update:modelValue', ($event.target as HTMLInputElement).value)"
-      v-bind="$attrs" />
+      v-bind="$attrs"
+      @input="$event.target && emit('update:modelValue', ($event.target as HTMLInputElement).value)">
   </div>
 </template>
 
 <script setup lang="ts">
 defineOptions({
-  inheritAttrs: true
+  inheritAttrs: true,
 })
 
-const props = defineProps({
+defineProps({
   modelValue: {
-    type: [String, Number, Object, Boolean]
+    type: [String, Number, Object, Boolean],
   },
   placeholder: {
-    type: String
+    type: String,
   },
   label: {
-    type: String
+    type: String,
   },
   type: {
     type: String,
-    default: 'text'
+    default: 'text',
   },
   info: {
-    type: String
-  }
+    type: String,
+  },
 })
 
 const id = useId()
+const emit = defineEmits(['update:modelValue'])
 </script>

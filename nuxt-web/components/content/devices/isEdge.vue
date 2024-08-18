@@ -1,7 +1,7 @@
 <template>
-    <Example>
-        <ExampleResult>
-            {{ isEdge() ? 'Is Edge 👍' : 'Not Edge 👎' }}
-        </ExampleResult>
-    </Example>
+  <Example>
+    <ExampleResult>
+      {{ isEdge() ? 'Is Edge 👍' : 'Not Edge 👎' }}
+    </ExampleResult>
+  </Example>
 </template>

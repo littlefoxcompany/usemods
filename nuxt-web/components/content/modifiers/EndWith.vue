@@ -1,8 +1,14 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Value" type="text" v-model="value" />
-      <FormInput label="End" type="text" v-model="start" />
+      <FormInput
+        v-model="value"
+        label="Value"
+        type="text" />
+      <FormInput
+        v-model="start"
+        label="End"
+        type="text" />
     </ExampleInputs>
     <ExampleCode :code="`endWith('${value}', '${start}')`" />
     <ExampleResult>
@@ -12,6 +18,6 @@
 </template>
 
 <script setup lang="ts">
-  const value = ref('https://usemods')
-  const start = ref('.com')
+const value = ref('https://usemods')
+const start = ref('.com')
 </script>

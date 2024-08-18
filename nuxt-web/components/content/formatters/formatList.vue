@@ -1,11 +1,23 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Items" type="text" v-model="value" required />
-      <FormNumber label="Limit" v-model="limit" :min="1" info="Default: 2" />
-      <FormInput label="Conjunction" type="text" v-model="conjunction" info="Default: 'and'" />
+      <FormInput
+        v-model="value"
+        label="Items"
+        type="text"
+        required />
+      <FormNumber
+        v-model="limit"
+        label="Limit"
+        :min="1"
+        info="Default: 2" />
+      <FormInput
+        v-model="conjunction"
+        label="Conjunction"
+        type="text"
+        info="Default: 'and'" />
     </ExampleInputs>
-    <ExampleCode :code="`formatList('${value}', { limit: ${limit}, conjunction: '${conjunction}' })`"/>
+    <ExampleCode :code="`formatList('${value}', { limit: ${limit}, conjunction: '${conjunction}' })`" />
     <ExampleResult>
       {{ formatList(value, { limit, conjunction }) }}
     </ExampleResult>

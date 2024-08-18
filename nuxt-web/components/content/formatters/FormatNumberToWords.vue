@@ -1,7 +1,10 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Number" type="text" v-model="value" />
+      <FormInput
+        v-model="value"
+        label="Number"
+        type="text" />
     </ExampleInputs>
     <ExampleCode :code="`formatNumberToWords(${value})`" />
     <ExampleResult>

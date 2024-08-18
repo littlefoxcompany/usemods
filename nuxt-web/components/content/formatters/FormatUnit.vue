@@ -1,25 +1,46 @@
 <template>
   <Example>
-    <ExampleInputs class="flex flex-col gap-4 items-stretch">
-      <div class="flex max-md:flex-col gap-4">
-        <FormInput label="Number" type="number" v-model.number="number" step="0.01" />
-        <FormNumber label="Decimals" v-model="decimals" info="Default: 0" :min="0" :max="20"/>
-        <FormSelect label="Locale" v-model="locale" info="Default: 'en-US'">
-          <option v-for="locale in configLocales" :value="locale" :key="locale">{{ locale }}</option>
-        </FormSelect>
+    <ExampleInputs class="flex flex-col items-stretch gap-4">
+      <div class="flex gap-4 max-md:flex-col">
+        <FormInput
+          v-model.number="number"
+          label="Number"
+          type="number"
+          step="0.01" />
+        <FormNumber
+          v-model="decimals"
+          label="Decimals"
+          info="Default: 0"
+          :min="0"
+          :max="20" />
+        <FormSelectLocale v-model="locale" />
       </div>
-      <div class="flex max-md:flex-col gap-4 justify-stretch items-stretch">
-        <FormSelect label="Unit" v-model="unit">
-          <option v-for="unit in configUnits" :value="unit" :key="unit">{{ unit }}</option>
+      <div class="flex items-stretch justify-stretch gap-4 max-md:flex-col">
+        <FormSelect
+          v-model="unit"
+          label="Unit">
+          <option
+            v-for="unit in configUnits"
+            :key="unit"
+            :value="unit">
+            {{ unit }}
+          </option>
         </FormSelect>
-        <FormSelect label="Display" v-model="unitDisplay" info="Default: 'long'">
-          <option value="long">Long</option>
-          <option value="short">Short</option>
+        <FormSelect
+          v-model="unitDisplay"
+          label="Display"
+          info="Default: 'long'">
+          <option value="long">
+            Long
+          </option>
+          <option value="short">
+            Short
+          </option>
         </FormSelect>
       </div>
     </ExampleInputs>
 
-    <ExampleCode :code="`formatUnit(${number}, { unit: ${unit}, ${isNumber(decimals) ? `decimals: ${decimals},` : ''} unitDisplay: ${unitDisplay}, locale: ${locale} })`"/>
+    <ExampleCode :code="`formatUnit(${number}, { unit: ${unit}, ${isNumber(decimals) ? `decimals: ${decimals},` : ''} unitDisplay: ${unitDisplay}, locale: ${locale} })`" />
     <ExampleResult>
       {{ formatUnit(number, { unit, ...(isNumber(decimals) ? { decimals } : {}), unitDisplay, locale }) }}
     </ExampleResult>

@@ -9,24 +9,24 @@ export default defineNuxtConfig({
     'shadcn-nuxt',
     'nuxt-icon',
     '@nuxtjs/seo',
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
   ],
   css: ['~/assets/css/main.css'],
   app: {
     head: {
       htmlAttrs: { lang: 'en' },
-      meta: [{ property: 'og:image', content: '/og-image.jpg' }]
-    }
+      meta: [{ property: 'og:image', content: '/og-image.jpg' }],
+    },
   },
   sitemap: {
     sources: [
-      '/api/sitemap'
-    ]
+      '/api/sitemap',
+    ],
   },
   site: {
     name: 'UseMods',
     description: 'UseMods is a collection of helper functions for JavaScript and TypeScript.',
-    url: 'https://usemods.com'
+    url: 'https://usemods.com',
   },
   content: {
     highlight: {
@@ -34,28 +34,27 @@ export default defineNuxtConfig({
         default: 'github-light',
         dark: 'github-dark',
       },
-      preload: ['javascript', 'typescript', 'json', 'html', 'css', 'yaml']
+      preload: ['javascript', 'typescript', 'json', 'html', 'css', 'yaml'],
     },
     ignores: ['\\.txt$'],
   },
   routeRules: {
     '/': { prerender: true },
     '/docs/**': { swr: true, prerender: true },
-    '/intro/**': { swr: true, prerender: true }
+    '/intro/**': { swr: true, prerender: true },
   },
   image: {
-
 
     cloudflare: {
       baseURL: 'https://usemods.com/',
       modifiers: {
         format: 'auto',
         quality: 85,
-      }
-    }
+      },
+    },
   },
   colorMode: {
-    classSuffix: ''
+    classSuffix: '',
   },
   eslint: {
     config: {
@@ -64,7 +63,7 @@ export default defineNuxtConfig({
   },
   shadcn: {
     prefix: '',
-    componentDir: './components/ui'
+    componentDir: './components/ui',
   },
-  devtools: { enabled: false }
+  devtools: { enabled: true },
 })
