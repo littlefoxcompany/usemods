@@ -8,8 +8,8 @@
 <script setup lang="ts">
 useHead({
   script: [
-    () => { addDeviceClasses() }
-  ]
+    () => { addDeviceClasses() },
+  ],
 })
 
 const { data: introLinks } = await useAsyncData('intro-links', () => queryContent('intro').only(['_path', 'title', 'lead']).find())
@@ -17,7 +17,6 @@ const { data: docLinks } = await useAsyncData('doc-links', () => queryContent('d
 
 provide('intro-links', introLinks)
 provide('doc-links', docLinks)
-
 
 onMounted(() => {
   inject()

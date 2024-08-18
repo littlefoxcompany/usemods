@@ -13,7 +13,9 @@
           :to="link._path"
           class="flex items-center gap-3 py-2 text-xl font-medium text-gray-500 dark:text-gray-500 dark:hover:text-white/75"
           active-class="active">
-          <Icon :name="link.title" class="h-5 w-5 shrink-0" />
+          <Icon
+            :name="link.title"
+            class="size-5 shrink-0" />
           {{ link.title }}
         </NuxtLink>
 
@@ -25,19 +27,22 @@
             :to="link._path"
             class="flex items-center gap-3 py-2 font-medium text-gray-500 dark:text-gray-500 dark:hover:text-white/75"
             active-class="active">
-            <Icon :name="link.title" class="h-5 w-5 shrink-0" />
+            <Icon
+              :name="link.title"
+              class="size-5 shrink-0" />
             {{ link.title }}
           </NuxtLink>
         </div>
       </div>
 
       <!-- Content -->
-      <div class="min-h-screen w-full text-gray-950 lg:w-7/12 dark:text-white" :class="route.params.slug ?? null">
+      <div
+        class="min-h-screen w-full text-gray-950 dark:text-white lg:w-7/12"
+        :class="route.params.slug ?? null">
         <ContentDoc
-          class="flex w-full grow flex-col"
-         ></ContentDoc>
+          class="flex w-full grow flex-col" />
 
-         <!--  :class="route.params.slug?.at(0) === 'docs' ? 'divide-y divide-dashed divide-indigo-200 dark:divide-white/10' : ''" -->
+        <!--  :class="route.params.slug?.at(0) === 'docs' ? 'divide-y divide-dashed divide-indigo-200 dark:divide-white/10' : ''" -->
 
         <!-- Jagger Swagger -->
         <Jagger v-if="route.fullPath === '/docs/actions'" />

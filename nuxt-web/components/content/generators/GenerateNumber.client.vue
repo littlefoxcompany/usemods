@@ -1,7 +1,10 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormNumber label="Length" v-model="length" :min="1" />
+      <FormNumber
+        v-model="length"
+        label="Length"
+        :min="1" />
     </ExampleInputs>
     <ExampleCode :code="`generateNumber(${length})`" />
     <ExampleResult>
@@ -11,5 +14,5 @@
 </template>
 
 <script setup lang="ts">
-  const length = ref(8)
+const length = ref(8)
 </script>

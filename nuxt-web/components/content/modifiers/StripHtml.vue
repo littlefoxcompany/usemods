@@ -1,7 +1,10 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Value" type="text" v-model="value" />
+      <FormInput
+        v-model="value"
+        label="Value"
+        type="text" />
     </ExampleInputs>
     <ExampleResult>
       {{ stripHtml(value) }}
@@ -10,5 +13,5 @@
 </template>
 
 <script setup lang="ts">
-  const value = ref('<div>Some <strong>HTML</strong> content</div>')
+const value = ref('<div>Some <strong>HTML</strong> content</div>')
 </script>

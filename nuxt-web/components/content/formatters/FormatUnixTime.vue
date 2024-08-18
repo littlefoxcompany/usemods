@@ -1,7 +1,10 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Timestamp" type="number" v-model.number="seconds" />
+      <FormInput
+        v-model.number="seconds"
+        label="Timestamp"
+        type="number" />
     </ExampleInputs>
     <ExampleCode :code="`formatUnixTime(${seconds})`" />
     <ExampleResult>
@@ -11,5 +14,5 @@
 </template>
 
 <script setup lang="ts">
-  const seconds = ref(Math.round(Date.now() / 1000))
+const seconds = ref(Math.round(Date.now() / 1000))
 </script>

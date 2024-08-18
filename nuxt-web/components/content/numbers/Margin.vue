@@ -1,8 +1,14 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Value" type="text" v-model.number="value" />
-      <FormInput label="Percent" type="text" v-model.number="value2" />
+      <FormInput
+        v-model.number="value"
+        label="Value"
+        type="text" />
+      <FormInput
+        v-model.number="value2"
+        label="Percent"
+        type="text" />
     </ExampleInputs>
     <ExampleCode :code="`margin(${value}, ${value2})`" />
     <ExampleResult>
@@ -12,6 +18,6 @@
 </template>
 
 <script setup lang="ts">
-  const value = ref(1234)
-  const value2 = ref(33)
+const value = ref(1234)
+const value2 = ref(33)
 </script>

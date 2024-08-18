@@ -1,7 +1,9 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Value" v-model="value" />
+      <FormInput
+        v-model="value"
+        label="Value" />
     </ExampleInputs>
     <ExampleResult>
       {{ isIpAddress(value) }}
@@ -10,5 +12,5 @@
 </template>
 
 <script setup lang="ts">
-  const value = ref('127.0.0.1')
+const value = ref('127.0.0.1')
 </script>

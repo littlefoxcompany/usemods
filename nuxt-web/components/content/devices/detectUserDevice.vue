@@ -1,9 +1,9 @@
 <template>
-    <Example>
-        <ExampleResult>
-            <ClientOnly>
-            {{ detectUserDevice() }}
-            </ClientOnly>
-        </ExampleResult>
-    </Example>
+  <Example>
+    <ExampleResult>
+      <ClientOnly>
+        {{ detectUserDevice() }}
+      </ClientOnly>
+    </ExampleResult>
+  </Example>
 </template>

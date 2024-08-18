@@ -1,13 +1,29 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Number" type="number" v-model="currency"/>
-      <FormNumber label="Decimals" v-model="decimals" info="Default: 2" :min="0" :max="20"/>
-      <FormSelect label="Locale" v-model="locale" info="Default: en-US">
-        <option v-for="locale in configLocales" :value="locale" :key="locale">{{ locale }}</option>
+      <FormInput
+        v-model="currency"
+        label="Number"
+        type="number" />
+      <FormNumber
+        v-model="decimals"
+        label="Decimals"
+        info="Default: 2"
+        :min="0"
+        :max="20" />
+      <FormSelect
+        v-model="locale"
+        label="Locale"
+        info="Default: en-US">
+        <option
+          v-for="locale in configLocales"
+          :key="locale"
+          :value="locale">
+          {{ locale }}
+        </option>
       </FormSelect>
     </ExampleInputs>
-    <ExampleCode :code="`formatNumber(${currency}, { ${isNumber(decimals) ? `decimals: ${decimals},` : ''} locale: ${locale} })`"/>
+    <ExampleCode :code="`formatNumber(${currency}, { ${isNumber(decimals) ? `decimals: ${decimals},` : ''} locale: ${locale} })`" />
     <ExampleResult>
       {{ formatNumber(currency, { ...(isNumber(decimals) ? { decimals } : {}), locale }) }}
     </ExampleResult>

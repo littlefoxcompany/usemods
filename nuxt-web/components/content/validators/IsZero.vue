@@ -1,7 +1,9 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormNumber label="Value" v-model.number="value" />
+      <FormNumber
+        v-model.number="value"
+        label="Value" />
     </ExampleInputs>
     <ExampleResult>
       {{ isZero(value) }}
@@ -10,5 +12,5 @@
 </template>
 
 <script setup lang="ts">
-  const value = ref(0)
+const value = ref(0)
 </script>

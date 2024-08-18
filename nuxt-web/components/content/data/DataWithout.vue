@@ -4,11 +4,21 @@
       <FormData :data="value" />
     </ExampleInputs>
     <ExampleInputs>
-      <FormSelect label="Exclude" v-model="key">
-        <option value="name">Name</option>
-        <option value="age">Age</option>
-        <option value="address">Address</option>
-        <option value="country">Country</option>
+      <FormSelect
+        v-model="key"
+        label="Exclude">
+        <option value="name">
+          Name
+        </option>
+        <option value="age">
+          Age
+        </option>
+        <option value="address">
+          Address
+        </option>
+        <option value="country">
+          Country
+        </option>
       </FormSelect>
     </ExampleInputs>
     <ExampleCode :code="`dataWithout(${JSON.stringify(value)}, '${key}')`" />
@@ -26,8 +36,8 @@ const value = {
   address: {
     street: '123 Main St',
     city: 'Springfield',
-    state: 'IL'
+    state: 'IL',
   },
-  country: 'USA'
+  country: 'USA',
 }
 </script>

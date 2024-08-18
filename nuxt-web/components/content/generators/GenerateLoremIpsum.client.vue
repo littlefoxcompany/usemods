@@ -1,11 +1,22 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormNumber label="Length" v-model="length" :min="1" />
-      <FormSelect label="Type" v-model="type">
-        <option value="words">Words</option>
-        <option value="sentences">Sentences</option>
-        <option value="paragraphs">Paragraphs</option>
+      <FormNumber
+        v-model="length"
+        label="Length"
+        :min="1" />
+      <FormSelect
+        v-model="type"
+        label="Type">
+        <option value="words">
+          Words
+        </option>
+        <option value="sentences">
+          Sentences
+        </option>
+        <option value="paragraphs">
+          Paragraphs
+        </option>
       </FormSelect>
     </ExampleInputs>
     <ExampleCode :code="`generateLoremIpsum(${length}, { format: '${type}' })`" />

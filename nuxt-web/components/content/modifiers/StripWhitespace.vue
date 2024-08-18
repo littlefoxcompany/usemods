@@ -1,7 +1,10 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Value" type="text" v-model="value" />
+      <FormInput
+        v-model="value"
+        label="Value"
+        type="text" />
     </ExampleInputs>
     <ExampleResult>
       {{ stripWhitespace(value) }}
@@ -10,5 +13,5 @@
 </template>
 
 <script setup lang="ts">
-  const value = ref('  Scooters are the past and   our future  ')
+const value = ref('  Scooters are the past and   our future  ')
 </script>

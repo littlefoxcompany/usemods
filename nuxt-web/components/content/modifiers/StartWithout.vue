@@ -1,8 +1,14 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Value" type="text" v-model="value" />
-      <FormInput label="Start" type="text" v-model="start" />
+      <FormInput
+        v-model="value"
+        label="Value"
+        type="text" />
+      <FormInput
+        v-model="start"
+        label="Start"
+        type="text" />
     </ExampleInputs>
     <ExampleCode :code="`startWithout('${value}', '${start}')`" />
     <ExampleResult>
@@ -12,6 +18,6 @@
 </template>
 
 <script setup lang="ts">
-  const value = ref('https://usemods.com')
-  const start = ref('https://')
+const value = ref('https://usemods.com')
+const start = ref('https://')
 </script>

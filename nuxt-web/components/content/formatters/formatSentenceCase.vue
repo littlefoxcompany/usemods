@@ -1,7 +1,10 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Text" type="text" v-model="value" />
+      <FormInput
+        v-model="value"
+        label="Text"
+        type="text" />
     </ExampleInputs>
     <ExampleCode :code="`formatSentenceCase('${value}')`" />
     <ExampleResult>

@@ -5,5 +5,5 @@
 </template>
 
 <script setup lang="ts">
-  const example = ref()
+const example = ref()
 </script>

@@ -1,7 +1,9 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormCode label="Value" v-model="value" />
+      <FormCode
+        v-model="value"
+        label="Value" />
     </ExampleInputs>
     <ExampleResult>
       {{ isObject(value) }}
@@ -10,5 +12,5 @@
 </template>
 
 <script setup lang="ts">
-  const value = ref({ a: 1, b: 2 })
+const value = ref({ a: 1, b: 2 })
 </script>

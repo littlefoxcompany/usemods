@@ -1,7 +1,10 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Value" type="number" v-model.number="value" />
+      <FormInput
+        v-model.number="value"
+        label="Value"
+        type="number" />
     </ExampleInputs>
     <ExampleResult>
       {{ isPort(value) }}
@@ -10,5 +13,5 @@
 </template>
 
 <script setup lang="ts">
-  const value = ref(3000)
+const value = ref(3000)
 </script>

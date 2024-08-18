@@ -1,7 +1,11 @@
 <template>
   <Example>
     <ExampleInputs>
-      <Button @click="generate" color="secondary">Generate</Button>
+      <Button
+        color="secondary"
+        @click="generate">
+        Generate
+      </Button>
     </ExampleInputs>
     <ExampleResult>
       {{ result }}
@@ -10,14 +14,14 @@
 </template>
 
 <script setup lang="ts">
-  const result = ref('')
-  function generate() {
-    result.value = generateUuid()
-  }
+const result = ref('')
+function generate() {
+  result.value = generateUuid()
+}
 
-  onMounted(() => {
-    nextTick(() => {
-      generate()
-    })
+onMounted(() => {
+  nextTick(() => {
+    generate()
   })
+})
 </script>

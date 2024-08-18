@@ -5,15 +5,15 @@
 </template>
 
 <script setup lang="ts">
-  const result = ref({ x: 0, y: 0 })
+const result = ref({ x: 0, y: 0 })
 
-  onMounted(() => {
-    window.addEventListener('mousemove', (event: MouseEvent) => (result.value = detectRelativeMousePosition(event)))
-  })
+onMounted(() => {
+  window.addEventListener('mousemove', (event: MouseEvent) => (result.value = detectRelativeMousePosition(event)))
+})
 
-  onUnmounted(() => {
-    window.removeEventListener('mousemove', (event: Event) => {
-      result.value = detectRelativeMousePosition(event as MouseEvent)
-    })
+onUnmounted(() => {
+  window.removeEventListener('mousemove', (event: Event) => {
+    result.value = detectRelativeMousePosition(event as MouseEvent)
   })
+})
 </script>

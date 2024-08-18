@@ -1,7 +1,10 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormNumber label="Value" type="text" v-model="value" />
+      <FormNumber
+        v-model="value"
+        label="Value"
+        type="text" />
     </ExampleInputs>
     <ExampleResult>
       {{ isNegative(value) }}
@@ -10,5 +13,5 @@
 </template>
 
 <script setup lang="ts">
-  const value = ref(-1)
+const value = ref(-1)
 </script>

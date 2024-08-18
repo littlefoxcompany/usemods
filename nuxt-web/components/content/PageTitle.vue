@@ -4,7 +4,11 @@
     <div class="mb-4 flex items-center gap-2 text-sm font-medium text-gray-500 dark:text-white/50">
       <div>Docs</div>
       <div>/</div>
-      <div class="capitalize" v-if="route.params.slug?.at(-1)">{{ route.params.slug?.at(-1) }}</div>
+      <div
+        v-if="route.params.slug?.at(-1)"
+        class="capitalize">
+        {{ route.params.slug?.at(-1) }}
+      </div>
     </div>
     <div class="text-gray-950 dark:text-white">
       <slot />

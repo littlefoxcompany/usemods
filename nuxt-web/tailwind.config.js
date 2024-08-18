@@ -1,5 +1,6 @@
-const animate = require('tailwindcss-animate')
 import { modDevices } from './utils/tailwind'
+
+const animate = require('tailwindcss-animate')
 
 /** @type {import('tailwindcss').Config} */
 export default {

@@ -1,7 +1,9 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormNumber label="Value" v-model="value" />
+      <FormNumber
+        v-model="value"
+        label="Value" />
     </ExampleInputs>
     <ExampleCode :code="`ordinalize(${value})`" />
     <ExampleResult>
@@ -11,5 +13,5 @@
 </template>
 
 <script setup lang="ts">
-  const value = ref(1)
+const value = ref(1)
 </script>

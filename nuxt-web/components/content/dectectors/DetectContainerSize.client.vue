@@ -7,12 +7,12 @@
 </template>
 
 <script setup lang="ts">
-  const container = ref<HTMLElement | null>(null)
-  const result = ref({})
+const container = ref<HTMLElement | null>(null)
+const result = ref({})
 
-  onMounted(() => {
-    if (container.value) {
-      result.value = detectContainerSize(container.value)
-    }
-  })
+onMounted(() => {
+  if (container.value) {
+    result.value = detectContainerSize(container.value)
+  }
+})
 </script>

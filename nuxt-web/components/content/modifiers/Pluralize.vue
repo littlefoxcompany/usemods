@@ -1,8 +1,13 @@
 <template>
   <Example>
     <ExampleInputs>
-      <FormInput label="Value" type="text" v-model="value" />
-      <FormNumber label="Count" v-model.number="count" />
+      <FormInput
+        v-model="value"
+        label="Value"
+        type="text" />
+      <FormNumber
+        v-model.number="count"
+        label="Count" />
     </ExampleInputs>
     <ExampleCode :code="`pluralize('${value}', ${count})`" />
     <ExampleResult>
@@ -12,6 +17,6 @@
 </template>
 
 <script setup lang="ts">
-  const value = ref('knife')
-  const count = ref(2)
+const value = ref('knife')
+const count = ref(2)
 </script>
