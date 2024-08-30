@@ -58,8 +58,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
-
 const value = ref('Zippy little utils for your JavaScript projects.')
 const splitBy = ref('word')
 const time = ref(100)

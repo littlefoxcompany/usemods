@@ -8,9 +8,6 @@ importers:
 
   .:
     devDependencies:
-      '@eslint/js':
-        specifier: ^9.2.0
-        version: 9.9.0
       '@rollup/plugin-terser':
         specifier: ^0.4.4
         version: 0.4.4(rollup@4.20.0)
