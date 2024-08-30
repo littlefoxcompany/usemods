@@ -37,3 +37,5 @@ nuxt-web/utils/*.ts
 # Include specific files
 !nuxt-web/content/2.docs/12.tailwind.md
 .vercel
+
+.data

@@ -19,6 +19,9 @@ export default defineNuxtConfig({
       meta: [{ property: 'og:image', content: '/og-image.jpg' }],
     },
   },
+  hub: {
+    cache: true,
+  },
   sitemap: {
     sources: [
       '/api/sitemap',
