@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     'nuxt-icon',
     '@nuxtjs/seo',
     '@nuxtjs/sitemap',
+    '@nuxthub/core',
   ],
   css: ['~/assets/css/main.css'],
   app: {
