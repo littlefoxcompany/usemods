@@ -32,6 +32,12 @@ export default defineNuxtConfig({
     description: 'UseMods is a collection of helper functions for JavaScript and TypeScript.',
     url: 'https://usemods.com',
   },
+  nitro: {
+    prerender: {
+      routes: ['/'],
+      crawlLinks: true,
+    },
+  },
   content: {
     highlight: {
       theme: {

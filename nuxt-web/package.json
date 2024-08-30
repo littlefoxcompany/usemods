@@ -22,7 +22,8 @@
     "nuxt-icon": "^0.6.10",
     "shadcn-nuxt": "^0.10.4",
     "typescript": "^5.4.5",
-    "vue": "^3.4.29"
+    "vue": "^3.4.29",
+    "wrangler": "^3.72.3"
   },
   "dependencies": {
     "@css-inline/css-inline-wasm": "^0.14.1",

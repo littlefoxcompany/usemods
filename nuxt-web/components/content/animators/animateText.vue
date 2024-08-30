@@ -66,7 +66,7 @@ const className = ref('animate-fade-in-up')
 const animationKey = ref(0)
 
 const animated = computed(() => {
-  return animateText(value.value, { splitBy: splitBy.value, time: time.value, unit: unit.value, class: className.value })
+  return animateText(value.value, { splitBy: splitBy.value as 'word' | 'character', time: time.value, unit: unit.value as 'ms' | 's', class: className.value })
 })
 
 watch([value, splitBy, time, unit, className], () => {
