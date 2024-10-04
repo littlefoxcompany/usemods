@@ -12,7 +12,6 @@
           :min="0"
           :max="20" />
         <FormSelectLocale v-model="locale" />
-
         <FormSelect
           v-model="unitDisplay"
           label="Display"
@@ -55,9 +54,9 @@
       </div>
     </ExampleInputs>
 
-    <ExampleCode :code="`formatLength(${number}, { inputUnit: ${inputUnit}, ${outputUnit !== 'auto' ? `outputUnit: ${outputUnit},` : ''} ${isNumber(decimals) ? `decimals: ${decimals},` : ''} unitDisplay: ${unitDisplay}, ${locale !== undefined ? `locale: ${locale},` : ''} })`" />
+    <ExampleCode :code="formattedCode" />
     <ExampleResult>
-      {{ formatLength(number, { inputUnit, outputUnit, ...(isNumber(decimals) ? { decimals } : {}), unitDisplay, locale }) }}
+      {{ formatLength(number, { inputUnit, outputUnit, decimals: decimals || decimals === 0 ? decimals : undefined, unitDisplay, locale: locale ? locale : undefined }) }}
     </ExampleResult>
   </Example>
 </template>
@@ -67,6 +66,15 @@ const number = ref(1500)
 const inputUnit = ref('millimeter')
 const outputUnit = ref('auto')
 const decimals = ref(null)
-const locale = ref(undefined)
+const locale = ref('')
 const unitDisplay = ref<'short' | 'long'>('short')
-</script>
+
+const formattedCode = computed(() => {
+  return generateFormatterCode('formatLength', number.value, {
+    inputUnit: inputUnit.value,
+    outputUnit: outputUnit.value,
+    decimals: decimals.value,
+    unitDisplay: unitDisplay.value,
+    locale: locale.value,
+  })
+})

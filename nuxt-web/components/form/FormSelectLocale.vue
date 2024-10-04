@@ -4,6 +4,11 @@
     label="Locale"
     info="Default: 'en-US'">
     <option
+      value=""
+      disabled>
+      Select a locale
+    </option>
+    <option
       v-for="locale in configLocales"
       :key="locale"
       :value="locale">

@@ -54,9 +54,9 @@
         </FormSelect>
       </div>
     </ExampleInputs>
-    <ExampleCode :code="`formatTemperature(${number}, { inputUnit: ${inputUnit}, ${outputUnit !== 'auto' ? `outputUnit: ${outputUnit},` : ''} ${isNumber(decimals) ? `decimals: ${decimals},` : ''} unitDisplay: ${unitDisplay}, ${locale !== undefined ? `locale: ${locale},` : ''} })`" />
+    <ExampleCode :code="formattedCode" />
     <ExampleResult>
-      {{ formatTemperature(number, { inputUnit, outputUnit, ...(isNumber(decimals) ? { decimals: decimals } : {}), unitDisplay, locale }) }}
+      {{ formatTemperature(number, { inputUnit, outputUnit, decimals: decimals || decimals === 0 ? decimals : undefined, unitDisplay, locale: locale ? locale : undefined }) }}
     </ExampleResult>
   </Example>
 </template>
@@ -73,4 +73,14 @@ const temperatureUnitConversions = ref([
   'celsius',
   'fahrenheit',
 ])
+
+const formattedCode = computed(() => {
+  return generateFormatterCode('formatTemperature', number.value, {
+    inputUnit: inputUnit.value,
+    outputUnit: outputUnit.value,
+    decimals: decimals.value,
+    unitDisplay: unitDisplay.value,
+    locale: locale.value,
+  })
+})
 </script>

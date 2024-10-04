@@ -13,15 +13,22 @@
         info="Default: 2" />
       <FormSelectLocale v-model="locale" />
     </ExampleInputs>
-    <ExampleCode :code="`formatCurrency(${value}, { ${isNumber(decimals) ? `decimals: ${decimals},` : ''} locale: ${locale} })`" />
+    <ExampleCode :code="formattedCode" />
     <ExampleResult>
-      {{ formatCurrency(value, { ...(isNumber(decimals) ? { decimals } : {}), locale }) }}
+      {{ formatCurrency(value, { decimals: decimals || decimals === 0 ? decimals : undefined, locale: locale ? locale : undefined }) }}
     </ExampleResult>
   </Example>
 </template>
 
 <script setup lang="ts">
 const value = ref(0.000009876)
-const decimals = ref(7)
-const locale = ref('en-US')
+const decimals = ref(null)
+const locale = ref('')
+
+const formattedCode = computed(() => {
+  return generateFormatterCode('formatCurrency', value.value, {
+    decimals: decimals.value,
+    locale: locale.value,
+  })
+})
 </script>

@@ -8,30 +8,26 @@
       <FormNumber
         v-model="decimals"
         label="Decimals"
-        info="Default: 2"
         :min="0"
         :max="20" />
-      <FormSelect
-        v-model="locale"
-        label="Locale"
-        info="Default: en-US">
-        <option
-          v-for="locale in configLocales"
-          :key="locale"
-          :value="locale">
-          {{ locale }}
-        </option>
-      </FormSelect>
+      <FormSelectLocale v-model="locale" />
     </ExampleInputs>
-    <ExampleCode :code="`formatNumber(${currency}, { ${isNumber(decimals) ? `decimals: ${decimals},` : ''} locale: ${locale} })`" />
+    <ExampleCode :code="formattedCode" />
     <ExampleResult>
-      {{ formatNumber(currency, { ...(isNumber(decimals) ? { decimals } : {}), locale }) }}
+      {{ formatNumber(currency, { decimals: decimals || decimals === 0 ? decimals : undefined, locale: locale ? locale : undefined }) }}
     </ExampleResult>
   </Example>
 </template>
 
 <script setup lang="ts">
 const currency = ref(12345.1242)
-const decimals = ref(1)
-const locale = ref('en-US')
+const decimals = ref(null)
+const locale = ref('')
+
+const formattedCode = computed(() => {
+  return generateFormatterCode('formatNumber', currency.value, {
+    decimals: decimals.value,
+    locale: locale.value,
+  })
+})
 </script>

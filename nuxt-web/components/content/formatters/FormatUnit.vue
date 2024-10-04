@@ -20,10 +20,10 @@
           v-model="unit"
           label="Unit">
           <option
-            v-for="unit in configUnits"
-            :key="unit"
-            :value="unit">
-            {{ unit }}
+            v-for="unitOption in configUnits"
+            :key="unitOption"
+            :value="unitOption">
+            {{ unitOption }}
           </option>
         </FormSelect>
         <FormSelect
@@ -40,9 +40,9 @@
       </div>
     </ExampleInputs>
 
-    <ExampleCode :code="`formatUnit(${number}, { unit: ${unit}, ${isNumber(decimals) ? `decimals: ${decimals},` : ''} unitDisplay: ${unitDisplay}, locale: ${locale} })`" />
+    <ExampleCode :code="formattedCode" />
     <ExampleResult>
-      {{ formatUnit(number, { unit, ...(isNumber(decimals) ? { decimals } : {}), unitDisplay, locale }) }}
+      {{ formatUnit(number, { unit, decimals: decimals || decimals === 0 ? decimals : undefined, unitDisplay, locale: locale ? locale : undefined }) }}
     </ExampleResult>
   </Example>
 </template>
@@ -50,7 +50,16 @@
 <script setup lang="ts">
 const number = ref(0.12)
 const decimals = ref(null)
-const locale = ref('en-US')
+const locale = ref('')
 const unit = ref('acre')
 const unitDisplay = ref<'long' | 'short'>('long')
+
+const formattedCode = computed(() => {
+  return generateFormatterCode('formatUnit', number.value, {
+    unit: unit.value,
+    decimals: decimals.value,
+    unitDisplay: unitDisplay.value,
+    locale: locale.value,
+  })
+})
 </script>

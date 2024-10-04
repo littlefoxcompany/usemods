@@ -12,27 +12,24 @@
         info="Default: 0"
         :min="0"
         :max="20" />
-      <FormSelect
-        v-model="locale"
-        label="Locale"
-        info="Default: 'en-US'">
-        <option
-          v-for="locale in configLocales"
-          :key="locale"
-          :value="locale">
-          {{ locale }}
-        </option>
-      </FormSelect>
+      <FormSelectLocale v-model="locale" />
     </ExampleInputs>
-    <ExampleCode :code="`formatPercentage(${percentage}, { ${isNumber(decimals) ? `decimals: ${decimals},` : ''} locale: ${locale} })`" />
+    <ExampleCode :code="formattedCode" />
     <ExampleResult>
-      {{ formatPercentage(percentage, { ...(isNumber(decimals) ? { decimals } : {}), locale }) }}
+      {{ formatPercentage(percentage, { decimals: decimals || decimals === 0 ? decimals : undefined, locale: locale ? locale : undefined }) }}
     </ExampleResult>
   </Example>
 </template>
 
 <script setup lang="ts">
 const percentage = ref(0.12)
-const decimals = ref(0)
-const locale = ref('en-US')
+const decimals = ref(null)
+const locale = ref('')
+
+const formattedCode = computed(() => {
+  return generateFormatterCode('formatPercentage', percentage.value, {
+    decimals: decimals.value,
+    locale: locale.value,
+  })
+})
 </script>
