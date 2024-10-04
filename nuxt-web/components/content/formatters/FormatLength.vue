@@ -78,3 +78,4 @@ const formattedCode = computed(() => {
     locale: locale.value,
   })
 })
+</script>
