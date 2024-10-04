@@ -53,9 +53,9 @@
   },
   "devDependencies": {
     "@rollup/plugin-terser": "^0.4.4",
-    "@rollup/plugin-typescript": "^11.1.6",
-    "@stylistic/eslint-plugin": "^2.7.1",
-    "@types/node": "^20.16.2",
+    "@rollup/plugin-typescript": "^12.1.0",
+    "@stylistic/eslint-plugin": "^2.8.0",
+    "@types/node": "^22.7.4",
     "@types/web": "^0.0.149",
     "@vitest/coverage-v8": "^2.0.5",
     "changelogen": "^0.5.5",

@@ -8,17 +8,20 @@
 <script setup lang="ts">
 useHead({
   script: [
-    () => { addDeviceClasses() },
+    { innerHTML: `(${addDeviceClasses.toString()})();` },
   ],
 })
 
-const { data: introLinks } = await useAsyncData('intro-links', () => queryContent('intro').only(['_path', 'title', 'lead']).find())
-const { data: docLinks } = await useAsyncData('doc-links', () => queryContent('docs').only(['_path', 'title', 'lead']).find())
-
-provide('intro-links', introLinks)
-provide('doc-links', docLinks)
-
-onMounted(() => {
-  inject()
+const introLinks = await useAsyncData('intro-links', async () => {
+  const data = await queryContent('intro').only(['_path', 'title', 'lead']).find()
+  return data
 })
+
+const docLinks = await useAsyncData('doc-links', async () => {
+  const data = await queryContent('docs').only(['_path', 'title', 'lead']).find()
+  return data
+})
+
+provide('intro-links', introLinks.data)
+provide('doc-links', docLinks.data)
 </script>

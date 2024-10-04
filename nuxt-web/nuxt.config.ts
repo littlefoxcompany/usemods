@@ -6,7 +6,6 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/color-mode',
     '@nuxt/eslint',
-    'shadcn-nuxt',
     'nuxt-icon',
     '@nuxtjs/seo',
     '@nuxtjs/sitemap',
@@ -54,7 +53,6 @@ export default defineNuxtConfig({
     '/intro/**': { swr: true, prerender: true },
   },
   image: {
-
     cloudflare: {
       baseURL: 'https://usemods.com/',
       modifiers: {
@@ -70,10 +68,6 @@ export default defineNuxtConfig({
     config: {
       stylistic: true,
     },
-  },
-  shadcn: {
-    prefix: '',
-    componentDir: './components/ui',
   },
   devtools: { enabled: true },
 })

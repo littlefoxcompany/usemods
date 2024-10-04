@@ -10,7 +10,9 @@
             v-html="animateText('Zippy little utils for your JavaScript projects.', { splitBy: 'word', time: 0.2, unit: 's', class: 'animate-fade-in-up' })" />
 
           <div class="mt-10 flex items-center gap-3 max-md:flex-col md:mt-20">
-            <NuxtLink to="intro/introduction">
+            <NuxtLink
+              to="intro/introduction"
+              prefetch>
               <Button
                 size="lg"
                 class="group !rounded-full max-md:w-full">

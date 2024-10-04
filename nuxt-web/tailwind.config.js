@@ -1,7 +1,5 @@
 import { modDevices } from './utils/tailwind'
 
-const animate = require('tailwindcss-animate')
-
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ['class'],
@@ -37,5 +35,5 @@ export default {
       },
     },
   },
-  plugins: [animate, modDevices],
+  plugins: [modDevices],
 }
