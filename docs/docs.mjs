@@ -25,15 +25,12 @@ const files = ['formatters', 'modifiers', 'generators', 'actions', 'numbers', 'd
 async function generateMarkdown(file, name) {
   const content = await readFile(file, 'utf8')
   const metadata = Object.fromEntries([...content.matchAll(metadataPattern)].map((match) => [match[1], match[2]]))
-
-  await copyFile(file, join(nuxtWebPath, 'utils', basename(file)))
+  await copyFile(file, join(nuxtWebPath, 'utils/mods', basename(file)))
 
   // If Tailwind stop here
   // If you're reading this...it's a great first fix to contribute to the project.
 
-  if (name === '12.tailwind') {
-    return
-  }
+  if (name === '12.tailwind') return
 
   let markdown = ''
 
@@ -73,17 +70,17 @@ async function generateMarkdown(file, name) {
 
 async function generateAll() {
   await Promise.all(files.map((file, index) => generateMarkdown(join(srcPath, `${file}.ts`), `${index + 1}.${file}`)))
-  await copyFile(join(srcPath, 'maps.ts'), join(nuxtWebPath, 'utils', 'maps.ts'))
+  await copyFile(join(srcPath, 'maps.ts'), join(nuxtWebPath, 'utils/mods/maps.ts'))
 }
 
 async function clearAll() {
   const [webFiles, documentFiles] = await Promise.all([
-    readdir(join(nuxtWebPath, 'utils')),
+    readdir(join(nuxtWebPath, 'utils/mods')),
     readdir(join(nuxtWebPath, 'content/2.docs'))
   ])
 
   await Promise.all([
-    ...webFiles.filter(file => file.endsWith('.ts')).map(file => unlink(join(nuxtWebPath, 'utils', file))),
+    ...webFiles.filter(file => file.endsWith('.ts')).map(file => unlink(join(nuxtWebPath, 'utils/mods', file))),
     ...documentFiles.filter(file => files.includes(basename(file, extname(file)))).map(file => unlink(join(nuxtWebPath, 'content/2.docs', file)))
   ])
 }

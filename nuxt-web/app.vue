@@ -7,9 +7,9 @@
 
 <script setup lang="ts">
 useHead({
-  script: [
-    { innerHTML: `(${addDeviceClasses.toString()})();` },
-  ],
+  // script: [
+  //   { innerHTML: `(${addDeviceClasses.toString()})();` },
+  // ],
 })
 
 const introLinks = await useAsyncData('intro-links', async () => {

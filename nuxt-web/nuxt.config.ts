@@ -12,6 +12,9 @@ export default defineNuxtConfig({
     '@nuxthub/core',
   ],
   css: ['~/assets/css/main.css'],
+  imports: {
+    dirs: ['utils/mods'],
+  },
   app: {
     head: {
       htmlAttrs: { lang: 'en' },
