@@ -1,7 +1,7 @@
 <template>
-  <div class="flex items-center justify-between gap-6 overflow-hidden bg-white px-5 py-4 dark:bg-white/[3%] max-md:flex-col">
+  <div class="flex items-center justify-between gap-6 overflow-hidden bg-white px-5 py-4 max-md:flex-col dark:bg-white/[3%]">
     <div class="flex items-center gap-3 max-md:text-center">
-      <div class="flex size-5 shrink-0 items-center justify-center rounded-full bg-indigo-50 dark:bg-white/5 max-md:hidden">
+      <div class="flex size-5 shrink-0 items-center justify-center rounded-full bg-indigo-50 max-md:hidden dark:bg-white/5">
         <Icon
           name="ph:code-bold"
           class="w-3 shrink-0 text-indigo-600 dark:text-white/50" />

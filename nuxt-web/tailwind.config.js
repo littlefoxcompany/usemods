@@ -1,4 +1,4 @@
-import { modDevices } from './utils/tailwind'
+import { modDevices } from './utils/mods/tailwind'
 
 /** @type {import('tailwindcss').Config} */
 export default {
