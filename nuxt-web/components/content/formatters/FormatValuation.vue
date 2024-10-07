@@ -8,18 +8,26 @@
       <FormNumber
         v-model="decimals"
         label="Decimals"
-        info="Default: 2" />
+        :min="0"
+        :max="20" />
       <FormSelectLocale v-model="locale" />
     </ExampleInputs>
-    <ExampleCode :code="`formatValuation(${currency}, { decimals: ${decimals}, locale: ${locale} })`" />
+    <ExampleCode :code="formattedCode" />
     <ExampleResult>
-      {{ formatValuation(currency, { decimals, locale }) }}
+      {{ formatValuation(currency, { decimals: decimals || decimals === 0 ? decimals : undefined, locale: locale ? locale : undefined }) }}
     </ExampleResult>
   </Example>
 </template>
 
 <script setup lang="ts">
 const currency = ref(12345678910)
-const decimals = ref(0)
-const locale = ref('en-US')
+const decimals = ref(null)
+const locale = ref('')
+
+const formattedCode = computed(() => {
+  return generateFormatterCode('formatValuation', currency.value, {
+    decimals: decimals.value,
+    locale: locale.value,
+  })
+})
 </script>

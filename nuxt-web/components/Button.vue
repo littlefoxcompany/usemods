@@ -25,7 +25,7 @@ const props = defineProps({
 
 const colorClasses = {
   'bg-gradient-to-br from-indigo-500 to-indigo-600 text-white border-white/20': props.color === 'primary',
-  'bg-white text-indigo-600 dark:bg-white/[2%] hover:bg-white/[4%] dark:text-white shadow-md border-indigo-100/75 dark:border-white/10 dark:hover:bg-white/[3%]': props.color === 'secondary',
+  'bg-white text-indigo-600 dark:bg-white/[2%] hover:bg-white/[4%] hover:border-indigo-500 dark:text-white border-indigo-100/75 dark:border-white/10 dark:hover:bg-white/[3%]': props.color === 'secondary',
 }
 
 const sizeClasses = {

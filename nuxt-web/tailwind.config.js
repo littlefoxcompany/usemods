@@ -1,6 +1,4 @@
-import { modDevices } from './utils/tailwind'
-
-const animate = require('tailwindcss-animate')
+import { modDevices } from './utils/mods/tailwind'
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -37,5 +35,5 @@ export default {
       },
     },
   },
-  plugins: [animate, modDevices],
+  plugins: [modDevices],
 }

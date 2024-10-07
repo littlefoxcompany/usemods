@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center justify-between gap-6 bg-white px-5 py-4 dark:bg-white/[3%]">
+  <div class="flex items-center justify-between gap-6 overflow-hidden bg-white px-5 py-4 dark:bg-white/[3%]">
     <div class="flex items-start gap-3">
       <div class="mt-1 flex size-5 shrink-0 items-center justify-center rounded-full bg-indigo-50 dark:bg-white/5">
         <Icon

@@ -43,16 +43,6 @@
         class="size-5 shrink-0 text-indigo-500" />
       {{ info }}
     </Callout>
-
-    <!-- Function -->
-    <div class="mt-6 flex justify-between gap-2 rounded-xl border border-black/5 bg-indigo-600/[2%] p-5 text-sm dark:border-white/[6%] dark:bg-white/[2%]">
-      <div class=" font-mono text-gray-900 dark:text-gray-400">
-        <span class="text-indigo-600 dark:text-gray-200">{{ name }}</span>
-        <span class="mr-px text-gray-500">(</span>
-        <span class="text-indigo-600 dark:text-gray-200">{{ params }}</span>
-        <span class="ml-px text-gray-500">)</span>
-      </div>
-    </div>
   </section>
 </template>
 

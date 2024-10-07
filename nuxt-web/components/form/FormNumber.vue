@@ -14,7 +14,7 @@
         v-if="!mask"
         :id="id"
         :value="modelValue"
-        :placeholder="placeholder"
+        placeholder="∞"
         class="w-full bg-transparent text-left outline-none"
         type="number"
         :min="min"
@@ -23,7 +23,6 @@
 
       <!-- Buttons -->
       <div class="flex items-center gap-1">
-        <!-- :class="Number(modelValue) <= Number(min) ? 'pointer-events-none cursor-not-allowed opacity-30 hover:opacity-30' : ''" -->
         <button
           type="button"
           name="decrement"

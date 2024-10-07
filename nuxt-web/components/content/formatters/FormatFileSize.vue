@@ -11,6 +11,7 @@
           label="Decimals"
           :min="0"
           :max="20" />
+
         <FormSelectLocale v-model="locale" />
 
         <FormSelect
@@ -29,8 +30,7 @@
       <div class="flex gap-4 max-md:flex-col">
         <FormSelect
           v-model="inputUnit"
-          label="Input Unit"
-          info="Default: 'byte'">
+          label="Input Unit">
           <option
             v-for="[unit] in bytesInUnit"
             :key="unit"
@@ -55,10 +55,10 @@
       </div>
     </ExampleInputs>
 
-    <ExampleCode :code="`formatFileSize(${number}, { inputUnit: ${inputUnit}, ${outputUnit !== 'auto' ? `outputUnit: ${outputUnit},` : ''} ${isNumber(decimals) ? `decimals: ${decimals},` : ''} unitDisplay: ${unitDisplay}, ${locale !== undefined ? `locale: ${locale},` : ''} })`" />
+    <ExampleCode :code="formattedCode" />
 
     <ExampleResult>
-      {{ formatFileSize(number, { inputUnit, outputUnit, ...(isNumber(decimals) ? { decimals } : {}), unitDisplay, locale }) }}
+      {{ formatFileSize(number, { inputUnit, outputUnit, decimals: decimals || decimals === 0 ? decimals : undefined, unitDisplay, locale: locale ? locale : undefined }) }}
     </ExampleResult>
   </Example>
 </template>
@@ -68,6 +68,16 @@ const number = ref(1024)
 const inputUnit = ref('byte')
 const outputUnit = ref('auto')
 const decimals = ref(null)
-const locale = ref(undefined)
+const locale = ref('')
 const unitDisplay = ref<'short' | 'long'>('short')
+
+const formattedCode = computed(() => {
+  return generateFormatterCode('formatFileSize', number.value, {
+    inputUnit: inputUnit.value,
+    outputUnit: outputUnit.value,
+    decimals: decimals.value,
+    unitDisplay: unitDisplay.value,
+    locale: locale.value,
+  })
+})
 </script>

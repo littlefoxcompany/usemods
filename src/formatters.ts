@@ -41,8 +41,9 @@ export function formatCurrency(number: number, options?: { decimals?: number; lo
 /**
  * Format numbers into valuations displayed in thousands, millions or billions
  */
-export function formatValuation(number: number, options?: { decimals?: number; locale?: string }): string {
+export function formatValuation(number: number, options?: { decimals?: number; locale?: string; currency?: string }): string {
   const safeDecimals = Math.max(0, Math.min(options?.decimals ?? 0, 20))
+  const locale = options?.locale ?? 'en-US'
 
   const config: Intl.NumberFormatOptions = {
     style: 'currency',
@@ -51,10 +52,10 @@ export function formatValuation(number: number, options?: { decimals?: number; l
     compactDisplay: 'short',
     minimumFractionDigits: safeDecimals,
     maximumFractionDigits: safeDecimals,
-    currency: map.currencySymbols.get(options?.locale ?? 'en-US')
+    currency: options?.currency ?? map.currencySymbols.get(locale) ?? 'USD'
   }
 
-  return new Intl.NumberFormat(options?.locale ?? 'en-US', config).format(number)
+  return new Intl.NumberFormat(locale, config).format(number)
 }
 
 /**

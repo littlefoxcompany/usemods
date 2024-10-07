@@ -4,6 +4,7 @@
 
 import { isServerSide } from './devices'
 
+
 /**
  * Generate a random number
  */
@@ -90,9 +91,9 @@ export function generateRandomIndex(max: number): number {
   }
 
   const range = 256 - (256 % max)
-  
   let randomValue
-  const getRandomValue = () => {
+  
+  function getRandomValue() {
     if (!isServerSide() && window.crypto && window.crypto.getRandomValues) {
       return window.crypto.getRandomValues(new Uint8Array(1))[0]
     } else if (globalThis.crypto && globalThis.crypto.getRandomValues) {
@@ -116,12 +117,12 @@ export function generateLoremIpsum(count: number = 5, options?: { format: 'words
   const { format = 'words' } = options || {}
   const lorem = 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'.split(' ')
 
-  const generateSentence = () => {
+  function generateSentence() {
     const words = Array.from({ length: Math.floor(Math.random() * 10) + 5 }, () => lorem[Math.floor(Math.random() * lorem.length)]).join(' ')
     return formatSentence(words)
   }
 
-  const formatSentence = (sentence: string) => {
+  function formatSentence(sentence: string) {
     return sentence.charAt(0).toUpperCase() + sentence.slice(1) + '.'
   }
 
