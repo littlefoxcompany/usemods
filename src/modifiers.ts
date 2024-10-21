@@ -140,13 +140,18 @@ export function stripHtml(text: string): string {
   }
 
   // SSR Fallback
-  return text
-    .replace(/<script\b[^>]*>([\s\S]*?)<\/script>/gi, '') // Remove script tags and their contents
-    .replace(/<style\b[^>]*>([\s\S]*?)<\/style>/gi, '')   // Remove style tags and their contents
-    .replace(/<[^>]+>/g, '')                              // Remove remaining tags
-    .replace(/&nbsp;/g, ' ')                              // Replace non-breaking spaces with regular spaces
-    .replace(/&[a-z]+;/gi, '')                            // Remove other HTML entities
-    .trim();
+  let previous;
+  do {
+    previous = text;
+    text = text
+      .replace(/<script\b[^>]*>([\s\S]*?)<\/script>/gi, '') // Remove script tags and their contents
+      .replace(/<style\b[^>]*>([\s\S]*?)<\/style>/gi, '')   // Remove style tags and their contents
+      .replace(/<[^>]+>/g, '')                              // Remove remaining tags
+      .replace(/&nbsp;/g, ' ')                              // Replace non-breaking spaces with regular spaces
+      .replace(/&[a-z]+;/gi, '')                            // Remove other HTML entities
+      .trim();
+  } while (text !== previous);
+  return text;
 }
 
 /**
