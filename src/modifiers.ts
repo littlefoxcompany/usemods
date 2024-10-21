@@ -127,10 +127,18 @@ export function ordinalize(value: number): string {
 }
 
 /**
- * Strip HTML tags from a string.
+ * Strip HTML tags from a string efficiently, compatible with SSR.
  */
 export function stripHtml(text: string): string {
-  return text.replace(/<\/?[^>]+(>|$)/g, '')
+  if (typeof text !== 'string') return '';
+
+  return text
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '') // Remove script tags and their contents
+    .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '')   // Remove style tags and their contents
+    .replace(/<[^>]+>/g, '')                                           // Remove remaining tags
+    .replace(/&nbsp;/g, ' ')                                           // Replace non-breaking spaces with regular spaces
+    .replace(/&[a-z]+;/gi, '')                                         // Remove other HTML entities
+    .trim();
 }
 
 /**
