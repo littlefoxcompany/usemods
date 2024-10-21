@@ -1,5 +1,29 @@
 # Changelog
 
+## v1.8.0
+
+[compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.7.1...v1.8.0)
+
+### 🚀 Enhancements
+
+- Add cache configuration for hub ([d400603](https://github.com/LittleFoxCompany/usemods/commit/d400603))
+
+### 🏡 Chore
+
+- Update npm dependencies and package manager versions ([90a2cdf](https://github.com/LittleFoxCompany/usemods/commit/90a2cdf))
+- Remove unused npmrc configuration and refactor FormatParagraphs.vue ([8e87cdd](https://github.com/LittleFoxCompany/usemods/commit/8e87cdd))
+- Update npm dependencies and package manager versions ([030983d](https://github.com/LittleFoxCompany/usemods/commit/030983d))
+- Add option to select locale in FormSelectLocale.vue and update placeholder in FormNumber.vue ([34635a2](https://github.com/LittleFoxCompany/usemods/commit/34635a2))
+- Add computed property for formattedCode in FormatLength.vue ([bff9b7c](https://github.com/LittleFoxCompany/usemods/commit/bff9b7c))
+- Remove unused Select components ([ecc3c95](https://github.com/LittleFoxCompany/usemods/commit/ecc3c95))
+- Add overflow-hidden to Code.vue and Result.vue components ([ffa8150](https://github.com/LittleFoxCompany/usemods/commit/ffa8150))
+- Update CSS classes for Button and Example components ([614f8f5](https://github.com/LittleFoxCompany/usemods/commit/614f8f5))
+- Update utils/mods directory structure ([94c62a5](https://github.com/LittleFoxCompany/usemods/commit/94c62a5))
+
+### ❤️ Contributors
+
+- Jeremy Butler ([@jrmymbtlr](http://github.com/jrmymbtlr))
+
 ## v1.7.1
 
 [compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.7.0...v1.7.1)
