@@ -127,10 +127,43 @@ export function ordinalize(value: number): string {
 }
 
 /**
- * Strip HTML tags from a string.
+ * Strip HTML tags from a string efficiently, compatible with SSR.
  */
 export function stripHtml(text: string): string {
-  return text.replace(/<\/?[^>]+(>|$)/g, '')
+  if (typeof text !== 'string') return '';
+
+  // DOMParser (client-side)
+  if (typeof window !== 'undefined' && window.DOMParser) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(text, 'text/html');
+    return (doc.body.textContent || '').trim();
+  }
+
+  // SSR Fallback (server-side)
+  const stripTags = (str: string) => {
+    let previous;
+    do {
+      previous = str;
+      str = str.replace(/<[^>]*>/g, '');
+    } while (str !== previous);
+    return str;
+  };
+
+  function decodeEntities(str: string) {
+    return str.replace(/&([^;]+);/g, (match, entity) => {
+      const entities: { [key: string]: string } = {
+        'amp': '&',
+        'lt': '<',
+        'gt': '>',
+        'quot': '"',
+        'apos': "'",
+        'nbsp': ' '
+      };
+      return entities[entity] || match;
+    });
+  };
+
+  return decodeEntities(stripTags(text)).trim();
 }
 
 /**
