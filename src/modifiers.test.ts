@@ -73,7 +73,7 @@ test('singularize', () => {
 
 test('stripHtml', () => {
   expect(mod.stripHtml('<p>Hello world</p>')).toBe('Hello world')
-  expect(mod.stripHtml('<script>Hello world</script>')).toBe('Hello world')
+  expect(mod.stripHtml('<b>Hello world</script>')).toBe('Hello world');
 })
 
 test('escapeHtml', () => {

@@ -132,12 +132,20 @@ export function ordinalize(value: number): string {
 export function stripHtml(text: string): string {
   if (typeof text !== 'string') return '';
 
+  // Check if DOMParser is available (not available in some SSR environments)
+  if (typeof window !== 'undefined' && window.DOMParser) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(text, 'text/html');
+    return (doc.body.textContent || '').trim();
+  }
+
+  // Fallback for SSR environments where DOMParser isn't available
   return text
-    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '') // Remove script tags and their contents
-    .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '')   // Remove style tags and their contents
-    .replace(/<[^>]+>/g, '')                                           // Remove remaining tags
-    .replace(/&nbsp;/g, ' ')                                           // Replace non-breaking spaces with regular spaces
-    .replace(/&[a-z]+;/gi, '')                                         // Remove other HTML entities
+    .replace(/<script\b[^>]*>([\s\S]*?)<\/script>/gi, '') // Remove script tags and their contents
+    .replace(/<style\b[^>]*>([\s\S]*?)<\/style>/gi, '')   // Remove style tags and their contents
+    .replace(/<[^>]+>/g, '')                              // Remove remaining tags
+    .replace(/&nbsp;/g, ' ')                              // Replace non-breaking spaces with regular spaces
+    .replace(/&[a-z]+;/gi, '')                            // Remove other HTML entities
     .trim();
 }
 
