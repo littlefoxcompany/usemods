@@ -132,20 +132,38 @@ export function ordinalize(value: number): string {
 export function stripHtml(text: string): string {
   if (typeof text !== 'string') return '';
 
-  // DOMParser
+  // DOMParser (client-side)
   if (typeof window !== 'undefined' && window.DOMParser) {
     const parser = new DOMParser();
     const doc = parser.parseFromString(text, 'text/html');
     return (doc.body.textContent || '').trim();
   }
 
-  // SSR Fallback
-  return text
-    .replace(/<(script|style)\b[^<]*(?:(?!<\/\1>)<[^<]*)*<\/\1>/gi, '') // Remove script and style tags with contents
-    .replace(/<[^>]+>/g, '') // Remove remaining tags
-    .replace(/&nbsp;/g, ' ') // Replace non-breaking spaces with regular spaces
-    .replace(/&([a-z]+|#\d+);/gi, '') // Remove HTML entities
-    .trim();
+  // SSR Fallback (server-side)
+  const stripTags = (str: string) => {
+    let previous;
+    do {
+      previous = str;
+      str = str.replace(/<[^>]*>/g, '');
+    } while (str !== previous);
+    return str;
+  };
+
+  function decodeEntities(str: string) {
+    return str.replace(/&([^;]+);/g, (match, entity) => {
+      const entities: { [key: string]: string } = {
+        'amp': '&',
+        'lt': '<',
+        'gt': '>',
+        'quot': '"',
+        'apos': "'",
+        'nbsp': ' '
+      };
+      return entities[entity] || match;
+    });
+  };
+
+  return decodeEntities(stripTags(text)).trim();
 }
 
 /**
