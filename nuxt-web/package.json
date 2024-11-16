@@ -18,7 +18,8 @@
     "@nuxtjs/seo": "2.0.0-rc.23",
     "@nuxtjs/tailwindcss": "^6.12.2",
     "@tailwindcss/typography": "^0.5.15",
-    "nuxt": "^3.13.2",
+    "eslint": "9.10.0",
+    "nuxt": "^3.14.159",
     "nuxt-icon": "^0.6.10"
   },
   "dependencies": {
