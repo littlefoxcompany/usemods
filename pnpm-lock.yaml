@@ -4,6 +4,10 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  debug: 4.3.4
+  supports-color: 8.1.1
+
 importers:
 
   .:
