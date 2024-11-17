@@ -28,7 +28,7 @@ nuxt-web/pages/playground/*
 
 # Source files
 nuxt-module/src/runtime/utils/*.ts
-nuxt-web/utils/mods/*.ts
+nuxt-web/utils/**/*.ts
 
 # VSCode Counter
 .VSCodeCounter/
