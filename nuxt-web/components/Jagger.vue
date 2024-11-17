@@ -1,7 +1,7 @@
 <template>
   <section
     id="jagger"
-    class="relative mt-24 flex h-96 items-center justify-center text-clip rounded-2xl bg-indigo-900">
+    class="relative mt-24 flex h-96 items-center justify-center overflow-hidden rounded-2xl bg-indigo-900">
     <Button
       class="relative z-10 shadow-2xl shadow-black"
       @click="scrollToAnchor('scrollToAnchor')">

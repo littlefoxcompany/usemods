@@ -11,35 +11,42 @@ export default defineNuxtConfig({
     '@nuxtjs/sitemap',
     '@nuxthub/core',
   ],
+
   css: ['~/assets/css/main.css'],
+
   imports: {
     dirs: ['utils/mods'],
   },
+
   app: {
     head: {
       htmlAttrs: { lang: 'en' },
       meta: [{ property: 'og:image', content: '/og-image.jpg' }],
     },
   },
-  hub: {
-    cache: true,
-  },
+
+  // hub: {
+  //   cache: true,
+  // },
   sitemap: {
     sources: [
       '/api/sitemap',
     ],
   },
+
   site: {
     name: 'UseMods',
     description: 'UseMods is a collection of helper functions for JavaScript and TypeScript.',
     url: 'https://usemods.com',
   },
+
   nitro: {
     prerender: {
       routes: ['/'],
       crawlLinks: true,
     },
   },
+
   content: {
     highlight: {
       theme: {
@@ -50,11 +57,13 @@ export default defineNuxtConfig({
     },
     ignores: ['\\.txt$'],
   },
+
   routeRules: {
     '/': { prerender: true },
     '/docs/**': { swr: true, prerender: true },
     '/intro/**': { swr: true, prerender: true },
   },
+
   image: {
     cloudflare: {
       baseURL: 'https://usemods.com/',
@@ -64,13 +73,17 @@ export default defineNuxtConfig({
       },
     },
   },
+
   colorMode: {
     classSuffix: '',
   },
+
   eslint: {
     config: {
       stylistic: true,
     },
   },
+
   devtools: { enabled: true },
+  compatibilityDate: '2024-11-14',
 })

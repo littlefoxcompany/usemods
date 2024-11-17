@@ -9,10 +9,11 @@
     "release:major": "pnpm run test && changelogen --release --major && pnpm publish && pnpm run nuxt-module:release",
     "release:minor": "pnpm run test && changelogen --release --minor && pnpm publish && pnpm run nuxt-module:release",
     "release:patch": "pnpm run test && changelogen --release --patch && pnpm publish && pnpm run nuxt-module:release",
-    "build": "pnpm i && pnpm -r --stream build",
+    "build": "pnpm i --no-frozen-lockfile && pnpm -r --stream build",
     "nuxt-module:dev": "pnpm i --prefix ./nuxt-module && pnpm run --prefix ./nuxt-module dev",
     "nuxt-module:release": "node sync-versions.mjs && pnpm run --prefix ./nuxt-module release",
-    "prepublishOnly": "pnpm run --prefix docs bundle"
+    "prepublishOnly": "pnpm run --prefix docs bundle",
+    "deploy": "pnpm dlx nuxthub deploy --prefix ./nuxt-web"
   },
   "keywords": [
     "bun",
@@ -67,5 +68,9 @@
     "typescript-eslint": "^8.3.0",
     "vitest": "^2.1.3"
   },
-  "packageManager": "pnpm@9.7.0+sha512.dc09430156b427f5ecfc79888899e1c39d2d690f004be70e05230b72cb173d96839587545d09429b55ac3c429c801b4dc3c0e002f653830a420fa2dd4e3cf9cf"
+  "packageManager": "pnpm@9.7.0+sha512.dc09430156b427f5ecfc79888899e1c39d2d690f004be70e05230b72cb173d96839587545d09429b55ac3c429c801b4dc3c0e002f653830a420fa2dd4e3cf9cf",
+  "resolutions": {
+    "debug": "4.3.4",
+    "supports-color": "8.1.1"
+  }
 }

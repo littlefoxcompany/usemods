@@ -108,7 +108,6 @@ test('isArray', () => {
 
 test('isObject', () => {
   expect(mod.isObject({ hello: 'world' })).toBe(true)
-  // @ts-expect-error - Testing invalid input
   expect(mod.isObject('hello')).toBe(false)
 })
 

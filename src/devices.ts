@@ -36,17 +36,17 @@ export function addDeviceClasses(userAgent?: string): void {
   if (isServerSide() && !userAgent) return
 
   const deviceInfo = detectUserDevice(userAgent) as { os: string, browser: string, device: string }
-  
+
   // Gather the classes
   const classes = ['os', 'browser', 'device']
     .map(key => (deviceInfo as any)[key]?.toLowerCase())
     .filter(value => value && value !== 'unknown')
-  
+
   // If no classes, return
   if (classes.length === 0) return
 
   // Add the classes to the body
-  document.body.className = classes.join(' ')
+  document.body.classList.add(...classes)
 }
 
 /**

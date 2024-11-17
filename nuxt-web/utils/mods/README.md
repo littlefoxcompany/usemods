@@ -1,0 +1,1 @@
+Compiled files are ignored in the gitignore.

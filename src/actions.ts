@@ -3,21 +3,6 @@
 // lead: JS karate chops
 
 /**
- * Scrolls to the top of the page
- */
-export function scrollToTop(): void {
-  window.scrollTo({ top: 0, behavior: 'smooth' })
-}
-
-
-/**
- * Scrolls to the bottom of the page
- */
-export function scrollToBottom(): void {
-  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
-}
-
-/**
  * Smoothly scrolls to the element with the specified ID without scuffing up your URLs.
  */
 export function scrollToAnchor(id: string): Promise<void> {
