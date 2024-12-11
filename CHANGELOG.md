@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.8.1
+
+[compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.8.0...v1.8.1)
+
+### 🏡 Chore
+
+- **release:** V1.8.0 ([6a26598](https://github.com/LittleFoxCompany/usemods/commit/6a26598))
+
+### ❤️ Contributors
+
+- Jeremy Butler <jeremy@littlefox.studio>
+
 ## v1.8.0
 
 [compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.7.1...v1.8.0)
