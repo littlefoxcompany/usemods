@@ -1,5 +1,19 @@
 # Changelog
 
+## v1.8.3
+
+[compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.8.0...v1.8.3)
+
+### 🏡 Chore
+
+- **release:** V1.8.0 ([6a26598](https://github.com/LittleFoxCompany/usemods/commit/6a26598))
+- **release:** V1.8.1 ([1a4d0a2](https://github.com/LittleFoxCompany/usemods/commit/1a4d0a2))
+- **release:** V1.8.2 ([58f269f](https://github.com/LittleFoxCompany/usemods/commit/58f269f))
+
+### ❤️ Contributors
+
+- Jeremy Butler <jeremy.butler@laravel.com>
+
 ## v1.8.2
 
 [compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.8.0...v1.8.2)
