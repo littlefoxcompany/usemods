@@ -118,17 +118,20 @@ export function detectUrl(): string {
 }
 
 /**
- * Returns the path of the current URL in an array
+ * Returns the path of the current URL as an array or string
  */
-export function detectUrlPath(): string[] {
-  return window.location.pathname.split('/').filter((p) => p)
+export function detectUrlPath(format: 'array' | 'string' = 'array'): string[] | string {
+  const pathArray = window.location.pathname.split('/').filter((p) => p)
+  return format === 'string' ? pathArray.join('/') : pathArray
 }
 
 /**
  * Returns a value from the URL by name
  */
-export function detectUrlParams(): { [key: string]: string }[] | null {
+export function detectUrlParams(format: 'string' | 'object' = 'string'): ({ [key: string]: string }[] | string) | null {
   const searchParams = new URLSearchParams(window.location.search)
+  if (format === 'string') return searchParams.toString()
+
   const paramsArray = []
 
   for (const [key, value] of searchParams.entries()) {

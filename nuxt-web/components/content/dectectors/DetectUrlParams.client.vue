@@ -1,5 +1,21 @@
 <template>
   <Example>
-    <ExampleResult>{{ detectUrlParams() }}</ExampleResult>
+    <ExampleInputs>
+      <FormSelect
+        v-model="format"
+        label="Format">
+        <option value="array">
+          Array
+        </option>
+        <option value="string">
+          String
+        </option>
+      </FormSelect>
+    </ExampleInputs>
+    <ExampleResult>{{ detectUrlParams (format) }}</ExampleResult>
   </Example>
 </template>
+
+<script setup lang="ts">
+const format = ref<'array' | 'string'>('array')
+</script>
