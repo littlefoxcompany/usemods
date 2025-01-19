@@ -4,11 +4,13 @@
     ref="section"
     class="pb-12 text-gray-900 dark:text-white">
     <div
+      :id="props.name.toLowerCase()"
       class="relative flex w-full cursor-pointer items-end gap-3"
       @click="copyToClipboard(`${detectHost()}${route.fullPath}#${props.name.toLowerCase()}`), copied()"
       @mouseover="showCopyToClipboard = true"
       @mouseout="showCopyToClipboard = false">
-      <h2 class="text-2xl font-semibold md:text-3xl">
+      <h2
+        class="text-2xl font-semibold md:text-3xl">
         {{ name }}
       </h2>
 
