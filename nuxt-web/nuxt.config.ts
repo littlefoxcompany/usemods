@@ -25,9 +25,6 @@ export default defineNuxtConfig({
     },
   },
 
-  // hub: {
-  //   cache: true,
-  // },
   sitemap: {
     sources: [
       '/api/sitemap',
