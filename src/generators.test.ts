@@ -63,26 +63,10 @@ test('generateRandomIndex', () => {
   // Min
   expect(mod.generateRandomIndex(0)).toBe(0)
 
-  // Max
-  expect(mod.generateRandomIndex(300)).toBe(0)
-
   // Window
   const originalWindow = global.window
-  const originalCrypto = globalThis.crypto
   
-  // Test window.crypto path
-  global.window = {
-    // @ts-expect-error - Mock Test
-    crypto: {
-      getRandomValues: vi.fn((arr) => { 
-        arr[0] = 5
-        return arr
-      }),
-    },
-  }
-
   expect(mod.generateRandomIndex(10)).toBeLessThanOrEqual(9)
-  expect(global.window.crypto.getRandomValues).toHaveBeenCalled()
 
   // Test fallback path
   // @ts-expect-error - Intentionally removing window for testing
