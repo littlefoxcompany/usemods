@@ -150,17 +150,39 @@ export function stripHtml(text: string): string {
   };
 
   function decodeEntities(str: string) {
-    return str.replace(/&([^;]+);/g, (match, entity) => {
-      const entities: { [key: string]: string } = {
-        'amp': '&',
-        'lt': '<',
-        'gt': '>',
-        'quot': '"',
-        'apos': "'",
-        'nbsp': ' '
-      };
-      return entities[entity] || match;
-    });
+    return str
+      // Handle numeric entities
+      .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(code))
+      .replace(/&#x([0-9a-f]+);/gi, (_, code) => String.fromCharCode(parseInt(code, 16)))
+      // Handle named entities
+      .replace(/&([^;]+);/g, (match, entity) => {
+        const entities: { [key: string]: string } = {
+          'amp': '&',
+          'lt': '<',
+          'gt': '>',
+          'quot': '"',
+          'apos': "'",
+          'nbsp': ' ',
+          'copy': '©',
+          'reg': '®',
+          'trade': '™',
+          'deg': '°',
+          'pound': '£',
+          'euro': '€',
+          'cent': '¢',
+          'sect': '§',
+          'para': '¶',
+          'middot': '·',
+          'bull': '•',
+          'ndash': '–',
+          'mdash': '—',
+          'lsquo': '\'',
+          'rsquo': '\'',
+          'ldquo': '"',
+          'rdquo': '"',
+        };
+        return entities[entity] || match;
+      });
   };
 
   return decodeEntities(stripTags(text)).trim();

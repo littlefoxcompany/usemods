@@ -8,19 +8,22 @@
 
 <script setup lang="ts">
 const result = ref('')
-const container = ref<HTMLElement>()
+const container = ref<ComponentPublicInstance | null>(null)
+
+function handleResize() {
+  if (container.value) {
+    result.value = detectContainerBreakpoint(container.value.$el)
+  }
+}
 
 onMounted(() => {
-  if (container.value) result.value = detectContainerBreakpoint(container.value)
-
-  window.addEventListener('resize', () => {
-    if (container.value) result.value = detectContainerBreakpoint(container.value)
+  nextTick(() => {
+    handleResize()
   })
+  window.addEventListener('resize', handleResize)
 })
 
 onUnmounted(() => {
-  window.removeEventListener('resize', () => {
-    if (container.value) result.value = detectContainerBreakpoint(container.value)
-  })
+  window.removeEventListener('resize', handleResize)
 })
 </script>

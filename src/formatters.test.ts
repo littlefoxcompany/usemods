@@ -1,5 +1,6 @@
 import { expect, test } from 'vitest'
 import * as mod from './formatters'
+import { formatFileSize } from './formatters'
 
 test('formatNumber', () => {
   expect(mod.formatNumber(0)).toBe('0')
@@ -75,6 +76,8 @@ test('formatUnit', () => {
   expect(mod.formatUnit(1000, { unit: 'meter', decimals: 2, unitDisplay: 'short' })).toBe('1,000 m')
   expect(mod.formatUnit(1000, { unit: 'meter', decimals: 2, unitDisplay: 'long' })).toBe('1,000 meters')
   expect(mod.formatUnit(1000, { unit: 'meter', decimals: 2, locale: 'en-AU', unitDisplay: 'long' })).toBe('1,000 metres')
+  // No UnitDisplay
+  expect(mod.formatUnit(1000, { unit: 'meter', decimals: 2, locale: 'en-AU' })).toBe('1,000 metres')
 })
 
 test('formatList', () => {
@@ -122,6 +125,19 @@ test('formatNumberToWord', () => {
   expect(mod.formatNumberToWords(1234567890123)).toBe(
     'one trillion, two hundred and thirty-four billion, five hundred and sixty-seven million, eight hundred and ninety thousand, one hundred and twenty-three'
   )
+})
+
+test('formatParagraphs', () => {
+  const singleParagraph = 'This is a test. This is another test. This is a third test.'
+  expect(mod.formatParagraphs(singleParagraph)).toBe(singleParagraph)
+
+  const input = 'This is a test. This is another test. This is a third test.'
+  const expected = [
+    'This is a test. This is another test.',
+    'This is a third test.'
+  ].join('\n\n')
+
+  expect(mod.formatParagraphs(input, { minSentenceCount: 2, minCharacterCount: 10 })).toBe(expected)
 })
 
 test('formatUnixTime', () => {
@@ -197,4 +213,6 @@ test('formatTemperature', () => {
   expect(mod.formatTemperature(0, { inputUnit: 'celsius', outputUnit: 'fahrenheit', unitDisplay: 'short' })).toBe('32°F')
   expect(mod.formatTemperature(0, { inputUnit: 'fahrenheit', outputUnit: 'celsius', unitDisplay: 'short' })).toBe('-17.77777777777778°C')
   expect(mod.formatTemperature(0, { inputUnit: 'fahrenheit', outputUnit: 'celsius', unitDisplay: 'short', decimals: 2 })).toBe('-17.78°C')
+  // Invalid input unit
+  expect(mod.formatTemperature(0, { inputUnit: 'kbdd' })).toBe('0')
 })

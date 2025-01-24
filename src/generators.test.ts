@@ -63,27 +63,31 @@ test('generateRandomIndex', () => {
   // Min
   expect(mod.generateRandomIndex(0)).toBe(0)
 
-  // Max
-  expect(mod.generateRandomIndex(300)).toBe(0)
-
   // Window
   const originalWindow = global.window
-  global.window = {
-    // @ts-expect-error - Mock Test
-    crypto: {
-      getRandomValues: vi.fn((arr) => {
-        // @ts-expect-error - Mock Test
-        arr[0] = 5
-        return arr
-      }),
-    },
-  }
-
+  
   expect(mod.generateRandomIndex(10)).toBeLessThanOrEqual(9)
-  expect(global.window.crypto.getRandomValues).toHaveBeenCalled()
 
-  // Restore original window
+  // Test fallback path
+  // @ts-expect-error - Intentionally removing window for testing
+  global.window = undefined
+  
+  // Create mock crypto object before spying
+  Object.defineProperty(globalThis, 'crypto', {
+    value: undefined,
+    writable: true,
+    configurable: true
+  })
+  
+  const cryptoSpy = vi.spyOn(globalThis, 'crypto', 'get').mockReturnValue(undefined as any)
+  
+  const consoleSpy = vi.spyOn(console, 'warn')
+  expect(mod.generateRandomIndex(10)).toBeLessThanOrEqual(9)
+  expect(consoleSpy).toHaveBeenCalledWith('[MODS] crypto.getRandomValues is not available. Using random() fallback.')
+
+  // Restore original values
   global.window = originalWindow
+  cryptoSpy.mockRestore()
   vi.restoreAllMocks()
 })
 

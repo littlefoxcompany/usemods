@@ -1,5 +1,5 @@
 // title: Detections
-// description: Client-side detections for various user and browser information. Perfect for personalisation, analytics or debugging weird and wonderful bugs. Please note we're working on making our examples reactive! 🚀
+// description: Client-side detections for various user and browser information. Perfect for personalisation, analytics or debugging weird and wonderful bugs. You will need to add a listeners for reactivity.
 // lead: Listen to your clients
 
 /**
@@ -92,6 +92,7 @@ export function detectDeviceOrientation(): string {
 
 /**
  * Detect the current breakpoint based on Tailwind CSS breakpoints
+ * @info Add a listener to the window resize event to detect changes
  */
 export function detectBreakpoint(): string {
   const width = window.innerWidth
@@ -101,6 +102,32 @@ export function detectBreakpoint(): string {
   if (width < 1280) return 'lg'
   if (width < 1536) return 'xl'
   return '2xl'
+}
+
+/**
+ * Detect any container breakpoint based on Tailwind CSS breakpoints
+  * @info Add a listener to the window resize event to detect changes
+ */
+export function detectContainerBreakpoint(element: HTMLElement): string {
+  if (!element || !(element instanceof HTMLElement)) {
+    console.log('element is not an instance of HTMLElement')
+    return '@xs'
+  }
+
+  const width = element.getBoundingClientRect().width
+
+  if (width < 320) return '@xs'
+  if (width < 384) return '@sm'
+  if (width < 448) return '@md'
+  if (width < 512) return '@lg'
+  if (width < 576) return '@xl'
+  if (width < 672) return '@2xl'
+  if (width < 768) return '@3xl'
+  if (width < 896) return '@4xl'
+  if (width < 1024) return '@5xl'
+  if (width < 1152) return '@6xl'
+  if (width < 1280) return '@7xl'
+  return '@7xl'
 }
 
 /**
@@ -118,17 +145,20 @@ export function detectUrl(): string {
 }
 
 /**
- * Returns the path of the current URL in an array
+ * Returns the path of the current URL as an array or string
  */
-export function detectUrlPath(): string[] {
-  return window.location.pathname.split('/').filter((p) => p)
+export function detectUrlPath(format: 'array' | 'string' = 'array'): string[] | string {
+  const pathArray = window.location.pathname.split('/').filter((p) => p)
+  return format === 'string' ? pathArray.join('/') : pathArray
 }
 
 /**
  * Returns a value from the URL by name
  */
-export function detectUrlParams(): { [key: string]: string }[] | null {
+export function detectUrlParams(format: 'string' | 'object' = 'string'): ({ [key: string]: string }[] | string) | null {
   const searchParams = new URLSearchParams(window.location.search)
+  if (format === 'string') return searchParams.toString()
+
   const paramsArray = []
 
   for (const [key, value] of searchParams.entries()) {
@@ -165,97 +195,3 @@ export function detectHostName(): string {
 export function detectPort(): string {
   return window.location.port
 }
-
-/**
- * Detects if the element is currently in the viewport
- */
-// export function detectInViewport(element: HTMLElement): boolean {
-//   const rect = element.getBoundingClientRect()
-//   return (
-//     rect.top >= 0 &&
-//     rect.left >= 0 &&
-//     rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-//     rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-//   )
-// }
-
-/**
- * Detects if the element is currently in the container via ID
- */
-// export function detectInContainer(element: HTMLElement, id: string): boolean {
-//   const rect = element.getBoundingClientRect()
-//   const container = document.getElementById(id)
-//   if (!container) return false
-//   const containerRect = container.getBoundingClientRect()
-//   return rect.top >= containerRect.top && rect.left >= containerRect.left && rect.bottom <= containerRect.bottom && rect.right <= containerRect.right
-// }
-
-// /**
-//  * Detect the current memory status of the user (RAM)
-//  */
-// export function detectMemoryStatus(): { totalJSHeapSize: number; usedJSHeapSize: number; jsHeapSizeLimit: number } {
-//   return {
-//     totalJSHeapSize: (performance as any).memory.totalJSHeapSize,
-//     usedJSHeapSize: (performance as any).memory.usedJSHeapSize,
-//     jsHeapSizeLimit: (performance as any).memory.jsHeapSizeLimit
-//   }
-// }
-
-// /**
-//  * Returns a cookie value by name
-//  */
-// export function detectCookie(name: string) {
-//   const value = '; ' + document.cookie
-//   const parts = value.split('; ' + name + '=')
-//   if (parts.length === 2) return parts.pop()?.split(';').shift()
-// }
-
-// /**
-//  * Returns a local storage value by name and parses it into JSON
-//  */
-// export function detectLocalStorage(name: string): any {
-//   const item = localStorage.getItem(name)
-//   if (item) return JSON.parse(item)
-// }
-
-// /**
-//  * Returns a session storage value by name and parses it into JSON
-//  */
-// export function detectSessionStorage(name: string) {
-//   const item = sessionStorage.getItem(name)
-//   if (item) return JSON.parse(item)
-// }
-
-/**
- * Detect any container breakpoint based on Tailwind CSS breakpoints
- */
-// export function detectContainerBreakpoint(element: HTMLElement): string {
-//   const width = element.getBoundingClientRect().width
-
-//   if (width < 320) return '@xs'
-//   if (width < 384) return '@sm'
-//   if (width < 448) return '@md'
-//   if (width < 512) return '@lg'
-//   if (width < 576) return '@xl'
-//   if (width < 672) return '@2xl'
-//   if (width < 768) return '@3xl'
-//   if (width < 896) return '@4xl'
-//   if (width < 1024) return '@5xl'
-//   if (width < 1152) return '@6xl'
-//   if (width < 1280) return '@7xl'
-//   return '@7xl'
-// }
-
-/**
- * Detect the container size via ID
- */
-// export function detectContainerSize(element: HTMLElement): { width: number; height: number } {
-//   if (!element) return { width: 0, height: 0 }
-
-//   const rect = element.getBoundingClientRect()
-
-//   return {
-//     width: rect.width,
-//     height: rect.height
-//   }
-// }
