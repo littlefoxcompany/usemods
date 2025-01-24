@@ -72,6 +72,13 @@ test('generateRandomIndex', () => {
   // @ts-expect-error - Intentionally removing window for testing
   global.window = undefined
   
+  // Create mock crypto object before spying
+  Object.defineProperty(globalThis, 'crypto', {
+    value: undefined,
+    writable: true,
+    configurable: true
+  })
+  
   const cryptoSpy = vi.spyOn(globalThis, 'crypto', 'get').mockReturnValue(undefined as any)
   
   const consoleSpy = vi.spyOn(console, 'warn')
