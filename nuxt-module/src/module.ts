@@ -8,21 +8,24 @@ export interface ModuleOptions {
 export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: 'usemods-nuxt',
-    configKey: 'usemods'
+    configKey: 'usemods',
+    compatibility: {
+      nuxt: '^3.0.0',
+    },
   },
   // Default configuration options of the Nuxt module
   defaults: {
-    alias: []
+    alias: [],
   },
   setup(options) {
     const aliasMap = new Map<string, string>(options.alias)
     for (const name of Object.keys(utils)) {
-      const alias = aliasMap.has(name) ? aliasMap.get(name!) : name
+      const alias = aliasMap.has(name) ? aliasMap.get(name)! : name
       addImports({
         name: name,
         as: alias,
-        from: 'usemods'
+        from: 'usemods',
       })
     }
-  }
+  },
 })
