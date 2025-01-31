@@ -7,7 +7,13 @@ import * as map from './maps'
 /**
  * Format numbers into neat and formatted strings for people
  */
-export function formatNumber(number: number, options?: { decimals?: number; locale?: string }): string {
+export function formatNumber(
+  number: number,
+  options?: {
+    decimals?: number
+    locale?: string
+  },
+): string {
   const decimalPlaces = (number.toString().split('.')[1] || '').length
   const safeDecimals = Math.min(options?.decimals ?? decimalPlaces, decimalPlaces)
 
@@ -23,7 +29,13 @@ export function formatNumber(number: number, options?: { decimals?: number; loca
 /**
  * Format numbers into local currency with extra smarts
  */
-export function formatCurrency(number: number, options?: { decimals?: number; locale?: string }): string {
+export function formatCurrency(
+  number: number,
+  options?: {
+    decimals?: number
+    locale?: string
+  },
+): string {
   const decimalPlaces = (number.toString().split('.')[1] || '0').padEnd(2, '0').length
   const safeDecimals = Math.min(options?.decimals ?? decimalPlaces, decimalPlaces)
 
@@ -32,7 +44,7 @@ export function formatCurrency(number: number, options?: { decimals?: number; lo
     currencyDisplay: 'narrowSymbol',
     minimumFractionDigits: safeDecimals,
     maximumFractionDigits: safeDecimals,
-    currency: map.currencySymbols.get(options?.locale ?? 'en-US') || 'USD'
+    currency: map.currencySymbols.get(options?.locale ?? 'en-US') || 'USD',
   }
 
   return new Intl.NumberFormat(options?.locale ?? 'en-US', config).format(number)
@@ -41,7 +53,14 @@ export function formatCurrency(number: number, options?: { decimals?: number; lo
 /**
  * Format numbers into valuations displayed in thousands, millions or billions
  */
-export function formatValuation(number: number, options?: { decimals?: number; locale?: string; currency?: string }): string {
+export function formatValuation(
+  number: number,
+  options?: {
+    decimals?: number
+    locale?: string
+    currency?: string
+  },
+): string {
   const safeDecimals = Math.max(0, Math.min(options?.decimals ?? 0, 20))
   const locale = options?.locale ?? 'en-US'
 
@@ -52,7 +71,7 @@ export function formatValuation(number: number, options?: { decimals?: number; l
     compactDisplay: 'short',
     minimumFractionDigits: safeDecimals,
     maximumFractionDigits: safeDecimals,
-    currency: options?.currency ?? map.currencySymbols.get(locale) ?? 'USD'
+    currency: options?.currency ?? map.currencySymbols.get(locale) ?? 'USD',
   }
 
   return new Intl.NumberFormat(locale, config).format(number)
@@ -61,10 +80,18 @@ export function formatValuation(number: number, options?: { decimals?: number; l
 /**
  * Format a number into a your unit of choice
  */
-export function formatUnit(number: number, options: { unit: string; decimals?: number; unitDisplay?: 'short' | 'long'; locale?: string }): string {
+export function formatUnit(
+  number: number,
+  options: {
+    unit: string
+    decimals?: number
+    unitDisplay?: 'short' | 'long'
+    locale?: string
+  },
+): string {
   const decimalPlaces = (number.toString().split('.')[1] || '').length
   const safeDecimals = Math.min(options?.decimals ?? 21, decimalPlaces)
-  
+
   const config: Intl.NumberFormatOptions = {
     unit: options.unit,
     style: 'unit',
@@ -79,14 +106,20 @@ export function formatUnit(number: number, options: { unit: string; decimals?: n
 /**
  * Format a number into a percentage
  */
-export function formatPercentage(number: number, options?: { decimals?: number; locale?: string }): string {
+export function formatPercentage(
+  number: number,
+  options?: {
+    decimals?: number
+    locale?: string
+  },
+): string {
   const decimalPlaces = (number.toString().split('.')[1] || '').length
   const safeDecimals = Math.max(0, Math.min(options?.decimals ?? decimalPlaces, decimalPlaces))
 
   const config: Intl.NumberFormatOptions = {
     style: 'percent',
     minimumFractionDigits: safeDecimals,
-    maximumFractionDigits: safeDecimals
+    maximumFractionDigits: safeDecimals,
   }
 
   let formattedNumber = new Intl.NumberFormat(options?.locale ?? 'en-US', config).format(number)
@@ -98,9 +131,15 @@ export function formatPercentage(number: number, options?: { decimals?: number; 
 /**
  * Format time into a human-readable string
  */
-export function formatDurationLabels(seconds: number, options?: { labels?: 'short' | 'long'; round?: boolean }): string {
+export function formatDurationLabels(
+  seconds: number,
+  options?: {
+    labels?: 'short' | 'long'
+    round?: boolean
+    decimals?: number
+  },
+): string {
   if (seconds <= 0) return formatUnit(0, { unit: 'second', decimals: 0, unitDisplay: options?.labels ?? 'long' })
-  if (options?.round) seconds = Math.round(seconds)
 
   const units = [
     { unit: 'year', value: 31536000 },
@@ -108,7 +147,19 @@ export function formatDurationLabels(seconds: number, options?: { labels?: 'shor
     { unit: 'hour', value: 3600 },
     { unit: 'minute', value: 60 },
     { unit: 'second', value: 1 },
+    { unit: 'millisecond', value: 1 / 1000 },
   ]
+
+  if (options?.round) {
+    // Find the largest unit that has a value
+    for (const { unit, value } of units) {
+      if (seconds >= value) {
+        const unitValue = seconds / value
+        const hasDecimal = unitValue % 1 !== 0
+        return formatUnit(unitValue, { unit, decimals: hasDecimal ? 1 : 0, unitDisplay: options?.labels ?? 'long' })
+      }
+    }
+  }
 
   const labels = options?.labels ?? 'long'
   const results = []
@@ -129,13 +180,15 @@ export function formatDurationLabels(seconds: number, options?: { labels?: 'shor
 /**
  * Format time into duration 00:00:00
  */
-export function formatDurationNumbers(seconds: number): string {
+export function formatDurationNumbers(
+  seconds: number,
+): string {
   const h = Math.floor(seconds / 3600)
   const m = Math.floor((seconds % 3600) / 60)
   const s = Math.floor(seconds % 60)
   const ms = Math.floor((seconds % 1) * 1000)
 
-  const timeParts = [h, m, s].map((value) => value.toString().padStart(2, '0'))
+  const timeParts = [h, m, s].map(value => value.toString().padStart(2, '0'))
 
   if (ms > 0) {
     const msString = Math.floor(ms / 10).toString().padStart(2, '0')
@@ -148,7 +201,16 @@ export function formatDurationNumbers(seconds: number): string {
 /**
  * Format and auto calculate file size into human-readable string
  */
-export function formatFileSize(number: number, options?: { decimals?: number; inputUnit?: string; outputUnit?: string; unitDisplay?: 'short' | 'long'; locale?: string }): string {
+export function formatFileSize(
+  number: number,
+  options?: {
+    decimals?: number
+    inputUnit?: string
+    outputUnit?: string
+    unitDisplay?: 'short' | 'long'
+    locale?: string
+  },
+): string {
   const { decimals = undefined, unitDisplay = 'short', locale = 'en-US', inputUnit = 'byte', outputUnit = 'auto' } = options || {}
   const valueInBytes = number * (map.bytesInUnit.get(inputUnit) || 1)
 
@@ -164,7 +226,16 @@ export function formatFileSize(number: number, options?: { decimals?: number; in
 /**
  * Format and auto calculate length into human-readable string
  */
-export function formatLength(number: number, options?: { decimals?: number; inputUnit?: string; outputUnit?: string; unitDisplay?: 'short' | 'long'; locale?: string }): string {
+export function formatLength(
+  number: number,
+  options?: {
+    decimals?: number
+    inputUnit?: string
+    outputUnit?: string
+    unitDisplay?: 'short' | 'long'
+    locale?: string
+  },
+): string {
   const { decimals = undefined, unitDisplay = 'short', locale = 'en-US', inputUnit = 'millimeter', outputUnit = 'auto' } = options || {}
   const inputUnitValue = map.lengthUnitConversions.get(inputUnit)
 
@@ -188,7 +259,16 @@ export function formatLength(number: number, options?: { decimals?: number; inpu
 /**
  * Format and auto calculate temperature into human-readable string
  */
-export function formatTemperature(number: number, options?: { decimals?: number; inputUnit?: string; outputUnit?: string; unitDisplay?: 'short' | 'long'; locale?: string }): string {
+export function formatTemperature(
+  number: number,
+  options?: {
+    decimals?: number
+    inputUnit?: string
+    outputUnit?: string
+    unitDisplay?: 'short' | 'long'
+    locale?: string
+  },
+): string {
   const { decimals, unitDisplay = 'short', locale = 'en-US', inputUnit = 'celsius', outputUnit = 'celsius' } = options || {}
 
   const validUnits = new Set(['auto', 'celsius', 'fahrenheit'])
@@ -200,11 +280,13 @@ export function formatTemperature(number: number, options?: { decimals?: number;
 
   if (inputUnit === outputUnit || inputUnit === 'auto' || outputUnit === 'auto') {
     return formatUnit(number, { unit: inputUnit, decimals, unitDisplay, locale })
-  } else {
+  }
+  else {
     let convertedNumber = number
     if (inputUnit === 'celsius' && outputUnit === 'fahrenheit') {
       convertedNumber = (number * 9 / 5) + 32
-    } else if (inputUnit === 'fahrenheit' && outputUnit === 'celsius') {
+    }
+    else if (inputUnit === 'fahrenheit' && outputUnit === 'celsius') {
       convertedNumber = (number - 32) * 5 / 9
     }
     return formatUnit(convertedNumber, { unit: outputUnit, decimals, unitDisplay, locale })
@@ -214,7 +296,9 @@ export function formatTemperature(number: number, options?: { decimals?: number;
 /**
  * Format numbers into words
  */
-export function formatNumberToWords(number: number): string {
+export function formatNumberToWords(
+  number: number,
+): string {
   if (number === 0) return map.numberUnderTwenty[0]
 
   const formatGroup = (num: number): string => {
@@ -242,50 +326,59 @@ export function formatNumberToWords(number: number): string {
  * Formats content into paragraphs with a minimum number of characters per sentence and minimum number of sentences per paragraph
  * @info Use whitespace-pre-wrap to ensure the whitespace is preserved
  */
-export function formatParagraphs(text: string, options?: { minSentenceCount: number, minCharacterCount: number }): string {
+export function formatParagraphs(
+  text: string,
+  options?: {
+    minSentenceCount?: number
+    minCharacterCount?: number
+  },
+): string {
   const { minSentenceCount = 3, minCharacterCount = 100 } = options || {}
   function isValidSentenceEnd(text: string, index: number): boolean {
-    return text[index] === '.' && (index === text.length - 1 || text[index + 1] === ' ') && !/\d\.\d/.test(text.slice(index - 1, index + 2));
+    return text[index] === '.' && (index === text.length - 1 || text[index + 1] === ' ') && !/\d\.\d/.test(text.slice(index - 1, index + 2))
   }
 
-  const sentences = text.split(/(?<=\.)\s+/).filter(Boolean);
+  const sentences = text.split(/(?<=\.)\s+/).filter(Boolean)
 
-  const paragraphs: string[] = [];
-  let currentParagraph: string[] = [];
-  let currentSentenceCount = 0;
+  const paragraphs: string[] = []
+  let currentParagraph: string[] = []
+  let currentSentenceCount = 0
 
   for (const sentence of sentences) {
     if (sentence.length >= minCharacterCount || isValidSentenceEnd(sentence, sentence.length - 1)) {
-      currentSentenceCount++;
+      currentSentenceCount++
     }
 
-    currentParagraph.push(sentence);
+    currentParagraph.push(sentence)
 
     if (currentSentenceCount >= minSentenceCount) {
-      paragraphs.push(currentParagraph.join(' '));
-      currentParagraph = [];
-      currentSentenceCount = 0;
+      paragraphs.push(currentParagraph.join(' '))
+      currentParagraph = []
+      currentSentenceCount = 0
     }
   }
 
   if (currentParagraph.length > 0) {
-    paragraphs.push(currentParagraph.join(' '));
+    paragraphs.push(currentParagraph.join(' '))
   }
 
-  return paragraphs.join('\n\n');
+  return paragraphs.join('\n\n')
 }
 
 /**
  * Generate initials from any string while ignoring common titles
  */
-export function formatInitials(text: string, options?: { length?: number }): string {
+export function formatInitials(
+  text: string,
+  options?: { length?: number },
+): string {
   if (!text) return ''
   text = text.replace(/\b(Mrs|Mr|Ms|Dr|Jr|Sr|Prof|Hon|Snr|Jnr|St)\b\.?/g, ' ').trim()
 
   return text
     .split(' ')
-    .filter((word) => !['the', 'third'].includes(word.toLowerCase()))
-    .map((word) => word.charAt(0).toUpperCase())
+    .filter(word => !['the', 'third'].includes(word.toLowerCase()))
+    .map(word => word.charAt(0).toUpperCase())
     .join('')
     .substring(0, options?.length ?? 2)
 }
@@ -304,8 +397,14 @@ export function formatUnixTime(timestamp: number): string {
 /**
  * Create a string of comma-separated values from an array, object, or string with an optional limit and conjunction
  */
-export function formatList(items: string | object | string[], options?: { limit?: number; conjunction?: string }): string {
-  if (typeof items === 'string') items = items.split(',').map((item) => item.trim())
+export function formatList(
+  items: string | object | string[],
+  options?: {
+    limit?: number
+    conjunction?: string
+  },
+): string {
+  if (typeof items === 'string') items = items.split(',').map(item => item.trim())
   if (typeof items === 'object' && !Array.isArray(items)) items = Object.values(items)
   if (!Array.isArray(items) || items.length === 0) return ''
   if (items.length <= 2) return items.join(items.length === 2 ? ` ${options?.conjunction || 'and'} ` : '')
@@ -321,7 +420,9 @@ export function formatList(items: string | object | string[], options?: { limit?
 /**
  * Converts a string to title case following the Chicago Manual of Style rules.
  */
-export function formatTitle(text: string): string {
+export function formatTitle(
+  text: string,
+): string {
   if (!text) return ''
 
   return text
@@ -339,19 +440,20 @@ export function formatTitle(text: string): string {
 /**
  * Format a sentence case string
  */
-export function formatSentenceCase(text: string): string {
+export function formatSentenceCase(
+  text: string,
+): string {
   if (!text) {
     console.warn('[MODS] Empty formatSentenceCase text')
     return ''
   }
   return text
     .split('\n\n')
-    .map((paragraph) =>
+    .map(paragraph =>
       paragraph
         .split('. ')
-        .map((sentence) => sentence.charAt(0).toUpperCase() + sentence.slice(1))
-        .join('. ')
-    )
+        .map(sentence => sentence.charAt(0).toUpperCase() + sentence.slice(1))
+        .join('. '))
     .join('\n\n')
 }
 
@@ -359,12 +461,14 @@ export function formatSentenceCase(text: string): string {
  * Adds a space between the last two words in a string to prevent lonely words.
  * @info Remember `text-wrap: pretty` and `text-wrap: balance` are available for most browsers.
  */
-export function formatTextWrap(text: string): string {
+export function formatTextWrap(
+  text: string,
+): string {
   if (!text) {
     console.warn('[MODS] Empty formatTextWrap text')
     return ''
   }
-  const space = text.lastIndexOf(' ')
+  const space: number = text.lastIndexOf(' ')
   if (space !== -1) return text.substring(0, space) + '&nbsp;' + text.substring(space + 1)
   return text
 }

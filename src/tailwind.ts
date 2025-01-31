@@ -9,11 +9,11 @@ const devices: Set<string> = new Set([
   'mobile', 'tablet', 'desktop',
   'portrait', 'landscape',
 ])
-  
+
 // Define the plugin without dependencies
-export const modDevices = function ({ addVariant, e }: { addVariant: any; e: (className: string) => string }) {
+export const modDevices = function ({ addVariant, e }: { addVariant: any, e: (className: string) => string }) {
   devices.forEach((device) => {
-    addVariant(device, ({ modifySelectors, separator }: { modifySelectors: any; separator: string }) => {
+    addVariant(device, ({ modifySelectors, separator }: { modifySelectors: any, separator: string }) => {
       modifySelectors(({ className }: { className: string }) => {
         return `.${device} .${e(`${device}${separator}${className}`)}`
       })

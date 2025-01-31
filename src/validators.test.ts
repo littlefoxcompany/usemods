@@ -151,6 +151,8 @@ test('isNull', () => {
 
 test('isTime', () => {
   expect(mod.isTime('12:00')).toBe(true)
+  expect(mod.isTime('12:00:00')).toBe(true)
+  expect(mod.isTime('12:00:00.123')).toBe(true)
   expect(mod.isTime('hello')).toBe(false)
 })
 

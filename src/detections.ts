@@ -5,10 +5,10 @@
 /**
  * Detect the current scroll position of the window
  */
-export function detectScrollPosition(): { x: number; y: number } {
+export function detectScrollPosition(): { x: number, y: number } {
   return {
     x: window.scrollX,
-    y: window.scrollY
+    y: window.scrollY,
   }
 }
 
@@ -16,10 +16,10 @@ export function detectScrollPosition(): { x: number; y: number } {
  * Detect the absolute mouse position with the page
  * @info Don't forget to add a mousemove event listener to the window
  */
-export function detectMousePosition(event: MouseEvent): { x: number; y: number } {
+export function detectMousePosition(event: MouseEvent): { x: number, y: number } {
   return {
     x: event.pageX,
-    y: event.pageY
+    y: event.pageY,
   }
 }
 
@@ -34,33 +34,29 @@ export function detectRelativeMousePosition(event: MouseEvent): {
   const { innerWidth, innerHeight } = window
   return {
     x: parseFloat((event.clientX / innerWidth).toFixed(2)),
-    y: parseFloat((event.clientY / innerHeight).toFixed(2))
+    y: parseFloat((event.clientY / innerHeight).toFixed(2)),
   }
 }
 
 /**
  * Detect the browser's window size
  */
-export function detectWindowSize(): { width: number; height: number } {
+export function detectWindowSize(): { width: number, height: number } {
   return {
     width: window.innerWidth,
-    height: window.innerHeight
+    height: window.innerHeight,
   }
 }
 
 /**
  * Detect the screen or monitor size
  */
-export function detectScreenSize(): { width: number; height: number } {
+export function detectScreenSize(): { width: number, height: number } {
   return {
     width: window.screen.width,
-    height: window.screen.height
+    height: window.screen.height,
   }
 }
-
-
-
-
 
 /**
  * Detect if the browser window is currently active or hidden.
@@ -81,13 +77,6 @@ export function detectColorScheme(): string {
  */
 export function detectUserTimezone(): string {
   return Intl.DateTimeFormat().resolvedOptions().timeZone
-}
-
-/**
- * Detect the currect device orientation
- */
-export function detectDeviceOrientation(): string {
-  return window.screen.orientation.type
 }
 
 /**
@@ -148,7 +137,7 @@ export function detectUrl(): string {
  * Returns the path of the current URL as an array or string
  */
 export function detectUrlPath(format: 'array' | 'string' = 'array'): string[] | string {
-  const pathArray = window.location.pathname.split('/').filter((p) => p)
+  const pathArray = window.location.pathname.split('/').filter(p => p)
   return format === 'string' ? pathArray.join('/') : pathArray
 }
 
@@ -183,7 +172,7 @@ export function detectHost(): string {
 }
 
 /**
- * Returns the current hostname from the URL 
+ * Returns the current hostname from the URL
  */
 export function detectHostName(): string {
   return window.location.hostname

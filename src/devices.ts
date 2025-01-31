@@ -6,7 +6,7 @@
  * Check if you're a server-side user.
  */
 export function isServerSide(): boolean {
-  return typeof window === 'undefined' || (typeof process !== 'undefined' && typeof process.versions === 'object' && 'node' in process.versions);
+  return typeof window === 'undefined' || (typeof process !== 'undefined' && typeof process.versions === 'object' && 'node' in process.versions)
 }
 
 
@@ -14,28 +14,28 @@ export function isServerSide(): boolean {
  * Detects the user's device based on the user agent string and returns the information as an object.
  */
 export function detectUserDevice(userAgent?: string): object | string {
-  if (isServerSide() && !userAgent) return 'server';
-  const result = userAgent || navigator.userAgent.toLowerCase();
+  if (isServerSide() && !userAgent) return 'server'
+  const result = userAgent || navigator.userAgent.toLowerCase()
   return {
     os: detectOS(result),
     browser: detectBrowser(result),
     device: detectDevice(result),
-  };
+  }
 }
 
 /**
  * Adds detected devices as classes to your project's body class
  */
 export function addDeviceClasses(userAgent?: string): void {
-  if (isServerSide() && !userAgent) return;
+  if (isServerSide() && !userAgent) return
 
-  const { os, browser, device } = detectUserDevice(userAgent) as { os: string, browser: string, device: string };
+  const { os, browser, device } = detectUserDevice(userAgent) as { os: string, browser: string, device: string }
 
   const classes = [os, browser, device]
     .map(value => value?.toLowerCase())
-    .filter(value => value && value !== 'unknown');
+    .filter(value => value && value !== 'unknown')
   if (classes.length > 0) {
-    document.body.classList.add(...classes);
+    document.body.classList.add(...classes)
   }
 }
 
@@ -51,28 +51,28 @@ export function detectDevice(userAgent?: string): string {
  * Detect the current browser
  */
 export function detectBrowser(userAgent?: string): string {
-  if (isServerSide() && !userAgent) return 'server';
-  const result = userAgent || navigator.userAgent.toLowerCase();
-  if (result.includes('chrome') && !result.includes('edg')) return 'Chrome';
-  if (result.includes('firefox')) return 'Firefox';
-  if (result.includes('safari') && !result.includes('chrome') && !result.includes('crios') && !result.includes('fxios')) return 'Safari';
-  if (result.includes('edg')) return 'Edge';
-  return 'unknown';
+  if (isServerSide() && !userAgent) return 'server'
+  const result = userAgent || navigator.userAgent.toLowerCase()
+  if (result.includes('chrome') && !result.includes('edg')) return 'Chrome'
+  if (result.includes('firefox')) return 'Firefox'
+  if (result.includes('safari') && !result.includes('chrome') && !result.includes('crios') && !result.includes('fxios')) return 'Safari'
+  if (result.includes('edg')) return 'Edge'
+  return 'unknown'
 }
 
 /**
  * Detect the current operating system
  */
 export function detectOS(userAgent?: string): string {
-  if (isServerSide() && !userAgent) return 'server';
-  const result = userAgent || navigator.userAgent.toLowerCase();
-  if (result.includes('iphone') || result.includes('ipad')) return 'iOS';
-  if (result.includes('android')) return 'Android';
-  if (result.includes('windows')) return 'Windows';
-  if (result.includes('mac')) return 'Mac';
-  if (result.includes('linux')) return 'Linux';
-  if (result.includes('x11')) return 'UNIX';
-  return 'unknown';
+  if (isServerSide() && !userAgent) return 'server'
+  const result = userAgent || navigator.userAgent.toLowerCase()
+  if (result.includes('iphone') || result.includes('ipad')) return 'iOS'
+  if (result.includes('android')) return 'Android'
+  if (result.includes('windows')) return 'Windows'
+  if (result.includes('mac')) return 'Mac'
+  if (result.includes('linux')) return 'Linux'
+  if (result.includes('x11')) return 'UNIX'
+  return 'unknown'
 }
 
 /**
@@ -222,5 +222,5 @@ export function isHuman(userAgent?: string): boolean {
  * Check if you're a developer by checking the environment variable
  */
 export function isDeveloper(): boolean {
-  return process.env.NODE_ENV === 'development';
+  return process.env.NODE_ENV === 'development'
 }

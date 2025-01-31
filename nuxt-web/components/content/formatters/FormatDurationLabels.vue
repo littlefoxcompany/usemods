@@ -19,13 +19,14 @@
         </option>
       </FormSelect>
       <FormSelect
-        v-model="round"
+        :model-value="round"
+        @update:model-value="val => round = val === 'true'"
         label="Rounding"
         info="Default: false">
-        <option :value="false">
+        <option value="false">
           False
         </option>
-        <option :value="true">
+        <option value="true">
           True
         </option>
       </FormSelect>
@@ -39,6 +40,6 @@
 
 <script setup lang="ts">
 const seconds = ref(954321)
-const labels = ref<'long' | 'short'>('long')
+const labels = ref<'long' | 'short'>('short')
 const round = ref(false)
 </script>

@@ -1,6 +1,5 @@
 import { expect, test } from 'vitest'
 import * as mod from './formatters'
-import { formatFileSize } from './formatters'
 
 test('formatNumber', () => {
   expect(mod.formatNumber(0)).toBe('0')
@@ -48,7 +47,7 @@ test('formatDurationLabels', () => {
   expect(mod.formatDurationLabels(3600 * 2 + 60)).toBe('2 hours 1 minute')
   expect(mod.formatDurationLabels(3600 * 2 + 60 + 1.5)).toBe('2 hours 1 minute 1 second 500 milliseconds')
   expect(mod.formatDurationLabels(3600 * 400 + 60 + 1)).toBe('16 days 16 hours 1 minute 1 second')
-  expect(mod.formatDurationLabels(3600 * 400 + 60 + 1, { round: true })).toBe('16 days 16 hours 1 minute 1 second')
+  expect(mod.formatDurationLabels(3600 * 400 + 60 + 1, { round: true })).toBe('16.7 days')
 })
 
 test('formatDurationNumbers', () => {
@@ -83,7 +82,7 @@ test('formatUnit', () => {
 test('formatList', () => {
   expect(mod.formatList(['Apple'])).toBe('Apple')
   expect(mod.formatList('Apple, Oranges')).toBe('Apple and Oranges')
-  expect(mod.formatList({ '0': 'Apple', '1': 'Oranges' })).toBe('Apple and Oranges')
+  expect(mod.formatList({ 0: 'Apple', 1: 'Oranges' })).toBe('Apple and Oranges')
   expect(mod.formatList(['Apple', 'Oranges', 'Bananas', 'Grapefruit'])).toBe('Apple, Oranges, Bananas and Grapefruit')
   expect(mod.formatList(['Apple', 'Oranges'], { limit: 2 })).toBe('Apple and Oranges')
   expect(mod.formatList(['Apple', 'Oranges', 'Bananas'], { limit: 2 })).toBe('Apple, Oranges and 1 more')
@@ -123,7 +122,7 @@ test('formatNumberToWord', () => {
   expect(mod.formatNumberToWords(12345678901)).toBe('twelve billion, three hundred and forty-five million, six hundred and seventy-eight thousand, nine hundred and one')
   expect(mod.formatNumberToWords(123456789012)).toBe('one hundred and twenty-three billion, four hundred and fifty-six million, seven hundred and eighty-nine thousand, twelve')
   expect(mod.formatNumberToWords(1234567890123)).toBe(
-    'one trillion, two hundred and thirty-four billion, five hundred and sixty-seven million, eight hundred and ninety thousand, one hundred and twenty-three'
+    'one trillion, two hundred and thirty-four billion, five hundred and sixty-seven million, eight hundred and ninety thousand, one hundred and twenty-three',
   )
 })
 
@@ -134,7 +133,7 @@ test('formatParagraphs', () => {
   const input = 'This is a test. This is another test. This is a third test.'
   const expected = [
     'This is a test. This is another test.',
-    'This is a third test.'
+    'This is a third test.',
   ].join('\n\n')
 
   expect(mod.formatParagraphs(input, { minSentenceCount: 2, minCharacterCount: 10 })).toBe(expected)

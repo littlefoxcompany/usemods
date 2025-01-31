@@ -68,7 +68,7 @@ export function pluralize(word: string, count: number): string {
     ['us', 'i'],
     ['f', 'ves'],
     ['fe', 'ves'],
-    ['y', 'ies']
+    ['y', 'ies'],
   ])
 
   for (const [suffix, replacement] of suffixRules) {
@@ -105,7 +105,7 @@ export function singularize(value: string): string {
     ['es', value => value.slice(0, -1)],
     ['i', value => value.slice(0, -1) + 'us'],
     ['a', value => value.slice(0, -1) + 'on'],
-    ['s', value => value.length > 1 ? value.slice(0, -1) : value]
+    ['s', value => value.length > 1 ? value.slice(0, -1) : value],
   ])
 
   for (const [suffix, transform] of singularRules) {
@@ -130,24 +130,26 @@ export function ordinalize(value: number): string {
  * Strip HTML tags from a string efficiently, compatible with SSR.
  */
 export function stripHtml(text: string): string {
-  if (typeof text !== 'string') return '';
+  if (typeof text !== 'string') return ''
 
   // DOMParser (client-side)
   if (typeof window !== 'undefined' && window.DOMParser) {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(text, 'text/html');
-    return (doc.body.textContent || '').trim();
+    const parser = new DOMParser()
+    const doc = parser.parseFromString(text, 'text/html')
+    return (doc.body.textContent || '').trim()
   }
 
   // SSR Fallback (server-side)
   const stripTags = (str: string) => {
-    let previous;
-    do {
-      previous = str;
-      str = str.replace(/<[^>]*>/g, '');
-    } while (str !== previous);
-    return str;
-  };
+    return str
+      .split('<')
+      .map((part, index) => {
+        if (index === 0) return part
+        const closingBracket = part.indexOf('>')
+        return closingBracket >= 0 ? part.slice(closingBracket + 1) : part
+      })
+      .join('')
+  }
 
   function decodeEntities(str: string) {
     return str
@@ -157,35 +159,35 @@ export function stripHtml(text: string): string {
       // Handle named entities
       .replace(/&([^;]+);/g, (match, entity) => {
         const entities: { [key: string]: string } = {
-          'amp': '&',
-          'lt': '<',
-          'gt': '>',
-          'quot': '"',
-          'apos': "'",
-          'nbsp': ' ',
-          'copy': '©',
-          'reg': '®',
-          'trade': '™',
-          'deg': '°',
-          'pound': '£',
-          'euro': '€',
-          'cent': '¢',
-          'sect': '§',
-          'para': '¶',
-          'middot': '·',
-          'bull': '•',
-          'ndash': '–',
-          'mdash': '—',
-          'lsquo': '\'',
-          'rsquo': '\'',
-          'ldquo': '"',
-          'rdquo': '"',
-        };
-        return entities[entity] || match;
-      });
+          amp: '&',
+          lt: '<',
+          gt: '>',
+          quot: '"',
+          apos: '\'',
+          nbsp: ' ',
+          copy: '©',
+          reg: '®',
+          trade: '™',
+          deg: '°',
+          pound: '£',
+          euro: '€',
+          cent: '¢',
+          sect: '§',
+          para: '¶',
+          middot: '·',
+          bull: '•',
+          ndash: '–',
+          mdash: '—',
+          lsquo: '\'',
+          rsquo: '\'',
+          ldquo: '"',
+          rdquo: '"',
+        }
+        return entities[entity] || match
+      })
   };
 
-  return decodeEntities(stripTags(text)).trim();
+  return decodeEntities(stripTags(text)).trim()
 }
 
 /**
@@ -275,7 +277,7 @@ export function pascalCase(text: string): string {
     .trim()
     .replace(/[^\w\s-]/g, '')
     .split(/[-\s]/)
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join('')
 }
 

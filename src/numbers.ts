@@ -166,7 +166,6 @@ export function standardDeviation(numbers: number[], options?: { method: 'sample
   return Math.sqrt(sum / n)
 }
 
-
 /**
  * Returns the measure of asymmetry of the probability distribution of an array of numbers. The skewness value can be positive, zero, negative, or undefined.
  */

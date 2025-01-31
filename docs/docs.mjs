@@ -15,7 +15,7 @@ const srcPath = resolve('./../src')
 const nuxtWebPath = resolve('./../nuxt-web')
 
 // Functions
-const functionPattern = /\/\*\*[\s\S]*?\*\/\s*(export\s+function\s+([a-zA-Z0-9_]+)\s*\((.*?)\)\s*:\s*([\w<>,[\]\s]+(?:\{[\s\S]*?})?)?)/gms
+const functionPattern = /\/\*\*[\s\S]*?\*\/\s*(export\s+function\s+([a-zA-Z0-9_]+)\s*\([\s\S]*?\)\s*:\s*([\w<>,[\]\s]+(?:\{[\s\S]*?})?)?)/gms
 const metadataPattern = /\s+(title|description|lead):\s+([^\r\n]*)/g
 const jsdocPattern = /\/\*\*([\s\S]*?)\*\//g
 
@@ -24,7 +24,7 @@ const files = ['formatters', 'modifiers', 'generators', 'actions', 'numbers', 'd
 
 async function generateMarkdown(file, name) {
   const content = await readFile(file, 'utf8')
-  const metadata = Object.fromEntries([...content.matchAll(metadataPattern)].map((match) => [match[1], match[2]]))
+  const metadata = Object.fromEntries([...content.matchAll(metadataPattern)].map(match => [match[1], match[2]]))
   await copyFile(file, join(nuxtWebPath, 'utils/mods', basename(file)))
 
   // If Tailwind stop here
@@ -54,12 +54,12 @@ async function generateMarkdown(file, name) {
 
   for (const match of functions) {
     const [full] = match.slice(0)
-    const [, name, params] = match.slice(1)
+    const [, name] = match.slice(1)
     const jsdoc = full.match(jsdocPattern)[0]
     const description = jsdoc.replace(/\/\*\*|\*\/|\*/g, '').replace(/@\w+.*$/gm, '').trim()
     const info = (jsdoc.match(/@info\s+(.*)/) || [])[1]?.trim() || ''
 
-    markdown += `::page-function{name="${name}" description="${description}"${params ? ` params="${params}"` : ''}${info ? ` info="${info}"` : ''} }\n`
+    markdown += `::page-function{name="${name}" description="${description}"${info ? ` info="${info}"` : ''} }\n`
     markdown += `:::${name}\n`
     markdown += ':::\n'
     markdown += '::\n\n'
@@ -76,12 +76,12 @@ async function generateAll() {
 async function clearAll() {
   const [webFiles, documentFiles] = await Promise.all([
     readdir(join(nuxtWebPath, 'utils/mods')),
-    readdir(join(nuxtWebPath, 'content/2.docs'))
+    readdir(join(nuxtWebPath, 'content/2.docs')),
   ])
 
   await Promise.all([
     ...webFiles.filter(file => file.endsWith('.ts')).map(file => unlink(join(nuxtWebPath, 'utils/mods', file))),
-    ...documentFiles.filter(file => files.includes(basename(file, extname(file)))).map(file => unlink(join(nuxtWebPath, 'content/2.docs', file)))
+    ...documentFiles.filter(file => files.includes(basename(file, extname(file)))).map(file => unlink(join(nuxtWebPath, 'content/2.docs', file))),
   ])
 }
 
@@ -94,13 +94,16 @@ if (args.includes('--watch')) {
     await generateAll()
     console.log('Generated all files')
   })
-} else if (args.includes('--bundle')) {
+}
+else if (args.includes('--bundle')) {
   generateBundle()
   console.log('Generated bundle')
-} else if (args.includes('--build')) {
+}
+else if (args.includes('--build')) {
   generateAll()
   console.log('Generated all files')
-} else {
+}
+else {
   console.log('No valid command provided. Use --watch or --build.')
 }
 
@@ -112,13 +115,13 @@ async function generateBundle() {
         tsconfig: resolve(srcPath, '..', 'tsconfig.json'),
         rollupCommonJSResolveHack: false,
         clean: true,
-      })
-    ]
+      }),
+    ],
   })
   await bundle.write({
     file: resolve(srcPath, '..', 'dist', 'index.js'),
     format: 'esm',
-    plugins: [terser()]
+    plugins: [terser()],
   })
 
   console.log('dist bundle created')
