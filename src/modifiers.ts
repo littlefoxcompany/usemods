@@ -141,12 +141,14 @@ export function stripHtml(text: string): string {
 
   // SSR Fallback (server-side)
   const stripTags = (str: string) => {
-    let previous
-    do {
-      previous = str
-      str = str.replace(/<[^>]*>/g, '')
-    } while (str !== previous)
     return str
+      .split('<')
+      .map((part, index) => {
+        if (index === 0) return part
+        const closingBracket = part.indexOf('>')
+        return closingBracket >= 0 ? part.slice(closingBracket + 1) : part
+      })
+      .join('')
   }
 
   function decodeEntities(str: string) {
