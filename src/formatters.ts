@@ -151,12 +151,12 @@ export function formatDurationLabels(
   ]
 
   if (options?.round) {
-    // Find the largest unit that has a value
     for (const { unit, value } of units) {
       if (seconds >= value) {
         const unitValue = seconds / value
         const hasDecimal = unitValue % 1 !== 0
-        return formatUnit(unitValue, { unit, decimals: hasDecimal ? 1 : 0, unitDisplay: options?.labels ?? 'long' })
+        const decimals = hasDecimal && unitValue.toFixed(1).endsWith('.0') ? 0 : hasDecimal ? 1 : 0
+        return formatUnit(unitValue, { unit, decimals, unitDisplay: options?.labels ?? 'long' })
       }
     }
   }
