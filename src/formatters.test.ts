@@ -48,6 +48,7 @@ test('formatDurationLabels', () => {
   expect(mod.formatDurationLabels(3600 * 2 + 60 + 1.5)).toBe('2 hours 1 minute 1 second 500 milliseconds')
   expect(mod.formatDurationLabels(3600 * 400 + 60 + 1)).toBe('16 days 16 hours 1 minute 1 second')
   expect(mod.formatDurationLabels(3600 * 400 + 60 + 1, { round: true })).toBe('16.7 days')
+  expect(mod.formatDurationLabels(9241233, { round: true })).toBe('107 days')
 })
 
 test('formatDurationNumbers', () => {
