@@ -6,8 +6,8 @@
  * Check if any given value is a valid email address.
  */
 export function isEmail(value: string): boolean {
-  const regex =
-    /^(?!.*[._+-]{2})(?!.*[._+-]$)[a-zA-Z0-9._+-]+(?<!\.)@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+  const regex
+    = /^(?!.*[._+-]{2})(?!.*[._+-]$)[a-zA-Z0-9._+-]+(?<!\.)@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
   return regex.test(value)
 }
 
@@ -15,17 +15,15 @@ export function isEmail(value: string): boolean {
  * Check if any given value is a valid number.
  */
 export function isNumber(value: unknown): boolean {
-  if (typeof value === 'number') return true
-  console.warn('[MODS] Non-numeric value passed to isNumber validator.')
-  return false
+  return typeof value === 'number' && Number.isFinite(value)
 }
 
 /**
  * Check if any given value is a valid URL.
  */
 export function isUrl(value: string): boolean {
-  const regex =
-    /^(?:\w+:)?\/\/([^\s.]+\.\S{2,}|localhost[:?\d]*(?:[^:?\d]\S*)?)$/
+  const regex
+    = /^(?:\w+:)?\/\/([^\s.]+\.\S{2,}|localhost[:?\d]*(?:[^:?\d]\S*)?)$/
   return regex.test(value)
 }
 
@@ -34,11 +32,11 @@ export function isUrl(value: string): boolean {
  */
 export function isEmpty(value: string | string[] | number[] | object | null | undefined): boolean {
   return (
-    value === null ||
-    value === undefined ||
-    (typeof value === 'string' && value === '') ||
-    (Array.isArray(value) && value.length === 0) ||
-    (typeof value === 'object' && Object.keys(value).length === 0)
+    value === null
+    || value === undefined
+    || (typeof value === 'string' && value === '')
+    || (Array.isArray(value) && value.length === 0)
+    || (typeof value === 'object' && Object.keys(value).length === 0)
   )
 }
 
@@ -59,7 +57,9 @@ export function isJson(value: unknown): boolean {
   try {
     JSON.parse(value)
     return true
-  } catch (error) {
+  }
+  catch (error) {
+    console.warn('[MODS] isJson Error:', error)
     return false
   }
 }
@@ -68,8 +68,7 @@ export function isJson(value: unknown): boolean {
  * Check if any given value is an object.
  */
 export function isObject(value: unknown): boolean {
-  if (typeof value !== 'object' || value === null) return false
-  return value.constructor === Object
+  return value !== null && typeof value === 'object' && value.constructor === Object
 }
 
 /**
@@ -90,9 +89,7 @@ export function isHex(value: string): boolean {
 /**
  * Check if any given value contains only alphabetic characters.
  */
-export function isAlphabetic(
-  value: string | number | string[] | number[]
-): boolean {
+export function isAlphabetic(value: unknown): boolean {
   const regex = /^[a-zA-Z]+$/
   return regex.test(value as string)
 }
@@ -100,43 +97,40 @@ export function isAlphabetic(
 /**
  * Check if any given value contains only alphanumeric characters.
  */
-export function isAlphanumeric(value: string): boolean {
+export function isAlphanumeric(value: unknown): boolean {
   const regex = /^[a-zA-Z0-9]+$/
-  return regex.test(value)
+  return regex.test(value as string)
 }
 
 /**
  * Check if any given value is a boolean value.
  */
-export function isBoolean(value: boolean): boolean {
+export function isBoolean(value: unknown): boolean {
   return typeof value === 'boolean' || value === 'false' || value === 'true'
 }
 
 /**
  * Check if any given value is undefined.
  */
-export function isUndefined(value: undefined): boolean {
+export function isUndefined(value: unknown): boolean {
   return value === undefined
 }
 
 /**
  * Check if any given value is null.
  */
-export function isNull(value: null): boolean {
+export function isNull(value: unknown): boolean {
   return value === null
 }
 
 /**
  * Check if any given value is a valid Date object.
  */
-export function isDate(
-  value: Date | string | number | string[] | number[]
-): boolean {
-  if (value instanceof Date) {
-    return !isNaN(value.getTime())
-  } else if (typeof value === 'string' || typeof value === 'number') {
+export function isDate(value: unknown): boolean {
+  if (value instanceof Date) return !isNaN(value.getTime())
+  else if (typeof value === 'string' || typeof value === 'number') {
     const date = new Date(value)
-    return !isNaN(date.getTime()) && date.toString() !== 'Invalid Date'
+    return !isNaN(date.getTime())
   }
   return false
 }
@@ -144,9 +138,9 @@ export function isDate(
 /**
  * Check if any given value is a valid time in HH:mm format.
  */
-export function isTime(value: string): boolean {
-  const regex = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/
-  return regex.test(value)
+export function isTime(value: unknown): boolean {
+  const regex = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\.\d{1,3})?)?$/
+  return regex.test(value as string)
 }
 
 /**
@@ -248,8 +242,8 @@ export function isDivisibleBy(value: number, divisor: number): boolean {
 export function isCreditCard(value: unknown): boolean {
   if (typeof value === 'number') value = value.toString()
   if (typeof value !== 'string') return false
-  const regex =
-    /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:0111|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/
+  const regex
+    = /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:0111|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/
   return regex.test(value)
 }
 
@@ -257,8 +251,8 @@ export function isCreditCard(value: unknown): boolean {
  * Check if any given value is a valid latitude-longitude coordinate in the format lat,lng or lat,lng.
  */
 export function isLatLng(value: string): boolean {
-  const regex =
-    /^([-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)),\s*([-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?))$/
+  const regex
+    = /^([-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)),\s*([-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?))$/
   return regex.test(value)
 }
 
@@ -282,8 +276,8 @@ export function isLongitude(value: string): boolean {
  * Check if any given value is a valid IP address.
  */
 export function isIpAddress(value: string): boolean {
-  const regex =
-    /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)((?::\d+)?|)$/
+  const regex
+    = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)((?::\d+)?|)$/
   return regex.test(value)
 }
 

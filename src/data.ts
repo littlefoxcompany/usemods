@@ -7,7 +7,7 @@ import { isObject } from './validators'
 /**
  * Sort an array or object by a property.
  */
-export function dataSortBy(items: object | string[] | number[], options?: { property?: string; order?: 'asc' | 'desc' }): object | string[] | number[] {
+export function dataSortBy(items: object | string[] | number[], options?: { property?: string, order?: 'asc' | 'desc' }): object | string[] | number[] {
   const { property, order = 'asc' } = options || {}
 
   const compare = (a: any, b: any) => {
@@ -18,23 +18,24 @@ export function dataSortBy(items: object | string[] | number[], options?: { prop
     if (valueA > valueB) return order === 'asc' ? 1 : -1
     return 0
   }
-
   return Array.isArray(items) ? items.sort(compare) : items
 }
 
 /**
  * Reverse an array or object.
  */
-export function dataReverse(items: object | string[] | number[]): object | string[] | number[] {
+export function dataReverse<T extends object | string[] | number[]>(
+  items: T,
+): T {
   if ((Array.isArray(items) && items.length === 0) || (!Array.isArray(items) && Object.keys(items).length === 0)) {
     console.warn('[MODS] Warning: dataReverse() expects an object or array as the first argument.')
     return items
   }
-
   if (isObject(items)) {
-    return Object.fromEntries(Object.entries(items).reverse())
-  } else {
-    return (items as string[] | number[]).reverse()
+    return Object.fromEntries(Object.entries(items).reverse()) as T
+  }
+  else {
+    return (items as string[] | number[]).reverse() as T
   }
 }
 
@@ -48,27 +49,29 @@ export function dataRemoveDuplicates<T extends string | number>(...arrays: T[][]
 /**
  * Flatten an array of arrays or an object of objects into a single array or object. That was hard to say.
  */
-export function dataFlatten(items: object | any[]): object | any[] {
+export function dataFlatten<T extends object | string[] | number[]>(items: T): T {
   if (isObject(items)) {
-    const flattened: { [key: string]: any } = {}
+    const flattened: { [key: string]: unknown } = {}
 
     function flattenObject(obj: object, parentKey: string = '') {
       for (const [key, value] of Object.entries(obj)) {
         const newKey = parentKey ? `${parentKey}.${key}` : key
         if (isObject(value)) {
           flattenObject(value, newKey)
-        } else {
+        }
+        else {
           flattened[newKey] = value
         }
       }
     }
 
     flattenObject(items)
-    return flattened
-
-  } else if (Array.isArray(items)) {
-    return items.flatMap(item => Array.isArray(item) ? dataFlatten(item) : item)
-  } else {
+    return flattened as T
+  }
+  else if (Array.isArray(items)) {
+    return items.flatMap(item => Array.isArray(item) ? dataFlatten(item) : item) as T
+  }
+  else {
     return items
   }
 }
@@ -76,17 +79,20 @@ export function dataFlatten(items: object | any[]): object | any[] {
 /**
  * Returns an array without a property or properties.
  */
-export function dataWithout(items: object | string[] | number[], properties: string | number | string[] | number[]): object | string[] | number[] {
+export function dataWithout<T extends object | string[] | number[]>(
+  items: T,
+  properties: string | number | string[] | number[],
+): T {
   const propertyArray = Array.isArray(properties) ? properties : [properties]
-
   if (isObject(items)) {
-    return Object.fromEntries(Object.entries(items).filter(([key]) => !propertyArray.includes(key)))
-  } else {
-    return (items as string[] | number[]).filter((item) => !propertyArray.includes(item))
+    return Object.fromEntries(Object.entries(items).filter(([key]) => !propertyArray.includes(key))) as T
+  }
+  else {
+    return (items as string[] | number[]).filter(item => !propertyArray.includes(item)) as T
   }
 }
 
-// 
+//
 
 // /**
 //  * Group an array of objects by a property.

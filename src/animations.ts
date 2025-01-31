@@ -5,7 +5,15 @@
 /**
  * Animate text by wrapping each character in a span with a delay.
  */
-export function animateText(text: string, options: { splitBy?: 'word' | 'character'; time?: number; unit?: 'ms' | 's'; class?: string } = {}): string {
+export function animateText(
+  text: string,
+  options: {
+    splitBy?: 'word' | 'character'
+    time?: number
+    unit?: 'ms' | 's'
+    class?: string
+  } = {},
+): string {
   if (!text) return ''
 
   const { splitBy = 'character', time = 0.1, unit = 's', class: cssClass = '' } = options
@@ -21,7 +29,8 @@ export function animateText(text: string, options: { splitBy?: 'word' | 'charact
 
     if (element === ' ' && splitBy === 'character') {
       return '<span class="space" style="white-space: pre;"> </span>'
-    } else {
+    }
+    else {
       return `<span style="display: inline-block; position: relative; overflow: clip; margin-right: -0.5rem; margin-left: -0.5rem; padding-right: 0.5rem; padding-left: 0.5rem;">
                 <span class="ghost" style="visibility: hidden;" aria-hidden="true">${element}</span>
                 <span class="translate ${cssClass}" style="${translateStyle}" aria-label="${element}">${element}</span>

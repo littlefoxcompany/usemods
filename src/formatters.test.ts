@@ -1,6 +1,5 @@
 import { expect, test } from 'vitest'
 import * as mod from './formatters'
-import { formatFileSize } from './formatters'
 
 test('formatNumber', () => {
   expect(mod.formatNumber(0)).toBe('0')

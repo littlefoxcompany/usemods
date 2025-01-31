@@ -19,7 +19,7 @@ export function splitByWords(text: string): string {
   const combinedSentences = []
 
   for (let i = 0; i < sentences.length; i += 2) {
-    const sentence = sentences[i] + (sentences[i + 1] || '')
+    const sentence = `${sentences[i]}${sentences[i + 1] || ''}`
 
     if (sentence.trim() === '') continue
 
@@ -41,12 +41,12 @@ export function splitByWords(text: string): string {
  * Check the strength of a password against a given policy.
  * @info Don't forget to use our Password Generator in the Generators section
  */
-export function checkPasswordStrength(text: string, options?: { length?: number, uppercase?: number, number?: number, special?: number }): object {
+export function checkPasswordStrength(text: string, options: { length?: number, uppercase?: number, number?: number, special?: number } = {}): object {
   if (!text) {
     console.warn('[MODS] Warning: No password to check')
     return { score: 0, label: 'Very Weak' }
   }
-  const { length = 8, uppercase = 1, number = 1, special = 1 } = options || {}
+  const { length = 8, uppercase = 1, number = 1, special = 1 } = options
   let strength = 0
 
   const counts = {
@@ -60,16 +60,23 @@ export function checkPasswordStrength(text: string, options?: { length?: number,
   if (counts.numbers < number) return { score: 1, label: `Password must contain ${number} number` }
   if (counts.special < special) return { score: 1, label: `Password must contain ${special} special character` }
 
-  if (text.length >= 8) strength++
-  if (counts.uppercase >= 1) strength++
-  if (counts.numbers >= 1) strength++
-  if (counts.special >= 1) strength++
+  strength += text.length >= 8 ? 1 : 0
+  strength += counts.uppercase >= 1 ? 1 : 0
+  strength += counts.numbers >= 1 ? 1 : 0
+  strength += counts.special >= 1 ? 1 : 0
 
-  if (strength === 4) return { score: 4, label: 'Very Strong' }
-  if (strength === 3) return { score: 3, label: 'Strong' }
-  if (strength === 2) return { score: 2, label: 'Medium' }
-  if (strength === 1) return { score: 1, label: 'Weak' }
-  return { score: 0, label: 'Very Weak' }
+  switch (strength) {
+    case 4:
+      return { score: 4, label: 'Very Strong' }
+    case 3:
+      return { score: 3, label: 'Strong' }
+    case 2:
+      return { score: 2, label: 'Medium' }
+    case 1:
+      return { score: 1, label: 'Weak' }
+    default:
+      return { score: 0, label: 'Very Weak' }
+  }
 }
 
 /**
@@ -100,7 +107,7 @@ export function readingTime(text: string, wordsPerMinute = 200): string {
     console.warn('[MODS] Warning: No text to read')
     return '0 minutes'
   }
-  const words = text.split(' ').length
+  const words = text.split(' ').filter(word => word.trim() !== '').length
   const minutes = Math.ceil(words / wordsPerMinute)
-  return formatDurationLabels(minutes * 60)
+  return formatDurationLabels(minutes * 60) 
 }

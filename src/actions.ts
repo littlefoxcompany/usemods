@@ -5,7 +5,9 @@
 /**
  * Smoothly scrolls to the element with the specified ID without scuffing up your URLs.
  */
-export function scrollToAnchor(id: string): Promise<void> {
+export function scrollToAnchor(
+  id: string,
+): Promise<void> {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const selector = `#${id}`
@@ -17,7 +19,7 @@ export function scrollToAnchor(id: string): Promise<void> {
       }
       element.scrollIntoView({
         behavior: 'smooth',
-        block: 'start'
+        block: 'start',
       })
       resolve()
     }, 180)
@@ -28,7 +30,10 @@ export function scrollToAnchor(id: string): Promise<void> {
  * Toggles the body scroll with specified class names and returns a promise
  * @info Use your own class names, or ensure fixed is within your Tailwindcss JIT
  */
-export function toggleBodyScroll(className: string = 'fixed', action: 'add' | 'remove' | 'toggle' = 'toggle'): Promise<void> {
+export function toggleBodyScroll(
+  className: string = 'fixed',
+  action: 'add' | 'remove' | 'toggle' = 'toggle',
+): Promise<void> {
   return new Promise((resolve, reject) => {
     try {
       const body = document.body
@@ -39,16 +44,19 @@ export function toggleBodyScroll(className: string = 'fixed', action: 'add' | 'r
 
       if (action === 'add') {
         body.classList.add(className)
-      } else if (action === 'remove') {
+      }
+      else if (action === 'remove') {
         body.classList.remove(className)
-      } else {
+      }
+      else {
         body.classList.toggle(className)
       }
 
       if (isFixed) window.scrollTo(0, -scrollY)
 
       resolve()
-    } catch (error) {
+    }
+    catch (error) {
       console.warn('[MODS] Failed to toggle body scroll.')
       reject(error)
     }
@@ -58,7 +66,9 @@ export function toggleBodyScroll(className: string = 'fixed', action: 'add' | 'r
 /**
  * Toggles the element scroll with specified class names and returns a promise
  */
-export function toggleElementScroll(element: HTMLElement): Promise<void> {
+export function toggleElementScroll(
+  element: HTMLElement,
+): Promise<void> {
   return new Promise((resolve) => {
     if (!element) {
       console.warn('[MODS] Element is required to toggle scroll.')
@@ -68,11 +78,11 @@ export function toggleElementScroll(element: HTMLElement): Promise<void> {
     if (element.dataset.isScrollLocked === 'true') {
       element.style.overflow = ''
       delete element.dataset.isScrollLocked
-    } else {
+    }
+    else {
       element.style.overflow = 'hidden'
       element.dataset.isScrollLocked = 'true'
     }
-
     resolve()
   })
 }
@@ -80,10 +90,13 @@ export function toggleElementScroll(element: HTMLElement): Promise<void> {
 /**
  * Copies a convereted string to the clipboard
  */
-export async function copyToClipboard(value: string | number): Promise<void> {
+export async function copyToClipboard(
+  value: string | number,
+): Promise<void> {
   try {
     await navigator.clipboard.writeText(String(value))
-  } catch (error) {
+  }
+  catch (error) {
     console.error('[MODS] Failed to copy text: ', error)
     throw error
   }
@@ -101,12 +114,15 @@ export function toggleFullScreen(): Promise<void> {
 /**
  * Resets a form to its initial state
  */
-export function resetForm(form: HTMLFormElement): Promise<void> {
+export function resetForm(
+  form: HTMLFormElement,
+): Promise<void> {
   return new Promise((resolve, reject) => {
     try {
       form.reset()
       resolve()
-    } catch (error) {
+    }
+    catch (error) {
       reject(error)
     }
   })
@@ -115,7 +131,9 @@ export function resetForm(form: HTMLFormElement): Promise<void> {
 /**
  * Focuses on and scrolls to the first invalid input, select, or textarea element within a form.
  */
-export function focusOnInvalid(container: HTMLElement): Promise<void> {
+export function focusOnInvalid(
+  container: HTMLElement,
+): Promise<void> {
   return new Promise((resolve, reject) => {
     try {
       const input = container.querySelector('input:invalid, select:invalid, textarea:invalid') as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -124,7 +142,8 @@ export function focusOnInvalid(container: HTMLElement): Promise<void> {
         input.scrollIntoView({ behavior: 'smooth', block: 'center' })
       }
       resolve()
-    } catch (error) {
+    }
+    catch (error) {
       reject(error)
     }
   })
@@ -133,7 +152,10 @@ export function focusOnInvalid(container: HTMLElement): Promise<void> {
 /**
  * Focuses on the nth element within the specified form, where 0 is the first element and -1 is the last element.
  */
-export function focusOnNth(container: HTMLElement, index: number = 0): Promise<void> {
+export function focusOnNth(
+  container: HTMLElement,
+  index: number = 0,
+): Promise<void> {
   return new Promise((resolve, reject) => {
     const elements = container.querySelectorAll('input, textarea, select')
     const elementIndex = index === -1 ? elements.length - 1 : index
@@ -145,15 +167,16 @@ export function focusOnNth(container: HTMLElement, index: number = 0): Promise<v
     const element = elements[elementIndex] as HTMLElement
 
     if (!element || typeof element.focus !== 'function') {
-      return reject(new Error('Failed to focus on the element.'))
+      return reject(new Error('[MODS] Failed to focus on the element.'))
     }
 
     try {
       element.focus({ preventScroll: true })
       element.scrollIntoView({ behavior: 'smooth', block: 'center' })
       resolve()
-    } catch (error) {
-      reject(new Error('Failed to focus on the element.'))
+    }
+    catch (error) {
+      reject(new Error('[MODS] Failed to focus on the element.' + error))
     }
   })
 }
@@ -161,7 +184,9 @@ export function focusOnNth(container: HTMLElement, index: number = 0): Promise<v
 /**
  * Sets up a keyboard trap within an HTML element, allowing the focus to cycle between the first and last focusable elements when the Tab key is pressed.
  */
-export function focusTrap(container: HTMLElement): void {
+export function focusTrap(
+  container: HTMLElement,
+): void {
   const focusableElements = container.querySelectorAll('a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select')
   const firstFocusableElement = focusableElements[0] as HTMLElement
   const lastFocusableElement = focusableElements[focusableElements.length - 1] as HTMLElement
@@ -175,7 +200,8 @@ export function focusTrap(container: HTMLElement): void {
         lastFocusableElement.focus()
         event.preventDefault()
       }
-    } else {
+    }
+    else {
       if (document.activeElement === lastFocusableElement) {
         firstFocusableElement.focus()
         event.preventDefault()
