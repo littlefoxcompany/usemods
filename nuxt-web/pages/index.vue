@@ -1,15 +1,15 @@
 <template>
-  <main class="relative flex max-h-screen min-h-screen flex-col text-clip">
+  <main class="relative flex max-h-screen min-h-screen flex-col text-clip overflow-hidden">
     <NavMainNavigation class="relative z-20 shrink" />
     <div class="relative z-10 flex grow">
       <section class="flex grow flex-col">
-        <header class="flex grow flex-col items-center justify-center p-8 md:py-12">
+        <header class="flex grow flex-col items-center justify-center p-8 md:py-24">
           <h1
             id="title"
-            class="max-w-[1200px] text-balance text-center font-bold leading-[1em] text-gray-900 [font-size:_clamp(2.3em,8vw,5rem)] dark:text-white md:leading-[1.25em]"
+            class="max-w-[1200px] text-balance text-center font-bold leading-[1em] text-gray-900 [font-size:_clamp(2.3em,8vw,4.5rem)] dark:text-white md:leading-[1.25em]"
             v-html="animateText('Zippy little utils for your JavaScript projects.', { splitBy: 'word', time: 0.2, unit: 's', class: 'animate-fade-in-up' })" />
 
-          <div class="mt-10 flex items-center gap-3 max-md:flex-col md:mt-20">
+          <div class="mt-10 flex items-center gap-3 max-md:flex-col md:mt-16">
             <NuxtLink
               to="intro/introduction"
               prefetch>
