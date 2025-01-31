@@ -136,10 +136,10 @@ export function formatDurationLabels(
   options?: {
     labels?: 'short' | 'long'
     round?: boolean
+    decimals?: number
   },
 ): string {
   if (seconds <= 0) return formatUnit(0, { unit: 'second', decimals: 0, unitDisplay: options?.labels ?? 'long' })
-  if (options?.round) seconds = Math.round(seconds)
 
   const units = [
     { unit: 'year', value: 31536000 },
@@ -147,7 +147,19 @@ export function formatDurationLabels(
     { unit: 'hour', value: 3600 },
     { unit: 'minute', value: 60 },
     { unit: 'second', value: 1 },
+    { unit: 'millisecond', value: 1 / 1000 },
   ]
+
+  if (options?.round) {
+    // Find the largest unit that has a value
+    for (const { unit, value } of units) {
+      if (seconds >= value) {
+        const unitValue = seconds / value
+        const hasDecimal = unitValue % 1 !== 0
+        return formatUnit(unitValue, { unit, decimals: hasDecimal ? 1 : 0, unitDisplay: options?.labels ?? 'long' })
+      }
+    }
+  }
 
   const labels = options?.labels ?? 'long'
   const results = []
