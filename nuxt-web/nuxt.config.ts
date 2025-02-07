@@ -7,10 +7,14 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@nuxt/eslint',
     'nuxt-icon',
-    '@nuxtjs/seo',
-    '@nuxtjs/sitemap',
+    // '@nuxtjs/seo',
+    // '@nuxtjs/sitemap',
     '@nuxthub/core',
   ],
+
+  hub: {
+    database: true,
+  },
 
   css: ['~/assets/css/main.css'],
 
@@ -25,11 +29,11 @@ export default defineNuxtConfig({
     },
   },
 
-  sitemap: {
-    sources: [
-      '/api/sitemap',
-    ],
-  },
+  // sitemap: {
+  //   sources: [
+  //     '/api/sitemap',
+  //   ],
+  // },
 
   site: {
     name: 'UseMods',
@@ -44,15 +48,12 @@ export default defineNuxtConfig({
     },
   },
 
+
   content: {
-    highlight: {
-      theme: {
-        default: 'github-light',
-        dark: 'github-dark',
-      },
-      preload: ['javascript', 'typescript', 'json', 'html', 'css', 'yaml'],
-    },
-    ignores: ['\\.txt$'],
+    database: {
+      type: 'd1',
+      bindingName: 'usemods'
+    }
   },
 
   routeRules: {
