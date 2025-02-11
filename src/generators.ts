@@ -4,7 +4,6 @@
 
 import { isServerSide } from './devices'
 
-
 /**
  * Generate a random number
  */
@@ -24,17 +23,6 @@ export function generateNumber(length: number): number {
  */
 export function generateNumberBetween(from: number, to: number): number {
   return Math.floor(Math.random() * (to - from + 1) + from)
-}
-
-/**
- * Generate a universally unique identifier (UUID).
- */
-export function generateUuid(): string {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-    const r = (Math.random() * 16) | 0,
-      v = c === 'x' ? r : (r & 0x3) | 0x8
-    return v.toString(16)
-  })
 }
 
 /**
@@ -92,13 +80,15 @@ export function generateRandomIndex(max: number): number {
 
   const range = 256 - (256 % max)
   let randomValue
-  
+
   function getRandomValue() {
     if (!isServerSide() && window.crypto && window.crypto.getRandomValues) {
       return window.crypto.getRandomValues(new Uint8Array(1))[0]
-    } else if (globalThis.crypto && globalThis.crypto.getRandomValues) {
+    }
+    else if (globalThis.crypto && globalThis.crypto.getRandomValues) {
       return globalThis.crypto.getRandomValues(new Uint8Array(1))[0]
-    } else {
+    }
+    else {
       console.warn('[MODS] crypto.getRandomValues is not available. Using random() fallback.')
       return Math.floor(Math.random() * max)
     }
@@ -128,9 +118,79 @@ export function generateLoremIpsum(count: number = 5, options?: { format: 'words
 
   if (format === 'sentences') {
     return Array.from({ length: count }, generateSentence).join(' ')
-  } else if (format === 'paragraphs') {
+  }
+  else if (format === 'paragraphs') {
     return Array.from({ length: count }, () => Array.from({ length: Math.floor(Math.random() * 10) + 5 }, generateSentence).join(' ')).join('\n\n')
-  } else {
+  }
+  else {
     return Array.from({ length: count }, () => lorem[Math.floor(Math.random() * lorem.length)]).join(' ')
+  }
+}
+
+/**
+ * Generate a Version 4 UUID (cryptographically random)
+ */
+export function generateUuid4(): string {
+  const bytes = new Uint8Array(16)
+  crypto.getRandomValues(bytes)
+
+  // Set version 4 (random)
+  bytes[6] = (bytes[6] & 0x0f) | 0x40
+  // Set the variant according to RFC4122
+  bytes[8] = (bytes[8] & 0x3f) | 0x80
+
+  const hex = Array.from(bytes, b => b.toString(16).padStart(2, '0'))
+  return `${hex.slice(0, 4).join('')}-${hex.slice(4, 6).join('')}-${hex.slice(6, 8).join('')}-${hex.slice(8, 10).join('')}-${hex.slice(10).join('')}`
+}
+
+/**
+ * Generate a Version 7 UUID encoding a Unix timestamp in the first 6 bytes and filling the rest with random bytes.
+ * @info UUID is still an IETF draft specification.
+ */
+export function generateUuid7(): string {
+  const now = BigInt(Date.now())
+  const subMillisecondNanoseconds = generateHighResolutionTime() % 1_000_000n
+  const millisecondFraction = Number(subMillisecondNanoseconds >> 6n) & 0x3ff
+  const compositeTimestamp = (now << 10n) | BigInt(millisecondFraction)
+  const timestampWithVersion = (compositeTimestamp << 4n) | 0x7n
+
+  // Create a buffer to store the timestamp and version
+  const buffer = new ArrayBuffer(8)
+  const view = new DataView(buffer)
+  view.setBigUint64(0, timestampWithVersion, false)
+
+  // Create a buffer to store the random bytes
+  const uuidBytes = new Uint8Array(16)
+  uuidBytes.set(new Uint8Array(buffer), 0)
+  crypto.getRandomValues(uuidBytes.subarray(8))
+
+  // Set the variant according to RFC4122
+  uuidBytes[8] = (uuidBytes[8] & 0x3f) | 0x80
+
+  // Convert the UUID bytes to a hex string
+  const hex = Array.from(uuidBytes, b => b.toString(16).padStart(2, '0'))
+
+  return [
+    hex.slice(0, 4).join(''),
+    hex.slice(4, 6).join(''),
+    hex.slice(6, 8).join(''),
+    hex.slice(8, 10).join(''),
+    hex.slice(10, 16).join(''),
+  ].join('-')
+}
+
+/**
+ * Helper function to get high-resolution time using process.hrtime, or performance.now as a fallback.
+ */
+export function generateHighResolutionTime(): bigint {
+  if (typeof process !== 'undefined' && process.hrtime && typeof process.hrtime.bigint === 'function') {
+    return process.hrtime.bigint()
+  }
+  else if (typeof performance !== 'undefined' && typeof performance.now === 'function') {
+    return BigInt(Math.floor(performance.now() * 1e6))
+  }
+  else {
+    console.warn('[MODS] High-resolution timer is not available, using 0 as fallback')
+    return 0n
   }
 }
