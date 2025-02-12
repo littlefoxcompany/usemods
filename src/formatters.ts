@@ -387,11 +387,11 @@ export function formatInitials(
  * Format Unix timestamp into a datetime string
  */
 export function formatUnixTime(timestamp: number): string {
-  if (isNaN(timestamp) || timestamp < 0 || timestamp > 9999999999) {
+  if (isNaN(timestamp) || timestamp < 0) {
     console.warn('[MODS] Invalid Unix timestamp:', timestamp)
     return String(timestamp)
   }
-  return new Date(timestamp * 1000).toISOString().replace('T', ' ').replace('Z', '')
+  return new Date(timestamp).toISOString().replace('T', ' ').replace('Z', '')
 }
 
 /**
