@@ -20,6 +20,18 @@ test('generateNumberBetween', () => {
   expect(mod.generateNumberBetween(1, 1)).toBe(1)
 })
 
+test('generateUuid7', () => {
+  const uuid = mod.generateUuid7()
+  expect(uuid).toHaveLength(36)
+  expect(uuid).toMatch(/^[0-9a-f]{36}$/)
+})
+
+test('generateUuid4', () => {
+  const uuid = mod.generateUuid4()
+  expect(uuid).toHaveLength(36)
+  expect(uuid).toMatch(/^[0-9a-f]{36}$/)
+})
+
 test('generateUuid', () => {
   expect(mod.generateUuid()).toHaveLength(36)
   expect(mod.generateUuid()).toMatch(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/)
@@ -52,7 +64,6 @@ test('generatePassword', () => {
 
   // Special
   expect(mod.generatePassword({ special: 2 })).toMatch(new RegExp(`[${specialChars}]{1,}`))
-
 })
 
 test('generateRandomIndex', () => {
@@ -65,22 +76,22 @@ test('generateRandomIndex', () => {
 
   // Window
   const originalWindow = global.window
-  
+
   expect(mod.generateRandomIndex(10)).toBeLessThanOrEqual(9)
 
   // Test fallback path
   // @ts-expect-error - Intentionally removing window for testing
   global.window = undefined
-  
+
   // Create mock crypto object before spying
   Object.defineProperty(globalThis, 'crypto', {
     value: undefined,
     writable: true,
-    configurable: true
+    configurable: true,
   })
-  
+
   const cryptoSpy = vi.spyOn(globalThis, 'crypto', 'get').mockReturnValue(undefined as any)
-  
+
   const consoleSpy = vi.spyOn(console, 'warn')
   expect(mod.generateRandomIndex(10)).toBeLessThanOrEqual(9)
   expect(consoleSpy).toHaveBeenCalledWith('[MODS] crypto.getRandomValues is not available. Using random() fallback.')
@@ -106,4 +117,25 @@ test('generateLoremIpsum', () => {
   expect(mod.generateLoremIpsum(5, { format: 'paragraphs' }).split('\n').filter(Boolean).length).toBe(5)
   expect(mod.generateLoremIpsum(10, { format: 'paragraphs' }).split('\n').filter(Boolean).length).toBe(10)
   expect(mod.generateLoremIpsum(100, { format: 'paragraphs' }).split('\n').filter(Boolean).length).toBe(100)
+})
+
+test('generateHighResolutionTime', () => {
+  const time = mod.generateHighResolutionTime()
+  expect(time).toBeGreaterThan(0)
+  expect(time).toBeLessThan(10000000000000000)
+})
+
+test('encodeShortUuid', () => {
+  const uuid = '2ededb11-c6ad-4af9-bcd6-30896a32c8b4'
+  const shortUuid = mod.encodeShortUuid(uuid)
+  expect(shortUuid).toHaveLength(22)
+  expect(shortUuid).toMatch(/^[0-9a-zA-Z]{22}$/)
+  expect(shortUuid).toEqual('Lt7bEcatSvm81jCJajLItA')
+})
+
+test('decodeShortUuid', () => {
+  const uuid = '2ededb11-c6ad-4af9-bcd6-30896a32c8b4'
+  const shortUuid = mod.encodeShortUuid(uuid)
+  const decodedUuid = mod.decodeShortUuid(shortUuid)
+  expect(decodedUuid).toBe(uuid)
 })
