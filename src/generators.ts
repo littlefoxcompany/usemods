@@ -3,6 +3,14 @@
 // lead: Conjure data out of thin air
 
 import { isServerSide } from './devices'
+import { formatUnixTime } from './formatters'
+
+// Store an offset if process.hrtime is available (Node.js)
+let hrtimeEpochOffset: bigint | null = null
+if (typeof process !== 'undefined' && process.hrtime && typeof process.hrtime.bigint === 'function') {
+  // Date.now() is in ms, so convert to ns.
+  hrtimeEpochOffset = BigInt(Date.now()) * 1_000_000n - process.hrtime.bigint()
+}
 
 /**
  * Generate a random number
@@ -23,6 +31,76 @@ export function generateNumber(length: number): number {
  */
 export function generateNumberBetween(from: number, to: number): number {
   return Math.floor(Math.random() * (to - from + 1) + from)
+}
+
+/**
+ * Generate a Version 4 UUID (cryptographically random)
+ */
+export function generateUuid4(): string {
+  const bytes = new Uint8Array(16)
+  crypto.getRandomValues(bytes)
+
+  // Set version 4 (random)
+  bytes[6] = (bytes[6] & 0x0f) | 0x40
+  // Set the variant according to RFC4122
+  bytes[8] = (bytes[8] & 0x3f) | 0x80
+
+  const hex = Array.from(bytes, b => b.toString(16).padStart(2, '0'))
+  return `${hex.slice(0, 4).join('')}-${hex.slice(4, 6).join('')}-${hex.slice(6, 8).join('')}-${hex.slice(8, 10).join('')}-${hex.slice(10).join('')}`
+}
+
+/**
+ * Generate a Version 4 UUID (cryptographically random)
+ */
+export const generateUuid = generateUuid4
+
+/**
+ * Generate a Version 7 UUID encoding a Unix timestamp in the first 6 bytes and filling the rest with random bytes.
+ * @info UUID is still an IETF draft specification.
+ */
+export function generateUuid7(): string {
+  const now = Date.now() // milliseconds
+  const subMillisecondNanoseconds = generateHighResolutionTime() % 1_000_000n // nanoseconds
+  const fraction = Number((subMillisecondNanoseconds * 4096n) / 1_000_000n) & 0xfff // 12-bit fraction
+
+  // Multiply by 4096 to shift the millisecond-precision timestamp by 12 bits,
+  // then shift left by 4 to position the 60-bit value into the high 60 bits
+  // of an 8-byte (64-bit) value.
+  const compositeTimestamp = (((BigInt(now) * 4096n) + BigInt(fraction)) << 4n)
+
+  // Create a buffer to store the UUID with the timestamp.
+  const buffer = new ArrayBuffer(8)
+  const view = new DataView(buffer)
+
+  // Set the composite timestamp into the buffer (first 6 bytes of the UUID).
+  view.setBigUint64(0, compositeTimestamp, false)
+
+  const timestampBytes = new Uint8Array(buffer)
+
+  // Set version 7 (UUIDv7) in the timestamp (binary 01110000 in the high nibble of byte 6).
+  timestampBytes[6] = (timestampBytes[6] & 0x0f) | 0x70
+
+  // Create an array for the full UUID (16 bytes total).
+  const uuidBytes = new Uint8Array(16)
+  uuidBytes.set(timestampBytes, 0)
+
+  // Fill the remaining 8 bytes with random values.
+  crypto.getRandomValues(uuidBytes.subarray(8))
+
+  // Set the variant for UUIDv7.
+  uuidBytes[8] = (uuidBytes[8] & 0x3f) | 0x80
+
+  // Convert the UUID bytes to a hexadecimal string.
+  const hex = Array.from(uuidBytes, b => b.toString(16).padStart(2, '0'))
+
+  // Format the UUID as a standard string: 8-4-4-4-12.
+  return [
+    hex.slice(0, 4).join(''),
+    hex.slice(4, 6).join(''),
+    hex.slice(6, 8).join(''),
+    hex.slice(8, 10).join(''),
+    hex.slice(10, 16).join(''),
+  ].join('-')
 }
 
 /**
@@ -128,58 +206,6 @@ export function generateLoremIpsum(count: number = 5, options?: { format: 'words
 }
 
 /**
- * Generate a Version 4 UUID (cryptographically random)
- */
-export function generateUuid4(): string {
-  const bytes = new Uint8Array(16)
-  crypto.getRandomValues(bytes)
-
-  // Set version 4 (random)
-  bytes[6] = (bytes[6] & 0x0f) | 0x40
-  // Set the variant according to RFC4122
-  bytes[8] = (bytes[8] & 0x3f) | 0x80
-
-  const hex = Array.from(bytes, b => b.toString(16).padStart(2, '0'))
-  return `${hex.slice(0, 4).join('')}-${hex.slice(4, 6).join('')}-${hex.slice(6, 8).join('')}-${hex.slice(8, 10).join('')}-${hex.slice(10).join('')}`
-}
-
-/**
- * Generate a Version 7 UUID encoding a Unix timestamp in the first 6 bytes and filling the rest with random bytes.
- * @info UUID is still an IETF draft specification.
- */
-export function generateUuid7(): string {
-  const now = BigInt(Date.now())
-  const subMillisecondNanoseconds = generateHighResolutionTime() % 1_000_000n
-  const millisecondFraction = Number(subMillisecondNanoseconds >> 6n) & 0x3ff
-  const compositeTimestamp = (now << 10n) | BigInt(millisecondFraction)
-  const timestampWithVersion = (compositeTimestamp << 4n) | 0x7n
-
-  // Create a buffer to store the timestamp and version
-  const buffer = new ArrayBuffer(8)
-  const view = new DataView(buffer)
-  view.setBigUint64(0, timestampWithVersion, false)
-
-  // Create a buffer to store the random bytes
-  const uuidBytes = new Uint8Array(16)
-  uuidBytes.set(new Uint8Array(buffer), 0)
-  crypto.getRandomValues(uuidBytes.subarray(8))
-
-  // Set the variant according to RFC4122
-  uuidBytes[8] = (uuidBytes[8] & 0x3f) | 0x80
-
-  // Convert the UUID bytes to a hex string
-  const hex = Array.from(uuidBytes, b => b.toString(16).padStart(2, '0'))
-
-  return [
-    hex.slice(0, 4).join(''),
-    hex.slice(4, 6).join(''),
-    hex.slice(6, 8).join(''),
-    hex.slice(8, 10).join(''),
-    hex.slice(10, 16).join(''),
-  ].join('-')
-}
-
-/**
  * Helper function to get high-resolution time using process.hrtime, or performance.now as a fallback.
  */
 export function generateHighResolutionTime(): bigint {
@@ -193,4 +219,58 @@ export function generateHighResolutionTime(): bigint {
     console.warn('[MODS] High-resolution timer is not available, using 0 as fallback')
     return 0n
   }
+}
+
+/**
+ * Encodes a standard UUID (with dashes) into a URL-safe Base64 variant,
+ */
+export function encodeShortUuid(uuid: string): string {
+  // Remove dashes and validate length
+  const hex = uuid.replace(/-/g, '')
+  if (hex.length !== 32) {
+    throw new Error(`Invalid UUID: expected 32 hex chars, got length=${hex.length}.`)
+  }
+
+  // Convert each pair of hex digits to a byte (16 bytes total)
+  const pairs = hex.match(/.{2}/g)!
+  const bytes = pairs.map(pair => parseInt(pair, 16))
+
+  // Convert bytes to binary string, then to Base64
+  const binary = String.fromCharCode(...bytes)
+  const base64 = btoa(binary)
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=+$/, '')
+  return base64
+}
+
+/**
+ * Decodes a short URL-safe Base64-encoded string back into a standard
+ */
+export function decodeShortUuid(shortUuid: string): string {
+  // Convert URL-safe chars back to normal Base64 and pad with '='
+  let base64 = shortUuid.replace(/-/g, '+').replace(/_/g, '/')
+  while (base64.length % 4 !== 0) {
+    base64 += '='
+  }
+
+  // Decode Base64 → binary string
+  const binary = atob(base64)
+  if (binary.length !== 16) {
+    throw new Error(`Decoded data must be 16 bytes; got length=${binary.length}.`)
+  }
+
+  // Convert each byte to two hex digits
+  const hex = Array.from(binary)
+    .map(char => char.charCodeAt(0).toString(16).padStart(2, '0'))
+    .join('')
+
+  // Insert dashes (8-4-4-4-12)
+  return [
+    hex.slice(0, 8),
+    hex.slice(8, 12),
+    hex.slice(12, 16),
+    hex.slice(16, 20),
+    hex.slice(20),
+  ].join('-')
 }
