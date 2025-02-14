@@ -386,7 +386,10 @@ export function formatInitials(
 /**
  * Format Unix timestamp into a datetime string
  */
-export function formatUnixTime(timestamp: number): string {
+export function formatUnixTime(timestamp?: number): string {
+  if (timestamp == null) {
+    return ''
+  }
   if (isNaN(timestamp) || timestamp < 0) {
     console.warn('[MODS] Invalid Unix timestamp:', timestamp)
     return String(timestamp)
