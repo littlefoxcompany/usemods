@@ -3,14 +3,6 @@
 // lead: Conjure data out of thin air
 
 import { isServerSide } from './devices'
-import { formatUnixTime } from './formatters'
-
-// Store an offset if process.hrtime is available (Node.js)
-let hrtimeEpochOffset: bigint | null = null
-if (typeof process !== 'undefined' && process.hrtime && typeof process.hrtime.bigint === 'function') {
-  // Date.now() is in ms, so convert to ns.
-  hrtimeEpochOffset = BigInt(Date.now()) * 1_000_000n - process.hrtime.bigint()
-}
 
 /**
  * Generate a random number
@@ -46,6 +38,8 @@ export function generateUuid4(): string {
   bytes[8] = (bytes[8] & 0x3f) | 0x80
 
   const hex = Array.from(bytes, b => b.toString(16).padStart(2, '0'))
+
+  // Format the UUID as a standard string: 8-4-4-4-12.
   return `${hex.slice(0, 4).join('')}-${hex.slice(4, 6).join('')}-${hex.slice(6, 8).join('')}-${hex.slice(8, 10).join('')}-${hex.slice(10).join('')}`
 }
 
