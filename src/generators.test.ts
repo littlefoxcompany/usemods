@@ -1,5 +1,6 @@
 import { expect, test, vi } from 'vitest'
 import * as mod from './generators'
+import exp from 'constants'
 
 test('generateNumber', () => {
   expect(mod.generateNumber(1).toString()).toHaveLength(1)
@@ -24,6 +25,20 @@ test('generateUuid7', () => {
   const uuid = mod.generateUuid7()
   expect(uuid).toHaveLength(36)
   expect(uuid).toMatch(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/)
+})
+
+test('decodeUuid7', () => {
+  const uuid = '01950636-e549-7660-92b3-6ca21fbdd611'
+  const decoded = mod.decodeUuid7(uuid)
+  expect(decoded).toBe('2025-02-14T20:46:55.817Z')
+
+  // Invalid UUID
+  const invalidUuid = '123'
+  expect(() => mod.decodeUuid7(invalidUuid)).toThrow('[MODS] Invalid UUID: not enough data to decode timestamp.')
+
+  // Invalid UUID4
+  const invalidUuid4 = mod.generateUuid4()
+  expect(() => mod.decodeUuid7(invalidUuid4)).toThrow('[MODS] Invalid UUID7: version is not v7.')
 })
 
 test('generateUuid4', () => {
@@ -95,7 +110,7 @@ test('generateRandomIndex', () => {
 
   const consoleSpy = vi.spyOn(console, 'warn')
   expect(mod.generateRandomIndex(10)).toBeLessThanOrEqual(9)
-  expect(consoleSpy).toHaveBeenCalledWith('[MODS] crypto.getRandomValues is not available. Using random() fallback.')
+  expect(consoleSpy).toHaveBeenCalledWith('[MODS] crypto.getRandomValues is not available. Using Math.random() fallback.')
 
   // Restore original values
   global.window = originalWindow

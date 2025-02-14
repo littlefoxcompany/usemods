@@ -12,17 +12,23 @@ export function generateNumber(length: number): number {
     console.warn('[MODS] Warning: length must be a positive integer')
     return 0
   }
-
   const min = 10 ** (length - 1)
-  const max = 10 ** length - 1
-  return Math.floor(Math.random() * (max - min + 1) + min)
+  const range = 9 * min
+  const value = getSecureRandomValues(new Uint8Array(6))
+    .reduce((acc, byte) => acc * 256 + byte, 0) % range
+  return min + value
 }
 
 /**
  * Generate a random number between two values
  */
 export function generateNumberBetween(from: number, to: number): number {
-  return Math.floor(Math.random() * (to - from + 1) + from)
+  const min = Math.min(from, to)
+  const max = Math.max(from, to)
+  const range = max - min + 1
+  const value = getSecureRandomValues(new Uint8Array(6))
+    .reduce((acc, byte) => acc * 256 + byte, 0) % range
+  return min + value
 }
 
 /**
@@ -30,11 +36,10 @@ export function generateNumberBetween(from: number, to: number): number {
  */
 export function generateUuid4(): string {
   const bytes = new Uint8Array(16)
-  crypto.getRandomValues(bytes)
+  getSecureRandomValues(bytes)
 
   // Set version 4 (random)
   bytes[6] = (bytes[6] & 0x0f) | 0x40
-  // Set the variant according to RFC4122
   bytes[8] = (bytes[8] & 0x3f) | 0x80
 
   const hex = Array.from(bytes, b => b.toString(16).padStart(2, '0'))
@@ -43,9 +48,6 @@ export function generateUuid4(): string {
   return `${hex.slice(0, 4).join('')}-${hex.slice(4, 6).join('')}-${hex.slice(6, 8).join('')}-${hex.slice(8, 10).join('')}-${hex.slice(10).join('')}`
 }
 
-/**
- * Generate a Version 4 UUID (cryptographically random)
- */
 export const generateUuid = generateUuid4
 
 /**
@@ -57,9 +59,7 @@ export function generateUuid7(): string {
   const subMillisecondNanoseconds = generateHighResolutionTime() % 1_000_000n // nanoseconds
   const fraction = Number((subMillisecondNanoseconds * 4096n) / 1_000_000n) & 0xfff // 12-bit fraction
 
-  // Multiply by 4096 to shift the millisecond-precision timestamp by 12 bits,
-  // then shift left by 4 to position the 60-bit value into the high 60 bits
-  // of an 8-byte (64-bit) value.
+  // Combine the timestamp and fraction into a 64-bit value
   const compositeTimestamp = (((BigInt(now) * 4096n) + BigInt(fraction)) << 4n)
 
   // Create a buffer to store the UUID with the timestamp.
@@ -79,7 +79,7 @@ export function generateUuid7(): string {
   uuidBytes.set(timestampBytes, 0)
 
   // Fill the remaining 8 bytes with random values.
-  crypto.getRandomValues(uuidBytes.subarray(8))
+  getSecureRandomValues(uuidBytes.subarray(8))
 
   // Set the variant for UUIDv7.
   uuidBytes[8] = (uuidBytes[8] & 0x3f) | 0x80
@@ -97,12 +97,40 @@ export function generateUuid7(): string {
   ].join('-')
 }
 
+/** Decode UUIDv7 */
+export function decodeUuid7(uuid: string): string {
+  const hex = uuid.replace(/-/g, '')
+
+  // Check if the UUID7 is valid
+  if (!/^[0-9a-f]{32}$/i.test(hex)) {
+    throw new Error('[MODS] Invalid UUID: not enough data to decode timestamp.')
+  }
+
+  // Check if it's a UUIDv7 by examining version bits
+  const version = (parseInt(hex[12], 16) & 0xf)
+  if (version !== 7) {
+    throw new Error('[MODS] Invalid UUID7: version is not v7.')
+  }
+
+  // Decode the timestamp
+  const timestamp = Number((BigInt(`0x${hex.slice(0, 16)}`) >> 4n) / 4096n)
+  const date = new Date(timestamp)
+
+  // Check if the date is valid
+  if (isNaN(date.getTime())) {
+    throw new RangeError('Invalid time value decoded from UUIDv7.')
+  }
+
+  // Return the date in ISO format
+  return date.toISOString()
+}
+
 /**
  * Generate a unique short ID based on the current timestamp
  */
 export function generateShortId(length: number = 19): string {
   const timestampPart = Math.floor(Date.now()).toString().toUpperCase()
-  const randomPart = Math.random().toString().slice(2).toUpperCase()
+  const randomPart = Math.random().toString(36).slice(2).toUpperCase()
   return (timestampPart + randomPart).slice(0, length)
 }
 
@@ -151,23 +179,12 @@ export function generateRandomIndex(max: number): number {
   }
 
   const range = 256 - (256 % max)
-  let randomValue
+  const buffer = new Uint8Array(1)
+  let randomValue: number
 
-  function getRandomValue() {
-    if (!isServerSide() && window.crypto && window.crypto.getRandomValues) {
-      return window.crypto.getRandomValues(new Uint8Array(1))[0]
-    }
-    else if (globalThis.crypto && globalThis.crypto.getRandomValues) {
-      return globalThis.crypto.getRandomValues(new Uint8Array(1))[0]
-    }
-    else {
-      console.warn('[MODS] crypto.getRandomValues is not available. Using random() fallback.')
-      return Math.floor(Math.random() * max)
-    }
-  }
   do {
-    randomValue = getRandomValue()
-  } while (randomValue === undefined || randomValue >= range)
+    randomValue = getSecureRandomValues(buffer)[0]
+  } while (randomValue >= range)
 
   return randomValue % max
 }
@@ -267,4 +284,24 @@ export function decodeShortUuid(shortUuid: string): string {
     hex.slice(16, 20),
     hex.slice(20),
   ].join('-')
+}
+
+/**
+  * Returns an array filled with cryptographically secure random bytes.
+*/
+export function getSecureRandomValues(buffer: Uint8Array): Uint8Array {
+  if (!isServerSide() && window.crypto?.getRandomValues) {
+    return window.crypto.getRandomValues(buffer)
+  }
+  else if (globalThis.crypto?.getRandomValues) {
+    return globalThis.crypto.getRandomValues(buffer)
+  }
+  else {
+    console.warn('[MODS] crypto.getRandomValues is not available. Using Math.random() fallback.')
+    for (let i = 0; i < buffer.length; i++) {
+      // fill each byte with a pseudorandom number between 0 and 255.
+      buffer[i] = Math.floor(Math.random() * 256)
+    }
+    return buffer
+  }
 }
