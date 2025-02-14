@@ -52,7 +52,6 @@ export const generateUuid = generateUuid4
 
 /**
  * Generate a Version 7 UUID encoding a Unix timestamp in the first 6 bytes and filling the rest with random bytes.
- * @info UUID is still an IETF draft specification.
  */
 export function generateUuid7(): string {
   const now = Date.now() // milliseconds
