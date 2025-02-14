@@ -23,18 +23,19 @@ test('generateNumberBetween', () => {
 test('generateUuid7', () => {
   const uuid = mod.generateUuid7()
   expect(uuid).toHaveLength(36)
-  expect(uuid).toMatch(/^[0-9a-f]{36}$/)
+  expect(uuid).toMatch(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/)
 })
 
 test('generateUuid4', () => {
   const uuid = mod.generateUuid4()
   expect(uuid).toHaveLength(36)
-  expect(uuid).toMatch(/^[0-9a-f]{36}$/)
+  expect(uuid).toMatch(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/)
 })
 
 test('generateUuid', () => {
-  expect(mod.generateUuid()).toHaveLength(36)
-  expect(mod.generateUuid()).toMatch(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/)
+  const uuid = mod.generateUuid()
+  expect(uuid).toHaveLength(36)
+  expect(uuid).toMatch(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/)
 })
 
 test('generateShortId', () => {
