@@ -2,7 +2,7 @@
 
 ## v1.10.0
 
-[compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.10.0...v1.10.0)
+[compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.9.2...v1.10.0)
 
 ### 🚀 Enhancements
 
@@ -24,6 +24,11 @@
 - **generators:** Remove unused hrtime offset logic and improve UUID formatting ([f62bf2c](https://github.com/LittleFoxCompany/usemods/commit/f62bf2c))
 - **generators:** Rename encodeShortUuid to generateShortUuid for clarity ([9cd2907](https://github.com/LittleFoxCompany/usemods/commit/9cd2907))
 - **generators:** Rename encodeShortUuid to generateShortUuid for clarity and update tests ([651613a](https://github.com/LittleFoxCompany/usemods/commit/651613a))
+
+### 🏡 Chore
+
+- **release:** V1.10.0 ([71cf314](https://github.com/LittleFoxCompany/usemods/commit/71cf314))
+- **release:** V1.10.0 ([45319bb](https://github.com/LittleFoxCompany/usemods/commit/45319bb))
 
 ### ✅ Tests
 
