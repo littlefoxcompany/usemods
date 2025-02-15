@@ -2,17 +2,17 @@
   <Example>
     <ExampleInputs>
       <FormInput
-        v-model.number="seconds"
+        v-model.number="now"
         label="Timestamp"
         type="number" />
     </ExampleInputs>
-    <ExampleCode :code="`formatUnixTime(${seconds})`" />
+    <ExampleCode :code="`formatUnixTime(${now})`" />
     <ExampleResult>
-      {{ formatUnixTime(seconds) }}
+      {{ formatUnixTime(now) }}
     </ExampleResult>
   </Example>
 </template>
 
 <script setup lang="ts">
-const seconds = ref(Math.round(Date.now() / 1000))
+const now = ref(Date.now())
 </script>

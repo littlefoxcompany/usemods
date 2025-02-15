@@ -132,14 +132,7 @@ export function ordinalize(value: number): string {
 export function stripHtml(text: string): string {
   if (typeof text !== 'string') return ''
 
-  // DOMParser (client-side)
-  if (typeof window !== 'undefined' && window.DOMParser) {
-    const parser = new DOMParser()
-    const doc = parser.parseFromString(text, 'text/html')
-    return (doc.body.textContent || '').trim()
-  }
-
-  // SSR Fallback (server-side)
+  // SSR-compatible HTML stripping
   const stripTags = (str: string) => {
     return str
       .split('<')
