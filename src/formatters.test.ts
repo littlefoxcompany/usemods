@@ -143,8 +143,8 @@ test('formatParagraphs', () => {
 test('formatUnixTime', () => {
   expect(mod.formatUnixTime(0)).toBe('1970-01-01 00:00:00.000')
   expect(mod.formatUnixTime(-10)).toBe('-10')
-  expect(mod.formatUnixTime(1619999999)).toBe('2021-05-02 23:59:59.000')
-  expect(mod.formatUnixTime(1620000000)).toBe('2021-05-03 00:00:00.000')
+  expect(mod.formatUnixTime(1739410018494)).toBe('2025-02-13 01:26:58.494')
+  expect(mod.formatUnixTime(undefined)).toBe('')
 })
 
 test('formatInitials', () => {

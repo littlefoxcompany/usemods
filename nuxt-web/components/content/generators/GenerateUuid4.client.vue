@@ -16,7 +16,7 @@
 <script setup lang="ts">
 const result = ref('')
 function generate() {
-  result.value = generateUuid()
+  result.value = generateUuid4()
 }
 
 onMounted(() => {

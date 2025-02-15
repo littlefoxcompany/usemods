@@ -30,7 +30,7 @@ const colorClasses = {
 
 const sizeClasses = {
   'h-9 px-3 gap-2 text-sm': props.size === 'sm',
-  'h-11 px-5 gap-3 text-lg': props.size === 'md',
-  'h-14 px-6 gap-4 text-xl': props.size === 'lg',
+  'h-11 px-5 gap-3 text-base font-light': props.size === 'md',
+  'h-14 px-6 gap-4 text-xl font-light': props.size === 'lg',
 }
 </script>
