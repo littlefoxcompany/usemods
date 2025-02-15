@@ -96,7 +96,9 @@ export function generateUuid7(): string {
   ].join('-')
 }
 
-/** Decode UUIDv7 */
+/**
+ * Decode a UUIDv7 string into a timestamp
+ */
 export function decodeUuid7(uuid: string): string {
   const hex = uuid.replace(/-/g, '')
 
@@ -125,7 +127,7 @@ export function decodeUuid7(uuid: string): string {
 }
 
 /**
- * Encodes a standard UUID (with dashes) into a URL-safe Base64 variant,
+ * Encodes a standard UUID (with dashes) into a URL-safe Base64 variant
  */
 export function generateShortUuid(uuid: string): string {
   // Remove dashes and validate length
@@ -148,7 +150,7 @@ export function generateShortUuid(uuid: string): string {
 }
 
 /**
- * Decodes a short URL-safe Base64-encoded string back into a standard
+ * Decodes a short URL-safe Base64-encoded string back into a standard UUID
  */
 export function decodeShortUuid(shortUuid: string): string {
   // Convert URL-safe chars back to normal Base64 and pad with '='
