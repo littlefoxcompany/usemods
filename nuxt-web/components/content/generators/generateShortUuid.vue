@@ -3,9 +3,9 @@
     <ExampleInputs>
       <FormInput v-model="uuid" label="UUID" />
     </ExampleInputs>
-    <ExampleCode :code="`encodeShortUuid(${uuid})`" />
+    <ExampleCode :code="`generateShortUuid(${uuid})`" />
     <ExampleResult>
-      {{ encodeShortUuid(uuid) }}
+      {{ generateShortUuid(uuid) }}
     </ExampleResult>
   </Example>
 </template>
