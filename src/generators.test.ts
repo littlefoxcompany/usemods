@@ -141,9 +141,9 @@ test('generateHighResolutionTime', () => {
   expect(time).toBeLessThan(10000000000000000)
 })
 
-test('encodeShortUuid', () => {
+test('generateShortUuid', () => {
   const uuid = '2ededb11-c6ad-4af9-bcd6-30896a32c8b4'
-  const shortUuid = mod.encodeShortUuid(uuid)
+  const shortUuid = mod.generateShortUuid(uuid)
   expect(shortUuid).toHaveLength(22)
   expect(shortUuid).toMatch(/^[0-9a-zA-Z]{22}$/)
   expect(shortUuid).toEqual('Lt7bEcatSvm81jCJajLItA')
@@ -151,7 +151,7 @@ test('encodeShortUuid', () => {
 
 test('decodeShortUuid', () => {
   const uuid = '2ededb11-c6ad-4af9-bcd6-30896a32c8b4'
-  const shortUuid = mod.encodeShortUuid(uuid)
+  const shortUuid = mod.generateShortUuid(uuid)
   const decodedUuid = mod.decodeShortUuid(shortUuid)
   expect(decodedUuid).toBe(uuid)
 })

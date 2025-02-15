@@ -20,7 +20,7 @@ export function generateNumber(length: number): number {
 }
 
 /**
- * Generate a random number between two values
+ * Generate a random number within an inclusive range.
  */
 export function generateNumberBetween(from: number, to: number): number {
   const min = Math.min(from, to)
@@ -122,6 +122,60 @@ export function decodeUuid7(uuid: string): string {
 
   // Return the date in ISO format
   return date.toISOString()
+}
+
+/**
+ * Encodes a standard UUID (with dashes) into a URL-safe Base64 variant,
+ */
+export function generateShortUuid(uuid: string): string {
+  // Remove dashes and validate length
+  const hex = uuid.replace(/-/g, '')
+  if (hex.length !== 32) {
+    throw new Error(`Invalid UUID: expected 32 hex chars, got length=${hex.length}.`)
+  }
+
+  // Convert each pair of hex digits to a byte (16 bytes total)
+  const pairs = hex.match(/.{2}/g)!
+  const bytes = pairs.map(pair => parseInt(pair, 16))
+
+  // Convert bytes to binary string, then to Base64
+  const binary = String.fromCharCode(...bytes)
+  const base64 = btoa(binary)
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=+$/, '')
+  return base64
+}
+
+/**
+ * Decodes a short URL-safe Base64-encoded string back into a standard
+ */
+export function decodeShortUuid(shortUuid: string): string {
+  // Convert URL-safe chars back to normal Base64 and pad with '='
+  let base64 = shortUuid.replace(/-/g, '+').replace(/_/g, '/')
+  while (base64.length % 4 !== 0) {
+    base64 += '='
+  }
+
+  // Decode Base64 → binary string
+  const binary = atob(base64)
+  if (binary.length !== 16) {
+    throw new Error(`Decoded data must be 16 bytes; got length=${binary.length}.`)
+  }
+
+  // Convert each byte to two hex digits
+  const hex = Array.from(binary)
+    .map(char => char.charCodeAt(0).toString(16).padStart(2, '0'))
+    .join('')
+
+  // Insert dashes (8-4-4-4-12)
+  return [
+    hex.slice(0, 8),
+    hex.slice(8, 12),
+    hex.slice(12, 16),
+    hex.slice(16, 20),
+    hex.slice(20),
+  ].join('-')
 }
 
 /**
@@ -229,60 +283,6 @@ export function generateHighResolutionTime(): bigint {
     console.warn('[MODS] High-resolution timer is not available, using 0 as fallback')
     return 0n
   }
-}
-
-/**
- * Encodes a standard UUID (with dashes) into a URL-safe Base64 variant,
- */
-export function encodeShortUuid(uuid: string): string {
-  // Remove dashes and validate length
-  const hex = uuid.replace(/-/g, '')
-  if (hex.length !== 32) {
-    throw new Error(`Invalid UUID: expected 32 hex chars, got length=${hex.length}.`)
-  }
-
-  // Convert each pair of hex digits to a byte (16 bytes total)
-  const pairs = hex.match(/.{2}/g)!
-  const bytes = pairs.map(pair => parseInt(pair, 16))
-
-  // Convert bytes to binary string, then to Base64
-  const binary = String.fromCharCode(...bytes)
-  const base64 = btoa(binary)
-    .replace(/\+/g, '-')
-    .replace(/\//g, '_')
-    .replace(/=+$/, '')
-  return base64
-}
-
-/**
- * Decodes a short URL-safe Base64-encoded string back into a standard
- */
-export function decodeShortUuid(shortUuid: string): string {
-  // Convert URL-safe chars back to normal Base64 and pad with '='
-  let base64 = shortUuid.replace(/-/g, '+').replace(/_/g, '/')
-  while (base64.length % 4 !== 0) {
-    base64 += '='
-  }
-
-  // Decode Base64 → binary string
-  const binary = atob(base64)
-  if (binary.length !== 16) {
-    throw new Error(`Decoded data must be 16 bytes; got length=${binary.length}.`)
-  }
-
-  // Convert each byte to two hex digits
-  const hex = Array.from(binary)
-    .map(char => char.charCodeAt(0).toString(16).padStart(2, '0'))
-    .join('')
-
-  // Insert dashes (8-4-4-4-12)
-  return [
-    hex.slice(0, 8),
-    hex.slice(8, 12),
-    hex.slice(12, 16),
-    hex.slice(16, 20),
-    hex.slice(20),
-  ].join('-')
 }
 
 /**
