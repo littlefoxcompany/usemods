@@ -521,15 +521,18 @@
   @keyframes float {
     0% {
       transform: translateY(0);
-      @apply opacity-50 dark:opacity-20;
+      opacity: 0.5;
+      @apply dark:opacity-20;
     }
     50% {
       transform: translateY(-20px);
-      @apply opacity-80 dark:opacity-50;
+      opacity: 0.8;
+      @apply dark:opacity-50;
     }
     100% {
       transform: translateY(0);
-      @apply opacity-50 dark:opacity-20;
+      opacity: 0.5; 
+      @apply dark:opacity-20;
     }
   }
 </style>

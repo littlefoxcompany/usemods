@@ -42,6 +42,11 @@ export default defineNuxtConfig({
       routes: ['/'],
       crawlLinks: true,
     },
+    esbuild: {
+      options: {
+        target: 'esnext',
+      },
+    },
   },
 
   content: {
