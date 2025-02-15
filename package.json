@@ -1,6 +1,6 @@
 {
   "name": "usemods",
-  "version": "1.9.2",
+  "version": "1.10.0",
   "description": "Zippy little modifiers and utilities for your frontend.",
   "scripts": {
     "dev": "pnpm -r dev",

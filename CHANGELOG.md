@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.10.0
+
+[compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.9.2...v1.10.0)
+
 ## v1.9.2
 
 [compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.9.1...v1.9.2)
