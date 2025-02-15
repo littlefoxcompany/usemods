@@ -117,7 +117,7 @@ export function decodeUuid7(uuid: string): string {
 
   // Check if the date is valid
   if (isNaN(date.getTime())) {
-    throw new RangeError('Invalid time value decoded from UUIDv7.')
+    throw new RangeError('[MODS] Invalid time value decoded from UUIDv7.')
   }
 
   // Return the date in ISO format
@@ -160,7 +160,7 @@ export function decodeShortUuid(shortUuid: string): string {
   // Decode Base64 → binary string
   const binary = atob(base64)
   if (binary.length !== 16) {
-    throw new Error(`Decoded data must be 16 bytes; got length=${binary.length}.`)
+    throw new Error(`[MODS] Decoded data must be 16 bytes; got length=${binary.length}.`)
   }
 
   // Convert each byte to two hex digits

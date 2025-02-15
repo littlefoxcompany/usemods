@@ -77,27 +77,30 @@ test('stripHtml', () => {
   expect(mod.stripHtml('<b>Hello world</b>')).toBe('Hello world')
   expect(mod.stripHtml('<script>Hello world</script>')).toBe('Hello world')
   expect(mod.stripHtml('<style>Hello world</style>')).toBe('Hello world')
-  
+
   // Nested tags
   expect(mod.stripHtml('<div><p>Hello <b>world</b></p></div>')).toBe('Hello world')
   expect(mod.stripHtml('<div class="test"><span>Nested</span> content</div>')).toBe('Nested content')
-  
+
   // HTML entities
   expect(mod.stripHtml('&lt;div&gt;Hello&lt;/div&gt;')).toBe('<div>Hello</div>')
   expect(mod.stripHtml('Copyright &copy; 2024')).toBe('Copyright © 2024')
   expect(mod.stripHtml('Price: &pound;99.99 (&euro;120)')).toBe('Price: £99.99 (€120)')
   expect(mod.stripHtml('Quote: &ldquo;Hello&rdquo;')).toBe('Quote: "Hello"')
-  
+
   // Numeric entities
   expect(mod.stripHtml('&#65;&#66;&#67;')).toBe('ABC')
   expect(mod.stripHtml('&#x41;&#x42;&#x43;')).toBe('ABC')
-  
+
   // Edge cases
   expect(mod.stripHtml('')).toBe('')
   expect(mod.stripHtml('   ')).toBe('')
   expect(mod.stripHtml('<>')).toBe('')
   expect(mod.stripHtml('<p>  Spaces  </p>')).toBe('Spaces')
   expect(mod.stripHtml('No HTML at all')).toBe('No HTML at all')
+
+  // Empty string
+  expect(mod.stripHtml('')).toBe('')
 })
 
 test('escapeHtml', () => {
@@ -176,4 +179,3 @@ test('kebabCase', () => {
 test('titleCase', () => {
   expect(mod.titleCase('hello world')).toBe('Hello World')
 })
-

@@ -1,6 +1,5 @@
 import { expect, test, vi } from 'vitest'
 import * as mod from './generators'
-import exp from 'constants'
 
 test('generateNumber', () => {
   expect(mod.generateNumber(1).toString()).toHaveLength(1)
