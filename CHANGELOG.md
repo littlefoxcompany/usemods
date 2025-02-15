@@ -2,7 +2,38 @@
 
 ## v1.10.0
 
-[compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.9.2...v1.10.0)
+[compare changes](https://github.com/LittleFoxCompany/usemods/compare/v1.10.0...v1.10.0)
+
+### 🚀 Enhancements
+
+- **generators:** Rename UUID generator component and add Version 7 UUID and high-resolution time generators ([cc64165](https://github.com/LittleFoxCompany/usemods/commit/cc64165))
+- **generators:** Add Version 4 and Version 7 UUID generation functions and URL-safe encoding/decoding ([f88e46c](https://github.com/LittleFoxCompany/usemods/commit/f88e46c))
+- **generators:** Add components for encoding and decoding Short UUIDs; update Unix timestamp handling ([7cc2220](https://github.com/LittleFoxCompany/usemods/commit/7cc2220))
+- **generators:** Add UUIDv7 decoding functionality and related tests ([2045fc6](https://github.com/LittleFoxCompany/usemods/commit/2045fc6))
+- **generators:** Add result state and generate button to number generation components ([3477da6](https://github.com/LittleFoxCompany/usemods/commit/3477da6))
+- **generators:** Add GetSecureRandomValues component for secure random value generation ([fea5f16](https://github.com/LittleFoxCompany/usemods/commit/fea5f16))
+
+### 🩹 Fixes
+
+- **formatters:** Set Unix timestamp to milliseconds by default ([04bad4d](https://github.com/LittleFoxCompany/usemods/commit/04bad4d))
+- **formatters:** Handle undefined input in formatUnixTime function ([6d08b9c](https://github.com/LittleFoxCompany/usemods/commit/6d08b9c))
+
+### 💅 Refactors
+
+- **generators:** Remove old UUID generation and add Version 4 and Version 7 UUID functions ([2b5eaa0](https://github.com/LittleFoxCompany/usemods/commit/2b5eaa0))
+- **generators:** Remove unused hrtime offset logic and improve UUID formatting ([f62bf2c](https://github.com/LittleFoxCompany/usemods/commit/f62bf2c))
+- **generators:** Rename encodeShortUuid to generateShortUuid for clarity ([9cd2907](https://github.com/LittleFoxCompany/usemods/commit/9cd2907))
+- **generators:** Rename encodeShortUuid to generateShortUuid for clarity and update tests ([651613a](https://github.com/LittleFoxCompany/usemods/commit/651613a))
+
+### ✅ Tests
+
+- **generators:** Add tests for UUID generation and Short UUID encoding/decoding ([13f7b62](https://github.com/LittleFoxCompany/usemods/commit/13f7b62))
+- **generators:** Update UUID format validation in tests to match standard UUID structure ([b4f7c31](https://github.com/LittleFoxCompany/usemods/commit/b4f7c31))
+- **formatters:** Update formatUnixTime tests to handle milliseconds and undefined input ([0c4e1fa](https://github.com/LittleFoxCompany/usemods/commit/0c4e1fa))
+
+### ❤️ Contributors
+
+- Jeremy Butler <jeremy@jeremymbutler.com>
 
 ## v1.9.2
 
